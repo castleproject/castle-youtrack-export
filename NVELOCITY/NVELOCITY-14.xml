@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>14</value>
+    </field>
+    <field name="summary">
+      <value>Missing the #end off an if can cause the view to fail silently and partially render.  Should throw exception.</value>
+    </field>
+    <field name="description">
+      <value>In case this is difficult to reproduce, the view I experienced this in is pasted below.  See the inline comment ##This was the #end I was missing.
+
+  #if($case.IsNew)
+  You need to save before you can add services.
+  #else
+	  #set ($alt = 0)
+	  &lt;table style="margin:0px;padding:0px;"&gt;
+	  #set ($serviceCount = 0)
+	  #foreach ($existingCaseProvider in $caseProviders)
+		  #foreach ($existingService in $existingCaseProvider.Services)
+			  #if ($existingService)
+			  &lt;tr class="service row$alt #if($edited == $existingService.Id) rowHighlight #end" &gt;
+				&lt;td&gt;&lt;a href="#" onclick="ShowForm('Cases/editCaseService.rails','$existingService.Id');return false;"&gt;$existingService.Description&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;[Remove]&lt;/td&gt;
+				&lt;/tr&gt;
+			  #set ($alt = 1 - $alt)
+			  #set ($serviceCount = $serviceCount + 1)
+			  #end     ##This was the #end I was missing.
+		  #end
+ 	  #end
+	  &lt;/table&gt;
+	  #if ($serviceCount = 0)
+	  	  There are no services.
+	  #end
+  #end</value>
+    </field>
+    <field name="created">
+      <value>1180472432000</value>
+    </field>
+    <field name="updated">
+      <value>1407822705833</value>
+    </field>
+    <field name="reporterName">
+      <value>tim</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1282591828656</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

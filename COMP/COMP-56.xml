@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Binder</value>
+    </field>
+    <field name="Fix versions">
+      <value>1.1.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>56</value>
+    </field>
+    <field name="summary">
+      <value>Support DateTimeOffset in binder</value>
+    </field>
+    <field name="description">
+      <value>Would be useful if the databinder could support DateTimeOffest as well as DateTime</value>
+    </field>
+    <field name="created">
+      <value>1203320851000</value>
+    </field>
+    <field name="updated">
+      <value>1256378781000</value>
+    </field>
+    <field name="reporterName">
+      <value>wilhol</value>
+    </field>
+    <field name="updaterName">
+      <value>wilhol</value>
+    </field>
+    <field name="resolved">
+      <value>1256378760000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="hammett" text="Oops" created="1229882989000" />
+    <comment author="rbellamy" text="Added in R6149." created="1256378778000" />
+    <comment author="hammett" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1229882820000" />
+    <comment author="hammett" text="* '''Status''' changed from ''Resolved'' to ''Reopened''.&#xD;&#xA;" created="1229882940000" />
+    <comment author="rbellamy" text="* '''Version Fixed''' changed from ''Future'' to ''1.1.0''.&#xD;&#xA;* '''Status''' changed from ''Reopened'' to ''Resolved''.&#xD;&#xA;" created="1256378760000" />
+    <comment author="rbellamy" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1256378760000" />
+  </issue>
+</issues>

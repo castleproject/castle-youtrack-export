@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>LoggingFacility</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.5.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>296</value>
+    </field>
+    <field name="summary">
+      <value>Castle Windsor won't inject Logger in a property! </value>
+    </field>
+    <field name="description">
+      <value>I prepared a simple full-code example here:
+
+    using Castle.Core.Logging;
+    using Castle.Facilities.Logging;
+    using Castle.MicroKernel.Registration;
+    using Castle.MicroKernel.SubSystems.Configuration;
+    using Castle.Windsor;
+
+    namespace IocTest
+    {
+    
+
+    public class LoggerInstaller : IWindsorInstaller
+    {
+        public void Install(IWindsorContainer container, IConfigurationStore store)
+        {
+             container.AddFacility("logger", new LoggingFacility(LoggerImplementation.Log4net, "log4net.config"));
+        }
+    }
+    public class LogicInstaller : IWindsorInstaller
+    {
+         public void Install(IWindsorContainer container, IConfigurationStore store)
+        {
+            container.Register(AllTypes.FromThisAssembly()
+                                .Pick()
+                                .If(t =&gt; t.Name.StartsWith("Logic"))
+                                .Configure((c =&gt; c.LifeStyle.Transient)));
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            IWindsorContainer container = new WindsorContainer();
+
+            container.Install(
+            new LoggerInstaller(),
+              new LogicInstaller()
+              );
+
+
+            LogicClass1 logic1 = container.Resolve&lt;LogicClass1&gt;();
+            LogicClass2 logic2 = container.Resolve&lt;LogicClass2&gt;();
+        }
+    }
+
+    public class LogicClass1
+    {
+        private ILogger logger = NullLogger.Instance;
+        public ILogger Logger
+        {
+            get { return logger; }
+            set { logger = value; }
+        }
+
+        public LogicClass1()
+        {
+            logger.Debug("Here logger is NullLogger!");
+        }
+    }
+
+    public class LogicClass2
+    {
+        public LogicClass2(ILogger logger)
+        {
+            logger.Debug("Here logger is properly injected!");
+        }
+    }
+    }
+
+what's wrong?</value>
+    </field>
+    <field name="created">
+      <value>1305821990968</value>
+    </field>
+    <field name="updated">
+      <value>1306238057733</value>
+    </field>
+    <field name="reporterName">
+      <value>Daniele.Olgiati</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1306238052202</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="Daniele.Olgiati" text="My mistake! Cannot test property injection inside constructor! You can delete it!&#xA;Sorry!" created="1305844710421" />
+  </issue>
+</issues>

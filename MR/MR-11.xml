@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - WebForms</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>beta 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>11</value>
+    </field>
+    <field name="summary">
+      <value>Webform view engine does not work within .net beta 2</value>
+    </field>
+    <field name="description">
+      <value>The following exception is raised:
+
+Server Error in '/' Application.
+There is no build provider registered for the extension ''. You can register one in the &lt;compilation&gt;&lt;buildProviders&gt; section in machine.config or web.config. Make sure the appliesTo attribute includes the value 'Web' or 'All'.
+Description: An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code.
+
+Exception Details: System.Web.HttpException: There is no build provider registered for the extension ''. You can register one in the &lt;compilation&gt;&lt;buildProviders&gt; section in machine.config or web.config. Make sure the appliesTo attribute includes the value 'Web' or 'All'.
+
+Source Error:
+
+Line 95: 			String physicalPath = Path.Combine( ViewRootDir, viewName + ".aspx" ).Replace('/', '\\');
+Line 96: 
+Line 97: 			return PageParser.GetCompiledPageInstance(viewName, physicalPath, httpContext);
+Line 98: 		}
+Line 99: 
+
+
+Source File: E:\dev\projects\castle\MonoRail\Castle.MonoRail.Framework\Views\Aspx\AspNetViewEngine.cs    Line: 97
+</value>
+    </field>
+    <field name="created">
+      <value>1119697170000</value>
+    </field>
+    <field name="updated">
+      <value>1127055435000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282143243354</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

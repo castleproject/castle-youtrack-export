@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>280</value>
+    </field>
+    <field name="summary">
+      <value>AmbiguousMatchException with trunk NHibernate (DP2)</value>
+    </field>
+    <field name="description">
+      <value>When referencing a DP2 proxy'd object in the view:
+
+
+Exception Details: System.Reflection.AmbiguousMatchException:
+Ambiguous match found.
+
+Source Error:
+
+Line 120:                       if (null == type)
+Line 121:                       {
+Line 122:                               return target.GetType().InvokeMember(name,
+Line 123:
+ResolveFlagsToUse(target.GetType(), GetPropertyBindingFlags),
+Line 124:                                                                    null,
+
+
+Source File: c:\Home\Source\Open\Castle\MonoRail\Castle.MonoRail.Views.Brail\ExpandDuckTypedExpressions_WorkaroundForDuplicateVirtualMethods.cs
+  Line: 122
+
+Stack Trace:
+
+[AmbiguousMatchException: Ambiguous match found.]
+  System.DefaultBinder.BindToMethod(BindingFlags bindingAttr,
+MethodBase[] canidates, Object[]&amp; args, ParameterModifier[] modifiers,
+CultureInfo cultureInfo, String[] names, Object&amp; state) +5790
+  System.RuntimeType.InvokeMember(String name, BindingFlags
+bindingFlags, Binder binder, Object target, Object[] providedArgs,
+ParameterModifier[] modifiers, CultureInfo culture, String[]
+namedParams) +3062
+  System.Type.InvokeMember(String name, BindingFlags invokeAttr,
+Binder binder, Object target, Object[] args) +67
+  Castle.MonoRail.Views.Brail.ExpandDuckTypedExpressions_WorkaroundForDuplicateVirtualMethods.GetProperty(Object
+target, String name) in
+c:\Home\Source\Open\Castle\MonoRail\Castle.MonoRail.Views.Brail\ExpandDuckTypedExpressions_WorkaroundForDuplicateVirtualMethods.cs:122
+  Index_BrailView.Run() +326
+  Castle.MonoRail.Views.Brail.BooViewEngine.Process(TextWriter
+output, IRailsEngineContext context, Controller controller, String
+templateName) in
+c:\Home\Source\Open\Castle\MonoRail\Castle.MonoRail.Views.Brail\BooViewEngine.cs:129
+  Castle.MonoRail.Views.Brail.BooViewEngine.Process(IRailsEngineContext
+context, Controller controller, String templateName) in
+c:\Home\Source\Open\Castle\MonoRail\Castle.MonoRail.Views.Brail\BooViewEngine.cs:113
+  Castle.MonoRail.Framework.Services.DefaultViewEngineManager.Process(IRailsEngineContext
+context, Controller controller, String templateName) in
+c:\Home\Source\Open\Castle\MonoRail\Castle.MonoRail.Framework\Services\DefaultViewEngineManager.cs:128
+  Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessView()
+in c:\Home\Source\Open\Castle\MonoRail\Castle.MonoRail.Framework\ControllerLifecycleExecutor.cs:869
+  Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction(IDictionary
+actionArgs) in c:\Home\Source\Open\Castle\MonoRail\Castle.MonoRail.Framework\ControllerLifecycleExecutor.cs:349
+  Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction()
+in c:\Home\Source\Open\Castle\MonoRail\Castle.MonoRail.Framework\ControllerLifecycleExecutor.cs:263
+  Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext
+context) in c:\Home\Source\Open\Castle\MonoRail\Castle.MonoRail.Framework\MonoRailHttpHandler.cs:108
+  Castle.MonoRail.Framework.MonoRailHttpHandler.ProcessRequest(HttpContext
+context) in c:\Home\Source\Open\Castle\MonoRail\Castle.MonoRail.Framework\MonoRailHttpHandler.cs:53
+  System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
++499
+  System.Web.HttpApplication.ExecuteStep(IExecutionStep step,
+Boolean&amp; completedSynchronously) +177</value>
+    </field>
+    <field name="created">
+      <value>1182541760000</value>
+    </field>
+    <field name="updated">
+      <value>1244676865000</value>
+    </field>
+    <field name="reporterName">
+      <value>aaronjensen</value>
+    </field>
+    <field name="updaterName">
+      <value>aaronjensen</value>
+    </field>
+    <field name="resolved">
+      <value>1282143872620</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676840000" />
+  </issue>
+</issues>

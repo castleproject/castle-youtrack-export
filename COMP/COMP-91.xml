@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>91</value>
+    </field>
+    <field name="summary">
+      <value>Add basic support for ErrorMessage and FriendlyName with .net resource backed localization</value>
+    </field>
+    <field name="description">
+      <value>This feature allow to store localized validation messages declared in validation attributes
+
+The approach is the simplest possible, but may be extended later if localization components emerge in Castle.Core
+
+the patch contains some test cases to illustrate fallback and localization support behaviour, 
+
+only AbstractValidationAttribute was touched, all remaining code and tests are untouched (appart a warning).</value>
+    </field>
+    <field name="created">
+      <value>1245165439000</value>
+    </field>
+    <field name="updated">
+      <value>1245218617000</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>gauthier</value>
+    </field>
+    <field name="resolved">
+      <value>1245218580000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Looks good. I think AbstractValidationAttribute.GetLocalizedMessageByKey() should throw if the resources cannot be found though." created="1245206004000" />
+    <comment author="roelofb" text="Applied (with changes) in r5775" created="1245218617000" />
+    <comment author="gauthier" text="* '''Attachment''' validator.resource.localization.support.patch added.&#xD;&#xA;" created="1245165439001" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1245218580000" />
+  </issue>
+</issues>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>92</value>
+    </field>
+    <field name="summary">
+      <value>AppDomain Never Releases Many Generated Assemblies - Need new Segregated AppDomain which is unloaded after use</value>
+    </field>
+    <field name="description">
+      <value>Gokhan is waiting on me... I am almost done with this fairly major issue and then I am passin this over. 
+
+1) This was not introduced in the VS 2008 work I verified. This is a fundamental issue which is quite serious, as at least for me, I cannot use the tool until this is fixed in either version. 
+
+2) The fix is rather extensive so I am focusing just on the VS2008 work, and then I will (post hand-off) create the VS 2005 patch
+
+3) Rather then use the new AddIn namespace in 3.5 (which is probably overkill) I am simply using lightweight AppDomain code injection techniques with all the expected changes (not ever referring to an Assembly in AppDomain 2 in AppDomain 1) so we can cleanly unload it.
+
+Thanks,
+Damon</value>
+    </field>
+    <field name="created">
+      <value>1198162059000</value>
+    </field>
+    <field name="updated">
+      <value>1407821976874</value>
+    </field>
+    <field name="reporterName">
+      <value>dcarr</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1407821976856</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

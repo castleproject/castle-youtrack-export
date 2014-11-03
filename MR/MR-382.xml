@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>382</value>
+    </field>
+    <field name="summary">
+      <value>Suggested alternative to TextHelper.FormatPhome</value>
+    </field>
+    <field name="description">
+      <value>The FormatPhone method, recently added to TextHelper, is somewhat limited and brittle.  (it's based on the language, not the nation; it presently only handles US phone numbers, it handles number of 1-3 digits as a special case, but numbers of 4-6 digits would cause an exception)
+
+The attached file is a more robust class to handle formatting phone numbers.
+- Formatting is based on Region
+- presently handles USA &amp; Brazil
+- handles a number of different formats (w&amp;w/o country code, w&amp;w/o area code, w&amp;w/o extension)</value>
+    </field>
+    <field name="created">
+      <value>1198123894000</value>
+    </field>
+    <field name="updated">
+      <value>1244676924000</value>
+    </field>
+    <field name="reporterName">
+      <value>jamescurran</value>
+    </field>
+    <field name="updaterName">
+      <value>jamescurran</value>
+    </field>
+    <field name="resolved">
+      <value>1282145452651</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676900000" />
+  </issue>
+</issues>

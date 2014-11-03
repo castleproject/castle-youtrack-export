@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>1</value>
+    </field>
+    <field name="summary">
+      <value>Provide ILoggerFactory implementation for all supported loggers</value>
+    </field>
+    <field name="description">
+      <value>Currently we have ILoggerFactory for ConsoleLogger, log4net and NLog. We need to add the factories to the Services.Logging and fill the spaces on LoggingFacility.cs
+
+else if(logApi == LoggerImplementation.Diagnostics)
+{
+				
+}
+else if(logApi == LoggerImplementation.Null)
+{
+		
+}
+</value>
+    </field>
+    <field name="created">
+      <value>1141471373000</value>
+    </field>
+    <field name="updated">
+      <value>1162411207000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282140356245</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

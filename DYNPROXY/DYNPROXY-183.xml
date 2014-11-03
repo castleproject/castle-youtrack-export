@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Class proxies with target</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>3.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>183</value>
+    </field>
+    <field name="summary">
+      <value>Not proxied methods on class proxy with target should forward to the target</value>
+    </field>
+    <field name="description">
+      <value>Currently when we have a proxyable method on a class proxy with target, and chose not to proxy it, the default body of the method on the proxy object will be invoked (same behavior as inheritance-base class proxy).
+
+The correct behavior should be to forward the call to the target object instead, like all the other "with target" proxy types are doing.</value>
+    </field>
+    <field name="created">
+      <value>1354226393320</value>
+    </field>
+    <field name="updated">
+      <value>1414998779722</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414998779717</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Closing. Relogged on GitHub.&#xA;https://github.com/castleproject/Core/issues/67" created="1414998779723" />
+  </issue>
+</issues>

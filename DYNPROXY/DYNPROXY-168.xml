@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>By design</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Silverlight support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>168</value>
+    </field>
+    <field name="summary">
+      <value>Explicit Interface Implementation in Silverlight 4 NullReferenceException</value>
+    </field>
+    <field name="description">
+      <value>Create a Silverlight 4 test project with this test.  Version 3 of Castle.Core.  This is blocking unit tests in NMock3 when upgrading to version 3 of Castle.
+
+{code lang=csharp}
+	[TestClass]
+	public class Class1
+	{
+		DefaultProxyBuilder generator = new DefaultProxyBuilder();
+
+		[TestMethod]
+		public void SLExplicitInterfaceImplementationTest()
+		{
+			//get NullReferenceException for some reason.
+			generator.CreateClassProxyType(typeof(DrawingObject), new[] { typeof(ISupportPreDraw), typeof(ISupportPostDraw) }, ProxyGenerationOptions.Default);
+		}
+
+	}
+
+	//example from http://msdn.microsoft.com/en-us/library/ak9w5846.aspx
+	public interface ISupportPreDraw
+	{
+		// Raise this event before drawing the object.
+		event EventHandler OnDraw;
+	}
+
+	public interface ISupportPostDraw
+	{
+		// Raise this event after drawing the object.
+		event EventHandler OnDraw;
+	}
+
+	// Base class event publisher inherits two
+	// interfaces, each with an OnDraw event
+	public class DrawingObject : ISupportPreDraw, ISupportPostDraw
+	{
+		// Create an event for each interface event
+		private event EventHandler PreDrawEvent;
+		private event EventHandler PostDrawEvent;
+
+
+		private readonly object objectLock = new Object();
+
+		#region ISupportPostDraw Members
+
+		// Explicit interface implementation required.
+		event EventHandler ISupportPostDraw.OnDraw
+		{
+			add
+			{
+				lock (objectLock)
+				{
+					PostDrawEvent += value;
+				}
+			}
+			remove
+			{
+				lock (objectLock)
+				{
+					PostDrawEvent -= value;
+				}
+			}
+		}
+
+		#endregion
+
+		#region ISupportPreDraw Members
+
+		// Explicit interface implementation required.
+		event EventHandler ISupportPreDraw.OnDraw
+		{
+			add
+			{
+				lock (objectLock)
+				{
+					PreDrawEvent += value;
+				}
+			}
+			remove
+			{
+				lock (objectLock)
+				{
+					PreDrawEvent -= value;
+				}
+			}
+		}
+
+		#endregion
+
+
+	}
+		
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1327332745430</value>
+    </field>
+    <field name="updated">
+      <value>1341015190077</value>
+    </field>
+    <field name="reporterName">
+      <value>p.w</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1341015190077</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Was it working previously? I'm pretty sure Silverlight doesn't allow us to intercept explicit implenentations..." created="1329252184482" />
+    <comment author="p.w" text="I commented out the Silverlight lines of this code and my tests pass.  So Silverlight must allow it.&#xA;src/Castle.Core/DynamicProxy/Contributors/ClassProxyTargetContributor.cs Line 76&#xA;&#xA;I see your comment from 2010.  It must be fine in v4.  Can you work this fix in please?&#xA;&#xA;{code lang=hs}&#xA;if (ExplicitlyImplementedInterfaceMethod(method))&#xA;{&#xA;#if SILVERLIGHT&#xA;return null;&#xA;#else&#xA;return ExplicitlyImplementedInterfaceMethodGenerator(method, @class, options, overrideMethod);&#xA;#endif&#xA;...&#xA;}&#xA;{code}" created="1333740485708" updated="1333740680396" />
+    <comment author="xtoff" text="Still waiting for updated pull request with tests for this..." created="1338173294298" />
+    <comment author="xtoff" text="Just letting you know we'll be releasing a new version soon so unless we have tests and it's all working this fix will not be included in this release" created="1338173334655" />
+    <comment author="p.w" text="I must confess that I can not get a unit test to pass with StatLight, however the same unit test passes with ReSharper in Visual Studio.&#xA;&#xA;Something I would like to throw out there is that while DP can not handle this situation of explicit implementation in a pure Silverlight environment, it is extremely valuable for unit testing and works with some tools with the code modifications.  What is the compromise for supporting both?  I think it is to use the code in the pull request and let the user see the MethodAccessException if they are in a pure SL environment.  Or maybe DP catches the MAE and returns its own stating the problem and that way unit testing works (with some tools) and non-unit test users know that this situation has been encountered and is impossible.  Thoughts?" created="1338183238582" />
+    <comment author="xtoff" text="It would be a backward incompatibile breaking change that would cause code that used to work throw exceptions at runtime and make people unhappy.&#xA;&#xA;I don't think it's a good idea." created="1338206340366" />
+    <comment author="p.w" text="Maybe.  DP is already throwing an error if someone tries to do this because the current code returns null (for SL) and the exception thrown INSIDE of DP is a NullReferenceException.  So...I doubt anyone is doing this today as they would be getting errors." created="1338255582789" />
+    <comment author="p.w" text="As a follow up.  Do you agree that developers would be getting errors today as the method returns null?  Do you think that it would be better to attempt the call to the ExplicitlyImplementedInterfaceMethodGenerator method for Silverlight and let the developer handle that error?" created="1338817993508" />
+    <comment author="xtoff" text="The upcoming is a minor update and I don't want to introduce any breaking changes. This is a major change." created="1340918513067" updated="1340918530867" />
+    <comment author="xtoff" text="Developers wouldnt be getting errors today. The method ends up not being intercepted, but the code works, nothing breaks, no exception is thrown.&#xA;&#xA;What you're asking is to break the behaviour and start throwing exceptions for no good reason.&#xA;&#xA;It doesn't seem possible to make it work in Silverlight at all anyway, so I will close this issue as by design." created="1341015176536" />
+  </issue>
+</issues>

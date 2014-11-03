@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>3.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>184</value>
+    </field>
+    <field name="summary">
+      <value>MethodInvocationTarget throws ArgumentException </value>
+    </field>
+    <field name="description">
+      <value>with message Interface not found.
+stackTrace:
+
+{code}
+Server stack trace:
+   at System.RuntimeTypeHandle.VerifyInterfaceIsImplemented(RuntimeTypeHandle handle, RuntimeTypeHandle interfaceHandle)
+   at System.RuntimeType.GetInterfaceMap(Type ifaceType)
+   at Castle.DynamicProxy.Internal.InvocationHelper.ObtainMethod(MethodInfo proxiedMethod, Type type) in e:\temp\Core-3.1.0\Core-3.1.0\src\Castle.Core\DynamicProxy\Internal\InvocationHelper.cs:line 93
+
+   at Castle.DynamicProxy.Internal.InvocationHelper.GetMethodOnType(Type type, MethodInfo proxiedMethod) in e:\temp\Core-3.1.0\Core-3.1.0\src\Castle.Core\DynamicProxy\Internal\InvocationHelper.cs:line
+ 67
+   at Castle.DynamicProxy.Internal.InvocationHelper.GetMethodOnObject(Object target, MethodInfo proxiedMethod) in e:\temp\Core-3.1.0\Core-3.1.0\src\Castle.Core\DynamicProxy\Internal\InvocationHelper.c
+s:line 41
+   at Castle.DynamicProxy.Internal.CompositionInvocation.get_MethodInvocationTarget() in e:\temp\Core-3.1.0\Core-3.1.0\src\Castle.Core\DynamicProxy\Internal\CompositionInvocation.cs:line 55
+   at Castle.DynamicProxy.Serialization.RemotableInvocation.get_MethodInvocationTarget() in e:\temp\Core-3.1.0\Core-3.1.0\src\Castle.Core\DynamicProxy\Serialization\RemotableInvocation.cs:line 103
+   at System.Runtime.Remoting.Messaging.StackBuilderSink._PrivateProcessMessage(IntPtr md, Object[] args, Object server, Object[]&amp; outArgs)
+   at System.Runtime.Remoting.Messaging.StackBuilderSink.SyncProcessMessage(IMessage msg)
+{code}
+
+I check in debugger, in this code:
+{code}
+	public static MethodInfo GetMethodOnObject(object target, MethodInfo proxiedMethod)
+		{
+			if (target == null)
+			{
+				return null;
+			}
+
+          
+			return GetMethodOnType(target.GetType(), proxiedMethod);
+		}
+{code}
+target.GetType() == MarshalByRefObject
+
+
+Castle.Core 3.1.0</value>
+    </field>
+    <field name="created">
+      <value>1359042100417</value>
+    </field>
+    <field name="updated">
+      <value>1360907212275</value>
+    </field>
+    <field name="reporterName">
+      <value>Popov</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1360907212273</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="I think a part of that bug report may be missing, am I right?" created="1359064077673" />
+    <comment author="xtoff" text="The issue is still incomplete. If it doesn't get updated I'll have to close it as cannot reproduce" created="1359946446466" />
+    <comment author="xtoff" text="I'm closing the issue as cannot reproduce since the report is incomplete. If this is a real issue that still occurs please submit it anew with a failing test that reproduces it." created="1360907198788" />
+  </issue>
+</issues>

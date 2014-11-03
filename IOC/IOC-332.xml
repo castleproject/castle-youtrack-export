@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>332</value>
+    </field>
+    <field name="summary">
+      <value>UsingFactoryMethod resolving a proxy without a target throws NullReferenceException instead of a better exception</value>
+    </field>
+    <field name="description">
+      <value>When registering a component to use {{UsingFactoryMethod}} and the component is a DynamicProxy with no target, the activator unproxies the instance, resulting in null, and this case isn't trapped. 
+
+This is an unsupported case, apparently (https://groups.google.com/forum/?hl=en_US&amp;fromgroups#!searchin/castle-project-users/Registering$20DynamicProxy$20InterfaceProxyWithoutTarget$20with$20UsingFactoryMethod$20fails/castle-project-users/676pFkSkm4g/cW2Wws7bt40J), so a {{NotSupportedException}} would be a better exception to throw.</value>
+    </field>
+    <field name="created">
+      <value>1331349959239</value>
+    </field>
+    <field name="updated">
+      <value>1337935639179</value>
+    </field>
+    <field name="reporterName">
+      <value>rplaire</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1337935639179</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="What would be a scenario where someone might want to do this anyway?&#xA;I would like to better understand the use case first before we decide on implementation." created="1331350402233" />
+    <comment author="rplaire" text="My use case is that I have a factory which creates interface proxies without targets as part of a testing framework. I need to intercept all method calls, but I don't have any target for the method calls other than the interceptor. I then use this to test a scenario which uses the UsingFactoryMethod (IUnitOfWorkFactory/IUnitOfWork) with concrete services.&#xA;&#xA;Whatever the outcome of adding or not adding support for this scenario, the NRE thrown is very difficult to debug and understand what the problem is, and difficult to see anyt reason it should be kept this way. A NotSupportedException which I've added and sent a pull request for is a much better alternative in any case." created="1331350881294" />
+  </issue>
+</issues>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>221</value>
+    </field>
+    <field name="summary">
+      <value>HtmlHelper.LinkToAttributed</value>
+    </field>
+    <field name="description">
+      <value>I am using Revision 3317
+
+I believe that line 481 in HtmlHelper.LinkToAttributed which reads: 
+
+return String.Format("&lt;a href=\"{0}\" {1}&gt;{2}&lt;/a&gt;", url, name, GetAttributes(attributes));
+
+should actually be written as:
+
+return String.Format("&lt;a href=\"{0}\" {1}&gt;{2}&lt;/a&gt;", url, GetAttributes(attributes), name );
+
+Currently, using 
+
+$HtmlHelper.LinkToAttributed("Add New Campaign", "registration", "newcampaign", "%{class='linkbutton'}")
+
+prints out:
+
+&lt;a href="/registration/newagency.rails" Add New Campaign&gt;class="linkbutton"&lt;/a&gt;
+
+but it should print out: 
+
+&lt;a href="/registration/newagency.rails" class="linkbutton"&gt;Add New Campaign&lt;/a&gt;</value>
+    </field>
+    <field name="created">
+      <value>1169752671000</value>
+    </field>
+    <field name="updated">
+      <value>1263055675000</value>
+    </field>
+    <field name="reporterName">
+      <value>rwoodruf</value>
+    </field>
+    <field name="updaterName">
+      <value>rwoodruf</value>
+    </field>
+    <field name="resolved">
+      <value>1282143675885</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055620000" />
+  </issue>
+</issues>

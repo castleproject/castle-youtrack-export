@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>NHibernate</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>92</value>
+    </field>
+    <field name="summary">
+      <value>Type mismatch exception in FindAllWithCustomQuery() Method in NHibernateGenericDao.cs</value>
+    </field>
+    <field name="description">
+      <value>There is a dicrepancy between the way that NHibernate returns numeric values and the Type specified for the underlying value. We ran into this with the MutableDecimal Type; the result contained MutableDecimals but the query.ReturnTypes[0] was. System.Decimal. So, now we check to ensure that they match.</value>
+    </field>
+    <field name="created">
+      <value>1183987139000</value>
+    </field>
+    <field name="updated">
+      <value>1407823118477</value>
+    </field>
+    <field name="reporterName">
+      <value>mradhak</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1396694735705</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

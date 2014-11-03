@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>DynamicLoader</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>46</value>
+    </field>
+    <field name="summary">
+      <value>Implement reloading of the AppDomain when an assembly is modified</value>
+    </field>
+    <field name="description">
+      <value>DynamicLoader facility manages AppDomains. When an assembly located on one of the managed directories is modified, DynLoader should load a new AppDomain and then dispose the old one, just like ASP.NET does.</value>
+    </field>
+    <field name="created">
+      <value>1155658872000</value>
+    </field>
+    <field name="updated">
+      <value>1241445270000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1241444820000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="Doesn't look like it is going to happen" created="1241444847000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1241444820000" />
+    <comment author="ayenderahien" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1241445240000" />
+  </issue>
+</issues>

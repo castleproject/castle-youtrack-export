@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>beta 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>20</value>
+    </field>
+    <field name="summary">
+      <value>ArrayConverter.CanHandleType should ask the Context about the element type</value>
+    </field>
+    <field name="description">
+      <value>ArrayConverter.CanHandleType() is only checking whether or not the Type is an array.  Since PerformConversion() delegates to the Context for the element type, CanHandleType() should do the same.
+
+The patch also includes a unit test for this behavior.</value>
+    </field>
+    <field name="created">
+      <value>1120770840000</value>
+    </field>
+    <field name="updated">
+      <value>1120861267000</value>
+    </field>
+    <field name="reporterName">
+      <value>rhoegg</value>
+    </field>
+    <field name="updaterName">
+      <value>rhoegg</value>
+    </field>
+    <field name="resolved">
+      <value>1282143254088</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

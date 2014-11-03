@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>292</value>
+    </field>
+    <field name="summary">
+      <value>VSNetWizards error for MRProject while Brail is selected: missing confirmation.brail</value>
+    </field>
+    <field name="description">
+      <value>trunk/Tools/VSNetWizards/CastleTemplates/VS8/CSharp/MRProject/VIewsPlaceHolder/contact/confirmation.brail is missing.  Causes an error when the MRProject wizard runs with Brail as the view, since it cannot copy said file to the project directory.
+
+To reproduce:  replace RC2 Wizard files (C:\Program Files\CastleProject\Wizard Templates) with appropriate files from trunk/Tools/VSNetWizards/; (don't forget to register COM); create an MRPRoject, select Brail as your view.
+
+workaround: (assuming RC2 default installer paths) create an empty confirmation.brail in C:\Program Files\CastleProject\Wizard Templates\VS8\CSharp\MRProject\ViewsPlaceHolder\contact.  The wizard will now succeed.
+
+file may have been missed circa rev 3986 ?
+
+
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1183653377000</value>
+    </field>
+    <field name="updated">
+      <value>1263055633000</value>
+    </field>
+    <field name="reporterName">
+      <value>avatarastralis</value>
+    </field>
+    <field name="updaterName">
+      <value>avatarastralis</value>
+    </field>
+    <field name="resolved">
+      <value>1282143895495</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055620000" />
+  </issue>
+</issues>

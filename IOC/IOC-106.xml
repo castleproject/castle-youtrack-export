@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>106</value>
+    </field>
+    <field name="summary">
+      <value>Service override components cannot have generic components as dependencies</value>
+    </field>
+    <field name="description">
+      <value>I've attached a sample project that illustrates the error.</value>
+    </field>
+    <field name="created">
+      <value>1195343588000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853182</value>
+    </field>
+    <field name="reporterName">
+      <value>sradack</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1232180220000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="works on trunk" created="1232180241000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1232180220000" />
+  </issue>
+</issues>

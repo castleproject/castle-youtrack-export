@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Duplicate</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>1.2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>48</value>
+    </field>
+    <field name="summary">
+      <value>Possible issue when proxying implementation that implement the same Interface at differrent level in the inheritance chain</value>
+    </field>
+    <field name="description">
+      <value>When trying to create a small faility to auto ISynchronizeInvoke support throught interceptors, I 
+received the following exception when proxying an implementation of System.Windows.Form.
+The inheritance hierarchy of System.Windows.Forms implemnt IDisposable several times.
+
+
++		InnerException	{"Duplicate method Void Dispose() on type System.IDisposable"}	System.Exception {System.ArgumentException}
+
+
+		StackTrace	"   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, Object[] arguments, Type[] signature) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\ComponentActivator\\DefaultComponentActivator.cs:line 115\r\n   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\ComponentActivator\\DefaultComponentActivator.cs:line 73\r\n   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\ComponentActivator\\DefaultComponentActivator.cs:line 50\r\n   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\ComponentActivator\\AbstractComponentActivator.cs:line 72\r\n   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\Lifestyle\\AbstractLifestyleManager.cs:line 36\r\n   at Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\Lifestyle\\SingletonLifestyleManager.cs:line 38\r\n   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\Handlers\\DefaultHandler.cs:line 49\r\n   at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveServiceDependency(CreationContext context, ComponentModel model, DependencyModel dependency) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\Resolvers\\DefaultDependencyResolver.cs:line 349\r\n   at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(CreationContext context, ISubDependencyResolver parentResolver, ComponentModel model, DependencyModel dependency) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\Resolvers\\DefaultDependencyResolver.cs:line 234\r\n   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArguments(ConstructorCandidate constructor, CreationContext context, Type[]&amp; signature) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\ComponentActivator\\DefaultComponentActivator.cs:line 214\r\n   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\ComponentActivator\\DefaultComponentActivator.cs:line 71\r\n   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\ComponentActivator\\DefaultComponentActivator.cs:line 50\r\n   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\ComponentActivator\\AbstractComponentActivator.cs:line 72\r\n   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\Lifestyle\\AbstractLifestyleManager.cs:line 36\r\n   at Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\Lifestyle\\SingletonLifestyleManager.cs:line 38\r\n   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\Handlers\\DefaultHandler.cs:line 49\r\n   at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveServiceDependency(CreationContext context, ComponentModel model, DependencyModel dependency) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\Resolvers\\DefaultDependencyResolver.cs:line 349\r\n   at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(CreationContext context, ISubDependencyResolver parentResolver, ComponentModel model, DependencyModel dependency) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\Resolvers\\DefaultDependencyResolver.cs:line 234\r\n   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArguments(ConstructorCandidate constructor, CreationContext context, Type[]&amp; signature) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\ComponentActivator\\DefaultComponentActivator.cs:line 214\r\n   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\ComponentActivator\\DefaultComponentActivator.cs:line 71\r\n   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\ComponentActivator\\DefaultComponentActivator.cs:line 50\r\n   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\ComponentActivator\\AbstractComponentActivator.cs:line 72\r\n   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\Lifestyle\\AbstractLifestyleManager.cs:line 36\r\n   at Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\Lifestyle\\SingletonLifestyleManager.cs:line 38\r\n   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\Handlers\\DefaultHandler.cs:line 49\r\n   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\DefaultKernel.cs:line 1066\r\n   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\DefaultKernel.cs:line 1054\r\n   at Castle.MicroKernel.DefaultKernel.get_Item(Type service) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\DefaultKernel.cs:line 532\r\n   at Castle.Windsor.WindsorContainer.Resolve(Type service) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.Windsor\\WindsorContainer.cs:line 352\r\n   at Castle.Windsor.WindsorContainer.Resolve[T]() in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.Windsor\\WindsorContainer.cs:line 425\r\n   at ECKiosk.KioskContainer.RegisterServices() in C:\\Home\\Develop\\ECKiosk-Castle\\EC.Kiosk\\KioskContainer.cs:line 164\r\n   at ECKiosk.KioskContainer..ctor() in C:\\Home\\Develop\\ECKiosk-Castle\\EC.Kiosk\\KioskContainer.cs:line 30\r\n   at ECKiosk.Program.Main() in C:\\Home\\Develop\\ECKiosk-Castle\\EC.Kiosk\\Program.cs:line 13"	string
+
+With Inner Exception
+
+		StackTrace	"   at Castle.DynamicProxy.Generators.BaseProxyGenerator.AddFieldToCacheMethodTokenAndStatementsToInitialize(MethodInfo method, ConstructorEmitter typeInitializerConstructor, ClassEmitter classEmitter) in c:\\Home\\Develop\\CastleProject\\Castle2\\Tools\\Castle.DynamicProxy2\\Castle.DynamicProxy\\Generators\\BaseProxyGenerator.cs:line 999\r\n   at Castle.DynamicProxy.Generators.BaseProxyGenerator.CacheMethodTokens(ClassEmitter classEmitter, MethodInfo[] methods, ConstructorEmitter typeInitializerConstructor) in c:\\Home\\Develop\\CastleProject\\Castle2\\Tools\\Castle.DynamicProxy2\\Castle.DynamicProxy\\Generators\\BaseProxyGenerator.cs:line 988\r\n   at Castle.DynamicProxy.Generators.BaseProxyGenerator.CreateInitializeCacheMethodBody(Type targetType, MethodInfo[] methods, ClassEmitter classEmitter, ConstructorEmitter typeInitializerConstructor) in c:\\Home\\Develop\\CastleProject\\Castle2\\Tools\\Castle.DynamicProxy2\\Castle.DynamicProxy\\Generators\\BaseProxyGenerator.cs:line 977\r\n   at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode(Type proxyTargetType, Type[] interfaces, ProxyGenerationOptions options) in c:\\Home\\Develop\\CastleProject\\Castle2\\Tools\\Castle.DynamicProxy2\\Castle.DynamicProxy\\Generators\\InterfaceProxyWithTargetGenerator.cs:line 173\r\n   at Castle.DynamicProxy.DefaultProxyBuilder.CreateInterfaceProxyTypeWithTarget(Type theInterface, Type[] interfaces, Type targetType, ProxyGenerationOptions options) in c:\\Home\\Develop\\CastleProject\\Castle2\\Tools\\Castle.DynamicProxy2\\Castle.DynamicProxy\\DefaultProxyBuilder.cs:line 77\r\n   at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyTypeWithTarget(Type theInterface, Type[] interfaces, Type targetType, ProxyGenerationOptions options) in c:\\Home\\Develop\\CastleProject\\Castle2\\Tools\\Castle.DynamicProxy2\\Castle.DynamicProxy\\ProxyGenerator.cs:line 422\r\n   at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithTarget(Type theInterface, Type[] interfaces, Object target, ProxyGenerationOptions options, IInterceptor[] interceptors) in c:\\Home\\Develop\\CastleProject\\Castle2\\Tools\\Castle.DynamicProxy2\\Castle.DynamicProxy\\ProxyGenerator.cs:line 132\r\n   at Castle.Windsor.Proxy.DefaultProxyFactory.Create(IKernel kernel, Object target, ComponentModel model, Object[] constructorArguments) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.Windsor\\Proxy\\DefaultProxyFactory.cs:line 64\r\n   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, Object[] arguments, Type[] signature) in c:\\Home\\Develop\\CastleProject\\Castle2\\InversionOfControl\\Castle.MicroKernel\\ComponentActivator\\DefaultComponentActivator.cs:line 111"	string
+</value>
+    </field>
+    <field name="created">
+      <value>1172440558000</value>
+    </field>
+    <field name="updated">
+      <value>1173613178000</value>
+    </field>
+    <field name="reporterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="updaterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="resolved">
+      <value>1282140672041</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

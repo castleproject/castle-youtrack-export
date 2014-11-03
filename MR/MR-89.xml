@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>89</value>
+    </field>
+    <field name="summary">
+      <value>On WizardStepPage accessing Session in Reset throws null ref error.</value>
+    </field>
+    <field name="description">
+      <value>In my WizardStepPage.Reset I have the following code.
+
+if(this.Session != null &amp;&amp; this.Session.Contains("order"))
+{
+    this.Session["order"] = null;
+    this.Session.Remove("order");
+}
+
+When the method "this.Session" is called I get 
+[NullReferenceException: Object reference not set to an instance of an object.]
+   Castle.MonoRail.Framework.Controller.get_Session() +22
+
+The error is in line 216 of Controller.
+protected IDictionary Session
+{
+    get { return _context.Session; }
+}
+
+the _context variable is null.</value>
+    </field>
+    <field name="created">
+      <value>1138974305000</value>
+    </field>
+    <field name="updated">
+      <value>1162413704000</value>
+    </field>
+    <field name="reporterName">
+      <value>dsellers</value>
+    </field>
+    <field name="updaterName">
+      <value>dsellers</value>
+    </field>
+    <field name="resolved">
+      <value>1282143390666</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>376</value>
+    </field>
+    <field name="summary">
+      <value>Including Environment.MachineName in Exception Emails</value>
+    </field>
+    <field name="description">
+      <value>We're using the Exception Chaining stuff now and it's nice to see which machine in the farm is generating the exception. This will include the MachineName in standard exception messages.</value>
+    </field>
+    <field name="created">
+      <value>1197051435000</value>
+    </field>
+    <field name="updated">
+      <value>1263055894000</value>
+    </field>
+    <field name="reporterName">
+      <value>jlewallen</value>
+    </field>
+    <field name="updaterName">
+      <value>jlewallen</value>
+    </field>
+    <field name="resolved">
+      <value>1282145441245</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055860000" />
+  </issue>
+</issues>

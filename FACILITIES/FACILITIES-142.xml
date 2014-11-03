@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>NHibernate</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>142</value>
+    </field>
+    <field name="summary">
+      <value>Support Stateless Session in NHibernate Facility</value>
+    </field>
+    <field name="description">
+      <value>Please add support stateless session in NHibernate Facility, specifically in ISessionManager.
+
+Thanks.</value>
+    </field>
+    <field name="created">
+      <value>1290009037765</value>
+    </field>
+    <field name="updated">
+      <value>1407822550685</value>
+    </field>
+    <field name="reporterName">
+      <value>mahara</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1300117424801</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-67[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="Patches are always welcome" created="1290025718843" />
+    <comment author="mahara" text="I'm not familiar this Git stuff.&#xD;&#xA;&#xD;&#xA;I've installed Git, TortoiseGit, set up Git, and made connection to GitHub. Am I supposed to fork it? I've forked it in GitHub. But I don't how to download the source code. Then I stop there and I'm clueless about what next steps to do.&#xD;&#xA;&#xD;&#xA;What am I supposed to do?&#xD;&#xA;Is there any documentation how to make patch in Git? Starting from downloading source code from GitHub." created="1290065503765" updated="1290065714140" />
+    <comment author="roelofb" text="Check our docs on how to contribute: http://stw.castleproject.org/How-to-submit-a-fix-to-any-Castle-Project.ashx&#xA;&#xA;Also, Github has extensive documentation about [http://help.github.com/forking/ forking] and sending [http://help.github.com/pull-requests/ pull requests]" created="1290068134625" />
+    <comment author="mahara" text="OK, thanks Roelof. Now, I've sucessfully downloaded the source code (cloned it).&#xD;&#xA;&#xD;&#xA;I'm new to the source code, and based on my understanding, it seems a lot of work need to be done to add IStatelessSession support.&#xD;&#xA;&#xD;&#xA;For starting point, I've added OpenStatelessSession() in ISessionManager and DefaultSessionManager (just the signature, not the implementation yet). And then I wonder what the next step should be. In OpenSession() implementation, I found SessionDelegate and ISessionStore.&#xD;&#xA;&#xD;&#xA;My questions for now:&#xD;&#xA;- it seems I should create StatelessSessionDelegate, right?&#xD;&#xA;- should I create a separate IStatelessSessionStore interface or add FindCompatibleStatelessSession in ISessionStore?" created="1290271430435" />
+    <comment author="henry" text="Those are interesting questions. Can you please bring this discussion to devel mailing list? Also, commit it on your git fork and share the url, so I (and other people) can take a look on the source code." created="1290315302076" />
+    <comment author="mahara" text="OK, I'll bring it there." created="1290320332357" />
+    <comment author="mahara" text="I've sent a pull request for the initial support." created="1291721137080" />
+    <comment author="henry" text="Pull request merged. But I did a mistake during the merge, and lost the history of your commits. Sorry about that.&#xA;" created="1291838991143" />
+    <comment author="mahara" text="OK, thanks Henry. No problem, it's fine." created="1291874743721" />
+    <comment author="mahara" text="Henry, I've sent a pull request to fix my previous implementation issues, as well as update the lib to NHibernate 3.1.0. GA." created="1299410664504" />
+    <comment author="henry" text="Roelof applied the the pull request.&#xA;" created="1300117421051" />
+    <comment author="mahara" text="OK, thanks." created="1300129487067" />
+  </issue>
+</issues>

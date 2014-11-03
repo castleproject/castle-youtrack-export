@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>127</value>
+    </field>
+    <field name="summary">
+      <value>Create proper version choices for this project.</value>
+    </field>
+    <field name="description">
+      <value>Create proper version choices for this project. Currently they are: { Unset, Beta3 and Future } and I'm sure all can agree this doesn't mean much.</value>
+    </field>
+    <field name="created">
+      <value>1254764802000</value>
+    </field>
+    <field name="updated">
+      <value>1278754878000</value>
+    </field>
+    <field name="reporterName">
+      <value>henke</value>
+    </field>
+    <field name="updaterName">
+      <value>henke</value>
+    </field>
+    <field name="resolved">
+      <value>1278754860000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1278754860000" />
+    <comment author="henry" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278754860000" />
+  </issue>
+</issues>

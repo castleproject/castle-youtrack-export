@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>80</value>
+    </field>
+    <field name="summary">
+      <value>LenghtValidator - If only a max or a min length is specified the method always returns true without evaluating any other conditions.</value>
+    </field>
+    <field name="description">
+      <value>If only a max or a min length is specified the method always returns true without evaluating any other conditions.</value>
+    </field>
+    <field name="created">
+      <value>1232132448000</value>
+    </field>
+    <field name="updated">
+      <value>1243732359000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1243732320000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="LengthValidator.patch contains the patch to fix LengthValidator.&#xA;LengthValidatorTestCase.cs contains the LengthValidator tests.&#xA;&#xA;Since there is no test project for Castle.Components.Validator, I've included the cs file instead of a patch." created="1232132835000" />
+    <comment author="andrew" text="Because a field could be optional (no ValidateNonEmpty), LengthValidator only runs if a value exists. I'm looking into this part &quot;If only a max or a min length is specified the method always returns true without evaluating any other conditions.&quot;" created="1232285453000" />
+    <comment author="jsimons" text="Of course, that makes sense :)&#xA;In that case, we should add a flag to the LengthValidatorAttribute that specifies if the field is Optional or not, what do u think?&#xA;" created="1232294209000" />
+    <comment author="jsimons" text="oops I've also found the Castle.Components.Validator.Tests project!&#xA;I'll resubmit the test cases as a patch." created="1232294337000" />
+    <comment author="jsimons" text="Sorry Andrew for the influx of comments!!&#xA;&#xA;After giving it a bit more thought, how about if we assume that optional parameters are null.&#xA;So that if the filed is set to null than return true but if the field is an empty string than it should get evaluated?" created="1232294611000" />
+    <comment author="jsimons" text="I've just submitted LengthValidator2.patch.&#xA;Let me know what you think?&#xA;This patch includes also the test cases." created="1232295506000" />
+    <comment author="andrew" text="String.Empty and a null string have identical meanings for validation (though technically different). If a value does not exist (null or a zero-length String), IsValid should return true, unless it's ValidateNonEmpty.&#xA;&#xA;In other words, I think we can keep everything as is for the moment :) While a shortcut might be nice, just add or omit ValidateNonEmpty. It'll be more consistent." created="1232300873000" />
+    <comment author="jsimons" text="Maybe this needs to be documented better to convey this information.&#xA;&#xA;In regards to &quot;If only a max or a min length is specified the method always returns true without evaluating any other conditions.&quot; are you still going to look at that and apply the patch?" created="1232313515000" />
+    <comment author="jsimons" text="I forgot to ask if you want me to modify the patch to treat null and empty string the same, or will you do that yourself?&#xA;Cheers&#xA;John" created="1232377790000" />
+    <comment author="jsimons" text="I've modified the patch to treat null and empty string the same.&#xA;The latest patch is LengthValidator3.patch.&#xA;This patch fixes: &quot;If only a max or a min length is specified the IsValid method always returns true without evaluating any other conditions&quot;." created="1232820983000" />
+    <comment author="andrew" text="Hi John,&#xA;&#xA;I'm taking a look now. Sorry for the delay--I've been moving into a new apt." created="1232821612000" />
+    <comment author="andrew" text="Checked it out. Looks good - IsValid is easier to understand now. I just have to make sure all the tests are correct, then see if I can apply." created="1232834242000" />
+    <comment author="jsimons" text="Any news on this Andrew?" created="1233582739000" />
+    <comment author="jsimons" text="Could someone please revisit this patch&#xA;&#xA;Thanks&#xA;John" created="1237247919000" />
+    <comment author="roelofb" text="Running the test cases against the current trunk don't indicate a problem" created="1243732344000" />
+    <comment author="jsimons" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;The LenghtValidator is IsValid method has the following bugs:&#xD;&#xA;- If the string is empty or null the method returns true without evaluating any conditions;&#xD;&#xA;- If only a max or a min length is specified the method always returns true without evaluating any other conditions.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;The LenghtValidator IsValid method has the following bugs:&#xD;&#xA;- If the string is empty or null the method returns true without evaluating any conditions;&#xD;&#xA;- If only a max or a min length is specified the method always returns true without evaluating any other conditions.&#xD;&#xA;{quote}&#xD;&#xA;" created="1232132820000" />
+    <comment author="jsimons" text="* '''Summary''' changed from ''LengthValidator IsValid method logic always returns true in certain condition'' to ''LenghtValidator - If only a max or a min length is specified the method always returns true without evaluating any other conditions.''.&#xD;&#xA;* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;The LenghtValidator IsValid method has the following bugs:&#xD;&#xA;- If the string is empty or null the method returns true without evaluating any conditions;&#xD;&#xA;- If only a max or a min length is specified the method always returns true without evaluating any other conditions.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;If only a max or a min length is specified the method always returns true without evaluating any other conditions.&#xD;&#xA;{quote}&#xD;&#xA;" created="1232377860000" />
+    <comment author="jsimons" text="* '''Type''' changed from ''Bug'' to ''Patch''.&#xD;&#xA;" created="1236086880000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1243732320000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1243732320000" />
+  </issue>
+</issues>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>17</value>
+    </field>
+    <field name="summary">
+      <value>Add native support to Nullable Types</value>
+    </field>
+    <field name="description">
+      <value>The handling of nullable types in ActiveRecord is currently very cumbersome to implement.
+
+After some bad time on configuring it, I've documented in the wiki:
+
+http://castleproject.org/index.php/ActiveRecord:Reference_Documentation#Using_Nullable_Types
+
+Now I think we can work in a better approach, maybe integrate the Nullables library in the main ActiveRecord distribuition.</value>
+    </field>
+    <field name="created">
+      <value>1125243621000</value>
+    </field>
+    <field name="updated">
+      <value>1136169552000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282135910620</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

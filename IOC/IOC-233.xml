@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>.NET 4 (CLR 4)</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.5</value>
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>233</value>
+    </field>
+    <field name="summary">
+      <value>Inheritance security rules violated while overriding member</value>
+    </field>
+    <field name="description">
+      <value>I'm getting this problem when using Windsor without Full Trust.
+
+[TypeLoadException: Inheritance security rules violated while overriding member: 'Castle.MicroKernel.DefaultKernel.InitializeLifetimeService()'. Security accessibility of the overriding method must match the security accessibility of the method being overriden.]
+   Castle.Windsor.WindsorContainer..ctor() +0
+...
+...
+
+Reading this forum post explains that is because of new security stuff in .NET 4. (http://social.msdn.microsoft.com/Forums/en-US/netfxgeneralprerelease/thread/825ccf02-a505-40ee-ac95-44a4918c6ee5)
+
+I tried adding [assembly: SecurityRules(SecurityRuleSet.Level1)] to the Windsor project which does solve the above problem, but then I'm getting the same error on the Castle.Core assembly.
+
+Would this be possible to add the [SecurityCritical] attributes on all methods that override MarshalObjects or Other methods?</value>
+    </field>
+    <field name="created">
+      <value>1287040290899</value>
+    </field>
+    <field name="updated">
+      <value>1407819516748</value>
+    </field>
+    <field name="reporterName">
+      <value>adriaanp</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1289635499132</value>
+    </field>
+    <field name="voterName">
+      <value>mahara</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-67[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Is the assembly marked with APTCA? The forum thread suggests removing this implies that the CLR will apply SecurityRuleSet.Level1" created="1287740204383" />
+    <comment author="adriaanp" text="I've tried all the combinations, with and without APTCA, with the SecurityCritical attribute with APTCA and without. Still can't get this to work always get the same TypeLoadException. I think I am confused on how the security stuff work or should work." created="1287740658993" />
+    <comment author="roelofb" text="We all are :-)&#xA;&#xA;I am running some tests with SecAnnotate.exe now, see if it can shine some light on this. &#xA;&#xA;In the meantime I encourage you to read http://msdn.microsoft.com/en-us/magazine/ee336023.aspx" created="1287742739055" />
+    <comment author="roelofb" text="I just pushed Castle.Core with security transparency annotations, it passes through SecAnnotate.exe and all unit tests.&#xA;&#xA;To use it with medium trust you'll have to compile it yourself:&#xA;msbuild /t:Rebuildall,RunAllTests buildscripts\Build.proj /p:AllowPartiallyTrustedCallers=true, or if you don't want to run the tests&#xA;msbuild /t:Rebuildall buildscripts\Build.proj /p:AllowPartiallyTrustedCallers=true&#xA;&#xA;This will create a .NET 4.0 assembly with the APTCA attribute,  Security-Transparent Code Level 2 and security transparency attributes, mostly suggested by SecAnnotate.&#xA;&#xA;Windsor will be up next, today or tomorrow. You'll need the Castle.Core you build earlier to compile Windsor with APTCA for .NET 4.0" created="1287767942041" />
+    <comment author="xtoff" text="how is this progressing?" created="1288969444697" />
+    <comment author="roelofb" text="Hope to be able to spend some time on it this week, I need to fix a handful of SecAnnotate errors" created="1289206199337" />
+    <comment author="xtoff" text="Fantastic - if we resolve this and the other outstanding issues I will release v2.5.2 this weekend" created="1289206387431" />
+    <comment author="roelofb" text="As of commit https://github.com/castleproject/Castle.Windsor/commit/e6a35c58fb5418f237db29879111dd6f1f51af86 Windsor passes through SecAnnotate.exe" created="1289635473128" />
+    <comment author="roelofb" text="Fixed in https://github.com/castleproject/Castle.Windsor/commit/e6a35c58fb5418f237db29879111dd6f1f51af86" created="1289635499132" />
+    <comment author="adriaanp" text="According to this http://stackoverflow.com/questions/4713123/securitycritical-on-overriden-function-initializelifetimeservice-has-not-affect Windsor will never be able to run in Medium Trust, not sure where would be the best place to let everyone know." created="1295330018234" />
+  </issue>
+</issues>

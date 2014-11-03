@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Usability Problem</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>215</value>
+    </field>
+    <field name="summary">
+      <value>Hide obsolete members from IntelliSense</value>
+    </field>
+    <field name="description">
+      <value>Using EditorBrowsableAttribute.
+
+The attribute is by default honored by ReSharper, ignored by VisualStudio though. Still I think it's worth doing to make it a bit less likely for someone to actually go and use the old API, especially that VS IntelliSense does not give any indication that it's obsolete.</value>
+    </field>
+    <field name="created">
+      <value>1283347300354</value>
+    </field>
+    <field name="updated">
+      <value>1407822257340</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1283646096994</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

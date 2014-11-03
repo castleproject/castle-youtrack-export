@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>124</value>
+    </field>
+    <field name="summary">
+      <value>Specific Generic Components Are Registered Incorrectly via Fluent Registration</value>
+    </field>
+    <field name="description">
+      <value>There is a note in ServiceDescriptor.cs(57) about a CLR bug with GetInterfaces() and some code to work around the bug.  The workaround breaks the scenario where I register a component CustomerRepository : IRepository&lt;ICustomer&gt; and I then try to resolve IRepository&lt;ICustomer&gt;. 
+
+More information on the CLR bug would be helpful.  I've attached a patch that includes a unit test for the above scenario.  The only way for it to work is to comment out the workaround code in ServiceDescriptor.FirstInterface. </value>
+    </field>
+    <field name="created">
+      <value>1210763248000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838901</value>
+    </field>
+    <field name="reporterName">
+      <value>wcpierce</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1228859640000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="applied with slight modifications" created="1228859693000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228859640000" />
+  </issue>
+</issues>

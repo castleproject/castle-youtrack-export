@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>99</value>
+    </field>
+    <field name="summary">
+      <value>CollectionType not guessed in HasManyToAny mapping</value>
+    </field>
+    <field name="description">
+      <value>The collection type wasn't guessed for HasManyToAny types. If not specified this resuls in corrupt NH mappings, other weird errors, dead kittens, etc. etc. .. :( 
+
+patch is attached,</value>
+    </field>
+    <field name="created">
+      <value>1165345238000</value>
+    </field>
+    <field name="updated">
+      <value>1167409387000</value>
+    </field>
+    <field name="reporterName">
+      <value>ernst</value>
+    </field>
+    <field name="updaterName">
+      <value>ernst</value>
+    </field>
+    <field name="resolved">
+      <value>1282136227823</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

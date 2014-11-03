@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>47</value>
+    </field>
+    <field name="summary">
+      <value>Include NHibernate "Refresh" in the public API</value>
+    </field>
+    <field name="description">
+      <value>Using transactions, there is at least one situation in which you can need AR to reload an object. For example:
+
+* You always put a "Hello username!" in your views
+* You have a view to let the user edit his name.
+* You edit your User object with new data, open a transaction, try to commit and it fails. You rollback the transaction, but the User object is unmodified and filled with new data.
+* You render an error view, but it also shows "Hello new_username!".
+* If your User object had lazy collections attached to it (for example, User has a [HasMany(..., Lazy:=True)] property emails[]) and you try to use that collection in the error view, an exception is thrown because "collection is evicted).
+
+In this real-life situation I need to reload the User object after closing transaction, so my views will work property.
+
+Discussing this issue in the users list, there is at least two ways of doing it. One is doing "u = User.FindByPrimaryKey(u.Id)" after disposing the transaction. Although it may work, I find that line a little obscure as a new programmer won't understand "why do you find the user if you already have the u object?".
+
+The other is doing "usuario.Refresh()" if ActiveRecordBase (I think it is the place for it) would implement the NHibernate Refresh() to public. I think this is far more understable, and even a new programmer would argue "why should I refresh the object?" the answer to this question is more obvious than the answer to the former.
+
+I attach a proposed patch although I cannot guarantee it is ok as I'm very new to Castle.</value>
+    </field>
+    <field name="created">
+      <value>1146756791000</value>
+    </field>
+    <field name="updated">
+      <value>1162410789000</value>
+    </field>
+    <field name="reporterName">
+      <value>fernandonajera</value>
+    </field>
+    <field name="updaterName">
+      <value>fernandonajera</value>
+    </field>
+    <field name="resolved">
+      <value>1282135942166</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

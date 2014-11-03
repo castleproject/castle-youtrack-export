@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - WebForms</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>239</value>
+    </field>
+    <field name="summary">
+      <value>Problem with LocalizationFilter : it'S return always the language fr-Fr =&gt; fr-French </value>
+    </field>
+    <field name="description">
+      <value>I work with RC3, 
+
+I have the flowing code: 
+
+
+[LocalizationFilter(RequestStore.Cookie, "locale")] 
+[Filter(ExecuteEnum.BeforeAction, typeof(AuthenticationFilter))] 
+[...] 
+public abstract class ApplicationController : 
+SmartDispatcherController 
+{ 
+... 
+
+
+
+} 
+
+
+When I connect in the page is function correctly (I choose English). 
+But when i clik on a link, it's retunr me the page in French. But i 
+check the cookies, it's English. 
+
+For example, 
+
+
+1- I choose language English 
+2- I connect to my site =&gt; it's ok: return me the page in English 
+3- I check the cookie and it's in [locale="en"] 
+4- I click on a link of my menus. For example, Home link 
+5- It's return me the page in French 
+6- I check the cookie and it's always in [locale="en"]. But, the page 
+return is in French 
+
+
+Please, tell me if any things change in RC3? My program was functional 
+with RC2. 
+</value>
+    </field>
+    <field name="created">
+      <value>1175255143000</value>
+    </field>
+    <field name="updated">
+      <value>1244676799000</value>
+    </field>
+    <field name="reporterName">
+      <value>sakter</value>
+    </field>
+    <field name="updaterName">
+      <value>sakter</value>
+    </field>
+    <field name="resolved">
+      <value>1282143705620</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676780000" />
+  </issue>
+</issues>

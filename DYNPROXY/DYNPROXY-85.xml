@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.0 Beta 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>85</value>
+    </field>
+    <field name="summary">
+      <value>False positive exception for serializable type with no serialization constructor</value>
+    </field>
+    <field name="description">
+      <value>The following tests fails with exception message saying that type is not serializable while in fact, it is.
+
+        [Test]
+        public void SerializatingObjectsWithoutDefaultConstructor1()
+        {
+            var c = new ClassWithNoSerializationCtor( "foo" );
+            var c1 = SerializeAndDeserialize( c );
+            Assert.AreEqual( "foo", c1.Property );
+
+            var proxy = this.generator.CreateClassProxy( typeof( ClassWithNoSerializationCtor ), new[] { new StandardInterceptor() }, "foo" );
+            var proxy2 = SerializeAndDeserialize(proxy) as ClassWithNoSerializationCtor;
+            Assert.AreEqual( "foo", proxy2.Property );
+            var proxyTargetAccessor = proxy2 as IProxyTargetAccessor;
+            Assert.IsNotNull( proxyTargetAccessor );
+            var interceptors = proxyTargetAccessor.GetInterceptors();
+            Assert.IsNotEmpty( interceptors );
+            Assert.IsInstanceOfType( typeof( StandardInterceptor ), interceptors[ 0 ] );
+        }
+
+        [Serializable]
+        public class ClassWithNoSerializationCtorReference : IObjectReference, ISerializable
+        {
+            private ClassWithNoSerializationCtor _item;
+
+            public ClassWithNoSerializationCtorReference(SerializationInfo info, StreamingContext context)
+            {
+                var property = info.GetString("Property");
+                _item = new ClassWithNoSerializationCtor( property );
+                
+            }
+
+            public object GetRealObject(StreamingContext context)
+            {
+                return _item;
+            }
+
+            public void GetObjectData(SerializationInfo info, StreamingContext context)
+            {
+
+            }
+        }
+
+
+    [Serializable]
+    public class ClassWithNoSerializationCtor : ISerializable
+    {
+        public ClassWithNoSerializationCtor( string property )
+        {
+            this.Property = property;
+        }
+
+        public string Property{ get; set;}
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.SetType(typeof(SerializableClassTestCase.ClassWithNoSerializationCtorReference));
+            info.AddValue("Property", Property);
+        }
+    }
+</value>
+    </field>
+    <field name="created">
+      <value>1236062146000</value>
+    </field>
+    <field name="updated">
+      <value>1236655740000</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1236655740000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Resolving with won't fix as this is a corner case that is not currently worth implementing. See the discussion on the devel mailing list &quot;Opinions on DYNPROXY-ISSUE-83&quot;." created="1236655743000" />
+    <comment author="xtoff" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;The following tests fails with exception message saying that type is not serializable while in fact, it is.&#xD;&#xA;&#xD;&#xA;        [Test]&#xD;&#xA;        public void SerializatingObjectsWithoutDefaultConstructor1()&#xD;&#xA;        {&#xD;&#xA;            var c = new ClassWithNoSerializationCtor { Property = &quot;foo&quot; };&#xD;&#xA;            var c1 = SerializeAndDeserialize( c );&#xD;&#xA;            Assert.AreEqual( &quot;foo&quot;, c1.Property );&#xD;&#xA;&#xD;&#xA;            var proxy = this.generator.CreateClassProxy&lt;ClassWithNoSerializationCtor&gt;();&#xD;&#xA;            var proxy2 = SerializeAndDeserialize(proxy);&#xD;&#xA;            Assert.AreEqual( &quot;foo&quot;, proxy2.Property );&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;    [Serializable]&#xD;&#xA;    public class ClassWithNoSerializationCtor : ISerializable&#xD;&#xA;    {&#xD;&#xA;        public string Property{ get; set;}&#xD;&#xA;        public void GetObjectData(SerializationInfo info, StreamingContext context)&#xD;&#xA;        {&#xD;&#xA;            info.SetType(typeof(SerializableClassTestCase.ClassWithNoSerializationCtorReference));&#xD;&#xA;            info.AddValue(&quot;Property&quot;, Property);&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;        [Serializable]&#xD;&#xA;        public class ClassWithNoSerializationCtorReference : IObjectReference, ISerializable&#xD;&#xA;        {&#xD;&#xA;            private ClassWithNoSerializationCtor _item;&#xD;&#xA;&#xD;&#xA;            public ClassWithNoSerializationCtorReference(SerializationInfo info, StreamingContext context)&#xD;&#xA;            {&#xD;&#xA;                _item = new ClassWithNoSerializationCtor();&#xD;&#xA;                _item.Property = info.GetString(&quot;Property&quot;);&#xD;&#xA;            }&#xD;&#xA;&#xD;&#xA;            public object GetRealObject(StreamingContext context)&#xD;&#xA;            {&#xD;&#xA;                return _item;&#xD;&#xA;            }&#xD;&#xA;&#xD;&#xA;            public void GetObjectData(SerializationInfo info, StreamingContext context)&#xD;&#xA;            {&#xD;&#xA;&#xD;&#xA;            }&#xD;&#xA;        }&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;The following tests fails with exception message saying that type is not serializable while in fact, it is.&#xD;&#xA;&#xD;&#xA;        [Test]&#xD;&#xA;        public void SerializatingObjectsWithoutDefaultConstructor1()&#xD;&#xA;        {&#xD;&#xA;            var c = new ClassWithNoSerializationCtor( &quot;foo&quot; );&#xD;&#xA;            var c1 = SerializeAndDeserialize( c );&#xD;&#xA;            Assert.AreEqual( &quot;foo&quot;, c1.Property );&#xD;&#xA;&#xD;&#xA;            var proxy = this.generator.CreateClassProxy( typeof( ClassWithNoSerializationCtor ), new[] { new StandardInterceptor() }, &quot;foo&quot; );&#xD;&#xA;            var proxy2 = SerializeAndDeserialize(proxy) as ClassWithNoSerializationCtor;&#xD;&#xA;            Assert.AreEqual( &quot;foo&quot;, proxy2.Property );&#xD;&#xA;            var proxyTargetAccessor = proxy2 as IProxyTargetAccessor;&#xD;&#xA;            Assert.IsNotNull( proxyTargetAccessor );&#xD;&#xA;            var interceptors = proxyTargetAccessor.GetInterceptors();&#xD;&#xA;            Assert.IsNotEmpty( interceptors );&#xD;&#xA;            Assert.IsInstanceOfType( typeof( StandardInterceptor ), interceptors[ 0 ] );&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;        [Serializable]&#xD;&#xA;        public class ClassWithNoSerializationCtorReference : IObjectReference, ISerializable&#xD;&#xA;        {&#xD;&#xA;            private ClassWithNoSerializationCtor _item;&#xD;&#xA;&#xD;&#xA;            public ClassWithNoSerializationCtorReference(SerializationInfo info, StreamingContext context)&#xD;&#xA;            {&#xD;&#xA;                var property = info.GetString(&quot;Property&quot;);&#xD;&#xA;                _item = new ClassWithNoSerializationCtor( property );&#xD;&#xA;                &#xD;&#xA;            }&#xD;&#xA;&#xD;&#xA;            public object GetRealObject(StreamingContext context)&#xD;&#xA;            {&#xD;&#xA;                return _item;&#xD;&#xA;            }&#xD;&#xA;&#xD;&#xA;            public void GetObjectData(SerializationInfo info, StreamingContext context)&#xD;&#xA;            {&#xD;&#xA;&#xD;&#xA;            }&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;    [Serializable]&#xD;&#xA;    public class ClassWithNoSerializationCtor : ISerializable&#xD;&#xA;    {&#xD;&#xA;        public ClassWithNoSerializationCtor( string property )&#xD;&#xA;        {&#xD;&#xA;            this.Property = property;&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;        public string Property{ get; set;}&#xD;&#xA;        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)&#xD;&#xA;        {&#xD;&#xA;            info.SetType(typeof(SerializableClassTestCase.ClassWithNoSerializationCtorReference));&#xD;&#xA;            info.AddValue(&quot;Property&quot;, Property);&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;{quote}&#xD;&#xA;" created="1236133080000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1236655740000" />
+  </issue>
+</issues>

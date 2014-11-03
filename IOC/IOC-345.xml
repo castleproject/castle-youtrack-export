@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container hierarchies</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>345</value>
+    </field>
+    <field name="summary">
+      <value>When using child containers, parent components are released with child container in certain cases</value>
+    </field>
+    <field name="description">
+      <value>The issue is described here:
+http://stackoverflow.com/questions/11189912/castle-windsor-bug-resolving-singleton-through-child-container
+
+Basically dependencies of a parent component being resolved via child container may end up being managed by the child, rather than the parent, and when the child container is disposed these dependencies are released even though they may be required by the parent or other child containers still.
+
+This behaviour was introduced as part of #IOC-115 but is wrong. Dependencies should only ever go up the hierarchy chain, never down.</value>
+    </field>
+    <field name="created">
+      <value>1341105255884</value>
+    </field>
+    <field name="updated">
+      <value>1407822257272</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1341113838939</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

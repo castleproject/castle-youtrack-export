@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>418</value>
+    </field>
+    <field name="summary">
+      <value>Patch for: Castle.Monorail.Framework.Test.MockServices does not initialize IValidatorRegistry</value>
+    </field>
+    <field name="description">
+      <value>Patch created from MonoRail\Castle.MonoRail.Framework
+
+http://groups.google.com/group/castle-project-users/browse_thread/thread/41f9f573ac4cfda3</value>
+    </field>
+    <field name="created">
+      <value>1203527177000</value>
+    </field>
+    <field name="updated">
+      <value>1203563947000</value>
+    </field>
+    <field name="reporterName">
+      <value>weex</value>
+    </field>
+    <field name="updaterName">
+      <value>weex</value>
+    </field>
+    <field name="resolved">
+      <value>1282145546432</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

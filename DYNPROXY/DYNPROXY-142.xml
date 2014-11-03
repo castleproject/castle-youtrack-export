@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Performance Problem</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.2</value>
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>142</value>
+    </field>
+    <field name="summary">
+      <value>Possible Memory Leak on multiple call to new ProxyGenerator().CreateInterfaceProxyWithTargetInterface</value>
+    </field>
+    <field name="description">
+      <value>Hi there,
+
+We had a memory leak in production on our IIS server.  The memory consumption becomes bigger and bigger each day and was never going back down.
+
+We profile our application and discovered that our usage of the ProxyGenerator was not efficient.  We were creating an interceptor for every WCF call and to do so, were creating a new ProxyGenerator every time.  By doing so, we were missing caching benefits and the CPU cost to create those interceptors was too much.
+
+So we change our code to use the same ProxyGenerator every time and our CPU usage *AND* memory usage has been stable since.
+
+We have recreated this behavior in the following test in hope it would help to determine if that's an usage problem or a real memory leak.
+
+Thank you very much
+Phil
+
+{code lang=java}
+using System;
+using Castle.DynamicProxy;
+using NUnit.Framework;
+
+namespace CastleDynamicProxyTests
+{
+    [TestFixture]
+    public class LeakTests
+    {
+        [Test]
+        public void ProxyGeneratorLeak()
+        {
+            const int Max = 100000;
+            const int PrintOnCount = (Max / 10);
+
+            Console.WriteLine("First {0}", GC.GetTotalMemory(false));
+            for (int i = 0; i &lt; Max; i++)
+            {
+                var instance = new Contract();
+                var generator = new ProxyGenerator();
+                ISecondContract proxiedInstance;
+
+                proxiedInstance = (ISecondContract) generator.CreateInterfaceProxyWithTargetInterface(typeof (ISecondContract),
+                                                                                                      new Type[] {typeof (IContract)},
+                                                                                                      instance,
+                                                                                                      new Interceptor());
+                if (i % PrintOnCount == 0)
+                    Console.WriteLine(GC.GetTotalMemory(false));
+            }
+            Console.WriteLine("Last {0}", GC.GetTotalMemory(true));
+        }
+
+        public class Contract:ISecondContract
+        {
+            
+        }
+
+        public interface IContract
+        {
+        }
+
+        public interface ISecondContract : IContract
+        {
+        }
+
+        public class Interceptor : IInterceptor
+        {
+            public void Intercept(IInvocation invocation)
+            {
+                
+            }
+        }
+    }
+}
+
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1284135703355</value>
+    </field>
+    <field name="updated">
+      <value>1284470972825</value>
+    </field>
+    <field name="reporterName">
+      <value>Phil</value>
+    </field>
+    <field name="updaterName">
+      <value>Phil</value>
+    </field>
+    <field name="resolved">
+      <value>1284168549573</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Phil - this is not a bug in DynamicProxy. Since you're not reusing the ProxyGenerator (or more specifically ModuleScope) you end up effectively generating 100000 assemblies, each of them containing several types and loading them into memory. That's not something DynamicProxy can or should detect.&#xA;&#xA;As you noticed - the correct approach is to have SINGLE ProxyGenerator, hence just one additional assembly will be created and you'll be able to reap benefits of DynamicProxy type caching." created="1284167339073" updated="1284167429933" />
+    <comment author="Phil" text="Thanks.&#xD;&#xA;Alright for us.&#xD;&#xA;&#xD;&#xA;Would you mind having that information right on the [http://stw.castleproject.org/Tools.DynamicProxy.ashx Castle DynamicProxy Introduction page]?" created="1284384302902" />
+    <comment author="xtoff" text="actually you can do this. The wiki is open for anyone to edit and update, so feel more than welcome to do so." created="1284426276392" />
+    <comment author="Phil" text="Done.&#xD;&#xA;Thanks." created="1284470972825" />
+  </issue>
+</issues>

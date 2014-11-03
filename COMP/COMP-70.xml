@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>70</value>
+    </field>
+    <field name="summary">
+      <value>Allow validator attributes to be used on parameters and return types</value>
+    </field>
+    <field name="description">
+      <value>Patch to allow validator attributes to used on parameters and return types.  Also fixes possible NullReferenceException in IntegerValidator and NullableIntegerValidator if the PropertyInfo value is not set.
+
+This patch is for the MethodValidatorFacility which is being proposed for Castle Contrib.  The issue number for that patch will be added once created.</value>
+    </field>
+    <field name="created">
+      <value>1219865935000</value>
+    </field>
+    <field name="updated">
+      <value>1219888363000</value>
+    </field>
+    <field name="reporterName">
+      <value>ewhauser</value>
+    </field>
+    <field name="updaterName">
+      <value>ewhauser</value>
+    </field>
+    <field name="resolved">
+      <value>1219888320000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ewhauser" text="The patch in contrib is filled under http://support.castleproject.org/projects/CONTRIB/issues/view/CONTRIB-ISSUE-142" created="1219867675000" />
+    <comment author="roelofb" text="Fixed in r5296" created="1219888363000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1219888320000" />
+  </issue>
+</issues>

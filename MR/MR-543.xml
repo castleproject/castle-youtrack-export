@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>543</value>
+    </field>
+    <field name="summary">
+      <value>Source preprocessing support  for BRAIL view engine</value>
+    </field>
+    <field name="description">
+      <value>IT WOULD BE BETTER TO DO IT AT MONORAIL CORE LEVEL, BUT I'M NOT SO FAMILIAR WITH
+MR CODE. SO ONLY BRAIL VIEW ENGINE AFFECTED IN THIS PATCH
+
+
+1.  Motivation:
+                a) views are things that always have tendention to be UNIFIED by styles and behavior
+                b) views are hardly bounded to thier host application and task of using views from one application in another appears just on component's or very basic subviews
+
+
+2.  Consecvent:
+		a) We have to suppress and simplify syntax of views anyway we can do it
+                b) we can use any special things, that a tightly coupled with our app
+		c) we want to minimize &lt;%codes%&gt;-s and %&gt;&lt;html /&gt;&lt;%-s
+		d) we don't want to have another one magic language on third party support - we want do anything we thinik about
+
+2a. Some facts:
+                a) views are compiled and cached things - SO we can do some things that prolongate first view load, but don't affect follows
+
+2b. Question :
+                 a) that i must to do if i want to wright in .brail in html part of view " &lt;a ...&gt; ~img(help)&lt;/a&gt; " and get in output result of view  &lt;a  ...&gt;&lt;img src="${programatically_gotted_addr_of_image('help.png')}"/&gt;&lt;/a&gt;
+                 b) I really want the view "#table(#my,data) for {get_items()} as [Id(Identity),Name,Comment, $special("The specials",item)]"
+				to be treated as:
+				   "
+
+					&lt;table id="my" class="data"&gt;
+						&lt;thead&gt;
+								&lt;tr&gt;
+									&lt;td&gt;Identity&lt;/td&gt;
+								&lt;td&gt;Name&lt;/td&gt;
+								&lt;td&gt;Comment&lt;/td&gt;
+								&lt;td&gt;The specials&lt;/td&gt;
+								&lt;/tr&gt;
+						&lt;/thead&gt;
+						&lt;tbody&gt;
+						&lt;%for get_items___iter in get_items():%&gt;
+							&lt;tr&gt;
+								&lt;td&gt;${get_items___iter.Id}&lt;/td&gt;
+								&lt;td&gt;${get_items___iter.Name}&lt;/td&gt;
+								&lt;td&gt;${get_items___iter.Comment}&lt;/td&gt;
+								&lt;td&gt;&lt;%OutputSubView('special',{@item:get_items___iter})%&gt;&lt;/td&gt;
+							&lt;/tr&gt;
+				
+						&lt;%end%&gt;
+						&lt;/tbody&gt; 
+					&lt;/table&gt;
+
+				"  
+		
+
+3. What we have:
+                a) we can use BOO compiler extensions - but BRAIL engine hardly changed default pipeline, so it's hard to define really working variant and it's not trivial
+                b) we can use DSL ability of brail - but it's not writed clearly
+                c)  transform filters - but we can want to define RENDER-TIME shortcuts that must be included in view processing well
+                d) BOO macroses? But i don't want use just BOO-parser notation (look at 2b.b)
+                e) maybe own view engine - but what's for - it's hard to do and brail is very good
+                f) maybe component -  wow! nice, just wait - i'l write .dll, views, compile whem, oooh another parameter, another, and what is with simple notation AND NESTING OF DISTINCT "components " and where is another param, and another, and windsor registration                              
+
+4. Solution:
+            but much and much simply and clearly  is using of some preprocessor ability which triggers in "getinput" stage of brail-view compilation
+            REGEXES can transform 2b.b in 5-6 simple steps which can be placed as text file with regexes in app - and many of "DSLs" can be provided by such ways
+            Why not? So we do this small PATCH wich embeds PREPROCESS ABILITY TO BRAIL ENGINE and use it such way
+
+5. Design Notes:
+            a) it may be many of preprocessor logic in app, so they must be faceded by interface and we use it's collection - so we create IBrailPreprocessor with  func Preprocess(string=&gt;string)
+            b) order of preprocessors applying to source text has value - so preprocessors must have ability to be well ordered - so IBrailPreprocessor has Idx (int) property, which can be defined and used to sort preprocessors
+            c) as all variables for BooEngine, preprocessors lives in BooEngineOptions as a list of IBrailPreprocessor
+            d) during input-getting, Options.Preprocessors are applyed side-by-side to soruce file content in order of Idx ASC
+            e) we must to have simple, configuration-based way to configure preprocessors at brail start up
+                               a) we create IBrailPreprocessorFactory interface which simply return an enum of IBrailPreprocessor, DESIGN RESTRICTION IS THAT  IBrailPreprocessorFactory implementation must have DEFAULT CTOR
+                               b) we create optional BRAIL config parameter "preprocessorFactoryType" which can contain usual TypeName
+                               c) during reading of options, section reader instanciates provided factory by type name, calls to GetPreprocessors and fill target Opetions.Preprocessors
+                               d) IT'S ASSERTED THAT PROVIDED IBrailPreprocessorFactory IS SOME WRAPPER TO YOUR IoC INFRASTRUCTURE - SO PREPROCESSING WILL BE SIMPLE TO CONFIGURE
+	     f) preprocessing is not always-well process, so to controll it U can define directory where preprocessed versions of views would be saved, it makes by savePreprocessDirectory 
+		  of Brail config section, directory must be relative to root of application (analog of saveDirectory for compiled *.dll), setting up this property usefull in debugging, but has not
+                 reasone on productive systems
+
+6. What is wrong:
+            a) where to place? in BRAIL? - preprocessing of source of views is not just BRAIL task - may be in SourceLoader it must be placed? - but I don't want to CHANGE MONORAIL FRAMEWORK myself - it's MASTADONT for today
+            b) so, it was moved to MonoRail,... what is with testing on StandaloneEngine
+
+TODO:
+           a) default IBrailPreprocessorFactory which uses MonoRail Shortcuts to Services to get all of IBrailPreprocessor
+           b) some example set of real-world preprocessor tasks
+</value>
+    </field>
+    <field name="created">
+      <value>1248594950000</value>
+    </field>
+    <field name="updated">
+      <value>1414392528389</value>
+    </field>
+    <field name="reporterName">
+      <value>comdiv</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392528381</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mausch" text="I would have used a custom IViewSourceLoader just like you mention in 6.a but I don't understand your reasons for not doing so. IViewSourceLoader is pluggable so there is no need to change Monorail itself..." created="1254248941000" />
+    <comment author="xtoff" text="Any chance to get update for that with IViewSourceLoader?" created="1263379124000" />
+    <comment author="comdiv" text="* '''Attachment''' brail-text-preprocess-support.patch added.&#xD;&#xA;" created="1248594960000" />
+    <comment author="comdiv" text="* '''Type''' changed from ''Patch'' to ''New Feature''.&#xD;&#xA;" created="1248645420000" />
+  </issue>
+</issues>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>.NET 2.0 Support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>203</value>
+    </field>
+    <field name="summary">
+      <value>Unable to load related object in One-To-One </value>
+    </field>
+    <field name="description">
+      <value>It doesn't matter lazy = true, lazy = false I still can not fetch related object.
+I had attached a simple test case so that you can do a quick check.</value>
+    </field>
+    <field name="created">
+      <value>1202678636000</value>
+    </field>
+    <field name="updated">
+      <value>1232265725000</value>
+    </field>
+    <field name="reporterName">
+      <value>csokun</value>
+    </field>
+    <field name="updaterName">
+      <value>csokun</value>
+    </field>
+    <field name="resolved">
+      <value>1232265720000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="I just attached a working version of your solution.&#xA;&#xA;Reasons for failures in your tests:&#xA;1) Please stick to the documented mapping: Both sides of a one-to-one-relationship should use [OneToOne] and not [BelongsTo] and [OneToOne].&#xA;2) Customer.CustomerAddress had not been set on the created object. The test used Customer.Find(id) which loads the object from 1st-level-cache where it is still unset (=null). You need to either &#xA;2a) call Refresh() on the loaded object.&#xA;2b) use different session scopes&#xA;2c) set Customer.CustomerAddress before saving, so that the object in the first-level-cache contains the relation as well." created="1232265705000" />
+    <comment author="mzywitza" text="See comment" created="1232265726000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1232261580000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1232265720000" />
+  </issue>
+</issues>

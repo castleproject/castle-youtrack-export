@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Wcf</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>165</value>
+    </field>
+    <field name="summary">
+      <value>Wcf Facility - Registering Other Interceptors on a WcfClient can cause missing async context</value>
+    </field>
+    <field name="description">
+      <value>In my case, I'm registering a CacheInterceptor that sometimes doesn't proceed with the invocation.  This causes context.AsyncResult to be null (since AsyncWcfCallBase relies on WcfRemotingAsyncInterceptor to actually be called in order to set the AsyncResult).The result is a null reference exception when trying to get the result from a async wcf call (in our case, calling EndWcfCall after calling BeginWcfCall).
+
+I'm still investigating a good solution for this problem, but I wanted to report it and this was the best place I could find to do it.</value>
+    </field>
+    <field name="created">
+      <value>1384183035308</value>
+    </field>
+    <field name="updated">
+      <value>1396695147575</value>
+    </field>
+    <field name="reporterName">
+      <value>jon_wingfield</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396695147559</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jon_wingfield" text="Here's a test case:&#xA;&#xA;    public class CacheInterceptor : IInterceptor&#xA;    {&#xA;        public void Intercept(IInvocation invocation)&#xA;        {&#xA;            invocation.ReturnValue = Result;&#xA;        }&#xA;&#xA;        public static object Result { get; set; }&#xA;    }&#xA;&#xA;		[Test]&#xA;        public void WillReturnResultFromCustomInterceptorsWhenCallingMethodsAsynchronously()&#xA;		{&#xA;			windsorContainer.Register(&#xA;				Component.For&lt;CacheInterceptor&gt;(),&#xA;				Component.For&lt;IOperations&gt;()&#xA;					.Named(&quot;operations&quot;)&#xA;					.AsWcfClient(new DefaultClientModel()&#xA;					{&#xA;						Endpoint = WcfEndpoint&#xA;							.BoundTo(new NetTcpBinding { PortSharingEnabled = true })&#xA;							.At(&quot;net.tcp://localhost/Operations&quot;)&#xA;					})&#xA;					.Interceptors(InterceptorReference.ForType&lt;CacheInterceptor&gt;()).Anywhere&#xA;				);&#xA;&#xA;            CacheInterceptor.Result = 99;&#xA;&#xA;			var client = windsorContainer.Resolve&lt;IOperations&gt;(&quot;operations&quot;);&#xA;			var call = client.BeginWcfCall(p =&gt; p.GetValueFromConstructor());&#xA;			Assert.AreEqual(99, call.End());&#xA;			Assert.AreEqual(&quot;GetValueFromConstructor&quot;, TraceInterceptor.MethodCalled.Name);&#xA;		}" created="1384186343170" />
+    <comment author="xtoff" text="Would you like to have a go at implementing it and sending a pull request?" created="1394860810392" />
+  </issue>
+</issues>

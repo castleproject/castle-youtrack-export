@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>58</value>
+    </field>
+    <field name="summary">
+      <value>Resolve By Key When Requesting by Service and Multiple Service Implementations Exist</value>
+    </field>
+    <field name="description">
+      <value>(Already posted via the group, adding this formal entry to the JIRA)
+
+I've created a custom Naming SubSystem that allows you to specify a predicate for resolving component keys when you request a component by service and there are multiple components that implement that service in the Kernel.
+
+Attached is the patch for this feature, IOC 56, and IOC 57.</value>
+    </field>
+    <field name="created">
+      <value>1167937993000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838916</value>
+    </field>
+    <field name="reporterName">
+      <value>wcpierce</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282141978041</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

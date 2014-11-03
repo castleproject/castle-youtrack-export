@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>188</value>
+    </field>
+    <field name="summary">
+      <value>startable facility fails to choose start or stop methods if method overload exists</value>
+    </field>
+    <field name="description">
+      <value>When start or stop method on startable component is chosen by startMethod/stopMethod attribute in Windsor configuration and selected method has overloads besides version without parameters, component start or stop will fail with AmbiguousMatchException exception.
+
+Fix is simple. Just provide types parameter with value Type.EmptyTypes when calling method Type.GetMethod() in StartConcern.cs and StopConcern.cs.</value>
+    </field>
+    <field name="created">
+      <value>1262853561000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838838</value>
+    </field>
+    <field name="reporterName">
+      <value>blaz</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1262858220000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="can you provide a testcase with patch?" created="1262856024000" />
+    <comment author="xtoff" text="fixed in r6592" created="1262858280000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1262857920000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1262858220000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1262858280000" />
+  </issue>
+</issues>

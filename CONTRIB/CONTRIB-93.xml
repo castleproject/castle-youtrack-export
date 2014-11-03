@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngines</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>93</value>
+    </field>
+    <field name="summary">
+      <value>Big update for the Xslt View Engine</value>
+    </field>
+    <field name="description">
+      <value>I've started working on improving the existing Xslt View Engine and ended up completely rewriting it.
+
+Although, in its current state, it can hardly be called complete, the code has reached a point where it can actually be used to build MVC apps using XSLT transformations.
+
+To run the included example you'll need, besides the monorail framework, the sdf.XPath library version 1.4.0.6, which you can get from http://blogs.byte-force.com/files/default.aspx.
+You should only have to update the references in the solution to make it run, if you run into any problems, feel free to ask.
+The engine's code is split in two assemblies, you have Castle.MonoRail.View.Xslt and Castle.MonoRail.View.Xslt.NativeEngine.  The first is XSLT-processor independent. It is built so it can work with any XSLT-processor. To do that it provides interfaces and abstractions that should be implemented by an XSLT-processor provider.  (IXsltEngine and IXsltTransform)
+The second assembly provides those implementations using the native .NET XSLT-processor (XslCompiledTransform). I've also started work on implementing support for the Saxon-processor to provide XSLT 2.0 support.
+
+I'll give a quick overview of what happens when you render a view:
+State information from the IController and the IRailsEngineContext is collected into an XsltTransformationArguments object. Flash and all objects in the propertybag are converted to IXPathNavigable's using the ObjectXPathNavigator from sdf.XPath. Also references to the helpers registered on the controller are added.
+A new XslPipeline is built that can execute multiple XslTransformations consecutively. Every stage in the pipeline works with the same XsltTransformationArguments.
+The transformation corresponding to the view is looked up and if necessary (re)loaded by the NativeEngine into an IXslTransform-object.
+This transformation is added to the pipeline.
+If necessary, a layout-template is also loaded and added to the pipeline. This mimics the behaviour of the other View Engines, although is entirely possible to separate your views over multiple files and stages using Xslt includes or imports only. 
+The pipeline is executed. The input of the pipeline is an XmlDocument containing only one node 'root'. The result of the first transformation is piped into the next (layout) transformation (and so on). 
+The result of these transformations is sent to the OutputStream.
+If you add an object to the PropertyBag you can access it in the Xsl file as a parameter of the stylesheet:
+&lt;xsl:param name="[propertybagkeynamehere]"/&gt;
+See the ObjectXPathNavigator docs to see how the object-&gt;xml   conversion takes place. 
+Note regarding the Helpers:
+To use a helper in an Xslt file you need to include the helper first using an xsl:import:
+  &lt;xsl:import href="helper://FormHelper"/&gt;
+To call a method on the helper you call the template [helpername]-[methodname]:
+&lt;xsl:call-template name="FormHelper-TextField"&gt;
+&lt;xsl:with-param name="target"&gt;Person.FirstName&lt;/xsl:with-param&gt;
+&lt;/xsl:call-template&gt;
+
+Since .NET  Xslt Transformations do not accept encapsulations of CLR-objects as variables (in contrast to Saxon) only simple variable types are supported: number, string, IXPathNavigable.
+To provide support for the IDictionary parameters of a lot of helpers an adapter is built around each helper-object using the DynamicProxy2 library. IDictionary parameters are converted to IXPathNavigable parameters and back by the adapter.
+To call such a method you should use this syntax:
+&lt;xsl:variable name="param"&gt;
+	&lt;key1&gt;value1&lt;/key1&gt;
+	&lt;key2&gt;value2&lt;/key2&gt;
+	...
+&lt;/xsl:variable&gt;
+&lt;xsl:call-template name="Helper-MethodWithDictionaryParam"&gt;
+&lt;xsl:with-param name="dictparam" select="$param"/&gt;
+&lt;/xsl:call-template&gt;
+</value>
+    </field>
+    <field name="created">
+      <value>1198329586000</value>
+    </field>
+    <field name="updated">
+      <value>1203924740000</value>
+    </field>
+    <field name="reporterName">
+      <value>masterpoi</value>
+    </field>
+    <field name="updaterName">
+      <value>masterpoi</value>
+    </field>
+    <field name="resolved">
+      <value>1282140020885</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

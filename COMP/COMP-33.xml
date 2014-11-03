@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>33</value>
+    </field>
+    <field name="summary">
+      <value>Validation doesn't check subproperties</value>
+    </field>
+    <field name="description">
+      <value>Start with a class User and a class Address. The User class has a property called "HomeAddress" which is of type Address. Both the User and Address classes have validations attributes applied. 
+
+Now do this: 
+
+Code: 
+
+{code lang=java}
+  bool isValid = Validator.IsValid(user) 
+{code}
+passing in a User object.  Top-level properties of the user object that fail validation trigger a false return.  However, properties of the HomeAddress property (itself an Address object) do not trigger false return if they fail validation. 
+
+This code does return false:
+
+{code lang=java}
+  bool isValid = Validator.IsValid(user) &amp;&amp; Validator.IsValid(user.HomeAddress)  
+{code}
+
+but it seems it should be possible to just do this:
+
+{code lang=java}
+  bool isValid = Validator.IsValid(user)
+{code}
+
+I created my own validation routine on my Entity object from which I derive my model objects.  It looks like this:
+
+{code lang=java}
+public ErrorSummary Validate(ValidatorRunner validator, RunWhen when)
+{
+    return Validate(validator, this, when);
+}
+
+private ErrorSummary Validate(ValidatorRunner validator, object obj, RunWhen when)
+{
+    ErrorSummary summary = !validator.IsValid(obj) ? validator.GetErrorSummary(obj) : new ErrorSummary();
+    foreach (PropertyInfo property in obj.GetType().GetProperties())
+    {
+        if (property.GetCustomAttributes(typeof(ValidateObjectAttribute), false).Length &gt; 0)
+            AppendSummary(ref summary, property.Name, Validate(validator, property.GetValue(obj, null), when));
+    }
+    return summary;
+}
+{code}
+
+As you can see, it just checks for properties that are marked with the "ValidateObjectAttribute" (just a signal to check subproperties of that property) and appends any validation errors they have to the current ErrorSummary.  It seems the default behavior of the Validator should do this kind of recursion already though - possibly triggered or prevented by an attribute so people can tune their validation.
+</value>
+    </field>
+    <field name="created">
+      <value>1182475396000</value>
+    </field>
+    <field name="updated">
+      <value>1407822568289</value>
+    </field>
+    <field name="reporterName">
+      <value>jdcrutchley</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1285398712718</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="critchie" text="It seems you can now do this with the use of the ValidateSelfAttribute.  I was looking for the same feature and this attribute can do just what you describe.  And it appears it can be nested as far down as you like.&#xA;&#xA;Example:&#xA;using NUnit.Framework;&#xA;&#xA;[TestFixture]&#xA;public class SelfValidationTestCase&#xA;{&#xA;    private ValidatorRunner validatorRunner;&#xA;&#xA;    [SetUp]&#xA;    public void Init()&#xA;    {&#xA;        validatorRunner = new ValidatorRunner(new CachedValidationRegistry());&#xA;    }&#xA;&#xA;    [Test]&#xA;    public void ObjectValidator()&#xA;    {&#xA;        User target = new User();&#xA;        Assert.IsFalse(validatorRunner.IsValid(target));&#xA;        ErrorSummary errorSummary = validatorRunner.GetErrorSummary(target);&#xA;        Assert.IsTrue(errorSummary.ErrorsCount == 2);&#xA;    }&#xA;&#xA;    public class User&#xA;    {&#xA;        public User()&#xA;        {&#xA;            this.Address = new Address();&#xA;        }&#xA;&#xA;        private string firstName;&#xA;        [ValidateNonEmpty(&quot;First Name required&quot;)]&#xA;        public string FirstName&#xA;        {&#xA;            get { return firstName; }&#xA;            set { firstName = value; }&#xA;        }&#xA;&#xA;        private Address address;&#xA;        public Address Address&#xA;        {&#xA;            get { return address; }&#xA;            set { address = value; }&#xA;        }&#xA;&#xA;        [ValidateSelf]&#xA;        public void Validate(ErrorSummary errorSummary)&#xA;        {&#xA;            ValidatorRunner vr = new ValidatorRunner(new CachedValidationRegistry());&#xA;            if (!vr.IsValid(address))&#xA;            {&#xA;                errorSummary.RegisterErrorsFrom(vr.GetErrorSummary(address));&#xA;            }&#xA;        }&#xA;    }&#xA;&#xA;    public class Address&#xA;    {&#xA;        private string address1;&#xA;        [ValidateNonEmpty(&quot;Address1 required&quot;)]&#xA;        public string Address1&#xA;        {&#xA;            get { return address1; }&#xA;            set {address1 = value; }&#xA;        }&#xA;    }&#xA;}&#xA;&#xA;I'm new to Castle.Components so I'm not sure when this attribute was added.  I know it is in the September 2, 2008 build.&#xA;&#xA;-Craig" created="1220450159000" />
+    <comment author="gauthier" text="My 2 centimes,&#xA;&#xA;Craig is right, I've seen (and implemented) such nesting with SelfValidationContirbutor scheme.&#xA;&#xA;However this could work around the initial need from Jamie, there is the following shortcommings to take care:&#xA;&#xA;* ValidateSelf member method must explicitely validate nested properties, and you need to do this recursively&#xA;* The ErrorSummary design is somewhat bound to a single root instance under validation, which avoid to have straight forward way to retrieve which object/property in the graph is implied in validation errors&#xA;&#xA;The first shortcomming could (possibly) be avoided with somthing like Jamie suggested and/or another contributor.&#xA;&#xA;The second one would require to alter/enhance the design of ErrorSummary to provide information of nested property path or such thing to be a complete / descriptive solution for any case." created="1252116886000" />
+    <comment author="henry" text="The ValidateSelf offers the best tradeoff between control of the validation and the nesting. About the error summary, if it's still needs improvements, please share your thoughts on dev mail list." created="1285398712718" />
+  </issue>
+</issues>

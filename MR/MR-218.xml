@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>218</value>
+    </field>
+    <field name="summary">
+      <value>add method overloading support for ajaxactions</value>
+    </field>
+    <field name="description">
+      <value>Create a patch that adds (primitive) method overloading for actions tagged with the ajaxaction attribute.
+
+things like:
+  public void AddChildNode() ..
+  public void AddChildNode(int root) ..
+  public void AddChildNode(string root) ..
+
+overloading is not native in js but there are workarounds that we can use.
+</value>
+    </field>
+    <field name="created">
+      <value>1169396036000</value>
+    </field>
+    <field name="updated">
+      <value>1279477861000</value>
+    </field>
+    <field name="reporterName">
+      <value>ernst</value>
+    </field>
+    <field name="updaterName">
+      <value>ernst</value>
+    </field>
+    <field name="resolved">
+      <value>1279477800000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Not too sure about the use for this request. An example?&#xA;" created="1262980117000" />
+    <comment author="jsimons" text="Send us a pull request with a patch, and I'll reopen the issue." created="1279477854000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Incomplete''.&#xD;&#xA;* '''Version Fixed''' changed from ''Future'' to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1279477800000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1279477860000" />
+    <comment author="jsimons" text="* '''Version Affected''' changed from ''Release Candidate 3'' to ''2.0''.&#xD;&#xA;" created="1269791400000" />
+  </issue>
+</issues>

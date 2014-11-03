@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>148</value>
+    </field>
+    <field name="summary">
+      <value>Faulty xml using NHibernate and Castle from trunk</value>
+    </field>
+    <field name="description">
+      <value>I'm running from trunk and ran into the issue where ActiveRecordStarter.ModelsCreated does not give ActiveWriter enough information to have ActiveRecord generate correct XML. This happens when using NH 1.2 from trunk. The problem is that in between ModelsCreated and ModelsValidated, AR tries to resolve some required fields that might not have explicitly been set, e.g. the class attribute on relations.
+
+The fix is to attach to ModelsValidated instead of ModelsCreated in Dsl/CodeGeneration/CodeGenerationHelpers.cs (function: Generate).
+
+I'd send a patch, but my local version is patched with much more than that. I'll see if I've got some spare time somewhere to bake this one ;)</value>
+    </field>
+    <field name="created">
+      <value>1225241813000</value>
+    </field>
+    <field name="updated">
+      <value>1407822033452</value>
+    </field>
+    <field name="reporterName">
+      <value>grimace</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1407822033434</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

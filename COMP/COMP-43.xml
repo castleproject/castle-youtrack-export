@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>43</value>
+    </field>
+    <field name="summary">
+      <value>NullReferenceException If friendly name contains blank space </value>
+    </field>
+    <field name="description">
+      <value>It caused by ValidatorRunner
+
+		public bool IsValid(object objectInstance, RunWhen runWhen)
+		{
+			if (objectInstance == null) throw new ArgumentNullException("objectInstance");
+
+			bool isValid = true;
+
+			ErrorSummary summary = new ErrorSummary();
+
+			foreach(IValidator validator in GetValidators(objectInstance, runWhen))
+			{
+				if (!validator.IsValid(objectInstance))
+				{
+					string name = validator.FriendlyName ?? validator.Name;
+
+					summary.RegisterErrorMessage(name, validator.ErrorMessage);
+
+					isValid = false;
+				}
+			}
+
+			errorPerInstance[objectInstance] = summary;
+
+			return isValid;
+		}
+
+</value>
+    </field>
+    <field name="created">
+      <value>1190718304000</value>
+    </field>
+    <field name="updated">
+      <value>1209369651000</value>
+    </field>
+    <field name="reporterName">
+      <value>xiaoqiang.chou</value>
+    </field>
+    <field name="updaterName">
+      <value>xiaoqiang.chou</value>
+    </field>
+    <field name="resolved">
+      <value>1282137567682</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

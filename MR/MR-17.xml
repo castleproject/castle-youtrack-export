@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - NVelocity</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 4</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>17</value>
+    </field>
+    <field name="summary">
+      <value>NVelocityVE hardcodes the ".vm" extension</value>
+    </field>
+    <field name="description">
+      <value>The NVelocity View Engine forces the developer to use the ".vm" extension when writing views.
+
+The developer should be able to choose from another extension. NVelocity doesn't enforce a single extension, I don't think NVelocityVE for MonoRail should too.
+
+A simple workaround is included as a patch - it simply wraps the inclusion of the ".vm" extension into a virtual method call, so someone can extend the NVelocityVE class and reimplement it.
+
+In the future we can add a new configuration section to NVelocityVE.</value>
+    </field>
+    <field name="created">
+      <value>1120744147000</value>
+    </field>
+    <field name="updated">
+      <value>1120888666000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282143251370</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

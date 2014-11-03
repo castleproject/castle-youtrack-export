@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>76</value>
+    </field>
+    <field name="summary">
+      <value>Add property AutoLoad to ARDataBind/er</value>
+    </field>
+    <field name="description">
+      <value>Currently this can only be set through a form field. Allow the form field to override the configuration on the attribute, just to keep compatible.</value>
+    </field>
+    <field name="created">
+      <value>1135313786000</value>
+    </field>
+    <field name="updated">
+      <value>1136169974000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282143380229</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>457</value>
+    </field>
+    <field name="summary">
+      <value>Create CombineFiles ViewComponent</value>
+    </field>
+    <field name="description">
+      <value>The idea is to be able to combine and allow browsers to cache a set of files:
+
+#blockcomponent(JSCombine)
+  $combiner.add("$siteroot/content/jquery-1.2.3.js")
+  $combiner.add("$siteroot/content/jquery-someplug.js")
+  $combiner.add("$siteroot/content/myjs.js")
+#end
+
+Which should output something like
+
+&lt;script type="text/javascript" src="/monorail/files/somekey?SOMEHASHCODE"&gt;&lt;/script&gt;
+
+The hascode should be a composition of the lastmodified of each file's lastmodified attribute, so if a file is changed, the browser will request them again. 
+
+There should also be a CssCombine
+</value>
+    </field>
+    <field name="created">
+      <value>1211710339000</value>
+    </field>
+    <field name="updated">
+      <value>1263055467000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1250796480000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ewhauser" text="Here is a patch based off of the original code on your blog.  It will combine both CSS and Javascript output.  Alex Henderson also contributed some code for this patch.&#xA;&#xA;We need to wait for the YUI Compressor .NET (http://www.codeplex.com/YUICompressor) to release a signed version of their library before it can be included as a dependency in Monorail.  I've requested that they do so, and will update this issue when this happens.  In the meantime, this patch should be usuable by anyone who wants to download the dependency and try the component out." created="1224878340000" />
+    <comment author="bittercoder" text="YuiCompressor looks to to have a strong signed release now (as of 25th Oct):&#xA;&#xA;http://www.codeplex.com/YUICompressor/Release/ProjectReleases.aspx?ReleaseId=18785" created="1225109200000" />
+    <comment author="pollingj" text="The YuiCompressor (Version 1.3.0.0) has an extra argument, LineBreakPosition, in the Compress function. I've added a property for this to IScriptBuilder and YuiScriptBuilder and set to it -1 (no line breaks)" created="1238395078000" />
+    <comment author="rjlopes" text="If you are interested I already have an http handler that uses YUICompressor and JsMin to combine, compress (gzip or deflate) and cache (Out Cache + client side) that I have been using in some website for css and javascript and I could contribute with it to the castle project." created="1238397674000" />
+    <comment author="jsimons" text="Newest patch added combineJSViewComponent+YuiCompressor1.4.0.0.patch.&#xA;Also, added Yahoo.Yui.Compressor v1.4.0.0.zip (for .NET 3.5).zip, the 2 files inside this zip need to be added to \SharedLibs\net" created="1250296726000" />
+    <comment author="kenegozi" text="the yui compressor is MS-PL  is that ok to put in our ASL2 codebase? &#xA;and about the ECmascript.modified dll - I don't know it's license status&#xA;&#xA;" created="1250300617000" />
+    <comment author="kenegozi" text="the yui compressor is MS-PL  is that ok to put in our ASL2 codebase? &#xA;and about the ECmascript.modified dll - I don't know it's license status&#xA;&#xA;" created="1250300617000" />
+    <comment author="jsimons" text="The ECmascript.modified dll is a BSD License - http://developer.yahoo.com/yui/license.html&#xA;And in regards to MS-PL, not sure, I'll ask the question on the forum.&#xA;" created="1250371907000" />
+    <comment author="jsimons" text="Ok, this is it combineJSViewComponent_nocompression.patch.&#xA;Got rid of the YUI Compression dependency by not supporting compression by default.&#xA;This solution still allows the user to support compression by plugging in their own implementation of IScriptBuilder service.&#xA;&#xA;John" created="1250742655000" />
+    <comment author="kenegozi" text="Superb. I'll to final &quot;go over-ing&quot; and apply this weekend, assuming no baby will pop out during.&#xA;" created="1250749818000" />
+    <comment author="henry" text="Applied with some modifications. Rev 5956" created="1250796523000" />
+    <comment author="jsimons" text="* '''Attachment''' Yahoo.Yui.Compressor v1.4.0.0.zip (for .NET 3.5).zip added.&#xD;&#xA;" created="1250296560000" />
+    <comment author="jsimons" text="* '''Attachment''' combineJSViewComponent+YuiCompressor1.4.0.0.patch added.&#xD;&#xA;" created="1250296560000" />
+    <comment author="jsimons" text="* '''Attachment''' combineJSViewComponent_nocompression.patch added.&#xD;&#xA;" created="1250742300000" />
+    <comment author="henry" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Release Candidate 3''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1250796480000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055440000" />
+    <comment author="pollingj" text="* '''Attachment''' combineJSViewComponentYUICompressor1_3_0_0.patch added.&#xD;&#xA;" created="1238395080000" />
+  </issue>
+</issues>

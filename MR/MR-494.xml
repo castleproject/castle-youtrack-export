@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>494</value>
+    </field>
+    <field name="summary">
+      <value>AbstractPaginationViewComponent with PreserveQueryString = true double-encodes query string parameters</value>
+    </field>
+    <field name="description">
+      <value>ViewComponents deriving from AbstractPaginationViewComponent will double-encode query string parameters if PreserveQueryString is true (and possibly in other cases as well).
+
+For example, the query string parameter "&amp;q.StartDate=08%2F01%2F2008" will become "&amp;q.StartDate=08%252F01%252F2008" in the links to other pages.
+
+This appears to happen because UrlParts.CreateQueryStringNameValueCollection() does not decode the query string parameters as it adds them to the NameValueCollection and the CommonUtils.BuildQueryString() method called by UrlParts.BuildPathForLink() encodes them again.
+</value>
+    </field>
+    <field name="created">
+      <value>1222938888000</value>
+    </field>
+    <field name="updated">
+      <value>1263475172000</value>
+    </field>
+    <field name="reporterName">
+      <value>mdavis</value>
+    </field>
+    <field name="updaterName">
+      <value>mdavis</value>
+    </field>
+    <field name="resolved">
+      <value>1263475140000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mdavis" text="I've made a patch that seems to fix this, though I'd like it if someone would review it to make sure I didn't miss something important.&#xA;&#xA;It adds a dependency on IServerUtility to UrlParts (as an additional constructor parameter) so that it can decode the query string parameters as it builds the NameValueCollection.  I also removed the IServerUtility parameter from the BuildPathForLink() method as it would be redundant.&#xA;&#xA;The patch also adds a test to verify that parsed query string parameters are decoded and re-encoded correctly.&#xA;" created="1222951995000" />
+    <comment author="mdavis" text="Since the original patch is almost a year old, I'm providing an updated patch that I believe should work on the current trunk.  I'd still like someone to take a look at this in case there's a better way of fixing the problem, though." created="1253865263000" />
+    <comment author="jsimons" text="Applied in r6668" created="1263475163000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1263475140000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263475140000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1263473880000" />
+    <comment author="mdavis" text="* '''Components''' changed from ''ViewComponents'' to ''Core and ViewComponents''.&#xD;&#xA;" created="1222950600000" />
+    <comment author="mdavis" text="* '''Attachment''' mr-issue-494-2.patch added.&#xD;&#xA;" created="1253865120000" />
+  </issue>
+</issues>

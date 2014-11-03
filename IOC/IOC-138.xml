@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>138</value>
+    </field>
+    <field name="summary">
+      <value>Resolve sub component with dictionary in constructor throw exception</value>
+    </field>
+    <field name="description">
+      <value>Consider the following test, where the ServiceContainer is just a static wrapper around the Windsor container:
+{code lang=java}
+public class A
+{
+    private B b;
+
+    public A(string test)
+    {
+        IDictionary parameters = new ListDictionary();
+        parameters.Add("test2", "bla");
+        b = ServiceContainer.Resolve&lt;B&gt;(parameters);
+    }
+}
+
+public class B
+{
+    public B(string test2)
+    {
+
+    }
+}
+
+[TestClass]
+public class ServiceContainerTest
+{
+    [TestMethod]
+    public void TestResolveSubComponentInConstructorWithParameters()
+    {
+        ServiceContainer.Current.AddComponent("A", typeof(A));
+        ServiceContainer.Current.AddComponent("B", typeof(B));
+
+        IDictionary parameters = new ListDictionary();
+        parameters.Add("test", "bla");
+
+        A a = ServiceContainer.Resolve&lt;A&gt;(parameters);
+        Assert.IsNotNull(a);
+    }
+}
+{code}
+This throws the following exception:
+
+Castle.MicroKernel.ComponentActivator.ComponentActivatorException: ComponentActivator: could not instantiate IJM.Library.Test.IoC.A
+	Castle.MicroKernel.ComponentActivator.ComponentActivatorException: ComponentActivator: could not instantiate IJM.Library.Test.IoC.A ---&gt; System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---&gt; Castle.MicroKernel.Resolvers.DependencyResolverException: Could not resolve non-optional dependency for 'B' (IJM.Library.Test.IoC.B). Parameter 'test2' type 'System.String'
+	at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(CreationContext context, ISubDependencyResolver parentResolver, ComponentModel model, DependencyModel dependency)
+
+This probably occurs because of the static CreationContext in the DefaultKernel.</value>
+    </field>
+    <field name="created">
+      <value>1228727542000</value>
+    </field>
+    <field name="updated">
+      <value>1287896464197</value>
+    </field>
+    <field name="reporterName">
+      <value>jonnekats</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1228857780000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="that was a bug that I introduced, sorry.&#xA;Now fixed." created="1228857783000" />
+    <comment author="jonnekats" text="Love your work.." created="1228963012000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228857780000" />
+  </issue>
+</issues>

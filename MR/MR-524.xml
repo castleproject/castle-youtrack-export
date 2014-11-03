@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>524</value>
+    </field>
+    <field name="summary">
+      <value>Support startYear, endYear in Html.DateTime</value>
+    </field>
+    <field name="description">
+      <value>Html.DateTime generate 2 select box represent Month, Day, Year it works well expcept it did come with fix Year range 1930 - 2030 with patch attached you can configure startYear and endYear.
+
+${Html.DateTime("birthdate", new DateTime(..,..,..), {@startYear: '1980', @endYear: '2000'})}</value>
+    </field>
+    <field name="created">
+      <value>1236197672000</value>
+    </field>
+    <field name="updated">
+      <value>1263055433000</value>
+    </field>
+    <field name="reporterName">
+      <value>csokun</value>
+    </field>
+    <field name="updaterName">
+      <value>csokun</value>
+    </field>
+    <field name="resolved">
+      <value>1242046620000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="csokun" text="the second patch make allow us to also produce DateTime with month name instead of 1-12 it Jan-Dec or user define months' name." created="1238122400000" />
+    <comment author="roelofb" text="Applied in r5673" created="1242046677000" />
+    <comment author="roelofb" text="Applied in r5673" created="1242046754000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055380000" />
+    <comment author="csokun" text="* '''Attachment''' DateTime.patch added.&#xD;&#xA;" created="1236197700000" />
+    <comment author="csokun" text="* '''Attachment''' DateTime_Month_Year_Customization.patch added.&#xD;&#xA;" created="1238122320000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1242046620000" />
+  </issue>
+</issues>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Duplicate</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>201</value>
+    </field>
+    <field name="summary">
+      <value>Issues when registering generic components with generic generic arguments</value>
+    </field>
+    <field name="description">
+      <value>Doing this:
+
+AllTypes.Of(typeof(ConsumerOf&lt;&gt;)).FromAssembly(..some assembly...);
+
+This registers and then resolves successfully when asking for ConsumerOf&lt;SomeMessage&gt;:
+
+class SomeConsumer : ConsumerOf&lt;SomeMessage&gt;  {}
+
+While this doesn't when asking for ConsumerOf&lt;SomeMessage&lt;SomeClass&gt;&gt;:
+
+class SomeOtherConsumer&lt;T&gt;  : ConsumerOf&lt;SomeMessage&lt;T&gt;&gt;  {}</value>
+    </field>
+    <field name="created">
+      <value>1272025382000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838901</value>
+    </field>
+    <field name="reporterName">
+      <value>simone_b</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1272156660000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Duplicate of IOC-ISSUE-201" created="1272156704000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Duplicate''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1272156660000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1272156660000" />
+  </issue>
+</issues>

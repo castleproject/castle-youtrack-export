@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>84</value>
+    </field>
+    <field name="summary">
+      <value>Programmatically retrieve configuration properties</value>
+    </field>
+    <field name="description">
+      <value>It could be useful to be able to retrieve configuration property values programmatically, much like .NET ConfigurationManager class does.</value>
+    </field>
+    <field name="created">
+      <value>1182751474000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853151</value>
+    </field>
+    <field name="reporterName">
+      <value>simone_b</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142055682</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

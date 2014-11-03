@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>131</value>
+    </field>
+    <field name="summary">
+      <value>capturefor doesn't work on Brail</value>
+    </field>
+    <field name="description">
+      <value>I tryed to get it working on Brail. I think I got the syntax for the view correctly:
+
+&lt;%
+  component capturefor, {"id" : "title"}:
+%&gt;
+Title of this view
+&lt;% end %&gt;
+
+
+but not that for the layout. I tryed:
+
+${title} (got "Parameter 'title' was not found!")
+$!title (got $!title)
+$!{title}  (got $!{title})
+${!title} (got boo compile error, unexpected char: '!')
+$title (got title)
+
+but no luck at all.
+
+The earlier was the more promising, so here it is the stack trace (I am using the daily build 621):
+
+[RailsException: Parameter 'title' was not found!]
+   Castle.MonoRail.Views.Brail.BrailBase.GetParameter(String name) in F:\CI\Cc.Net\server\Castle-net\WorkingDirectory\MonoRail\Castle.MonoRail.Views.Brail\BrailBase.boo:95
+   default_BrailView.Run() +94
+   Castle.MonoRail.Views.Brail.BooViewEngine.Process(TextWriter output, IRailsEngineContext context, Controller controller, String templateName) in F:\CI\Cc.Net\server\Castle-net\WorkingDirectory\MonoRail\Castle.MonoRail.Views.Brail\BooViewEngine.boo:90
+   Castle.MonoRail.Views.Brail.BooViewEngine.Process(IRailsEngineContext context, Controller controller, String templateName) in F:\CI\Cc.Net\server\Castle-net\WorkingDirectory\MonoRail\Castle.MonoRail.Views.Brail\BooViewEngine.boo:78
+   Castle.MonoRail.Framework.Controller.ProcessView() in f:\CI\Cc.Net\server\Castle-net\WorkingDirectory\MonoRail\Castle.MonoRail.Framework\Controller.cs:1286
+   Castle.MonoRail.Framework.Controller.InternalSend(String action, Object[] actionArgs) in f:\CI\Cc.Net\server\Castle-net\WorkingDirectory\MonoRail\Castle.MonoRail.Framework\Controller.cs:957
+   Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext context) in f:\CI\Cc.Net\server\Castle-net\WorkingDirectory\MonoRail\Castle.MonoRail.Framework\MonoRailHttpHandler.cs:65
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +499
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +177
+
+
+I obviously read the probably related source code (BrailBase.boo, BrailViewComponentContext.boo, ViewComponent.cs and CaptureFor.cs), but got no clue. </value>
+    </field>
+    <field name="created">
+      <value>1154001564000</value>
+    </field>
+    <field name="updated">
+      <value>1162414054000</value>
+    </field>
+    <field name="reporterName">
+      <value>aledeniz</value>
+    </field>
+    <field name="updaterName">
+      <value>aledeniz</value>
+    </field>
+    <field name="resolved">
+      <value>1282143471073</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

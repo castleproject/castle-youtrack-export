@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>545</value>
+    </field>
+    <field name="summary">
+      <value>UrlHelper.ButtonLink produces wrong HTML</value>
+    </field>
+    <field name="description">
+      <value>Calling UrlHelper.ButtonLink with both parameters and attributes produces invalid HTML.
+Eg.
+&lt;button type="button"class="MyClass" onclick="javascript:window.location.href = '/MyController/MyAction.'"&gt;Test&lt;/button&gt;
+
+No space between type="button"class="MyClass"</value>
+    </field>
+    <field name="created">
+      <value>1249007959000</value>
+    </field>
+    <field name="updated">
+      <value>1253860269000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1249190280000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Thanks. Applied in r5902." created="1249190310000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1249189440000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1249190280000" />
+    <comment author="jsimons" text="* '''Attachment''' urlhelper.patch added.&#xD;&#xA;" created="1249008600000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253860260000" />
+  </issue>
+</issues>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Remoting</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>42</value>
+    </field>
+    <field name="summary">
+      <value>RemotingRegistry</value>
+    </field>
+    <field name="description">
+      <value>My intention is to get familiar with the RemotingFacility from the Castle Project to realize the following secenario:
+I want to create a client - server application where the business logic can be located on a server and a client offers an user interface (and nothing else) . The server should use dependency injection to avoid heavy, expensive dependencies between different objects. The client should only be able to access an object through an interface so that a server has to offer some object via remoting.
+
+The base for my solution is the sample "RemoteSample" (i altered it a little bit because it was configured for an older version of the RemotingFacility and it did not function as it was) from the Castle Project binaries.  I am using the container on both endpoints. The configuration from http://www.castleproject.org/index.php/Facility:RemotingFacility (last scenario on the page) does not function (or I do not know how to use it?) for my solution.
+
+Now when I start the client application I get an error message as follows:
+"Additional information: Attempted to call a method declared on type RemoteSample.Components.IRemoteConsole on an object which exposes Castle.Facilities.Remoting.RemotingRegistry."
+
+For better understanding i attached my solution to this Jira-Isue.</value>
+    </field>
+    <field name="created">
+      <value>1146624433000</value>
+    </field>
+    <field name="updated">
+      <value>1162411745000</value>
+    </field>
+    <field name="reporterName">
+      <value>damoe</value>
+    </field>
+    <field name="updaterName">
+      <value>damoe</value>
+    </field>
+    <field name="resolved">
+      <value>1282140990838</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

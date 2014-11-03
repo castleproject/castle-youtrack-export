@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Wcf</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>166</value>
+    </field>
+    <field name="summary">
+      <value>WcfFacility - unable to specify endpoint name</value>
+    </field>
+    <field name="description">
+      <value>Hi,
+
+See - http://stackoverflow.com/questions/15138565/error-resolving-service-using-windsor-3-2-0-0-wcffacility-in-asp-net-mvc3
+
+The endpoint name passed to FromConfiguration() appears to be ignored - any value fails with the "Could not find endpoint element with name 'service' .... " exception, unless you use the value "service" in web.config.
+
+Cheers</value>
+    </field>
+    <field name="created">
+      <value>1362211129326</value>
+    </field>
+    <field name="updated">
+      <value>1396695150690</value>
+    </field>
+    <field name="reporterName">
+      <value>Gibbons</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396695150677</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-932[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Hi @Neil&#xA;&#xA;From your StackOverflow answer I take it it wasn't really a bug in the WCF facility, is that right?&#xA;&#xA;Should I just close the issue, or do you have any post-mortem ideas to that? Is there anything we can do to make this particular problem you were facing easier to find and diagnose?" created="1371371356740" />
+  </issue>
+</issues>

@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>121</value>
+    </field>
+    <field name="summary">
+      <value>WCFFacility not thread safe</value>
+    </field>
+    <field name="description">
+      <value>We use the wcf facility to register our wcf services in the windsor container.
+When we resolve two services asynchrone then both endpoints are mixed up: Service1 tries to open the endpoint of service2.
+This results in a TargetInvocationException. We have a testproject available, please contact me by email when needed.
+
+This is the stacktrace of the error:
+
+System.InvalidOperationException: Could not find endpoint element with name 'WSHttpBinding_IContract2' and contract 'WcfMultithreadedTest.IContract1' in the ServiceModel client configuration section. This might be because no configuration file was found for your application, or because no endpoint element matching this name could be found in the client element.
+   at System.ServiceModel.Description.ConfigLoader.LoadChannelBehaviors(ServiceEndpoint serviceEndpoint, String configurationName)
+   at System.ServiceModel.ChannelFactory.ApplyConfiguration(String configurationName)
+   at System.ServiceModel.ChannelFactory.InitializeEndpoint(String configurationName, EndpointAddress address)
+   at System.ServiceModel.ChannelFactory`1..ctor(String endpointConfigurationName, EndpointAddress remoteAddress)
+   at System.ServiceModel.ChannelFactory`1..ctor(String endpointConfigurationName)
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle._InvokeConstructor(Object[] args, SignatureStruct&amp; signature, IntPtr declaringType)
+   at System.RuntimeMethodHandle.InvokeConstructor(Object[] args, SignatureStruct signature, RuntimeTypeHandle declaringType)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.RuntimeType.CreateInstanceImpl(BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes)
+   at System.Activator.CreateInstance(Type type, BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes)
+   at System.Activator.CreateInstance(Type type, Object[] args)
+   at Castle.Facilities.WcfIntegration.AbstractChannelBuilder`1.CreateChannelCreator(Type contract, M clientModel, Object[] channelFactoryArgs) in F:\Castle\Facilities\Wcf\Castle.Facilities.WcfIntegration\Client\AbstractChannelBuilder.Generic.cs:line 132
+   at Castle.Facilities.WcfIntegration.AbstractChannelBuilder`1.GetChannel(M clientModel, Type contract, String configurationName) in F:\Castle\Facilities\Wcf\Castle.Facilities.WcfIntegration\Client\AbstractChannelBuilder.Generic.cs:line 111
+   at Castle.Facilities.WcfIntegration.AbstractChannelBuilder`1.GetChannel(Type contract, String configurationName) in F:\Castle\Facilities\Wcf\Castle.Facilities.WcfIntegration\Client\AbstractChannelBuilder.Generic.cs:line 82
+   at Castle.Facilities.WcfIntegration.AbstractChannelBuilder.Castle.Facilities.WcfIntegration.IWcfEndpointVisitor.VisitConfigurationEndpoint(ConfigurationEndpointModel model) in F:\Castle\Facilities\Wcf\Castle.Facilities.WcfIntegration\Client\AbstractChannelBuilder.cs:line 92
+   at Castle.Facilities.WcfIntegration.ConfigurationEndpointModel.Accept(IWcfEndpointVisitor visitor) in F:\Castle\Facilities\Wcf\Castle.Facilities.WcfIntegration\WcfEndpoint.cs:line 270
+   at Castle.Facilities.WcfIntegration.WcfEndpointBase.Castle.Facilities.WcfIntegration.IWcfEndpoint.Accept(IWcfEndpointVisitor visitor) in F:\Castle\Facilities\Wcf\Castle.Facilities.WcfIntegration\WcfEndpoint.cs:line 102
+   at Castle.Facilities.WcfIntegration.AbstractChannelBuilder.GetEndpointChannelCreator(IWcfEndpoint endpoint, Type contract) in F:\Castle\Facilities\Wcf\Castle.Facilities.WcfIntegration\Client\AbstractChannelBuilder.cs:line 68
+   at Castle.Facilities.WcfIntegration.AbstractChannelBuilder`1.GetChannelCreator(M clientModel, Type contract, IWcfBurden&amp; burden) in F:\Castle\Facilities\Wcf\Castle.Facilities.WcfIntegration\Client\AbstractChannelBuilder.Generic.cs:line 60
+   at Castle.Facilities.WcfIntegration.WcfClientActivator.CreateChannelCreatorInternal[M](IKernel kernel, IWcfClientModel clientModel, ComponentModel model, IWcfBurden&amp; burden) in F:\Castle\Facilities\Wcf\Castle.Facilities.WcfIntegration\Client\WcfClientActivator.cs:line 207
+   at Castle.Facilities.WcfIntegration.WcfClientActivator.CreateChannelCreator(IKernel kernel, ComponentModel model, IWcfClientModel clientModel, IWcfBurden&amp; burden) in F:\Castle\Facilities\Wcf\Castle.Facilities.WcfIntegration\Client\WcfClientActivator.cs:line 199
+   at Castle.Facilities.WcfIntegration.WcfClientActivator.GetChannelCreator(CreationContext context) in F:\Castle\Facilities\Wcf\Castle.Facilities.WcfIntegration\Client\WcfClientActivator.cs:line 105
+   at Castle.Facilities.WcfIntegration.WcfClientActivator.Instantiate(CreationContext context) in F:\Castle\Facilities\Wcf\Castle.Facilities.WcfIntegration\Client\WcfClientActivator.cs:line 69
+   at Castle.Facilities.WcfIntegration.WcfClientActivator.InternalCreate(CreationContext context) in F:\Castle\Facilities\Wcf\Castle.Facilities.WcfIntegration\Client\WcfClientActivator.cs:line 62
+   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context) in F:\Castle\InversionOfControl\Castle.MicroKernel\ComponentActivator\AbstractComponentActivator.cs:line 72
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context) in F:\Castle\InversionOfControl\Castle.MicroKernel\Lifestyle\AbstractLifestyleManager.cs:line 39
+   at Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(CreationContext context) in F:\Castle\InversionOfControl\Castle.MicroKernel\Lifestyle\SingletonLifestyleManager.cs:line 40
+   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context) in F:\Castle\InversionOfControl\Castle.MicroKernel\Handlers\DefaultHandler.cs:line 53
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments) in F:\Castle\InversionOfControl\Castle.MicroKernel\DefaultKernel.cs:line 905
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service) in F:\Castle\InversionOfControl\Castle.MicroKernel\DefaultKernel.cs:line 887
+   at Castle.MicroKernel.DefaultKernel.get_Item(Type service) in F:\Castle\InversionOfControl\Castle.MicroKernel\DefaultKernel_Resolve.cs:line 118
+   at Castle.Windsor.WindsorContainer.Resolve(Type service) in F:\Castle\InversionOfControl\Castle.Windsor\WindsorContainer.cs:line 662
+   at Castle.Windsor.WindsorContainer.Resolve[T]() in F:\Castle\InversionOfControl\Castle.Windsor\WindsorContainer.cs:line 811
+   at WcfMultithreadedTest.WcfFacilityResolveMultithreadedTest.&lt;TestResolveTwoServicesAsyncFailed&gt;b__d(Object sender, DoWorkEventArgs args) in F:\Castle\WcfMultithreadedTest\WcfFacilityResolveMultithreadedTest.cs:line 129
+   at WcfMultithreadedTest.BackgroundRunner.&lt;&gt;c__DisplayClass4.&lt;Run&gt;b__0(Object o, DoWorkEventArgs workEvents) in F:\Castle\WcfMultithreadedTest\BackgroundRunner.cs:line 44
+   at System.ComponentModel.BackgroundWorker.OnDoWork(DoWorkEventArgs e)
+   at System.ComponentModel.BackgroundWorker.WorkerThreadStart(Object argument)</value>
+    </field>
+    <field name="created">
+      <value>1245038729000</value>
+    </field>
+    <field name="updated">
+      <value>1279978461000</value>
+    </field>
+    <field name="reporterName">
+      <value>MHenneman</value>
+    </field>
+    <field name="updaterName">
+      <value>MHenneman</value>
+    </field>
+    <field name="resolved">
+      <value>1279978440000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="cneuwirt" text="Can you please attach the test project to this issue" created="1245042891000" />
+    <comment author="Superstom" text="Craig,&#xA;Mark is a collegue of mine, so I tried to upload the project, but it is probably not allowed while it is not my bug" created="1245050559000" />
+    <comment author="cneuwirt" text="Ok, just email it to me, cneuwirt@gmail.com" created="1245050959000" />
+    <comment author="Superstom" text="Solution sent by mail" created="1245051615000" />
+    <comment author="MHenneman" text="We have a custom created facility that has the same problem. So when inserting a facility leads to this problem when resolving components using this facility at the same time (asynchonously). When we resolve one component using the facility before resolving asynchonously then there is no problem.&#xA;&#xA;Ewout and Mark" created="1245633528000" />
+    <comment author="xtoff" text="Did this ever get resolved?" created="1262411704000" />
+    <comment author="cneuwirt" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1279978440000" />
+    <comment author="cneuwirt" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1279978440000" />
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1279978440000" />
+  </issue>
+</issues>

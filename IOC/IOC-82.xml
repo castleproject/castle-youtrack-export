@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>82</value>
+    </field>
+    <field name="summary">
+      <value>Allow components to implement multiple services.</value>
+    </field>
+    <field name="description">
+      <value>When a component is added to the container via XML the service attribute can only appear once. Components may implement multiple services. Currently you need to add a new component node for each service that a type provides:
+
+ &lt;component
+  id="productManager.service"
+  service="Company.IProductService, Company"
+  type="Company.ProductManger, Company"&gt;
+ &lt;/component&gt;
+
+ &lt;component
+  id="productManager.validator"
+  service="Company.IProductValdiator, Company"
+  type="Company.ProductManger, Company"&gt;
+ &lt;/component&gt;
+
+The syntax below would allow a component to provide more than one service:
+
+ &lt;component id="productManager" type="Company.ProductManager, Company"&gt;
+  &lt;service type="Company.IProductService, Company" /&gt;
+  &lt;service type="Company.IProductValidator, Compay" /&gt;
+  &lt;/component&gt;
+
+A similiar result could probably be achieved today using a custom interperter.</value>
+    </field>
+    <field name="created">
+      <value>1182248812000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838916</value>
+    </field>
+    <field name="reporterName">
+      <value>rgrabowski</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142050088</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

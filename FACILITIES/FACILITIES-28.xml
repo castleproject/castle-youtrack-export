@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>28</value>
+    </field>
+    <field name="summary">
+      <value>[PATCH] Allow Castle.Services.Logging.log4netIntegration to report correct values for location info patterns: %line, %logger, %file, etc.</value>
+    </field>
+    <field name="description">
+      <value>I didn't see a "Services" component in JIRA so I hope this is an ok place to post the informtaion.
+
+Currently when you log information using Castle.Services.Logging.log4netIntegration:
+
+ Log4netFactory factory = new Log4netFactory();
+ ILogger log =  factory.Create(typeof(Log4netLoggerTest).FullName);
+ log.Debug("Hello"); // line 17
+ log.Debug("World"); // line 18
+ log.Debug("Foo"); // line 19
+ log.Debug("Bar"); // line 20
+ log.Debug("Baz"); // line 21
+
+in conjuction with the location info patterns of log4net (most of the pattenrs that have a WARNING in their description):
+
+http://tinyurl.com/bx3ep
+http://logging.apache.org/log4net/release/sdk/index.html
+
+the log file reports that the messages as being generated from line 79 of Log4netLogger. Line 79 is:
+
+ _log.Debug(message);
+
+In some respects this is correct but it would be better to show the user what line in _their_ code the call to Debug came from. When I use this conversion pattern:
+
+ "%line - %message%newline"
+
+I should see this in my output:
+
+ 17 - Hello
+ 18 - World
+ 19 - Foo
+ 20 - Bar
+ 21 - Baz
+
+not this:
+
+ 79 - Hello
+ 79 - World
+ 79 - Foo
+ 79 - Bar
+ 79 - Baz
+
+The XML remarks of this class has more information:
+
+http://tinyurl.com/7836t
+http://svn.apache.org/viewcvs.cgi/ibatis/trunk/cs/mapper/IBatisNet.Common.Logging.Log4Net/Log4NetLogger.cs</value>
+    </field>
+    <field name="created">
+      <value>1133633645000</value>
+    </field>
+    <field name="updated">
+      <value>1162411946000</value>
+    </field>
+    <field name="reporterName">
+      <value>rgrabowski</value>
+    </field>
+    <field name="updaterName">
+      <value>rgrabowski</value>
+    </field>
+    <field name="resolved">
+      <value>1282140977276</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

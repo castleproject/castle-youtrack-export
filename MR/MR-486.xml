@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>486</value>
+    </field>
+    <field name="summary">
+      <value>CaptureFor component casts append param "as string"</value>
+    </field>
+    <field name="description">
+      <value>Here's a patch to allow types other than string for the append parameter of CaptureFor.
+
+Index: MonoRail/Castle.MonoRail.Framework/ViewComponents/CaptureFor.cs
+===================================================================
+--- MonoRail/Castle.MonoRail.Framework/ViewComponents/CaptureFor.cs     (revision 5312)
++++ MonoRail/Castle.MonoRail.Framework/ViewComponents/CaptureFor.cs     (working copy)
+@@ -53,7 +53,8 @@
+ 
+                        String currentContent = Context.ContextVars[id] as string;
+                        StringBuilder sb = buffer.GetStringBuilder();
+-                       String appendAtt = Context.ComponentParameters["append"] as string;
++                       object appendObj = Context.ComponentParameters["append"];
++                       String appendAtt = appendObj == null ? null : appendObj.ToString();
+ 
+                        if (appendAtt != null)
+                        {
+</value>
+    </field>
+    <field name="created">
+      <value>1221641353000</value>
+    </field>
+    <field name="updated">
+      <value>1253853833000</value>
+    </field>
+    <field name="reporterName">
+      <value>tedfordgif</value>
+    </field>
+    <field name="updaterName">
+      <value>tedfordgif</value>
+    </field>
+    <field name="resolved">
+      <value>1253853780000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ernst" text="I'm not following this one, what other types would you like to supply that describe the string 'before'?&#xA;&#xA;&#xA;&#xA;code:&#xA;if (appendAtt != null)&#xA;{&#xA;  if (appendAtt == &quot;before&quot;)&#xA;  {&#xA;    sb.Append(currentContent);&#xA;  }&#xA;  else&#xA;  {&#xA;	sb.Insert(0, currentContent);&#xA;  }&#xA;}&#xA;" created="1222413802000" />
+    <comment author="roelofb" text="Agree with Ernst's comment, I have trouble seeing what other types could be used." created="1238653652000" />
+    <comment author="tedfordgif" text="Boolean. I was using Brail, so something like {@append: true} would lead to a boolean value getting passed. This is a more natural syntax for me than quoting &quot;true&quot;." created="1238672225000" />
+    <comment author="tedfordgif" text="If only a string is accepted, it makes more sense for the key to be appendAt or even append/prepend. Certainly appendAtt == &quot;before&quot; makes little sense--that would be prepend:&#xA;&#xA;object appendObj = Context.ComponentParameters[&quot;append&quot;];&#xA;String appendAtt = appendObj == null ? null : appendObj.ToString();&#xA;&#xA;if (appendAtt != null)&#xA;{&#xA;  if (appendAtt == &quot;before&quot;)&#xA;  {&#xA;    sb.Append(currentContent);&#xA;  }&#xA;  else&#xA;  {&#xA;    sb.Insert(0, currentContent);&#xA;  }&#xA;}&#xA;&#xA;" created="1238672535000" />
+    <comment author="roelofb" text="I guess insert=&quot;before&quot; and insert=&quot;after&quot; would be the clearest way of expressing this?" created="1238723071000" />
+    <comment author="tedfordgif" text="That works for me, too." created="1238768906000" />
+    <comment author="tedfordgif" text="Do you plan on making it backward compatible? (still look for &quot;append&quot; key)" created="1238768982000" />
+    <comment author="roelofb" text="Backward compatibility is an issue, guess it's hard to get rid of the append parameter without breaking everybody's code." created="1238804427000" />
+    <comment author="tedfordgif" text="You could just Warn about the deprecated key, I suppose." created="1238810997000" />
+    <comment author="roelofb" text="How would you warn about the deprecated key? I am looking forward to see a patch." created="1238987365000" />
+    <comment author="tedfordgif" text="I had my tonsils out 4/3, so it will be a few days yet." created="1239001773000" />
+    <comment author="roelofb" text="Breaks too much code" created="1253853823000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1238653620000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Reopened''.&#xD;&#xA;" created="1238723040000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Reopened'' to ''Resolved''.&#xD;&#xA;" created="1253853780000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253853780000" />
+  </issue>
+</issues>

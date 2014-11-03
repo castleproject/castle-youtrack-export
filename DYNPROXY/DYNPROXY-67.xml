@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Duplicate</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>.NET 2.0 Support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.0 Beta 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>67</value>
+    </field>
+    <field name="summary">
+      <value>protected internal constructors not proxied</value>
+    </field>
+    <field name="description">
+      <value>Starting at revision 3890 access modifier checks started appearing in the code of BaseProxyGenerator.GenerateConstructors method.  The original access modifier check just tested to make sure that a constructor was not private.  The checks changed to Public, IsFamily, and IsAssembly with InernalVisibleTo.  This check will fail for constrcutors marked as protected internal because IsFamily == false.  A check must be added for IsFamilyOrAssembly which protected internal equates to.
+
+All classes with protected internal constructors that were previously proxied no longer can be created properly as proxies.</value>
+    </field>
+    <field name="created">
+      <value>1190934662000</value>
+    </field>
+    <field name="updated">
+      <value>1190954819000</value>
+    </field>
+    <field name="reporterName">
+      <value>jnapier</value>
+    </field>
+    <field name="updaterName">
+      <value>jnapier</value>
+    </field>
+    <field name="resolved">
+      <value>1282140709120</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

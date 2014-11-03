@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Binder</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>32</value>
+    </field>
+    <field name="summary">
+      <value>BindObjectInstance does not bind to Generic Lists</value>
+    </field>
+    <field name="description">
+      <value>I am trying to bind to a pre-instantiated object that has generic lists in it as properties, but the BindObjectInstance method does not handle the special case of a property being a List&lt;&gt;.  I have included a simple TestFixture to illustrate the deficiency.  In the test fixture are two tests, one that tests the BindObject method and the other that tests the BindObjectInstance method.  Currently, BindObject passes but BindObjectInstance fails.</value>
+    </field>
+    <field name="created">
+      <value>1182355155000</value>
+    </field>
+    <field name="updated">
+      <value>1183493114000</value>
+    </field>
+    <field name="reporterName">
+      <value>marshallk</value>
+    </field>
+    <field name="updaterName">
+      <value>marshallk</value>
+    </field>
+    <field name="resolved">
+      <value>1282137544807</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

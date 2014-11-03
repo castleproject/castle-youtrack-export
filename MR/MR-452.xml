@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Scaffolding</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>452</value>
+    </field>
+    <field name="summary">
+      <value>Scaffolding is not using view supplied by the user if using ViewArea or Single Class</value>
+    </field>
+    <field name="description">
+      <value>I wasn't able to find any fixes for this so I'm reporting it.
+I'm using version 1.0.3.4333 of Castle and It seems to me that the only situation which overriding a scaffolding view works is when we have two or more scaffolding classes (..listClassName.rails) and we don't use Areas for view.
+It doesn't work either when I use Area or have single scaffolding class.
+
+Update:
+I was able to override it by moving view files out of Area folder and renaming them to listModelName.vm (even if there is only one scaffolding model). Renaming view file is ok but I think the need for moving them out of area folder is a bug.</value>
+    </field>
+    <field name="created">
+      <value>1211087654000</value>
+    </field>
+    <field name="updated">
+      <value>1263049173000</value>
+    </field>
+    <field name="reporterName">
+      <value>ufef</value>
+    </field>
+    <field name="updaterName">
+      <value>ufef</value>
+    </field>
+    <field name="resolved">
+      <value>1263049140000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Version Fixed''' changed from ''Release Candidate 3'' to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1263049140000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263049140000" />
+  </issue>
+</issues>

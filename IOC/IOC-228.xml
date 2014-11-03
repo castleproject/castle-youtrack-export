@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Resolvers</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>228</value>
+    </field>
+    <field name="summary">
+      <value>Chicken and egg problem when trying to inherit from DefaultDependencyResolver</value>
+    </field>
+    <field name="description">
+      <value>DefaultKernel lets you pass custom IDependencyResolver as one of its .ctor arguments but DefaultDependencyResolver gets IKernel as its .ctor argument. This means that I can't reuse it when I want to create a custom one and I have to start implementing the interface from scratch, even if I only want to override a small piece of it.
+
+Those two should be decoupled.</value>
+    </field>
+    <field name="created">
+      <value>1286882339930</value>
+    </field>
+    <field name="updated">
+      <value>1407822257326</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1286885284649</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="This fix introduced a breaking change. see breakingchanges.txt for details" created="1288177400525" />
+  </issue>
+</issues>

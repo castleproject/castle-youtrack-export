@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>beta 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>38</value>
+    </field>
+    <field name="summary">
+      <value>DataBinder problems with cycled object graphs</value>
+    </field>
+    <field name="description">
+      <value>See http://forum.castleproject.org/posts/list/0/180.page
+
+This can be solved by simple creating a list of visited object or - if you're lucking for fun - implementing Floyd's Cycle-Finding Algorithm. See more at http://ostermiller.org/find_loop_singly_linked_list.html</value>
+    </field>
+    <field name="created">
+      <value>1125991494000</value>
+    </field>
+    <field name="updated">
+      <value>1127055012000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282143347526</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

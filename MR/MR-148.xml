@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>148</value>
+    </field>
+    <field name="summary">
+      <value>Unable to create, or save objects</value>
+    </field>
+    <field name="description">
+      <value>Error Message: Could not save Country. Object reference not set to an instance of an object.
+
+namespace MyModel.Model
+{
+    using Castle.ActiveRecord;
+
+    using NHibernate;
+    using NHibernate.Expression;
+
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    
+    [ActiveRecord()]
+    public class Country : ActiveRecordValidationBase&lt;Country&gt;, IModel
+    {
+        #region Public Properties
+        private int _id;
+        [PrimaryKey(Access = PropertyAccess.NosetterLowercaseUnderscore, Column = "CountryID")]
+        public int ID
+        {
+            get { return _id; }
+        }
+
+        private string _name;
+        [Property(Column="CountryName")]
+        [ValidateNotEmpty("You must specify a country name.")]
+        [ValidateIsUnique("You must specify a country name not already in use.")]
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+        #endregion
+
+        private DateTime _created;
+        [Property(Insert = true, Update = false, Access = PropertyAccess.NosetterLowercaseUnderscore)]
+        public DateTime Created
+        {
+            get { return _created.ToLocalTime(); }
+        }
+
+        private DateTime _lastupdated;
+        [Property(Insert = true, Update = true, Access = PropertyAccess.NosetterLowercaseUnderscore)]
+        public DateTime LastUpdated
+        {
+            get { return _lastupdated.ToLocalTime(); }
+        }
+
+        #region Overrides
+        public override void Create()
+        {
+            this._created = DateTime.UtcNow;
+            this._lastupdated = DateTime.UtcNow;
+            base.Create();
+        }
+
+        public override void Update()
+        {
+            this._lastupdated = DateTime.UtcNow;
+            base.Update();
+        }
+
+        public override void Save()
+        {
+            this._lastupdated = DateTime.UtcNow;
+            base.Save();
+        }
+
+        public override string ToString()
+        {
+            return string.Format("#{0} - {1}", this.ID, this.Name);
+        }
+        #endregion
+
+
+        public Country()
+        {
+        }
+    }
+}
+</value>
+    </field>
+    <field name="created">
+      <value>1141500099000</value>
+    </field>
+    <field name="updated">
+      <value>1244675676000</value>
+    </field>
+    <field name="reporterName">
+      <value>chadh</value>
+    </field>
+    <field name="updaterName">
+      <value>chadh</value>
+    </field>
+    <field name="resolved">
+      <value>1282143393401</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675640000" />
+  </issue>
+</issues>

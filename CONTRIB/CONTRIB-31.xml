@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>31</value>
+    </field>
+    <field name="summary">
+      <value>Lazy One-to-One relation</value>
+    </field>
+    <field name="description">
+      <value>Add the possibility for a "lazy" One-to-One relation in ActiveWriter. That is it should be possible to define one-to-one relations e.g. Person&lt;--&gt;PersonPhoto where the other side of the relation (here the PersonPhoto) is lazy loaded.</value>
+    </field>
+    <field name="created">
+      <value>1182916530000</value>
+    </field>
+    <field name="updated">
+      <value>1183718488000</value>
+    </field>
+    <field name="reporterName">
+      <value>gnschenker</value>
+    </field>
+    <field name="updaterName">
+      <value>gnschenker</value>
+    </field>
+    <field name="resolved">
+      <value>1282138187495</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

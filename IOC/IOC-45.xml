@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>45</value>
+    </field>
+    <field name="summary">
+      <value>Proxying a component that has an interface that is extended from another interface throws an exception</value>
+    </field>
+    <field name="description">
+      <value>Having a component that implements an interface:
+
+public interface ICameraService : ICameraServiceBase
+{
+    void Record(ICamera cam);
+}
+
+that extends another interface:
+
+public interface ICameraServiceBase
+{
+    ICamera Add(String name, string ipNumber);
+}
+
+Throws the following exception in Castle.DynamicProxy.Generators.BaseProxyGenerator.AddFieldToCacheMethodTokenAndStatementsToInitialize
+"Duplicate method ATMProblem.ICamera Add(System.String, System.String) on type ATMProblem.ICameraServiceBase"
+when instantiated by Windsor.
+
+I have attached a solution that illustrates this problem. I'm using the latest version of the trunk as of 061204.
+</value>
+    </field>
+    <field name="created">
+      <value>1165182902000</value>
+    </field>
+    <field name="updated">
+      <value>1170590576000</value>
+    </field>
+    <field name="reporterName">
+      <value>jpersson</value>
+    </field>
+    <field name="updaterName">
+      <value>jpersson</value>
+    </field>
+    <field name="resolved">
+      <value>1282141853948</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>117</value>
+    </field>
+    <field name="summary">
+      <value>Standardize path separator</value>
+    </field>
+    <field name="description">
+      <value>Quoting Kunle Odutola:
+
+"We should be using '/' consistently as our path separator (perhaps a
+PATH_SEPARATOR_CHAR const can be defined somewhere). All the platforms that
+we care about (Windows, Un*x) accept '/' as a path separator. This removes
+the need to ever have to do a path.Replace('\\', '/'). I'm having to do the
+replace in a view engine."</value>
+    </field>
+    <field name="created">
+      <value>1146412730000</value>
+    </field>
+    <field name="updated">
+      <value>1162413291000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282143450588</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

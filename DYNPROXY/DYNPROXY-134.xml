@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>134</value>
+    </field>
+    <field name="summary">
+      <value>Unable to obtain public key for StrongNamedKey</value>
+    </field>
+    <field name="description">
+      <value>Don't think this issue was fixed in DYNPROXY-ISSUE-114. 
+
+To reproduce
+* Have signed assemblies
+* Remove permissions C:\Documents and Settings\All Users\Application Data\Microsoft\Crypto\RSA and C:\Documents and Settings\All Users\Application Data\Microsoft\Crypto\RSA\MachineKeys
+
+-&gt; DynProxy will try to sign its runtime assembly. This will cause an exception due to unsufficient permissions.
+
+Stack trace
+System.ArgumentException : Unable to obtain public key for StrongNameKeyPair.
+	at System.Reflection.StrongNameKeyPair.nGetPublicKey(Boolean exported, Byte[] array, String container)
+	at System.Reflection.StrongNameKeyPair.get_PublicKey()
+	at System.AppDomain.InternalDefineDynamicAssembly(AssemblyName name, AssemblyBuilderAccess access, String dir, Evidence evidence, PermissionSet requiredPermissions, PermissionSet optionalPermissions, PermissionSet refusedPermissions, StackCrawlMark&amp; stackMark, IEnumerable`1 unsafeAssemblyAttributes)
+	at System.AppDomain.DefineDynamicAssembly(AssemblyName name, AssemblyBuilderAccess access)
+	at Castle.DynamicProxy.ModuleScope.CreateModule(Boolean signStrongName)
+	at Castle.DynamicProxy.ModuleScope.ObtainDynamicModuleWithStrongName()
+	at Castle.DynamicProxy.ModuleScope.ObtainDynamicModule(Boolean isStrongNamed)
+	at Castle.DynamicProxy.Generators.Emitters.ClassEmitter.CreateTypeBuilder(ModuleScope modulescope, String name, Type baseType, IEnumerable`1 interfaces, TypeAttributes flags, Boolean forceUnsigned)
+	at Castle.DynamicProxy.Generators.Emitters.ClassEmitter..ctor(ModuleScope modulescope, String name, Type baseType, IEnumerable`1 interfaces, TypeAttributes flags, Boolean forceUnsigned)
+	at Castle.DynamicProxy.Generators.Emitters.ClassEmitter..ctor(ModuleScope modulescope, String name, Type baseType, IEnumerable`1 interfaces)
+	at Castle.DynamicProxy.Generators.InvocationTypeGenerator.GetEmitter(ClassEmitter class, Type[] interfaces, INamingScope namingScope, MethodInfo methodInfo)
+	at Castle.DynamicProxy.Generators.InvocationTypeGenerator.Generate(ClassEmitter class, ProxyGenerationOptions options, INamingScope namingScope)
+	at Castle.DynamicProxy.Contributors.ClassProxyTargetContributor.BuildInvocationType(MetaMethod method, ClassEmitter class, ProxyGenerationOptions options)
+	at Castle.DynamicProxy.Contributors.ClassProxyTargetContributor.GetInvocationType(MetaMethod method, ClassEmitter class, ProxyGenerationOptions options)
+	at Castle.DynamicProxy.Contributors.ClassProxyTargetContributor.GetMethodGenerator(MetaMethod method, ClassEmitter class, ProxyGenerationOptions options, CreateMethodDelegate createMethod)
+	at Castle.DynamicProxy.Contributors.CompositeTypeContributor.ImplementMethod(MetaMethod method, ClassEmitter class, ProxyGenerationOptions options, CreateMethodDelegate createMethod)
+	at Castle.DynamicProxy.Contributors.CompositeTypeContributor.Generate(ClassEmitter class, ProxyGenerationOptions options)
+	at Castle.DynamicProxy.Generators.ClassProxyGenerator.GenerateType(String name, Type[] interfaces, INamingScope namingScope)
+	at Castle.DynamicProxy.Generators.ClassProxyGenerator.GenerateCode(Type[] interfaces, ProxyGenerationOptions options)
+	at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+	at Castle.DynamicProxy.ProxyGenerator.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+	at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+	at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+[....]
+
+</value>
+    </field>
+    <field name="created">
+      <value>1277260367000</value>
+    </field>
+    <field name="updated">
+      <value>1284469000650</value>
+    </field>
+    <field name="reporterName">
+      <value>roger.kratz@teleopti.com</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1284469000650</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="I did manage to reproduce it, but I don't really think there's a fix for it we can have in DP. There's no clean way to detect it, and I don't want to go into reading directories information and CAL permissions. Especially that this can potentially change as the program is running.&#xA;I added code that detects this issue and throws a descriptive exception message.&#xA;I also added an overload to ModuleScope's constructor that will enforce usage of unsigned module, which should workaround the issue. Other than that - I think we can leave it up to users of DP to detect the issue in their own code and act accordingly." created="1284126840870" />
+    <comment author="roger.kratz@teleopti.com" text="Do you know how other proxy fw solves this? For example, Linfu hasn't got this &quot;problem&quot; - there's no need to have these special permissions. I might be totally wrong here (probably I am), but isn't the problem that the dynamically created assembly is signed?&#xA;&#xA;And no, this isn't really a problem in environments where you have control over. However, in desktop apps it's another story...&#xA;&#xA;Thanks&#xA;Roger " created="1284127451417" />
+    <comment author="xtoff" text="Roger,&#xA;&#xA;That's why I added this new flag on ModuleScope, so that you can enforce DP to only generate unsigned assemblies. I know it's not ideal, but it's the best we can get. As for LinFu, I would expect it does not sign its assemblies ever, so that's the same approach." created="1284162084558" />
+    <comment author="roger.kratz@teleopti.com" text="Thanks." created="1284300519933" />
+  </issue>
+</issues>

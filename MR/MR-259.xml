@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>259</value>
+    </field>
+    <field name="summary">
+      <value>Boo compiler chokes on overloaded ToString call</value>
+    </field>
+    <field name="description">
+      <value>Copied from http://groups.google.com/group/castle-project-devel/browse_frm/thread/83385b06c6959895/897abe38ea43601f#897abe38ea43601f
+
+I have a view like this:
+&lt;%
+        output today.ToString("MM/dd/yyyy")
+ %&gt;
+
+where today is set via PropertyBag["today"] = DateTime.Now
+
+This gives me the following error:
+Error during compile:
+(4,30): BCE0017: Boo.Lang.Compiler.CompilerError: The best overload
+for the method 'System.Object.ToString()' is not compatible with the
+argument list '(string)'.
+
+Input (home\index.brail)
+output """My View contents for Home\Index
+"""
+
+output today.ToString("MM/dd/yyyy") </value>
+    </field>
+    <field name="created">
+      <value>1179484594000</value>
+    </field>
+    <field name="updated">
+      <value>1244676607000</value>
+    </field>
+    <field name="reporterName">
+      <value>chriso</value>
+    </field>
+    <field name="updaterName">
+      <value>chriso</value>
+    </field>
+    <field name="resolved">
+      <value>1282143813260</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676600000" />
+  </issue>
+</issues>

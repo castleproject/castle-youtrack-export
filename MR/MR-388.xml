@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>388</value>
+    </field>
+    <field name="summary">
+      <value>There should be a way to preserve url query string arguments while using DiggStylePagination</value>
+    </field>
+    <field name="description">
+      <value>When using DiggStylePagination viewcomponent with it's default parameter, the computed links will crop actual url parameter.
+
+It should exists a parameter to enable query string argument preservation.
+
+The attached patch solve the issue by adding a viewcomponent parameter PreserveQueryString of boolean type to AbstractPaginationViewComponent.
+
+If set to true and both Url and UsePathInfo properties have their default value (null and false respectively), it will preserve existing query string parameter.
+
+The CreateUrlForPage method was also marked as virtual to allow inheritors to override url crafting for each page.</value>
+    </field>
+    <field name="created">
+      <value>1199308521000</value>
+    </field>
+    <field name="updated">
+      <value>1263055517000</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>gauthier</value>
+    </field>
+    <field name="resolved">
+      <value>1282145463135</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055500000" />
+  </issue>
+</issues>

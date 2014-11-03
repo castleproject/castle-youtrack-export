@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Ajax Support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>258</value>
+    </field>
+    <field name="summary">
+      <value>JSON serialization in Ajax calls</value>
+    </field>
+    <field name="description">
+      <value>The attached patch has not been tested. It's just an idea that allows generated JS proxies automatically serialize parameters marked with JSONBinder attribute using Object.toJSON function (available in Prototype 1.5.1)..</value>
+    </field>
+    <field name="created">
+      <value>1179353277000</value>
+    </field>
+    <field name="updated">
+      <value>1244676604000</value>
+    </field>
+    <field name="reporterName">
+      <value>rstuven</value>
+    </field>
+    <field name="updaterName">
+      <value>rstuven</value>
+    </field>
+    <field name="resolved">
+      <value>1282143810463</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676600000" />
+  </issue>
+</issues>

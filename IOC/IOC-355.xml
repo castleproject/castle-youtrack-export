@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.0</value>
+      <value>3.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>355</value>
+    </field>
+    <field name="summary">
+      <value>Add a mechanism to mark constructors as unselectable for injection, much like DoNotWireAttribute is for property injection</value>
+    </field>
+    <field name="description">
+      <value>I want to filter out constructors from injection similar to how properties are optionally easily filtered by adding an attribute.</value>
+    </field>
+    <field name="created">
+      <value>1348213427331</value>
+    </field>
+    <field name="updated">
+      <value>1348956452916</value>
+    </field>
+    <field name="reporterName">
+      <value>rplaire</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1348915193054</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="pull request?" created="1348213553738" />
+    <comment author="rplaire" text="Done." created="1348213761188" />
+    <comment author="xtoff" text="that was fast :)" created="1348214054047" />
+    <comment author="xtoff" text="I'm just wondering whether re-using DoNotWire attribute for this scenaro wouldn't be a better option..." created="1348214136867" />
+    <comment author="rplaire" text="It could be, but it is restricted to AttributeTarget.Property. I'd considered widening it, but &quot;wire&quot; seems out of place when it comes to constructors, especially since they have a heuristic applied to them which lends itself to being selected or not selected. It probably doesn't matter too much in the end, but I thought it was more clear just to make one specific to constructors." created="1348214609174" />
+    <comment author="xtoff" text="fair enough" created="1348223311415" />
+    <comment author="xtoff" text="merged" created="1348915175398" />
+    <comment author="xtoff" text="would you care to add that to the documentation?" created="1348915555603" />
+    <comment author="rplaire" text="Sure, I can take care of that. Just add it to the wiki?" created="1348953574328" />
+    <comment author="xtoff" text="yes, the wiki is open for anyone to edit." created="1348956452901" />
+  </issue>
+</issues>

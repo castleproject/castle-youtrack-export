@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Class proxies with target</value>
+    </field>
+    <field name="Fix versions">
+      <value>4.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>148</value>
+    </field>
+    <field name="summary">
+      <value>Add IChangeProxyTarget to ClassProxyWithTarget</value>
+    </field>
+    <field name="description">
+      <value>I would like to be able to change the target in ClassProxyWithTarget.
+I'm not sure if/how you would want this implemented.  Can we turn it on in ClassProxyWithTarget, or should we create an additional proxy type for this...
+
+In the attached patch I implemented it in ClassProxyWithTarget.  I am not familiar with the code base, so I am not sure if I did it completly correctly.  It works for me.
+
+If you are interested in implementing this, I can add some test cases and modify the implementation however you need.</value>
+    </field>
+    <field name="created">
+      <value>1288975671714</value>
+    </field>
+    <field name="updated">
+      <value>1396695098196</value>
+    </field>
+    <field name="reporterName">
+      <value>Dan.Jasek</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396695098182</value>
+    </field>
+    <field name="voterName">
+      <value>gman</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-926[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="I can't accept this patch without comprehensive set of tests. This is a massive change." created="1289005543286" />
+    <comment author="Dan.Jasek" text="I added tests to the attached patch.  I just copied and tweaked the tests I found for ChangeProxyTarget in the InterfaceProxyWithTargetInterface tests.  Let me know if you need more than this." created="1296445458454" />
+    <comment author="gman" text="I second this request.&#xA;&#xA;ClassProxyWithTarget with changeable target would be useful to implement the CoW collection that can also recognize changes to its members." created="1360061673360" updated="1360062115063" />
+    <comment author="gman" text="Right now (3.1.0 from NuGet) Reflection works for me&#xA;&#xA;{code}&#xA;            IChangeProxyTarget changeProxy = invocation as IChangeProxyTarget;&#xA;&#xA;            if (changeProxy != null)&#xA;            { // for future implementation&#xA;                changeProxy.ChangeInvocationTarget(target); // change the invocation target&#xA;            }&#xA;            else&#xA;            {&#xA;                // change the target with reflection instead&#xA;                Type invocationType = invocation.GetType();&#xA;                FieldInfo targetField = invocationType.GetField(&quot;target&quot;, BindingFlags.Instance | BindingFlags.NonPublic);&#xA;&#xA;                if (targetField == null)&#xA;                {&#xA;                    throw new InvalidOperationException(&quot;There is no target field in the invocation.&quot;);&#xA;                }&#xA;&#xA;                targetField.SetValue(invocation, target);&#xA;            }&#xA;{code}&#xA;" created="1360064207026" />
+    <comment author="xtoff" text="Well, to be honest, following the existing API we'd need to create {{CreateClassProxyWithClassTarget}}. I'm happy to accept a pull request (with healthy does of tests) that does that." created="1360907438849" />
+  </issue>
+</issues>

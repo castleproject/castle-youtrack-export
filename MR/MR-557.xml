@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>557</value>
+    </field>
+    <field name="summary">
+      <value>patch for: SmtpUseSsl="true" can be specified in monorail config file</value>
+    </field>
+    <field name="description">
+      <value>All tests pass, including new ones to test SmtpConfig.
+
+        &lt;monorail
+                smtpHost="xxx"
+                smtpPort="xxx"
+                smtpUsername="xxx"
+                smtpPassword="xxx"
+
+smtpUseSSL="true" &lt;--- patch enables this to be used
+                &gt; 
+
+
+http://groups.google.com/group/castle-project-users/browse_thread/thread/3efe003354985c9e</value>
+    </field>
+    <field name="created">
+      <value>1263575862000</value>
+    </field>
+    <field name="updated">
+      <value>1263578295000</value>
+    </field>
+    <field name="reporterName">
+      <value>alwin</value>
+    </field>
+    <field name="updaterName">
+      <value>alwin</value>
+    </field>
+    <field name="resolved">
+      <value>1263578280000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="alwin" text="Both patch files are exactly the same but I removed the dot from the file name for easier download." created="1263575987000" />
+    <comment author="jsimons" text="Aplied in r6696" created="1263578283000" />
+    <comment author="jsimons" text="Thanks Alwin" created="1263578295000" />
+    <comment author="alwin" text="* '''Attachment''' Castle.MonoRail - SmtpUseSsl can be specified in monorail config file 2010-01-16 added.&#xD;&#xA;" created="1263575880000" />
+    <comment author="alwin" text="* '''Attachment''' Castle MonoRail - SmtpUseSsl can be specified in monorail config file 2010-01-16 added.&#xD;&#xA;" created="1263575940000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1263576240000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1263578280000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263578280000" />
+  </issue>
+</issues>

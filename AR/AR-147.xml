@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Attributes</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>147</value>
+    </field>
+    <field name="summary">
+      <value>Sort attribute for collections is ignored</value>
+    </field>
+    <field name="description">
+      <value>From the NH 1.2 documentation about sort attribute: Allowed values of the sort attribute are unsorted, natural and the name of a class implementing System.Collections.IComparer.
+
+So I tried it with a class that implemented IComparer in AR:
+
+[HasMany(typeof (Order),
+            Table = "Orders",
+            ColumnKey = "ID",
+            Inverse = true,
+            Sort = "ARTester.Domain.Utilities.Comparer, ARTester",
+            Cascade = ManyRelationCascadeEnum.AllDeleteOrphan)]
+        public IList&lt;Order&gt; Orders
+        {
+            get { return _orders; }
+            set { _orders = value; }
+        } 
+
+The resulting Mapping file (part of it) looked like this (the sort attribute is missing):
+
+&lt;bag name="Orders" access="property" table="Orders" lazy="false" inverse="true" cascade="all-delete-orphan"&gt;
+    &lt;key column="ID" /&gt;
+    &lt;one-to-many class="ARTester.Domain.Order, ARTester" /&gt;
+&lt;/bag&gt;</value>
+    </field>
+    <field name="created">
+      <value>1176298154000</value>
+    </field>
+    <field name="updated">
+      <value>1176766184000</value>
+    </field>
+    <field name="reporterName">
+      <value>cepheus</value>
+    </field>
+    <field name="updaterName">
+      <value>cepheus</value>
+    </field>
+    <field name="resolved">
+      <value>1282136336291</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="stevendelapena" text="I'm confused - was this issue fixed? I am still experiencing this issue with the RC3 release. So I'm not sure if this was fixed or fixed in the trunk." created="1220283948000" />
+    <comment author="stevendelapena" text="Found this post: http://forum.castleproject.org/viewtopic.php?t=2537&amp;highlight=orderby . However when I implemented that approach, I am receiving a System.MissingMethodException: Constructor on type 'NHibernate.Type.GenericSortedSetType`1 error. So I'm not sure if the RC3 version of AR is using the same version of NHibernate as the fix in the post used." created="1220285257000" />
+  </issue>
+</issues>

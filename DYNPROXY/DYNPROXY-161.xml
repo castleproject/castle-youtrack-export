@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Silverlight support</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>161</value>
+    </field>
+    <field name="summary">
+      <value>Strong Named DynamicProxy Assembly Not Available in Silverlight</value>
+    </field>
+    <field name="description">
+      <value>DynamicProxy has strong named assemblies disabled in SL, so the {{InternalsVisibleTo}} attribute doesn't work. It has been said this is because strong signing dynamic assemblies doesn't work in Silverlight, but I was able to get the {{InternalsVisibleTo}} attribute working with the following approach. Is it possible to expose these properties or bake in a solution that works based on this?
+
+The only change I had to make to the Castle.Core source was to make the fields {{ModuleScope.moduleBuilder}} and {{ModuleScope.moduleBuilderWithStrongName}} protected instead of private. But again, that was only necessary so that I could define a SN'd dynamic assembly in SL, which is disabled for SL by the {{ModuleScope}} in Castle.Core. So, now I have a custom {{ModuleScope}} as follows:
+
+{code lang=CSharp}
+    private class StrongNameModuleScope : ModuleScope
+    {
+        public StrongNameModuleScope()
+        {
+            var assemblyName = new AssemblyName("DynamicProxyGenAssembly2");
+            // copied from another one of my SN assemblies (plus GetName() on assembly is security critical so I can't pull it off the executing assembly)
+            byte[] publicKey = Convert.FromBase64String(@"ACQAAASAAACUAAAABgIAAAAkAABSU0ExAAQAAAEAAQBvwWquPXQG9zfemS8uDsFdGDScOCSjZ9aFsQDtrrAqKzvlxEGMz3t9Q9M3X9NKqy1ouLZi+sX8yVDafX+UnygFWWfOBosw9nGwG61MTKEhEjdKH0rECahGIXY+ETdNY64HduuH/BIbEs/RDhrrH2hiqGrOGb6AghD1sZ6g0A1qkg==");
+            assemblyName.SetPublicKey(publicKey);
+            AssemblyBuilder assembly = AppDomain.CurrentDomain.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
+            ModuleBuilder module = assembly.DefineDynamicModule("DynamicProxyGenAssembly2");
+            moduleBuilder = module;
+            moduleBuilderWithStrongName = module;
+        }
+    }
+{code}
+
+And a custom DefaultProxyBuilder:
+{code lang=csharp}
+    /// &lt;summary&gt;
+    ///   A custom IProxyBuilder copies from the full .NET Castle implementation that allows for proxies of internal types where the InternalsVisibleToAttribute is applied.
+    /// &lt;/summary&gt;
+    private class DefaultProxyBuilder : IProxyBuilder
+    {
+       ...
+        // Methods
+        public DefaultProxyBuilder()
+            : this(new StrongNameModuleScope())
+        {
+        }
+       ...
+        private static bool IsAccessible(Type target)
+        {
+            bool isTargetNested = target.IsNested;
+            bool isNestedAndInternal = isTargetNested &amp;&amp; (target.IsNestedAssembly || target.IsNestedFamORAssem);
+            bool internalAndVisibleToDynProxy = ((!target.IsVisible &amp;&amp; !isTargetNested) || isNestedAndInternal) &amp;&amp; InternalsHelper.IsInternalToDynamicProxy(target.Assembly);
+            return ((target.IsPublic || target.IsNestedPublic) || internalAndVisibleToDynProxy);
+        }
+    }
+{code}
+
+And a custom DefaultProxyFactory:
+
+{code lang=csharp}
+    /// &lt;summary&gt;
+    ///   A simple DefaultProxyFactory to wrap the modified DefaultProxyBuilder.
+    /// &lt;/summary&gt;
+    private class DefaultProxyFactory : global::Castle.Windsor.Proxy.DefaultProxyFactory
+    {
+        public DefaultProxyFactory()
+        {
+            generator = new ProxyGenerator(new DefaultProxyBuilder());
+        }
+    }
+{code}
+And the container setup:
+
+{code lang=csharp}
+        container = new WindsorContainer();
+
+        container.Kernel.ProxyFactory = new DefaultProxyFactory();
+{code}
+Thank you!</value>
+    </field>
+    <field name="created">
+      <value>1311354834275</value>
+    </field>
+    <field name="updated">
+      <value>1407819183759</value>
+    </field>
+    <field name="reporterName">
+      <value>JeffN825</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1341033277832</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Has anything changed in recent releases of SL (I suppose that would be 4). Last time I checked it didn't work too well with internal proxies.&#xA;&#xA;Anyway, if you've proven it's working I'm happy to accept a patch that enables support for that back, in Silverlight builds (and all related things so that it works as closely to .NET version as possible)" created="1311405021994" />
+    <comment author="JeffN825" text="Nothing has changed in SL4...but I have InternalsVisibleTo (and thus internal proxies) working with the code pasted above. At a minimum, you could just expose the ability to easily specify what dynamic assembly DynamicProxy uses for emitting types (right now DefaultProxyBuilder has mostly private members, which is why I had to change the source - to expose the private ModuleScope member variables as protected). Alternatively, you could make DynamicProxy strong sign the dynamic assembly in the manner above (and use it). Let me know if that makes sense. Thanks.&#xA;" created="1311448335353" />
+    <comment author="xtoff" text="I was thinking more in terms of un-disabling the feature in Silverlight builds (.NET version supports it)" created="1311457281759" />
+    <comment author="JeffN825" text="Un-disabling the feature in SL is great...but you need to strong sign the dynamic assembly you create in SL in order for it to work (note the code above which sets the public key)." created="1311458022322" />
+    <comment author="xtoff" text="Yes, that is also possible currently (in .NET build - it's disabled in SL build)" created="1311464962603" />
+    <comment author="JeffN825" text="I think it's disabled in the SL build because the SL API doesn't expose the means to create the dynamic assembly using a snk, right? You can't use StrongNameKeyPair in SL...the only way I've found is to hack around by manually specifying the public key as in the example above." created="1311465787244" />
+    <comment author="xtoff" text="Right. So the difference is you're not setting {{StrongNameKeyPair}}, just the public key onto {{AssemblyName}}?" created="1311469261322" />
+    <comment author="JeffN825" text="Exactly." created="1311471232556" />
+    <comment author="xtoff" text="Ok, I did change how DP builds up the strong named module, and I flipped the flag that blocked SL from strong naming, and it appears to be working. The only concern I'm having is that in order to test if current app can strong name assemblies we ran a permissions test (see static .ctor of {{StrongNameUtil}}). We can't do this (at least in the same way) in SL because the classes in question are not public or used. Is that going to be an issue? Is there an other way to test if that's going to work in SL?" created="1311474917900" />
+    <comment author="JeffN825" text="Hmm...interesting. I'd be curious to know if that's actually required at all in SL. Since the whole model of CAS was reworked in .NET 4.0 (and has always been the case in SL), I'm wondering if the article is applicable..." created="1311479443306" />
+    <comment author="xtoff" text="Thanks Jeff for spotting this. I re-enabled support for this feature in Silveright. Regarding the concern about permissions I went the way of assuming it will work always, and if someone comes along saying it doesn't for them, we'll look for solutions then.&#xA;&#xA;Thanks for chasing this one up." created="1311512706556" />
+    <comment author="JeffN825" text="No problem. And thank you for all of your continued help on this issue and others." created="1311545658541" />
+    <comment author="JeffN825" text="Hi  Krzysztof - it looks like support for this was removed in the final version of Castle Windsor 3, thus preventing me from upgrading from the pre-release version. Any particular reason why or way to resolve? Thanks." created="1329783141461" />
+    <comment author="xtoff" text="Hi, sorry for delayed respose. For some reason I stopped getting notification about updates here. I don't remember why it was removed. I'll look into that." created="1338173877380" />
+    <comment author="xtoff" text="Related SO question: http://stackoverflow.com/questions/9322554/silverlight-5-dynamic-assembly-bug" created="1341032394181" />
+    <comment author="xtoff" text="Ok, so I was able to verify this doesn't work on SL5 (at least). And there seems to be no workaround for that. In other words, I''m afraid there's nothing we can do." created="1341033263589" />
+    <comment author="JeffN825" text="I know this issue has been dead for a while, but I actually still see some value in having the ModuleScope ModuleBuilders be protected or virtual so that someone can override them. Any chance you'd be willing to have that be the case? Thanks.&#xA;" created="1346707999103" />
+    <comment author="xtoff" text="So why would you need it if it doesn't work anymore?" created="1346708166007" />
+    <comment author="JeffN825" text="I'm doing some experimentation trying to build persistent types due to Metro's lack of support for System.Reflection.Emit. This involves a combination of some of my own typebuilder types and some types I'm generating using DynamicProxy. I realize I can tell the ModuleScope to save the assembly it generates, but I'd like to have finer control over it and also get all the stuff I'm generating into one assembly." created="1346708803315" />
+    <comment author="xtoff" text="Ah, so that's not for Silverlight anymore?&#xA;In that case perhaps create a new issue and let's discuss it there. I'm willing to accept reasonable pull requests ;)" created="1346709128841" />
+  </issue>
+</issues>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>View Components</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>150</value>
+    </field>
+    <field name="summary">
+      <value>LinkSubmitButtonComponent compile error against Trunk in .Net 2.0 Framework</value>
+    </field>
+    <field name="description">
+      <value>
+The current version should work fine as long as you target .Net 3.5 framework.
+But, if you are stuck targeting .Net 2.0 , then you get a compilation error.
+This patch addresses the .Net 2.0 issue.</value>
+    </field>
+    <field name="created">
+      <value>1225450124000</value>
+    </field>
+    <field name="updated">
+      <value>1414392230871</value>
+    </field>
+    <field name="reporterName">
+      <value>driscoll.davidj</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392230863</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

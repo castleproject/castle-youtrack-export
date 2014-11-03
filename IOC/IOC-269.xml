@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>269</value>
+    </field>
+    <field name="summary">
+      <value>Windsor Performance Counters</value>
+    </field>
+    <field name="description">
+      <value>It would be helpful to see the number of components that Windsor is tracking in PerfMon. This way I can more easily spot run away applications that aren't releasing components.</value>
+    </field>
+    <field name="created">
+      <value>1295648553109</value>
+    </field>
+    <field name="updated">
+      <value>1407822257290</value>
+    </field>
+    <field name="reporterName">
+      <value>drusellers</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1304743852511</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="it's alive!" created="1295750812079" />
+    <comment author="xtoff" text="ok, so functionally this is working. However it's rough and manual attaching of the counter is required." created="1295752428501" />
+    <comment author="drusellers" text="Looking good though!" created="1295878863251" />
+  </issue>
+</issues>

@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.1 Beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>157</value>
+    </field>
+    <field name="summary">
+      <value>Import attribute on a subclass in a type hierarchy generates invalid HBM</value>
+    </field>
+    <field name="description">
+      <value>When a type hierarchy is used, the Import attribute can only be used on the base class (the one with the JoinedBase attribute). If it is used on a subclass, the generated HBM will be invalid. A simplified example follows.
+
+[ActiveRecord("tblDocument", Schema = "dbo", Lazy = false), JoinedBase]
+public abstract partial class Document
+{
+   // Nothing fancy. Primary key is an identity int.
+}
+
+[ActiveRecord("tblOneKindOfDocument", Schema = "dbo", Lazy = false)]
+[Import(typeof(DocumentSearchResult), "DocumentSearchResult ")]
+public partial class OneKindOfDocument : Document
+{
+   // ...
+}
+
+public class DocumentSearchResult
+{
+   // ...
+}
+
+This will result in an invalid HBM that looks like this:
+
+&lt;hibernate-mapping auto-import="true" default-lazy="false" ...&gt;
+  &lt;class name="Document, Domain" table="tblDocument" schema="dbo" lazy="false"&gt;
+    ...
+    &lt;import class="DocumentSearchResult, Domain" rename="DocumentSearchResult" /&gt;
+    &lt;joined-subclass name="OneKindOfDocument, Domain" table="tblOneKindOfDocument" schema="dbo"&gt;
+    ...
+    &lt;/joined-subclass&gt;
+  &lt;/class&gt;
+&lt;/hibernate-mapping&gt;
+
+That is, the import attribute is put inside the class declaration, instead of being put ahead of it. This breaks the HBM schema, and NHibernate throws a MappingException.
+
+While the work-around is easy, it took me some time to figure it out. I think it would be best to have ActiveRecord either support the declaration on the subclass level, or at least detect it and throw an unsupported exception.
+</value>
+    </field>
+    <field name="created">
+      <value>1179757529000</value>
+    </field>
+    <field name="updated">
+      <value>1263047076000</value>
+    </field>
+    <field name="reporterName">
+      <value>cjberg</value>
+    </field>
+    <field name="updaterName">
+      <value>cjberg</value>
+    </field>
+    <field name="resolved">
+      <value>1263047040000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="this scenario has been disallowed. Imports are now disallowed on joined subclasses and trying to declare one will result in exception." created="1263047044000" />
+    <comment author="xtoff" text="resolved in r6614" created="1263047076000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' changed from ''Future'' to ''AR 2.1 Beta 1''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1263047040000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263047040000" />
+  </issue>
+</issues>

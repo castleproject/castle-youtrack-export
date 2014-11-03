@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Ajax Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>493</value>
+    </field>
+    <field name="summary">
+      <value>Fixed enum flag values for JQueryGenerator.Position</value>
+    </field>
+    <field name="description">
+      <value>The values for the JQueryGenerator.Position flags were written as decimal powers of 2 (1,2,4,8,16,32,etc.) but specified as hexadecimal values (i.e., 0x16 instead of either 16 or 0x10).  The attached patch changes them to use the correct hex values.
+
+I'm not sure if this actually matters, since the code doesn't seem to use the Position enum type as a set of combined flags anywhere (and I'm not sure that it would make any sense to have a combination of those elements to begin with).  It might be better to eliminate the [Flags] attribute and the specific field values entirely.</value>
+    </field>
+    <field name="created">
+      <value>1222874301000</value>
+    </field>
+    <field name="updated">
+      <value>1263055730000</value>
+    </field>
+    <field name="reporterName">
+      <value>mdavis</value>
+    </field>
+    <field name="updaterName">
+      <value>mdavis</value>
+    </field>
+    <field name="resolved">
+      <value>1238652300000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Applied (with suggested change) in r5611" created="1238652339000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1238652300000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055680000" />
+  </issue>
+</issues>

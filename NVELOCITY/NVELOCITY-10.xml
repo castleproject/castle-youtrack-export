@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>1.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>1.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>10</value>
+    </field>
+    <field name="summary">
+      <value>More sections for fancy foreach loops</value>
+    </field>
+    <field name="description">
+      <value>We currently have #before and #after (used for #each), aswell as #beforeall and #afterall (used for the whole loop). #odd and #even can be used to replace #each but then you have to have 2 copies of the HTML.
+
+I propose to add #beforeodd, #afterodd, #beforeeven and #aftereven.
+
+This would allow me to write a table that is 2 columns wide (2 x [header+data]) when the headers are vertical. I am aware that #odd and would be the same as the proposed #beforeodd but that is the same as #each and #before.
+
+Example:
+
+#foreach ($item in $items)
+#beforeodd
+      &lt;tr&gt;
+#each
+        &lt;th id="header_$item.Id"&gt;...&lt;/th&gt;
+        &lt;td headers="header_$field.Id"&gt;...&lt;/td&gt;
+#aftereven
+      &lt;/tr&gt;
+#end</value>
+    </field>
+    <field name="created">
+      <value>1168216859000</value>
+    </field>
+    <field name="updated">
+      <value>1287754675212</value>
+    </field>
+    <field name="reporterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1235008380000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="I am now closing this issue with won't fix because I now see this as a bad idea. The more sections the more complex the view gets. I would have used a view component or a helper to make it reusable and cleaner." created="1235008423000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1235008380000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253854740000" />
+  </issue>
+</issues>

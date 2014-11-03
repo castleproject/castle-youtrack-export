@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Attributes</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>201</value>
+    </field>
+    <field name="summary">
+      <value>Exception when PrimaryKey property is overriden in subclass</value>
+    </field>
+    <field name="description">
+      <value>Suppose we have EntityBase that declares an Id with PrimaryKeyType.Identity, but one of entity classes require PrimaryKeyType.Assigned because, for example, of OneToOne relationship. Currently ActiveRecordModelBuilder throws an exception about duplicate primary keys when trying to override the property marked with PrimaryKey specifying another PrimaryKey attribute. Test case in patch might be clearer description than this one :-).
+
+Attached patch changes ActiveRecordModelBuilder  and adds IsOverride property for PrimaryKeyAttribute (just like it already is for PropertyAttribute), so if you really want to override the PrimaryKey with new attribute you need to point this out explicitly by setting this property to true.</value>
+    </field>
+    <field name="created">
+      <value>1202278988000</value>
+    </field>
+    <field name="updated">
+      <value>1209020305000</value>
+    </field>
+    <field name="reporterName">
+      <value>somaka</value>
+    </field>
+    <field name="updaterName">
+      <value>somaka</value>
+    </field>
+    <field name="resolved">
+      <value>1282136651729</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.0 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>198</value>
+    </field>
+    <field name="summary">
+      <value>Multiple constructors issue</value>
+    </field>
+    <field name="description">
+      <value>Given the following class:
+
+        public class Service
+        {
+            public ComponentX X { get; private set; }
+            public ComponentY Y { get; private set; }
+            public ComponentA A { get; private set; }
+
+            public Service(ComponentA a)
+            {
+                A = a;
+            }
+
+            public Service(ComponentX x, ComponentY y)
+            {
+                X = x;
+                Y = y;
+            }
+        }
+
+and the following test:
+
+        [Test]
+        public void Kernel_should_select_ctor_with_available_dependencies()
+        {
+            var kernel = new DefaultKernel();
+            kernel.AddComponent&lt;Service&gt;();
+            kernel.AddComponent&lt;ComponentX&gt;();
+            kernel.AddComponent&lt;ComponentY&gt;();
+
+            var service = kernel.Resolve&lt;Service&gt;();
+
+            Assert.That(service.A, Is.Null);
+            Assert.That(service.X, Is.Not.Null);
+            Assert.That(service.Y, Is.Not.Null);
+        }
+
+The test fails depending on the order in which the components are registered: if Service is registered before its dependencies the test won't pass, if it is registered after them it pass.
+
+Related thread: http://groups.google.com/group/castle-project-users/browse_thread/thread/edbbf8857d36610b?hl=en</value>
+    </field>
+    <field name="created">
+      <value>1270241644000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853151</value>
+    </field>
+    <field name="reporterName">
+      <value>german</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1270731420000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="This actually is another case of issue 168.&#xA;&#xA;I started working on an actual solution to this in my fork, hopefully I'll commit it when I find few spare hours to finish it." created="1270268904000" />
+    <comment author="german" text="Here I have a proposed solution: http://github.com/gschuager/Castle.InversionOfControl/commit/6b4e6d9220b6e84342b4f05d5c1f5619ac829e1f" created="1270469366000" />
+    <comment author="xtoff" text="applied Germán's fix" created="1270731476000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1270731120000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1270731420000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1270731420000" />
+  </issue>
+</issues>

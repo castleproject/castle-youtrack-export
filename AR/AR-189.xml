@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>189</value>
+    </field>
+    <field name="summary">
+      <value>Improve ActiveRecordBase.EnsureInitialized ActiveRecordException Message</value>
+    </field>
+    <field name="description">
+      <value>Currently, an exception can get thrown with the message:
+
+"You have accessed an ActiveRecord class that wasn't properly initialized. The only explanation is that the call to ActiveRecordStarter.Initialize() didn't include {0} class".
+
+However, this is not strictly true. If you forget to put the [ActiveRecord] attribute on the class in question, this exception will be thrown. Therefore I feel the current message is misleading and I've attached a patch to rectify this.</value>
+    </field>
+    <field name="created">
+      <value>1194735316000</value>
+    </field>
+    <field name="updated">
+      <value>1201412729000</value>
+    </field>
+    <field name="reporterName">
+      <value>colinramsay</value>
+    </field>
+    <field name="updaterName">
+      <value>colinramsay</value>
+    </field>
+    <field name="resolved">
+      <value>1282136562791</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

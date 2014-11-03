@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>344</value>
+    </field>
+    <field name="summary">
+      <value>Escaping quotes in js generate not working properly in mono due to regex working differently in mono.</value>
+    </field>
+    <field name="description">
+      <value>mono regex works differently to dotnet when replacing with \\
+
+see patch</value>
+    </field>
+    <field name="created">
+      <value>1192801671000</value>
+    </field>
+    <field name="updated">
+      <value>1279002625000</value>
+    </field>
+    <field name="reporterName">
+      <value>tiggerthump</value>
+    </field>
+    <field name="updaterName">
+      <value>tiggerthump</value>
+    </field>
+    <field name="resolved">
+      <value>1279002600000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Any chance of getting a more recent patch for this?" created="1263048188000" />
+    <comment author="jsimons" text="Mono is not supported in MR" created="1279002621000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1263047520000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Work Started'' to ''Work Stopped''.&#xD;&#xA;" created="1263054420000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Work Stopped'' to ''Resolved''.&#xD;&#xA;" created="1279002600000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1279002600000" />
+  </issue>
+</issues>

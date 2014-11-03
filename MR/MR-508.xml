@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Caching Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>508</value>
+    </field>
+    <field name="summary">
+      <value>MaxAge in CacheAttribute</value>
+    </field>
+    <field name="description">
+      <value>there is no way to set timespan in attribute:
+
+[Cache(HttpCacheability.Public, MaxAge = TimeSpan.FromHours(1))]
+
+not compiled, maybe you have to change to integer (seconds)?</value>
+    </field>
+    <field name="created">
+      <value>1228800259000</value>
+    </field>
+    <field name="updated">
+      <value>1253860508000</value>
+    </field>
+    <field name="reporterName">
+      <value>kamil</value>
+    </field>
+    <field name="updaterName">
+      <value>kamil</value>
+    </field>
+    <field name="resolved">
+      <value>1253860500000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="Good catch kamil, and a reasonable suggestion (using seconds).&#xA;can you please create a patch (that passes all tests of course) and I'll review and apply?&#xA;thx, Ken." created="1228802927000" />
+    <comment author="kamil" text="ok i wll create it." created="1228990226000" />
+    <comment author="roelofb" text="r5994" created="1253860502000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1228802820000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1253860500000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253860500000" />
+  </issue>
+</issues>

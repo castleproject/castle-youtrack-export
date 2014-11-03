@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>252</value>
+    </field>
+    <field name="summary">
+      <value>Add PerWebRequest to the Documentation Patch</value>
+    </field>
+    <field name="description">
+      <value>http://www.castleproject.org/container/documentation/v21/usersguide/lifestyles.html
+
+is missing a lifestyle type.</value>
+    </field>
+    <field name="created">
+      <value>1290630844654</value>
+    </field>
+    <field name="updated">
+      <value>1290641894888</value>
+    </field>
+    <field name="reporterName">
+      <value>steve.gourley</value>
+    </field>
+    <field name="updaterName">
+      <value>steve.gourley</value>
+    </field>
+    <field name="resolved">
+      <value>1290640678592</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="we're ditching the documentation on that page. See the documentation at http://stw.castleproject.org/Windsor.LifeStyles.ashx" created="1290640660295" />
+    <comment author="steve.gourley" text="ok cool.  it was a learning attempt.  did i submit the patch right otherwise?" created="1290640875967" />
+    <comment author="xtoff" text="yeah, looks like it, although it would be beneficial to add an extension to the file" created="1290640977232" />
+    <comment author="steve.gourley" text="like txt or is there a standard?" created="1290641657560" />
+    <comment author="xtoff" text="usually tools work with .diff or .patch" created="1290641753670" />
+    <comment author="steve.gourley" text="thanks. love the tool!" created="1290641894888" />
+  </issue>
+</issues>

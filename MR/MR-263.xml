@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>263</value>
+    </field>
+    <field name="summary">
+      <value>Also extract params in form for PaginationHelper.CreatePageLinkWithCurrentQueryString</value>
+    </field>
+    <field name="description">
+      <value>I always create form for user to query data, when too many records return, I need paginate those data, PaginationHelper.CreatePageLinkWithCurrentQueryString can help me to build the pagination link but the first rendered page. So I add these codes to extract params from form to build the pagination link when I render the page for the first time.</value>
+    </field>
+    <field name="created">
+      <value>1180914857000</value>
+    </field>
+    <field name="updated">
+      <value>1184542434000</value>
+    </field>
+    <field name="reporterName">
+      <value>james_su</value>
+    </field>
+    <field name="updaterName">
+      <value>james_su</value>
+    </field>
+    <field name="resolved">
+      <value>1282143819698</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>478</value>
+    </field>
+    <field name="summary">
+      <value>JQueryValidator messages improvement</value>
+    </field>
+    <field name="description">
+      <value>The current version of JQueryValidator adds error messages and rules to the html form element attributes (class=rules, title=messages).
+The problem is that if we add 2 or 3 validation attributes to the model eg. [ValidateNonEmpty, ValidateLength(5)] than the messages are concatenated together and because of that they are not displayed one by one.
+A good example on how it works with displaying separate messages can be found at http://jquery.bassistance.de/validate/demo/index.html. In this page the first 2 fields(Name and Email) of the first form display 2 distinct error messages, based on the input.</value>
+    </field>
+    <field name="created">
+      <value>1220412409000</value>
+    </field>
+    <field name="updated">
+      <value>1263055501000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1220787840000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="I'm currently working on a patch and it should be ready tomorrow for someone to review it." created="1220412544000" />
+    <comment author="jsimons" text="In the JQueryValidation patch I have changes the JQueryValidation class to create the validation rules and messages on the actual javascript validator constructor. This way the messages are displayed in sync with the validation rule." created="1220489016000" />
+    <comment author="jsimons" text="I've just updated the patch to meet the coding standards and the unit tests." created="1220497157000" />
+    <comment author="gauthier" text="please integrate the change of http://support.castleproject.org/projects/MR/issues/view/MR-ISSUE-480 when solving this patch&#xA;" created="1220777434000" />
+    <comment author="roelofb" text="Applied in r5307, many thanks!" created="1220787888000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055500000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1220787840000" />
+  </issue>
+</issues>

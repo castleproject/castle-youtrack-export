@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>360</value>
+    </field>
+    <field name="summary">
+      <value>Minor typo fixes for NVelocity ViewEngine documentation</value>
+    </field>
+    <field name="description">
+      <value>Attached is an updated index.xml to fix 2 minor typos for /svn/castle/site/xdocs/monorail/documentation/trunk/viewengines/nvelocity/index.xml</value>
+    </field>
+    <field name="created">
+      <value>1194520414000</value>
+    </field>
+    <field name="updated">
+      <value>1263055565000</value>
+    </field>
+    <field name="reporterName">
+      <value>peterl</value>
+    </field>
+    <field name="updaterName">
+      <value>peterl</value>
+    </field>
+    <field name="resolved">
+      <value>1282145356010</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055560000" />
+  </issue>
+</issues>

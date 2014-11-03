@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core internals</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>47</value>
+    </field>
+    <field name="summary">
+      <value>SmtpClient should be disposed in DefaultSmtpSender</value>
+    </field>
+    <field name="description">
+      <value>There is a background thread running in IIS using DefaultSmtpSender to send emails in our system.
+It stop sending emails after running a period of time (1-2 days). And I have to manually recycle IIS application pool to make it running again. 
+
+Exception Message:
+
+2014-02-25 02:48:09.7826 Error Castle.Proxies.EmailSendingTaskProxy An error occured while sending email to xxxxx@xxxx.net, retried 5 System.Net.Mail.SmtpException: Failure sending mail. ---&gt; System.Net.WebException: The request was aborted: The request was canceled.
+   at System.Net.ConnectionPool.Get(Object owningObject, Int32 result, Boolean&amp; continueLoop, WaitHandle[]&amp; waitHandles)
+   at System.Net.ConnectionPool.GetConnection(Object owningObject, GeneralAsyncDelegate asyncCallback, Int32 creationTimeout)
+   at System.Net.Mail.SmtpConnection.GetConnection(ServicePoint servicePoint)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- End of inner exception stack trace ---
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at Castle.Core.Smtp.DefaultSmtpSender.InternalSend(MailMessage message)
+   at Drachma.Web.Core.Services.Messaging.Mail.SmtpSenderWrapper.Send(String type, MailMessage message) in c:\CEBuildagent1\work\9680b34019af5164\src\Drachma.Web\Core\Services\Messaging\Mail\ISmtpEmailSender.cs:line 44
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Drachma.Web.Core.Services.Messaging.Mail.EmailSendingTask.Send(QueuedEmail email) in c:\CEBuildagent1\work\9680b34019af5164\src\Drachma.Web\Core\Services\Messaging\Mail\EmailSendingTask.cs:line 87
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Drachma.Web.Core.Services.Messaging.Mail.EmailSendingTask.&lt;SendAsync&gt;d__9.MoveNext() in c:\CEBuildagent1\work\9680b34019af5164\src\Drachma.Web\Core\Services\Messaging\Mail\EmailSendingTask.cs:line 58
+
+What I guess here is that SmtpCilent is not disposed in DefaultSmtpSender results in System.Net.ConnectionPool running out of connections, am I right?</value>
+    </field>
+    <field name="created">
+      <value>1393390101767</value>
+    </field>
+    <field name="updated">
+      <value>1409038857015</value>
+    </field>
+    <field name="reporterName">
+      <value>Jing.Wu</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1409038857008</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="That sounds about right. We dispose of the message but not of the sender." created="1393390871314" />
+    <comment author="xtoff" text="Submitted this to github https://github.com/castleproject/Core/issues/46 for someone to grab and pull request.&#xA;This is a trivial change" created="1394860476242" />
+    <comment author="xtoff" text="Actually, after reading some documentation, I'm not sure that&#xA;1. not callling `Dispose()` is the source of your problem&#xA;2. We want to be calling `Dispose()`&#xA;&#xA;http://msdn.microsoft.com/en-us/library/system.net.mail.smtpclient.dispose%28v=vs.110%29.aspx`" created="1394962947226" updated="1394963250407" />
+    <comment author="jonorossi" text="Closed, has been relogged on GitHub." created="1409038857017" />
+  </issue>
+</issues>

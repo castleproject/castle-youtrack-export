@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>1.1.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>7</value>
+    </field>
+    <field name="summary">
+      <value>Generate the same proxy for clases with disctinct namespaces but same name</value>
+    </field>
+    <field name="description">
+      <value>I have a problem when generating proxies for clases with same name but disctint namespace.
+
+I setup a test that show this bug in Castle.DynamicProxy.Test.ProxyGeneratorTestCase
+
+  [Test]
+  public void GenerateProxyClassSameNameDistinctNamespace()
+  {
+       object proxyA = _generator.CreateClassProxy(typeof(Classes.SimpleClass),new StandardInterceptor());
+       object proxyB = _generator.CreateClassProxy(typeof(Classes.subnamespace.SimpleClass), new  
+                       StandardInterceptor());
+
+       Assert.IsTrue(proxyA is Classes.SimpleClass,
+         string.Format("Proxy {0} is not a subclass of {1} ",proxyA.GetType(),typeof(Classes.SimpleClass)));
+	Assert.IsTrue(proxyB is Classes.subnamespace.SimpleClass,
+ string.Format("Proxy {0} is not a subclass of{1}",proxyA.GetType(),typeof(Classes.subnamespace.SimpleClass)));
+   } 
+
+Also i create a copy of Castle.DynamicProxy.Test.Classes.SimpleClass to 
+Castle.DynamicProxy.Test.Classes.subnamespace.SimpleClass and change his namespace 
+
+I think is something with cache...
+If i create new context solve this problem, while you fix the bug ?¿</value>
+    </field>
+    <field name="created">
+      <value>1124710122000</value>
+    </field>
+    <field name="updated">
+      <value>1127151241000</value>
+    </field>
+    <field name="reporterName">
+      <value>d.marzo</value>
+    </field>
+    <field name="updaterName">
+      <value>d.marzo</value>
+    </field>
+    <field name="resolved">
+      <value>1282140545713</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

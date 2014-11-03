@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>35</value>
+    </field>
+    <field name="summary">
+      <value>CLONE -PATCH: VS.NET Create MonoRail Project wizard fails to add viewEngine config node for WebForms, Cannot resolve.</value>
+    </field>
+    <field name="description">
+      <value>The viewEngine configuration is omitted for WebForms view engine when using the new MonoRail new project wizard. Suggestion: replace the duplicated view engine selection conditionals in this class with polymorphism.
+
+Cheers,
+
+/\ndrew.</value>
+    </field>
+    <field name="created">
+      <value>1186658002000</value>
+    </field>
+    <field name="updated">
+      <value>1407819097748</value>
+    </field>
+    <field name="reporterName">
+      <value>jhurst</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1285403228156</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

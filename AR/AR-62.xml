@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>62</value>
+    </field>
+    <field name="summary">
+      <value>DifferentDatabaseScope not switching between databases</value>
+    </field>
+    <field name="description">
+      <value>Quoting the mailing list post:
+
+I have this problem with DifferentDatabaseScope.  It seems as the framework is not switching correctly between databases.
+
+I have a test case that is switching between five databases (test1 to test5 with matching users and passwords) and tries to write and read from them in sequence.  My base nhibernate congif is like this
+
+    &lt;config type="MyApp.Model.ActiveRecordRemoteBase, MyApp"&gt;
+      &lt;add key="hibernate.connection.driver_class"      value="NHibernate.Driver.MySqlDataDriver" /&gt;
+      &lt;add key=" hibernate.dialect"                      value="NHibernate.Dialect.MySQLDialect" /&gt;
+      &lt;add key="hibernate.connection.provider"          value="NHibernate.Connection.DriverConnectionProvider " /&gt;
+      &lt;add key="hibernate.connection.connection_string" value="Server=localhost;Port=3306;Database=test6;Uid=test6;Pwd=test6;" /&gt;
+    &lt;/config&gt;
+
+I have the default user different (test1) to observe whats happening in the mysql query logs
+So my code looks like this.  The test case is based on the ActiveRecordModelTestCase from the docs
+
+        protected override void OnInit()
+        {
+            int num = 0;
+            foreach (string s in dbKeys)
+            {
+                DataSource ds = new DataSource("localhost", 3306, s, s, s,
+                                               "Server={0};Port={1};Database={2};Uid={3};Pwd={4};");
+                connections[num] = new MySqlConnection(ds.GetString());
+                //connections[num].Open();
+                num++;
+            }
+        }              
+
+        [Test]
+        public void ReadWriteAllDbInSequence()
+        {
+            foreach (IDbConnection connection in connections)
+            {
+                connection.Open();
+                using(new DifferentDatabaseScope(connection))
+                {
+                    RemoteWeightMarker m1 = new RemoteWeightMarker(delta, DateTime.Now, 10, scaleId);
+                    m1.Save();
+
+                    RemoteWeightMarker m2 = RemoteWeightMarker.Find(m1.Id);
+                   
+                    Assert.AreEqual(m1.Weight, m2.Weight);
+                    Assert.AreEqual(m1.ScaleId, m2.ScaleId);
+                   
+                    m2.Delete();
+                   
+                    Assert.AreEqual(0, RemoteWeightMarker.FindAll().Length);
+                }
+                connection.Close();
+            }
+        }
+
+Now what happens is that the first connection (test1) does OK but the second (test2) gives an exception about the connection being closed (which it is clearly not, double checkd) which leaves me pondering if it's using some compleatly different connection than provided by the scope.
+
+If I open all the connections when I create the MySqlConnection object the test passes but only DB test1 is ever written to in all five cases so there again it's using the first supplied connection all the time but it remains open until all  five connections have been processed.
+
+Does anyone have an idea of what is going on?</value>
+    </field>
+    <field name="created">
+      <value>1151616440000</value>
+    </field>
+    <field name="updated">
+      <value>1162410415000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282135960604</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

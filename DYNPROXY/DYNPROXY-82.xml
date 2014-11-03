@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0 Beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>82</value>
+    </field>
+    <field name="summary">
+      <value>Not allow generics &amp; NoGeneric methods with same signature</value>
+    </field>
+    <field name="description">
+      <value>DynamicProxy2 version: 2.0.3.5561
+Giving a service with two methods with same name and same parameter list but one generic and other no-generic the creation of the proxy is not allowed with the follow exception:
+Castle.DynamicProxy.Generators.GeneratorException: Found more than one method on target ....
+
+The test is:
+	public interface IMyService
+	{
+		ISomething CreateSomething&lt;T&gt;(string somethingSpec);
+		ISomething CreateSomething(string somethingKey);
+	}
+
+	public interface ISomething
+	{
+		void Do(Type type, string parameter);
+	}
+
+	public class NoOpSomething : ISomething
+	{
+		#region ISomething Members
+
+		public void Do(Type type, string parameter) {}
+
+		#endregion
+	}
+
+	public class MyServiceImpl : IMyService
+	{
+		#region IMyService Members
+
+		public ISomething CreateSomething&lt;T&gt;(string somethingSpec)
+		{
+			return new NoOpSomething();
+		}
+
+		public ISomething CreateSomething(string somethingKey)
+		{
+			return new NoOpSomething();
+		}
+
+		#endregion
+	}
+
+	public class NoOpInterceptor : IInterceptor
+	{
+		#region IInterceptor Members
+
+		public void Intercept(IInvocation invocation)
+		{
+			invocation.Proceed();
+		}
+
+		#endregion
+	}
+
+	[TestFixture]
+	public class NotAllowGenericsAndNoGenericMethodsWithSameSign
+	{
+		[Test]
+		public void ShouldNotThrowException()
+		{
+			var generator = new ProxyGenerator();
+			var target =
+				(IMyService)
+				generator.CreateInterfaceProxyWithTarget(typeof (IMyService), new MyServiceImpl(), new NoOpInterceptor());
+
+			Assert.IsNotNull(target.CreateSomething&lt;int&gt;("aa"));
+		}
+	}
+
+</value>
+    </field>
+    <field name="created">
+      <value>1235485102000</value>
+    </field>
+    <field name="updated">
+      <value>1235538273000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabiomaulo</value>
+    </field>
+    <field name="updaterName">
+      <value>fabiomaulo</value>
+    </field>
+    <field name="resolved">
+      <value>1235538240000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Fixed in r5562. Thanks." created="1235538274000" />
+    <comment author="fabiomaulo" text="Thanks to you." created="1235538702000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1235537880000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0 Beta 1''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1235538240000" />
+  </issue>
+</issues>

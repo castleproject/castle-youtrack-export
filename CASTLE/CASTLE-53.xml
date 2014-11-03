@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Website</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>53</value>
+    </field>
+    <field name="summary">
+      <value>Invalid link on a website</value>
+    </field>
+    <field name="description">
+      <value>Link to Issue tracker on some parts of Castle Website (like http://builds.castleproject.org/cruise/index.castle) points to non-existing address</value>
+    </field>
+    <field name="created">
+      <value>1240554958000</value>
+    </field>
+    <field name="updated">
+      <value>1243138793000</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1243138740000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="The whole navigation bar on the builds page and the forum needs to be updated with the web site from svn." created="1240611983000" />
+    <comment author="jonorossi" text="This is no longer an issue because that page has been replaced by TeamCity." created="1243138789000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1243138740000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1243138740000" />
+  </issue>
+</issues>

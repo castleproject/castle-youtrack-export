@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>123</value>
+    </field>
+    <field name="summary">
+      <value>SmartViewComponent does not bind parameters to properties</value>
+    </field>
+    <field name="description">
+      <value>When attempting to use a component and pass multiple parameters in the form:
+
+#component(nameofthecomponent with "arg1=val1, arg2=val2")
+
+I was expecting that the SmartViewComponent would bind val1 and val2 to the public properites of the class "nameofthecomponent." When I reference arg1 I get the text "System.Collections.DictionaryEntry" but it is not an object - simply a string. 
+
+I hate to register this as bug because it is entirely possible I am not setting things up correctly. The specific code being used is provided below:
+
+-----------------
+component class
+-----------------
+
+namespace Sample.Framework.Presentation.Components
+{
+	using System;
+	using Castle.MonoRail.Framework;
+
+	/// &lt;summary&gt;
+	/// Summary description for DynamicDDLComponent.
+	/// &lt;/summary&gt;
+	public class DynamicDDLComponent : SmartViewComponent
+	{
+		private string name;
+		private string defaultMessage = "Loading...";
+
+		/// &lt;summary&gt;
+		/// Name of the DDL 
+		/// &lt;/summary&gt;
+		public string Name
+		{
+			get { return this.name; }
+			set { this.name = value; }
+		}
+
+		public string DefaultMessage
+		{
+			get { return this.defaultMessage; }
+			set { this.defaultMessage = value; }
+		}
+
+		public override void Render()
+		{
+			// Format the containers 
+			string messageContainer = String.Format(MessageContainerTemplate, Name, "", DefaultMessage);
+			string elementContainer = String.Format(ElementContainerTemplate, Name, "", "", "", "");
+			// Return the formatted text
+			RenderText(String.Format("{0}{1}", messageContainer, elementContainer));
+		}
+
+		private string MessageContainerTemplate
+		{
+			get { return "&lt;div id=\"{0}_ddlmessage\" class=\"{1}\"&gt;{2}&lt;/div&gt;"; }
+		}
+
+		private string ElementContainerTemplate
+		{
+			get { return "&lt;div id=\"{0}_ddlelement\" class=\"{1}\"&gt;{2}{3}{4}&lt;/div&gt;"; }
+		}
+	}
+}
+
+--------------------------------
+NVelocity VTL
+--------------------------------
+
+#component(dynamicddlcomponent with "Name=testDDL,DefaultMessage=Loading...")
+
+I have also tried this 
+
+#set ($name = "testDDL")
+#set ($msg = "Loading...")
+#component(dynamicddlcomponent with "Name=${name},DefaultMessage=${msg}")
+</value>
+    </field>
+    <field name="created">
+      <value>1147356241000</value>
+    </field>
+    <field name="updated">
+      <value>1162414072000</value>
+    </field>
+    <field name="reporterName">
+      <value>roger.ireland</value>
+    </field>
+    <field name="updaterName">
+      <value>roger.ireland</value>
+    </field>
+    <field name="resolved">
+      <value>1282143461854</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

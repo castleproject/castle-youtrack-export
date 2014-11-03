@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>528</value>
+    </field>
+    <field name="summary">
+      <value>CaptureFor in subview overwrites value set before subview called</value>
+    </field>
+    <field name="description">
+      <value>Here's a simple test case (against trunk/r5608):
+
+a.brail:
+
+&lt;% component CaptureFor, {@Id: 'test', @append: 'after'}: %&gt;1&lt;% end %&gt;
+&lt;% OutputSubView('b') %&gt;
+${test}
+
+b.brail:
+&lt;% component CaptureFor, {@Id: 'test', @append: 'after'}: %&gt;2&lt;% end %&gt;
+
+The output of a.brail will be "2" rather than "12".
+
+The problem is that BrailBase.InitProperties(), which copies values from the parent view, is called before BrailBase.SetParent() in BrailBase.OutputSubView(), so effectively parent.Properties never gets copied into the subview Properties collection.</value>
+    </field>
+    <field name="created">
+      <value>1238584664000</value>
+    </field>
+    <field name="updated">
+      <value>1278815281000</value>
+    </field>
+    <field name="reporterName">
+      <value>danports</value>
+    </field>
+    <field name="updaterName">
+      <value>danports</value>
+    </field>
+    <field name="resolved">
+      <value>1278815220000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="danports" text="The attached patch is probably not a great solution, but it works. I'll try to come up with a better patch (and test case) later." created="1238585269000" />
+    <comment author="xtoff" text="Dan,&#xA;&#xA;what about that better solution? Can this be fixed with the patch attached?" created="1262411814000" />
+    <comment author="jsimons" text="This one has been fixed already.&#xA;See http://support.castleproject.org/projects/MR/issues/view/MR-ISSUE-415" created="1278815278000" />
+    <comment author="danports" text="* '''Attachment''' MR-528.patch added.&#xD;&#xA;" created="1238584740000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1278814140000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1278815220000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278815280000" />
+    <comment author="jsimons" text="* '''Version Affected''' set to ''2.0''.&#xD;&#xA;" created="1278808860000" />
+  </issue>
+</issues>

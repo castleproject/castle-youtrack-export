@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>AR 3.0 RC</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>302</value>
+    </field>
+    <field name="summary">
+      <value>Get an instance of IQueryOver with ActiveRecord gracefully</value>
+    </field>
+    <field name="description">
+      <value>I use DetachedCriteria primarily, it has a static method For to construct an instance. But it seems IQueryOver is more favourable, I want to use it.
+The normal way to get an instance of IQueryOver is Isession.Query, and I want get it with ActiveRecord gracefully.</value>
+    </field>
+    <field name="created">
+      <value>1303616512317</value>
+    </field>
+    <field name="updated">
+      <value>1414999766010</value>
+    </field>
+    <field name="reporterName">
+      <value>james_su</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999766006</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="james_su" text="var query = QueryOver.Of&lt;PaidProduct&gt;()&#xA;.Where(paid =&gt;&#xA;       paid.Account.OrderNumber == orderNumber&#xA;       &amp;&amp; paid.ProductDelivery.Product == product)&#xA;       .OrderBy(paid=&gt;paid.ProductDelivery.DeliveredDate).Desc;&#xA;return ActiveRecordMediator&lt;PaidProduct&gt;.FindAll(query.DetachedCriteria);" created="1304041238469" />
+    <comment author="james_su" text="so, I want close this requirement, can I?" created="1304041301438" />
+    <comment author="henry" text="Not really, this should be a cool feature to have, without this workaround.&#xA; " created="1304090363735" />
+    <comment author="jonorossi" text="ActiveRecord is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/ActiveRecord/issues" created="1414999766012" />
+  </issue>
+</issues>

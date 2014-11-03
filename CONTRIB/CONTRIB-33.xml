@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>33</value>
+    </field>
+    <field name="summary">
+      <value>Wrong generator class when using primary key of type uniqueidentifier</value>
+    </field>
+    <field name="description">
+      <value>When adding a table (SQL Server) to the designer which has a primary key of type uniqueidentifier ActiveWriter should use "Guid" instead of "Native" as generator</value>
+    </field>
+    <field name="created">
+      <value>1182919462000</value>
+    </field>
+    <field name="updated">
+      <value>1183701534000</value>
+    </field>
+    <field name="reporterName">
+      <value>gnschenker</value>
+    </field>
+    <field name="updaterName">
+      <value>gnschenker</value>
+    </field>
+    <field name="resolved">
+      <value>1282138188823</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

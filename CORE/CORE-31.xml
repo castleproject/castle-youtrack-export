@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>None</value>
+    </field>
+    <field name="Fix versions">
+      <value>vNext</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>31</value>
+    </field>
+    <field name="summary">
+      <value>.NET 4 security transparency and APTCA</value>
+    </field>
+    <field name="description">
+      <value>Used to track work regarding [http://msdn.microsoft.com/en-us/library/ee191569.aspx .NET 4 security transparency] and [http://msdn.microsoft.com/en-us/library/system.security.allowpartiallytrustedcallersattribute.aspx APTCA].
+
+The work involves auditing the codebase (with for instance SecAnnotate.exe) for security transparency and testing the code in medium trust.
+
+Still looking for a way to automate testing for medium trust, I've tried [http://clrsecurity.codeplex.com/wikipage?title=PTRunner.exe&amp;referringTitle=Home PTRunner] but could not get nunit to work with it).</value>
+    </field>
+    <field name="created">
+      <value>1288168601509</value>
+    </field>
+    <field name="updated">
+      <value>1407819499737</value>
+    </field>
+    <field name="reporterName">
+      <value>roelofb</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1396694886301</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="(copied from: http://github.com/castleproject/Castle.Core/commit/151c28d68ee55f0cdeea0cbe8e16b014e3721d79#commitcomment-178421)&#xA;&#xA;SecurityRuleSet.Level2 is the default for assemblies built on the .NET 4.0 runtime, this is making this explicit.&#xA;&#xA;Conditional APTCA lets the host supply the CLR a list of conditional-APTCA assemblies whose APTCA characteristics should be honored (mainly for use in ASP.NET). The section 'Configuring Partial Trust Visible Assemblies' at http://msdn.microsoft.com/en-us/library/wyts434y.aspx explains this a bit more.&#xA;&#xA;I've also performed verification with SecAnnotate.exe to introduce some of the transparency attributes to go with APTCA on v4, but this is by no means a complete audit or whatever you want to call it. There are still some shortcuts in there, mainly briding from Transparent to Criticial by means of SafeCritical&#xA;" created="1288168855431" />
+  </issue>
+</issues>

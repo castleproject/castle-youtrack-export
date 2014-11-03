@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>64</value>
+    </field>
+    <field name="summary">
+      <value>Failure to proxy some classed after changes in connection with DYNPROXY-55</value>
+    </field>
+    <field name="description">
+      <value>After svn:4038 (and related checkins) DynamicProxy2 now throws an InvalidOperationException in ModuleScope.cs 
+with the text "Both a strong-named and a weak-named assembly have been generated."  whenever it tries to proxy 
+my classes.
+
+This used to work before and If I revert DP2 back to 4035 (before the recent DYNPROXY-55 changes) it works again. 
+
+I'm doing nothing special in my code. I have a few facilities and components which are loaded from an XML-configuration.
+Some are using class proxies and others are using interface proxies. None are placed in a strong-named assembly and I'm
+not trying to save the generated assemblies.
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1185428261000</value>
+    </field>
+    <field name="updated">
+      <value>1185440161000</value>
+    </field>
+    <field name="reporterName">
+      <value>jpersson</value>
+    </field>
+    <field name="updaterName">
+      <value>jpersson</value>
+    </field>
+    <field name="resolved">
+      <value>1282140704166</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

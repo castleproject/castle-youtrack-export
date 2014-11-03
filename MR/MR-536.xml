@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveRecord Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>536</value>
+    </field>
+    <field name="summary">
+      <value>ARDataBind Treats the Empty Guid as Null</value>
+    </field>
+    <field name="description">
+      <value>Currently the ARDataBinder and the ARFetch attribute have inconsistent behavior.
+
+It is possible to ARFetch against the empty Guid (Guid.Empty). It is not possible to use the ARDataBinder to lookup against the empty Guid. The ARDataBinder has a method which checks keys and it equates the empty Guid (and the number 0) as if the input were the empty string or null.
+
+This is a blocker for us because we have entities that use the empty Guid as a key. We can currently fetch these using ARFetch but we cant bind them using ARDataBind. So in some cases we cant use the ARDataBinder where we want to.
+
+I have a patch that would add a switch to the ARDataBind attribute so you have set "TreatEmptyGuidAsNull = false". The attribute is set to true by default so the current behavior wont change.
+
+Personally I would like to see the behavior of ARFetch, ARDataBind and Databind be more consistent. That would be a breaking change for some users so the patch I am submitting does things in a way that will not break current application. If the maintainers what to address this in a way that makes the API consistent then I would be happy to write a patch for that too.</value>
+    </field>
+    <field name="created">
+      <value>1243868962000</value>
+    </field>
+    <field name="updated">
+      <value>1263548287000</value>
+    </field>
+    <field name="reporterName">
+      <value>gareth@waves.ky</value>
+    </field>
+    <field name="updaterName">
+      <value>gareth@waves.ky</value>
+    </field>
+    <field name="resolved">
+      <value>1263548220000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Applied (with changes) in r6686" created="1263548279000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1263542580000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1263548220000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263548280000" />
+    <comment author="gareth@waves.ky" text="* '''Attachment''' TreatEmptyGuidAsNull.patch added.&#xD;&#xA;" created="1243868962001" />
+  </issue>
+</issues>

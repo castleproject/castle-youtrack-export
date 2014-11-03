@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - New Engine Ideas</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>120</value>
+    </field>
+    <field name="summary">
+      <value>Embedded ST template resources missing from ST ViewEngine</value>
+    </field>
+    <field name="description">
+      <value>STViewEngine includes a set of ST template files that implement supported helper functionality. Bue to an oversight, the Nant build file isn't properly embedding these files in the output assembly.
+
+End result is that no helper support exists and the ViewEngine might also throw some exceptions.</value>
+    </field>
+    <field name="created">
+      <value>1147194409000</value>
+    </field>
+    <field name="updated">
+      <value>1162414131000</value>
+    </field>
+    <field name="reporterName">
+      <value>kunle</value>
+    </field>
+    <field name="updaterName">
+      <value>kunle</value>
+    </field>
+    <field name="resolved">
+      <value>1282143458932</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

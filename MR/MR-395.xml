@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>395</value>
+    </field>
+    <field name="summary">
+      <value>FileAssemblyViewSourceLoader includes hidden/source control files in operation</value>
+    </field>
+    <field name="description">
+      <value>FileAssemblyViewSourceLoader.CollectViewsOnFileSystem includes ALL files in the directory. This is problematic if you are using source control or have some other files that should not be included for Monorail operations. 
+See this thread for one example of this problem: http://groups.google.com/group/castle-project-users/browse_thread/thread/6fcfbcdb8341dc2d
+
+The supplied patch allows file extensions to be passed to the appropriate methods to filter the GetFiles call in the viewSourceLoader implementation. 
+To test, it adds a file to the test site and updates tests for the ListViews()  method of the viewSourceLoader. All pass after this update.
+
+Brail is currently responding to any changes in subversion folders within the /views directory as a result of this bug, recompiling on any svn operation.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1200068989000</value>
+    </field>
+    <field name="updated">
+      <value>1244675723000</value>
+    </field>
+    <field name="reporterName">
+      <value>mnichols</value>
+    </field>
+    <field name="updaterName">
+      <value>mnichols</value>
+    </field>
+    <field name="resolved">
+      <value>1282145494651</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675700000" />
+  </issue>
+</issues>

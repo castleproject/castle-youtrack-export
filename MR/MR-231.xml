@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>231</value>
+    </field>
+    <field name="summary">
+      <value>FlashBinderAttribute.CalculateParamPoints throws a NullReferenceException </value>
+    </field>
+    <field name="description">
+      <value>I was working thorough the demo tutorial for Monorail with the latest source.
+
+I got to creating the Products controller. Everything works until the 'edit' stage. 
+
+As there are two Edit methods the 'best method' needs to be calculated by the SmartDispatchController. In evaluating the points for the method with the FlashBinder attribute it assumes controller.Context.Flash is not null. 
+
+When Flash is evaluated it checks Session to see if it can create a new instance. 
+
+Session is null so Flash remains null and gets dereferenced by the FlashBinder attribute.
+
+----------------
+as a work around, locally I have changed CalculateParamPoints to the following:
+		public int CalculateParamPoints(SmartDispatcherController controller, ParameterInfo parameterInfo)
+		{
+			String key = ObtainKey(parameterInfo);
+			if (controller.Context.Flash == null) return 0;
+			return controller.Context.Flash[key] != null ? 10 : 0;
+		}
+
+so it checks the Flash is not null and returns 0 if it is. 
+
+I am new to this sourcecode and have no idea if this will have any knock on effects, so I want to raise this as a bug rather than a patch. 
+
+Also... why is Session Null? should it be?</value>
+    </field>
+    <field name="created">
+      <value>1173902227000</value>
+    </field>
+    <field name="updated">
+      <value>1244676791000</value>
+    </field>
+    <field name="reporterName">
+      <value>nigel</value>
+    </field>
+    <field name="updaterName">
+      <value>nigel</value>
+    </field>
+    <field name="resolved">
+      <value>1282143691026</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676780000" />
+  </issue>
+</issues>

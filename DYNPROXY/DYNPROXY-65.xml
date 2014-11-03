@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.0 Alpha</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>65</value>
+    </field>
+    <field name="summary">
+      <value>OpCodeUtil.GetUnderlyingTypeOfEnum doesn't handle unsigned integers</value>
+    </field>
+    <field name="description">
+      <value>Hi,
+
+OpCodeUtil.GetUnderlyingTypeOfEnum doesn't handle unsigned integers and it throws NotSupportedException exception when one of my enumerations is based on UInt32.
+I'm using RhinoMocks that uses DynamicProxy underneath. The following code should solve the issue.
+
+thanks
+
+Pawel
+
+private static Type GetUnderlyingTypeOfEnum(Type enumType)
+		{
+			Enum baseType = (Enum)Activator.CreateInstance(enumType);
+			TypeCode code = baseType.GetTypeCode();
+
+			switch (code)
+			{
+				case TypeCode.SByte:
+                    return typeof(SByte);
+				case TypeCode.Byte:
+					return typeof(Byte);
+				case TypeCode.Int16:
+					return typeof(Int16);
+				case TypeCode.Int32:
+					return typeof(Int32);
+				case TypeCode.Int64:
+					return typeof(Int64);
+                case TypeCode.UInt16:
+			        return typeof (UInt16);
+                case TypeCode.UInt32:
+                    return typeof(UInt32);
+                case TypeCode.UInt64:
+                    return typeof(UInt64);
+
+				default:
+					throw new NotSupportedException();
+			}
+		}</value>
+    </field>
+    <field name="created">
+      <value>1186755300000</value>
+    </field>
+    <field name="updated">
+      <value>1187096602000</value>
+    </field>
+    <field name="reporterName">
+      <value>pawelpabich</value>
+    </field>
+    <field name="updaterName">
+      <value>pawelpabich</value>
+    </field>
+    <field name="resolved">
+      <value>1282140705495</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

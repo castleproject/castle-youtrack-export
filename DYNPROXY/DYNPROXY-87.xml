@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RC1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>87</value>
+    </field>
+    <field name="summary">
+      <value>Mixin takes precedence over target object</value>
+    </field>
+    <field name="description">
+      <value>Say we have the following classes:
+
+        public interface IMixins
+        {
+            void Foo();
+        }
+
+        internal class MixinsTwo : IMixins
+        {
+            public void Foo()
+            {
+                MixinsTwoCallCount++;
+                Console.WriteLine(GetType());
+            }
+            public int MixinsTwoCallCount { get; private set; }
+        }
+
+        [Serializable]
+        internal class MixinsOne : IMixins
+        {
+            public void Foo()
+            {
+                this.MixinsOneCallCount++;
+                Console.WriteLine(GetType());
+            }
+
+            public int MixinsOneCallCount { get; private set; }
+        }
+
+Suppose we want to proxy one type, and use another type as mixin. If we call common interface's member on the proxy, the call will be invoked on mixin, not on target, which I consider a bug.
+
+See the following failing test:
+
+	    [Test]
+	    public void InvalidMixinBehavior()
+	    {
+            var proxyGenerationOptions = new ProxyGenerationOptions();
+	        var mixin = new MixinsOne();
+	        proxyGenerationOptions.AddMixinInstance(mixin);
+            object proxy = generator.CreateClassProxy(
+                typeof(MixinsTwo), proxyGenerationOptions, new AssertInvocationInterceptor());
+	        var proxyAsMixin = proxy as IMixins;
+            Assert.IsNotNull(proxyAsMixin);
+	        mixin.Foo();
+            Assert.AreEqual(0, mixin.MixinsOneCallCount);
+            Assert.AreEqual(1, (proxy as MixinsTwo).MixinsTwoCallCount);
+
+	    }
+
+Now, I'm not really sure that this should be the default behavior either, that is, I'm not sure we should simply forward the call to the target.
+If we have such situation, we may rather want to throw an exception explaining that mixin and target type both implement the same interface, and that it's not a right thing to do.
+On the other hand, this may be a valid choice, so we might prefer to allow it.
+
+Things get even more complicated if we have multiple mixin instances that may implement the same interfaces. Currently this results in an exception. I think we probably should disallow it and throw an exception (but not IndexOutOfRange as it is now, but something more descriptive).
+
+I don't really know since I use mixins rarely myself. Any opinions?</value>
+    </field>
+    <field name="created">
+      <value>1240475197000</value>
+    </field>
+    <field name="updated">
+      <value>1240542900000</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1240542900000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="fcs" text="Resolved in r5623&#xD;&#xA;&#xD;&#xA;Changed DP to throw exceptions when a mixin implements the same interfaces as its target class/interface or when two mixins implement the same interfaces" created="1240542433000" />
+    <comment author="fcs" text="Missed an edge case." created="1240542738000" />
+    <comment author="fcs" text="Resolved in r5624" created="1240542900000" />
+    <comment author="fcs" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1240542180000" />
+    <comment author="fcs" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.1 RTM''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1240542420000" />
+    <comment author="fcs" text="* '''Status''' changed from ''Resolved'' to ''Reopened''.&#xD;&#xA;" created="1240542720000" />
+    <comment author="fcs" text="* '''Status''' changed from ''Reopened'' to ''Resolved''.&#xD;&#xA;" created="1240542900000" />
+  </issue>
+</issues>

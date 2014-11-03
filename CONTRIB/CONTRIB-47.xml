@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>47</value>
+    </field>
+    <field name="summary">
+      <value>Move DictionaryAdapterFactory from codegenerator to Components and return default values when missing in dictionary</value>
+    </field>
+    <field name="description">
+      <value>The DictionaryAdapterFactory is very useful in many scenarios and deserves to be in a more
+commonly accessibly place.  Components seems the best choice.  In addition, when value type
+properties are accessed that have not been assigned, an NullReferenceException is raised
+while reference types are safefuly assigned to null.  The behavior should be conistent so
+returning defaults for value types makes sense.</value>
+    </field>
+    <field name="created">
+      <value>1184927645000</value>
+    </field>
+    <field name="updated">
+      <value>1186314748000</value>
+    </field>
+    <field name="reporterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="updaterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="resolved">
+      <value>1282138199604</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

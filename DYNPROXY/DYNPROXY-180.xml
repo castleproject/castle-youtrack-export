@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Class proxies with target</value>
+    </field>
+    <field name="Fix versions">
+      <value>4.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.0</value>
+      <value>3.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>180</value>
+    </field>
+    <field name="summary">
+      <value>Class proxy with target doesn't forward interface methods not implemented by proxied class</value>
+    </field>
+    <field name="description">
+      <value>Here's the scenario: we create a proxy for class Foo, that doesn't implement IBar, we pass IBar as one of additional interfaces to proxy, so that the proxy type does implement it and we use FooBar (which itself does implement IBar) as target.
+When calling methods from IBar on the proxy the calls should be forwarded to the target (since it does implement the interface.
+
+Currently they are not unless Foo itself implements IBar.</value>
+    </field>
+    <field name="created">
+      <value>1352605852626</value>
+    </field>
+    <field name="updated">
+      <value>1407822235390</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1352605852626</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="TODO: backport this to v3.2" created="1352605881237" />
+  </issue>
+</issues>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>444</value>
+    </field>
+    <field name="summary">
+      <value> Windsor Integration doc page lists invalid assembly</value>
+    </field>
+    <field name="description">
+      <value>WebAppContainer class listing on http://www.castleproject.org/monorail/documentation/v1rc2/integration/windsor.html contains an invalid assembly     Castle.Model.Resource. ConfigResource is in Castle.Core.Resource (at least in the last RC).</value>
+    </field>
+    <field name="created">
+      <value>1209996318000</value>
+    </field>
+    <field name="updated">
+      <value>1242112838000</value>
+    </field>
+    <field name="reporterName">
+      <value>gojko</value>
+    </field>
+    <field name="updaterName">
+      <value>gojko</value>
+    </field>
+    <field name="resolved">
+      <value>1242112800000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Somebody someday seems to have fixed this." created="1242112836000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1242112800000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1242112800000" />
+  </issue>
+</issues>

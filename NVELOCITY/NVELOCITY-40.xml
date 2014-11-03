@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>1.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>40</value>
+    </field>
+    <field name="summary">
+      <value>ExtendedProperties.Add incorrect behavior</value>
+    </field>
+    <field name="description">
+      <value>ExtendedProperties.Add method (inherited from Hashtable) is misleading and results in incorrect behavior. It does not add the key to the Keys collection so any attempt to initialize VelocityEngine will result in the property not present in the engine Configuration.
+
+C# collection initialization syntax uses Add method so it is pretty easy and natural to run into this issue.
+
+Sample code displaying the issue is listed below.
+
+{code}
+ExtendedProperties p = new ExtendedProperties { { "prop", "value" } };
+foreach (DictionaryEntry property in p)
+{
+    Console.WriteLine("{0}: {1}", property.Key, property.Value);
+}
+VelocityEngine e =  new VelocityEngine (p);
+Console.WriteLine("e.GetProperty (\"prop\"): {0}", e.GetProperty ("prop") ?? "!!null");
+
+// Output:
+// prop: value
+// e.GetProperty ("prop"): !!null
+{code}
+</value>
+    </field>
+    <field name="created">
+      <value>1320855780000</value>
+    </field>
+    <field name="updated">
+      <value>1396695200401</value>
+    </field>
+    <field name="reporterName">
+      <value>Максим.Киселёв</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396695200387</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-151[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

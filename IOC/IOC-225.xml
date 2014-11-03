@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Lifestyles</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>225</value>
+    </field>
+    <field name="summary">
+      <value>New LifeStyle InstantiateAndForgetIt</value>
+    </field>
+    <field name="description">
+      <value>I would have an option to be sure about which will be the behavior of the container.
+The lifestyle Transient changes his behavior depending on various factors.
+IMO would be useful a LifeStyle where the behavior is more clear.
+InstantiateAndForgetIt mean that the container will instantiates the class and the instance will never be maintained/tracked by the container itself.</value>
+    </field>
+    <field name="created">
+      <value>1286541433383</value>
+    </field>
+    <field name="updated">
+      <value>1293968730257</value>
+    </field>
+    <field name="reporterName">
+      <value>fabiomaulo</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1293968730257</value>
+    </field>
+    <field name="voterName">
+      <value>Vasili.Puchko</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Why would you want that? Component Burden gives you a lot, and most of the time you don't really need to think about it anyway, since the container will just do its job. Can you describe a scenario where this is an issue?" created="1286541776962" />
+    <comment author="fabiomaulo" text="There are times where I need Windsor more like a factory managing dependency injection instead a real container. The life of each instance created is managed by another high level layer.&#xA;What I have to be 100% sure is that the container will never maintain an instance of this types of objects.&#xA;Have I an option already ?&#xA;" created="1286547986477" updated="1286548064727" />
+    <comment author="xtoff" text="you have an option right now to use NoTrackingReleasePolicy which never tracks any components." created="1286549664680" />
+    <comment author="fabiomaulo" text="but I need this behavior only for certain interfaces (some components)." created="1286552531149" />
+    <comment author="fabiomaulo" text="Solved it with this custom implementation&#xA;&#xA;	[Serializable]&#xA;	public class InstantiateAndForgetIt : ILifestyleManager&#xA;	{&#xA;		private IComponentActivator componentActivator;&#xA;&#xA;		public void Init(IComponentActivator componentActivator, IKernel kernel, ComponentModel model)&#xA;		{&#xA;			this.componentActivator = componentActivator;&#xA;		}&#xA;&#xA;		public object Resolve(CreationContext context)&#xA;		{&#xA;			return componentActivator.Create(context);&#xA;		}&#xA;&#xA;		public bool Release(object instance)&#xA;		{&#xA;			return true;&#xA;		}&#xA;&#xA;		public void Dispose()&#xA;		{&#xA;			&#xA;		}&#xA;	}&#xA;&#xA;	[Serializable]&#xA;	public class LifecycledComponentsReleasePolicy : Castle.MicroKernel.Releasers.LifecycledComponentsReleasePolicy&#xA;	{&#xA;		private readonly Type instantiateAndForgetItType = typeof (InstantiateAndForgetIt);&#xA;&#xA;		public override void Track(object instance, Burden burden)&#xA;		{&#xA;			if (instantiateAndForgetItType.Equals(burden.Model.CustomLifestyle))&#xA;			{&#xA;				return;&#xA;			}&#xA;			base.Track(instance,burden);&#xA;		}&#xA;	}&#xA;&#xA;but would be nice to have it as a supported lifestyle.&#xA;I wrote a blog post if somebody is looking for the same solution&#xA;http://fabiomaulo.blogspot.com/2010/10/castle-windsor-instantiateandforgetit.html" created="1286575954477" />
+    <comment author="xtoff" text="Fabio. Cool that you solved it, but I'm rather reluctant to add that. It would be hard impl. wise, but my general advice is to let Windsor track all components and whatever you explicitly resolve, you also should release. I haven't really had an issue with that, and I never found myself in a situation where I needed Windsor NOT to track my components." created="1286579110055" />
+    <comment author="fabiomaulo" text="Krzysztof, which is the difference between a singleton and a transient if to be sure that the container does not track the instance I have to call container.Release ?" created="1286579410368" updated="1286579523946" />
+    <comment author="fabiomaulo" text="btw InstantiateAndForgetIt is only another option not a change of what Transient mean." created="1286579576165" />
+    <comment author="xtoff" text="It looks like many of the issues with that would be solved by implementing IOC-221" created="1286673410227" updated="1286673433040" />
+    <comment author="fabiomaulo" text="IOC-221 is another stuff and I think it should be implemented. What I'm asking here is another lifestyle with a certain-always-true behavior." created="1286707892712" />
+    <comment author="xtoff" text="This is not going to be one of the out of the box lifestyles, but it is now trivial to add a custom one that has these semantics." created="1293968698522" />
+  </issue>
+</issues>

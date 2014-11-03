@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>63</value>
+    </field>
+    <field name="summary">
+      <value>Constructor source order should not matter to Windsor</value>
+    </field>
+    <field name="description">
+      <value>The following code will throw, even though there is a valid way to build it.
+
+public class D
+{
+	public D(B b)
+	{
+
+	}
+
+	public D()
+	{
+
+	}
+}
+
+
+container.AddComponent("D", typeof(D));
+Assert.IsNotNull(container["D"]);		
+</value>
+    </field>
+    <field name="created">
+      <value>1170916453000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838932</value>
+    </field>
+    <field name="reporterName">
+      <value>ayenderahien</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142000073</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

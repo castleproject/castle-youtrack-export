@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>160</value>
+    </field>
+    <field name="summary">
+      <value>Re-registration of a Named component mantains previous Lifestyle</value>
+    </field>
+    <field name="description">
+      <value>Even though the component was removed from the container, it appears that a reference to the LifeStyle is maintained by name.
+
+The below Unit Test shows this.
+
+interface IFoo { }
+class Foo : IFoo { }
+class Foo2 : IFoo { }
+
+[TestMethod]
+public void LifestyleTest4()
+{
+    WindsorContainer container = new WindsorContainer();
+
+    container.Register(Component.For&lt;IFoo&gt;().ImplementedBy&lt;Foo&gt;().Named("foo").LifeStyle.Singleton);
+
+    IHandler h = container.Kernel.GetHandler("foo");
+    Assert.IsTrue(h.ComponentModel.LifestyleType == LifestyleType.Singleton);
+
+    bool removed = container.Kernel.RemoveComponent("foo");
+    Assert.IsTrue(removed);
+
+    container.Register(Component.For&lt;IFoo&gt;().ImplementedBy&lt;Foo2&gt;().Named("foo").LifeStyle.Transient);
+
+    h = container.Kernel.GetHandler("foo");
+    //Assert will fail as LifestyleType == Singleton
+    Assert.IsTrue(h.ComponentModel.LifestyleType == LifestyleType.Transient, "Expected Transient Lifestyle");
+}
+
+The reason is that the component configuration, which contains the lifestyle, is not removed by RemoveComponent, so the first lifestyle configuration will be always used.
+
+The workaround to get a test pass is to add the following line after the the call to RemoveComponent:
+
+container.Kernel.ConfigurationStore.GetComponentConfiguration("foo").Attributes.Remove("lifestyle");
+</value>
+    </field>
+    <field name="created">
+      <value>1245202975000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838916</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1261143600000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="fixed in r6456" created="1261143634000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1261141620000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Work Started'' to ''Work Started''.&#xD;&#xA;" created="1261143360000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1261143600000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1261143600000" />
+  </issue>
+</issues>

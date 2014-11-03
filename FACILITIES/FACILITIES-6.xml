@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>6</value>
+    </field>
+    <field name="summary">
+      <value>Implement a basic level of logging</value>
+    </field>
+    <field name="description">
+      <value>Build up the code so that the facility is able to get any level of output out and into a log file of some kind.</value>
+    </field>
+    <field name="created">
+      <value>1120718832000</value>
+    </field>
+    <field name="updated">
+      <value>1162412189000</value>
+    </field>
+    <field name="reporterName">
+      <value>dsellers</value>
+    </field>
+    <field name="updaterName">
+      <value>dsellers</value>
+    </field>
+    <field name="resolved">
+      <value>1282140956010</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

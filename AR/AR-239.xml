@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Queries</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>239</value>
+    </field>
+    <field name="summary">
+      <value>ScalarQuery.Generic.Execute() throws exception if T is an int (build 1035)</value>
+    </field>
+    <field name="description">
+      <value>Using the example modified from http://www.castleproject.org/activerecord/documentation/trunk/usersguide/hql.html, this code section will fail with an invalid cast exception:
+
+    public int HighestRating()
+    {
+       ScalarQuery&lt;int&gt; q = new ScalarQuery&lt;int&gt;(typeof(Post), @"
+          select max(p.Rating) 
+          from Post p 
+          where p.Blog = ?
+       ", this);
+       return q.Execute();
+    }
+
+System.InvalidCastException: Specified cast is not valid.
+   at Castle.ActiveRecord.Queries.ScalarQuery`1.Execute() in c:\ccnet\CastleWorkDir\WorkingDirectory\ActiveRecord\Castle.ActiveRecord\Framework\Queries\ScalarQuery.Generic.cs:line 98
+
+
+line 98 reads:
+   return result == null ? default(T) : (T)result;
+
+Obviously, if the result is a value type, the comparison with null will throw the exception.  Why not just:
+   return ActiveRecordMediator.ExecuteQuery(this);
+
+</value>
+    </field>
+    <field name="created">
+      <value>1233588368000</value>
+    </field>
+    <field name="updated">
+      <value>1235118527000</value>
+    </field>
+    <field name="reporterName">
+      <value>clshrock</value>
+    </field>
+    <field name="updaterName">
+      <value>clshrock</value>
+    </field>
+    <field name="resolved">
+      <value>1235118480000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="clshrock" text="That won't compile, but this does--I just don't know if I am barking up the right tree:&#xA;&#xA;return !result.GetType().IsPrimitive &amp;&amp; result == null ? default(T) : (T) result;&#xA;&#xA;that would resolve, via short-circuit, the problem of trying to compare a value type to the reference typed &quot;null&quot; and yet still handle the case of the query returning an empty result.  &#xA;&#xA;The original problem being that you can't type cast an empty result." created="1233596275000" />
+    <comment author="TigerShark" text="Does this relate to AR-ISSUE-234 by any chance?" created="1234361289000" />
+    <comment author="TigerShark" text="http://support.castleproject.org/projects/AR/issues/view/AR-ISSUE-234" created="1234361306000" />
+    <comment author="mzywitza" text="I think you are barking up the wrong tree:&#xA;&#xA;Comparing an object reference with null won't fail. After all, object is a reference type. Also, I an also test a generic type T against null, even if it is a value type. In that case the compiler simply omits the test as always false. By the way, the check is necessary, else the code will try to cast null to integer, which will cause a runtime exception.&#xA;&#xA;The problem is therefore not the test, but the cast in the else-section. Did you check what the query returned? Often the programmer expects an int where the DB delivers a long value. I had that in some unit tests to reproduce the behaviour described here.&#xA;&#xA;Please use the non-generic-version and call a GetType() against the result to check if you really expect an int for this code as the scalar result." created="1234931194000" />
+    <comment author="mzywitza" text="Tests trying to reproduce the error all pass. ScalarQuery now throws an exception if the expected and actual types are not compatible.&#xA;&#xA;Tests and exception are implemented in r5559." created="1235118528000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1235118480000" />
+  </issue>
+</issues>

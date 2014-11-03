@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - NVelocity</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>311</value>
+    </field>
+    <field name="summary">
+      <value>The '\' character in templates goes unescaped when processed via NJS</value>
+    </field>
+    <field name="description">
+      <value>Here's how to recreate:
+
+Create a template with the following:
+
+&lt;p&gt;\u Hello, you should see this text.&lt;/p&gt;
+
+Now setup an NJS file like so:
+
+$page.ReplaceHtml("MyDiv", "%{partial='_Template.vm'}")
+
+When this action is invoked via AJAX, the contents of MyDiv will not be replaced.</value>
+    </field>
+    <field name="created">
+      <value>1185971569000</value>
+    </field>
+    <field name="updated">
+      <value>1263055829000</value>
+    </field>
+    <field name="reporterName">
+      <value>sradack</value>
+    </field>
+    <field name="updaterName">
+      <value>sradack</value>
+    </field>
+    <field name="resolved">
+      <value>1282143927666</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055800000" />
+  </issue>
+</issues>

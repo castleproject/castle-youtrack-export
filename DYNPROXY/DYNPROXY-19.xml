@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>1.1.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>19</value>
+    </field>
+    <field name="summary">
+      <value>ERROR NHibernate.Persister.GetSetHelperFactory - Line:12, Column:3 Message: type "Castle.ActiveRecord.ActiveRecordBase" you must add a reference to Castle.ActiveRecord, Version=0.0.1.7, Culture=neutral, PublicKeyToken=407dd0808d44fbdc</value>
+    </field>
+    <field name="description">
+      <value>normal,the page worked no error, but because of when I was want to use access,but it doesn't work, so I set the Log4Net, then during my test and check, it can work, but in the log ,I find it
+
+below is the detail
+http://jira.nhibernate.org/secure/ManageAttachments.jspa?id=11561
+http://jira.nhibernate.org/secure/attachment/10781/Panda.Model.DataMgr.rar
+
+maybe it just the NHibernate's fault</value>
+    </field>
+    <field name="created">
+      <value>1143188809000</value>
+    </field>
+    <field name="updated">
+      <value>1143194817000</value>
+    </field>
+    <field name="reporterName">
+      <value>daqingshu</value>
+    </field>
+    <field name="updaterName">
+      <value>daqingshu</value>
+    </field>
+    <field name="resolved">
+      <value>1282140557620</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

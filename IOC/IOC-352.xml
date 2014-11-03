@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Duplicate</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generics</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>352</value>
+    </field>
+    <field name="summary">
+      <value>OnCreate doesn't work for open generic registrations</value>
+    </field>
+    <field name="description">
+      <value>{code}
+[Test]
+public void OnCreate_should_invoke_for_open_generic_registrations()
+{
+	bool invoked = false;
+	Container.Register(
+		Component.For(typeof(Collection&lt;&gt;))
+			.OnCreate(_ =&gt; invoked = true));
+
+	Container.Resolve&lt;Collection&lt;A&gt;&gt;();
+	Assert.IsTrue(invoked);
+}
+{code}
+
+Affects Windsor 3.1</value>
+    </field>
+    <field name="created">
+      <value>1345563534768</value>
+    </field>
+    <field name="updated">
+      <value>1345635848429</value>
+    </field>
+    <field name="reporterName">
+      <value>bling</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1345635841051</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="bling" text="sorry, didn't realize there's a duplicate already (ioc-300)...i tried to link it as a duplicate but it errors out." created="1345563720049" />
+  </issue>
+</issues>

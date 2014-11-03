@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>168</value>
+    </field>
+    <field name="summary">
+      <value>When there are multiple greediest .ctors behavior is undefined</value>
+    </field>
+    <field name="description">
+      <value>Take a look at this SO question.
+
+
+http://stackoverflow.com/questions/1746387/castle-windsor-problem-with-multiple-constructors/1747477
+
+Basically when resolving a component that has multiple .ctors with the same number of parameters, Windsor/MK just picks any of them, even in case when it has waiting dependencies for this .ctor it picked, and for another one it has all the elements.
+What it should do instead, is to eliminate all the .ctors it can't satisfy, and out of remaining ones do (not sure which)
+- when there's one just use it, end of story.
+- throw when there are more than one.
+- when there's more than one just pick any just like you'd do now (plus the filtering step).</value>
+    </field>
+    <field name="created">
+      <value>1258457176000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838916</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1270802280000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mausch" text="Here's a patch, please somebody review it: http://github.com/mausch/Castle.InversionOfControl/tree/IoC-168" created="1258486565000" />
+    <comment author="xtoff" text="I only had a quick glance, but the patch looks good.&#xA;&#xA;I see you chosen the path - &quot;when there's more than one just pick any just like you'd do now (plus the filtering step).&quot;&#xA;&#xA;I guess that's OK, although I'd prefer to have a rule that would not rely on undefined behavior...&#xA;Not sure we can come up with one other than something stupid like sorting by ctor parameter names though..." created="1258501616000" />
+    <comment author="xtoff" text="fixed in r6551" created="1262338606000" />
+    <comment author="xtoff" text="This is actually still not entirely fixed.&#xA;&#xA;When at the time of registration of the handler, none of the constructors can be satisfied undefined one gets picked.&#xA;&#xA;Later on as we register more components some other constructor may become satisfiable, but we still will try to use the one returned which will not be satisfiable." created="1269101178000" />
+    <comment author="xtoff" text="This was fixed by German's patch for issue 198" created="1270802341000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Reopened'' to ''Resolved''.&#xD;&#xA;" created="1270802280000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1270802340000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1262336700000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1262338560000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1262338560000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Closed'' to ''Reopened''.&#xD;&#xA;" created="1269101160000" />
+  </issue>
+</issues>

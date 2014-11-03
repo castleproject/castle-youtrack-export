@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Duplicate</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>12</value>
+    </field>
+    <field name="summary">
+      <value>NVelocity.VelocityContext.InternalGetKeys() exception</value>
+    </field>
+    <field name="description">
+      <value>Sometimes on server happens exception. It happens randomly on the page - if i do refresh the page generates succesfully.
+I don't know what the reason.
+May be the problem in InternalGetKeys of VelocityContext and we should write Object[] keys = new object[context.Keys.Count]  instead of Object[] keys = new object[context.Count];???
+
+ERROR 2007-04-16 20:11:03,562 2027250ms MonoRailHttpHandler    Process            - Error processing /front/default.rails?q=/personal/cards/&amp;
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---&gt; Castle.MonoRail.Framework.RailsException: Could not render view: /common/inplace.vm ---&gt; System.ArgumentException: Destination array is not long enough to copy all the items in the collection. Check array index and length.
+   at System.Collections.Hashtable.KeyCollection.CopyTo(Array array, Int32 arrayIndex)
+   at NVelocity.VelocityContext.InternalGetKeys()
+   at NVelocity.Context.AbstractContext.get_Keys()
+   at NVelocity.Context.InternalContextAdapterImplEnumerator..ctor(IContext context)
+   at NVelocity.Context.InternalContextAdapterImpl.CreateEnumerator()
+   at NVelocity.Context.InternalContextAdapterImpl.GetEnumerator()
+   at Castle.MonoRail.Framework.Views.NVelocity.CustomDirectives.AbstractComponentDirective.RenderComponentView(IInternalContextAdapter context, String viewToRender, TextWriter writer, NVelocityViewContextAdapter contextAdapter)
+   at Castle.MonoRail.Framework.Views.NVelocity.CustomDirectives.AbstractComponentDirective.Render(IInternalContextAdapter context, TextWriter writer, INode node)
+   at NVelocity.Runtime.Parser.Node.ASTDirective.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Runtime.Parser.Node.SimpleNode.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Template.Merge(IContext context, TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.Process(TextWriter output, IRailsEngineContext context, Controller controller, String viewName)
+</value>
+    </field>
+    <field name="created">
+      <value>1176731139000</value>
+    </field>
+    <field name="updated">
+      <value>1253854790000</value>
+    </field>
+    <field name="reporterName">
+      <value>almaz</value>
+    </field>
+    <field name="updaterName">
+      <value>almaz</value>
+    </field>
+    <field name="resolved">
+      <value>1282142749620</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253854740000" />
+  </issue>
+</issues>

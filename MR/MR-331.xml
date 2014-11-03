@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>331</value>
+    </field>
+    <field name="summary">
+      <value>FCKEditor integration</value>
+    </field>
+    <field name="description">
+      <value>The attachment contains a helper that integrates FCKEditor with MR. Supports browser detection (should be updated if Safari support is finally added to new versions of FCKEditor), and passing parameters via dictionary, i.e.     $FCKEditorHelper.CreateHTML("newsitem_content", $newsitem_value.Content, $DictHelper.CreateDict("AutoDetectLanguage=false", "DefaultLanguage=he", "ContentLangDirection=rtl"))
+Further improvements could be parameter generation from helper properties instead of dictionary. Integrating file/image upload can be solved by using the plain ASP connector, instead of the WebForms ASP.NET one (didn't try too much to make it work). However, this requires IIS and will not work from the debugger. ASP may be executed from different account then MR so give access to the upload directory to the ASP account also (if differs). Native MR upload controller is planned , but not a priority.</value>
+    </field>
+    <field name="created">
+      <value>1189662273000</value>
+    </field>
+    <field name="updated">
+      <value>1263055594000</value>
+    </field>
+    <field name="reporterName">
+      <value>felixg</value>
+    </field>
+    <field name="updaterName">
+      <value>felixg</value>
+    </field>
+    <field name="resolved">
+      <value>1262991540000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="This should be first added as a contrib project." created="1262991570000" />
+    <comment author="jsimons" text="This should be first added as a contrib project." created="1262991598000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1262991540000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055560000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Closed'' to ''Closed''.&#xD;&#xA;" created="1263055560000" />
+  </issue>
+</issues>

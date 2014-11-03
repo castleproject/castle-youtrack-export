@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Scaffolding</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>411</value>
+    </field>
+    <field name="summary">
+      <value>no id=# on links to edit and confirm actions when of the scaffolding</value>
+    </field>
+    <field name="description">
+      <value>When using scaffolding and you are in the list action, the links to the edit and confirm actions do not have a '?id=#' query string attached.
+I fixed it with creating the query string to the method that builds the dictionary for the link, in the presentationhelper class (see attached patch):
+
++            IDictionary querystring = DictHelper.CreateN("id", key);
++            dict["querystring"] = UrlHelper.BuildQueryString(querystring);
+
+This works for me, however i do not know if this is the right way to solve this as im very new to MR. 
+It looks strange to me to add both the id and a query string with the id to the dict.
+I also don't know how this behaves with routing.
+
+for more info, please see this thread on the user list: http://groups.google.com/group/castle-project-users/browse_thread/thread/95229bfc75785752/ca0d735294778334?hl=en&amp;lnk=gst&amp;q=scaffolding#ca0d735294778334</value>
+    </field>
+    <field name="created">
+      <value>1201815700000</value>
+    </field>
+    <field name="updated">
+      <value>1244676737000</value>
+    </field>
+    <field name="reporterName">
+      <value>alwin</value>
+    </field>
+    <field name="updaterName">
+      <value>alwin</value>
+    </field>
+    <field name="resolved">
+      <value>1282145533041</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676720000" />
+  </issue>
+</issues>

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>By design</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>333</value>
+    </field>
+    <field name="summary">
+      <value>Interceptor attribute does not work on method</value>
+    </field>
+    <field name="description">
+      <value>I have a service like
+
+    public class SomeService : ISomeService
+    {
+        [Interceptor(typeof(FooInterceptor))]
+        public void Do1()
+        {
+            Console.WriteLine("Do1");
+        }
+        public void Do2()
+        {
+            Console.WriteLine("Do2");
+        }
+    }
+
+And I registered both my interface and interceptors.
+
+            var container = new WindsorContainer();
+            container
+                .Register(Component.For&lt;IInterceptor&gt;().ImplementedBy&lt;FooInterceptor&gt;())
+                .Register(Component.For&lt;ISomeService&gt;().ImplementedBy&lt;SomeService&gt;());
+
+            var serivce1 = container.Resolve&lt;ISomeService&gt;();
+
+            serivce1.Do1();
+            serivce1.Do2();
+
+The console shows me 
+Do1
+Do2
+
+Anyway it will work if I put the interceptor attribute on the class level, but that will intercepts all methods of that class; also I know I can use interceptors selector, but I still think that's reasonable that I only wanna intercept some methods of one class by simply add a attribute on those methods, such as the transaction scenario. </value>
+    </field>
+    <field name="created">
+      <value>1331975052401</value>
+    </field>
+    <field name="updated">
+      <value>1337979854532</value>
+    </field>
+    <field name="reporterName">
+      <value>Ta.Si.E</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1337979854532</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Hi there.&#xA;&#xA;This is by design. The Interceptor attribute was never meant to be supported at method level.&#xA;&#xA;That being said, you can quite easily implement support for that. As such I think I'll close this issues as &quot;by design&quot; unless you have any further comments.&#xA;&#xA;cheers,&#xA;@K" created="1337384291057" />
+    <comment author="Ta.Si.E" text="In our case, we'd like to use transaction/audit/log interceptors on parts methods of one class, we have to introduce some additional attributes and put them on the methods where we want the interceptors work for, then see whether there's some specific attribute on the method in the interceptor. It realy makes sense for us to have a method level interceptor. Or do you have any suggestions to my case? &#xA;&#xA;Thanks &amp; Regards,&#xA;&#xA;TS" created="1337938264289" />
+    <comment author="xtoff" text="It makes sense, but like I said, you'd need to extend Windsor to support that and create your own IProxyGenerationHook and/or IInterceptorSelector. It's not hard." created="1337938563185" />
+    <comment author="Ta.Si.E" text="It's OK since you show me the customization point, and you can close this issue." created="1337939112306" />
+  </issue>
+</issues>

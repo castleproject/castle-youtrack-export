@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>100</value>
+    </field>
+    <field name="summary">
+      <value>Scheduler build script not checking common.testrunner.enabled</value>
+    </field>
+    <field name="description">
+      <value>The Scheduler build script is not checking common.testrunner.enabled. 
+Therefore the Tests are being run regardless.</value>
+    </field>
+    <field name="created">
+      <value>1249151103000</value>
+    </field>
+    <field name="updated">
+      <value>1249189367000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1249189320000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Thanks. Applied in r5901." created="1249189370000" />
+    <comment author="jsimons" text="* '''Attachment''' build.patch added.&#xD;&#xA;" created="1249151103001" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1249189320000" />
+  </issue>
+</issues>

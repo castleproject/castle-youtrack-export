@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - WebForms</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>204</value>
+    </field>
+    <field name="summary">
+      <value>Pull ASP.NET View Engine out of Frameworks and into separate assembly.</value>
+    </field>
+    <field name="description">
+      <value>Will additional support being added to the WebForm views, I think it is time to pull the WebFormsViewEngine
+into a seperate assembly like all the others.</value>
+    </field>
+    <field name="created">
+      <value>1167570356000</value>
+    </field>
+    <field name="updated">
+      <value>1167572615000</value>
+    </field>
+    <field name="reporterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="updaterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="resolved">
+      <value>1282143648432</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

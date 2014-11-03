@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>300</value>
+    </field>
+    <field name="summary">
+      <value>OnCreate does not work for generic components</value>
+    </field>
+    <field name="description">
+      <value>	class Program
+	{
+		static void Main(string[] args)
+		{
+			var container = new WindsorContainer();
+
+			container.Register(Component.For(typeof (NonGenericComponent))
+			                   	.OnCreate((k, r) =&gt; Console.WriteLine("this works")));
+			container.Register(Component.For(typeof (GenericComponent&lt;&gt;))
+			                   	.OnCreate((k, r) =&gt; Console.WriteLine("this doesn't work")));
+
+			var x = container.Resolve&lt;NonGenericComponent&gt;();
+			var y = container.Resolve&lt;GenericComponent&lt;int&gt;&gt;();
+		}
+	}
+
+	public class NonGenericComponent
+	{
+	}
+
+	public class GenericComponent&lt;T&gt;
+	{
+	}</value>
+    </field>
+    <field name="created">
+      <value>1309216861740</value>
+    </field>
+    <field name="updated">
+      <value>1346924017721</value>
+    </field>
+    <field name="reporterName">
+      <value>german</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1346924017705</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="german" text="Pull request here: https://github.com/castleproject/Castle.Windsor/pull/10" created="1309221455037" />
+  </issue>
+</issues>

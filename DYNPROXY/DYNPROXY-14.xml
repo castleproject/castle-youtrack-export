@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5</value>
+    </field>
+    <field name="Affected versions">
+      <value>1.1.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>14</value>
+    </field>
+    <field name="summary">
+      <value>DynamicProxy does not copy parameter attributes</value>
+    </field>
+    <field name="description">
+      <value>When generating a proxy from a class that has attributes on method parameters, the parameters are lost.
+{code lang=java}
+[Castle.Services.Transaction.Transactional]
+public class SampleController : SmartDispatcherController
+{
+  [Castle.Services.Transaction.Transaction(TransactionMode.Requires)]
+  public virtual void Test(int id, [DataBind(Prefix="t")] t)
+  {
+    // t is always null
+  }
+}
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1131019589000</value>
+    </field>
+    <field name="updated">
+      <value>1288241366509</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282140551838</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

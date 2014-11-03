@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Build Scripts</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>48</value>
+    </field>
+    <field name="summary">
+      <value>Mark Assemblies with Allow Partially Trusted Callers by Default</value>
+    </field>
+    <field name="description">
+      <value>Mark Assemblies with Allow Partially Trusted Callers by Default</value>
+    </field>
+    <field name="created">
+      <value>1222155048000</value>
+    </field>
+    <field name="updated">
+      <value>1235463826000</value>
+    </field>
+    <field name="reporterName">
+      <value>wcpierce</value>
+    </field>
+    <field name="updaterName">
+      <value>wcpierce</value>
+    </field>
+    <field name="resolved">
+      <value>1235463780000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="The build's easy configurable to allow people to create these assemblies themselves." created="1235463826000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1235463780000" />
+  </issue>
+</issues>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>571</value>
+    </field>
+    <field name="summary">
+      <value>Brail ViewEngine does not call ViewComponentFactory.Release</value>
+    </field>
+    <field name="description">
+      <value>Monorail's IViewComponentFactory has a Release method that should ALWAYS be called after creating a ViewComponent via the Create method.  Brail does not call Release, though, and this causes memory leaks when Windsor is used in conjunction with Monorail.
+
+I have attached a patch to fix this issue.  The changes were minimal.</value>
+    </field>
+    <field name="created">
+      <value>1288205134165</value>
+    </field>
+    <field name="updated">
+      <value>1414393059282</value>
+    </field>
+    <field name="reporterName">
+      <value>Tyler.Burd</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414393059267</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Can you add a test for that as well?&#xA;" created="1288225798009" />
+  </issue>
+</issues>

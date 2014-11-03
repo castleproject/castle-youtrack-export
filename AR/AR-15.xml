@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>beta 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>15</value>
+    </field>
+    <field name="summary">
+      <value>Generator creates bad VB.Net code</value>
+    </field>
+    <field name="description">
+      <value>Generating VB.Net code from the Active Records generator has the following issues
+* In a HasMany attribute like this:
+    &lt;HasMany(GetType(Case), Table:="t_case", ColumnKey:="Case_ID")&gt;  _
+  GetType(Case) does not include the namespace of the class, it should be 
+  GetType(Data.Case)
+  This is also true in the delete, find and find all methods
+
+* VB.Net is case in-sensitive. Therefore property block that have the same name as the parameter they wrap generate error messages since VB.Net cannot tell the difference between Param1 and param1
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1122381316000</value>
+    </field>
+    <field name="updated">
+      <value>1162411100000</value>
+    </field>
+    <field name="reporterName">
+      <value>jeffp</value>
+    </field>
+    <field name="updaterName">
+      <value>jeffp</value>
+    </field>
+    <field name="resolved">
+      <value>1282135908635</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

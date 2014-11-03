@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Activators</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>205</value>
+    </field>
+    <field name="summary">
+      <value>Invalid handling of Custom activators that provide dependencies on their own</value>
+    </field>
+    <field name="description">
+      <value>Basically the following tests explain the issue http://gist.github.com/408779
+
+Both Instance and UsingFactoryMethod result in custom Activators being assigned to the component.
+
+In case of Instance there's explicit check being done in the code that works the issue around.
+
+Generally thing is that Handlers do check for unresolvable dependencies, and will throw if the dependency can't be provided even when the activator can provide the dependency (or don't really need it).</value>
+    </field>
+    <field name="created">
+      <value>1274420964000</value>
+    </field>
+    <field name="updated">
+      <value>1287656891180</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1274528100000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="fixed in fc85089d882b947a728a54d6f73239e181e26a79" created="1274528111000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1274525700000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1274528100000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1274528100000" />
+  </issue>
+</issues>

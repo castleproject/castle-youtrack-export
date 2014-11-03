@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>109</value>
+    </field>
+    <field name="summary">
+      <value>Inheritable attributes on virtual properties not available on proxy</value>
+    </field>
+    <field name="description">
+      <value>Not only on 2.1 RTM but also on trunk
+
+Steps to reproduce: 
+1) Add a inheritable attribute to a virtual property.
+2) Create a proxy of the class.
+
+Expected outcome: the attribute is available on the proxy
+
+Actual outcome: the attribute is not available on the proxy.</value>
+    </field>
+    <field name="created">
+      <value>1251981790000</value>
+    </field>
+    <field name="updated">
+      <value>1252334803000</value>
+    </field>
+    <field name="reporterName">
+      <value>bart</value>
+    </field>
+    <field name="updaterName">
+      <value>bart</value>
+    </field>
+    <field name="resolved">
+      <value>1252334760000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="bart" text="Added a patch with a failing unit test CastleDynamicProxyInheritableAttributeTestPatch.patch&#xA;&#xA;Added a patch with a proposed solution. All tests are passing with that patch but I am absolutely not sure that this is THE solution. If I read the code it seems that it was assumed that the inheritable attributes would automatically be taken over on the proxy which definitely does not seem to be case. btw, you should take the last patch I uploaded. I could not find a delete option for the first one." created="1251982292000" />
+    <comment author="xtoff" text="IIRC this is by design. If attribute is inheritable, it is accessible in the inheriting classes, so inheritable attributes should be available if you query for them from proxy type.&#xA;&#xA;Can you give an example where it's causing an issues?" created="1252291077000" />
+    <comment author="bart" text="Can you take a look at the test I added. In that test I created a inheritable attribute and tried to retrieve it from the proxy. The test fails." created="1252296805000" />
+    <comment author="jonorossi" text="Because MemberInfo.GetCustomAttributes works different to Attribute.GetCustomAttributes, using the static IsDefined on Attribute will yield the correct results for a PropertyInfo when using the inherit flag.&#xA;&#xA;Just change this line in your test with the one following and it passes:&#xA;Assert.IsTrue(nameProperty.IsDefined(typeof(InheritableAttribute), false));&#xA;Assert.IsTrue(Attribute.IsDefined(nameProperty, typeof(InheritableAttribute), true));&#xA;&#xA;See this blog post for more details:&#xA;http://blogs.msdn.com/weitao/archive/2009/05/28/override-properties-ii-getcustomattributes.aspx for more details." created="1252300463000" />
+    <comment author="bart" text="Cool. That seems to work. I did not even know you could do it like that as well." created="1252305927000" />
+    <comment author="xtoff" text="Cool,&#xA;&#xA;So - can we close this as invalid?" created="1252308229000" />
+    <comment author="bart" text="Yes, you can and thanks for the follow up." created="1252329161000" />
+    <comment author="bart" text="* '''Attachment''' CastleDynamicProxyInheritableAttributeTestPatch.patch added.&#xD;&#xA;" created="1251981900000" />
+    <comment author="bart" text="* '''Attachment''' CastleDynamicProxyInheritableAttributePatch.patch added.&#xD;&#xA;" created="1251981960000" />
+    <comment author="bart" text="* '''Attachment''' CastleDynamicProxyInheritableAttributePatch1.patch added.&#xD;&#xA;" created="1251982080000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1252334760000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1252334760000" />
+  </issue>
+</issues>

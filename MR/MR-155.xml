@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>155</value>
+    </field>
+    <field name="summary">
+      <value>Mono 2.0 not finding configuration section</value>
+    </field>
+    <field name="description">
+      <value>I'm trying to update the code generated from the project generator but I get his error when lauching my browser:
+
+System.ApplicationException: You have to provide a small configuration to use MonoRail. Check the samples or the documentation 
+in &lt;0x000f8&gt; Castle.MonoRail.Framework.Configuration.MonoRailConfiguration:GetConfig () 
+in &lt;0x0000d&gt; Castle.MonoRail.Framework.MonoRailServiceContainer:InitConfiguration () 
+in &lt;0x00015&gt; Castle.MonoRail.Framework.MonoRailServiceContainer:Start () 
+in (wrapper remoting-invoke-with-check) Castle.MonoRail.Framework.MonoRailServiceContainer:Start () 
+in &lt;0x00069&gt; Castle.MonoRail.Framework.EngineContextModule:Init (System.Web.HttpApplication context) 
+in &lt;0x00197&gt; System.Web.Configuration.HttpModulesSection:LoadModules (System.Web.HttpApplication app) 
+in &lt;0x0007d&gt; System.Web.HttpApplication:InitOnce (Boolean full_init) 
+in &lt;0x00019&gt; System.Web.HttpApplication:Start (System.Object x)
+
+Attached is my web.config file which I haven't changed and worked before I updated to last build.</value>
+    </field>
+    <field name="created">
+      <value>1159559430000</value>
+    </field>
+    <field name="updated">
+      <value>1244676495000</value>
+    </field>
+    <field name="reporterName">
+      <value>macournoyer</value>
+    </field>
+    <field name="updaterName">
+      <value>macournoyer</value>
+    </field>
+    <field name="resolved">
+      <value>1282143498573</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676480000" />
+  </issue>
+</issues>

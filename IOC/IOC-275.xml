@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Usability Problem</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>275</value>
+    </field>
+    <field name="summary">
+      <value>Exception message thrown when dependencies are missing is not always very clear and should be improved</value>
+    </field>
+    <field name="description">
+      <value>{{Can't create component 'ToBeSeen.Repositories.EventRepository' as it has dependencies to be satisfied. ToBeSeen.Repositories.EventRepository is waiting for the following dependencies:
+
+Keys (components with specific keys) - pageSize which was not registered.}}
+
+
+That is not really crystal clear and there's certainly room for improvement. Especially the 'Keys' thing is slightly out of date as it suggests we can only satisfy the dependency by name, which is no longer the case as of v2.5</value>
+    </field>
+    <field name="created">
+      <value>1298285605194</value>
+    </field>
+    <field name="updated">
+      <value>1407822257305</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1298285605381</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>3</value>
+    </field>
+    <field name="summary">
+      <value>#include not working for nvelocity</value>
+    </field>
+    <field name="description">
+      <value>#include directives are not working, nvelocity outputs a
+
+&lt;!-- include error : error with arg 0 please see log. see error log --&gt;
+
+Attaching to the w3wp using VS, an exception is raised in
+RuntimeInstance.GetContent(String name, String encoding)
+
+Unable to cast object of type
+'Castle.MonoRail.Framework.Views.NVelocity.CustomTemplate' to type
+'NVelocity.Runtime.Resource.ContentResource'.
+
+I havent spent a lot of time on this, but the heirarchy (which is causing the problem) is
+
+NVelocity.Resource
+    - NVelocity.Template
+        - Monorail....CustomTemplate
+    - NVelocity...ContentResource
+
+#parsing the file works fine</value>
+    </field>
+    <field name="created">
+      <value>1156184331000</value>
+    </field>
+    <field name="updated">
+      <value>1253854750000</value>
+    </field>
+    <field name="reporterName">
+      <value>nihm</value>
+    </field>
+    <field name="updaterName">
+      <value>nihm</value>
+    </field>
+    <field name="resolved">
+      <value>1282142737573</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253854740000" />
+  </issue>
+</issues>

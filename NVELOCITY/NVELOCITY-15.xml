@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>15</value>
+    </field>
+    <field name="summary">
+      <value>Fix thread safety issue in ASTMethod.Execute()</value>
+    </field>
+    <field name="description">
+      <value>ASTMethod's method of creating the parameters for the method invocation is not thread-safe.</value>
+    </field>
+    <field name="created">
+      <value>1192770075000</value>
+    </field>
+    <field name="updated">
+      <value>1253854798000</value>
+    </field>
+    <field name="reporterName">
+      <value>sradack</value>
+    </field>
+    <field name="updaterName">
+      <value>sradack</value>
+    </field>
+    <field name="resolved">
+      <value>1282142755432</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253854740000" />
+  </issue>
+</issues>

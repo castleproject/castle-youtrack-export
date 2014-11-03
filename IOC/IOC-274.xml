@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>274</value>
+    </field>
+    <field name="summary">
+      <value>AllInterfaces registration not working as expected with generic interfaces. Throws null reference exception on resolve.</value>
+    </field>
+    <field name="description">
+      <value>I haven't tested this on the trunk, it happens in 2.5.1
+
+{code lang=csharp}
+public void AllInterfaces_not_working_with_generic_interfaces()
+{
+    var container = new WindsorContainer().Register(
+        AllTypes.FromThisAssembly().BasedOn(typeof(IThing&lt;&gt;)).WithService.AllInterfaces()
+        );
+
+    // Throws Object reference not set to an instance of an object.
+    var things = container.ResolveAll&lt;IThing&lt;B&gt;&gt;();
+
+    Assert.That(things.Length == 1);
+}
+
+public class A{}
+public class B{}
+
+public interface IThing&lt;T&gt;{}
+public class Thing : IThing&lt;A&gt;, IThing&lt;B&gt; {}
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1297861406821</value>
+    </field>
+    <field name="updated">
+      <value>1298008605446</value>
+    </field>
+    <field name="reporterName">
+      <value>Mike.Hadlow</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1298008605446</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

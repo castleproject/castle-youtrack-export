@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>1.1.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>16</value>
+    </field>
+    <field name="summary">
+      <value>ClassProxyGenerator::GenerateTypeName bug for types implementing generic interfaces</value>
+    </field>
+    <field name="description">
+      <value>While creating intercepted class a new type is created with new name.
+When intercepted class/intercace implements generic interface generated type name doesn't care about it.
+
+So when creating two proxies with different returning interface for the same object
+
+  x.CreateCustomProxy(typeof(MyType&lt;int&gt;), interceptor, obj, generatorContext);
+  
+  x.CreateCustomProxy(typeof(MyType&lt;string&gt;), interceptor, obj, generatorContext);
+
+
+ generated type names looks the same (generated types are in cache, so when creating  proxy for second type it will return wrong type from cache).
+
+
+ My suggestion is to change functions:
+
+ ----------------- InterfaceProxyGenerator.cs  --------------------------------------
+
+protected override String GenerateTypeName(Type type, Type[] interfaces)
+		{
+			StringBuilder sb = new StringBuilder();
+			foreach (Type inter in interfaces)
+			{
+				sb.Append('_');
+				sb.Append(inter.Name);
+#if dotNet2
+                if (inter.IsGenericType)
+                {
+                    sb.Append("__");
+                    Type[] genericParameters = inter.GetGenericArguments();
+                    for (int i = 0; i &lt; genericParameters.Length; i++)
+                    {
+                        if (i &gt; 0)
+                            sb.Append("__");
+                        sb.Append(genericParameters[i].Name);
+                    }
+                    sb.Append("__");
+                }
+#endif
+			}
+			/// Naive implementation
+			return String.Format("ProxyInterface{2}{0}{1}", type.Name, sb.ToString(), NormalizeNamespaceName(type.Namespace));
+		}
+
+-------------------------------------------------------------------------------------
+
+
+----------------- ClassProxyGenerator.cs  -------------------------------------------
+		protected override String GenerateTypeName(Type type, Type[] interfaces)
+		{
+			StringBuilder sb = new StringBuilder();
+			foreach (Type inter in interfaces)
+			{
+				sb.Append('_');
+				sb.Append(inter.Name);
+#if dotNet2
+                if (inter.IsGenericType)
+                {
+                    sb.Append("__");
+                    Type[] genericParameters = inter.GetGenericArguments();
+                    for (int i = 0; i &lt; genericParameters.Length; i++)
+                    {
+                        if (i &gt; 0)
+                            sb.Append("__");
+                        sb.Append(genericParameters[i].Name);
+                    }
+                    sb.Append("__");
+                }
+#endif
+			}
+			/// Naive implementation
+			return String.Format("CProxyType{0}{3}{1}{2}", type.Name, sb.ToString(), interfaces.Length, NormalizeNamespaceName(type.Namespace) );
+		}
+-------------------------------------------------------------------------------------
+
+I use it for some time and it seems to work fine.
+ 
+
+PS. I don't provide sources to reproduce an error, because my original code that uses that is really huge, and i'm to lazy to write working example for this issue, but if you really want it I can produce one 
+
+</value>
+    </field>
+    <field name="created">
+      <value>1135754099000</value>
+    </field>
+    <field name="updated">
+      <value>1162411350000</value>
+    </field>
+    <field name="reporterName">
+      <value>wojtek</value>
+    </field>
+    <field name="updaterName">
+      <value>wojtek</value>
+    </field>
+    <field name="resolved">
+      <value>1282140554260</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

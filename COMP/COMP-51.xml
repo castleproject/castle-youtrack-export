@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>51</value>
+    </field>
+    <field name="summary">
+      <value>Add IsGreaterValidator support in Castle.Components.Validator</value>
+    </field>
+    <field name="description">
+      <value>Add IsGreaterValidator to Castle.Components.Validator this new validation one property against another.
+
+Assume we have:
+
+PropertyA
+
+[IsGreaterValidator(IsGreaterValidatorType.Date, "PropertyA"]
+PropertyB
+
+This validation will check if the PropertyB's value is greater than PropertyA
+
+The patch shall be apply to Castle\Components\Validator folder.</value>
+    </field>
+    <field name="created">
+      <value>1200026624000</value>
+    </field>
+    <field name="updated">
+      <value>1209446417000</value>
+    </field>
+    <field name="reporterName">
+      <value>csokun</value>
+    </field>
+    <field name="updaterName">
+      <value>csokun</value>
+    </field>
+    <field name="resolved">
+      <value>1282137587479</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

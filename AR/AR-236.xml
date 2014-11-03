@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.0 Alpha 2</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>236</value>
+    </field>
+    <field name="summary">
+      <value>Schema-action support</value>
+    </field>
+    <field name="description">
+      <value>By supporting schema-action we can map an object to view
+
+http://nhforge.org/blogs/nhibernate/archive/2008/12/15/customizing-schema-export-with-schema-action.aspx</value>
+    </field>
+    <field name="created">
+      <value>1231096911000</value>
+    </field>
+    <field name="updated">
+      <value>1243163571000</value>
+    </field>
+    <field name="reporterName">
+      <value>csokun</value>
+    </field>
+    <field name="updaterName">
+      <value>csokun</value>
+    </field>
+    <field name="resolved">
+      <value>1243163520000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="csokun" text="first we need to apply this patch http://groups.google.com/group/castle-project-devel/msg/edfa26bcb86b9243 this will make sure AR work again NH Trunk" created="1231097551000" />
+    <comment author="mzywitza" text="Now AR is running on NH trunk. Do you have a patch for introducing schema-action?" created="1232185062000" />
+    <comment author="mzywitza" text="Applied with changes" created="1243163563000" />
+    <comment author="csokun" text="* '''Attachment''' Schema-Action.patch added.&#xD;&#xA;" created="1242758880000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1242729960000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Work Started'' to ''Work Stopped''.&#xD;&#xA;" created="1242940800000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.0 Alpha 2''.&#xD;&#xA;* '''Status''' changed from ''Work Stopped'' to ''Resolved''.&#xD;&#xA;" created="1243163520000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1243163520000" />
+  </issue>
+</issues>

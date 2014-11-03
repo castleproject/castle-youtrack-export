@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Ajax Support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>448</value>
+    </field>
+    <field name="summary">
+      <value>Make JSONReturnBinderAttribute open for extension</value>
+    </field>
+    <field name="description">
+      <value>I'm using jQuery Form plugin to post file uploads "async" (it uses iframes here). My controller action responds with some JSON data. Accorging to http://www.malsup.com/jquery/form/#code-samples (look Files tab) returned server data should look like &lt;textarea&gt;JSON respons goes here&lt;/textarea&gt; because it's being put into iframe's innerHtml. 
+
+So, I looked at existing JSONReturnBinderAttribute and modified it a bit to be able to use it's logic (inherit and override) and wrap JSON in textarea. Attaching a patch created from ..\Castle\MonoRail\
+</value>
+    </field>
+    <field name="created">
+      <value>1210444097000</value>
+    </field>
+    <field name="updated">
+      <value>1263055781000</value>
+    </field>
+    <field name="reporterName">
+      <value>weex</value>
+    </field>
+    <field name="updaterName">
+      <value>weex</value>
+    </field>
+    <field name="resolved">
+      <value>1282145687604</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055740000" />
+  </issue>
+</issues>

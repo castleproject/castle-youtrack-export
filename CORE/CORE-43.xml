@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>43</value>
+    </field>
+    <field name="summary">
+      <value>Add option to skip configuring log4net/nlog</value>
+    </field>
+    <field name="description">
+      <value>This is useful if another framework using one of those logging frameworks is used (like NServiceBus) and it wants to take over configuration.
+
+It would be useful to just be able to say "use NLog but it will be configured somewhere else".</value>
+    </field>
+    <field name="created">
+      <value>1341621440062</value>
+    </field>
+    <field name="updated">
+      <value>1344135758846</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1344135758846</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

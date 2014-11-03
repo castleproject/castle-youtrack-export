@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - NVelocity</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>352</value>
+    </field>
+    <field name="summary">
+      <value>Fix race conditions in NVelocity custom directives processing</value>
+    </field>
+    <field name="description">
+      <value>There is a small chance that the NVelocity view engine may confuse the contexts of two view components rendered simultaneously.</value>
+    </field>
+    <field name="created">
+      <value>1193409246000</value>
+    </field>
+    <field name="updated">
+      <value>1263055568000</value>
+    </field>
+    <field name="reporterName">
+      <value>sradack</value>
+    </field>
+    <field name="updaterName">
+      <value>sradack</value>
+    </field>
+    <field name="resolved">
+      <value>1282145334526</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055560000" />
+  </issue>
+</issues>

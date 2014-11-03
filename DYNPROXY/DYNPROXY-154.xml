@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>154</value>
+    </field>
+    <field name="summary">
+      <value>Can't create the proxy for interface that contains a method returning multidimensional array.</value>
+    </field>
+    <field name="description">
+      <value>Hi, I am not a Castle user, but I am seeing this issue in both Rhino Mock and Moq, and I believe this is a bug in Castle DynamicProxy Generator.
+The dynamic proxy can't be created if the interface contains a method returning multidimensional array.
+
+To reproduce it in Moq:
+public interface IMyInterface
+{
+    string[,] GetMultiDimensionArray();
+}
+
+[Test]
+public void Test2()
+{
+    var mock = new Moq.Mock&lt;IMyInterface&gt;();
+    IMyInterface myProxyObj = mock.Object;
+}
+
+The above code will throw an exception:
+
+FMStationBusinessLayer.Test.OrderServiceTest.Test2:
+System.TypeLoadException : Signature of the body and declaration in a method implementation do not match.  Type: 'Castle.Proxies.IMyInterfaceProxy'.  Assembly: 'DynamicProxyGenAssembly2, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'.
+
+at System.Reflection.Emit.TypeBuilder._TermCreateClass(Int32 handle, Module module)
+at System.Reflection.Emit.TypeBuilder.CreateTypeNoLock()
+at System.Reflection.Emit.TypeBuilder.CreateType()
+at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.CreateType(TypeBuilder type)
+at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()
+at Castle.DynamicProxy.Generators.InterfaceProxyWithoutTargetGenerator.GenerateType(String typeName, Type proxyTargetType, Type[] interfaces, INamingScope namingScope)
+at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode(Type proxyTargetType, Type[] interfaces, ProxyGenerationOptions options)
+at Castle.DynamicProxy.DefaultProxyBuilder.CreateInterfaceProxyTypeWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, IInterceptor[] interceptors)
+at Moq.Proxy.CastleProxyFactory.CreateProxy[T](ICallInterceptor interceptor, Type[] interfaces, Object[] arguments)
+at Moq.Mock`1.&lt;InitializeInstance&gt;b__0()
+at Moq.PexProtector.Invoke(Action action)
+at Moq.Mock`1.InitializeInstance()
+at Moq.Mock`1.OnGetObject()
+at Moq.Mock`1.get_Object()
+at FMStationBusinessLayer.Test.OrderServiceTest.Test2()</value>
+    </field>
+    <field name="created">
+      <value>1295529739109</value>
+    </field>
+    <field name="updated">
+      <value>1304751584636</value>
+    </field>
+    <field name="reporterName">
+      <value>mailtochung</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1304751584636</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="This is a bug in .NET Reflection Emit code which was reported long ago and hasn't been fixed since. Nothing DP can do to workaround it." created="1304751577667" />
+  </issue>
+</issues>

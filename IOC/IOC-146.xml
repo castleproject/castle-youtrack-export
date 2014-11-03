@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>146</value>
+    </field>
+    <field name="summary">
+      <value>Problem with circular references</value>
+    </field>
+    <field name="description">
+      <value>Hello,
+
+I am having problems with circular references between classes. Consider the following example code.
+
+    public interface IMaster
+    {
+    }
+
+    public interface ISlave
+    {
+    }
+
+    public class Master : IMaster
+    {
+        private ISlave slave;
+
+        public ISlave Slave
+        {
+            get { return this.slave; }
+            set { this.slave = value;  }
+        }
+    }
+
+    public class Slave : ISlave
+    {
+        private IMaster master;
+
+        public IMaster Master
+        {
+            get { return this.master; }
+            set { this.master = value; }
+        }
+    }
+
+
+Try and resolve the master
+
+IWindsorContainer container = ...
+IMaster master = container.Resolve&lt;IMaster&gt;();
+
+
+Problem 1: 
+Use Castle auto-wire (No explicit set of Master/Slave properties) with the following XML:
+
+&lt;component id="Master1" service="CastleSample.IMaster, CastleSample"
+           type="CastleSample.Master, CastleSample"&gt;
+  &lt;parameters&gt;
+  &lt;/parameters&gt;
+&lt;/component&gt;
+
+&lt;component id="Slave1" service="CastleSample.ISlave, CastleSample"
+           type="CastleSample.Slave, CastleSample"&gt;
+  &lt;parameters&gt;
+  &lt;/parameters&gt;
+&lt;/component&gt;
+
+This returns an IMaster instance with its Slave property set to a slave instance. However, the slave does not have its Master property set. It is null. Would expect the Master property on the slave instance to be set to the master.
+
+
+Problem 2: 
+Explicit set the Master and Slave properties with the following XML:
+
+&lt;component id="Master1" service="CastleSample.IMaster, CastleSample"
+           type="CastleSample.Master, CastleSample"&gt;
+  &lt;parameters&gt;
+    &lt;Slave&gt;${Slave1}&lt;/Slave&gt;
+  &lt;/parameters&gt;
+&lt;/component&gt;
+
+&lt;component id="Slave1" service="CastleSample.ISlave, CastleSample"
+           type="CastleSample.Slave, CastleSample"&gt;
+  &lt;parameters&gt;
+    &lt;Master&gt;${Master1}&lt;/Master&gt;
+  &lt;/parameters&gt;
+&lt;/component&gt;
+
+This fails with a HandlerException with the following contents:
+
+Can't create component 'Master1' as it has dependencies to be satisfied. 
+Master1 is waiting for the following dependencies: 
+
+Keys (components with specific keys)
+- Slave1 which was registered but is also waiting for dependencies. 
+
+Slave1 is waiting for the following dependencies: 
+
+Keys (components with specific keys)
+- Master1 which was registered but is also waiting for dependencies. 
+
+
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1235029314000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853104</value>
+    </field>
+    <field name="reporterName">
+      <value>pbn</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1241441160000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="I think this behavior is by design. It is simple in this trivial case, but what if Slave required IMaster in .ctor? It can pretty quickly get pretty complicated and confusing." created="1240298624000" />
+    <comment author="ayenderahien" text="Agreed, this is a by design feature.&#xA;A work around to that can be handle by registering a proxy that would resolve ISlave is a lazily loaded fashion, breaking the cycle.&#xA;In general, cycles are a nasty problem, and should be avoided." created="1241441174000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1241441160000" />
+    <comment author="ayenderahien" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1241441160000" />
+  </issue>
+</issues>

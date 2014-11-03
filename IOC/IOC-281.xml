@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>281</value>
+    </field>
+    <field name="summary">
+      <value>Provide out of the box support for Lazy&lt;T&gt;</value>
+    </field>
+    <field name="description">
+      <value>So that when I have component for {{A}} I can resolve {{Lazy&lt;A&gt;}} and from it obtain {{A}} if needed, at some later point in time.
+Thie comes [http://castle.uservoice.com/forums/38955-windsor-v3/suggestions/513869-add-a-lazy-resolver?ref=title|from user voice site].</value>
+    </field>
+    <field name="created">
+      <value>1300581229394</value>
+    </field>
+    <field name="updated">
+      <value>1407822257296</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1300581229503</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

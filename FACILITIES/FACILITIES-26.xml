@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>26</value>
+    </field>
+    <field name="summary">
+      <value>didn't create more database in Facility:ActiveRecord</value>
+    </field>
+    <field name="description">
+      <value>my config file:
+ &lt;facilities&gt; 
+&lt;facility id="startable" type="Castle.Facilities.Startable.StartableFacility,Castle.Facilities.Startable" /&gt;
+&lt;facility id="transaction" type="Castle.Facilities.AutomaticTransactionManagement.TransactionFacility,Castle.Facilities.AutomaticTransactionManagement" /&gt;
+&lt;facility id="arfacility" type="Castle.Facilities.ActiveRecordIntegration.ActiveRecordFacility,Castle.Facilities.ActiveRecordIntegration"&gt;
+   &lt;assemblies&gt;
+	&lt;item&gt;KanBan.Data&lt;/item&gt;
+        &lt;item&gt;Comm.Data&lt;/item&gt;
+   &lt;/assemblies&gt;
+	    
+   &lt;config&gt;
+	&lt;add key="hibernate.connection.driver_class" value="NHibernate.Driver.SqlClientDriver" /&gt;
+        &lt;add key="hibernate.dialect"                 value="NHibernate.Dialect.MsSql2000Dialect" /&gt;
+	&lt;add key="hibernate.connection.provider"     value="NHibernate.Connection.DriverConnectionProvider" /&gt;
+	&lt;add key="hibernate.connection.connection_string" value="Server=localhost;Database=KB;Uid=sa;Pwd=" /&gt;
+  &lt;/config&gt;
+
+    &lt;config type="Common.Data.BaseDB, Comm.Data"&gt;
+       &lt;add key="hibernate.connection.driver_class" value="NHibernate.Driver.SqlClientDriver" /&gt;
+       &lt;add key="hibernate.dialect"                 value="NHibernate.Dialect.MsSql2000Dialect" /&gt;
+       &lt;add key="hibernate.connection.provider"     value="NHibernate.Connection.DriverConnectionProvider" /&gt;
+       &lt;add key="hibernate.connection.connection_string" value="Server=localhost;Database=Demo_DB;Uid=sa;Pwd=" /&gt;
+   &lt;/config&gt;
+
+		
+	  &lt;/facility&gt;
+    &lt;/facilities&gt; 
+
+follow is error :
+
+KanBan.BizRule.Tester.CreateTable : Castle.MicroKernel.Facilities.FacilityException : Error trying to start the ActiveRecord Framework
+  ----&gt; Castle.MicroKernel.ComponentRegistrationException : There is a component already registered for the given key activerecord.sessionfactory
+TearDown : System.NullReferenceException : ???????????????
+
+My email: lsj_3@21cn.com
+thanks!
+</value>
+    </field>
+    <field name="created">
+      <value>1130445661000</value>
+    </field>
+    <field name="updated">
+      <value>1162411982000</value>
+    </field>
+    <field name="reporterName">
+      <value>alexlsj</value>
+    </field>
+    <field name="updaterName">
+      <value>alexlsj</value>
+    </field>
+    <field name="resolved">
+      <value>1282140975245</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

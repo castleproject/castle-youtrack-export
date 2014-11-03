@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>518</value>
+    </field>
+    <field name="summary">
+      <value>RedirectToAction doensn't support anchors</value>
+    </field>
+    <field name="description">
+      <value>I'm using Castle Monorail with jQuery tabbed navigation.
+
+When handling a controller action, I would like to redirect to a view, and control which tab is visible. Therefore, I'd like to have my controller redirecting to a specific anchor in a view, something along the lines of:
+
+RedirectToAction("Edit", "id=1", "#roles"));
+
+Resulting in the url:
+http://localhost/MyApp/User/edit.rails?id=1#roles
+
+However, the actual result encodes the # sign to %23
+http://localhost/MyApp/User/edit.rails?id=1&amp;%23roles=&amp;
+
+Both on the forum and stackoverflow stated that I should submit this info here.
+
+http://forum.castleproject.org/viewtopic.php?t=5106
+http://groups.google.com/group/castle-project-users/t/2254ca9a951c0d
+http://stackoverflow.com/questions/540830/monorail-redirect-to-anchor</value>
+    </field>
+    <field name="created">
+      <value>1234417668000</value>
+    </field>
+    <field name="updated">
+      <value>1263055442000</value>
+    </field>
+    <field name="reporterName">
+      <value>grootjans</value>
+    </field>
+    <field name="updaterName">
+      <value>grootjans</value>
+    </field>
+    <field name="resolved">
+      <value>1262663760000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Fixed in r6570" created="1262663788000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1262663340000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1262663760000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055440000" />
+  </issue>
+</issues>

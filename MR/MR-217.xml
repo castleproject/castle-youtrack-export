@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Javascript Libraries</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>217</value>
+    </field>
+    <field name="summary">
+      <value>fValidate box message contains &lt;BR/&gt; if being triggered twice</value>
+    </field>
+    <field name="description">
+      <value>When I triggered ValidateForm for more than once, the error message is duplicated, and &lt;BR/&gt; is displayed (which suppose to be interpreted as a line break but turns out being escaped to &amp;lt; annd &amp;gt; somewhere.
+
+Sample:
+The data entered for Due Date is not a valid date&lt;br /&gt;Please enter a date using the following format: mm/dd/yyyy
+Please enter a date using the following format: mm/dd/yyyy
+
+Notice the duplicated message and &lt;br/&gt;</value>
+    </field>
+    <field name="created">
+      <value>1169264574000</value>
+    </field>
+    <field name="updated">
+      <value>1244675863000</value>
+    </field>
+    <field name="reporterName">
+      <value>goodwill</value>
+    </field>
+    <field name="updaterName">
+      <value>goodwill</value>
+    </field>
+    <field name="resolved">
+      <value>1282143667135</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675820000" />
+  </issue>
+</issues>

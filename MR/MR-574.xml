@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>574</value>
+    </field>
+    <field name="summary">
+      <value>CombineJS and client side caching</value>
+    </field>
+    <field name="description">
+      <value>We just upgraded from MonoRails 1 to MonoRails 2.0, and want to use the CombineJS as seen here:
+
+http://erichauser.net/2009/01/27/javascript-compression-for-monorail/
+
+In Firebug Net, it loads as http://www.domain.com/MonoRail/Files/BuiltJS.rails?name=deflayout&amp;version=8204059377542922030
+
+But here's the thing.. it doesn't cache! 
+
+I believe it is because in the header it has must-revalidate in the cache-control:
+
+    Cache-Control public, must-revalidate, max-age=259200
+
+
+How can I get rid of that?
+
+Thanks in advance! :)
+Joe
+WeLiveinBeijing.com
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1296372074533</value>
+    </field>
+    <field name="updated">
+      <value>1296602036220</value>
+    </field>
+    <field name="reporterName">
+      <value>uflidd</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1296602000829</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="Please, use or mailing lists to post questions like these. Tks. " created="1296602036220" />
+  </issue>
+</issues>

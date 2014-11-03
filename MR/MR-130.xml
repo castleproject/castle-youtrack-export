@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>130</value>
+    </field>
+    <field name="summary">
+      <value>cannot create a select for classes that inherit from the same base class</value>
+    </field>
+    <field name="description">
+      <value>I have 2 classes X and Z that inherit from base class A. I want to show instances of both classes in a dropdown with the aid of the formhelper or the htmlhelper. This is now not possible, because these helpers expect instances of the same type. The expected type is derived from the first instance in the icollection that you pass to it.
+
+This small patch fixes this issue and makes this scenario possible. I hope you can include it in the sources.
+</value>
+    </field>
+    <field name="created">
+      <value>1152708465000</value>
+    </field>
+    <field name="updated">
+      <value>1162413205000</value>
+    </field>
+    <field name="reporterName">
+      <value>peter</value>
+    </field>
+    <field name="updaterName">
+      <value>peter</value>
+    </field>
+    <field name="resolved">
+      <value>1282143468729</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

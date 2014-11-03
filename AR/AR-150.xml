@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>150</value>
+    </field>
+    <field name="summary">
+      <value>Classes with PrimaryKeyType Assigned are not saved</value>
+    </field>
+    <field name="description">
+      <value>If you have a class, where you assign the primary key yourselve with the Attribute PrimaryKeyType.Assigned and then call Save(), the class is not save. I guess (don't know if it is true) that AR calls SaveOrUpdate() from NHibernate. But in this special case you have to call Save(). From the NHibernate 1.2 documentation:
+
+Due to its inherent nature, entities that use this generator cannot be saved via the ISession's SaveOrUpdate() method. Instead you have to explicitly specify to NHibernate if the object should be saved or updated by calling either the Save() or Update() method of the ISession.
+
+To reproduce it:
+
+Class Person.cs:
+
+[ActiveRecord("Persons")]
+    public class Person : ActiveRecordBase&lt;Person&gt;
+    {
+        private int id;
+
+        private Person()
+            : this(0)
+        {
+        }
+
+        public Person(int id)
+        {
+            this.id = id;
+        }
+
+        [PrimaryKey(UnsavedValue = "0",
+            Access = PropertyAccess.NosetterCamelcase,
+            Generator = PrimaryKeyType.Assigned)]
+        public int Id
+        {
+            get { return id; }
+        }
+    }
+
+Test Class:
+
+            Person p = new Person(1);
+            p.Save();
+            Person.Find(1); // will throw exception</value>
+    </field>
+    <field name="created">
+      <value>1177596663000</value>
+    </field>
+    <field name="updated">
+      <value>1177606246000</value>
+    </field>
+    <field name="reporterName">
+      <value>cepheus</value>
+    </field>
+    <field name="updaterName">
+      <value>cepheus</value>
+    </field>
+    <field name="resolved">
+      <value>1282136340401</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

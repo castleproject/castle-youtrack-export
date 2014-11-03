@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>173</value>
+    </field>
+    <field name="summary">
+      <value>Port Brail to C#</value>
+    </field>
+    <field name="description">
+      <value>At the moment the only one that is working on Brail is me, because it is in Boo.
+Porting it to C# will enable other people to contribute to it, and enable much better debugger experiance when people run into problems.
+</value>
+    </field>
+    <field name="created">
+      <value>1164392312000</value>
+    </field>
+    <field name="updated">
+      <value>1244675815000</value>
+    </field>
+    <field name="reporterName">
+      <value>ayenderahien</value>
+    </field>
+    <field name="updaterName">
+      <value>ayenderahien</value>
+    </field>
+    <field name="resolved">
+      <value>1282143591213</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675760000" />
+  </issue>
+</issues>

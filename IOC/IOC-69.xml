@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>69</value>
+    </field>
+    <field name="summary">
+      <value>The DefaultDependencyResolver does not properly CanResolveServiceDependency when using service overrides</value>
+    </field>
+    <field name="description">
+      <value>I registered a transient component that had a service override configuration for the constructor.
+I was able to resolve the component from the kernel the first time, however when I tried a seconds 
+time, the component activator failed while resolving the parameter model dependency.
+
+Cause:
+  Service Overrides in parameters are initially represented as a service dependency.  Then the
+DefaultDependencyResolver resolves the dependency the first time, it converts it into a real
+Service Override dependency.  However, when a following attempt is made to determine if
+the dependency can be resolved, the CanResolveServiceDependency did not check for a
+Service Override dependency.</value>
+    </field>
+    <field name="created">
+      <value>1173004892000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838885</value>
+    </field>
+    <field name="reporterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142010401</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

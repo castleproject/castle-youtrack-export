@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>379</value>
+    </field>
+    <field name="summary">
+      <value>Change public methods on FormHelper to virtual</value>
+    </field>
+    <field name="description">
+      <value>Patch to change public methods on FormHelper to virtual so one can override them when they extend FormHelper in there class.
+
+Example:
+
+namespace NetCoders.Portal.Core.Helpers
+{
+	using System.Collections;
+	using System.Collections.Generic;
+	using Castle.MonoRail.Framework.Helpers;
+
+	public class HtmlFormHelper : FormHelper
+	{
+		#region Fields
+		private Dictionary&lt;string, string&gt; _errors;
+		#endregion
+
+		#region FormTag
+		public override string FormTag(IDictionary attributes)
+		{
+			if (Controller.Flash.ContainsKey("errors"))
+			{
+				_errors = (Dictionary&lt;string, string&gt;) Controller.Flash["errors"];
+			}
+
+			return FormTag(UrlHelper.For(attributes), attributes);
+		}
+
+		public override string EndFormTag()
+		{
+			return "&lt;/form&gt;";
+		}
+		#endregion
+
+		#region TextField
+		public override string TextField(string name)
+		{
+			return TextField(name, null);
+		}
+
+		public override string TextField(string name, IDictionary attributes)
+		{
+			if (_errors != null)
+			{
+				if (_errors.ContainsKey(name))
+				{
+					if (attributes != null)
+					{
+						if (attributes.Contains("class"))
+						{
+							attributes.Remove("class");
+						}
+
+						attributes.Add("class", "error");
+					}
+					else
+					{
+						attributes = DictHelper.Create("class=error");
+					}
+				}
+			}
+
+			name = RewriteTargetIfWithinObjectScope(name);
+
+			object value = ObtainValue(name);
+
+			return CreateInputElement("text", name, value, attributes);
+		}
+		#endregion
+
+		#region Select
+		public override string Select(string name, IEnumerable items)
+		{
+			return Select(name, items, null);
+		}
+
+		public override string Select(string name, IEnumerable items, IDictionary attributes)
+		{
+			if (_errors != null)
+			{
+				if (_errors.ContainsKey(name))
+				{
+					if (attributes != null)
+					{
+						if (attributes.Contains("class"))
+						{
+							attributes.Remove("class");
+						}
+
+						attributes.Add("class", "error");
+					}
+					else
+					{
+						attributes = DictHelper.Create("class=error");
+					}
+				}
+			}
+
+			name = RewriteTargetIfWithinObjectScope(name);
+
+			object value = ObtainValue(name);
+
+			return Select(name, value, items, attributes);
+		}
+		#endregion
+
+		#region TextArea
+		public override string TextArea(string name)
+		{
+			return TextArea(name, null);
+		}
+
+		public override string TextArea(string name, IDictionary attributes)
+		{
+			if (_errors != null)
+			{
+				if (_errors.ContainsKey(name))
+				{
+					if (attributes != null)
+					{
+						if (attributes.Contains("class"))
+						{
+							attributes.Remove("class");
+						}
+
+						attributes.Add("class", "error");
+					}
+					else
+					{
+						attributes = DictHelper.Create("class=error");
+					}
+				}
+			}
+
+			string targetValue = RewriteTargetIfWithinObjectScope(name);
+
+			object value = ObtainValue(targetValue);
+
+			return TextAreaValue(name, value, attributes);
+		}
+		#endregion
+	}
+}</value>
+    </field>
+    <field name="created">
+      <value>1197721348000</value>
+    </field>
+    <field name="updated">
+      <value>1244676920000</value>
+    </field>
+    <field name="reporterName">
+      <value>mike343</value>
+    </field>
+    <field name="updaterName">
+      <value>mike343</value>
+    </field>
+    <field name="resolved">
+      <value>1282145445260</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676900000" />
+  </issue>
+</issues>

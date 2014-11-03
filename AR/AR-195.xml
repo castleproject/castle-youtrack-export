@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Attributes</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>195</value>
+    </field>
+    <field name="summary">
+      <value>BelongsTo attribute on field</value>
+    </field>
+    <field name="description">
+      <value>In some scenarios there is needed to use some calculation on property change. It is possible to use a Field attribute, but BelongsTo does not allow this behavior. 
+
+There is an option to make 2 properties, one is for fetching and another for calculations (bound with user controls). But it would be much easier when we could use BelongsTo attribute in fields like following example:
+
+ [BelongsTo("REF_CUSTOMER_INVOICING", Access = PropertyAccess.Field)]
+        private InvoicingCustomer _invoiceCustomer;
+
+        public virtual InvoicingCustomer InvoiceCustomer
+        {
+            get { return _invoiceCustomer; }
+            set
+            {
+                _invoiceCustomer = value;
+                DiscountPrecent = _invoiceCustomer.DiscountPrecent;
+            }
+        }
+
+I added the patch for this and it works on my solution perfectly. (There are about 40 different business objects for it)
+This patch does not include any unit tests.
+</value>
+    </field>
+    <field name="created">
+      <value>1197791922000</value>
+    </field>
+    <field name="updated">
+      <value>1414999725996</value>
+    </field>
+    <field name="reporterName">
+      <value>pyhavaim</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999725992</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="ActiveRecord is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/ActiveRecord/issues" created="1414999725998" />
+  </issue>
+</issues>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Transaction</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>v2.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>19</value>
+    </field>
+    <field name="summary">
+      <value>Publish more documentation</value>
+    </field>
+    <field name="description">
+      <value>Publish documentation to the wiki when proof-read and a bit more polished.</value>
+    </field>
+    <field name="created">
+      <value>1272933208000</value>
+    </field>
+    <field name="updated">
+      <value>1407823161642</value>
+    </field>
+    <field name="reporterName">
+      <value>henke</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1396694846207</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Use the new wiki: http://stw.castleproject.org/Default.aspx&#xA;&#xA;I think everything other than 3 major projects should put their docs in the root namespace (that's where I put DynamicProxy's docs)" created="1272939791000" />
+    <comment author="henke" text="* '''Version Affected''' set to ''v2.3''.&#xD;&#xA;" created="1272933540000" />
+  </issue>
+</issues>

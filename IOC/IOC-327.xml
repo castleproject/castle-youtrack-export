@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>327</value>
+    </field>
+    <field name="summary">
+      <value>DefaultComponentActivator.CreateInstance swallows instantiation exception if member of 'arguments' is null.</value>
+    </field>
+    <field name="description">
+      <value>{{Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance}} contains the following code:
+
+{code:lang=cs}
+    protected virtual object CreateInstance(CreationContext context, ConstructorCandidate constructor, object[] arguments)
+    {
+        // ...
+        try
+        {
+          instance1 = this.Kernel.ProxyFactory.Create(this.Kernel, instance1, this.Model, context, arguments);
+        }
+        catch (Exception ex)
+        {
+          if (arguments != null)
+          {
+            foreach (object instance2 in arguments)
+              this.Kernel.ReleaseComponent(instance2); // &lt;-- This line throws NullArgumentException
+          }
+          throw new ComponentActivatorException("ComponentActivator: could not proxy " + this.Model.Implementation.FullName, ex, this.Model);
+        }
+        // ...
+    }
+{code}
+
+If a member of the array {{arguments}} is null, then {{ReleaseComponent}} throws {{NullArgumentException}} (I have marked it above with a comment), which masks the exception {{ex}}, which would have contained more useful information.
+
+I'm guessing that {{arguments}} should never contain a null value, but it would still be useful if {{CreateConstructor}} would at least check for null before calling {{ReleaseComponent}}. I believe that in my case a null value is coming from a faulty factory method.
+
+Perhaps there should also be a check for null in {{CreateConstructorArguments}} and/or all implementations of {{ISubDependencyResolver.Resolve}}, I’m not sure what was the intent.</value>
+    </field>
+    <field name="created">
+      <value>1327333065715</value>
+    </field>
+    <field name="updated">
+      <value>1330080628617</value>
+    </field>
+    <field name="reporterName">
+      <value>djc</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1329307788471</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Actually {{Kernel.ReleaseComponent}} should just do nothing when passed a {{null}} rather than throw" created="1327354046862" updated="1327354078905" />
+    <comment author="xtoff" text="Do you have a case where it actually fails? I can't reproduce the issue. If you'd prefer I'm happy to pair program with you and fix this." created="1329307778893" />
+    <comment author="djc" text="It’s happening somewhere in our production systems, but because Windsor swallows the exception the logs are useless and I can’t trace which component is causing the problem. All I get is the NullArgumentException thrown by ReleaseComponent. I haven’t been able to reproduce it in a testing environment, so I can’t even catch the exception in a debugger. As a result I haven’t been able to produce a minimal test case.&#xA;&#xA;I’m guessing that the problem is some UsingFactoryMethod returning null, but that really is just a guess.  I was rather hoping that you’d fix ReleaseComponent to not throw on null so that we can figure out which component is causing the problem, but I will build my own Windsor with that change if need be." created="1329327005630" />
+    <comment author="xtoff" text="ok. Can you reproduce the part where just calling Kernel.ReleaseComponent gives you NRE?" created="1329338593861" />
+    <comment author="djc" text="Oops, it appears to already be fixed.&#xA;&#xA;The offending line of code was this one: https://github.com/castleproject/Windsor/blob/3e535429d1a515614fe44a1ea6ceaadec0838c20/src/Castle.Windsor/MicroKernel/Releasers/LifecycledComponentsReleasePolicy.cs#L45&#xA;&#xA;But it has since been fixed: &#xA;&#xA;https://github.com/castleproject/Windsor/blob/master/src/Castle.Windsor/MicroKernel/Releasers/LifecycledComponentsReleasePolicy.cs#L121&#xA;&#xA;I could have sworn that I reproduced this problem against the latest release of Windsor, but apparently not. Sorry about that!" created="1330080488185" />
+    <comment author="xtoff" text="no worries. I will close it as fixed then.&#xA;&#xA;cheers" created="1330080608961" />
+  </issue>
+</issues>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>579</value>
+    </field>
+    <field name="summary">
+      <value>RedirectToSiteRoot() is broken when Context.ApplicationPath is non-empty</value>
+    </field>
+    <field name="description">
+      <value>Let's say your site is located at /mysite and you request /mysite/controller/action.castle. Calling RedirectToSiteRoot() in the controller will redirect you to /mysite/controller/mysite/, which is not correct. The slash in BaseResponse.RedirectToSiteRoot() should be prepended (not appended) to make the path absolute. I'm using an old MonoRail v1 build, but this code looks to be unchanged in the latest version of MonoRail. It's surprising a bug like this has managed to elude detection for so long!</value>
+    </field>
+    <field name="created">
+      <value>1343067627398</value>
+    </field>
+    <field name="updated">
+      <value>1414999442629</value>
+    </field>
+    <field name="reporterName">
+      <value>danports</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999442625</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="MonoRail2 is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/MonoRail/issues" created="1414999442631" />
+  </issue>
+</issues>

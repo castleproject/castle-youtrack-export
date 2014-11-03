@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>137</value>
+    </field>
+    <field name="summary">
+      <value>When intercepting COM object's interface, invocation.Target and other properties are null</value>
+    </field>
+    <field name="description">
+      <value>When a proxy with target interface is created and target object is a com object, when members on that proxy are intercepted, invocation has null values for several properties that should not be null. See attached screenshot.</value>
+    </field>
+    <field name="created">
+      <value>1282705350846</value>
+    </field>
+    <field name="updated">
+      <value>1407822746189</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1282708033002</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="OK, turns out I'm being stupid. DP works as expected, the interface is not implemented by the proxy target so the values should be null." created="1282708033002" />
+  </issue>
+</issues>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Debugging support</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>234</value>
+    </field>
+    <field name="summary">
+      <value>StackOverflow causing inability to use debugger view when there are components with dependency cycles in the container</value>
+    </field>
+    <field name="description">
+      <value>In case of certain mix of lifestyles and when there are dependency cycles the debugger system blows up and the debugger does not let use peek into the container.</value>
+    </field>
+    <field name="created">
+      <value>1287396771618</value>
+    </field>
+    <field name="updated">
+      <value>1407822257334</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1287396771618</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

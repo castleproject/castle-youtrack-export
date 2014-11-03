@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 4</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>12</value>
+    </field>
+    <field name="summary">
+      <value>Create attribute to enable windsor integration</value>
+    </field>
+    <field name="description">
+      <value>Something simple as:
+
+&lt;monoRail windsorintegration="true" /&gt;
+
+would be valuable, instead of customizing the factories.</value>
+    </field>
+    <field name="created">
+      <value>1119775493000</value>
+    </field>
+    <field name="updated">
+      <value>1127055416000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282143244026</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

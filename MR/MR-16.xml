@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Ajax Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 4</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>16</value>
+    </field>
+    <field name="summary">
+      <value>AjaxHelper uses innerHTML, which fails under certain circunstances</value>
+    </field>
+    <field name="description">
+      <value>AjaxHelper uses the non-standard innerHTML property when performing Ajax callbacks.
+
+innerHTML fails when using the content-type "application/xhtml+xml" in Gecko (this content-type is currently not supported by Internet Explorer). For testing, you can add to a velocity template the following:
+
+	#set($response.ContentType="application/xhtml+xml")
+
+The javascript code which calls the innerHTML can be found in the file:
+MonoRail/Castle.MonoRail.Framework/Controllers/Ajax.resx
+
+I'm attaching a patch containing an alternative for innerHTML I'm currently using.</value>
+    </field>
+    <field name="created">
+      <value>1120736482000</value>
+    </field>
+    <field name="updated">
+      <value>1127055326000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282143250666</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

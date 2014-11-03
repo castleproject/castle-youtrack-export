@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>89</value>
+    </field>
+    <field name="summary">
+      <value>Make DefaultKernel implement IServiceProvider</value>
+    </field>
+    <field name="description">
+      <value>DefaultKernel can easily implement System.IServiceProvider:
+
+ object GetService(Type serviceType)
+
+using its Resolve method:
+
+ object Resolve(Type service)
+
+That would allow a class that would normally request an IKernel for additional service lookups to request IServiceProvider and not have a dependency on Castle.MicroKernel.
+
+The attached patch uses an explcit interface definition so the GetService method isn't readily accessible on the object (i.e. users are encouraged to use Resolve instead of GetService).
+
+Should IKernel extend IServiceProvider?</value>
+    </field>
+    <field name="created">
+      <value>1184956887000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838885</value>
+    </field>
+    <field name="reporterName">
+      <value>rgrabowski</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142068963</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

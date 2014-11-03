@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>527</value>
+    </field>
+    <field name="summary">
+      <value>FormHelper.TextArea ignores attributes params when creating html id</value>
+    </field>
+    <field name="description">
+      <value>The FormHelper doesn't honor the id attribute specified as param when calling the CreateHtmlId method like all the other methods for the html controls do.</value>
+    </field>
+    <field name="created">
+      <value>1236937412000</value>
+    </field>
+    <field name="updated">
+      <value>1253851805000</value>
+    </field>
+    <field name="reporterName">
+      <value>rjlopes</value>
+    </field>
+    <field name="updaterName">
+      <value>rjlopes</value>
+    </field>
+    <field name="resolved">
+      <value>1253851800000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Ricardo,&#xA;I've just reviewed the source code (trunk version), and I'm not too sure I can find any bugs there.&#xA;Can you please supply a failing test?&#xA;There are 3 CreateHtmlId methods, which one are you talking about?&#xA;&#xA;Cheers&#xA;John" created="1245347714000" />
+    <comment author="jsimons" text="Sorry my bad.&#xA;I was reading the description of the bug and not the title!&#xA;Patch + test attached" created="1245348739000" />
+    <comment author="roelofb" text="r5988" created="1253851802000" />
+    <comment author="jsimons" text="* '''Attachment''' FormHelper.patch added.&#xD;&#xA;" created="1245348660000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1253851800000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253851800000" />
+  </issue>
+</issues>

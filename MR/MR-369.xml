@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>369</value>
+    </field>
+    <field name="summary">
+      <value>Better support for overriding built-in helpers.</value>
+    </field>
+    <field name="description">
+      <value>If I want to override a built in helper for use in my view I can do the following: 
+
+[Helper(typeof(MyCustomFormHelper), "FormHelper")]
+public class HomeController : Controller { ... }
+
+This works, replacing the built in FormHelper with my own.
+
+However, the following will not work:
+
+[Helper(typeof(MyCustomFormHelper), "Form")]
+public class HomeController : Controller { ... }
+
+If I access "Form" in my view, then I will still receive a reference to the builtin FormHelper. The attached patch addresses this by checking that the prefix is not already in use.</value>
+    </field>
+    <field name="created">
+      <value>1195656344000</value>
+    </field>
+    <field name="updated">
+      <value>1244676702000</value>
+    </field>
+    <field name="reporterName">
+      <value>jez</value>
+    </field>
+    <field name="updaterName">
+      <value>jez</value>
+    </field>
+    <field name="resolved">
+      <value>1282145422229</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676660000" />
+  </issue>
+</issues>

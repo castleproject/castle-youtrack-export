@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Documentation</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>237</value>
+    </field>
+    <field name="summary">
+      <value>Missing items in AR documentation</value>
+    </field>
+    <field name="description">
+      <value>Items that have to be documented for the release:
+
+-Adding info to create and used named queries with assembly attributes.
+-Improving information on using SQL queries (done)
+-Using custom tuplizers with AR/NH2.1
+-Updating configuration to include ByteCode provider
+-declare the setters of id fields as private in code
+-default-flushing behaviour
+-Update testing docs so that in-memory-testing is included
+-IsOverride-Property on attributes.</value>
+    </field>
+    <field name="created">
+      <value>1232202950000</value>
+    </field>
+    <field name="updated">
+      <value>1414394950811</value>
+    </field>
+    <field name="reporterName">
+      <value>mzywitza</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414394950807</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Items that have to be documented for the release:&#xD;&#xA;&#xD;&#xA;-Adding info to create and used named queries with assembly attributes.&#xD;&#xA;-Improving information on using SQL queries&#xD;&#xA;-Using custom tuplizers with AR/NH2.1&#xD;&#xA;-Updating configuration to include ByteCode provider&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Items that have to be documented for the release:&#xD;&#xA;&#xD;&#xA;-Adding info to create and used named queries with assembly attributes.&#xD;&#xA;-Improving information on using SQL queries (done)&#xD;&#xA;-Using custom tuplizers with AR/NH2.1&#xD;&#xA;-Updating configuration to include ByteCode provider&#xD;&#xA;{quote}&#xD;&#xA;" created="1235120640000" />
+    <comment author="mzywitza" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Items that have to be documented for the release:&#xD;&#xA;&#xD;&#xA;-Adding info to create and used named queries with assembly attributes.&#xD;&#xA;-Improving information on using SQL queries (done)&#xD;&#xA;-Using custom tuplizers with AR/NH2.1&#xD;&#xA;-Updating configuration to include ByteCode provider&#xD;&#xA;-declare the setters of id fields as private in code&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Items that have to be documented for the release:&#xD;&#xA;&#xD;&#xA;-Adding info to create and used named queries with assembly attributes.&#xD;&#xA;-Improving information on using SQL queries (done)&#xD;&#xA;-Using custom tuplizers with AR/NH2.1&#xD;&#xA;-Updating configuration to include ByteCode provider&#xD;&#xA;-declare the setters of id fields as private in code&#xD;&#xA;-default-flushing behaviour&#xD;&#xA;{quote}&#xD;&#xA;" created="1244628900000" />
+    <comment author="mzywitza" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Items that have to be documented for the release:&#xD;&#xA;&#xD;&#xA;-Adding info to create and used named queries with assembly attributes.&#xD;&#xA;-Improving information on using SQL queries (done)&#xD;&#xA;-Using custom tuplizers with AR/NH2.1&#xD;&#xA;-Updating configuration to include ByteCode provider&#xD;&#xA;-declare the setters of id fields as private in code&#xD;&#xA;-default-flushing behaviour&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Items that have to be documented for the release:&#xD;&#xA;&#xD;&#xA;-Adding info to create and used named queries with assembly attributes.&#xD;&#xA;-Improving information on using SQL queries (done)&#xD;&#xA;-Using custom tuplizers with AR/NH2.1&#xD;&#xA;-Updating configuration to include ByteCode provider&#xD;&#xA;-declare the setters of id fields as private in code&#xD;&#xA;-default-flushing behaviour&#xD;&#xA;-Update testing docs so that in-memory-testing is included&#xD;&#xA;{quote}&#xD;&#xA;" created="1244704740000" />
+    <comment author="mzywitza" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Items that have to be documented for the release:&#xD;&#xA;&#xD;&#xA;-Adding info to create and used named queries with assembly attributes.&#xD;&#xA;-Improving information on using SQL queries (done)&#xD;&#xA;-Using custom tuplizers with AR/NH2.1&#xD;&#xA;-Updating configuration to include ByteCode provider&#xD;&#xA;-declare the setters of id fields as private in code&#xD;&#xA;-default-flushing behaviour&#xD;&#xA;-Update testing docs so that in-memory-testing is included&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Items that have to be documented for the release:&#xD;&#xA;&#xD;&#xA;-Adding info to create and used named queries with assembly attributes.&#xD;&#xA;-Improving information on using SQL queries (done)&#xD;&#xA;-Using custom tuplizers with AR/NH2.1&#xD;&#xA;-Updating configuration to include ByteCode provider&#xD;&#xA;-declare the setters of id fields as private in code&#xD;&#xA;-default-flushing behaviour&#xD;&#xA;-Update testing docs so that in-memory-testing is included&#xD;&#xA;-IsOverride-Property on attributes.&#xD;&#xA;{quote}&#xD;&#xA;" created="1245492180000" />
+    <comment author="mzywitza" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Items that have to be documented for the release:&#xD;&#xA;&#xD;&#xA;-Adding info to create and used named queries with assembly attributes.&#xD;&#xA;-Improving information on using SQL queries (done)&#xD;&#xA;-Using custom tuplizers with AR/NH2.1&#xD;&#xA;-Updating configuration to include ByteCode provider&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Items that have to be documented for the release:&#xD;&#xA;&#xD;&#xA;-Adding info to create and used named queries with assembly attributes.&#xD;&#xA;-Improving information on using SQL queries (done)&#xD;&#xA;-Using custom tuplizers with AR/NH2.1&#xD;&#xA;-Updating configuration to include ByteCode provider&#xD;&#xA;-declare the setters of id fields as private in code&#xD;&#xA;{quote}&#xD;&#xA;" created="1236070500000" />
+  </issue>
+</issues>

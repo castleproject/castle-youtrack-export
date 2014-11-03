@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>66</value>
+    </field>
+    <field name="summary">
+      <value>Add a simple (really simple) eval support to the configuration</value>
+    </field>
+    <field name="description">
+      <value>The eval is going to be a PI that is able to evaluate a few expressions and invoke a small set of functions. For a start, we could have
+
+&lt;?eval MapPath("this/path") ?&gt;
+
+&lt;?eval Environment.HostName ?&gt;
+
+</value>
+    </field>
+    <field name="created">
+      <value>1171362299000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853151</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142005323</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>556</value>
+    </field>
+    <field name="summary">
+      <value>HtmlHelper.LinkTo produces invalid link when no extensions used</value>
+    </field>
+    <field name="description">
+      <value>I've got MonoRail configured to use no extensions, so I get addresses like:
+http://localhost:8080/admin/users
+
+When I use output HtmlHelper.LinkTo("Edit","admin","EditUser",user.Id)
+it produces the following link:
+http://localhost:8080/admin/EditUser.?id=c30093b0-4b83-4b9f-ba34-bff35e54e607
+
+notice the . after EditUser
+It looks like the methods somewhere assumes there must be an extension.
+</value>
+    </field>
+    <field name="created">
+      <value>1262532481000</value>
+    </field>
+    <field name="updated">
+      <value>1263055408000</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1262658600000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Use UrlHelper instead, HtmlHelper has been deprecated." created="1262532877000" />
+    <comment author="jsimons" text="Use UrlHelper instead, HtmlHelper has been deprecated." created="1262658627000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1262658540000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1262658600000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055380000" />
+  </issue>
+</issues>

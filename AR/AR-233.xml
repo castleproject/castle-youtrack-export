@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>233</value>
+    </field>
+    <field name="summary">
+      <value>Support for tuplizers from nh 2.1</value>
+    </field>
+    <field name="description">
+      <value>I have a patch (which at the moment I can't quite see how to attach to this donjon issue) that adds support for nh 2.1's tuplizers. e.g.
+
+[ActiveRecord(Tuplizer = typeof(MyTuplizer)]
+
+What's the deal with 2.1 and the branches in svn? Do we need a new one?</value>
+    </field>
+    <field name="created">
+      <value>1227157605000</value>
+    </field>
+    <field name="updated">
+      <value>1232187414000</value>
+    </field>
+    <field name="reporterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="updaterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="resolved">
+      <value>1232187360000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="The current trunk contains an older NH trunk revision with a patch by hammett. Tuna Toksöz is currently working on gettign that patch into NH trunk.&#xA;&#xA;If we need a newer NH in trunk, we have to discuss with Hammett whether his patch is still necessary (it was for Donjon IIRC) and upgrade NH if possible." created="1227158025000" />
+    <comment author="mzywitza" text="Appiied with minor modifications (style).&#xA;Thanks" created="1232187414000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1232185560000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1232187360000" />
+    <comment author="leemhenson" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;I have a patch (which at the moment I can't quite see how to attach to this donjon issue) that adds support for nh 2.1's tuplizers. e.g.&#xD;&#xA;&#xD;&#xA;[ActiveRecord(Tuplizer = typeof(MyTuplizer)]&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;I have a patch (which at the moment I can't quite see how to attach to this donjon issue) that adds support for nh 2.1's tuplizers. e.g.&#xD;&#xA;&#xD;&#xA;[ActiveRecord(Tuplizer = typeof(MyTuplizer)]&#xD;&#xA;&#xD;&#xA;What's the deal with 2.1 and the branches in svn? Do we need a new one?&#xD;&#xA;{quote}&#xD;&#xA;" created="1227157680000" />
+  </issue>
+</issues>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>125</value>
+    </field>
+    <field name="summary">
+      <value>Change version on Castle.Facilities.Logging</value>
+    </field>
+    <field name="description">
+      <value>The Castle.Facilities.Logging dll must be built against the new version 2 dll's for it to be used with v2 but has not had it's version number changed.  This makes it near impossible to support both versions of castle in the GAC.</value>
+    </field>
+    <field name="created">
+      <value>1250485732000</value>
+    </field>
+    <field name="updated">
+      <value>1278755189000</value>
+    </field>
+    <field name="reporterName">
+      <value>csadams</value>
+    </field>
+    <field name="updaterName">
+      <value>csadams</value>
+    </field>
+    <field name="resolved">
+      <value>1278755160000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Logging has now the same version as Core" created="1278755184000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.5''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1278755160000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278755160000" />
+  </issue>
+</issues>

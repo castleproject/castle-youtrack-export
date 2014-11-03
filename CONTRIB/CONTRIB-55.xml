@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle.Tools.CodeGenerator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>55</value>
+    </field>
+    <field name="summary">
+      <value>CodeGenerator - Unable to resolve an entity</value>
+    </field>
+    <field name="description">
+      <value>I'm using the codeGenerator in my monorail project. It works fine if all my controller's actions are using only primitive parameters. If an action has an entity as a parameter, for example ( public void actionTest(User user) ) I get this error : 
+
+The "GenerateMonoRailSiteTreeTask" task failed unexpectedly.
+ System.TypeLoadException: Unable to resolve: Usager
+ 
+ Server stack trace: 
+    at Castle.Tools.CodeGenerator.Services.TypeResolver.Resolve(String typeName, Boolean throwOnFail)
+    at Castle.Tools.CodeGenerator.Services.TypeResolver.ResolveTypeReference(TypeReference reference)
+    at Castle.Tools.CodeGenerator.Services.TypeResolver.Resolve(TypeReference reference)
+    at Castle.Tools.CodeGenerator.Services.ControllerVisitor.VisitMethodDeclaration(MethodDeclaration methodDeclaration, Object data)
+    at ICSharpCode.NRefactory.Ast.MethodDeclaration.AcceptVisitor(IAstVisitor visitor, Object data)
+    at ICSharpCode.NRefactory.Ast.AbstractNode.AcceptChildren(IAstVisitor visitor, Object data)
+    at ICSharpCode.NRefactory.Visitors.AbstractAstVisitor.VisitTypeDeclaration(TypeDeclaration typeDeclaration, Object data)
+    at Castle.Tools.CodeGenerator.Services.ControllerVisitor.VisitTypeDeclaration(TypeDeclaration typeDeclaration, Object data)
+    at ICSharpCode.NRefactory.Ast.TypeDeclaration.AcceptVisitor(IAstVisitor visitor, Object data)
+    at ICSharpCode.NRefactory.Ast.AbstractNode.AcceptChildren(IAstVisitor visitor, Object data)
+    at ICSharpCode.NRefactory.Visitors.AbstractAstVisitor.VisitNamespaceDeclaration(NamespaceDeclaration namespaceDeclaration, Object data)
+    at Castle.Tools.CodeGenerator.Services.TypeResolvingVisitor.VisitNamespaceDeclaration(NamespaceDeclaration namespaceDeclaration, Object data)
+    at ICSharpCode.NRefactory.Ast.NamespaceDeclaration.AcceptVisitor(IAstVisitor visitor, Object data)
+    at ICSharpCode.NRefactory.Ast.AbstractNode.AcceptChildren(IAstVisitor visitor, Object data)
+    at ICSharpCode.NRefactory.Visitors.AbstractAstVisitor.VisitCompilationUnit(CompilationUnit compilationUnit, Object data)
+    at Castle.Tools.CodeGenerator.MsBuild.GenerateMonoRailSiteTreeTask.Execute()
+    at System.Runtime.Remoting.Messaging.StackBuilderSink._PrivateProcessMessage(IntPtr md, Object[] args, Object server, Int32 methodPtr, Boolean fExecuteInContext, Object[]&amp; outArgs)
+    at System.Runtime.Remoting.Messaging.StackBuilderSink.PrivateProcessMessage(RuntimeMethodHandle md, Object[] args, Object server, Int32 methodPtr, Boolean fExecuteInContext, Object[]&amp; outArgs)
+    at System.Runtime.Remoting.Messaging.StackBuilderSink.SyncProcessMessage(IMessage msg, Int32 methodPtr, Boolean fExecuteInContext)
+ 
+ Exception rethrown at [0]: 
+    at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+    at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData&amp; msgData, Int32 type)
+    at Microsoft.Build.Framework.ITask.Execute()
+    at Microsoft.Build.BuildEngine.TaskEngine.ExecuteTask(ExecutionMode howToExecuteTask, Hashtable projectItemsAvailableToTask, BuildPropertyGroup projectPropertiesAvailableToTask, Boolean&amp; taskClassWasFound)
+
+/************************************************************************/
+
+Is there a way to define our references? Or an other way to fix that?</value>
+    </field>
+    <field name="created">
+      <value>1189705666000</value>
+    </field>
+    <field name="updated">
+      <value>1414392407134</value>
+    </field>
+    <field name="reporterName">
+      <value>jlamont</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392407126</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

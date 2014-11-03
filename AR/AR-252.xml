@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Attributes</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>AR 2.0 Alpha1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>252</value>
+    </field>
+    <field name="summary">
+      <value>Allow UniqueKey in HasMany</value>
+    </field>
+    <field name="description">
+      <value>It would be great to have the possibility to specify one part of a UniqueKey in the class that owns a collection and on inside the collection.
+
+Please see http://groups.google.com/group/castle-project-users/browse_thread/thread/63dc37a791cb3579 for examples.
+
+Thanks,
+
+Flo</value>
+    </field>
+    <field name="created">
+      <value>1241392141000</value>
+    </field>
+    <field name="updated">
+      <value>1414999739848</value>
+    </field>
+    <field name="reporterName">
+      <value>Flominator</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999739844</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Florian,&#xA;&#xA;could you provide a testcase (and preferably a patch)." created="1263009478000" />
+    <comment author="mzywitza" text="* '''Type''' changed from ''Bug'' to ''New Feature''.&#xD;&#xA;* '''Version Affected''' set to ''AR 2.0 Alpha1''.&#xD;&#xA;" created="1243161600000" />
+    <comment author="jonorossi" text="ActiveRecord is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/ActiveRecord/issues" created="1414999739850" />
+  </issue>
+</issues>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>23</value>
+    </field>
+    <field name="summary">
+      <value>Add SilverlightExtensions back into trunk, and remove use of System.Envionment fom Silverlight</value>
+    </field>
+    <field name="description">
+      <value>Add SilverlightExtensions back into trunk, and remove use of System.Envionment fom Silverlight</value>
+    </field>
+    <field name="created">
+      <value>1245037037000</value>
+    </field>
+    <field name="updated">
+      <value>1246764776000</value>
+    </field>
+    <field name="reporterName">
+      <value>pdiddy</value>
+    </field>
+    <field name="updaterName">
+      <value>pdiddy</value>
+    </field>
+    <field name="resolved">
+      <value>1246764720000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="These were applied a while back. Resolving." created="1246764773000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1246764720000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1246764720000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1246764720000" />
+    <comment author="pdiddy" text="* '''Attachment''' CORE-ISSUE-23.patch added.&#xD;&#xA;" created="1245037200000" />
+    <comment author="pdiddy" text="* '''Attachment''' SilverlightExtensions.cs added.&#xD;&#xA;" created="1245037200000" />
+  </issue>
+</issues>

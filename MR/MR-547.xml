@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>547</value>
+    </field>
+    <field name="summary">
+      <value>Html.DateTime accessibility tabindex</value>
+    </field>
+    <field name="description">
+      <value>By default tabindex attribute pass into Html.DateTime will produce 3 identical tabindex for each select box generated. This cause problem in HTML accessibility.
+
+The solution is to make this Helper method aware about tabindex attribute and automatically increase tabindex value for second and third select box.</value>
+    </field>
+    <field name="created">
+      <value>1249379204000</value>
+    </field>
+    <field name="updated">
+      <value>1253856072000</value>
+    </field>
+    <field name="reporterName">
+      <value>csokun</value>
+    </field>
+    <field name="updaterName">
+      <value>csokun</value>
+    </field>
+    <field name="resolved">
+      <value>1253855700000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="r5992" created="1253855735000" />
+    <comment author="csokun" text="* '''Attachment''' Html.DateTime_tabindex.patch added.&#xD;&#xA;" created="1249379220000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1253855700000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253856060000" />
+  </issue>
+</issues>

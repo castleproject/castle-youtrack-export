@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveRecordIntegration</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>12</value>
+    </field>
+    <field name="summary">
+      <value>Allow components to wire with ISessionFactory</value>
+    </field>
+    <field name="description">
+      <value>It's not nice to always code your queries within the model, the best place for it would be in the services or in a second data layer, but in order to do this the components would have to receive an ISessionFactory. 
+
+My idea is: ActiveRecordIntegration facility registes a proxy (in the original meaning) that implements ISessionFactory and when CreateSession is used we work within AR to get a proper session. It's up to the client code to correctly dispose the used session, though.</value>
+    </field>
+    <field name="created">
+      <value>1126164364000</value>
+    </field>
+    <field name="updated">
+      <value>1127327209000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282140962791</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

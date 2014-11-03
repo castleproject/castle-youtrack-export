@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Queries</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>199</value>
+    </field>
+    <field name="summary">
+      <value>HQL error</value>
+    </field>
+    <field name="description">
+      <value>After compiling the trunk sources of NH, Castle and Rhino, some code that worked before does not work anymore. The error is about an hql statement that seems right to me and worked. Please advice. Thanks.
+
+Castle.ActiveRecord.Framework.ActiveRecordException: Could not perform ExecuteQuery for Calcul ---&gt; NHibernate.QueryException: '(' expected after HQL function in SELECT 
+ 
+[select new Varianta(c.Angajat.Id,c.IdZona,c.Data,c.IdDepartament,c.Perioada.Id,c.NumeManager,c.IdSchimb,SUM(c.MinutePlanificate),SUM(c.MinutePlanificate*c.CostOrar*100),SUM(c.MinuteInvoiriPlatite),SUM(c.MinuteInvoiriPlatite*c.CostOrar*100),SUM(c.MinuteInvoiriNeplatite),SUM(c.MinuteInvoiriNeplatite*c.CostOrar*100),SUM(c.MinuteLucratePlanificate+c.MinuteAcordateInTimpulProgramului),SUM(c.MinuteLucratePlanificate*c.CostOrar*100+c.MinuteAcordateInTimpulProgramului*c.CostOrar*100),SUM(c.NrIntervaleNeverificate)) from Bionet.Db.Calcul c where c.Firma.Id = :IdFirma and c.Data between :DataStart and :DataStop group by c.IdDepartament,c.Angajat.Id,c.Data,c.IdZona,c.NumeManager,c.Perioada.Id,c.IdSchimb]
+ 
+   at NHibernate.Hql.Classic.SelectParser.Token(String token, QueryTranslator q) in d:\InternetTools\NHibernate\nhibernate\src\NHibernate\Hql\Classic\SelectParser.cs:line 157
+   at NHibernate.Hql.Classic.ClauseParser.Token(String token, QueryTranslator q) in d:\InternetTools\NHibernate\nhibernate\src\NHibernate\Hql\Classic\ClauseParser.cs:line 103
+   at NHibernate.Hql.Classic.ClauseParser.End(QueryTranslator q) in d:\InternetTools\NHibernate\nhibernate\src\NHibernate\Hql\Classic\ClauseParser.cs:line 135
+   at NHibernate.Hql.Classic.PreprocessingParser.End(QueryTranslator q) in d:\InternetTools\NHibernate\nhibernate\src\NHibernate\Hql\Classic\PreprocessingParser.cs:line 172
+   at NHibernate.Hql.Classic.ParserHelper.Parse(IParser p, String text, String seperators, QueryTranslator q) in d:\InternetTools\NHibernate\nhibernate\src\NHibernate\Hql\Classic\ParserHelper.cs:line 34
+   at NHibernate.Hql.Classic.QueryTranslator.Compile() in d:\InternetTools\NHibernate\nhibernate\src\NHibernate\Hql\Classic\QueryTranslator.cs:line 312
+   at NHibernate.Hql.Classic.QueryTranslator.Compile(IDictionary`2 replacements, Boolean scalar) in d:\InternetTools\NHibernate\nhibernate\src\NHibernate\Hql\Classic\QueryTranslator.cs:line 276
+   at NHibernate.Engine.Query.HQLQueryPlan..ctor(String hql, String collectionRole, Boolean shallow, IDictionary`2 enabledFilters, ISessionFactoryImplementor factory) in d:\InternetTools\NHibernate\nhibernate\src\NHibernate\Engine\Query\HQLQueryPlan.cs:line 57
+   at NHibernate.Engine.Query.HQLQueryPlan..ctor(String hql, Boolean shallow, IDictionary`2 enabledFilters, ISessionFactoryImplementor factory) in d:\InternetTools\NHibernate\nhibernate\src\NHibernate\Engine\Query\HQLQueryPlan.cs:line 31
+   at NHibernate.Engine.Query.QueryPlanCache.GetHQLQueryPlan(String queryString, Boolean shallow, IDictionary`2 enabledFilters) in d:\InternetTools\NHibernate\nhibernate\src\NHibernate\Engine\Query\QueryPlanCache.cs:line 61
+   at NHibernate.Impl.AbstractSessionImpl.GetHQLQueryPlan(String query, Boolean shallow) in d:\InternetTools\NHibernate\nhibernate\src\NHibernate\Impl\AbstractSessionImpl.cs:line 203
+   at NHibernate.Impl.AbstractSessionImpl.CreateQuery(String queryString) in d:\InternetTools\NHibernate\nhibernate\src\NHibernate\Impl\AbstractSessionImpl.cs:line 188
+   at Castle.ActiveRecord.Queries.HqlBasedQuery.CreateQuery(ISession session) in d:\InternetTools\Castle\ActiveRecord\Castle.ActiveRecord\Framework\Queries\HqlBasedQuery.cs:line 238
+   at Castle.ActiveRecord.ActiveRecordBaseQuery.InternalExecute(ISession session) in d:\InternetTools\Castle\ActiveRecord\Castle.ActiveRecord\Framework\Queries\ActiveRecordBaseQuery.cs:line 105
+   at Castle.ActiveRecord.Queries.SimpleQuery`1.InternalExecute(ISession session) in d:\InternetTools\Castle\ActiveRecord\Castle.ActiveRecord\Framework\Queries\SimpleQuery.Generic.cs:line 165
+   at Castle.ActiveRecord.ActiveRecordBaseQuery.Castle.ActiveRecord.IActiveRecordQuery.Execute(ISession session) in d:\InternetTools\Castle\ActiveRecord\Castle.ActiveRecord\Framework\Queries\ActiveRecordBaseQuery.cs:line 83
+   at Castle.ActiveRecord.ActiveRecordBase.ExecuteQuery(IActiveRecordQuery query) in d:\InternetTools\Castle\ActiveRecord\Castle.ActiveRecord\Framework\ActiveRecordBase.cs:line 757
+   --- End of inner exception stack trace ---
+   at Castle.ActiveRecord.ActiveRecordBase.ExecuteQuery(IActiveRecordQuery query) in d:\InternetTools\Castle\ActiveRecord\Castle.ActiveRecord\Framework\ActiveRecordBase.cs:line 763
+   at Castle.ActiveRecord.ActiveRecordBase`1.ExecuteQuery2[R](IActiveRecordQuery`1 query) in d:\InternetTools\Castle\ActiveRecord\Castle.ActiveRecord\Framework\ActiveRecordBase.Generic.cs:line 181
+   at Castle.ActiveRecord.Queries.SimpleQuery`1.Execute() in d:\InternetTools\Castle\ActiveRecord\Castle.ActiveRecord\Framework\Queries\SimpleQuery.Generic.cs:line 104
+   at Bionet.Db.Varianta.CalculCumulat(VariantaCond o) in d:\Development\Server\Bionet.dll\Hql\Bll\Varianta.cs:line 126
+   at BioBusiness.Test.frmTest.btnTestFunctie_Click(Object sender, EventArgs e) in D:\Development\Server\BioBusiness.Test\frmTest.cs:line 179
+
+</value>
+    </field>
+    <field name="created">
+      <value>1201307901000</value>
+    </field>
+    <field name="updated">
+      <value>1201318798000</value>
+    </field>
+    <field name="reporterName">
+      <value>ionelmoisuc</value>
+    </field>
+    <field name="updaterName">
+      <value>ionelmoisuc</value>
+    </field>
+    <field name="resolved">
+      <value>1282136649291</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

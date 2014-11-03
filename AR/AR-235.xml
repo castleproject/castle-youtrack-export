@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Documentation</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>235</value>
+    </field>
+    <field name="summary">
+      <value>Errors in Getting Started Tutorial</value>
+    </field>
+    <field name="description">
+      <value>There are some errors in http://www.castleproject.org/activerecord/gettingstarted/index.html that I found after using it the first time:
+
+1. appconfig.xml should be
+
+&lt;activerecord&gt;
+
+  &lt;config&gt;
+    &lt;add
+        key="connection.driver_class"
+        value="NHibernate.Driver.SqlClientDriver" /&gt;
+    &lt;add
+        key="hibernate.dialect"
+        value="NHibernate.Dialect.MsSql2005Dialect" /&gt;
+    &lt;add
+        key="hibernate.connection.provider"
+        value="NHibernate.Connection.DriverConnectionProvider" /&gt;
+    &lt;add
+        key="hibernate.connection.connection_string"
+        value="SERVER=Petras\SQLExpress;DATABASE=castleactiverecord;uid=sa;pwd=arbuzas;async=true" /&gt;
+  &lt;/config&gt;
+
+&lt;/activerecord&gt;
+
+2. The User class definition should be:
+
+[ActiveRecord("[User]")] 
+public class User : ActiveRecordBase&lt;User&gt;
+
+3. This would be better code for http://www.castleproject.org/activerecord/gettingstarted/initandtest.html:
+
+      try
+      {
+        ActiveRecordStarter.Initialize(source, typeof(Blog), typeof(Post), typeof(User));
+      }
+      catch(ActiveRecordInitializationException)
+      {
+      }
+
+      
+
+
+
+
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1229636257000</value>
+    </field>
+    <field name="updated">
+      <value>1232185304000</value>
+    </field>
+    <field name="reporterName">
+      <value>PedroArvy</value>
+    </field>
+    <field name="updaterName">
+      <value>PedroArvy</value>
+    </field>
+    <field name="resolved">
+      <value>1232185260000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="Getting Started has been recently updated to trunk. NH in trunk doesn't require the hibernate.-prefix." created="1232185305000" />
+    <comment author="PedroArvy" text="* '''Importance''' changed from ''High'' to ''Medium''.&#xD;&#xA;" created="1229811180000" />
+    <comment author="PedroArvy" text="* '''Type''' changed from ''Bug'' to ''Documentation''.&#xD;&#xA;" created="1229815980000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1232185260000" />
+  </issue>
+</issues>

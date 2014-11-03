@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>208</value>
+    </field>
+    <field name="summary">
+      <value>Bad dispose order of a singleton object with a dependency on a transcient object</value>
+    </field>
+    <field name="description">
+      <value>When a singleton object depends on a transcient object, disposal order of the two objects is wrong upon container disposal.
+
+The following test illustrate this behavior :
+{code lang=java}
+  public class DisposeOrderTestFixture
+  {
+    interface IMyService : IInitializable, IDisposable
+    {
+      bool IsInitialized { get; }
+      bool IsInUse { get; set; }
+    }
+
+    interface IMyComponent : IInitializable, IDisposable
+    {
+      bool IsInitialized { get; }
+    }
+
+    class MyService : IMyService
+    {
+      #region
+      private bool m_isInUse;
+      #endregion
+
+      #region IMyService Members
+      public bool IsInitialized { get; private set; }
+      public bool IsInUse
+      {
+        get
+        {
+          if(IsInitialized == false)
+          {
+            throw new ApplicationException("Service must be initialized !!!");
+          }
+          return m_isInUse;
+        }
+        set
+        {
+          if (IsInitialized == false)
+          {
+            throw new ApplicationException("Service must be initialized !!!");
+          }
+          m_isInUse = value;
+        }
+      }
+      #endregion
+
+      #region IInitializable Members
+      public void Initialize()
+      {
+        IsInitialized = true;
+      }
+      #endregion
+
+      #region IDisposable Members
+      public void Dispose()
+      {
+        if(IsInUse)
+        {
+          throw new ApplicationException("Cannot dispose : service is still in use !!!");
+        }
+        IsInitialized = false;
+      }
+      #endregion
+    }
+
+    class MyComponent : IMyComponent
+    {
+      #region Attributes
+      private readonly IMyService m_service;
+      #endregion
+
+      #region Constructor
+      public MyComponent(IMyService service)
+      {
+        m_service = service;
+      }
+      #endregion
+
+      #region IMyComponent Members
+      public bool IsInitialized { get; private set; }
+      #endregion
+
+      #region IInitializable Members
+      public void Initialize()
+      {
+        m_service.IsInUse = true;
+        IsInitialized = true;
+      }
+      #endregion
+
+      #region IDisposable Members
+      public void Dispose()
+      {
+        IsInitialized = false;
+        m_service.IsInUse = false;
+      }
+      #endregion
+    }
+
+    class MyInstaller : IWindsorInstaller
+    {
+      #region IWindsorInstaller Members
+      public void Install(IWindsorContainer container, IConfigurationStore store)
+      {
+        container.Register(Component.For&lt;IMyService&gt;().ImplementedBy&lt;MyService&gt;().LifeStyle.Transient);
+        container.Register(Component.For&lt;IMyComponent&gt;().ImplementedBy&lt;MyComponent&gt;());
+      }
+      #endregion
+    }
+
+    [Test]
+    public void ShouldDisposeComponentsInProperOrder()
+    {
+      var installer = new MyInstaller();
+      var container = new WindsorContainer();
+
+      container.Install(installer);
+
+      var component = container.Resolve&lt;IMyComponent&gt;();
+      container.Release(component);
+
+      container.Dispose();
+    }
+  }
+{code}
+</value>
+    </field>
+    <field name="created">
+      <value>1280849133000</value>
+    </field>
+    <field name="updated">
+      <value>1396694912334</value>
+    </field>
+    <field name="reporterName">
+      <value>GillesBisson</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396694912319</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Gilles,&#xA;&#xA;Can you describe your scenario - why are you having a singleton depending on transient? (you can send me an email if you don't want to discuss this in public)" created="1281025173000" />
+    <comment author="xtoff" text="Since I can't see a way of fixing it without making some serious changes in the architecture, and the scenario is generally discouraged anyway (although there may be some valid cases for having singleton depend on transinent I guess) I think we should postpone it." created="1281076286000" />
+    <comment author="GillesBisson" text="Let's say we have a Recorder singleton object and a Player singleton object. Each of them is injected with its own instance of a transient HardwareManager class that maintains some configuration data. Each HardwareManager instance talks to the same Harware singleton.&#xA;&#xA;Here is an example with its failing test&#xA;&#xA;  class HardwareTestFixture&#xA;  {&#xA;    interface IHardware : IInitializable, IDisposable&#xA;    {&#xA;      int OpenInstance();&#xA;      void CloseInstance(int id);&#xA;      void SetConfig(int id, object config);&#xA;      void Do(int id, object jobToDo);&#xA;    }&#xA;&#xA;    interface IHardwareManager : IInitializable, IDisposable&#xA;    {&#xA;      void Configure(object config);&#xA;      void Do(object jobToDo);&#xA;    }&#xA;&#xA;    interface IPlayer : IInitializable, IDisposable&#xA;    {&#xA;      void Play(object data);&#xA;    }&#xA;&#xA;    interface IRecorder : IInitializable, IDisposable&#xA;    {&#xA;      void Record(object data);&#xA;    }&#xA;&#xA;&#xA;    class Hardware : IHardware&#xA;    {&#xA;      private int m_instance;&#xA;&#xA;      #region IInitializable Members&#xA;&#xA;      public void Initialize()&#xA;      {&#xA;      }&#xA;&#xA;      #endregion&#xA;&#xA;      #region IDisposable Members&#xA;&#xA;      public void Dispose()&#xA;      {&#xA;        if (m_instance &gt; 0)&#xA;        {&#xA;          throw new ApplicationException(&quot;Some instance still in use !!!&quot;);&#xA;        }&#xA;      }&#xA;&#xA;      #endregion&#xA;&#xA;      #region IHardware Members&#xA;&#xA;      public int OpenInstance()&#xA;      {&#xA;        return ++m_instance;&#xA;      }&#xA;&#xA;      public void CloseInstance(int id)&#xA;      {&#xA;        m_instance--;&#xA;      }&#xA;&#xA;      public void SetConfig(int id, object config)&#xA;      {&#xA;      }&#xA;&#xA;      public void Do(int id, object jobToDo)&#xA;      {&#xA;      }&#xA;&#xA;      #endregion&#xA;    }&#xA;&#xA;&#xA;    class HardwareManager : IHardwareManager&#xA;    {&#xA;      private readonly IHardware m_hardware;&#xA;      private int m_instance;&#xA;      private object m_config;&#xA;&#xA;      public HardwareManager(IHardware hardware)&#xA;      {&#xA;        m_hardware = hardware;&#xA;      }&#xA;&#xA;      #region IInitializable Members&#xA;&#xA;      public void Initialize()&#xA;      {&#xA;        m_instance = m_hardware.OpenInstance();&#xA;      }&#xA;&#xA;      #endregion&#xA;&#xA;      #region IDisposable Members&#xA;&#xA;      public void Dispose()&#xA;      {&#xA;        if (m_config != null)&#xA;        {&#xA;          throw new ApplicationException(&quot;Still configured !!!&quot;);&#xA;        }&#xA;&#xA;        m_hardware.CloseInstance(m_instance);&#xA;        m_instance = 0;&#xA;      }&#xA;&#xA;      #endregion&#xA;&#xA;      #region IHardwareManager Members&#xA;&#xA;      public void Configure(object config)&#xA;      {&#xA;        m_config = config;&#xA;      }&#xA;&#xA;      public void Do(object jobToDo)&#xA;      {&#xA;        m_hardware.SetConfig(m_instance, m_config);&#xA;        m_hardware.Do(m_instance, jobToDo);&#xA;      }&#xA;&#xA;      #endregion&#xA;    }&#xA;&#xA;    class Player : IPlayer&#xA;    {&#xA;      struct PlayConfig&#xA;      {&#xA;        public object config;&#xA;      }&#xA;&#xA;      private readonly IHardwareManager m_hardwareMgr;&#xA;      private readonly PlayConfig m_playConfig = new PlayConfig();&#xA;&#xA;      public Player(IHardwareManager hardwareMgr)&#xA;      {&#xA;        m_hardwareMgr = hardwareMgr;&#xA;      }&#xA;&#xA;      #region IInitializable Members&#xA;&#xA;      public void Initialize()&#xA;      {&#xA;        m_hardwareMgr.Configure(m_playConfig);&#xA;      }&#xA;&#xA;      #endregion&#xA;&#xA;      #region IDisposable Members&#xA;&#xA;      public void Dispose()&#xA;      {&#xA;        m_hardwareMgr.Configure(null);&#xA;      }&#xA;&#xA;      #endregion&#xA;&#xA;      #region IPlayer Members&#xA;&#xA;      public void Play(object data)&#xA;      {&#xA;        m_hardwareMgr.Do(data);&#xA;      }&#xA;&#xA;      #endregion&#xA;&#xA;    }&#xA;&#xA;    class Recorder : IRecorder&#xA;    {&#xA;      struct RecordConfig&#xA;      {&#xA;        public object config;&#xA;      }&#xA;&#xA;      private readonly IHardwareManager m_hardwareMgr;&#xA;      private readonly RecordConfig m_recordConfig = new RecordConfig();&#xA;&#xA;      public Recorder(IHardwareManager hardwareMgr)&#xA;      {&#xA;        m_hardwareMgr = hardwareMgr;&#xA;      }&#xA;&#xA;      #region IInitializable Members&#xA;&#xA;      public void Initialize()&#xA;      {&#xA;        m_hardwareMgr.Configure(m_recordConfig);&#xA;      }&#xA;&#xA;      #endregion&#xA;&#xA;      #region IDisposable Members&#xA;&#xA;      public void Dispose()&#xA;      {&#xA;        m_hardwareMgr.Configure(null);&#xA;      }&#xA;&#xA;      #endregion&#xA;&#xA;      #region IRecorder Members&#xA;&#xA;      public void Record(object data)&#xA;      {&#xA;        m_hardwareMgr.Do(data);&#xA;      }&#xA;&#xA;      #endregion&#xA;&#xA;    }&#xA;&#xA;    class HardwareSystemInstaller : IWindsorInstaller&#xA;    {&#xA;      #region IWindsorInstaller Members&#xA;      public void Install(IWindsorContainer container, IConfigurationStore store)&#xA;      {&#xA;        container.Register(Component.For&lt;IHardware&gt;().ImplementedBy&lt;Hardware&gt;());&#xA;        container.Register(Component.For&lt;IHardwareManager&gt;().ImplementedBy&lt;HardwareManager&gt;().LifeStyle.Transient);&#xA;        container.Register(Component.For&lt;IPlayer&gt;().ImplementedBy&lt;Player&gt;());&#xA;        container.Register(Component.For&lt;IRecorder&gt;().ImplementedBy&lt;Recorder&gt;());&#xA;      }&#xA;      #endregion&#xA;    }&#xA;&#xA;&#xA;    [Test]&#xA;    public void ShouldDisposeInCorrectOrder()&#xA;    {&#xA;      var installer = new HardwareSystemInstaller();&#xA;      var container = new WindsorContainer();&#xA;&#xA;      container.Install(installer);&#xA;&#xA;      var player = container.Resolve&lt;IPlayer&gt;();&#xA;      var recorder = container.Resolve&lt;IRecorder&gt;();&#xA;&#xA;      object data = new object();&#xA;      recorder.Record(data);&#xA;      player.Play(data);&#xA;&#xA;      container.Release(player);&#xA;      container.Release(recorder);&#xA;&#xA;      container.Dispose();&#xA;      &#xA;    }&#xA;  }&#xA;" created="1281097562000" />
+    <comment author="xtoff" text="Thanks for the example Gilles,&#xA;&#xA;Any particular reason why Recorder and Player are singletons?&#xA;&#xA;I'm afraid It is not possible to fix this issue as of now - so the workaround would be to either change their lifestyle to transient, or implement a custom lifestyle, inheriting from SingletonLifestyleManager and overriding Release method to expose behavior you want.&#xA;&#xA;I'll look at providing a proper fix for vNext" created="1281114205000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1280901660000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Work Started'' to ''Work Stopped''.&#xD;&#xA;" created="1281076140000" />
+    <comment author="xtoff" text="I have added a workaround, which relies on undocumented behavior or some of BCL classes, so it is not a permanent fix and as such, I'm leaving this as open. It is however likely to resolve the issue for now, or at least make it less likely to occur.&#xA;Proper fix will come in the next major version." created="1282353480718" />
+  </issue>
+</issues>

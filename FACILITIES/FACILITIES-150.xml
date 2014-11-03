@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Usability Problem</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>AutomaticTransactionManagement</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>150</value>
+    </field>
+    <field name="summary">
+      <value>TransactionMetaInfoStore.PopulateMetaInfoFromType doesn't search base classes for methods</value>
+    </field>
+    <field name="description">
+      <value>'''The issue:'''
+Method {{TransactionMetaInfoStore.PopulateMetaInfoFromType(...)}} calls {{implementation.GetMethods(...)}} on the type targeted for automatic transactions. Currently the {{GetMethods(...)}} call includes {{BindingFlags.DeclaredOnly}}. This means methods inherited from base classes aren't considered.
+
+'''This is an issue for me because:'''
+WCF configuration doesn't allow the same class to be exposed via several endpoints  (e.g. same service on HTTP and NetTcp). A work around for this WCF issue is to build a class for each binding that simply inherits everything from the base service class. But with {{BindingFlags.DeclaredOnly}} the AutoTx transactional behaviour will not be applied as the service methods are declared in the base class.
+
+'''Work around'''
+Work-around is to (re)implement every service method in the derived class - with implementation simply calling the base method (e.g. {{base.BaseMethod(...)}}). I contend this is not nice work-around as for all other intents this would be considered redundant code.
+
+'''Solution'''
+I attach a patch which demonstrates this change with tests. 
+
+Primary change is around line 68 in TransactionMetaInfoStore.cs
+
+from: {{MethodInfo[] methods = implementation.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);}}
+
+to: {{MethodInfo[] methods = implementation.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);}}
+
+I predict applying this change would be a problem for anybody who had not expected inherited methods with transactional attributes to be exposed thorough the derived class. I contend this would have been a counter intuitive expectation and the behaviour I am proposing would fall more in line with how inheritance should work.
+
+'''A more detailed example:'''
+Before my suggested change, method {{ServiceMethod()}} below will not have transactional behaviour applied to it when {{InheritedService}} is exposed through WCF:
+{{
+    public interface IServiceInterface
+    {
+        void ServiceMethod();
+    }
+
+    [Transactional]
+    public class Service : IServiceInterface
+    {
+        [Transaction]
+        public virtual void ServiceMethod()
+        {
+        }       
+    }
+
+    public class InheritedService : Service
+    {
+    }
+}}
+
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1307373662130</value>
+    </field>
+    <field name="updated">
+      <value>1407819315653</value>
+    </field>
+    <field name="reporterName">
+      <value>joachim</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1396694921542</value>
+    </field>
+    <field name="voterName">
+      <value>xtoff</value>
+      <value>Richard.Dingwall</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-737[up-to-date]</value>
+      <value>User: id = 20-339[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>561</value>
+    </field>
+    <field name="summary">
+      <value>Calling an Action that does not exist does not result in a 404</value>
+    </field>
+    <field name="description">
+      <value>...it results in an exception stating that the view for that action cannot be found.
+
+Just call a non-existant action on any existing controller. E.g. /controller/garbage.rails. This will attempt to find a view for the action 'garbage' which does not exist.
+
+This is caused by a slightly overzealous attempt to save the situation when an action cannot be found. In DefaultActionSelector the DefaultAction for the controller is returned even in cases where a 404 should be the result. This should only happen if the Action name is null or empty (i.e. a request for /controller/).
+
+The Controller class does the right thing if it gets back null from the DefaultActionSelector. It will throw an exception with a 404 status code it it gets null. This isn't happening now because of the errant behavior in DefaultActionSelector.</value>
+    </field>
+    <field name="created">
+      <value>1271247324000</value>
+    </field>
+    <field name="updated">
+      <value>1271256029000</value>
+    </field>
+    <field name="reporterName">
+      <value>gareth@waves.ky</value>
+    </field>
+    <field name="updaterName">
+      <value>gareth@waves.ky</value>
+    </field>
+    <field name="resolved">
+      <value>1271255940000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jamescurran" text="This is not correct.  If I have a [DefaultAction] indicated on my controller, then /controller/garbage.rails SHOULD use that action. &#xA;&#xA;The problem may be that the DefaultAction is being wrongly set, that would be a different problem.&#xA;&#xA;Also, your patch file tries to replace every line in the file, even though only about 4 lines changed.  That would suggest that your whitespace (use tabs) or line ending setting is wrong.&#xA;" created="1271254965000" />
+    <comment author="jsimons" text="The DefaultActionAttribute attribute provides a way to associate a default action method that will be called if a matching action method can not be found on the controller.&#xA;See http://www.castleproject.org/monorail/documentation/v20/usersguide/controllerbasics.html#DefaultAction" created="1271255980000" />
+    <comment author="jsimons" text="By design" created="1271256029000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1271255940000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1271256000000" />
+    <comment author="gareth@waves.ky" text="* '''Attachment''' 0001-Patch-for-MR-ISSUE-561.patch added.&#xD;&#xA;" created="1271247480000" />
+  </issue>
+</issues>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>29</value>
+    </field>
+    <field name="summary">
+      <value>Castle.Core does not work in a medium trust environment</value>
+    </field>
+    <field name="description">
+      <value>I use DynamicProxy in Castle.Core 2.5 as the Proxy Factory for NHibernate 3.0.
+My only problem with it is that it doesn't work in a medium trust environment.
+
+After recompiling it with the AllowPartiallyTrustedCallersAttribute enabled, it works.
+I don't know if you have a policy about not enabling this by default, but if there isn't one, I would suggest you to put AllowPartiallyTrustedCallers into the CommonAssemblyInfo.cs. After doing this and recompiling, it works fine for me.
+
+I think I'm not the only one who encountered this, so why not make life a little bit easier by adding this attribute to the assembly?</value>
+    </field>
+    <field name="created">
+      <value>1284592005510</value>
+    </field>
+    <field name="updated">
+      <value>1287039763258</value>
+    </field>
+    <field name="reporterName">
+      <value>Timur.Kristóf</value>
+    </field>
+    <field name="updaterName">
+      <value>adriaanp</value>
+    </field>
+    <field name="resolved">
+      <value>1284679892541</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="That's a conscious decision, if you go and search castle users group you'll find several threads discussing this." created="1284597624416" />
+    <comment author="Timur.Kristóf" text="Could you please tell me the reason for that conscious decision?" created="1284759705150" updated="1284765632822" />
+    <comment author="xtoff" text="Search castle users group for &quot;allowPartiallyTrustedCallers&quot; it's been discussed several times" created="1284768576416" />
+  </issue>
+</issues>

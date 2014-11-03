@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 3.0 Beta</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>282</value>
+    </field>
+    <field name="summary">
+      <value>SaveCopyAndFlush() method in ActiveRecordMediator.cs returns null, but should return object</value>
+    </field>
+    <field name="description">
+      <value>The SaveCopyAndFlush() method in ActiveRecordMediator.cs has a return type of null. However, the XML comments for the method shows that it should return an object, and it calls ActiveRecordBase.SaveCopyAndFlush(), which returns an object. Therefore, ActiveRecordMediator.SaveCopyAndFlush() should return an object as well.</value>
+    </field>
+    <field name="created">
+      <value>1272230563000</value>
+    </field>
+    <field name="updated">
+      <value>1292001522536</value>
+    </field>
+    <field name="reporterName">
+      <value>danieltian</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1272761040000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Fixed in the repository in commit 2db139cd93e4f96888a50568f6a8d69bbe84e633." created="1272761081000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1272761040000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1272761040000" />
+  </issue>
+</issues>

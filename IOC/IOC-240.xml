@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Resolvers</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+      <value>2.5.1</value>
+      <value>2.0</value>
+      <value>2.1.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>240</value>
+    </field>
+    <field name="summary">
+      <value>Castle Windsor ArrayResolver ServiceOverrides Not Respected</value>
+    </field>
+    <field name="description">
+      <value>When using the ArrayResolver, if I register multiple dependencies that implement the same interface and I have registered classes that depend on an array of these dependencies, one would expect ServiceOverrides to be respected and allow control over which dependencies are injected into the contructors. Instead, I have seen and written tests that show every dependency is injected into the registered classes contructors.
+
+Cross-Posted with unit tests here:
+http://stackoverflow.com/questions/4018564/castle-windsor-arrayresolver-serviceoverrides-not-respected</value>
+    </field>
+    <field name="created">
+      <value>1288040676306</value>
+    </field>
+    <field name="updated">
+      <value>1407822257300</value>
+    </field>
+    <field name="reporterName">
+      <value>Zachary.Watts</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1299071906734</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Can you verify with version 2.1.1 of Windsor or 2.0 if the issue exists there as well or is it a regression?" created="1288042468462" />
+    <comment author="slange" text="Krzysztof, I can confirm the same (wrong?) behavior in 2.0 and 2.1.1.  So this is not a regression.  &#xA;&#xA;Our work-around for the time being is to use the ListResolver instead of the ArrayResolver and to provide a constructor with an array parameter when we want to use service overrides, and to use a constructor with an IList parameter when we want auto-injection of all services implementing the interface.  This works fine for us, but I am surprised that no one has run into this issue before.  I would certainly expect the service overrides to take precedence over the dependency resolver.&#xA;&#xA;Thanks so much for your help on these issues." created="1288045280931" />
+    <comment author="xtoff" text="cool, thanks for your help. I suspect it won't be very hard to fix and that it's simply a scenario that was overlooked when ArrayResolver was introduced and the other ones (ListResolver and CollectionResolver) are derived from it so they repeat the same behavior.&#xA;&#xA;I'll try to have that fixed for v2.5.2 but if you want to go ahead and provide a patch that would be even better :)&#xA;&#xA;cheers" created="1288048590478" />
+    <comment author="slange" text="I will certainly have a look and see if I can fix the problem (haven't gone into the Windsor codebase yet; the most advanced thing I've done is a custom facility).  My initial thought was that service overrides should take precedence over any custom subdependency resolver, and hence the real &quot;fix&quot; to this problem wouldn't be in the array resolver itself, but in the framework code that calls it.  I'm not familiar with the architecture, so I'm probably off base -- what do you think?" created="1288100301540" />
+    <comment author="xtoff" text="No - subresolvers are and should be able to dynamically override whatever static dependency resolution logic you have. So the fix should be in arrayresolver solely, and perhaps as an optional switch..." created="1288156129665" />
+    <comment author="xtoff" text="I can't see any good way of fixing this with current architecture. Postponing till vNext" created="1289023398325" />
+  </issue>
+</issues>

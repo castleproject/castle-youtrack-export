@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 3.0 Beta</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>293</value>
+    </field>
+    <field name="summary">
+      <value>formula BUG on property in ActiveRecord with NHibernate 3</value>
+    </field>
+    <field name="description">
+      <value>This is now invalid in NHibernate 3
+
+    &lt;property name="DeathDate" access="property" type="datetime" insert="false" update="false" '''formula="(select max(o.dat_begin) from Prs054.dbo.OVERLEDEN o where o.nr_pat = nr_pat)"'''&gt;
+      &lt;column name="DeathDate"/&gt;
+    &lt;/property&gt;
+
+and must become
+
+    &lt;property name="DeathDate" access="property" type="datetime" insert="false" update="false"&gt;
+      &lt;column name="DeathDate"/&gt;
+      '''&lt;formula&gt;(select max(o.dat_begin) from Prs054.dbo.OVERLEDEN o where o.nr_pat = nr_pat)&lt;/formula&gt;'''
+    &lt;/property&gt;
+
+it can be solved by modifying some methods in the XmlGenerationVisitor class:
+
+{code lang=java}
+
+private void WriteProperty(String name, Type propType, String accessString, String columnType,
+		                           bool insert, bool update, String formula,
+		                           String column, int length, bool notNull, bool unique,
+		                           String uniqueKey, String sqlType, String index, String check, String @default)
+{
+	BeginWriteProperty(accessString, columnType, insert, name, propType, update);
+	
+	Ident();
+
+	WriteColumn(check, column, index, length, notNull, sqlType, unique, uniqueKey, @default);
+	WriteFormula(formula);
+	
+	Dedent();
+
+	EndWriteProperty();
+}
+
+private void WriteColumn(string check, string column, string index, int length,
+						 bool notNull, string sqlType, bool unique, string uniqueKey, string @default)
+{
+	AppendF("&lt;column{0}{1}{2}{3}{4}{5}{6}{7}{8}/&gt;",
+		MakeAtt("name", column),
+		WriteIfNotZero("length", length),
+		WriteIfTrue("not-null", notNull),
+		WriteIfTrue("unique", unique),
+		WriteIfNonNull("unique-key", uniqueKey),
+		WriteIfNonNull("sql-type", sqlType),
+		WriteIfNonNull("index", index),
+		WriteIfNonNull("check", check),
+		WriteIfNonNull("default", @default));
+}
+
+private void WriteFormula(String formula)
+{
+	if (!string.IsNullOrEmpty(formula))
+		AppendF("&lt;formula&gt;{0}&lt;/formula&gt;", formula);
+}
+
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1288953217572</value>
+    </field>
+    <field name="updated">
+      <value>1292001507532</value>
+    </field>
+    <field name="reporterName">
+      <value>dabuddhaman</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1288999649349</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

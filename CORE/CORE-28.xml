@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>28</value>
+    </field>
+    <field name="summary">
+      <value>Exception thrown by ReflectionBasedDictionaryAdapter when using indexed properties</value>
+    </field>
+    <field name="description">
+      <value>Indexed properties threw exceptions because they required parameters to be supplied which the ReflectionBasedDictionaryAdapter cannot provide. 
+
+I have fixed this problem, see http://github.com/tomglue/Castle.Core/commit/f6c6a965ebb56d26e9ddec3beedca209afc3d429
+
+Indexed properties are now skipped similarly to unreadable properties.</value>
+    </field>
+    <field name="created">
+      <value>1284132250620</value>
+    </field>
+    <field name="updated">
+      <value>1284511969431</value>
+    </field>
+    <field name="reporterName">
+      <value>tommaguire</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1284511953869</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Applied" created="1284511969431" />
+  </issue>
+</issues>

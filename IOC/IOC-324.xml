@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>3.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>324</value>
+    </field>
+    <field name="summary">
+      <value>Resolve called on a child kernel throws exception when resolving a service registered on parent with dependency in child.</value>
+    </field>
+    <field name="description">
+      <value>Consider the following:
+
+{code}
+
+using (var parent = new DefaultKernel())
+using (var child = new DefaultKernel())
+{
+	parent.Register(Component.For&lt;Service&gt;());
+
+	child.Register(Component.For&lt;Dependency&gt;());
+
+	parent.AddChildKernel(child);
+
+	Assert.DoesNotThrow(() =&gt; child.Resolve&lt;Service&gt;());
+}
+{code}
+
+This code fails. The reason is that the parent handler (''Castle.MicroKernel.Handlers.ParentHandlerWithChildResolver'') doesn't think it can resolve the dependency when the parent's ''IHandler.CurrentState'' is checked in ''AbstractHandler.CanResolvePendingDependencies''. This should work, however, since the dependency resolution on the ''Castle.MicroKernel.Handlers.ParentHandlerWithChildResolver'' works as expected by asking the child resolver to resolve the dependency.
+
+This looks similar to IOC-204 (Unable to resolve parent components when a dependency is only registered in a child container) however, that issue was marked as fixed.
+</value>
+    </field>
+    <field name="created">
+      <value>1326935742720</value>
+    </field>
+    <field name="updated">
+      <value>1396694932647</value>
+    </field>
+    <field name="reporterName">
+      <value>Rory.Plaire</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396694932633</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-795[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="#IOC-204 is marked as won't fix. This is not a supported scenario. Dependencies can only go upwards not downwards, so child container can have components with dependencies from parent, but not the other way around." created="1326936060024" />
+    <comment author="Rory.Plaire" text="It may not be officially supported, but the scenario works via the ParentHandlerWithChildResolver, except for the root resolve. I have a fix which &quot;inverse-lazy&quot; resolves the child dependencies into the context first to get around this. What are the problems with this approach?" created="1326937844246" />
+    <comment author="xtoff" text="There's plenty of issues with this. I wrote a series of blogposts at some point, that discuss some of them. http://kozmic.pl/?s=child+containers&amp;x=0&amp;y=0&#xA;" created="1326940419421" />
+    <comment author="Rory.Plaire" text="But few of these reasons address the issue at hand. In your examples, you are talking about 1 parent container and many child containers. We don't have that situation here. We have a single handler with one parent handler and one child dependency resolver, and we are resolving via the child container, so we know where the dependencies are going to come from. Further, with this fix, we avoid the &quot;double-resolve&quot; issue since we preload the context via the outermost scope." created="1326941136523" updated="1326941147053" />
+    <comment author="rplaire" text="I think the most useful example of why this is almost a supported scenario is that if the Service has a default constructor, the Resolve passes the parent handler's check and everything resolves as expected." created="1327006316261" />
+  </issue>
+</issues>

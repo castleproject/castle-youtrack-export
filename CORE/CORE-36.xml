@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>None</value>
+    </field>
+    <field name="Fix versions">
+      <value>vNext</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>36</value>
+    </field>
+    <field name="summary">
+      <value>More descriptive message for wrong IInterceptor implementation</value>
+    </field>
+    <field name="description">
+      <value>When using assemblies that are merged with Castle.Windsor.dll (like AutoMapper) there are two IInterceptor interfaces available. Implementing the wrong one (Castle.Core.Interceptors.IInterceptor) is throwing exception message:
+
+''An interceptor registered for WindsorTest.FakeImpl doesn't implement the IInterceptor interface''
+
+When it could says that Castle.DynamicProxy.IInterceptor is not implemented.
+
+here is a unit test for the newest Castle.Windsor assembly (taken from NuGet, 2010-03-12, it says that is 2.5.1) that will test if message contains FullName of IInterceptor interface. It requires AutoMapper (http://automapper.codeplex.com) with merged Castle.Windsor to execute the code. Hope this helps.
+
+{code lang=csharp}
+
+using System;
+using System.Diagnostics;
+using Castle.Core;
+using Castle.Core.Interceptor;
+using Castle.MicroKernel.ComponentActivator;
+using Castle.MicroKernel.Registration;
+using Castle.MicroKernel.Resolvers;
+using Castle.Windsor;
+using Xunit;
+
+namespace WindsorTest
+{
+    public class InterceptorErrorMessageTest
+    {
+        [Fact]
+        public void When_old_CastleWindsor_assembly_is_merged_into_some_lib_and_CastleCoreInterceptorsIInterceptor_interface_exists_and_is_used_inner_exception_returned_by_resolve_should_contains_full_type_name_of_proper_IInterceptor_interface()
+        {
+            bool properExThrown = false;
+
+            try
+            {
+                var obj = _container.Resolve&lt;IFake&gt;();
+            }
+            catch(ComponentActivatorException ex)
+            {
+                // make sure that we are in the proper scenerio
+                Assert.NotNull(ex.InnerException);
+                Assert.IsType&lt;DependencyResolverException&gt;(ex.InnerException);
+                
+                // main assert
+                Assert.Contains(typeof(Castle.DynamicProxy.IInterceptor).FullName, ex.InnerException.Message);
+                properExThrown = true;
+            }
+            catch(Exception ex)
+            {
+                // just in case, as we are looking for the issue with ComponentActivatorException
+                Assert.IsType&lt;ComponentActivatorException&gt;(ex);
+            }
+
+            // check at the end to be sure that proper ex was thrown and handle
+            Assert.True(properExThrown);
+        }
+
+        private readonly IWindsorContainer _container;
+        public InterceptorErrorMessageTest()
+        {
+            _container = new WindsorContainer();
+            _container.Register(Component.For&lt;FakeLoggingInterceptor&gt;());
+            _container.Register(
+                Component.For&lt;IFake&gt;()
+                    .ImplementedBy&lt;FakeImpl&gt;()
+                        .Interceptors(InterceptorReference.ForType(typeof(FakeLoggingInterceptor)))
+                        .Anywhere
+            );
+        }
+    }
+
+    public class FakeLoggingInterceptor : IInterceptor
+    {
+        public void Intercept(IInvocation invocation)
+        {
+            Debug.WriteLine("Before execution");
+            invocation.Proceed();
+            Debug.WriteLine("After execution");
+        }
+    }
+
+    public interface IFake
+    {
+        void FakeMe();
+    }
+
+    public class FakeImpl : IFake
+    {
+        public void FakeMe()
+        {
+            Debug.WriteLine("I'm in FakeMe");
+        }
+    }
+}
+
+
+{code}
+</value>
+    </field>
+    <field name="created">
+      <value>1299969193879</value>
+    </field>
+    <field name="updated">
+      <value>1394974073503</value>
+    </field>
+    <field name="reporterName">
+      <value>Jakub.Gutkowski</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1394974073490</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-692[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="a pull request would be welcome" created="1351947495787" />
+  </issue>
+</issues>

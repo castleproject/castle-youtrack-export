@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>201</value>
+    </field>
+    <field name="summary">
+      <value>DiggStylePagination.Initialize() doesn't check useInlineStyle parameter</value>
+    </field>
+    <field name="description">
+      <value>The XML comments says this:
+&lt;c&gt;useInlineStyle&lt;/c&gt;: defines if the outputted content will use inline style or css classnames (defaults to true)
+
+But the Initialize() method is missing the code to get this parameter, however the other parameters are all checked.</value>
+    </field>
+    <field name="created">
+      <value>1167455502000</value>
+    </field>
+    <field name="updated">
+      <value>1263055665000</value>
+    </field>
+    <field name="reporterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1282143646370</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055620000" />
+  </issue>
+</issues>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>161</value>
+    </field>
+    <field name="summary">
+      <value>Add hook to allow lresolution of unregistered components.</value>
+    </field>
+    <field name="description">
+      <value>Currently MK does check the components it has registered, and if it can not find one, it throws.
+It would be beneficial if it exposed a hook that external entities (facilities?) could hook in to and provide resolved components.
+- One scenario where this would be useful is WCF facility, if would allow for resolution of services/client proxies that are specified in .config file only.
+- Another would be integration of Windsor and MEF (or any other similar tool like other DI framework). If Windsor would not have a component it could delegate the resolution to MEF.</value>
+    </field>
+    <field name="created">
+      <value>1246528625000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838901</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1260777480000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="implemented in 6335" created="1260777560000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1260777480000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1260777540000" />
+  </issue>
+</issues>

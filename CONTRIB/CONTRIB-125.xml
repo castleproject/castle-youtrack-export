@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>View Components</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>125</value>
+    </field>
+    <field name="summary">
+      <value>GridComponent empty section</value>
+    </field>
+    <field name="description">
+      <value>I had define blockcomponent like this
+
+#blockcomponent(Grid with "source=$users")
+  #tablestart
+    &lt;table class='outline'&gt;
+  #end
+  #empty
+    &lt;td&gt;User is empty ...&lt;/td&gt;
+  #end
+#end
+
+When there is no data available GridComponent generate the following html:
+&lt;table class='outline'&gt;\n		&lt;/table&gt;&lt;td&gt;User is empty ...&lt;/td&gt;\n
+
+I would love to see the empty section render inside the table tag so I modify the Render method:
+		public override void Render()
+		{
+                         ...
+			ShowStartTable();
+			ShowHeader(source);
+
+			bool hasItems = ShowRows(source);
+
+			if (hasItems == false)
+			{
+				ShowEmpty();
+			}
+
+                       ShowFooter();
+                       ShowEndTable();
+                       .....
+		}
+
+and the ShowEmpty() as
+		private void ShowEmpty()
+		{
+			if (Context.HasSection("empty"))
+			{
+                                 // detect &lt;td&gt; tag if you care ...
+				Context.RenderSection("empty");
+			}
+			else
+			{
+				RenderText("&lt;td&gt;Grid has no data&lt;/td&gt;");
+			}
+		}
+
+now the result when empty data:
+&lt;table class='outline'&gt;\n &lt;td&gt;User is empty ...&lt;/td&gt;\n	&lt;/table&gt;</value>
+    </field>
+    <field name="created">
+      <value>1189747179000</value>
+    </field>
+    <field name="updated">
+      <value>1409037571934</value>
+    </field>
+    <field name="reporterName">
+      <value>csokun</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1409037571926</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>123</value>
+    </field>
+    <field name="summary">
+      <value>Additional OnFlushDirty functionality</value>
+    </field>
+    <field name="description">
+      <value>We have included additional functionality in the following:
+
+Framework/ActiveRecordHooksBase.cs
+Framework/DictionaryAdapter.cs
+Framework/HookDispatcher.cs
+
+that allows us to examine the changes to an entity. We're using this to support audit logging specific changes to an entity. Existing unit tests pass.
+
+- John</value>
+    </field>
+    <field name="created">
+      <value>1169726808000</value>
+    </field>
+    <field name="updated">
+      <value>1170079488000</value>
+    </field>
+    <field name="reporterName">
+      <value>jhurrell</value>
+    </field>
+    <field name="updaterName">
+      <value>jhurrell</value>
+    </field>
+    <field name="resolved">
+      <value>1282136272338</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

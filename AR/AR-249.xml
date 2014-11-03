@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>249</value>
+    </field>
+    <field name="summary">
+      <value>SessionScope commits on dispose with DefaultFlushType.Transaction</value>
+    </field>
+    <field name="description">
+      <value>According to XML documentation, DefaultFlushType.Transaction means:
+"SessionScope won't flush at all unless called manually, TransactionScope flushes automatically.", which is exactly what we need.
+
+However, SessionScope creates an implicit transaction and commits both session and transaction on dispose.
+
+Test:
+
+[Test]
+public void TransactionalAutoCommitImplicitTransaction()
+{
+	ActiveRecordStarter.Initialize(GetConfigSource(), typeof(Post), typeof(Blog));
+	Recreate();
+	Post.DeleteAll();
+	Blog.DeleteAll();
+
+	((InPlaceConfigurationSource)ActiveRecordStarter.ConfigurationSource).DefaultFlushType = DefaultFlushType.Transaction;
+
+	using (new SessionScope())
+	{
+		var blog = new Blog();
+		blog.Save();
+	}
+	using (new SessionScope())
+	{
+		var blog = Blog.FindAll()[0];
+		blog.Name = "TestBlog";
+	} // The blog is being saved here without explicit Save() call!
+	using (new SessionScope())
+	{
+		var blog = Blog.FindAll()[0].Name;
+		Assert.AreEqual("TestBlog", blog);
+	}
+}
+
+</value>
+    </field>
+    <field name="created">
+      <value>1239085982000</value>
+    </field>
+    <field name="updated">
+      <value>1242281390000</value>
+    </field>
+    <field name="reporterName">
+      <value>yuriy.ostapenko</value>
+    </field>
+    <field name="updaterName">
+      <value>yuriy.ostapenko</value>
+    </field>
+    <field name="resolved">
+      <value>1242281340000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="Yuriy&#xA;&#xA;the test have a lot of problems and that is why it fails:&#xA;&#xA;1) After initializing AR, you call DeleteAll(), thus creating the sessionfactories for NH. Any configuration change after that is not reflected in the sessionfactory. The flush behaviour in the test is therefore classic (the default).&#xA;2) The creation of a new blog in the first sessionscope shouldn't happen at all when flushmode is transaction. You need to call SaveAndFlush() then.&#xA;3) In the second sessionscope block, you mix up Save() and Flush(). An instance retrieved via AR doen't need to saved within a sessionscope, as it is already in the seconde-level-cache. If it is without a SessionScope, you have to save it because the load and save calls don't share a session.&#xA;But you have to call scope.Flush() to make it write to the DB if you don't use a transaction with flushmode=transaction.&#xA;&#xA;If you experience problems that are bugs nonetheless, please update the issue.&#xA;&#xA;If you need guidance to use AR instead, please post at&#xA;http://groups.google.com/group/castle-project-users&#xA;&#xA;-Markus" created="1240230797000" />
+    <comment author="yuriy.ostapenko" text="Markus,&#xA;&#xA;Sorry for being silent, was out for a while.&#xA;&#xA;I agree the test is bad, so let me try and simplify it.&#xA;&#xA;1) The test was &quot;inspired&quot; by test in &quot;ScopeDefaultFlushingBehaviourTestCase&quot;, that has those DeleteAll() calls. Anyway, they are redundant since the schema is recreated, so I removed them.&#xA;&#xA;2) I also expected that the blog shouldn't be created in the first scope when using Transactional flush, but it is.&#xA;Here's an updated test:&#xA;&#xA;[Test]&#xA;public void TransactionalFlushTypeAutoCommitsSession()&#xA;{&#xA;	ActiveRecordStarter.Initialize(GetConfigSource(), typeof(Post), typeof(Blog));&#xA;	Recreate();&#xA;&#xA;	((InPlaceConfigurationSource)ActiveRecordStarter.ConfigurationSource).DefaultFlushType = DefaultFlushType.Transaction;&#xA;&#xA;	using (new SessionScope())&#xA;	{&#xA;		var blog = new Blog();&#xA;		blog.Save();&#xA;	}&#xA;	Assert.AreEqual(0, Blog.FindAll().Length);&#xA;}&#xA;&#xA;And I guess the problem is with AbstractScope beginning transaction in OpenSession() and then committing it in PerformDisposal() if (hasSessionError || FlushAction == FlushAction.Never) therefore neglecting NHibernate's behavior.&#xA;&#xA;Can we consider it a bug in this case?&#xA;&#xA;Maybe FlushAction is a bit stale and redundant, since there are DefaultFlushType and FlushMode now?&#xA;&#xA;3) Yes, I realize that the object fetched from the DB is already in the ambient session, so it will be automatically updated in the DB during session flush if you change it, my bad the comment is wrong in that place. Anyway, I guess the simplified test already reflects what I considered a bug.&#xA;&#xA;Hope this helps,&#xA;&#xA;--&#xA;Yuriy" created="1241581758000" />
+    <comment author="daveg" text="I've had a look at this and there is a problem in this area.&#xA;&#xA;When the flush action is set to &quot;config&quot; and the default flush type is set to &quot;transaction&quot; the underlying session is created with a flush mode of &quot;commit&quot;. Assuming the description of &quot;transaction&quot; is the intended functionality I would have expected it to use &quot;never&quot;. In addition even if this is changed the scope disposal code will still flush the session because it only skips the flush if the action is &quot;never&quot; not &quot;config&quot;. To fix this we either need to convert &quot;config&quot; to an actual value during the scope constructor (this will require a new value for &quot;commit&quot;) or provide a method to allow the real session type to be queried at this point as we don't don't want to duplicate the conversion code. (I prefer conversion during the constructor but there may be implications I haven't thought of.)&#xA;&#xA;Even if the above changes are made this will only fix the session for modifications. It still won't behave as you expect for a new object - the object will get created even using &quot;never&quot; because NHibernate needs the identity value. Changing this would be more difficult and probably not desirable. If you need this behaviour I suggest you use a transaction scope and roll it back at the end." created="1242195446000" />
+    <comment author="mzywitza" text="Changed as proposed in the last comment." created="1242281392000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1242281340000" />
+  </issue>
+</issues>

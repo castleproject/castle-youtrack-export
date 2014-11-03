@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>350</value>
+    </field>
+    <field name="summary">
+      <value>Open Generic component does not work on Mono</value>
+    </field>
+    <field name="description">
+      <value>Open Generic type registration does not work on latest Mono (2.12) and raises error.
+ 
+container.Register(Component.For(typeof(IList&lt;&gt;)).UsingFactoryMethod((k, c) =&gt; Activator.CreateInstance(return typeof(List&lt;&gt;).MakeGenericType(c.GenericArguments))));
+
+</value>
+    </field>
+    <field name="created">
+      <value>1344551835361</value>
+    </field>
+    <field name="updated">
+      <value>1394976802407</value>
+    </field>
+    <field name="reporterName">
+      <value>Kamyar.Inanloo</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1394976802396</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="did it work on previous version of mono? What's the error" created="1344553678739" />
+    <comment author="Kamyar.Inanloo" text="It did not work in 3. I have not tested on 2.5 You can reproduce the error easily. Anyway, I am trying to find &amp; fix it." created="1345387310393" />
+    <comment author="Kamyar.Inanloo" text="Dear Kozmic, the problem is that ComponentModel.Implementation is late bound, and you have put a TODO there. I think doing the TODO may resolve the problem." created="1345401202530" />
+    <comment author="Kamyar.Inanloo" text="Fixed the problem by just adding an 'ImplementedBy(typeof(IList&lt;&gt;))' to the registration, before UsingFactoryMethod." created="1345402477130" />
+    <comment author="Kamyar.Inanloo" text="Still having problem with the following real code sample:&#xA;&#xA;Component.For(typeof(IQueryable&lt;&gt;))&#xA;				.ImplementedBy(typeof(IQueryable&lt;&gt;))&#xA;				.UsingFactoryMethod(&#xA;				(kernel, context) =&gt; NHTypeRegisterar.GetQueryable(context.GenericArguments[0]))&#xA;				.LifeStyle.Is(LifestyleType.PerWebRequest)," created="1345402663067" />
+    <comment author="xtoff" text="Pull request?" created="1349645978838" />
+    <comment author="xtoff" text="I don't use Mono myself so it might be a while before I could fix it. Also our Mono builds are still a fair while away from working." created="1349646018151" />
+  </issue>
+</issues>

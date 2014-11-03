@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>67</value>
+    </field>
+    <field name="summary">
+      <value>Add support for &lt;? ?&gt; notation, in addition of &lt;% %&gt;</value>
+    </field>
+    <field name="description">
+      <value>Documents that contain &lt;% ... %&gt; are not well-formed XML documents.
+
+Brail should allow the use of &lt;?brail ... ?&gt; and shorthand &lt;? ... ?&gt; notation, just like PHP, as &lt;? is considered a "XML Processing Instruction", a valid constructor for XML documents.</value>
+    </field>
+    <field name="created">
+      <value>1131288011000</value>
+    </field>
+    <field name="updated">
+      <value>1141395750000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282143370807</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

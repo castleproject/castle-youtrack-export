@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>StartableFacility</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.5</value>
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>237</value>
+    </field>
+    <field name="summary">
+      <value>Castle Windsor : Possible bug with Startable Facility and “decorator pattern” dependencies</value>
+    </field>
+    <field name="description">
+      <value>When attempting to register a startable component that depends on a service whose implementation "decorates" the same service interface, Castle fails to resolve the startable component, claiming that the dependency cannot be resolved. Curiously enough, explicitly resolving the startable component works as expected. I have seen this behavior in both Castle Windsor 2.5 and 2.5.1.
+
+I have cross-posted this, along with a test case demonstrating the problem, on stackoverflow:
+http://stackoverflow.com/questions/3990083/castle-windsor-possible-bug-with-startable-facility-and-decorator-pattern-dep</value>
+    </field>
+    <field name="created">
+      <value>1287682054165</value>
+    </field>
+    <field name="updated">
+      <value>1288011947040</value>
+    </field>
+    <field name="reporterName">
+      <value>slange</value>
+    </field>
+    <field name="updaterName">
+      <value>slange</value>
+    </field>
+    <field name="resolved">
+      <value>1287837168213</value>
+    </field>
+    <field name="voterName">
+      <value>xtoff</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="I think you meant this link: http://stackoverflow.com/questions/3990083/castle-windsor-possible-bug-with-startable-facility-and-decorator-pattern-dep&#xA;" created="1287697867149" />
+    <comment author="slange" text="Yes, you are right, sorry about that." created="1287834687588" />
+    <comment author="xtoff" text="Fixed, though one of the failing tests you submitted was failing by design. I updated the tests so that they reflect that.&#xA;Cheers." created="1287837850916" />
+  </issue>
+</issues>

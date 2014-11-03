@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>63</value>
+    </field>
+    <field name="summary">
+      <value>SetValidator does not support multiple-value [Flags] enum</value>
+    </field>
+    <field name="description">
+      <value>The SetValidator does not work properly with Flags enums.
+
+For example, the following would fail:
+
+[SetValidator(typeof(AttributeTargets))]
+public AttributeTargets Targets { get; set; }
+...
+this.Targets  = AttributeTargets.Assembly | AttributeTargets.Class;
+// this.Targets is invalid
+
+The root of the problem lies in converting the Flags enum to a string in the IsValid() method, which (in the above situation) would be "Assembly, Class". The fix proposed (and attached as a patch file) is:
+
+* Detect if fieldValue is an Enum.
+* Convert the enum to a string.
+* Split the enum into a delimited array separated by ", " (i.e. what .Net splits Flags enums with).
+* If more than one item in the array, recursively call IsValid() with each value.
+
+This works with Flags enums and does not break any other unit tests (it shouldn't). Note that I avoided using reflection to look for a [Flags] attribute, figuring it would be slower, but that is another alternative.
+
+Note that this patch also implicitly resolves COMP-61.</value>
+    </field>
+    <field name="created">
+      <value>1213166663000</value>
+    </field>
+    <field name="updated">
+      <value>1213329053000</value>
+    </field>
+    <field name="reporterName">
+      <value>bdemarzo</value>
+    </field>
+    <field name="updaterName">
+      <value>bdemarzo</value>
+    </field>
+    <field name="resolved">
+      <value>1282137630620</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

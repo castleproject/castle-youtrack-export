@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>291</value>
+    </field>
+    <field name="summary">
+      <value>Error link return when LinkTo an out area action within a non-empty area context</value>
+    </field>
+    <field name="description">
+      <value>For example I have a controller with Area defined,  under the context of this controller, when I use HtmlHelper.LinkTo() create a link to another Action on a controller in different Area or just no Area Defined, the returned link will auto-bind current Area, which is wrong.
+
+[ControllerDetails(Area="A")]
+public class TestController : Controller
+{
+  public void TestAction()
+...
+
+public class OtherTestController : Controller
+{
+  public void OtherAction()
+...
+
+[ControllerDetails(Area="B")]
+public class OtherTest2Controller : Controller
+{
+  public void OtherAction2()
+...
+
+in TestAction.vm
+$HtmlHelper.LinkTo("Name", "OtherTest", "OtherAction")
+will return &lt;a link="${siteRoot}/A/OtherTest/OtherAction.rails"&gt;Name&lt;/a&gt;
+$HtmlHelper.LinkTo("Name2", "B/OtherTest2", "OtherAction2")
+will return &lt;a link="${siteRoot}/A/B/OtherTest2/OtherAction2.rails"&gt;Name2&lt;/a&gt;
+
+but under current release, it runs ok.</value>
+    </field>
+    <field name="created">
+      <value>1183616321000</value>
+    </field>
+    <field name="updated">
+      <value>1244676633000</value>
+    </field>
+    <field name="reporterName">
+      <value>james_su</value>
+    </field>
+    <field name="updaterName">
+      <value>james_su</value>
+    </field>
+    <field name="resolved">
+      <value>1282143893979</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676600000" />
+  </issue>
+</issues>

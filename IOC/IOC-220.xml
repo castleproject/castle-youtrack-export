@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Resolvers</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>220</value>
+    </field>
+    <field name="summary">
+      <value>Composite pattern with CollectionResolver should be properly supported without throwing "cycle detected" exception</value>
+    </field>
+    <field name="description">
+      <value>Windsor should properly support resolving of {{CompositeService}} in the following example (with help of {{ArrayResolver}} or {{CollectionResolver}}):
+
+{code lang=java}
+public interface IService { void DoStuff(string someArg); }
+
+public class ConcreteService1 : IService {
+    public void DoStuff(string someArg) { }
+}
+
+public class ConcreteService2 : IService {
+    public void DoStuff(string someArg) { }
+}
+
+public class CompositeService : List&lt;IService&gt;, IService
+{
+    private readonly IService[] decoratedServices;
+
+    CompositeService(params IService[] decoratedServices) {
+        this.decoratedServices = decoratedServices;
+    }
+
+    public void DoStuff(string someArg) {
+        foreach (var service in decoratedServices) {
+            service.DoStuff(someArg);
+        }
+    }
+}
+{code}
+
+Versions up to 2.5.0 detect cyclic dependency and throw. See the following StackOverflow question for more context:
+http://stackoverflow.com/questions/3734371/how-to-avoid-cyclic-behaviour-with-castle-windsors-collectionresolver
+</value>
+    </field>
+    <field name="created">
+      <value>1285059117514</value>
+    </field>
+    <field name="updated">
+      <value>1407822257329</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1285059117904</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

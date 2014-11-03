@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>107</value>
+    </field>
+    <field name="summary">
+      <value>Investigate intercepting calls to explicitly implemented interface members.</value>
+    </field>
+    <field name="description">
+      <value>There is no way to call base' class explicit implementation of interface member if inherited class implements that interface as well by normal means.
+However, this is possible using delegates.
+
+If there is a simple way of doing this, it might be our solution.
+[UPDATE: this won't work, look below]
+C# code: Action a = new Action(new MyClass().MyMethod);
+gets converted to the following IL:
+
+L_0001: newobj instance void MyApp.MyClass::.ctor()
+L_0006: ldftn instance void MyApp.MyClass::MyMethod()
+L_000c: newobj instance void [System.Core]System.Action::.ctor(object, native int)
+
+If we could do the same and load (ldftn) token of the private implementation from the base class (assuming CLR's visibility checks will let us do this) we'd have most of the solution done.
+
+The other part would be then obtaining delegates matching every needed signature.
+
+We're covered with simplest cases (no, out/ref parameters, up to 4 params)
+
+The other cases we can cover on as-needed basis by dynamically generating delegates with required signatures.
+
+[UPDATE]
+the approach suggested above won't work. As I was afraid, it yields MethodAccessException. However, as Kenneth Xu discovered, Delegate.CreateDelegate allows us to bind to private methods and circumvent this limitation.
+Considering we can utilize open method (so that we pass 1st parameter, this, explicitly), we'd only need to create the delegate once per all instances.
+This makes it a very interesting solution.</value>
+    </field>
+    <field name="created">
+      <value>1247629675000</value>
+    </field>
+    <field name="updated">
+      <value>1273062188000</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1273062180000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kennethxu" text="Regarding the use of Action/Func:&#xA;&#xA;1. Because Action/Func are generic types, every time we give it a new&#xA;signature, we end up generating a new specialized generic type&#xA;anyway.&#xA;&#xA;2. Using Action/Func also breaks the 2.0 compatibility. So far, I can&#xA;drop in the net-3.5 DP build into a project targeted to 2.0 (with&#xA;RhinoMocks net-3.5) without any problem. But once Action/Func is&#xA;added, this is no longer true.&#xA;&#xA;3. The only benefit we get is when the exact signature of Action/Func&#xA;is used in somewhere out of DP. But the chance is very very low when&#xA;using the open method, which always take the base type as first type&#xA;parameter.&#xA;&#xA;IMHO, the additional code to handle this + 2.0 compatibility issue&#xA; &gt; the minor benefit Action/Func brings. The alternative of implementing a cache for our own generated delegate may be more efficient.&#xA;&#xA;Just my 2 cents worth :)" created="1247918407000" />
+    <comment author="xtoff" text="Link to article detailing how to emit deletate: http://blogs.msdn.com/joelpob/archive/2004/02/15/73239.aspx&#xA;&#xA;" created="1266644218000" />
+    <comment author="xtoff" text="two posts by Kenneth discussing suggested solution:&#xA;http://kennethxu.blogspot.com/2009/07/intercept-non-virtual-interface.html&#xA;http://kennethxu.blogspot.com/2009/07/intercept-explicit-interface.html" created="1266644534000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1266665760000" />
+    <comment author="xtoff" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;There is no way to call base' class explicit implementation of interface member if inherited class implements that interface as well by normal means.&#xD;&#xA;However, this is possible using delegates.&#xD;&#xA;&#xD;&#xA;If there is a simple way of doing this, it might be our solution.&#xD;&#xA;&#xD;&#xA;C# code: Action a = new Action(new MyClass().MyMethod);&#xD;&#xA;gets converted to the following IL:&#xD;&#xA;&#xD;&#xA;L_0001: newobj instance void MyApp.MyClass::.ctor()&#xD;&#xA;L_0006: ldftn instance void MyApp.MyClass::MyMethod()&#xD;&#xA;L_000c: newobj instance void [System.Core]System.Action::.ctor(object, native int)&#xD;&#xA;&#xD;&#xA;If we could do the same and load (ldftn) token of the private implementation from the base class (assuming CLR's visibility checks will let us do this) we'd have most of the solution done.&#xD;&#xA;&#xD;&#xA;The other part would be then obtaining delegates matching every needed signature.&#xD;&#xA;&#xD;&#xA;We're covered with simplest cases (no, out/ref parameters, up to 4 params)&#xD;&#xA;&#xD;&#xA;The other cases we can cover on as-needed basis by dynamically generating delegates with required signatures.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;There is no way to call base' class explicit implementation of interface member if inherited class implements that interface as well by normal means.&#xD;&#xA;However, this is possible using delegates.&#xD;&#xA;&#xD;&#xA;If there is a simple way of doing this, it might be our solution.&#xD;&#xA;[UPDATE: this won't work, look below]&#xD;&#xA;C# code: Action a = new Action(new MyClass().MyMethod);&#xD;&#xA;gets converted to the following IL:&#xD;&#xA;&#xD;&#xA;L_0001: newobj instance void MyApp.MyClass::.ctor()&#xD;&#xA;L_0006: ldftn instance void MyApp.MyClass::MyMethod()&#xD;&#xA;L_000c: newobj instance void [System.Core]System.Action::.ctor(object, native int)&#xD;&#xA;&#xD;&#xA;If we could do the same and load (ldftn) token of the private implementation from the base class (assuming CLR's visibility checks will let us do this) we'd have most of the solution done.&#xD;&#xA;&#xD;&#xA;The other part would be then obtaining delegates matching every needed signature.&#xD;&#xA;&#xD;&#xA;We're covered with simplest cases (no, out/ref parameters, up to 4 params)&#xD;&#xA;&#xD;&#xA;The other cases we can cover on as-needed basis by dynamically generating delegates with required signatures.&#xD;&#xA;&#xD;&#xA;[UPDATE]&#xD;&#xA;the approach suggested above won't work. As I was afraid, it yields MethodAccessException. However, as Kenneth Xu discovered, Delegate.CreateDelegate allows us to bind to private methods and circumvent this limitation.&#xD;&#xA;Considering we can utilize open method (so that we pass 1st parameter, this, explicitly), we'd only need to create the delegate once per all instances.&#xD;&#xA;This makes it a very interesting solution.&#xD;&#xA;{quote}&#xD;&#xA;" created="1247885940000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.5''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1273062180000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1273062180000" />
+  </issue>
+</issues>

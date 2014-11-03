@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>483</value>
+    </field>
+    <field name="summary">
+      <value>WebFormsViewEngine is still referenced in various parts of the documentation</value>
+    </field>
+    <field name="description">
+      <value>I think references to the WebFormsViewEngine should be dropped form the documentation.</value>
+    </field>
+    <field name="created">
+      <value>1221245747000</value>
+    </field>
+    <field name="updated">
+      <value>1278993530000</value>
+    </field>
+    <field name="reporterName">
+      <value>psteele</value>
+    </field>
+    <field name="updaterName">
+      <value>psteele</value>
+    </field>
+    <field name="resolved">
+      <value>1278993480000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Not according to google:&#xA;http://www.google.com.au/search?hl=en&amp;as_q=WebFormsViewEngine&amp;as_epq=&amp;as_oq=&amp;as_eq=&amp;num=10&amp;lr=&amp;as_filetype=&amp;ft=i&amp;as_sitesearch=http%3A%2F%2Fwww.castleproject.org%2F&amp;as_qdr=all&amp;as_rights=&amp;as_occt=any&amp;cr=&amp;as_nlo=&amp;as_nhi=&amp;safe=images" created="1278993526000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1278993480000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278993480000" />
+  </issue>
+</issues>

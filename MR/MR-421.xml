@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>421</value>
+    </field>
+    <field name="summary">
+      <value>ApplyNumberOnlyOptions function incorrectly cases the onKeyPress attribute</value>
+    </field>
+    <field name="description">
+      <value>The ApplyNumberOnlyOptions is used to generate javascript. The attribute name is incorrectly cased: "onKeyPress "instead of "onkeypress" which causes XHTML validation to fail.</value>
+    </field>
+    <field name="created">
+      <value>1204185348000</value>
+    </field>
+    <field name="updated">
+      <value>1244676747000</value>
+    </field>
+    <field name="reporterName">
+      <value>dimitrod</value>
+    </field>
+    <field name="updaterName">
+      <value>dimitrod</value>
+    </field>
+    <field name="resolved">
+      <value>1282145552198</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676720000" />
+  </issue>
+</issues>

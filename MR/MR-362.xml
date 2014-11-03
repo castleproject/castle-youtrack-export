@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>362</value>
+    </field>
+    <field name="summary">
+      <value>Support Layouts in Folder other than 'layouts'</value>
+    </field>
+    <field name="description">
+      <value>nVelocity allows layouts to be stored in a folder other than layouts.  The custom location is used when the LayoutName begins with a forward slash '/'.
+
+Attached patch has code and tests to add this feature to Brail.</value>
+    </field>
+    <field name="created">
+      <value>1194611565000</value>
+    </field>
+    <field name="updated">
+      <value>1263055816000</value>
+    </field>
+    <field name="reporterName">
+      <value>wcpierce</value>
+    </field>
+    <field name="updaterName">
+      <value>wcpierce</value>
+    </field>
+    <field name="resolved">
+      <value>1282145359885</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055800000" />
+  </issue>
+</issues>

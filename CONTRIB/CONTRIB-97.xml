@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngines</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>97</value>
+    </field>
+    <field name="summary">
+      <value>Improve GetClassName method in AspViewEngine</value>
+    </field>
+    <field name="description">
+      <value>The translation of file names to class names is too simple. For example, a dash (-) in the file name will break compilation. I have been using the following with success:
+
+public static string GetClassName(string fileName)
+		{
+			fileName = fileName.ToLower();
+			if (fileName.EndsWith(".aspx"))
+				fileName = fileName.Substring(0, fileName.Length - 5);
+
+			string className = fileName
+				.Replace('\\', '_')
+				.Replace('/', '_')
+                .Replace('-', '_')
+				.TrimStart('_')
+				.Replace('.', '_');
+
+			return SafeClassNamer.SafeIdentifierName(className);
+		}
+
+The SafeClassNamer class is attached.
+
+Thanks.</value>
+    </field>
+    <field name="created">
+      <value>1199981685000</value>
+    </field>
+    <field name="updated">
+      <value>1204209559000</value>
+    </field>
+    <field name="reporterName">
+      <value>pcbender</value>
+    </field>
+    <field name="updaterName">
+      <value>pcbender</value>
+    </field>
+    <field name="resolved">
+      <value>1282140032838</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

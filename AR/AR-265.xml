@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Queries</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.0 Alpha 2</value>
+    </field>
+    <field name="Affected versions">
+      <value>AR 2.0 Alpha 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>265</value>
+    </field>
+    <field name="summary">
+      <value>Extend SimpleQuery syntax to support parameter type selection</value>
+    </field>
+    <field name="description">
+      <value>Since updating to trunk AR &amp; NH a couple of my simple queries are throwing exceptions due to type coercion. Imagine an AR type which has a Guid property on it:
+
+class ProductWithGuid {
+    // ...
+    public Guid Key { get {  } }
+}
+
+I used to be able to query:
+
+"select p from ProductWithGuid where p.Key like ?"
+
+and supply a string as the positional parameter with the value "abc%". With the latest versions, this now throws an InvalidCastException from string to guid. I have attached a patch which allows me to go from :
+
+class MyQuery : SimpleQuery&lt;ProductWithGuid&gt; {
+    public MyQuery(string chars) : base("select...", chars) {
+    }
+}
+
+to
+
+class MyQuery : SimpleQuery&lt;ProductWithGuid&gt; {
+    public MyQuery(string chars) : base("select...", new ValueAndTypeTuple(NHibernateUtil.String, chars)) {
+    }
+}
+
+The HqlBasedQuery checks to see if the value being passed as a parameter is ValueAndTypeTuple and sets appropriate parameter type on the IQuery instance it is working with.
+
+The naming is not great, but it's a start. Thoughts?</value>
+    </field>
+    <field name="created">
+      <value>1245308954000</value>
+    </field>
+    <field name="updated">
+      <value>1247127348000</value>
+    </field>
+    <field name="reporterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="updaterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="resolved">
+      <value>1247127300000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.0 Alpha 2''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1247127300000" />
+    <comment author="leemhenson" text="* '''Attachment''' ar_query_parameter_type_override.patch added.&#xD;&#xA;" created="1245308954001" />
+  </issue>
+</issues>

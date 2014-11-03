@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>TypedFactoryFacility</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.3</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>261</value>
+    </field>
+    <field name="summary">
+      <value>Disposing of typed-factory can throw argument null exception</value>
+    </field>
+    <field name="description">
+      <value>As reported here: http://kozmic.pl/2010/11/15/castle-windsorcore-2-5-2/comment-page-1/#comment-511</value>
+    </field>
+    <field name="created">
+      <value>1293686521618</value>
+    </field>
+    <field name="updated">
+      <value>1407822257317</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1293686522118</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

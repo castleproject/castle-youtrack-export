@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>399</value>
+    </field>
+    <field name="summary">
+      <value>Checkbox value error during roundtrip</value>
+    </field>
+    <field name="description">
+      <value>A boolean value from a 'lone' checkbox (not being binded as part of an object) is put in the Flash container as
+string "false" when unchecked. This string is interpreted by
+FormHelper as true, because it is not a bool and not null.
+</value>
+    </field>
+    <field name="created">
+      <value>1200898155000</value>
+    </field>
+    <field name="updated">
+      <value>1244676981000</value>
+    </field>
+    <field name="reporterName">
+      <value>mzywitza</value>
+    </field>
+    <field name="updaterName">
+      <value>mzywitza</value>
+    </field>
+    <field name="resolved">
+      <value>1282145510557</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676960000" />
+  </issue>
+</issues>

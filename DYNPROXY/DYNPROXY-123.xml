@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>.NET 2.0 Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>4.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>123</value>
+    </field>
+    <field name="summary">
+      <value>Generic proxies should be reused</value>
+    </field>
+    <field name="description">
+      <value>Currently, proxies are created per closed generic type
+CreateClassProxy&lt;Foo&lt;int&gt;&gt;() and CreateClassProxy&lt;Foo&lt;Bar&gt;&gt;() will create two distinct proxy types.
+
+Instead a single generic proxy type should be created and closed over different types as they're needed.</value>
+    </field>
+    <field name="created">
+      <value>1258207767000</value>
+    </field>
+    <field name="updated">
+      <value>1407822235373</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1352671671543</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="* '''Type''' changed from ''Bug'' to ''Improvement''.&#xD;&#xA;" created="1259831880000" />
+  </issue>
+</issues>

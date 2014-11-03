@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>beta 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>61</value>
+    </field>
+    <field name="summary">
+      <value>SmartDispatcherController ignores DefaultActionAttribute and thows Exception</value>
+    </field>
+    <field name="description">
+      <value>SmartDispatcherController ignores DefaultActionAttribute and thows Exception that reports no action found.</value>
+    </field>
+    <field name="created">
+      <value>1129903665000</value>
+    </field>
+    <field name="updated">
+      <value>1129904001000</value>
+    </field>
+    <field name="reporterName">
+      <value>mglenn</value>
+    </field>
+    <field name="updaterName">
+      <value>mglenn</value>
+    </field>
+    <field name="resolved">
+      <value>1282143365854</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

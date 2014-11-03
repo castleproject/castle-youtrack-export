@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>37</value>
+    </field>
+    <field name="summary">
+      <value>MergeTemplate merges the template only till 100 - 120 lines</value>
+    </field>
+    <field name="description">
+      <value>I am tryig to merge the NVelocity template using C#.
+
+Velocity.MergeTemplate(paramsVMTemplate, context, writer);
+
+After the merge when I see the output file, it is only merging around 120 lines in the outfile and remaining template is being ignored. I am completely new to NVelocity, so can't figure out what is causing this behaviour.
+</value>
+    </field>
+    <field name="created">
+      <value>1254449644000</value>
+    </field>
+    <field name="updated">
+      <value>1282592732000</value>
+    </field>
+    <field name="reporterName">
+      <value>himanshupancholi</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1282592732000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Would you mind creating a test case as a patch. Thanks." created="1254449766000" />
+  </issue>
+</issues>

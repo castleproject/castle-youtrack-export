@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>242</value>
+    </field>
+    <field name="summary">
+      <value>AbstractHandler ignores dependencies if only ctor with no arguments is present </value>
+    </field>
+    <field name="description">
+      <value>The AbstractHandler class maintains the status of a component based on the required dependencies in the ComponentModel.  Currently, it skips this check if only a no-arg ctor is present.  The results in the component being improperly assigned to a valid state</value>
+    </field>
+    <field name="created">
+      <value>1288622666291</value>
+    </field>
+    <field name="updated">
+      <value>1407822816396</value>
+    </field>
+    <field name="reporterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1288622821963</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

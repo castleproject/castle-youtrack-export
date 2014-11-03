@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>516</value>
+    </field>
+    <field name="summary">
+      <value>DataBindAttribute with Validate=True and ValidateSameAsAttribute on model makes validation fail sometimes</value>
+    </field>
+    <field name="description">
+      <value>If the object that is being validated has a ValidateSameAsAttribute, the property that contains the attribute needs to come after the propertyToCompare otherwise the databind fails to populate attribute.
+Eg.
+        public class DataForm
+	{
+		//This property is defined before Email, this is not going to work!!
+		[ValidateSameAs("Email")]
+		public string ConfirmEmail { get; set; }
+
+		[ValidateNonEmpty("Email cannot be empty.")]
+		public string Email { get; set; }
+	}
+
+        public class DataForm2
+	{
+		[ValidateNonEmpty("Email cannot be empty.")]
+		public string Email { get; set; }
+
+                //This property is defined after Email, this works
+                [ValidateSameAs("Email")]
+		public string ConfirmEmail { get; set; }
+	}
+
+I've attached a sample.</value>
+    </field>
+    <field name="created">
+      <value>1234114466000</value>
+    </field>
+    <field name="updated">
+      <value>1254765667000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1254765660000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Previously reported in http://support.castleproject.org/projects/COMP/issues/view/COMP-ISSUE-45" created="1254234928000" />
+    <comment author="rbellamy" text="Commit 6072." created="1254765663000" />
+    <comment author="rbellamy" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1254765660000" />
+    <comment author="rbellamy" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1254765660000" />
+  </issue>
+</issues>

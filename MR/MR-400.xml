@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>400</value>
+    </field>
+    <field name="summary">
+      <value>Documentation Tweaks</value>
+    </field>
+    <field name="description">
+      <value>A few minor grammatical tweaks to FormHelper documentation as well as a fix to the AjaxHelper documentation regarding the OnSuccess and OnError callbacks.
+
+This patch was created from /site.</value>
+    </field>
+    <field name="created">
+      <value>1200942520000</value>
+    </field>
+    <field name="updated">
+      <value>1263055536000</value>
+    </field>
+    <field name="reporterName">
+      <value>psteele</value>
+    </field>
+    <field name="updaterName">
+      <value>psteele</value>
+    </field>
+    <field name="resolved">
+      <value>1282145512057</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055500000" />
+  </issue>
+</issues>

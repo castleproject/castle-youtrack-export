@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>63</value>
+    </field>
+    <field name="summary">
+      <value>ProxyType not included in CacheKey</value>
+    </field>
+    <field name="description">
+      <value>When generating proxies for the same interface but two different concrete classes, the concrete class type was not getting added to the cache key.  Thus creating a proxy for ServiceA : IService would succeed but creating another proxy for ServiceB : IService would return the cached copy which could not be initialized by the activator because the constructor arguments were incorrect.
+
+The patch simply adds an additional constructor to CacheKey to accept the proxyForType.  I was experiencing the problem in InterfaceProxyWithTargetGenerator so the patch calls the new CacheKey constructor here and it solved my problem.
+
+I am not sure where else this is an issue or what other issues I have caused by adding this to the CacheKey, maybe just less cache hits more memory utilization.... I don't know.</value>
+    </field>
+    <field name="created">
+      <value>1183661368000</value>
+    </field>
+    <field name="updated">
+      <value>1183679979000</value>
+    </field>
+    <field name="reporterName">
+      <value>abombss</value>
+    </field>
+    <field name="updaterName">
+      <value>abombss</value>
+    </field>
+    <field name="resolved">
+      <value>1282140702151</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

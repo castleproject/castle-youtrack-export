@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>TypedFactoryFacility</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>316</value>
+    </field>
+    <field name="summary">
+      <value>Add attribute to specify default selector for a typed factory interface/delegate</value>
+    </field>
+    <field name="description">
+      <value>In a similar way we can specify services, lifestyles etc, we should be able to specify a {{ITypedFactoryComponentSelector}} implementation to use for given factory type</value>
+    </field>
+    <field name="created">
+      <value>1315822056505</value>
+    </field>
+    <field name="updated">
+      <value>1315908124802</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1315908124786</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

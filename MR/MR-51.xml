@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>51</value>
+    </field>
+    <field name="summary">
+      <value>Improve test/tdd support</value>
+    </field>
+    <field name="description">
+      <value>MR should incentive and easy the burden of testing web projects. While cassini is a good option to test MR project, we should simplify things for fellow developers. Look for inspiration on RoR test cases/fixtures.
+
+This might impact on the overall design</value>
+    </field>
+    <field name="created">
+      <value>1128287192000</value>
+    </field>
+    <field name="updated">
+      <value>1136170151000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282143358323</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

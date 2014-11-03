@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>406</value>
+    </field>
+    <field name="summary">
+      <value>Hardcoded extension in routing engine</value>
+    </field>
+    <field name="description">
+      <value>The .castle extension is hard coded into the RoutingModuleEx.CreateMrPath
+
+If you setup a rule such that
+new PatterRule("/index.rails").DefaultForArea().Is("Area").DefaultForController().Is("Home").DefaultForAction().Is("Index")
+
+in order to rewrite
+/index.rails into /area/home/index.rails
+
+you will have the url rewritten to 
+/area/home/index.castle
+
+Where this becomes a problem is that any other urls that come from UrlBuilder will now use the .castle extension.
+
+Nothing blows up, but some may be confused.
+I also had a long enough time explaining why there was a .rails extension to people, and now would have to explain a .castle extension.</value>
+    </field>
+    <field name="created">
+      <value>1201259233000</value>
+    </field>
+    <field name="updated">
+      <value>1263055533000</value>
+    </field>
+    <field name="reporterName">
+      <value>chriso</value>
+    </field>
+    <field name="updaterName">
+      <value>chriso</value>
+    </field>
+    <field name="resolved">
+      <value>1282145526588</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055500000" />
+  </issue>
+</issues>

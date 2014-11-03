@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>170</value>
+    </field>
+    <field name="summary">
+      <value>Indeterministic crashes when creating the NHibernate Mapping.</value>
+    </field>
+    <field name="description">
+      <value>http://forum.castleproject.org/viewtopic.php?p=8583#8583
+
+Find Attached our main project baseline code that exhibits the problem. Dependencies are included. 
+
+The problem is easily shown by (after a build of the solution ) running the SchemaTool from the command line without any parameters.
+Since your test database is likely to be different, the default database connection settings can be easily changed in 
+
+Source\BlueLogic.DocuStore.Model\Utilities\DatabaseSection.cs
+Just change the attribute values to your test database values.
+
+( so you don't have to fiddle around with configuration files ) 
+
+Ignore the other projects in the solution as those are not relevant to the problem. 
+Thanks for your time !
+</value>
+    </field>
+    <field name="created">
+      <value>1184152334000</value>
+    </field>
+    <field name="updated">
+      <value>1186923409000</value>
+    </field>
+    <field name="reporterName">
+      <value>gluber</value>
+    </field>
+    <field name="updaterName">
+      <value>gluber</value>
+    </field>
+    <field name="resolved">
+      <value>1282136442995</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>105</value>
+    </field>
+    <field name="summary">
+      <value>Small bug in the DefaultComponentInstaller class of Windsor</value>
+    </field>
+    <field name="description">
+      <value>Hi, 
+
+I discovered a small bug in the DefaultComponentInstaller more preciesly in the ObtainType method. When you have a component that uses a dll that is not referenced. When you run your program Castle will throw an ConfigurationErrorException with a message 'The type name {0} could not be located'  the problem is that it suppresses the real exception for in my case FileNotFoundException.
+
+A better solution is that the Real Exception is passed as inner exception to the ConfigurationErrorException.
+
+Currently I could patch it by defining my own IComponentsInstaller. 
+
+Thx guys for the good work
+
+
+--ORIGNAL CODE of ObtainType Method
+private Type ObtainType(String typeName)
+{
+                     Type type = Type.GetType(typeName, false, false);
+	if (type == null)
+	{
+	                     String message = String.Format("The type name {0} could not be located", typeName);
+		throw new ConfigurationException(message);
+	}
+return type;
+}
+-- My implementation
+ private Type ObtainType(String typeName)
+        {
+            Type type = null;
+            try
+            {
+                type = Type.GetType(typeName, true, false);
+            }
+            catch (Exception ex)
+            {
+                String message = String.Format("The type name {0} could not be located", typeName);
+                throw new ConfigurationErrorsException(message, ex);
+            }
+
+ 
+
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1195022952000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853182</value>
+    </field>
+    <field name="reporterName">
+      <value>gsamper</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1228856220000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="fixed" created="1228856262000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228856220000" />
+  </issue>
+</issues>

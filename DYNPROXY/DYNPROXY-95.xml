@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>95</value>
+    </field>
+    <field name="summary">
+      <value>Mixin with IProxyGenerationHook fails</value>
+    </field>
+    <field name="description">
+      <value>UPDATED VERSION.  NO LONGER FAILS.</value>
+    </field>
+    <field name="created">
+      <value>1245417091000</value>
+    </field>
+    <field name="updated">
+      <value>1245901628000</value>
+    </field>
+    <field name="reporterName">
+      <value>joelowrance</value>
+    </field>
+    <field name="updaterName">
+      <value>joelowrance</value>
+    </field>
+    <field name="resolved">
+      <value>1245901620000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Closing if no longer fails." created="1245901624000" />
+    <comment author="joelowrance" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;The first test in this class fails  with a System.TypeLoadException:&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;[TestFixture]&#xD;&#xA;    public class MixinWithHookFails&#xD;&#xA;    {&#xD;&#xA;        [Test]&#xD;&#xA;        //[ExpectedException(typeof(System.TypeLoadException))]&#xD;&#xA;        public void A_mixin_with_a_hook_causes_a_run_time_error()&#xD;&#xA;        {&#xD;&#xA;            var options = new ProxyGenerationOptions(new AttributeBasedGenerationHook&lt;TrackStatsAttribute&gt;());&#xD;&#xA;            options.AddMixinInstance(typeof(SimpleMixin));&#xD;&#xA;            var generator = new ProxyGenerator();&#xD;&#xA;            var proxy = generator.CreateClassProxy(typeof(Person), options, new SimpleInterceptor());&#xD;&#xA;            Assert.IsTrue(proxy is ISimpleMixin);&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;        [Test]&#xD;&#xA;        public void Works_with_the_interceptor_only()&#xD;&#xA;        {&#xD;&#xA;            var options = new ProxyGenerationOptions(new SimpleHook());&#xD;&#xA;            var proxy = new ProxyGenerator().CreateClassProxy(typeof(Person), options, new SimpleInterceptor());&#xD;&#xA;&#xD;&#xA;            var working = (Person)proxy;&#xD;&#xA;            working.FirstName = &quot;foo&quot;;&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;        [Test]&#xD;&#xA;        public void Mixin_works_by_itself()&#xD;&#xA;        {&#xD;&#xA;            ProxyGenerationOptions proxyGenerationOptions = new ProxyGenerationOptions();&#xD;&#xA;            proxyGenerationOptions.AddMixinInstance(new SimpleMixin());&#xD;&#xA;            var proxy = new ProxyGenerator().CreateClassProxy(typeof(object), proxyGenerationOptions, new SimpleInterceptor());&#xD;&#xA;            Assert.IsTrue(proxy is ISimpleMixin);&#xD;&#xA;            ((ISimpleMixin)proxy).Add(2, 3);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;    public interface ISimpleMixin&#xD;&#xA;    {&#xD;&#xA;        int Add(int int1, int int2);&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;    public class SimpleMixin : ISimpleMixin&#xD;&#xA;    {&#xD;&#xA;        public virtual int Add(int int1, int int2)&#xD;&#xA;        {&#xD;&#xA;            return int1 + int2;&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;    public class SimpleHook : Castle.DynamicProxy.IProxyGenerationHook&#xD;&#xA;    {&#xD;&#xA;        public bool ShouldInterceptMethod(Type type, MethodInfo methodInfo)&#xD;&#xA;        {&#xD;&#xA;            return true;&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;        public void NonVirtualMemberNotification(Type type, MemberInfo memberInfo) {}&#xD;&#xA;        public void MethodsInspected() {}&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;    public class SimpleInterceptor : Castle.Core.Interceptor.IInterceptor&#xD;&#xA;    {&#xD;&#xA;        public void Intercept(IInvocation invocation)&#xD;&#xA;        {&#xD;&#xA;            Console.WriteLine(&quot;Gotcha: &quot; + invocation.Method.Name);&#xD;&#xA;            invocation.Proceed();&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;    public class Person&#xD;&#xA;    {&#xD;&#xA;        public virtual string FirstName{ get; set;}&#xD;&#xA;        public virtual string LastName { get; set; }&#xD;&#xA;    }&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;UPDATED VERSION.  NO LONGER FAILS.&#xD;&#xA;{quote}&#xD;&#xA;" created="1245516720000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1245901620000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1245901620000" />
+  </issue>
+</issues>

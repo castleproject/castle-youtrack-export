@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Documentation</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>121</value>
+    </field>
+    <field name="summary">
+      <value>Documentation disagrees with ActiveRecordStarter.CreateSchema() behavior</value>
+    </field>
+    <field name="description">
+      <value>The documentation at http://www.castleproject.org/activerecord/documentation/trunk/usersguide/schemagen.html reads:
+
+"CreateSchema method will only create the tables that does not exist in the database. If the existing table has been changed, the CreateSchema method will do nothing."
+
+This differs from actual behavior which results in a drop of existing tables. This behavior is dictated by NHibernate is outside the domain of ActiveRecord as per this issue: http://support.castleproject.org/browse/AR-56.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1169129636000</value>
+    </field>
+    <field name="updated">
+      <value>1169422733000</value>
+    </field>
+    <field name="reporterName">
+      <value>jhurrell</value>
+    </field>
+    <field name="updaterName">
+      <value>jhurrell</value>
+    </field>
+    <field name="resolved">
+      <value>1282136267745</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

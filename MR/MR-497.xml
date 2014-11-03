@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - AspView</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>497</value>
+    </field>
+    <field name="summary">
+      <value>Empty content suppression</value>
+    </field>
+    <field name="description">
+      <value>This patch suppresses output of empty markup fragments.</value>
+    </field>
+    <field name="created">
+      <value>1223800199000</value>
+    </field>
+    <field name="updated">
+      <value>1263055714000</value>
+    </field>
+    <field name="reporterName">
+      <value>felixg</value>
+    </field>
+    <field name="updaterName">
+      <value>felixg</value>
+    </field>
+    <field name="resolved">
+      <value>1223805000000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="Applying this patch would cause the generated markup to be broken at a few places. I'd rather avoid that.&#xA;If you wish to compress whitespaces you can use a ViewFilter for that, but I'd rather keep the default behaviour of template-&gt;markup transformation to be as non-intrusive as possible" created="1223805012000" />
+    <comment author="felixg" text="It's an efficiency patch, but not worth the trouble of fixing all the tests. That's why I'm not big fan of unit testing." created="1223807951000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055680000" />
+    <comment author="kenegozi" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1223805000000" />
+    <comment author="kenegozi" text="* '''Assignees''' set to ''Ken Egozi''.&#xD;&#xA;" created="1223805000000" />
+  </issue>
+</issues>

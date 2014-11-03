@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle Visual Studio Integration</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>40</value>
+    </field>
+    <field name="summary">
+      <value>Colorizer goes crazy sometimes when editing</value>
+    </field>
+    <field name="description">
+      <value>I could reproduce it 90% of the time using the following procedure:
+
+- open an existing file;
+- edit the closing tag of an element that have a sibling, like:
+  1  &lt;td&gt;
+  2    &lt;div&gt; ... &lt;/div&gt;
+  3  &lt;/td&gt;
+  4  &lt;td&gt;
+  5    &lt;div&gt; ... &lt;/div&gt;
+  6    ...
+
+If you position the cursor at the end of line 3 and press backspace, the lines 4 to the end of the file get messy. That's ok, the syntax is not valid anymore. But when you put the closing sign again "&gt;", the problem persists.
+
+I tried to use Ctrl-A, as suggested in another issue to force the parser to rescan the file, but it haven't worked.
+
+After I get the syntax fixed (typing back the "&gt;"), if I go to the start of the line 4 (the first line with buggy syntax highlighting), type in ## (NVelocity line comment) and then press backspace twice (to remove the comment), the whole file gets the correct syntax again.
+
+As an emergency option, I suggest you supply a command that can be used to completely reset the parser. So I can assign it to a keystroke (such as Ctrl-Alt-Backspace) and press whenever the parser get crazy again.</value>
+    </field>
+    <field name="created">
+      <value>1184174626000</value>
+    </field>
+    <field name="updated">
+      <value>1409037823416</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1409037823408</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

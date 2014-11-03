@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>242</value>
+    </field>
+    <field name="summary">
+      <value>FormHelper.LabelFor does not generate valid HTML when attributes are supplied</value>
+    </field>
+    <field name="description">
+      <value>FormHelper.LabelFor generates HTML like &lt;label for="control"class="style"&gt;Text&lt;/label&gt; if attributes are passed to the method. There should be a space after the for attribute. 
+
+</value>
+    </field>
+    <field name="created">
+      <value>1175710257000</value>
+    </field>
+    <field name="updated">
+      <value>1244675900000</value>
+    </field>
+    <field name="reporterName">
+      <value>chriso</value>
+    </field>
+    <field name="updaterName">
+      <value>chriso</value>
+    </field>
+    <field name="resolved">
+      <value>1282143709854</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675880000" />
+  </issue>
+</issues>

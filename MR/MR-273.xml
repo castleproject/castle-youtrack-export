@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>273</value>
+    </field>
+    <field name="summary">
+      <value>Automatically handle ApplicationPath in the routing module</value>
+    </field>
+    <field name="description">
+      <value>Automatically add and remove current application path in routing module 
+
+for example now user have to write: 
+
+Code: 
+&lt;rule&gt; 
+&lt;pattern&gt;^/myvirtualdir(/default.aspx)(.)*$&lt;/pattern&gt; 
+&lt;replace&gt;&lt;![CDATA[ /myvirtualdir/home/index.aspx?$2 ]]</value>
+    </field>
+    <field name="created">
+      <value>1181901728000</value>
+    </field>
+    <field name="updated">
+      <value>1263055612000</value>
+    </field>
+    <field name="reporterName">
+      <value>maxim</value>
+    </field>
+    <field name="updaterName">
+      <value>maxim</value>
+    </field>
+    <field name="resolved">
+      <value>1282143843073</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055560000" />
+  </issue>
+</issues>

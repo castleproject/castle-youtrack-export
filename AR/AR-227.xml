@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>227</value>
+    </field>
+    <field name="summary">
+      <value>Unable to save classes via ActiveWriter</value>
+    </field>
+    <field name="description">
+      <value>Sometimes ActiveWriter refuses to save class diagram when no validation errors detected. It just raises VS Error Viewer (which is empty). Thereis no way out but only to close ActiveWriter's tab and lose all changes on class diagram.
+
+VS 2008 with ActiveWriter Preview 4.1 for VS 2008 was used.</value>
+    </field>
+    <field name="created">
+      <value>1220919220000</value>
+    </field>
+    <field name="updated">
+      <value>1225962417000</value>
+    </field>
+    <field name="reporterName">
+      <value>vittorius</value>
+    </field>
+    <field name="updaterName">
+      <value>vittorius</value>
+    </field>
+    <field name="resolved">
+      <value>1225962360000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="Please report in Contrib. ActiveWriter is nto part of AR" created="1225962417000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1225962240000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1225962360000" />
+  </issue>
+</issues>

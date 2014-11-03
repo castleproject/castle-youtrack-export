@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>190</value>
+    </field>
+    <field name="summary">
+      <value>Resolve with argumentsAsAnonymousType overload is now case sensitive</value>
+    </field>
+    <field name="description">
+      <value>the following test used to work with Windsor 2.0 (not sure which version of MicroKernel it used) but no longer works after upgrading to Windsor 2.1:
+
+public interface IView { }
+
+ 
+
+    public class View : IView { }
+
+ 
+
+    public class Controller
+
+    {
+
+        public IView View { get; set; }
+
+ 
+
+        public Controller(IView view)
+
+        {
+
+            View = view;
+
+        }
+
+    }
+
+ 
+
+    [TestFixture]
+
+    public class Temp
+
+    {
+
+        [Test]
+
+        public void Blah()
+
+        {
+
+            var container = new WindsorContainer();
+
+            container.Register(Component.For&lt;Controller&gt;().ImplementedBy&lt;Controller&gt;().LifeStyle.Transient);
+
+            container.Resolve&lt;Controller&gt;(new { View = new View() });
+
+        }
+
+    }
+
+if you modify the anonymous type to new { view = new View() }); (notice the difference in casing) it works again</value>
+    </field>
+    <field name="created">
+      <value>1263977560000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838916</value>
+    </field>
+    <field name="reporterName">
+      <value>davybrion</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1263982920000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Fixed in r6703" created="1263982977000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1263979800000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1263982920000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263982980000" />
+  </issue>
+</issues>

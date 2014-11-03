@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>30</value>
+    </field>
+    <field name="summary">
+      <value>Add overload to Windsor AddComponent to specify the Lifestyle</value>
+    </field>
+    <field name="description">
+      <value>Add an overload to the Windsor Container AddComponent with a parameter for the lifestyle.</value>
+    </field>
+    <field name="created">
+      <value>1156254619000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853135</value>
+    </field>
+    <field name="reporterName">
+      <value>kaju</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282141739432</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

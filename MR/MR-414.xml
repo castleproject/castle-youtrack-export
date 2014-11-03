@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>414</value>
+    </field>
+    <field name="summary">
+      <value>Allow controllerContext.PropertyBag["mytype"] to apply to indexed properties by ObtainRootType improvement</value>
+    </field>
+    <field name="description">
+      <value>This patch allows you to pass:
+controllerContext["itemstype"] = typeof(MyObject);
+
+and parses out the indexer to discover the root type (ObtainRootType)  for FormHelper functions. 
+In your view you have &lt;% Form.TextField("items[0].PropName") %&gt; and it will behave as if it were just &lt;% Form.TextField("items.PropName") %&gt;
+
+</value>
+    </field>
+    <field name="created">
+      <value>1203038147000</value>
+    </field>
+    <field name="updated">
+      <value>1244676743000</value>
+    </field>
+    <field name="reporterName">
+      <value>mnichols</value>
+    </field>
+    <field name="updaterName">
+      <value>mnichols</value>
+    </field>
+    <field name="resolved">
+      <value>1282145537666</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676720000" />
+  </issue>
+</issues>

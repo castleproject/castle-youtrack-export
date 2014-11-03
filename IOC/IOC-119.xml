@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>119</value>
+    </field>
+    <field name="summary">
+      <value>Why a new instance of component is trying to be created when kernel is disposing ?</value>
+    </field>
+    <field name="description">
+      <value>Castle.MicroKernel.ComponentActivator.ComponentActivatorException: ComponentActivator: could not instantiate 
+
+....
+
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle._InvokeMethodFast(Object target, Object[] arguments, SignatureStruct&amp; sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.RuntimeMethodHandle.InvokeMethodFast(Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, Object[] arguments, Type[] signature)
+   --- End of inner exception stack trace ---
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, Object[] arguments, Type[] signature)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(CreationContext context)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context)
+   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context)
+   at Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(CreationContext context)
+   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context)
+   at Castle.Windsor.Adapters.ComponentModel.ContainerWrapper.OnComponentUnregistered(String key, IHandler handler)
+   at Castle.MicroKernel.ComponentDataDelegate.Invoke(String key, IHandler handler)
+   at Castle.MicroKernel.KernelEventSupport.RaiseComponentUnregistered(String key, IHandler handler)
+   at Castle.MicroKernel.DefaultKernel.RemoveComponent(String key)
+   at Castle.MicroKernel.DefaultKernel.DisposeHandlers()
+   at Castle.MicroKernel.DefaultKernel.Dispose()
+   at Castle.Windsor.WindsorContainer.Dispose()
+
+Look at the stack trace, I don't know why the DefaultKernel is trying to create a component when it's disposing ? It maybe a bug in Kernel.</value>
+    </field>
+    <field name="created">
+      <value>1202869520000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838854</value>
+    </field>
+    <field name="reporterName">
+      <value>sakura80</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1232178600000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="What are you using ContainerAdapter  for?" created="1228858191000" />
+    <comment author="ayenderahien" text="From looking at the code, it looks like it should work.&#xA;No repro from user" created="1232178638000" />
+    <comment author="sakura80" text="OMG, I did not get any notification when you make a comment until yesterday :(&#xA;&#xA;Come back the problem, I have checked my code, there is no any line of code (LOC) using ContainerAdapter directly. In the stack trace, it seems the problem is related to OnComponentUnregistered method. I have some LOC related to this event when a container is being created.&#xA;&#xA;Kernel.ComponentUnregistered += delegate(string key, IHandler handler)&#xA;{&#xA;    log.Debug(this, &quot;Component: '{0}' has been unregistered.&quot;,                             handler.ComponentModel.Service.FullName);&#xA;};&#xA;&#xA;&#xA;" created="1232306982000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1232178600000" />
+  </issue>
+</issues>

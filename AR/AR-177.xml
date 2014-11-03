@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>177</value>
+    </field>
+    <field name="summary">
+      <value>Parameterless overload of ActiveRecordStarter.Initialize</value>
+    </field>
+    <field name="description">
+      <value>Parameterless overload of Initialize should call Assembly.GetCallingAssembly() instead of Assembly.GetExecutingAssembly(). I attached a patch.</value>
+    </field>
+    <field name="created">
+      <value>1188022396000</value>
+    </field>
+    <field name="updated">
+      <value>1188341561000</value>
+    </field>
+    <field name="reporterName">
+      <value>r2-r</value>
+    </field>
+    <field name="updaterName">
+      <value>r2-r</value>
+    </field>
+    <field name="resolved">
+      <value>1282136503885</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

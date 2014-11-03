@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>464</value>
+    </field>
+    <field name="summary">
+      <value>Runtime error when session state switched off</value>
+    </field>
+    <field name="description">
+      <value>I create a controller and set the ControllerDetails.Stateless property to true. All behaves as it should. I then switch off session in my web.config (using &lt;sessionState mode="Off"/&gt;) and get a consistent runtime error in the HttpHandler for the index view. This is probably occurring because engineContext.Session is null. I guess that wherever Session is used throughout the framework there needs to be a check either for null or for Stateless=true.
+
+Line 232:				engineContext.Session[Flash.FlashKey] = currentFlash;
+Line 233:			}
+Line 234:			else if (engineContext.Session.Contains(Flash.FlashKey))
+Line 235:			{
+Line 236:				engineContext.Session.Remove(Flash.FlashKey);
+
+
+Source File: c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework\BaseHttpHandler.cs    Line: 234
+
+Stack Trace:
+
+[NullReferenceException: Object reference not set to an instance of an object.]
+   Castle.MonoRail.Framework.BaseHttpHandler.PersistFlashItems() in c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework\BaseHttpHandler.cs:234
+   Castle.MonoRail.Framework.BaseHttpHandler.AfterControllerProcess() in c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework\BaseHttpHandler.cs:127
+   Castle.MonoRail.Framework.BaseHttpHandler.Process(HttpContext context) in c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework\BaseHttpHandler.cs:116
+   Castle.MonoRail.Framework.BaseHttpHandler.ProcessRequest(HttpContext context) in c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework\BaseHttpHandler.cs:66
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +154
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +64
+</value>
+    </field>
+    <field name="created">
+      <value>1213608529000</value>
+    </field>
+    <field name="updated">
+      <value>1269564962000</value>
+    </field>
+    <field name="reporterName">
+      <value>blossom</value>
+    </field>
+    <field name="updaterName">
+      <value>blossom</value>
+    </field>
+    <field name="resolved">
+      <value>1263610500000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="I cannot reproduce this on the trunk. Could be an RC3 bug." created="1263610512000" />
+    <comment author="jsimons" text="Not reproducable" created="1269564964000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1263610500000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1269564960000" />
+  </issue>
+</issues>

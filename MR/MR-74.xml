@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveRecord Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>74</value>
+    </field>
+    <field name="summary">
+      <value>Write test cases for ARPager</value>
+    </field>
+    <field name="description">
+      <value />
+    </field>
+    <field name="created">
+      <value>1134571618000</value>
+    </field>
+    <field name="updated">
+      <value>1246037532000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1246037460000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="Test email" created="1246037513000" />
+    <comment author="henry" text="Closed." created="1246037592000" />
+    <comment author="henry" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1246037460000" />
+    <comment author="henry" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1246037580000" />
+  </issue>
+</issues>

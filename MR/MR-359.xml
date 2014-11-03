@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>359</value>
+    </field>
+    <field name="summary">
+      <value>Views stored as resources in assemblies are compiled but never found to render.</value>
+    </field>
+    <field name="description">
+      <value>Running off the trunk, revision 4475.
+
+When a brail view is stored as a resource in an assembly, the resource file is correctly found. The view(s) are compiled correctly in BooViewEngine::compileScript(). However, when the newly compiled views are added to the compilations dictionary, the key used has periods as the area/controller/action seperator, where at the end of the method, the "filename" is used as the key, which has the double-backslash as the seperator.
+
+For example, In the event of four views being compiled, two as simple files from the main web project and two as resources in an assembly, the dictionary keys might look like this..
+
+Two from views directory:
+
+"home\\index.brail"
+"layouts\\default.brail"
+
+Two from the outside assembly:
+
+"qualitytests.createnewtestform.selecttestcategories.brail"
+"qualitytests.createnewtestform.selectms.brail"
+
+Later on, the "filename" variable is used, and thus will try to find the following view:
+
+"QualityTests\\CreateNewTestForm\\SelectMS.brail"
+
+Which will fail, even though it is a compiled view. This results in a "Could not find a view with path QualityTests\CreateNewTestForm\SelectMS.brail" exception being thrown, even though the view exists.
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1194453677000</value>
+    </field>
+    <field name="updated">
+      <value>1244676698000</value>
+    </field>
+    <field name="reporterName">
+      <value>markhildreth</value>
+    </field>
+    <field name="updaterName">
+      <value>markhildreth</value>
+    </field>
+    <field name="resolved">
+      <value>1282145354557</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676660000" />
+  </issue>
+</issues>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>299</value>
+    </field>
+    <field name="summary">
+      <value>Support Inline OutputSubView</value>
+    </field>
+    <field name="description">
+      <value>Using OutputSubView with the following syntax:
+
+${OutputSubView('login')}
+
+fails with "Boo.Lang.Compiler.CompilerError: No appropriate version of 'System.IO.TextWriter.Write' for the argument list '(void)' was found".  
+
+Using this syntax works as expected:
+
+&lt;?brail OutputSubView('login') ?&gt;
+
+Works as expected.
+
+Oren said the ${} syntax attempts to evaluate the return value of OutputSubView (void) and this is causing the problem.</value>
+    </field>
+    <field name="created">
+      <value>1184264032000</value>
+    </field>
+    <field name="updated">
+      <value>1263055907000</value>
+    </field>
+    <field name="reporterName">
+      <value>wcpierce</value>
+    </field>
+    <field name="updaterName">
+      <value>wcpierce</value>
+    </field>
+    <field name="resolved">
+      <value>1282143903776</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055860000" />
+  </issue>
+</issues>

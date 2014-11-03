@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>255</value>
+    </field>
+    <field name="summary">
+      <value>that wasn't properly initialized. The only explanation is that the call to ActiveRecordStarter.Initialize() didn't include</value>
+    </field>
+    <field name="description">
+      <value>I am working VS 2005 and .NET 2.0  and database Oracle 11g
+
+Active Record is working on my local system when i deployed the system on Server.
+
+I have added [ActiveRecord] on top of the class but still error is coming.
+
+
+Following ERROR is coming 
+
+You have accessed an ActiveRecord class that wasn't properly initialized. The only explanation is that the call to ActiveRecordStarter.Initialize() didn't include</value>
+    </field>
+    <field name="created">
+      <value>1243287803000</value>
+    </field>
+    <field name="updated">
+      <value>1243589784000</value>
+    </field>
+    <field name="reporterName">
+      <value>Bhumip</value>
+    </field>
+    <field name="updaterName">
+      <value>Bhumip</value>
+    </field>
+    <field name="resolved">
+      <value>1243589760000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="Bhumip" text="Please help me out i have deadline on Friday. My work is done but i can not deploy on the Production server because of following ERROR." created="1243287885000" />
+    <comment author="jonorossi" text="This is an issue tracker for logging defects, not a support forum.&#xA;&#xA;Use the Castle Users mailing list to ask questions:&#xA;http://groups.google.com/group/castle-project-users" created="1243288347000" />
+    <comment author="Bhumip" text="Thanks Jonathon" created="1243288516000" />
+    <comment author="mzywitza" text="User found solution for the behaviour and it has nothing to do with AR (see user group)." created="1243589784000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1243589760000" />
+  </issue>
+</issues>

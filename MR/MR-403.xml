@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>403</value>
+    </field>
+    <field name="summary">
+      <value>Race condition in BooViewEngine</value>
+    </field>
+    <field name="description">
+      <value>Two simultaneous requests for the same brail view that has not yet been compiled cause the following exception:
+
+Exception information:
+   Exception type: System.NullReferenceException
+   Exception message: Object reference not set to an instance of an object.
+
+Request information:
+   Request URL: http://.../login/Authenticate.bam
+   Request path: /login/Authenticate.bam
+   User host address: 192.168.1.32
+   User:
+   Is authenticated: False
+   Authentication Type:
+   Thread account name: LOCKE\IWAM_LOCKE
+
+Thread information:
+   Thread ID: 5
+   Thread account name: LOCKE\IWAM_LOCKE
+   Is impersonating: False
+   Stack trace:    at Castle.MonoRail.Views.Brail.BooViewEngine.CreateBrailBase(IRailsEngineContext context, Controller controller, TextWriter output, Type type)
+  at Castle.MonoRail.Views.Brail.BooViewEngine.GetCompiledScriptInstance(String file, TextWriter output, IRailsEngineContext context, Controller controller)
+  at Castle.MonoRail.Views.Brail.BooViewEngine.GetOutput(TextWriter output, IRailsEngineContext context, Controller controller)
+  at Castle.MonoRail.Views.Brail.BooViewEngine.Process(TextWriter output, IRailsEngineContext context, Controller controller, String templateName)
+  at Castle.MonoRail.Views.Brail.BooViewEngine.Process(IRailsEngineContext context, Controller controller, String templateName)
+  at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.Process(IRailsEngineContext context, Controller controller, String templateName)
+  at Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessView()
+  at Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction(IDictionary actionArgs)
+  at Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction()
+  at Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext context)
+  at Castle.MonoRail.Framework.MonoRailHttpHandler.ProcessRequest(HttpContext context)
+  at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+  at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)
+
+Here is my interpretion of what might be happening:
+1. Thread A runs through line 391 in BooViewEngine.CompileScript, which adds the type to the compilations hashtable. (Line numbers are from the RC3 tag.)
+2. Thread B starts running. In BooViewEngine.GetCompiledScriptInstance, lines 319 and 322, it finds that a type has been added to the compilations hashtable for the given filename.
+3. Thread B enters CreateBrailBase and fetches a null reference from the constructors hashtable, because Thread A has not had a chance to set a value in it yet. It then throws an exception on the constructor.Invoke call (line 346).
+
+I am guessing this bug still exists in trunk; I took a peek at the relevant code and it didn't seem any different. I can't seem to reproduce this bug on the VS web server; maybe it handles the requests serially?</value>
+    </field>
+    <field name="created">
+      <value>1201166146000</value>
+    </field>
+    <field name="updated">
+      <value>1244676730000</value>
+    </field>
+    <field name="reporterName">
+      <value>danports</value>
+    </field>
+    <field name="updaterName">
+      <value>danports</value>
+    </field>
+    <field name="resolved">
+      <value>1282145518698</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676720000" />
+  </issue>
+</issues>

@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>281</value>
+    </field>
+    <field name="summary">
+      <value>LinkButtonComponent - Params problem</value>
+    </field>
+    <field name="description">
+      <value>I've just created a new view component that renders a link button. The
+code is the following:
+
+using Castle.MonoRail.Framework;
+
+namespace Proj.Components.ViewComponents
+{
+    /// &lt;summary&gt;
+    ///     This View Component Renders a link button
+    /// &lt;/summary&gt;
+    public class LinkButtonComponent : ViewComponent
+    {
+        private string cssClass;
+        private string displayText;
+        private string imagePath;
+        private string link;
+        private string statusMessage;
+
+        [ViewComponentParam("class")]
+        public string CssClass
+        {
+            get { return cssClass; }
+            set { cssClass = value; }
+        }
+
+        [ViewComponentParam("displayText")]
+        public string DisplayText
+        {
+            get { return displayText; }
+            set { displayText = value; }
+        }
+
+        [ViewComponentParam("imagePath")]
+        public string ImagePath
+        {
+            get { return imagePath; }
+            set { imagePath = value; }
+        }
+
+        [ViewComponentParam()]
+        public string Link
+        {
+            get { return link; }
+            set { link = value; }
+        }
+
+        [ViewComponentParam("status")]
+        public string StatusMessage
+        {
+            get { return statusMessage; }
+            set { statusMessage = value; }
+        }
+        public override void Initialize()
+        {
+            base.Initialize();
+        }
+
+        public override void Render()
+        {
+            base.Render();
+
+            PropertyBag["imageTag"] = FillImageTag();
+            PropertyBag["textTag"] = FillTextToDisplayTag();
+            PropertyBag["linkCssClass"] = FillCssClass();
+            PropertyBag["link"] = link;
+            PropertyBag["statusMessage"] =
+FillStatusMessage();
+        }
+
+        private string FillImageTag()
+        {
+            if(!string.IsNullOrEmpty(imagePath))
+            {
+                return string.Format("&lt;img src=\"{0}\"&gt;", imagePath);
+            }
+            else
+                return "";
+        }
+
+        private string FillTextToDisplayTag()
+        {
+            string spacesToInclude="";
+
+            if(!string.IsNullOrEmpty(imagePath))
+            {
+                spacesToInclude = "&amp;nbsp;&amp;nbsp;";
+            }
+
+            if(!string.IsNullOrEmpty(displayText))
+            {
+                return string.Format("&lt;font&gt;{0} {1}&lt;/font&gt;",
+spacesToInclude, displayText);
+            }
+            else
+                return "";
+
+        }
+
+        private string FillCssClass()
+        {
+            if (!string.IsNullOrEmpty(cssClass))
+            {
+                return string.Format("class=\"{0}\"", cssClass);
+            }
+            else
+                return "";
+        }
+
+        private string FillStatusMessage()
+        {
+            if(!string.IsNullOrEmpty(statusMessage))
+            {
+                return
+                    string.Format("OnMouseover=
+\"window.status='{0}';return true;\" OnMouseout=\"window.status=' ';
+\"",
+                                  statusMessage);
+            }
+            else
+            {
+                return "";
+            }
+        }
+    }
+
+}
+
+The vm file is:
+
+&lt;a $linkCssClass href="$link" onclick="this.blur();"&gt;
+    &lt;span&gt;
+        $imageTag
+        $textTag
+    &lt;/span&gt;
+&lt;/a&gt;
+
+If I use #component(LinkButtonComponent with "class=linkbutton" "link=/Cont/Action.rails" "displayText=Change Data" "imagePath=/Content/images/buttons/pencil.gif")
+
+everything works fine but if i include ?id=$id in the link an exception is thrown with the following message:
+"ViewComponentException: Error trying to set value for parameter 'Link' on ViewComponent LinkButtonComponent: Conversion error: Could not convert parameter with value 'System.Object[]' to expected type System.String"
+</value>
+    </field>
+    <field name="created">
+      <value>1182672309000</value>
+    </field>
+    <field name="updated">
+      <value>1244676867000</value>
+    </field>
+    <field name="reporterName">
+      <value>savsevic</value>
+    </field>
+    <field name="updaterName">
+      <value>savsevic</value>
+    </field>
+    <field name="resolved">
+      <value>1282143873635</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676840000" />
+  </issue>
+</issues>

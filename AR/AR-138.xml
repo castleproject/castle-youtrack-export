@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>138</value>
+    </field>
+    <field name="summary">
+      <value>Refactor Criteria support into CriteriaHelper</value>
+    </field>
+    <field name="description">
+      <value>While reviewing ActiveRecord source code, I noticed that ActiveRecordBase, ActiveRecordBaseQuery, CountQuery, ProjectionQuery and ScalarProjectionQuery have repeated code.  I factored out the methods AddCriterionToCriteria and AddOrderToCriteria into CriteriaHelper.  I considered consolidating query support for Criteria into ActiveRecordBaseQuery, but that should be reserved for a second patch.  I exercised my current application, but didn't run the unit tests for this trivial change.
+
+Ideally, ICriteria would have AddRange(IEnumerable) and AddOrderRange(IEnumerable) methods.  I will ask on NHIbernate forum about this.</value>
+    </field>
+    <field name="created">
+      <value>1173131261000</value>
+    </field>
+    <field name="updated">
+      <value>1173514740000</value>
+    </field>
+    <field name="reporterName">
+      <value>roy_tate</value>
+    </field>
+    <field name="updaterName">
+      <value>roy_tate</value>
+    </field>
+    <field name="resolved">
+      <value>1282136313307</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

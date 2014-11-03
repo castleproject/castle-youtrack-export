@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>325</value>
+    </field>
+    <field name="summary">
+      <value>ParentHandlerWithChildResolver.TryResolve throws exception</value>
+    </field>
+    <field name="description">
+      <value>ParentHandlerWithChildResolver.TryResolve calls ''parentHandler.Resolve'' which throws. ''parentHandler.TryResolve'' should be called instead.</value>
+    </field>
+    <field name="created">
+      <value>1326938453583</value>
+    </field>
+    <field name="updated">
+      <value>1356038618591</value>
+    </field>
+    <field name="reporterName">
+      <value>Rory.Plaire</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1337425063765</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="Rory.Plaire" text="https://github.com/codekaizen/Windsor/commit/6c51b0d63f64606000caf5937fa1dcfef4958755" created="1326940927592" />
+  </issue>
+</issues>

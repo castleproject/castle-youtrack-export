@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>View Components</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>153</value>
+    </field>
+    <field name="summary">
+      <value>Recent change breaks moreHeader in ViewComponents SmartGrid</value>
+    </field>
+    <field name="description">
+      <value>Patch moves the RenderOptionalSection("moreHeader") out of the properties loop.
+Also removes missing items from 2008 solution file.</value>
+    </field>
+    <field name="created">
+      <value>1238918247000</value>
+    </field>
+    <field name="updated">
+      <value>1414392117698</value>
+    </field>
+    <field name="reporterName">
+      <value>rbellamy</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392117688</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="rbellamy" text="* '''Attachment''' ViewComponents.patch added.&#xD;&#xA;" created="1238918400000" />
+    <comment author="rbellamy" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Patch moves the RenderOptionalSection(&quot;moreHeader&quot;) out of the properties loop.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Patch moves the RenderOptionalSection(&quot;moreHeader&quot;) out of the properties loop.&#xD;&#xA;Also removes missing items from 2008 solution file.&#xD;&#xA;{quote}&#xD;&#xA;" created="1238918520000" />
+  </issue>
+</issues>

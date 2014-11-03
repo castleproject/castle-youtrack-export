@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>53</value>
+    </field>
+    <field name="summary">
+      <value>Unique key on multiple columns</value>
+    </field>
+    <field name="description">
+      <value>http://forum.castleproject.org/viewtopic.php?t=160
+it's not  possible to map a unique key on multiple columns in Activerecord
+Like we do in "standard" hibernate mapping when using the "unique-key" attribute
+
+Something like
+[Property(Unique=true,Insert=false,unique-key="AK1")]
+public string Field1
+{
+private set {field1 = value;}
+get {return field1;}
+}
+[Property(Unique=true,Insert=false,unique-key="AK1")]
+public string Field2
+{
+private set{field2 = value;}
+get{return field2;}
+} </value>
+    </field>
+    <field name="created">
+      <value>1148366313000</value>
+    </field>
+    <field name="updated">
+      <value>1162410693000</value>
+    </field>
+    <field name="reporterName">
+      <value>flappy</value>
+    </field>
+    <field name="updaterName">
+      <value>flappy</value>
+    </field>
+    <field name="resolved">
+      <value>1282135948854</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

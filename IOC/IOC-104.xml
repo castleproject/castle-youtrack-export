@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>104</value>
+    </field>
+    <field name="summary">
+      <value>Better locking in DefaultNamingSubSystem</value>
+    </field>
+    <field name="description">
+      <value>We ran into major performance problems with how locking is being handled in DefaultNamingSubSystem.cs inside of the MicroKernel. Using a standard lock() approach with critical sections meant there was a lot of "fighting" to hold those various sections during periods of high-load. Especially since a given Container operation could result in several calls to these methods (sometimes getting the lock, other times having to wait)
+
+We changed our implementation to use a ReaderWriteLock and have seen a significant performance improvement under load as the more popular readonly locks can be held concurrently and so under load there's less fighting.
+
+This patch fixes my _ prefix oops.</value>
+    </field>
+    <field name="created">
+      <value>1194973706000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838901</value>
+    </field>
+    <field name="reporterName">
+      <value>jlewallen</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142126651</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="alexmaitland" text="I haven't looking into this with any great details yet, just floating the idea. Could we do something like this to reduce some of the code repetition (I'm happy to write a patch if anything likes the idea):&#xA;&#xA;public virtual bool Contains(String key)&#xA;{&#xA;  using(new ReaderWriterLockHandler(locker))&#xA;  {&#xA;    return key2Handler.Contains(key);&#xA;  }&#xA;}&#xA;&#xA;public class ReaderWriterLockHandler : IDisposable&#xA;{&#xA;  private readonly ReaderWriterLock _locker;&#xA;  &#xA;  public ReaderWriterLockHandler(ReaderWriterLock locker)&#xA;  {&#xA;    _locker = locker;&#xA;    _locker.AcquireReaderLock(Timeout.Infinite);&#xA;  }&#xA;  &#xA;  public void Dispose()&#xA;  {&#xA;    _locker.ReleaseLock();&#xA;  }&#xA;}&#xA;" created="1228808683000" />
+    <comment author="alexmaitland" text="Also, what about changing to ReaderWriterLockSlim? &#xA;&#xA;Quote from MSDN: &quot;ReaderWriterLockSlim is recommended for all new development.&quot;&#xA;&#xA;http://msdn.microsoft.com/en-us/library/system.threading.readerwriterlockslim.aspx&#xA;&#xA;Again, happy to supply patch if requested." created="1228809371000" />
+  </issue>
+</issues>

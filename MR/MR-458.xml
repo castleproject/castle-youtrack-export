@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>458</value>
+    </field>
+    <field name="summary">
+      <value>Routing no longer matches any pattern routes which do not contain area, controller and action</value>
+    </field>
+    <field name="description">
+      <value>ie. new PatternRoute("/some/&lt;path&gt;") will never be matched, according to the current behaviour of the routing engine. The DefaultUrlBuilder ensures that action, controller and area keys are added to the routeparameters dictionary before it is delivered to the patternroute for matching. When the route does not contain area, controller and action named parameters, the "if (nodes.FindByName(key) == null)" clause always evaluates true, returning null.
+
+Patche attached demonstrates the problem by amended the CreateUrlTestCase to supply a pre-filled routeParameters dictionary to each test and indicates a possible fix by ignoring area, controller and action keys in the test</value>
+    </field>
+    <field name="created">
+      <value>1212042799000</value>
+    </field>
+    <field name="updated">
+      <value>1244676767000</value>
+    </field>
+    <field name="reporterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="updaterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="resolved">
+      <value>1282145731495</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676720000" />
+  </issue>
+</issues>

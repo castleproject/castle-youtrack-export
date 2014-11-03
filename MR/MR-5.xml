@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>5</value>
+    </field>
+    <field name="summary">
+      <value>Append Query Params to Route</value>
+    </field>
+    <field name="description">
+      <value>Append query params to the end of the route. 
+
+eg: 
+
+area/controller/action/id?param=1 &gt; area/controller/action.rails?id=id&amp;param=1
+area/controller/action?param=2    &gt; area/controller/action?param=2</value>
+    </field>
+    <field name="created">
+      <value>1117532764000</value>
+    </field>
+    <field name="updated">
+      <value>1118436460000</value>
+    </field>
+    <field name="reporterName">
+      <value>nterfacejason</value>
+    </field>
+    <field name="updaterName">
+      <value>nterfacejason</value>
+    </field>
+    <field name="resolved">
+      <value>1282143238338</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="hammett" text="Jason submited a patch correcting the problem" created="1218366898000" />
+  </issue>
+</issues>

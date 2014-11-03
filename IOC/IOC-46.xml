@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>46</value>
+    </field>
+    <field name="summary">
+      <value>"Collection was modified", while calculating dependencies</value>
+    </field>
+    <field name="description">
+      <value>Castle.MicroKernel.ComponentActivator.ComponentActivatorException: ComponentActivator: could not proxy SomeLib.SomeComponent ---&gt; System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
+   at System.Collections.ArrayList.ArrayListEnumeratorSimple.MoveNext()
+   at Castle.MicroKernel.CreationContext.TrackDependency(MemberInfo info, DependencyModel dependencyModel)
+
+TrackDependency changes the "dependencies" collection.
+
+Removing the shared reference to CreationContext.Empty should solve this issue.</value>
+    </field>
+    <field name="created">
+      <value>1165207013000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838916</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282141860620</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

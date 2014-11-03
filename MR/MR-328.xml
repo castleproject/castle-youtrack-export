@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>328</value>
+    </field>
+    <field name="summary">
+      <value>In PrototypeWebValidation, SameAsValidator and NotSameAsValidator are forcing a locase id for text fields</value>
+    </field>
+    <field name="description">
+      <value>The prototype validation strategy creates the js validation methods, based on input elements id that would be strange
+
+if the object is:
+class SomeDto
+{
+   public string Name ...
+
+
+   [ValidateSameAs("Name")]
+   public string Surname ...
+}
+
+the validation expects the html input element to have an id "SomeDto_name" rather than "SomeDto_Name", thus forcing a manual fix on the view, supplying the id in the needed format, to the FormHelper.TextField method.
+
+suggested patch removes the .ToLowerInvariant calls on the target Id creation</value>
+    </field>
+    <field name="created">
+      <value>1188828062000</value>
+    </field>
+    <field name="updated">
+      <value>1244676678000</value>
+    </field>
+    <field name="reporterName">
+      <value>kenegozi</value>
+    </field>
+    <field name="updaterName">
+      <value>kenegozi</value>
+    </field>
+    <field name="resolved">
+      <value>1282144005088</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676660000" />
+  </issue>
+</issues>

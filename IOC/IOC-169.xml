@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>169</value>
+    </field>
+    <field name="summary">
+      <value>Fluent registration that results in 0 new handlers does not allow future registrations to cause HandlersChanged event to fire</value>
+    </field>
+    <field name="description">
+      <value>I came across this issue in my application, where in some cases we have fluent AllTypes registrations which may result in 0 matches (based on the result of an .Unless(t=&gt;t... ) filter.
+
+After these registrations, we noticed some startable services were not correctly moving from the AwaitingDependencies to Valid states - the HandlersChanged events were never firing.
+
+I believe this is caused by a bug in the "OptimizeDependencyResolutionDisposable" class, as shown below:
+
+private class OptimizeDependencyResolutionDisposable : IDisposable
+{
+	private readonly DefaultKernel kernel;
+
+	public OptimizeDependencyResolutionDisposable(DefaultKernel kernel)
+	{
+		this.kernel = kernel;
+	}
+
+	public void Dispose()
+	{
+		lock(kernel.handlersChangedLock)
+		{
+			if(kernel.handlersChanged==false)  
+				return;  // &lt;--- exiting without having reverted handlersChangedDeferred back to false.
+
+			kernel.DoActualRaisingOfHandlersChanged();
+
+			kernel.handlersChanged = false;
+
+			kernel.handlersChangedDeferred = false;
+		}
+	}
+}</value>
+    </field>
+    <field name="created">
+      <value>1259875440000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838901</value>
+    </field>
+    <field name="reporterName">
+      <value>bittercoder</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1261057140000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="bittercoder" text="Attached patch." created="1259876970000" />
+    <comment author="xtoff" text="fixed in r6381" created="1261057208000" />
+    <comment author="bittercoder" text="* '''Attachment''' bug_repro.cs added.&#xD;&#xA;" created="1259875440001" />
+    <comment author="bittercoder" text="* '''Attachment''' IOC-ISSUE-169-Fix.patch added.&#xD;&#xA;" created="1259876880000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1261057140000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1261057200000" />
+  </issue>
+</issues>

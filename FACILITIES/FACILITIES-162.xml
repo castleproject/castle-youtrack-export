@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>FactorySupport</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>162</value>
+    </field>
+    <field name="summary">
+      <value>on version 3.1 VS 2010 C# - when adding a reference to a project - the other referenceing project will not get the Facilites assembly</value>
+    </field>
+    <field name="created">
+      <value>1359979674884</value>
+    </field>
+    <field name="updated">
+      <value>1394963685979</value>
+    </field>
+    <field name="reporterName">
+      <value>Guy.Cohen</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1394963685967</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Can you elaborate?&#xA;&#xA;Which facility is this about?" created="1359979854390" />
+    <comment author="Guy.Cohen" text="I am upgrading from castle ver 2.5 to ver 3.x&#xA;My settings:&#xA;Visual studio 2010&#xA;.Net 4&#xA;Windows server 2008&#xA;I currently use an assembly which is a wrapper to the resolver issues Utilitiy.Reslove&#xA;The other project should reference this Utilitiy.Reslove in order to resolve their components.&#xA;Components are being copied OK to the Utility assembly bin after compilation.&#xA;After compiling the solution the project I see that the 2 castle assembly’s .core and .windsor are being copied to the referencing location, but Castle.Facilities.FactorySupport.dll although being referenced in the Utilitiy assembly is not being copied.&#xA;It’s declared just like the other 2 in the project file:&#xA;  &lt;ItemGroup&gt;&#xA;    &lt;Reference Include=&quot;Castle.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL&quot;&gt;&#xA;      &lt;SpecificVersion&gt;False&lt;/SpecificVersion&gt;&#xA;      &lt;HintPath&gt;..\..\..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll&lt;/HintPath&gt;&#xA;    &lt;/Reference&gt;&#xA;    &lt;Reference Include=&quot;Castle.Facilities.FactorySupport, Version=3.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL&quot;&gt;&#xA;      &lt;SpecificVersion&gt;False&lt;/SpecificVersion&gt;&#xA;      &lt;HintPath&gt;..\..\..\packages\Castle.FactorySupportFacility.3.0.0.4001\lib\net40\Castle.Facilities.FactorySupport.dll&lt;/HintPath&gt;&#xA;    &lt;/Reference&gt;&#xA;    &lt;Reference Include=&quot;Castle.Windsor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL&quot;&gt;&#xA;      &lt;SpecificVersion&gt;False&lt;/SpecificVersion&gt;&#xA;      &lt;HintPath&gt;..\..\..\packages\Castle.Windsor.3.0.0.4001\lib\net40\Castle.Windsor.dll&lt;/HintPath&gt;&#xA;    &lt;/Reference&gt;&#xA;&#xA;1.	The way I build the assembly / solution may result in different result: &#xA;If I use the build within the vs 2010 is be copied. But if I use a command prompt running msbuild command (with no special parameters) it’s not being copied – &#xA;msbuild /t:clean;rebuild /p:Configuration=Debug /p:Platform=&quot;Any CPU&quot; My.Framework.sln&#xA;&#xA;It happens the same on both debug and release&#xA;&#xA;2.	The referencing  project are not signed Web Application signed Class library&#xA;3.	I got the castle Packages – via both direct download and Nuget&#xA;4.	I tried on different castle projects Version 3.1(current) and 3.0&#xA;5.	On the Castle packages I tried for .net 3.5 and .net 4&#xA;6.	Components are registered via an xml and use the following configuration&#xA;&lt;castle&gt;&#xA;  &lt;facilities&gt;&#xA;    &lt;facility&#xA;        id=&quot;factory.support&quot;&#xA;        type=&quot;Castle.Facilities.FactorySupport.FactorySupportFacility, Castle.Facilities.FactorySupport&quot; /&gt;&#xA;  &lt;/facilities&gt;&#xA;After reading your site I tried to remove the use of Facilities from the xml which cause runtime exception.&#xA;7.	Reading: http://docs.castleproject.org/Windsor.Factory-Support-Facility.ashx I understand I can’t use UsingFactoryMethod with xml&#xA;8.	Of course I’ve tried on several different computers&#xA;" created="1360151813373" />
+    <comment author="xtoff" text="Hmm, I'm not sure what the problem is. Perhaps some MsBuild optimisation for unused references. If you add the facility in code does it still happen?" created="1360907047311" />
+  </issue>
+</issues>

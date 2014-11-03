@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>By design</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>337</value>
+    </field>
+    <field name="summary">
+      <value>ILazyComponentLoader and dependencies of dependencies</value>
+    </field>
+    <field name="description">
+      <value>Using the ILazyComponentLoader functionality to lazily load specific types (marked by interface or attribute) there is an issue with dependencies of optional dependencies where both are registered lazily.
+
+The following nunit test illustrates the issue:
+
+[TestFixture]
+[Category(TestCategories.UnitTest)]
+public class UnregisteredClassResolverFacilityDepth3IssueTest
+{
+    [Test]
+    public void TestUnregisteredOptionalDependencyOnUnregisteredClass2()
+    {
+        var container = new WindsorContainer();
+        container.Register(Component.For&lt;ILazyComponentLoader&gt;().ImplementedBy&lt;UnregisteredClassResolver&gt;());
+ 
+        // container.Register(Component.For&lt;Baz&gt;()); // &lt;-- makes it work
+        // container.Resolve&lt;Baz&gt;(); &lt;-- makes it work
+        // container.Register(Component.For&lt;Bar&gt;()); // &lt;-- does not make it work
+
+        var bar = container.Resolve&lt;Bar&gt;();
+ 
+        Assert.AreEqual("Baz Foo Bar", bar.ToString());
+    }
+ 
+    public class Bar
+    {
+        public Foo Foo { get; set; }
+ 
+        public override string ToString()
+        {
+            return Foo + " Bar";
+        }
+    }
+ 
+    public class Baz
+    {
+        public override string ToString()
+        {
+            return "Baz";
+        }
+    }
+ 
+    public class Foo
+    {
+        private readonly Baz _baz;
+ 
+        public Foo(Baz baz)
+        {
+            _baz = baz;
+        }
+ 
+        public override string ToString()
+        {
+            return _baz + " Foo";
+        }
+    }
+ 
+    private class UnregisteredClassResolver : ILazyComponentLoader
+    {
+        public IRegistration Load(string name, Type service, IDictionary arguments)
+        {
+            return Component.For(service);
+        }
+    }
+}
+
+It defines 3 classe: Foo, Bar and Baz. Bar has a property Foo of type Foo and Foo in turn takes Baz as a constructor parameter. In other words Bar depends on Foo (optionally) and Foo depends on Baz.
+
+At the bottom is a lazy loader that simply registers any service it gets (for testing purposes).
+
+When the test is run the result of taking ToString() on the resolved Bar should be "Baz Foo Bar", however the result is simply " Bar" as the Foo dependency in Bar is never realized. If the commented-out line in commented-in (i.e. the line explicitly resolving Baz), then it works, and stepping through it in the debugger shows that the lazy loader is called first for Bar, then for Foo but then not for Baz. It appears that Windsor sees that Foo has a non-registered dependency and is optional and thus decides to not see if its possible to resolve it. 
+
+Its worth noting that it makes difference whether Bar is explicitly registered or not. Also, adding a ComponentModel construction contributor and marking the properties as mandatory also makes the test work.
+</value>
+    </field>
+    <field name="created">
+      <value>1336744013827</value>
+    </field>
+    <field name="updated">
+      <value>1371465213655</value>
+    </field>
+    <field name="reporterName">
+      <value>Kim.Birkelund</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1371465213646</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Hi Kim,&#xA;&#xA;Can you give some more context as to why you're using lazy component loaders here and not register these types upfront?&#xA;&#xA;The reason why your test is failing is due to performance optimisation in Windsor and I would rather avoid having to change that." created="1337383999290" />
+  </issue>
+</issues>

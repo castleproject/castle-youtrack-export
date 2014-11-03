@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>21</value>
+    </field>
+    <field name="summary">
+      <value>test for full path to template</value>
+    </field>
+    <field name="description">
+      <value>the patch shows a bug when referring to template files by their full path </value>
+    </field>
+    <field name="created">
+      <value>1199480450000</value>
+    </field>
+    <field name="updated">
+      <value>1254113380000</value>
+    </field>
+    <field name="reporterName">
+      <value>simoncropp</value>
+    </field>
+    <field name="updaterName">
+      <value>simoncropp</value>
+    </field>
+    <field name="resolved">
+      <value>1282142802073</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Fixed in r6002." created="1254109167000" />
+    <comment author="jonorossi" text="Reverted revisions 6002 and 6003, because I had issues trying to get this to work on Linux." created="1254113381000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1254109140000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1254109140000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Closed'' to ''Reopened''.&#xD;&#xA;" created="1254113340000" />
+  </issue>
+</issues>

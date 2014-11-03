@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>59</value>
+    </field>
+    <field name="summary">
+      <value>French validation messages update</value>
+    </field>
+    <field name="description">
+      <value>A lot of validation messages were not translated in french, so here is an update which has translations for all messages found in the neutral culture resource file.</value>
+    </field>
+    <field name="created">
+      <value>1207998985000</value>
+    </field>
+    <field name="updated">
+      <value>1209198352000</value>
+    </field>
+    <field name="reporterName">
+      <value>djhi</value>
+    </field>
+    <field name="updaterName">
+      <value>djhi</value>
+    </field>
+    <field name="resolved">
+      <value>1282137621198</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

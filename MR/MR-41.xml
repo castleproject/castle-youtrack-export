@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>41</value>
+    </field>
+    <field name="summary">
+      <value>Scaffolding improvements</value>
+    </field>
+    <field name="description">
+      <value>The AR Scaffolding support should be splitted in two:
+
+Action process (serving the property bag with all data necessary to the view)
+View process (using a standard view - ITemplateEngine would fit - and helpers to create appropriate controls based on fields/ar schema)
+
+This requires a big, dramatic refactoring. Nevertheless the resulting code would be simpler and after that we can create a "scaffolding with ajax" variant.</value>
+    </field>
+    <field name="created">
+      <value>1127055955000</value>
+    </field>
+    <field name="updated">
+      <value>1136170300000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282143350198</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

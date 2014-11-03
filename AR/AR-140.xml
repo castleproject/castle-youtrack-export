@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>140</value>
+    </field>
+    <field name="summary">
+      <value>Add a [Parent] attribute for use on [Nested] classes</value>
+    </field>
+    <field name="description">
+      <value>&lt;component name="Nested" class=Tests, "NestedComponent, Tests"&gt;
+***  &lt;parent name="Parent" /&gt; ***
+  &lt;property name="NestedProperty"  type="String" /&gt;
+&lt;/component&gt;
+
+This is not implemented in AR.
+
+From http://www.hibernate.org/hib_docs/nhibernate/html_single/#mapping-declaration-component
+
+    "The &lt;component&gt; element allows a &lt;parent&gt;  subelement that maps a property of the component class as a reference back to the containing entity."</value>
+    </field>
+    <field name="created">
+      <value>1174486291000</value>
+    </field>
+    <field name="updated">
+      <value>1175050091000</value>
+    </field>
+    <field name="reporterName">
+      <value>dsellers</value>
+    </field>
+    <field name="updaterName">
+      <value>dsellers</value>
+    </field>
+    <field name="resolved">
+      <value>1282136318745</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

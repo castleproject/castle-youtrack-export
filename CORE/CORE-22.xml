@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>22</value>
+    </field>
+    <field name="summary">
+      <value>Support for environment variables in resource URI</value>
+    </field>
+    <field name="description">
+      <value>Custom URIs should support environment variables like:
+
+file://%SomeEnv%/WindsorConfig.xml</value>
+    </field>
+    <field name="created">
+      <value>1230744395000</value>
+    </field>
+    <field name="updated">
+      <value>1253855116000</value>
+    </field>
+    <field name="reporterName">
+      <value>ewhauser</value>
+    </field>
+    <field name="updaterName">
+      <value>ewhauser</value>
+    </field>
+    <field name="resolved">
+      <value>1235879880000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Applied in r5573. Thanks." created="1235879900000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1235879880000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253855100000" />
+  </issue>
+</issues>

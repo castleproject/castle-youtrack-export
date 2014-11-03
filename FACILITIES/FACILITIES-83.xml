@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>83</value>
+    </field>
+    <field name="summary">
+      <value>Synchronize facility tests failed in release mode</value>
+    </field>
+    <field name="description">
+      <value>The current (trunk) version of Castle.Facility.Synchronize misses some tests in release mode because:
+
+1) 'DOTNET2' compilation symbol is not defined in release mode.
+
+2) System.Diagnostics.Debug.Assert(control.Handle != IntPtr.Zero)
+     Is used to ensure that control's window handles are created.
+     Calling the Handle property of a control will force the handle to be created (If the handle has not yet been created), but  the method System.Diagnostics.Debug.Assert() is only called in Debug mode...</value>
+    </field>
+    <field name="created">
+      <value>1180689164000</value>
+    </field>
+    <field name="updated">
+      <value>1181857332000</value>
+    </field>
+    <field name="reporterName">
+      <value>dbachmann</value>
+    </field>
+    <field name="updaterName">
+      <value>dbachmann</value>
+    </field>
+    <field name="resolved">
+      <value>1282141188182</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

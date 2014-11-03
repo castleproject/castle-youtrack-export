@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>245</value>
+    </field>
+    <field name="summary">
+      <value>MonoRail.ActiveRecordScaffold - Could not save ***(ClassName). Unexpected row count: 0; expected: 1</value>
+    </field>
+    <field name="description">
+      <value>I'm learning AcriveRecord/MonoRails. I have a smiple class Category.
+When using Scaffolding, I create a Category, everything OK. But when I
+edit it, there comes a message says "Could not save Category.
+Unexpected row count: 0; expected: 1". And I noticed before I click
+"Save Changes", in the html, it's :&lt;input type="hidden"
+id="Category_Id" name="Category.Id" value="1" /&gt;; after clicking, it
+becomes: &lt;input type="hidden" id="Category_Id" name="Category.Id"
+value="0" /&gt;.</value>
+    </field>
+    <field name="created">
+      <value>1176464625000</value>
+    </field>
+    <field name="updated">
+      <value>1244676806000</value>
+    </field>
+    <field name="reporterName">
+      <value>deerchao</value>
+    </field>
+    <field name="updaterName">
+      <value>deerchao</value>
+    </field>
+    <field name="resolved">
+      <value>1282143716604</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676780000" />
+  </issue>
+</issues>

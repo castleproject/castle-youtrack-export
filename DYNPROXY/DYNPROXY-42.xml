@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>42</value>
+    </field>
+    <field name="summary">
+      <value>InvalidCastException when proxying types with interfaces having the same "Name" but  exist in different namespaces</value>
+    </field>
+    <field name="description">
+      <value>If you have two Interfaces with the same name that exist in different namespaces and create a proxy for the first interface,
+after that for the second interface then the ProxyGenerator will use the first interface because it uses a too simple generated
+type name to lookup in its "proxytype" cache.
+
+For Example:
+
+(1) Interface: A.B.C.IBubu -&gt; Generated Proxy Typename: ProxyInterfaceSystemObject_IBubu_ISerializable
+(2) Interface: A.B.D.IBubu -&gt; Generated Proxy Typename: ProxyInterfaceSystemObject_IBubu_ISerializable
+
+Calls to Castle.DynamicProxy.Builder.CodeGenerators.BaseCodeGenerator-&gt;GetFromCache
+will return the FIRST Proxy which was generated for the interface A.B.C.IBubu
+because the lookup is done using the "too simple" name ProxyInterfaceSystemObject_IBubu_ISerializable which will 
+result in a InvalidCastException when you try to cast the newly generated proxy to the (2) Interface.
+
+I attached a simple example program which demonstrates this behavior.
+
+This issue could be fixed easily by changing the GenerateTypeName Method in 
+Castle.DynamicProxy.Builder.CodeGenerators.InterfaceProxyGenerator
+From:
+[code]
+...
+	protected override String GenerateTypeName(Type type, Type[] interfaces)
+		{
+			StringBuilder sb = new StringBuilder();
+			foreach (Type inter in interfaces)
+			{
+				sb.Append('_');
+				sb.Append(inter.Name); //XXX
+			}
+			/// Naive implementation
+			return String.Format("ProxyInterface{2}{0}{1}", type.Name, sb.ToString(), NormalizeNamespaceName(type.Namespace));
+		}
+...
+[/code]
+
+To:
+[code]
+...
+	protected override String GenerateTypeName(Type type, Type[] interfaces)
+		{
+			StringBuilder sb = new StringBuilder();
+			foreach (Type inter in interfaces)
+			{
+				sb.Append('_');
+				sb.Append(inter.FullName); //FIX XXX
+			}
+			/// Naive implementation
+			return String.Format("ProxyInterface{2}{0}{1}", type.Name, sb.ToString(), NormalizeNamespaceName(type.Namespace));
+		}
+...
+[/code]
+
+With this change the GeneratedProxyTypeNames would be:
+bubuC.GetType().FullName
+"ProxyInterfaceSystemObject_CastleExample.A.B.C.IBubu_System.Runtime.Serialization.ISerializable"
+bubuD.GetType().FullName
+"ProxyInterfaceSystemObject_CastleExample.A.B.D.IBubu_System.Runtime.Serialization.ISerializable"
+
+Kind regards,
+Thomas</value>
+    </field>
+    <field name="created">
+      <value>1166527217000</value>
+    </field>
+    <field name="updated">
+      <value>1167200650000</value>
+    </field>
+    <field name="reporterName">
+      <value>thomas.darimont</value>
+    </field>
+    <field name="updaterName">
+      <value>thomas.darimont</value>
+    </field>
+    <field name="resolved">
+      <value>1282140643838</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

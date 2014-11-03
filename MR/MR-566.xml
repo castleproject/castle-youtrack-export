@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>566</value>
+    </field>
+    <field name="summary">
+      <value>Monorail download (Castle.MonoRail-2.0.0.zip) appears to be corrupt</value>
+    </field>
+    <field name="description">
+      <value>Sorry if this is the wrong place to put this.  I have never used Monorail before and cannot seem to extract the files from the zip file (Castle.MonoRail-2.0.0.zip).  I get a message saying the zip is invalid or corrupted.  I have tried this on three different PCs and get the same result each time.  I can download and unzip other Castle projects without problem (like nVelocity).
+
+Can someone please look into this?
+
+Thanks
+Tommy</value>
+    </field>
+    <field name="created">
+      <value>1278898296000</value>
+    </field>
+    <field name="updated">
+      <value>1278898890000</value>
+    </field>
+    <field name="reporterName">
+      <value>TommyNZ</value>
+    </field>
+    <field name="updaterName">
+      <value>TommyNZ</value>
+    </field>
+    <field name="resolved">
+      <value>1278898860000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Hi Michael,&#xA;&#xA;We've had this problem reported before and I'm not sure why this happens.&#xA;Anyway, can you please try to unzip the zip file using 7-zip.&#xA;You can d/l from http://www.7-zip.org/&#xA;&#xA;Also, for future questions please use the users group - http://groups.google.com/group/castle-project-users&#xA;&#xA;I'm closing this issue.&#xA;&#xA;Cheers&#xA;John" created="1278898836000" />
+    <comment author="xtoff" text="That's a known issue with .zips from Sourceforge.&#xA;&#xA;Usually 7-zip handles them just fine." created="1278898860000" />
+    <comment author="jsimons" text="Maybe I should upload a new zip!" created="1278898885000" />
+    <comment author="jsimons" text="Uploaded new zip file, zipped using WinZip v11.1.&#xA;Hope this helps," created="1279036747000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1278898860000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278898860000" />
+  </issue>
+</issues>

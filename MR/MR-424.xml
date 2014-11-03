@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>424</value>
+    </field>
+    <field name="summary">
+      <value>Fix for AmbiguousMatchException in FormHelper.GetValue(object instance)</value>
+    </field>
+    <field name="description">
+      <value>When i use the FormHelper for a property that has been overridden, i got a AmbigousMatchException. This patch changes FormHelper and adds GetPropertyInfo(Type type, string propertyName). This method first tries to get the property info the normal way. If this fails because of an ambigous match, it will loop through the base types and looks for the property with the DeclaredOnly flag. 
+This is a edge case IMO, so i chose to use the default behavior first and only loop it that fails. </value>
+    </field>
+    <field name="created">
+      <value>1204626562000</value>
+    </field>
+    <field name="updated">
+      <value>1244676987000</value>
+    </field>
+    <field name="reporterName">
+      <value>alwin</value>
+    </field>
+    <field name="updaterName">
+      <value>alwin</value>
+    </field>
+    <field name="resolved">
+      <value>1282145558401</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676960000" />
+  </issue>
+</issues>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>126</value>
+    </field>
+    <field name="summary">
+      <value>PoolableLifestyleManager creates pool in constructor</value>
+    </field>
+    <field name="description">
+      <value>The PoolableLifeStyleManager creates the pool in the contructor.  This causes problems when
+  - The component handler is not in a valid state (dependencies not resolved yet)
+  - The component is a generic type definition
+
+My solution is to push the pool creation into the Resolve which will solve both issues
+
+               public override object Resolve(CreationContext context)
+                {
+                        if (pool == null)
+                        {
+                                lock (ComponentActivator)
+                                {
+                                        if (pool == null)
+                                        {
+                                                pool = CreatePool(initialSize, maxSize);
+                                        }
+                                }
+                        }
+
+                        return pool.Request(context);
+                }
+
+Is anyone not ok with this solution?</value>
+    </field>
+    <field name="created">
+      <value>1212324271000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838916</value>
+    </field>
+    <field name="reporterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1228858020000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="Fixed in the code base" created="1228858039000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228858020000" />
+  </issue>
+</issues>

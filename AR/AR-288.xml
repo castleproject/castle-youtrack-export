@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Attributes</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 3.0 RC</value>
+    </field>
+    <field name="Affected versions">
+      <value>AR 3.0 Beta</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>288</value>
+    </field>
+    <field name="summary">
+      <value>Foreign Key for HasAndBelongsToMany</value>
+    </field>
+    <field name="description">
+      <value>The HasAndBelongsToMany attribute does not have a ForeignKey property.
+
+A patch to implement it is attached.</value>
+    </field>
+    <field name="created">
+      <value>1285277476234</value>
+    </field>
+    <field name="updated">
+      <value>1407822526749</value>
+    </field>
+    <field name="reporterName">
+      <value>Dan.Jasek</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1298905346710</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="Dan.Jasek" text="Just following up on this.  Can this be included?" created="1296602768829" />
+    <comment author="henry" text="The codebase had moved a little and the patch is stale. Sorry. Can you please provide a new one?" created="1296609804423" />
+    <comment author="Dan.Jasek" text="I have updated the patch to the latest revision." created="1298756910913" />
+    <comment author="henry" text="Applied. Tks." created="1298905340444" />
+  </issue>
+</issues>

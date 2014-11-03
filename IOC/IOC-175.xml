@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>175</value>
+    </field>
+    <field name="summary">
+      <value>Dont inherit from ApplicationException (proposed breaking change)</value>
+    </field>
+    <field name="description">
+      <value>Dont inherit from ApplicationException (proposed breaking change)</value>
+    </field>
+    <field name="created">
+      <value>1260992762000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853135</value>
+    </field>
+    <field name="reporterName">
+      <value>simoncropp</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1261050120000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="applied in r6443" created="1261050182000" />
+    <comment author="simoncropp" text="* '''Attachment''' RemoveApplicationException.patch added.&#xD;&#xA;" created="1260992762001" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1261050120000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1261050180000" />
+  </issue>
+</issues>

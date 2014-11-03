@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Activators</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>326</value>
+    </field>
+    <field name="summary">
+      <value>Component is Disposed before the OnDestroy delegate is invoked</value>
+    </field>
+    <field name="description">
+      <value>You can call {{ComponentRegistration&lt;TService&gt;.OnDestroy}} to attach a delegate to invoke when a component is being destroyed.
+
+However, if this component implements {{IDisposable}} then its {{Dispose}} method is called first. This makes the {{OnDestroy}} method less useful, as the framework  prevents you from invoking a method on the component itself.
+
+Should the {{Dispose}} method be called at all? Should it be up to the {{OnDestroy}} delegate to do that job?
+
+If it is decided that {{Dispose}} SHOULD be called, then is should at least be called after the {{OnDestroy}} delegate is invoked, not before.
+
+
+Here's an example of the problem:
+
+{code:lang=c#}public class TestClass : IDisposable
+{
+    static long _globalInstanceCount = 0;
+    readonly long _instanceId;
+    public TestClass()
+    {
+        _instanceId = Interlocked.Increment(ref _globalInstanceCount);
+        Trace.WriteLine(string.Format("TestClass ({0}) - Constructor called", _instanceId));
+    }
+    public void ByeBye()
+    {
+        Trace.WriteLine(string.Format("TestClass ({0}) - ByeBye called", _instanceId));
+    }
+    void IDisposable.Dispose()
+    {
+        Trace.WriteLine(string.Format("TestClass ({0}) - Dispose called", _instanceId));
+    }
+}
+
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        {
+            Trace.WriteLine("Testing as a singleton");
+            var container = new WindsorContainer()
+                             .Register(Component.For&lt;TestClass&gt;()
+                                         .LifeStyle.Singleton
+                                         .OnDestroy(t =&gt; t.ByeBye())
+                                       );
+            TestClass tc = container.Resolve&lt;TestClass&gt;();
+            Trace.WriteLine("Releasing the component");
+            container.Release(tc);
+            Trace.WriteLine("Disposing of the container");
+            container.Dispose();
+        }
+
+        {
+            Trace.WriteLine("Testing transient");
+            var container = new WindsorContainer()
+                                .Register(Component.For&lt;TestClass&gt;()
+                                    .LifeStyle.Transient
+                                    .OnDestroy(t =&gt; t.ByeBye())
+                                    );
+            TestClass tc = container.Resolve&lt;TestClass&gt;();
+            Trace.WriteLine("Releasing the component");
+            container.Release(tc);
+            Trace.WriteLine("Disposing of the container");
+            container.Dispose();
+        }
+
+    }
+}
+{code}
+
+Produced the following output:
+
+{quote}
+
+Testing as a singleton
+
+TestClass (1) - Constructor called
+
+Releasing the component
+
+Disposing of the container
+
+TestClass (1) - Dispose called
+
+TestClass (1) - ByeBye called
+
+Testing transient
+
+TestClass (2) - Constructor called
+
+Releasing the component
+
+TestClass (2) - Dispose called
+
+TestClass (2) - ByeBye called
+
+Disposing of the container
+
+{quote}</value>
+    </field>
+    <field name="created">
+      <value>1327030093324</value>
+    </field>
+    <field name="updated">
+      <value>1407822257251</value>
+    </field>
+    <field name="reporterName">
+      <value>ashepherd</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1329307929012</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

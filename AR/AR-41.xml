@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>41</value>
+    </field>
+    <field name="summary">
+      <value>ShouldRecreateInstance doesn't work OK in ARDatabinder</value>
+    </field>
+    <field name="description">
+      <value>Hi,
+
+I downloaded the latest version today ( 8 apr 2006 ). I am using the ARDatabind attribute. Because I have a nested instance it calls ShouldRecreateInstance on the ARDatabinder. The problem is it is a new activerecord instance, so the first parameter to this function call is empty. In this case ShouldRecreateInstance fails. I have solved this bug in my own copy by adding this line at the top of ShouldRecreateInstance:
+
+if ( value == null ) return true;
+</value>
+    </field>
+    <field name="created">
+      <value>1144500364000</value>
+    </field>
+    <field name="updated">
+      <value>1162410857000</value>
+    </field>
+    <field name="reporterName">
+      <value>peter</value>
+    </field>
+    <field name="updaterName">
+      <value>peter</value>
+    </field>
+    <field name="resolved">
+      <value>1282135934260</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

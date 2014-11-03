@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>92</value>
+    </field>
+    <field name="summary">
+      <value>IDictionary parameters passed in via Hashtable and configuration parameters</value>
+    </field>
+    <field name="description">
+      <value>When passing parameters in via a Hashtable, if a parameter is not included in the hashtable it should use the value in the configuration file.
+
+For now, if you pass in a hashtable, it expects all the values passed in.  There are instances where I have several parameters but only want to 'override' one parameter.</value>
+    </field>
+    <field name="created">
+      <value>1189119611000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853166</value>
+    </field>
+    <field name="reporterName">
+      <value>steveg</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1232179200000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="Test case is required, because I can't even understand what the problem is." created="1228855110000" />
+    <comment author="ayenderahien" text="This works:&#xA;&#xA;[TestFixture]&#xA;public class IoC_92&#xA;{&#xA;    [Test]&#xA;    public void Can_mix_hashtable_parameters_and_configuration_parameters()&#xA;    {&#xA;        var container = new WindsorContainer();&#xA;        container.Register(&#xA;            Component.For&lt;Foo&gt;()&#xA;                .Parameters(Parameter.ForKey(&quot;x&quot;).Eq(&quot;abc&quot;))&#xA;            );&#xA;&#xA;        container.Resolve&lt;Foo&gt;(new {y=1});&#xA;    }&#xA;&#xA;    public class Foo&#xA;    {&#xA;        public Foo(string x, int y)&#xA;        {&#xA;            &#xA;        }&#xA;    }&#xA;}&#xA;" created="1232179225000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1232179200000" />
+  </issue>
+</issues>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>1.2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>1.1.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>10</value>
+    </field>
+    <field name="summary">
+      <value>CreateProxy method overload</value>
+    </field>
+    <field name="description">
+      <value>can you please add a method to ProxyGenerator to generate a class proxy 
+which will take both the base type and a list of additional interfaces 
+the proxy should implement. Currently those methods only take the base 
+type argument.
+
+Thanks,
+Sergey
+
+</value>
+    </field>
+    <field name="created">
+      <value>1125834161000</value>
+    </field>
+    <field name="updated">
+      <value>1127151297000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282140547760</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

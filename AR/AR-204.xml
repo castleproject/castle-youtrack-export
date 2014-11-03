@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>.NET 2.0 Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.0 Alpha 2</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>204</value>
+    </field>
+    <field name="summary">
+      <value>RangeValidator doesn't report correct error message</value>
+    </field>
+    <field name="description">
+      <value>Hi,
+
+I've noticed that when passing an errorMessage to the ValidateRange attribute, which goes through to AbstractValidator, the errorMessage supplied doesn't get used like it does in other validators.
+
+In some testing, I've discovered that if you put the following code in the top of the method: public override string BuildErrorMessage(), like is present in other validators, it will return the message as expected.
+--- START CODE SNIPPET
+            if (!String.IsNullOrEmpty(ErrorMessage))
+            {
+                // No localization for now
+                return ErrorMessage;
+            }
+--- END CODE SNIPPET
+
+Thanks,
+
+Lucas</value>
+    </field>
+    <field name="created">
+      <value>1203874235000</value>
+    </field>
+    <field name="updated">
+      <value>1243597338000</value>
+    </field>
+    <field name="reporterName">
+      <value>paivlek</value>
+    </field>
+    <field name="updaterName">
+      <value>paivlek</value>
+    </field>
+    <field name="resolved">
+      <value>1243597320000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="Works in trunk" created="1243597338000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.0 Alpha 2''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1243597320000" />
+  </issue>
+</issues>

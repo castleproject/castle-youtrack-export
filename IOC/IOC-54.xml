@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>54</value>
+    </field>
+    <field name="summary">
+      <value>Empty component parameter values cause runtime exception during component resolution.</value>
+    </field>
+    <field name="description">
+      <value>Given a configuration for a component like this:
+
+        &lt;component id="Dashboard.UrlPolicy"
+              service="Odin.Dashboard.Core.Extensibility.IUrlPolicy, Odin.Dashboard"
+              type="Odin.Dashboard.Core.Extensibility.DefaultUrlPolicy, Odin.Dashboard"&gt;
+          &lt;parameters&gt;
+            &lt;LoadBalancedHostName&gt;foo&lt;/LoadBalancedHostName&gt;
+            &lt;LoadBalancedHeaderName&gt;&lt;!-- NOTE: Nothing in the text of this element --&gt;&lt;/LoadBalancedHeaderName&gt;
+          &lt;/parameters&gt;
+        &lt;/component&gt;
+
+The use case is a situation where dependencies admit null (or empty) values.  If the dependency is optional then it may be omitted from the configuration as a workaround but that requires more sophistication on the part of the user.  In my case, the configuration value is actually plugged in at deployment time and varies on a per-environment basis.  Sometimes I would wish it to be set to null or an empty string (I'm not picky about that) to indicate that the specified feature is unused.  I could perhaps use a placeholder value instead (such as "*") but I find that clutters things somewhat.
+
+When resolving the component a runtime exception is thrown due to an attempt to dereference a null IConfiguration object.
+
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Castle.MicroKernel.SubSystems.Conversion.PrimitiveConverter.PerformConversion(IConfiguration configuration, Type targetType)
+   at Castle.MicroKernel.SubSystems.Conversion.DefaultConversionManager.PerformConversion(IConfiguration configuration, Type targetType)
+   at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveParameterDependency(CreationContext context, ComponentModel model, DependencyModel dependency)
+   at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(CreationContext context, ISubDependencyResolver parentResolver, ComponentModel model, DependencyModel dependency)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.SetUpProperties(Object instance, CreationContext context)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context)
+   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context)
+   at Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(CreationContext context)
+   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context)
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments)
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service)
+   at Castle.MicroKernel.DefaultKernel.get_Item(Type service)
+   at Castle.Windsor.WindsorContainer.Resolve(Type service)
+   at Castle.Windsor.WindsorContainer.Resolve[T]()
+   at Odin.Core.Runtime.ComponentModel.Components.Resolve[T]() in C:\KeenDev\SRC\Apps\Odin\Odin.Core\Runtime\ComponentModel\Components.cs:line 100
+   at Odin.Dashboard.DashboardComponents.get_UrlPolicy() in C:\KeenDev\SRC\Apps\Odin\Odin.Dashboard\DashboardComponents.cs:line 42
+   at Odin.Dashboard.Core.SoapExtensions.UrlPolicySoapExtensionReflector.ReflectDescription() in 
+
+
+I have attached a simple one-line patch that remedies this problem for simple data types (such as strings).  It may warrant more attention when working with more complex types or nullables, I haven't checked.</value>
+    </field>
+    <field name="created">
+      <value>1167592643000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838916</value>
+    </field>
+    <field name="reporterName">
+      <value>jeff@ingenio.com</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282141953291</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

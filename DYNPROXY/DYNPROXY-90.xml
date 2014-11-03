@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>90</value>
+    </field>
+    <field name="summary">
+      <value>DP2: Inherited interfaces w/ target does not to work</value>
+    </field>
+    <field name="description">
+      <value>Failing test:
+
+[code]
+
+[Test]
+public void TargetImplementsOneInterfaceThatHasDuplicatedBaseInterfaceWithAdditionalProxiedInterfaces()
+{
+    ImplementedFooExtended target = new ImplementedFooExtended();
+
+    ProxyGenerator generator = new ProxyGenerator();
+    IFoo foo = (IFoo) generator.CreateInterfaceProxyWithTarget(typeof(IFoo), new[] { typeof(IFooExtended), typeof(IBarFoo)}, target, new BuryBarFooInterceptor());
+
+    foo.Foo();
+    ((IFooExtended)foo).FooExtended();
+    ((IBarFoo)foo).Bar();
+}
+
+public interface IFoo
+{
+    void Foo();
+}
+
+public interface IFooExtended : IFoo
+{
+    void FooExtended();
+}
+
+public interface IBarFoo : IFoo
+{
+    void Bar();
+}
+
+public class ImplementedFooExtended : IFooExtended
+{
+    public void FooExtended()
+    {
+    }
+
+    public void Foo()
+    {
+    }
+}
+
+public class BuryBarFooInterceptor : IInterceptor
+{
+    public void Intercept(IInvocation invocation)
+    {
+        if (invocation.Method.DeclaringType != typeof(IBarFoo))
+            invocation.Proceed();
+    }
+}
+
+[/code]
+
+This should work, however it fails with an error message:
+
+"This is a DynamicProxy2 error: the interceptor attempted to 'Proceed' for a method without a target, for example, an interface method or an abstract method"</value>
+    </field>
+    <field name="created">
+      <value>1242304093000</value>
+    </field>
+    <field name="updated">
+      <value>1245858275000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1245856620000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jordan.terrell" text="Not sure why, but initially OpenId logged me in as someone named John.  Can someone change the reporter on this?" created="1242306800000" />
+    <comment author="xtoff" text="LOL.&#xA;&#xA;Jordan - is this issue related to SO question you had? What do you mean &quot;that did not work&quot;?&#xA;&#xA;invocation.InvocationTarget will return the *same object* as (invocation.Proxy as IProxyTargetAccessor).DynProxyGetTarget();" created="1242350127000" />
+    <comment author="jordan.terrell" text="Krzysztof - No, this isn't related to the SO issue.  This is a different one that I ran into - check out the patch; you'll see what I'm talking about." created="1242376609000" />
+    <comment author="jordan.terrell" text="Updated patch that adheres to coding standard requirement - using tabs instead of spaces:&#xA;&#xA;DYNPROXY-ISSUE-90-BY-JORDAN-TERRELL-v02.patch" created="1242637656000" />
+    <comment author="xtoff" text="about the patch:&#xA;- fixture should derive from BasePEVerifyTestFixture&#xA;- you should use 'generator' field from base type.&#xA;At least one of your tests fails if you do that (dunno about the rest since I was running a modified build).&#xA;&#xA;I have a fix for that ready (it's the same issue as DYNPROXY-ISSUE-88) but it needs a little polishing and testing before I can publish it." created="1242688361000" />
+    <comment author="jordan.terrell" text="Krzysztof - If you already have a fix, I'll hold off on making any changes to my second patch." created="1242738008000" />
+    <comment author="xtoff" text="I have a fix in place. If you have some more test cases, they'd be appreciated. I added tests for not only duplicated methods, but also interfaces and events. Anything I'm missing?&#xA;&#xA;I can post the work-in-progress patch here if you want to sync up with me." created="1242738193000" />
+    <comment author="jordan.terrell" text="Yes, I'd like to see your patch - I may be able to provide some additional test cases as well." created="1242739542000" />
+    <comment author="xtoff" text="Fixed in 5803" created="1245856641000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1245856620000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1245858240000" />
+    <comment author="jsimons" text="* '''Attachment''' DYNPROXY-ISSUE-90-BY-JORDAN-TERRELL.patch added.&#xD;&#xA;" created="1242305280000" />
+    <comment author="jordan.terrell" text="* '''Attachment''' DYNPROXY-ISSUE-90-BY-JORDAN-TERRELL-v02.patch added.&#xD;&#xA;" created="1242637560000" />
+    <comment author="xtoff" text="* '''Attachment''' DP-88.DP-90.work-in-progress.patch added.&#xD;&#xA;" created="1242740460000" />
+  </issue>
+</issues>

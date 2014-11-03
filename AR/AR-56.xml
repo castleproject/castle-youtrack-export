@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>56</value>
+    </field>
+    <field name="summary">
+      <value>ActiveRecordStarter.UpdateSchema or CreateSchema without drop</value>
+    </field>
+    <field name="description">
+      <value>I have a little suggestion for next releases of
+ ActiveRecordStarter.CreateSchema; now, when you do CreateSchema, all
+ tables are dropped, but you may want to create or update only.
+ A UpdateSchema or CreateSchema with boolean parameters to create only
+ will be appreciated.
+ I think this could be simple using SchemaExport.Execute or SchemaUpdate from Nhibernate</value>
+    </field>
+    <field name="created">
+      <value>1149234408000</value>
+    </field>
+    <field name="updated">
+      <value>1162410626000</value>
+    </field>
+    <field name="reporterName">
+      <value>carlosble</value>
+    </field>
+    <field name="updaterName">
+      <value>carlosble</value>
+    </field>
+    <field name="resolved">
+      <value>1282135953870</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Attributes</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 3.0 Beta</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>166</value>
+    </field>
+    <field name="summary">
+      <value>Implement support for NHibernate Discriminator Formulae</value>
+    </field>
+    <field name="description">
+      <value>I was looking for a way to have multiple discriminator value's on a subclass. i.e.
+
+[ActiveRecord(DiscriminatorValue = "2", DiscriminatorValue = "3")] 
+
+or 
+
+[ActiveRecord(DiscriminatorValue = "2, 3")] 
+
+While this isn't valid an investigation of NHibernate showed some functionality that might be able to achieve this at the base class level.
+
+The Discriminator Formula could be supplied to within NHibernate to achieve something similar. i.e.
+
+&lt;discriminator formula="case when DiscriminatorValue in (2, 3) then 2 else DiscriminatorValue end" type="string" /&gt; 
+
+It would be good if we could have support for discriminator formulae as attributes for Castle ActiveRecord.
+
+I have rated this as a major as there is not an easy work around for it.</value>
+    </field>
+    <field name="created">
+      <value>1183495526000</value>
+    </field>
+    <field name="updated">
+      <value>1292001526303</value>
+    </field>
+    <field name="reporterName">
+      <value>jonathanptew</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1266491580000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="vokhotnikov" text="First patch did not include a new test model file, use the -fixed one" created="1266306084000" />
+    <comment author="xtoff" text="Why do you pass  DiscriminatorType and DiscriminatorValue as strings? It feels like they should be System.Type and appropriate other type.&#xA;That would make having DiscriminatorType optional if it can be inferred by calls to DiscriminatorValue.GetType()" created="1266306392000" />
+    <comment author="xtoff" text="wrong question - I see now that it was already there." created="1266306505000" />
+    <comment author="mzywitza" text="Applied, thanks" created="1266491611000" />
+    <comment author="vokhotnikov" text="* '''Attachment''' ar-discriminator-formulae-for-6738.diff added.&#xD;&#xA;" created="1266305640000" />
+    <comment author="vokhotnikov" text="* '''Attachment''' ar-discriminator-formulae-for-6738-fixed.diff added.&#xD;&#xA;" created="1266306000000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1266491580000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1266491580000" />
+  </issue>
+</issues>

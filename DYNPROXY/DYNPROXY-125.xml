@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>125</value>
+    </field>
+    <field name="summary">
+      <value>CreateClassProxyWithTarget - Adding a dynamic decorator to a preexisting object</value>
+    </field>
+    <field name="description">
+      <value>This is the central place for the new feature CreateClassProxyTypeWithTarget I am going to develop.
+
+As described in http://saftsack.fs.uni-bayreuth.de/~dun3/archives/adding-dynamic-decorator-proxy-to-object/416.html and following posts, I would like to add additional behaviour after the object is already instantiated.</value>
+    </field>
+    <field name="created">
+      <value>1261908809000</value>
+    </field>
+    <field name="updated">
+      <value>1273062201000</value>
+    </field>
+    <field name="reporterName">
+      <value>dun3</value>
+    </field>
+    <field name="updaterName">
+      <value>dun3</value>
+    </field>
+    <field name="resolved">
+      <value>1273062180000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="dun3" text="Attached a first patch. I know that a lot of the files do not comply to commit rules and there are by far too little validity checks. But the intention of this patch is to get feedback about my general approach to the problem. Any suggestions? Thanks!" created="1261909056000" />
+    <comment author="xtoff" text="Any chance to get the patch updated for current code?" created="1272459218000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1272455580000" />
+    <comment author="dun3" text="* '''Attachment''' ClassProxyWithTarget-first_stab_without_proper_checks.patch added.&#xD;&#xA;" created="1261908840000" />
+    <comment author="xtoff" text="* '''Summary''' changed from ''CreateClassProxyTypeWithTarget - Adding a dynamic decorator to a preexisting object'' to ''CreateClassProxyWithTarget - Adding a dynamic decorator to a preexisting object''.&#xD;&#xA;" created="1266643200000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.5''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1273062180000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1273062180000" />
+  </issue>
+</issues>

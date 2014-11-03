@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>91</value>
+    </field>
+    <field name="summary">
+      <value>Allow CreateInterfaceProxyWithTargetInterface to be able to permanently change target</value>
+    </field>
+    <field name="description">
+      <value>When using CreateInterfaceProxyWithTargetInterface to generate proxies that allow changing the invocation target, it would be nice to be able to change the target permanently. This might manifest itself by changing the IChangeProxyTarget to ChangeInvocationTarget(object target, bool permanently)</value>
+    </field>
+    <field name="created">
+      <value>1244361600000</value>
+    </field>
+    <field name="updated">
+      <value>1258280516000</value>
+    </field>
+    <field name="reporterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="updaterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="resolved">
+      <value>1258280460000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="It would be hard, if not impossible with the current architecture.&#xA;Also this might break in multithreaded scenarios." created="1244362315000" />
+    <comment author="cneuwirt" text="No problem.  It is not worth the effort then.  I imagine there is little performance impact on using IChangeProxyTarget." created="1244362461000" />
+    <comment author="xtoff" text="I think, that after all this is not so hard to do, and it may be a good feature to have actually." created="1254313731000" />
+    <comment author="cneuwirt" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;When using CreateInterfaceProxyWithTargetInterface to generate proxies that allow changing the invocation target, it would be nice to be able to change the target permanently. This might manifest itself by chahge the IChangeProxyTarget to ChahgeInvocationTarget(object target, bool permanently)&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;When using CreateInterfaceProxyWithTargetInterface to generate proxies that allow changing the invocation target, it would be nice to be able to change the target permanently. This might manifest itself by changing the IChangeProxyTarget to ChangeInvocationTarget(object target, bool permanently)&#xD;&#xA;{quote}&#xD;&#xA;" created="1244361600001" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1246361880000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1246361940000" />
+    <comment author="xtoff" text="* '''Resolution''' changed from ''Won't Fix'' to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Reopened'' to ''Resolved''.&#xD;&#xA;" created="1258280460000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1258280460000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Closed'' to ''Reopened''.&#xD;&#xA;" created="1254313680000" />
+  </issue>
+</issues>

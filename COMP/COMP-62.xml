@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>62</value>
+    </field>
+    <field name="summary">
+      <value>Castle.Components.Validator Russian Messages</value>
+    </field>
+    <field name="description">
+      <value />
+    </field>
+    <field name="created">
+      <value>1211267889000</value>
+    </field>
+    <field name="updated">
+      <value>1211288631000</value>
+    </field>
+    <field name="reporterName">
+      <value>rafiki</value>
+    </field>
+    <field name="updaterName">
+      <value>rafiki</value>
+    </field>
+    <field name="resolved">
+      <value>1282137628307</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>2</value>
+    </field>
+    <field name="summary">
+      <value>Merge all shared Libraries to root/SharedLibs</value>
+    </field>
+    <field name="description">
+      <value>Currently, common libaries are stored in mutiple locations. It may be nice having them live in the central root/SharedLibs folder to facilitate reuse and simplify library upgrades. 
+
+Here's a list of external library depedencies thoughout the project. 
+
+ActiveRecord/lib/
+ 
+- HashCodeProvider
+- Iesi.Collections
+- log4net
+- NHibernate (1.0)
+- Nullables.NHibernate
+- Nullables
+
+Facilities/AspectSharp/lib
+
+- antlr.runtime (2.7.3.3)
+
+Facilities/NHibernate/lib
+
+- HashCodeProvider
+- Iesi.Collections
+- log4net
+- NHibernate (older version - safe to merge)
+
+Services/Logging/lib
+
+- log4net
+- nlog.dotnet
+
+Monorail/lib
+
+- NVelocity
+- Boo*
+- anrControls.Markdown.NET</value>
+    </field>
+    <field name="created">
+      <value>1130204020000</value>
+    </field>
+    <field name="updated">
+      <value>1132450047000</value>
+    </field>
+    <field name="reporterName">
+      <value>nterfacejason</value>
+    </field>
+    <field name="updaterName">
+      <value>nterfacejason</value>
+    </field>
+    <field name="resolved">
+      <value>1282137227932</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

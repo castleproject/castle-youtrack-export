@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle.Tools.CodeGenerator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>134</value>
+    </field>
+    <field name="summary">
+      <value>CodeGenerator: assuming output of ProjectName is ProjectName.dll</value>
+    </field>
+    <field name="description">
+      <value>When resolving references to other projects CodeGenerator assumes that the output of those projects is ProjectName.dll. This assumption does not have to hold necessarily.
+
+A solution requires loading the referenced project's csproj file and check for the correct output file there</value>
+    </field>
+    <field name="created">
+      <value>1211947283000</value>
+    </field>
+    <field name="updated">
+      <value>1414392415543</value>
+    </field>
+    <field name="reporterName">
+      <value>aloker</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392415535</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>41</value>
+    </field>
+    <field name="summary">
+      <value>Cannot access source code</value>
+    </field>
+    <field name="description">
+      <value>The following link to the git repository for the NVelocity source results in a 404 error:
+
+http://github.com/castleproject/NVelocity</value>
+    </field>
+    <field name="created">
+      <value>1321393977470</value>
+    </field>
+    <field name="updated">
+      <value>1321442639665</value>
+    </field>
+    <field name="reporterName">
+      <value>shah2000</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1321442639649</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="NVelocity was moved to Monorail repository https://github.com/castleproject/MonoRail/tree/master/MR2/NVelocity" created="1321442629930" />
+  </issue>
+</issues>

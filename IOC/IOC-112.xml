@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>112</value>
+    </field>
+    <field name="summary">
+      <value>TypedFactoryFacility: support for inline dependencies</value>
+    </field>
+    <field name="description">
+      <value>I created a patch to make it possible to provide a typed factory of which the Create method has one or more  arguments (besides the "string id" parameter).
+
+E.g.:
+	public interface IOrderPresenterFactory
+	{
+		IOrderPresenter Create(*Order order*);
+		IOrderPresenter Create(string id, *Order order*);
+		void Release(IOrderPresenter orderPresenter);
+	}
+
+
+This is useful if you want to provide dynamically created arguments when using the typed factory to resolve an object on-the-fly:
+
+	public class CustomerPresenter : ICustomerPresenter
+	{
+		private readonly IOrderPresenterFactory orderPresenterFactory;
+
+		public CustomerPresenter(IOrderPresenterFactory orderPresenterFactory)
+		{
+			this.orderPresenterFactory = orderPresenterFactory;
+		}
+
+		public IOrderPresenter CreateOrderPresenter()
+		{
+			Order order = ...;
+			return orderPresenterFactory.Create(order);
+		}
+
+		public IOrderPresenter CreateSimpleOrderPresenter()
+		{
+			Order order = ...;
+			return orderPresenterFactory.Create("simpleorderpresenter", order);
+		}
+
+		public IOrderPresenter CreateComplexOrderPesenter()
+		{
+			Order order = ...;
+			return orderPresenterFactory.Create("complexorderpresenter", order);
+		}
+	}
+
+See also: http://forum.castleproject.org/viewtopic.php?t=3861</value>
+    </field>
+    <field name="created">
+      <value>1197220337000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853182</value>
+    </field>
+    <field name="reporterName">
+      <value>tolomaus</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1241443860000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="The patch isn't valid" created="1232180623000" />
+    <comment author="ayenderahien" text="Can't apply patch" created="1241443916000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1241443860000" />
+    <comment author="ayenderahien" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1241444400000" />
+  </issue>
+</issues>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>XML configuration</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>366</value>
+    </field>
+    <field name="summary">
+      <value>support scoped lifestyle in XML config</value>
+    </field>
+    <field name="description">
+      <value>Currently there's no way to specify the lifestyle from XML config.
+
+While XML config is mostly for legacy scenarios there are still people using it, and therefore it would be good to have that.</value>
+    </field>
+    <field name="created">
+      <value>1351984146568</value>
+    </field>
+    <field name="updated">
+      <value>1359953444169</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1359953444166</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

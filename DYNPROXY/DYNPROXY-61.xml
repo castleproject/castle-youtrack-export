@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>61</value>
+    </field>
+    <field name="summary">
+      <value>Need GetInterceptors from IProxyTargetAccessor back for NHibernate Trunk</value>
+    </field>
+    <field name="description">
+      <value>The removal of GetInterceptors breaks builds for NHibernate Trunk.  This method was add to DP2 for NHibernate by Ayende back in r3748.
+
+You can see the use case in NHibernateProxyHelper.cs line 28 of the NHibernate source.</value>
+    </field>
+    <field name="created">
+      <value>1181394833000</value>
+    </field>
+    <field name="updated">
+      <value>1181412687000</value>
+    </field>
+    <field name="reporterName">
+      <value>abombss</value>
+    </field>
+    <field name="updaterName">
+      <value>abombss</value>
+    </field>
+    <field name="resolved">
+      <value>1282140698385</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

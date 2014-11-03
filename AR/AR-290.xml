@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 3.0 Beta</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>290</value>
+    </field>
+    <field name="summary">
+      <value>Optimistic Lock Support</value>
+    </field>
+    <field name="description">
+      <value>Support NHibernate's optimistic-lock wherever possible.  The class hierarchies have been examined to ensure that the patch does not add support to an attribute where that support is not actually available in NHibernate.
+
+http://github.com/patearl/Castle.ActiveRecord/commit/517cb1b792bb5c660688ef551277848eb04e3d5c</value>
+    </field>
+    <field name="created">
+      <value>1287367486383</value>
+    </field>
+    <field name="updated">
+      <value>1292001511627</value>
+    </field>
+    <field name="reporterName">
+      <value>patearl</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1288997839962</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="patearl" text="Added unit tests and fixed a missed case in this commit:&#xA;http://github.com/patearl/Castle.ActiveRecord/commit/048e062918c2d8757c4264792369d680c2275d7f" created="1287683820243" />
+    <comment author="patearl" text="Even with the unit tests, there was a bug.  I forgot to add the extra format string elements.  I also noticed there was at least one other case (unrelated to my patch) where the same bug was present.  I have had problems with that format string before, so I decided to eliminate it entirely to prevent the possibility of future bugs.  I've consolidated all changes (via rebase, yes, I know, bad) into the the following commit:&#xA;&#xA;http://github.com/patearl/Castle.ActiveRecord/commit/9cd04267c10a0e984a638b392b11c0559119d94e" created="1287804938947" updated="1287805168197" />
+  </issue>
+</issues>

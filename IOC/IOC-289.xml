@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.5.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>289</value>
+    </field>
+    <field name="summary">
+      <value>UsingFactoryMethod should throw an exception if FactorySupportFacility is not registered</value>
+    </field>
+    <field name="description">
+      <value>Example code:
+
+{code lang=csharp}
+container.Register(Component.For&lt;SqlDatabase&gt;()
+                     .UsingFactoryMethod(() =&gt; (SqlDatabase)DatabaseFactory.CreateDatabase()));
+{code}
+
+If FactorySupportFacility is not registered then this code will appear to work, but Windsor ignores UsingFactoryMethod and attempts to call the constructor at resolution-time. In this example that will fail with "Can't create component as it has dependencies to be satisfied."
+
+I just wasted a couple of hours trying to figure out why Windsor was ignoring UsingFactoryMethod. It would be helpful if Windsor would throw an exception at the time UsingFactoryMethod is called, advising the user to add FactorySupportFacility, instead of just failing silently.</value>
+    </field>
+    <field name="created">
+      <value>1303839057457</value>
+    </field>
+    <field name="updated">
+      <value>1303895375405</value>
+    </field>
+    <field name="reporterName">
+      <value>djc</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1303895375405</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="The method does not depend on the facility anymore. Are you sure you're running version 2.5?" created="1303853299002" />
+    <comment author="djc" text="You're right, this is already fixed. Somehow I managed to revert to Windsor 2.0 without noticing. Duh! Sorry!" created="1303893392388" />
+  </issue>
+</issues>

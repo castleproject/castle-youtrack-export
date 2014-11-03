@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>76</value>
+    </field>
+    <field name="summary">
+      <value>NullReferenceException thrown during deserialization of a dictionnary and a proxy class serializable which override GetHashCode without interceptor</value>
+    </field>
+    <field name="description">
+      <value>This is the test to reproduce this bug:
+
+    [Serializable]
+    public class SimpleClass
+    {
+        public virtual Guid Id { get; set; }
+
+        public virtual string Name { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+
+            if (GetType() != obj.GetType()) return false;
+
+            // safe because of the GetType check
+            return Equals((SimpleClass)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            int hash = 7;
+
+            hash = 31 * hash + Id.GetHashCode();
+
+            return hash;
+        }
+    }
+
+    [TestFixture]
+    public class BugNullArrayOfInterceptorsFixture
+    {
+        [Test]
+        public void Test()
+        {
+            ProxyGenerator generator = new ProxyGenerator();
+            Dictionary&lt;SimpleClass, string&gt; theInstances = new Dictionary&lt;SimpleClass, string&gt;();
+            SimpleClass c = (SimpleClass) generator.CreateClassProxy(typeof (SimpleClass));
+            c.Id = Guid.NewGuid();
+            c.Name = DateTime.Now.ToString("yyyyMMddHHmmss");
+            theInstances.Add(c, c.Name);
+            Dictionary&lt;SimpleClass, string&gt; theInstancesBis =
+                SerializeAndDeserialize&lt;Dictionary&lt;SimpleClass, string&gt;&gt;(theInstances);
+
+            Assert.IsNotNull(theInstancesBis);
+            Assert.AreEqual(theInstances.Count, theInstancesBis.Count);
+        }
+
+        public static T SerializeAndDeserialize&lt;T&gt;(T proxy)
+        {
+            MemoryStream stream = new MemoryStream();
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(stream, proxy);
+            stream.Position = 0;
+            return (T)formatter.Deserialize(stream);
+        }
+    }
+
+This can be the fix:
+Index: Tools/Castle.DynamicProxy2/Castle.DynamicProxy/AbstractInvocation.cs
+===================================================================
+--- Tools/Castle.DynamicProxy2/Castle.DynamicProxy/AbstractInvocation.cs	(revision 5250)
++++ Tools/Castle.DynamicProxy2/Castle.DynamicProxy/AbstractInvocation.cs	(working copy)
+@@ -135,7 +135,7 @@
+ 		{
+ 			execIndex++;
+ 
+-			if (execIndex == interceptors.Length)
++            if (interceptors == null || execIndex == interceptors.Length)
+ 			{
+ 				InvokeMethodOnTarget();
+ 			}
+
+update:
+this is may be a better fix
+Index: AbstractInvocation.cs
+===================================================================
+--- AbstractInvocation.cs	(revision 5250)
++++ AbstractInvocation.cs	(working copy)
+@@ -40,7 +40,7 @@
+ 		{
+ 			this.proxy = proxy;
+ 			this.target = target;
+-			this.interceptors = interceptors;
++			this.interceptors = interceptors ?? new IInterceptor[0];
+ 			this.targetType = targetType;
+ 			this.targetMethod = targetMethod;
+ 			this.arguments = arguments;
+</value>
+    </field>
+    <field name="created">
+      <value>1218109502000</value>
+    </field>
+    <field name="updated">
+      <value>1219880556000</value>
+    </field>
+    <field name="reporterName">
+      <value>gcelet</value>
+    </field>
+    <field name="updaterName">
+      <value>gcelet</value>
+    </field>
+    <field name="resolved">
+      <value>1219880520000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="fcs" text="Resolved in revision 5295" created="1219880556000" />
+    <comment author="hammett" text="* '''Created''' set to ''17/06/2005 06:57:40''.&#xD;&#xA;* '''Assignees''' set to ''hamilton verissimo''.&#xD;&#xA;" created="1218400440000" />
+    <comment author="fcs" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1219880400000" />
+    <comment author="fcs" text="* '''Assignees''' changed from ''hamilton verissimo'' to ''Fabian Schmied''.&#xD;&#xA;" created="1219880460000" />
+    <comment author="fcs" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1219880520000" />
+  </issue>
+</issues>

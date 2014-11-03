@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>199</value>
+    </field>
+    <field name="summary">
+      <value>NamingPartsSubSystem broken when RegisterHandlerForwarding is used</value>
+    </field>
+    <field name="description">
+      <value>NamingPartsSubSystem uses ':' to detect properties in component's name (ComponentName.Setup). DefaultKernel.RegisterHandlerForwarding uses 'forwardedType.FullName + ": Forward to: " + name' as the new handler name, and thus causing ComponentName.Setup to try parsing the name, which obviously fails.
+Is this formatting something important or just dropping the ':' from the new handler name would be acceptible?</value>
+    </field>
+    <field name="created">
+      <value>1270703096000</value>
+    </field>
+    <field name="updated">
+      <value>1287656886102</value>
+    </field>
+    <field name="reporterName">
+      <value>felixg</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1270725420000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Can you provide a failing test for that?&#xA;&#xA;And out of curiosity? - Are you using NPSS in real project? Can you share some details as to why you use it (you can drop me an email if you don't want to share that publicly - I'm genuinely interested)" created="1270718505000" />
+    <comment author="felixg" text="Just drop inside NamingPartsSubSystemTestCase.&#xA;&#xA;		[Test]&#xA;        public void HandlerForwardingDoesNotAddColon()&#xA;		{&#xA;			IKernel kernel = new DefaultKernel();&#xA;			kernel.AddSubSystem(SubSystemConstants.NamingKey, new NamingPartsSubSystem());&#xA;&#xA;			kernel.AddComponent(&quot;common:key1=true&quot;, typeof(ICommon), typeof(CommonImpl1));&#xA;            kernel.RegisterHandlerForwarding(typeof(CommonImpl2), &quot;common:key1=true&quot;); // System.ArgumentException: Invalid properties.&#xA;		}&#xA;&#xA;Honestly, I'm not sure I'm going to use it, still in research phase.&#xA;I've page types in CMS - article, event, product, etc... I've components that render those pages. Each page type have multiple templates (not only theming, but things like 'show related products', which require extra logic). So I thought maybe render_article:template=basic can be used. Not really sure if it's the best way." created="1270720313000" />
+    <comment author="xtoff" text="for this kind of scenario it's better to put that metadata in ExtendedProperties and use IHandlerSelector to choose appropriate component based on that metadata and configuration." created="1270720481000" />
+    <comment author="xtoff" text="fixed in f407ee4c88a98187056b425cd0c94a338bd6207d" created="1270725429000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1270724940000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1270725420000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1270725420000" />
+  </issue>
+</issues>

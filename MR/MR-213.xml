@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>213</value>
+    </field>
+    <field name="summary">
+      <value>DiggStylePagination has a typo which prevents the code from build</value>
+    </field>
+    <field name="description">
+      <value>For some reason there is a very obvious error on the code:
+[csc] c:\srcfile\CastleProject\trunk\MonoRail\Castle.MonoRail.Framework\ViewComponents\DiggStylePagination.cs(159,38): error CS1010: Newline in constant
+
+I have modified the file and submitted the patch. 
+</value>
+    </field>
+    <field name="created">
+      <value>1169091521000</value>
+    </field>
+    <field name="updated">
+      <value>1244675210000</value>
+    </field>
+    <field name="reporterName">
+      <value>goodwill</value>
+    </field>
+    <field name="updaterName">
+      <value>goodwill</value>
+    </field>
+    <field name="resolved">
+      <value>1282143661166</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675160000" />
+  </issue>
+</issues>

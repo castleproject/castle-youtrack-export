@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>1.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>1.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>28</value>
+    </field>
+    <field name="summary">
+      <value>handle divide-by-zero exception when performing arithmetic operations</value>
+    </field>
+    <field name="description">
+      <value>When arithmetic operations are performed eg. 
+
+#set ( $value2 = $value1 / $value0 )
+
+and value0 is zero, then a divide-by-zero exception is raised and the execution of the whole template stops. Ideally, $value2 should be set to null in such a case (which was the earlier behavior when only integers were supported).
+
+I am attaching a patch that reverts to the earlier behavior.</value>
+    </field>
+    <field name="created">
+      <value>1216358279000</value>
+    </field>
+    <field name="updated">
+      <value>1287754636352</value>
+    </field>
+    <field name="reporterName">
+      <value>ashkulz</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1234557840000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Applied in r5550.&#xA;&#xA;Also added a test case. Please consider adding unit tests to your patch next time.&#xA;&#xA;Thanks" created="1234557843000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1234557720000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1234557840000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253854800000" />
+  </issue>
+</issues>

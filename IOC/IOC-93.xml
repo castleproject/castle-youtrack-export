@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>93</value>
+    </field>
+    <field name="summary">
+      <value>GenericListConverter does not handle service overrides properly</value>
+    </field>
+    <field name="description">
+      <value>The GenericListConverter does not properly handle the composition of conversions
+which results in the inability to handle service overrides.</value>
+    </field>
+    <field name="created">
+      <value>1190020535000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838885</value>
+    </field>
+    <field name="reporterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1232117940000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="I don't understand what the problem is" created="1232117947000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Status''' changed from ''Reopened'' to ''Resolved''.&#xD;&#xA;" created="1232117940000" />
+  </issue>
+</issues>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>113</value>
+    </field>
+    <field name="summary">
+      <value> Wrong decommissioning order of components which implement IDisposable and IStartable</value>
+    </field>
+    <field name="description">
+      <value>When Castle is applying the decommissioning concerns for a component which is implementing IDisposable and is startable using Startable facility, the Stop method is being called by the kernel after the disposal of the component.
+
+I tried diving into the Castle.MicroKernel code and I've found DefaultComponentActivator.ApplyDecommissionConcerns is applying the decommissioning concerns steps in the following order:
+
+1. {Castle.MicroKernel.LifecycleConcerns.DisposalConcern}
+2. {Castle.Facilities.Startable.StopConcern}
+
+I believe this is the wrong order since Stop should always be called before disposal of the component.
+
+Can anyone help with this matter and correct the code in the trunk?
+
+Thanks,
+Robert </value>
+    </field>
+    <field name="created">
+      <value>1198677955000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838885</value>
+    </field>
+    <field name="reporterName">
+      <value>robert.mircea</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1228858980000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="alwin" text="I'm willing to make a patch for this, this has bitten me a few times too.&#xA;&#xA;There is currently no way to change the order of steps in LifecycleStepCollection. I could add an AddFirst(LifecycleStepType type, object stepImplementation) to the class (just like Add()), but I'm not sure if this is the right way to do it. To me it does look like the easiest way though.&#xA;&#xA;If I get the green light for the addition of AddFirst() or Insert(), I will prepare a patch." created="1227651931000" />
+    <comment author="ayenderahien" text="This look like a good idea for solving this issue." created="1228853335000" />
+    <comment author="ayenderahien" text="applied, thanks" created="1228859024000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228858980000" />
+  </issue>
+</issues>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Queries</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.0 Alpha 2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>264</value>
+    </field>
+    <field name="summary">
+      <value>Change LinqQuery class to public</value>
+    </field>
+    <field name="description">
+      <value>Patch to change LinqQuery&lt;T&gt; to public. (Currently it is internal.) As described briefly at http://groups.google.com/group/castle-project-devel/browse_thread/thread/5fe647635f3643eb#:
+
+General note on AR.Linq -- I'd vote to make the LinqQuery&lt;T&gt; class
+public rather than internal. That way, we can easily extend a non-Linq
+AR base class with a Queryable property (e.g.
+ActiveRecordValidationBase) using:
+
+public static IOrderedQueryable&lt;T&gt; Queryable
+{ get { return ExecuteQuery2(new LinqQuery&lt;T&gt;()); } } 
+
+The patch makes LinqQuery&lt;T&gt; public and adds the necessary XML comments to the class.</value>
+    </field>
+    <field name="created">
+      <value>1245267952000</value>
+    </field>
+    <field name="updated">
+      <value>1247127708000</value>
+    </field>
+    <field name="reporterName">
+      <value>brian</value>
+    </field>
+    <field name="updaterName">
+      <value>brian</value>
+    </field>
+    <field name="resolved">
+      <value>1247127660000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.0 Alpha 2''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1247127660000" />
+    <comment author="brian" text="* '''Attachment''' linqquery-public.patch added.&#xD;&#xA;" created="1245267960000" />
+  </issue>
+</issues>

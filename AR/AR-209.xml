@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>209</value>
+    </field>
+    <field name="summary">
+      <value>ActiveRecordHooksBase.IsUnsaved is never getting called</value>
+    </field>
+    <field name="description">
+      <value>Updated HookDispatcher to implement EmptyInterceptor.IsTransient and make the appropriate call to ActiveRecordHooksBase.IsUnsaved so that classes that implement a custom key scheme that NHibernate can't handle when determining whether the entity is transient or not.</value>
+    </field>
+    <field name="created">
+      <value>1206855548000</value>
+    </field>
+    <field name="updated">
+      <value>1209132196000</value>
+    </field>
+    <field name="reporterName">
+      <value>adenysenko</value>
+    </field>
+    <field name="updaterName">
+      <value>adenysenko</value>
+    </field>
+    <field name="resolved">
+      <value>1282136673416</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

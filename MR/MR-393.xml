@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>393</value>
+    </field>
+    <field name="summary">
+      <value>Externalizing of Render-related methods to a helperclass</value>
+    </field>
+    <field name="description">
+      <value>Patch for my proposal from January, 8th to move RenderXXX-methods to a stand-alone class.</value>
+    </field>
+    <field name="created">
+      <value>1200029520000</value>
+    </field>
+    <field name="updated">
+      <value>1205117312000</value>
+    </field>
+    <field name="reporterName">
+      <value>mzywitza</value>
+    </field>
+    <field name="updaterName">
+      <value>mzywitza</value>
+    </field>
+    <field name="resolved">
+      <value>1282145484370</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

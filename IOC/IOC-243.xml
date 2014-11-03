@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Proxies_Interception</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>243</value>
+    </field>
+    <field name="summary">
+      <value>Unseal the InterceptorAttribute class</value>
+    </field>
+    <field name="description">
+      <value>as requested on http://castle.uservoice.com/forums/16605-official-castle-project-feedback-forum/suggestions/1181285-unseal-the-interceptorattribute-class?ref=title
+
+I am trying to do a little AOP and have written a few interceptors that do what I want (lets call one of them the SecurityCheckingInterceptor for example). I would like to implement an EnforceSecurityAttribute that simply subclasses InterceptorAttribute and passes typeof(SecurityCheckingInterceptor) to the base constructor. This provides for better self-documentation in code and allows for better scoping. I can make the attribute public w/o having to make the interceptor public.</value>
+    </field>
+    <field name="created">
+      <value>1289024739296</value>
+    </field>
+    <field name="updated">
+      <value>1407822257323</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1289027672528</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>beta 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>58</value>
+    </field>
+    <field name="summary">
+      <value>abstract classed can not be Initialized</value>
+    </field>
+    <field name="description">
+      <value>If myassembly has a abstract class which inherit from ActiveRecordBase in order to support other Database, when I use Initialize(Assembly assembly, IConfigurationSource source) or Initialize(Assembly[] assemblies, IConfigurationSource source) to initialize, the abstract class will not be created.
+
+public static void Initialize( Assembly assembly, IConfigurationSource source )
+{
+	Type[] types = assembly.GetExportedTypes();
+
+	ArrayList list = new ArrayList();
+
+	foreach( Type type in types )
+	{
+	     //here will ignore abstract classes
+	     //because it has none [ActiveRecord] attribute
+        	     if ( !IsActiveRecordType(type) )
+           	     {
+             	  	continue;
+           	     }
+
+		list.Add(type);
+	}
+
+	Initialize( source, (Type[]) list.ToArray( typeof(Type) ) );
+}
+
+Sorry my English is badly :-P</value>
+    </field>
+    <field name="created">
+      <value>1149706426000</value>
+    </field>
+    <field name="updated">
+      <value>1162410553000</value>
+    </field>
+    <field name="reporterName">
+      <value>d.chen</value>
+    </field>
+    <field name="updaterName">
+      <value>d.chen</value>
+    </field>
+    <field name="resolved">
+      <value>1282135955963</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

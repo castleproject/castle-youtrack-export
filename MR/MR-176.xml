@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>176</value>
+    </field>
+    <field name="summary">
+      <value>HtmlHelper.DateTime hangs page render when used from Brail view engine</value>
+    </field>
+    <field name="description">
+      <value>Calling the DateTime function from a Brail view causes the request to hang. E.g.
+
+${HtmlHelper.DateTime('foo', DateTime.Now)}</value>
+    </field>
+    <field name="created">
+      <value>1164743706000</value>
+    </field>
+    <field name="updated">
+      <value>1244675827000</value>
+    </field>
+    <field name="reporterName">
+      <value>andrew</value>
+    </field>
+    <field name="updaterName">
+      <value>andrew</value>
+    </field>
+    <field name="resolved">
+      <value>1282143597416</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675820000" />
+  </issue>
+</issues>

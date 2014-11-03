@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>248</value>
+    </field>
+    <field name="summary">
+      <value>Pre-Processor Issue with passing parameters to sub-view</value>
+    </field>
+    <field name="description">
+      <value>Just grabbed the latest bits and I may have found another edge case regarding Brail expressions. Basically this was working before...
+
+-- editForm.brail --
+&lt;?brail OutputSubView('/common/defaultFocus', { 'controlIdToFocus':"${division.Name}" }) ?&gt;
+
+-- /common/defaultFocus.brail --
+&lt;script type="text/javascript"&gt;
+Event.observe(window, 'load', function() { ${controlIdToFocus}.focus(); });
+&lt;/script&gt;
+
+And it seems the latest bits breaks this and I suspect it has to do with the changes in expression handling...
+Attached are the 2 views and the exception stack...
+
+WORKAROUND:
+There is a pretty easy workaround for this right now that I'm using as shown below...
+
+-- editForm.brail --
+&lt;?brail OutputSubView('/common/defaultFocus', { 'controlIdToFocus':'division.Name' }) ?&gt;
+
+-- defaultFocus.brail --
+&lt;script type="text/javascript"&gt;
+    Event.observe(window, 'load', function() { document.getElementById('&lt;?brail output controlIdToFocus ?&gt;').focus(); });
+&lt;/script&gt;
+</value>
+    </field>
+    <field name="created">
+      <value>1176746936000</value>
+    </field>
+    <field name="updated">
+      <value>1263055929000</value>
+    </field>
+    <field name="reporterName">
+      <value>joeybeninghove</value>
+    </field>
+    <field name="updaterName">
+      <value>joeybeninghove</value>
+    </field>
+    <field name="resolved">
+      <value>1282143797182</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055920000" />
+  </issue>
+</issues>

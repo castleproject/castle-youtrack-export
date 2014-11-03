@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>112</value>
+    </field>
+    <field name="summary">
+      <value>Reimplement DefaultAttributeAssembler to make use of CustomAttributeData to avoid exceptions on unreplicable attributes</value>
+    </field>
+    <field name="description">
+      <value>See &lt;http://groups.google.com/group/castle-project-devel/browse_thread/thread/6a3644427abbe8f3&gt;.</value>
+    </field>
+    <field name="created">
+      <value>1254183295000</value>
+    </field>
+    <field name="updated">
+      <value>1256780693000</value>
+    </field>
+    <field name="reporterName">
+      <value>fcs</value>
+    </field>
+    <field name="updaterName">
+      <value>fcs</value>
+    </field>
+    <field name="resolved">
+      <value>1256780640000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1254913500000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1256780640000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1256780640000" />
+    <comment author="fcs" text="* '''Version Affected''' changed from ''2.2'' to ''2.1 RTM''.&#xD;&#xA;* '''Assignees''' set to ''Krzysztof Kozmic''.&#xD;&#xA;" created="1254204600000" />
+  </issue>
+</issues>

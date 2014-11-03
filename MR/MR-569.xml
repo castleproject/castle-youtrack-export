@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>569</value>
+    </field>
+    <field name="summary">
+      <value>Mono async actions fail to find proper context to release AR session</value>
+    </field>
+    <field name="description">
+      <value>When using async actions in Mono, the context is incorrectly assigned somewhere along the line and the SessionWebModule or custom session handling methods cannot successfully release the original Activerecord session.  To fix this, the context must be assigned in the End portion of the async action with
+
+{code lang=csharp}
+HttpContext.Current = HttpContext;
+{code}
+
+I'm not sure exactly where this can be placed to work correctly with Mono, perhaps in BaseAsyncHttpHandler's EndProcessRequest finally block as:
+
+{code lang=csharp}
+HttpContext.Current = httpContext;
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1284134173511</value>
+    </field>
+    <field name="updated">
+      <value>1414999341573</value>
+    </field>
+    <field name="reporterName">
+      <value>Brian.Saville</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999341568</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-582[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="Brian.Saville" text="The fix in BaseAsyncHttpHandler works. My problem is that I'm having trouble coming up with a test case to catch this problem, probably because I don't understand exactly what happens and why it only happens in Mono.  Anyone have some advice?  Obviously the HttpContext.Current is not set correctly, in fact it is null on the End method in Mono, but works fine for MS.NET.  " created="1284141228714" />
+    <comment author="jonorossi" text="MonoRail2 is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/MonoRail/issues" created="1414999341574" />
+  </issue>
+</issues>

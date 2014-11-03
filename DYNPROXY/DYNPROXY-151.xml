@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Interface proxies without target</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.5</value>
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>151</value>
+    </field>
+    <field name="summary">
+      <value>Cast error when using attributes</value>
+    </field>
+    <field name="description">
+      <value>I'm using DynamicProxy through Moq 4.0.10827 (and downloaded the latest 2.5.2.0 Castle.Core.dll for .Net 3.5 to check that the issue is still there).
+
+Here's my interface and attribute:
+
+{code lang=csharp}
+[AttributeUsage(AttributeTargets.All, Inherited = false)]
+public sealed class MyAttribute : Attribute
+{
+	public MyAttribute(params Type[] attributeTypes)
+	{}
+}
+
+[MyAttribute(typeof(EditorAttribute))]
+public interface IInterface
+{ }
+{code}
+
+and the code that throws an InvalidCastException
+
+{code lang=csharp}
+Mock&lt;IInterface&gt; mi = new Mock&lt;IInterface&gt;();
+IInterface i = mi.Object; // InvalidCastException
+{code}
+
+InvalidCastException info:
+Unable to cast object of type 'System.Collections.ObjectModel.ReadOnlyCollection`1[System.Reflection.CustomAttributeTypedArgument]' to type 'System.Array'.
+   at System.Reflection.Emit.CustomAttributeBuilder.EmitValue(BinaryWriter writer, Type type, Object value)
+   at System.Reflection.Emit.CustomAttributeBuilder.InitCustomAttributeBuilder(ConstructorInfo con, Object[] constructorArgs, PropertyInfo[] namedProperties, Object[] propertyValues, FieldInfo[] namedFields, Object[] fieldValues)
+   at System.Reflection.Emit.CustomAttributeBuilder..ctor(ConstructorInfo con, Object[] constructorArgs, PropertyInfo[] namedProperties, Object[] propertyValues, FieldInfo[] namedFields, Object[] fieldValues)
+   at Castle.DynamicProxy.AttributeUtil.CreateBuilder(CustomAttributeData attribute)
+   at Castle.DynamicProxy.AttributeUtil.&lt;GetNonInheritableAttributes&gt;d__0.MoveNext()
+   at Castle.DynamicProxy.Contributors.ProxyInstanceContributor.Generate(ClassEmitter class, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.Generators.InterfaceProxyWithoutTargetGenerator.GenerateType(String typeName, Type proxyTargetType, Type[] interfaces, INamingScope namingScope)
+   at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.&lt;&gt;c__DisplayClass1.&lt;GenerateCode&gt;b__0(String n, INamingScope s)
+   at Castle.DynamicProxy.Generators.BaseProxyGenerator.ObtainProxyType(CacheKey cacheKey, Func`3 factory)
+   at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode(Type proxyTargetType, Type[] interfaces, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.DefaultProxyBuilder.CreateInterfaceProxyTypeWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyTypeWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, IInterceptor[] interceptors)
+   at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, IInterceptor[] interceptors)
+   at Moq.Proxy.CastleProxyFactory.CreateProxy[T](ICallInterceptor interceptor, Type[] interfaces, Object[] arguments) =&gt; Source\Proxy\CastleProxyFactory.cs Line 78
+
+FYI there's no more exception if I change the attribute usage to "Inherited = true" or if MyAttribute only takes a "Type" instead of a "Type[]" as argument.</value>
+    </field>
+    <field name="created">
+      <value>1289977234078</value>
+    </field>
+    <field name="updated">
+      <value>1407822235379</value>
+    </field>
+    <field name="reporterName">
+      <value>ThonRiz</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1304834930714</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="can you reproduce this purely using Dynamic Proxy (without Moq)?" created="1293968814835" />
+    <comment author="ThonRiz" text="I removed the reference to Moq and directly used Dynamic Proxy 2.5.2 with the following code:&#xA;&#xA;{code lang=java}&#xA;	ProxyGenerator pg = new ProxyGenerator();&#xA;	Type mockType = typeof(IInterface);&#xA;	object obj = pg.CreateInterfaceProxyWithoutTarget(mockType, null, ProxyGenerationOptions.Default);&#xA;{code}&#xA;and I get the same InvalidCastException. I guess it's OK to use &quot;null&quot; for the argument &quot;Type[] additionalInterfacesToProxy&quot; (Moq doesn't pass a &quot;null&quot; argument but an interface that points to the &quot;Mock&quot; object itself, so I can't use it without referencing Moq).&#xA;&#xA;Here is the full code to reproduce the error:&#xA;&#xA;{code lang=java}&#xA;using System;&#xA;using System.ComponentModel;&#xA;&#xA;using Castle.DynamicProxy;&#xA;using Castle.DynamicProxy.Generators;&#xA;&#xA;namespace TestDynamicProxy&#xA;{&#xA;    class Program&#xA;    {&#xA;        static void Main(string[] args)&#xA;        {&#xA;            ProxyGenerator pg = new ProxyGenerator();&#xA;            Type mockType = typeof(IInterface);&#xA;            object obj = pg.CreateInterfaceProxyWithoutTarget(mockType, null, ProxyGenerationOptions.Default);&#xA;        }&#xA;    }&#xA;&#xA;    [AttributeUsage(AttributeTargets.All, Inherited = false)]&#xA;    public sealed class MyAttribute : Attribute&#xA;    {&#xA;        public MyAttribute(params Type[] attributeTypes)&#xA;        { }&#xA;    }&#xA;&#xA;    [MyAttribute(typeof(EditorAttribute))]&#xA;    public interface IInterface&#xA;    { }&#xA;}&#xA;{code}" created="1294030580725" updated="1294031565522" />
+    <comment author="xtoff" text="Thanks Thon. I will try to allocate time to fix that for the next release. We also accept patches if you want to give it a go." created="1294889207327" />
+  </issue>
+</issues>

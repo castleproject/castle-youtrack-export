@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>TypedFactoryFacility</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>260</value>
+    </field>
+    <field name="summary">
+      <value>Generic Typed Factories no longer working in trunk</value>
+    </field>
+    <field name="description">
+      <value>In the latest trunk build (2180), a generic typed factory does not work as expected.
+
+Calling the creational method on the generic typed factory instance resolved from the container returns the following error:
+
+System.Exception : Can't find information about factory method IFoo GetFoo(System.String). This is most likely a bug. Please report it.
+
+This issue does not exist in 2.5.2.  Also, non-generic typed factories are not affected.  I have attached a unit test file with a failing test that reproduces the problem.
+
+Thanks!</value>
+    </field>
+    <field name="created">
+      <value>1293638656478</value>
+    </field>
+    <field name="updated">
+      <value>1295469119484</value>
+    </field>
+    <field name="reporterName">
+      <value>slange</value>
+    </field>
+    <field name="updaterName">
+      <value>slange</value>
+    </field>
+    <field name="resolved">
+      <value>1293968123210</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-14[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="slange" text="As an aside, I upgraded to trunk to validate that IOC-250 and IOC-253 were fixed.  I would like to integrate the fix to IOC-250 into my production environment ASAP, so I was wondering if you are planning to do an official release sometime soon that includes it.  Alternatively, I would be willing to go to production with a trunk build if you believe the current trunk to be stable.  Thanks!" created="1293642842337" />
+    <comment author="xtoff" text="The trunk is not stable. I will port back those fixes that I can and make that 2.5.3 Cheers." created="1293660971931" />
+    <comment author="slange" text="Thanks very much -- I appreciate it." created="1293663103556" />
+    <comment author="slange" text="I grabbed build 27 from the 2.5 release branch.  It looks like there are some problems with the build configurations.  The .NET 3.5 distribution includes a .NET 3.5 version of Castle.Core and a .NET 4.0 version of Castle.Windsor.  The .NET 4.0 distribution includes the .NET 4.0 Castle.Windsor and the .NET 4.0 Client Profile version of Castle.Core.  Sorry to post this here, I wasn't sure if there's a better mechanism of contacting you guys regarding issues like this." created="1293724904431" />
+    <comment author="xtoff" text="ok, thanks for catching this. I'll have a look." created="1293751581696" />
+    <comment author="roelofb" text="The build configurations on TeamCity have been fixed. Thanks for catching this, Stuart.&#xA;&#xA;Please note that Castle.Core is always .NET 4.0 Client Profile, there's no version (needed) for the full 4.0 fx" created="1294997441546" />
+    <comment author="slange" text="Thanks for fixing the build configs.  I can confirm that the .NET 3.5 package from build #28 from the 2.5.x release branch is valid.  However, it appears that the fix to IOC-250 that Krzysztof backported is not quite complete.  I have a unit test that illustrates the problem, so I opened up IOC-266 to track.  Thanks very much." created="1295469119484" />
+  </issue>
+</issues>

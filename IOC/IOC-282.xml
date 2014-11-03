@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>TypedFactoryFacility</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>282</value>
+    </field>
+    <field name="summary">
+      <value>Windsor should be able to register generic typed factories as open generics</value>
+    </field>
+    <field name="description">
+      <value>{code lang=java}
+Container.Register(Component.For&lt;Foo&gt;().LifeStyle.Transient,
+			        Component.For&lt;Bar&gt;().LifeStyle.Transient,
+			        Component.For&lt;UsesFooAndBarDelegateCtor&gt;(),
+			        Component.For(typeof(Func&lt;&gt;)).AsFactory());
+
+var instance = Container.Resolve&lt;UsesFooAndBarDelegateCtor&gt;();
+
+Assert.IsNotNull(instance.FooFactory);
+Assert.IsNotNull(instance.BarFactory);
+{code}
+
+In other words the {{FooFactory}} and {{BarFactory}} should be satisfied by the open generic service registered, and not lazily loaded versions of the factory. Currently this code fails with cryptic exception from guts of DynamicProxy.
+
+Also this behavior should be the default for lazily registred factories too, so that if the factory was not registred explicitly, only one implicit open generic component should be registered for the {{Func&lt;&gt;}} type.
+
+Same should be possible for interface-based factories.</value>
+    </field>
+    <field name="created">
+      <value>1301112634010</value>
+    </field>
+    <field name="updated">
+      <value>1407822257295</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1301116418148</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

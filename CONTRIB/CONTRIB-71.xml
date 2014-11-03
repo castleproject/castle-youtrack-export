@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>71</value>
+    </field>
+    <field name="summary">
+      <value>Patch for 63, 66, 69, partial 70, 72, 73</value>
+    </field>
+    <field name="description">
+      <value>This patch does the following:
+
+1. Bug 69 - turns on "Option Strict On" if the (VB) project's settings have that on.
+
+2. If the generic IList type is used for relations, it adds a object initialiser to the field declaration.
+
+3. While it doesn't fix bug 70 it also adds references to project referenced assemblies for the codedom compiler, which I think should help with the final fix.
+
+4. Fix the namespace prefix from bug 63.
+
+5. Use regular expression to trim property names (bug 72)
+
+6. use project references to fine NHIbernate assembly</value>
+    </field>
+    <field name="created">
+      <value>1192442544000</value>
+    </field>
+    <field name="updated">
+      <value>1192871806000</value>
+    </field>
+    <field name="reporterName">
+      <value>flcdrg</value>
+    </field>
+    <field name="updaterName">
+      <value>flcdrg</value>
+    </field>
+    <field name="resolved">
+      <value>1282138224885</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

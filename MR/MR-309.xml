@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>309</value>
+    </field>
+    <field name="summary">
+      <value>Nullable propogation on Form.TextFieldValue throwing "Ambiguous match found" exception</value>
+    </field>
+    <field name="description">
+      <value>Use this as a reference:
+http://groups.google.com/group/castle-project-users/browse_thread/thread/675e202e49f50c9c
+
+Code that provokes the bug:
+&lt;label for="user_DateOfBirth"&gt;
+   &lt;span&gt;Date of birth&lt;sup&gt;*&lt;/sup&gt;&lt;/span&gt;
+       ${Form.TextFieldValue("user.dateofbirth", ?user.DateOfBirth.ToString("d"))}
+&lt;/label&gt;
+&lt;br /&gt;
+
+Works fine when user.DateOfBirth is null but throws a "Ambiguous match found" exception when it is not null.</value>
+    </field>
+    <field name="created">
+      <value>1185868982000</value>
+    </field>
+    <field name="updated">
+      <value>1263055832000</value>
+    </field>
+    <field name="reporterName">
+      <value>c.vallance</value>
+    </field>
+    <field name="updaterName">
+      <value>c.vallance</value>
+    </field>
+    <field name="resolved">
+      <value>1282143925620</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055800000" />
+  </issue>
+</issues>

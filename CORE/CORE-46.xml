@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>By design</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>46</value>
+    </field>
+    <field name="summary">
+      <value>ILogger should support formatting with delegate (similar to Common.Logging)</value>
+    </field>
+    <field name="description">
+      <value>ILogger currently only has .Foo(string), .FooFormat(string, object[]) and .Foo(Func&lt;string&gt;) methods.
+Something that i frequently see in our code base is something like 
+{code:lang=csharp}logger.DebugFormat("Loaded {0} items.", items.Count());{code}
+where items is an {{IEnumerable&lt;SomeItem&gt;}} that came from a Linq statement...that usually takes some time to actually enumerate.
+Stuff I also see is
+{code:lang=csharp}logger.DebugFormat("Got foo: {0}", myFooInstance);{code}
+which of course calls .ToString() - and might be pretty expensive for {{myFooInstance}} (Exceptions with StackTraces, anyone?)
+
+Common.Logging provides overloads that by default take parameters in a string.Format way:
+{code:lang=csharp}logger.Debug(m =&gt; m("No Format here."));
+logger.Debug(m =&gt; m("Logging with format: {0}", someObject));
+logger.Error(m =&gt; m("Caught exception: {0}", exception.Message), exception);{code}
+
+The latter two are something I really miss in the Logging Facility; especially since most of my logger calls are ones with parameters.
+The overload for exceptions is purely a matter of taste; and the heavy lifting is probably done anyways by that time.
+
+Due to the lack of that, I rolled my own ILogger:
+{code:lang=csharp}public delegate void FormatMessageHandler(string format, params object[] args);
+public interface ILogger
+{
+    void Fatal(Action&lt;FormatMessageHandler&gt; formatMessageCallback);
+    void Fatal(Action&lt;FormatMessageHandler&gt; formatMessageCallback, Exception exception);
+    void Error(Action&lt;FormatMessageHandler&gt; formatMessageCallback);
+    void Error(Action&lt;FormatMessageHandler&gt; formatMessageCallback, Exception exception);
+    void Warn(Action&lt;FormatMessageHandler&gt; formatMessageCallback);
+    void Warn(Action&lt;FormatMessageHandler&gt; formatMessageCallback, Exception exception);
+    void Info(Action&lt;FormatMessageHandler&gt; formatMessageCallback);
+    void Info(Action&lt;FormatMessageHandler&gt; formatMessageCallback, Exception exception);
+    void Debug(Action&lt;FormatMessageHandler&gt; formatMessageCallback);
+    void Debug(Action&lt;FormatMessageHandler&gt; formatMessageCallback, Exception exception);
+}{code}
+(which of couse is managed and injected by Windsor :))
+I decided to leave out the non-delegate ones to relieve the developer of having to choose the right method to call (which quite often proves hard, especially when faced with logging somewhere deep inside a couple of loops where you never know if it may affect performance when a certain logging level is active).
+
+I imagine adding that to the core shouldn't be that hard; but, you know, lack of time on my side, or I'd already have provided a patch here (or more like, a pull request over on github).</value>
+    </field>
+    <field name="created">
+      <value>1361453420156</value>
+    </field>
+    <field name="updated">
+      <value>1393389295307</value>
+    </field>
+    <field name="reporterName">
+      <value>BhaaL</value>
+    </field>
+    <field name="updaterName">
+      <value>Jing.Wu</value>
+    </field>
+    <field name="resolved">
+      <value>1371793315190</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="These are trivial to add as extension methods.&#xA;&#xA;As such I don't see any reason to add it to the existing API." created="1371793280326" updated="1371793304598" />
+  </issue>
+</issues>

@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - NVelocity</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>308</value>
+    </field>
+    <field name="summary">
+      <value>Null exceptions in NJS view processing</value>
+    </field>
+    <field name="description">
+      <value>I have MonoRail setup to send me emails of all exceptions and I have been getting a large amount of emails concerning this issue.  The issue does not happen on every request, but rather it happens quite intermittently.  Please let me know what I can do to help nail down the problem.
+
+Here are a few example stack traces:
+
+Exception: Error generating JS. Template Document\List.njs Stack Trace:
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.GenerateJS(TextWriter output, IRailsEngineContext context, Controller controller, String templateName)
+   at Castle.MonoRail.Framework.ViewEngineBase.GenerateJS(IRailsEngineContext context, Controller controller, String templateName)
+   at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.Process(IRailsEngineContext context, Controller controller, String templateName)
+   at Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessView()
+   at Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction(IDictionary actionArgs)
+   at Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction()
+   at Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext context)
+   at Castle.MonoRail.Framework.MonoRailHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)
+  Exception: Error invoking method on generator. Method invoked [ReplaceHtml] with 2 argument(s)
+  Stack Trace:
+     at Castle.MonoRail.Framework.Helpers.DynamicDispatchSupport.Dispatch(String method, Object[] args)
+   at Castle.MonoRail.Framework.Internal.JSGeneratorBase.InternalInvoke(String method, Object[] args)
+   at Castle.MonoRail.Framework.Views.NVelocity.JSGeneration.JSGeneratorDuck.Invoke(String method, Object[] args)
+   at NVelocity.Runtime.Parser.Node.ASTMethod.Execute(Object o, IInternalContextAdapter context)
+   at NVelocity.Runtime.Parser.Node.ASTReference.Execute(Object o, IInternalContextAdapter context)
+   at NVelocity.Runtime.Parser.Node.ASTReference.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Runtime.Parser.Node.SimpleNode.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Template.Merge(IContext context, TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.GenerateJS(TextWriter output, IRailsEngineContext context, Controller controller, String templateName)
+    Exception: Exception has been thrown by the target of an invocation.
+    Stack Trace:
+       at System.RuntimeMethodHandle._InvokeMethodFast(Object target, Object[] arguments, SignatureStruct&amp; sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.RuntimeMethodHandle.InvokeMethodFast(Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Castle.MonoRail.Framework.Helpers.DynamicDispatchSupport.Dispatch(String method, Object[] args)
+      Exception: Could not process partial Document/_List.vm
+      Stack Trace:
+         at Castle.MonoRail.Framework.Helpers.PrototypeHelper.JSGenerator.Render(Object renderOptions)
+   at Castle.MonoRail.Framework.Helpers.PrototypeHelper.JSGenerator.ReplaceHtml(String id, Object renderOptions)
+        Exception: Could not render partial Document/_List.vm
+        Stack Trace:
+           at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.ProcessPartial(TextWriter output, IRailsEngineContext context, Controller controller, String partialName)
+   at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.ProcessPartial(TextWriter output, IRailsEngineContext context, Controller controller, String partialName)
+   at Castle.MonoRail.Framework.Helpers.PrototypeHelper.JSGenerator.Render(Object renderOptions)
+          Exception: Object reference not set to an instance of an object.
+          Stack Trace:
+             at Castle.MonoRail.Framework.Views.NVelocity.CustomDirectives.SubSectionDirective.Render(IInternalContextAdapter context, TextWriter writer, INode node)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewContextAdapter.RenderSection(String sectionName)
+   at Manna.Components.GridComponent.Render()
+   at Castle.MonoRail.Framework.Views.NVelocity.CustomDirectives.AbstractComponentDirective.Render(IInternalContextAdapter context, TextWriter writer, INode node)
+   at NVelocity.Runtime.Parser.Node.ASTDirective.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Runtime.Parser.Node.ASTBlock.Render(IInternalContextAdapter context, TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewContextAdapter.RenderBody(TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewContextAdapter.RenderBody()
+   at Manna.Components.BoxComponent.Render()
+   at Castle.MonoRail.Framework.Views.NVelocity.CustomDirectives.AbstractComponentDirective.Render(IInternalContextAdapter context, TextWriter writer, INode node)
+   at NVelocity.Runtime.Parser.Node.ASTDirective.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Runtime.Parser.Node.SimpleNode.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Template.Merge(IContext context, TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.ProcessPartial(TextWriter output, IRailsEngineContext context, Controller controller, String partialName)
+
++++++++++++++++++
+
+Exception: Error generating JS. Template Document\List.njs Stack Trace:
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.GenerateJS(TextWriter output, IRailsEngineContext context, Controller controller, String templateName)
+   at Castle.MonoRail.Framework.ViewEngineBase.GenerateJS(IRailsEngineContext context, Controller controller, String templateName)
+   at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.Process(IRailsEngineContext context, Controller controller, String templateName)
+   at Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessView()
+   at Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction(IDictionary actionArgs)
+   at Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction()
+   at Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext context)
+   at Castle.MonoRail.Framework.MonoRailHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)
+  Exception: Error invoking method on generator. Method invoked [ReplaceHtml] with 2 argument(s)
+  Stack Trace:
+     at Castle.MonoRail.Framework.Helpers.DynamicDispatchSupport.Dispatch(String method, Object[] args)
+   at Castle.MonoRail.Framework.Internal.JSGeneratorBase.InternalInvoke(String method, Object[] args)
+   at Castle.MonoRail.Framework.Views.NVelocity.JSGeneration.JSGeneratorDuck.Invoke(String method, Object[] args)
+   at NVelocity.Runtime.Parser.Node.ASTMethod.Execute(Object o, IInternalContextAdapter context)
+   at NVelocity.Runtime.Parser.Node.ASTReference.Execute(Object o, IInternalContextAdapter context)
+   at NVelocity.Runtime.Parser.Node.ASTReference.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Runtime.Parser.Node.SimpleNode.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Template.Merge(IContext context, TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.GenerateJS(TextWriter output, IRailsEngineContext context, Controller controller, String templateName)
+    Exception: Exception has been thrown by the target of an invocation.
+    Stack Trace:
+       at System.RuntimeMethodHandle._InvokeMethodFast(Object target, Object[] arguments, SignatureStruct&amp; sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.RuntimeMethodHandle.InvokeMethodFast(Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Castle.MonoRail.Framework.Helpers.DynamicDispatchSupport.Dispatch(String method, Object[] args)
+      Exception: Could not process partial Document/_List.vm
+      Stack Trace:
+         at Castle.MonoRail.Framework.Helpers.PrototypeHelper.JSGenerator.Render(Object renderOptions)
+   at Castle.MonoRail.Framework.Helpers.PrototypeHelper.JSGenerator.ReplaceHtml(String id, Object renderOptions)
+        Exception: Could not render partial Document/_List.vm
+        Stack Trace:
+           at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.ProcessPartial(TextWriter output, IRailsEngineContext context, Controller controller, String partialName)
+   at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.ProcessPartial(TextWriter output, IRailsEngineContext context, Controller controller, String partialName)
+   at Castle.MonoRail.Framework.Helpers.PrototypeHelper.JSGenerator.Render(Object renderOptions)
+          Exception: Invocation of method 'Link' in  Castle.MonoRail.Framework.Helpers.UrlHelper threw exception System.NullReferenceException : Object reference not set to an instance of an object.
+          Stack Trace:
+             at NVelocity.Runtime.Parser.Node.ASTMethod.Execute(Object o, IInternalContextAdapter context)
+   at NVelocity.Runtime.Parser.Node.ASTReference.Execute(Object o, IInternalContextAdapter context)
+   at NVelocity.Runtime.Parser.Node.ASTReference.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Runtime.Parser.Node.ASTBlock.Render(IInternalContextAdapter context, TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.CustomDirectives.SubSectionDirective.Render(IInternalContextAdapter context, TextWriter writer, INode node)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewContextAdapter.RenderSection(String sectionName)
+   at Manna.Components.GridComponent.Render()
+   at Castle.MonoRail.Framework.Views.NVelocity.CustomDirectives.AbstractComponentDirective.Render(IInternalContextAdapter context, TextWriter writer, INode node)
+   at NVelocity.Runtime.Parser.Node.ASTDirective.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Runtime.Parser.Node.ASTBlock.Render(IInternalContextAdapter context, TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewContextAdapter.RenderBody(TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewContextAdapter.RenderBody()
+   at Manna.Components.BoxComponent.Render()
+   at Castle.MonoRail.Framework.Views.NVelocity.CustomDirectives.AbstractComponentDirective.Render(IInternalContextAdapter context, TextWriter writer, INode node)
+   at NVelocity.Runtime.Parser.Node.ASTDirective.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Runtime.Parser.Node.SimpleNode.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Template.Merge(IContext context, TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.ProcessPartial(TextWriter output, IRailsEngineContext context, Controller controller, String partialName)
+            Exception: Object reference not set to an instance of an object.
+            Stack Trace:
+               at System.Collections.Specialized.ListDictionary.Remove(Object key)
+   at System.Collections.Specialized.HybridDictionary.Remove(Object key)
+   at Castle.MonoRail.Framework.Internal.CommonUtils.ObtainObjectEntryAndRemove(IDictionary attributes, String key)
+   at Castle.MonoRail.Framework.Services.DefaultUrlBuilder.BuildUrl(UrlInfo current, IDictionary parameters)
+   at Castle.MonoRail.Framework.Helpers.UrlHelper.For(IDictionary parameters)
+   at Castle.MonoRail.Framework.Helpers.UrlHelper.Link(String innerContent, IDictionary parameters, IDictionary anchorAttributes)
+
++++++++++++++++
+
+Exception: Error generating JS. Template Document\List.njs Stack Trace:
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.GenerateJS(TextWriter output, IRailsEngineContext context, Controller controller, String templateName)
+   at Castle.MonoRail.Framework.ViewEngineBase.GenerateJS(IRailsEngineContext context, Controller controller, String templateName)
+   at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.Process(IRailsEngineContext context, Controller controller, String templateName)
+   at Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessView()
+   at Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction(IDictionary actionArgs)
+   at Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction()
+   at Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext context)
+   at Castle.MonoRail.Framework.MonoRailHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)
+  Exception: Error invoking method on generator. Method invoked [ReplaceHtml] with 2 argument(s)
+  Stack Trace:
+     at Castle.MonoRail.Framework.Helpers.DynamicDispatchSupport.Dispatch(String method, Object[] args)
+   at Castle.MonoRail.Framework.Internal.JSGeneratorBase.InternalInvoke(String method, Object[] args)
+   at Castle.MonoRail.Framework.Views.NVelocity.JSGeneration.JSGeneratorDuck.Invoke(String method, Object[] args)
+   at NVelocity.Runtime.Parser.Node.ASTMethod.Execute(Object o, IInternalContextAdapter context)
+   at NVelocity.Runtime.Parser.Node.ASTReference.Execute(Object o, IInternalContextAdapter context)
+   at NVelocity.Runtime.Parser.Node.ASTReference.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Runtime.Parser.Node.SimpleNode.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Template.Merge(IContext context, TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.GenerateJS(TextWriter output, IRailsEngineContext context, Controller controller, String templateName)
+    Exception: Exception has been thrown by the target of an invocation.
+    Stack Trace:
+       at System.RuntimeMethodHandle._InvokeMethodFast(Object target, Object[] arguments, SignatureStruct&amp; sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.RuntimeMethodHandle.InvokeMethodFast(Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Castle.MonoRail.Framework.Helpers.DynamicDispatchSupport.Dispatch(String method, Object[] args)
+      Exception: Could not process partial Document/_List.vm
+      Stack Trace:
+         at Castle.MonoRail.Framework.Helpers.PrototypeHelper.JSGenerator.Render(Object renderOptions)
+   at Castle.MonoRail.Framework.Helpers.PrototypeHelper.JSGenerator.ReplaceHtml(String id, Object renderOptions)
+        Exception: Could not render partial Document/_List.vm
+        Stack Trace:
+           at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.ProcessPartial(TextWriter output, IRailsEngineContext context, Controller controller, String partialName)
+   at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.ProcessPartial(TextWriter output, IRailsEngineContext context, Controller controller, String partialName)
+   at Castle.MonoRail.Framework.Helpers.PrototypeHelper.JSGenerator.Render(Object renderOptions)
+          Exception: Object reference not set to an instance of an object.
+          Stack Trace:
+             at Castle.MonoRail.Framework.Views.NVelocity.CustomDirectives.SubSectionDirective.Render(IInternalContextAdapter context, TextWriter writer, INode node)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewContextAdapter.RenderSection(String sectionName)
+   at Manna.Components.GridComponent.Render()
+   at Castle.MonoRail.Framework.Views.NVelocity.CustomDirectives.AbstractComponentDirective.Render(IInternalContextAdapter context, TextWriter writer, INode node)
+   at NVelocity.Runtime.Parser.Node.ASTDirective.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Runtime.Parser.Node.ASTBlock.Render(IInternalContextAdapter context, TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewContextAdapter.RenderBody(TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewContextAdapter.RenderBody()
+   at Manna.Components.BoxComponent.Render()
+   at Castle.MonoRail.Framework.Views.NVelocity.CustomDirectives.AbstractComponentDirective.Render(IInternalContextAdapter context, TextWriter writer, INode node)
+   at NVelocity.Runtime.Parser.Node.ASTDirective.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Runtime.Parser.Node.SimpleNode.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Template.Merge(IContext context, TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.ProcessPartial(TextWriter output, IRailsEngineContext context, Controller controller, String partialName)
+
++++++++++++++++++++++++++++++
+
+Exception: Error generating JS. Template ProcessInstance\List.njs Stack Trace:
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.GenerateJS(TextWriter output, IRailsEngineContext context, Controller controller, String templateName)
+   at Castle.MonoRail.Framework.ViewEngineBase.GenerateJS(IRailsEngineContext context, Controller controller, String templateName)
+   at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.Process(IRailsEngineContext context, Controller controller, String templateName)
+   at Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessView()
+   at Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction(IDictionary actionArgs)
+   at Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction()
+   at Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext context)
+   at Castle.MonoRail.Framework.MonoRailHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)
+  Exception: Error invoking method on generator. Method invoked [ReplaceHtml] with 2 argument(s)
+  Stack Trace:
+     at Castle.MonoRail.Framework.Helpers.DynamicDispatchSupport.Dispatch(String method, Object[] args)
+   at Castle.MonoRail.Framework.Internal.JSGeneratorBase.InternalInvoke(String method, Object[] args)
+   at Castle.MonoRail.Framework.Views.NVelocity.JSGeneration.JSGeneratorDuck.Invoke(String method, Object[] args)
+   at NVelocity.Runtime.Parser.Node.ASTMethod.Execute(Object o, IInternalContextAdapter context)
+   at NVelocity.Runtime.Parser.Node.ASTReference.Execute(Object o, IInternalContextAdapter context)
+   at NVelocity.Runtime.Parser.Node.ASTReference.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Runtime.Parser.Node.SimpleNode.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Template.Merge(IContext context, TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.GenerateJS(TextWriter output, IRailsEngineContext context, Controller controller, String templateName)
+    Exception: Exception has been thrown by the target of an invocation.
+    Stack Trace:
+       at System.RuntimeMethodHandle._InvokeMethodFast(Object target, Object[] arguments, SignatureStruct&amp; sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.RuntimeMethodHandle.InvokeMethodFast(Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Castle.MonoRail.Framework.Helpers.DynamicDispatchSupport.Dispatch(String method, Object[] args)
+      Exception: Could not process partial ProcessInstance/_List.vm
+      Stack Trace:
+         at Castle.MonoRail.Framework.Helpers.PrototypeHelper.JSGenerator.Render(Object renderOptions)
+   at Castle.MonoRail.Framework.Helpers.PrototypeHelper.JSGenerator.ReplaceHtml(String id, Object renderOptions)
+        Exception: Could not render partial ProcessInstance/_List.vm
+        Stack Trace:
+           at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.ProcessPartial(TextWriter output, IRailsEngineContext context, Controller controller, String partialName)
+   at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.ProcessPartial(TextWriter output, IRailsEngineContext context, Controller controller, String partialName)
+   at Castle.MonoRail.Framework.Helpers.PrototypeHelper.JSGenerator.Render(Object renderOptions)
+          Exception: Object reference not set to an instance of an object.
+          Stack Trace:
+             at Castle.MonoRail.Framework.Views.NVelocity.CustomDirectives.SubSectionDirective.Render(IInternalContextAdapter context, TextWriter writer, INode node)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewContextAdapter.RenderSection(String sectionName)
+   at Manna.Components.GridComponent.Render()
+   at Castle.MonoRail.Framework.Views.NVelocity.CustomDirectives.AbstractComponentDirective.Render(IInternalContextAdapter context, TextWriter writer, INode node)
+   at NVelocity.Runtime.Parser.Node.ASTDirective.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Runtime.Parser.Node.ASTBlock.Render(IInternalContextAdapter context, TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewContextAdapter.RenderBody(TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewContextAdapter.RenderBody()
+   at Manna.Components.BoxComponent.Render()
+   at Castle.MonoRail.Framework.Views.NVelocity.CustomDirectives.AbstractComponentDirective.Render(IInternalContextAdapter context, TextWriter writer, INode node)
+   at NVelocity.Runtime.Parser.Node.ASTDirective.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Runtime.Parser.Node.SimpleNode.Render(IInternalContextAdapter context, TextWriter writer)
+   at NVelocity.Template.Merge(IContext context, TextWriter writer)
+   at Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.ProcessPartial(TextWriter output, IRailsEngineContext context, Controller controller, String partialName)
+</value>
+    </field>
+    <field name="created">
+      <value>1185863539000</value>
+    </field>
+    <field name="updated">
+      <value>1263055835000</value>
+    </field>
+    <field name="reporterName">
+      <value>sradack</value>
+    </field>
+    <field name="updaterName">
+      <value>sradack</value>
+    </field>
+    <field name="resolved">
+      <value>1282143924088</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055800000" />
+  </issue>
+</issues>

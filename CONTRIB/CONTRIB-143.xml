@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>View Components</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>143</value>
+    </field>
+    <field name="summary">
+      <value>Patch ViewComponents to build from Castle's trunk@HEAD</value>
+    </field>
+    <field name="description">
+      <value>Attached patch:
+* adds a reference to Castle.MonoRail.Pagination to the ViewComponents contrib project (2005 and 2008)
+* Attempts to update the usage of IPaginatedPage in GridComponent to be in line with changes in trunk@HEAD
+* adds a couple of missing PDB/XML-doc files</value>
+    </field>
+    <field name="created">
+      <value>1221623052000</value>
+    </field>
+    <field name="updated">
+      <value>1414392201389</value>
+    </field>
+    <field name="reporterName">
+      <value>petemounce</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392201381</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="petemounce" text="I don't know whether I should attach the built DLLs here; the patch is predicated on the contents of SharedLibs also containing Castle DLLs that are built from trunk (my build is at 5326).&#xA;&#xA;I would appreciate someone reviewing my edit to GridComponent!" created="1221623144000" />
+  </issue>
+</issues>

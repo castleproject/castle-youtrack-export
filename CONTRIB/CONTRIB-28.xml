@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>28</value>
+    </field>
+    <field name="summary">
+      <value>ColumnType does not support user defined types</value>
+    </field>
+    <field name="description">
+      <value>I have a class implementing  IUserType and I can't use it as column type since the property is defined by a fixed enumeration. 
+
+ActiveRecord does support this feature.</value>
+    </field>
+    <field name="created">
+      <value>1179167913000</value>
+    </field>
+    <field name="updated">
+      <value>1180211210000</value>
+    </field>
+    <field name="reporterName">
+      <value>rstuven</value>
+    </field>
+    <field name="updaterName">
+      <value>rstuven</value>
+    </field>
+    <field name="resolved">
+      <value>1282138177354</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

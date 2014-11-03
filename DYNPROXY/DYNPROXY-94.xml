@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>94</value>
+    </field>
+    <field name="summary">
+      <value>CreateProxyWithTarget fails if you use ProxyGenerationHook</value>
+    </field>
+    <field name="description">
+      <value>//Version is 2.1.0.0
+//Run the test
+//Test related
+  public interface ITask
+  {
+    void doStart();
+    string Definition   { get; set; }
+  }
+
+  public class Task : ITask
+  {
+    public void doStart() {}
+    public string Definition { get;set; }
+  }
+
+  public class TaskInterceptor : IInterceptor
+  {
+    public void Intercept(IInvocation invocation)
+    {
+      invocation.Proceed();
+    }
+  }
+
+  class TaskProxyGenerationHook : IProxyGenerationHook
+  {
+    public bool ShouldInterceptMethod(Type type, MethodInfo memberInfo)
+    {
+      return memberInfo.Name.Equals("doStart", StringComparison.Ordinal);
+    }
+
+    public void NonVirtualMemberNotification(Type type, MemberInfo memberInfo) {}
+    public void MethodsInspected() {}
+  }
+
+  class TaskInterceptorSelector : IInterceptorSelector
+  {
+    public IInterceptor[] SelectInterceptors(Type type, MethodInfo method, 
+                                                 IInterceptor[] interceptors)
+    {
+      if (method.Name.Equals("doStart", StringComparison.Ordinal))
+      {
+        return interceptors;
+      }
+      return null;
+    }
+  }
+//Test
+  [TestFixture]
+  public class CreateProxy_Test
+  {
+    [Test]
+    public void createproxywithtarget_and_options_using_hook_shouldnotthrow()
+    {
+       ITask pResult = new Task();
+       IInterceptor pInterceptor = new TaskInterceptor();
+       ProxyGenerator pGen = new ProxyGenerator();
+       ProxyGenerationOptions pGenOptions = new ProxyGenerationOptions( 
+                                               new TaskProxyGenerationHook());
+
+       Assert.DoesNotThrow(delegate 
+                             {
+                               pResult =  
+                                   pGen.CreateInterfaceProxyWithTarget&lt;ITask&gt;
+                                          (pResult,pGenOptions, pInterceptor);
+                             });
+    }
+
+    [Test]
+    public void createproxywithtarget_and_options_using_selector_shouldnotthrow()
+    {
+      ITask pResult = new Task();
+      IInterceptor pInterceptor = new TaskInterceptor();
+      ProxyGenerator pGen = new ProxyGenerator();
+      ProxyGenerationOptions pGenOptions = new ProxyGenerationOptions() 
+                                   { Selector = new TaskInterceptorSelector() };
+      Assert.DoesNotThrow(delegate
+                              {
+                                pResult =   
+                                   pGen.CreateInterfaceProxyWithTarget&lt;ITask&gt;
+                                        (pResult, pGenOptions, pInterceptor);
+                              });
+    }
+  }
+</value>
+    </field>
+    <field name="created">
+      <value>1245288342000</value>
+    </field>
+    <field name="updated">
+      <value>1256535979000</value>
+    </field>
+    <field name="reporterName">
+      <value>Belvasis</value>
+    </field>
+    <field name="updaterName">
+      <value>Belvasis</value>
+    </field>
+    <field name="resolved">
+      <value>1256535960000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="Belvasis" text="It's my first time using donjon so sorry for putting the source in the issue description :-) I attached the source files and you can see the behaviour in the attached png." created="1245288662000" />
+    <comment author="xtoff" text="Fixed in 6261" created="1256535973000" />
+    <comment author="Belvasis" text="* '''Attachment''' CreateProxy_Test_Related.cs added.&#xD;&#xA;" created="1245288420000" />
+    <comment author="Belvasis" text="* '''Attachment''' CreateProxy_Test.cs added.&#xD;&#xA;" created="1245288420000" />
+    <comment author="Belvasis" text="* '''Attachment''' CreateProxyWithTargetTest.png added.&#xD;&#xA;" created="1245288540000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1256535960000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1256535960000" />
+  </issue>
+</issues>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>beta 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>77</value>
+    </field>
+    <field name="summary">
+      <value>VisitPrimaryKey fails to generate correct &lt;generator&gt; xml element for PrimaryKeyType.Identity when the system culture is set to Turkish</value>
+    </field>
+    <field name="description">
+      <value>On Castle.ActiveRecord/Framework/Internal/Visitors/XmlGenerationVisitor.cs: 208 (line 256 in beta3, I believe), conversion to lowercase does not use InvariantCulture. On Turkish locale, lowercase of I is ? (dotless i, if your browser can't display that), not i. NHibernate fails to parse resulting hbm with the following message:
+
+{"could not instantiate id generator for strategy '?dentity'"}
+
+Resolution:
+
+line should read:
+className = model.PrimaryKeyAtt.Generator.ToString().ToLower(CultureInfo.InvariantCulture);
+
+There are 6 ToLower statements total in XmlGenerationVisitor.
+</value>
+    </field>
+    <field name="created">
+      <value>1158059172000</value>
+    </field>
+    <field name="updated">
+      <value>1162409638000</value>
+    </field>
+    <field name="reporterName">
+      <value>gokhan</value>
+    </field>
+    <field name="updaterName">
+      <value>gokhan</value>
+    </field>
+    <field name="resolved">
+      <value>1282136186916</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

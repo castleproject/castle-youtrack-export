@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>238</value>
+    </field>
+    <field name="summary">
+      <value>Add NH2.x event listener support</value>
+    </field>
+    <field name="description">
+      <value>Adding support for NH 2.x-style event listeners (EL).
+
+EL can be added already programmatically, but this is much hassle. An AR-style usage of EL should be enabled.
+
+Specification can be found here:
+http://using.castleproject.org/display/AR/NHEventListenerSpecs
+</value>
+    </field>
+    <field name="created">
+      <value>1232342781000</value>
+    </field>
+    <field name="updated">
+      <value>1409038070674</value>
+    </field>
+    <field name="reporterName">
+      <value>mzywitza</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1409038070666</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="Prerequisites added in r5576.&#xA;&#xA;It is now possible to add event listeners programmatically:&#xA;&#xA;		[Test]&#xA;		public void Listener_is_called()&#xA;		{&#xA;			var contributor = new NHEventListeners();&#xA;			var listener = new MockListener();&#xA;			contributor.Add(listener);&#xA;			ActiveRecordStarter.AddContributor(contributor);&#xA;			ActiveRecordStarter.Initialize(GetConfigSource(), typeof(Post), typeof(Blog));&#xA;			Recreate();&#xA;&#xA;			Blog.FindAll();&#xA;			new Blog() { Name = &quot;Foo&quot;, Author = &quot;Bar&quot; }.SaveAndFlush();&#xA;			Assert.IsTrue(listener.Called);&#xA;		}&#xA;&#xA;		private class MockListener : IPostInsertEventListener&#xA;		{&#xA;			//... (see Test)&#xA;		}&#xA;" created="1236083965000" />
+    <comment author="mzywitza" text="Attribute-usage is possible since r5596.&#xA;See http://using.castleproject.org/display/AR/NHEventListenerSpecs#NHEventListenerSpecs-SourceCodeDefinition for examples." created="1237026239000" />
+    <comment author="mzywitza" text="Assembly attributes as per specification are supported as of r5608." created="1238498893000" />
+    <comment author="xtoff" text="Is this completed? Anything missing? Can this be closed as resolved?" created="1262942242000" />
+    <comment author="mzywitza" text="The specification must be morphed into documentation to complete it. &#xA;And it must be ported to ActiveRecordFacility for Windsor." created="1262947201000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1232342880000" />
+    <comment author="mzywitza" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Adding support for NH 2.x-style event listeners (EL).&#xD;&#xA;&#xD;&#xA;EL can be added already programmatically, but this is much hassle. An AR-style usage of EL should be enabled.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Adding support for NH 2.x-style event listeners (EL).&#xD;&#xA;&#xD;&#xA;EL can be added already programmatically, but this is much hassle. An AR-style usage of EL should be enabled.&#xD;&#xA;&#xD;&#xA;Specification can be found here:&#xD;&#xA;http://using.castleproject.org/display/AR/NHEventListenerSpecs&#xD;&#xA;{quote}&#xD;&#xA;" created="1232366460000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Work Started'' to ''Work Stopped''.&#xD;&#xA;" created="1232366460000" />
+  </issue>
+</issues>

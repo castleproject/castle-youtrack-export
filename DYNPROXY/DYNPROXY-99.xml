@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>99</value>
+    </field>
+    <field name="summary">
+      <value>Generated proxy class has no namespace</value>
+    </field>
+    <field name="description">
+      <value>Generated proxy class has namespace set to a null string.
+Though it is perfectly valid, this exposes a bug in WPF code (http://connect.microsoft.com/VisualStudio/feedback/ViewFeedback.aspx?FeedbackID=422093) preventing to use a proxy in some databinding scenarios.
+It could also lead to similar bugs in user code making the (incorrect) assumption that namespace must *always* be a non null string for a Type.
+
+(see discussion here: http://groups.google.com/group/castle-project-users/browse_thread/thread/f3976006136de434)</value>
+    </field>
+    <field name="created">
+      <value>1246270876000</value>
+    </field>
+    <field name="updated">
+      <value>1246286229000</value>
+    </field>
+    <field name="reporterName">
+      <value>marco.amendola</value>
+    </field>
+    <field name="updaterName">
+      <value>marco.amendola</value>
+    </field>
+    <field name="resolved">
+      <value>1246286220000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Proxies are now in namespace Castle.Proxies" created="1246286225000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1246284960000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Work Started'' to ''Work Started''.&#xD;&#xA;" created="1246284960000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Work Started'' to ''Work Started''.&#xD;&#xA;" created="1246284960000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1246286220000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1246286220000" />
+  </issue>
+</issues>

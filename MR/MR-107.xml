@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>107</value>
+    </field>
+    <field name="summary">
+      <value>Filters Lifecytle cannot be changed</value>
+    </field>
+    <field name="description">
+      <value>Currently, MonoRail's Windsor Integration forces the filter lifecycles to [Transient].
+
+I need a filter to be a [Singleton], as it will persist some state.
+
+My current workaround for persisting the filter state is to use static fields. But changing its lifestyle to Singleton would be very nice.</value>
+    </field>
+    <field name="created">
+      <value>1144232974000</value>
+    </field>
+    <field name="updated">
+      <value>1162413429000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282143404651</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

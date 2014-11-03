@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions">
+      <value>Validator 2.5.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>1.1.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>98</value>
+    </field>
+    <field name="summary">
+      <value>Change ErrorSummary.RegisterErrorMessage() to return object instance</value>
+    </field>
+    <field name="description">
+      <value>The RegisterErrorMessage() method is used to add error messages to an ErrorSummary instance. Instead of returning void, this method can return the ErrorSummary instance, allowing easier chaining of calls.
+
+Examples from test case:
+
+ErrorSummary summ1 = new ErrorSummary().RegisterErrorMessage("test1", "test1");
+ErrorSummary summ2 = summ1.RegisterErrorMessage("test2", "test2").RegisterErrorMessage("test3", "test3");
+
+This should be a no-impact change. Patch file will be attached.</value>
+    </field>
+    <field name="created">
+      <value>1248718950000</value>
+    </field>
+    <field name="updated">
+      <value>1292001688286</value>
+    </field>
+    <field name="reporterName">
+      <value>brian</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1285402099906</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="brian" text="* '''Attachment''' ErrorSummary-patch.patch added.&#xD;&#xA;" created="1248718950001" />
+    <comment author="henry" text="Patch applied" created="1285402099906" />
+  </issue>
+</issues>

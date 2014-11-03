@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>EmailSender</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>88</value>
+    </field>
+    <field name="summary">
+      <value>Patch for SmtpSender to enable multiple CC and BCC recipients</value>
+    </field>
+    <field name="description">
+      <value>I needed the ability to cc and bcc my email messages to multiple addresses. The patch that I am supplying provides the ability to set the Bcc and Cc properties of a Message to a delimited list of addresses, separated by semi-colons or commas.</value>
+    </field>
+    <field name="created">
+      <value>1239517441000</value>
+    </field>
+    <field name="updated">
+      <value>1243224565000</value>
+    </field>
+    <field name="reporterName">
+      <value>sebring</value>
+    </field>
+    <field name="updaterName">
+      <value>sebring</value>
+    </field>
+    <field name="resolved">
+      <value>1243224540000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Thanks for the patch, Steve.&#xA;&#xA;We are using tabs instead of spaces, currently your patch is doing a lot of unnecessary modifications because it's using spaces. Would you be so kind to provide a new one that's using tabs?" created="1239682389000" />
+    <comment author="jsimons" text="Steve, I hope you don't mind but I changed your patch to adhere to the Castle coding standards(use tabs instead of spaces). Also, changed it slightly to use the .Net API to do the split of multiple addresses instead of doing it in our code.&#xA;Roelof, have a look at my patch, let me know of any problems.&#xA;&#xA;Cheers&#xA;John" created="1243022647000" />
+    <comment author="roelofb" text="Applied in r5712" created="1243224559000" />
+    <comment author="sebring" text="* '''Attachment''' smtpsender.delimitedRecips.patch added.&#xD;&#xA;" created="1239517860000" />
+    <comment author="jsimons" text="* '''Attachment''' smtpsender.delimitedRecips.tabsfixed.patch added.&#xD;&#xA;" created="1243022280000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1243224540000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1243224540000" />
+  </issue>
+</issues>

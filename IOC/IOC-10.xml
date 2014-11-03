@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>10</value>
+    </field>
+    <field name="summary">
+      <value>Mark assemblies with CLSCompliant attribute</value>
+    </field>
+    <field name="description">
+      <value>To be good .NET citizens, we should set the CLSCompliant attribute on assemblies.</value>
+    </field>
+    <field name="created">
+      <value>1122606547000</value>
+    </field>
+    <field name="updated">
+      <value>1127056562000</value>
+    </field>
+    <field name="reporterName">
+      <value>roelofb</value>
+    </field>
+    <field name="updaterName">
+      <value>roelofb</value>
+    </field>
+    <field name="resolved">
+      <value>1282141602916</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

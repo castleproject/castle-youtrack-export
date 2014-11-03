@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.3</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+      <value>2.5.1</value>
+      <value>2.5.2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>250</value>
+    </field>
+    <field name="summary">
+      <value>Dispose not being called on open generic registrations</value>
+    </field>
+    <field name="description">
+      <value>Hello,
+
+If I register an open generic IDisposable component with either pooled, singleton or per-thread lifestyle, its Dispose method does not get called when I dispose the container.
+
+{code}
+class A { }
+
+class B { }
+
+class C { }
+
+class Foo&lt;T&gt; : IDisposable
+{
+    public Foo()
+    {
+        Console.WriteLine("Constructing Foo: " + typeof(T).Name);
+    }
+
+    public void Dispose()
+    {
+        Console.WriteLine("Disposing Foo: " + typeof(T).Name);
+    }
+}
+
+class FooA  : Foo&lt;A&gt;
+{
+    
+}
+
+class Bar : IDisposable
+{
+    public Bar()
+    {
+        Console.WriteLine("Constructing Bar");
+    }
+
+    public void Dispose()
+    {
+        Console.WriteLine("Disposing Bar");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        var wc = new WindsorContainer();
+        wc.Register(Component.For(typeof(Foo&lt;&gt;)));
+        wc.Register(Component.For(typeof(FooA)));
+        wc.Register(Component.For(typeof(Bar)));
+
+        wc.Resolve&lt;FooA&gt;();
+        wc.Resolve&lt;Foo&lt;B&gt;&gt;();
+        wc.Resolve&lt;Foo&lt;C&gt;&gt;();
+        wc.Resolve&lt;Bar&gt;();
+
+
+        Console.WriteLine("Disposing container");
+        wc.Dispose();
+        Console.WriteLine("Done");
+        Console.ReadKey();
+    }
+}
+{code}
+
+I would expect wc.Dispose() to cause each object to emit a statement from its Dispose method, instead only FooA and Bar do.
+
+This is the full output of the above program:
+{monospace}
+Constructing Foo: A
+Constructing Foo: B
+Constructing Foo: C
+Constructing Bar
+Disposing container
+Disposing Bar
+Disposing Foo: A
+Done
+{monospace}
+
+If I make a small adjustment and change the Foo&lt;&gt; registration to {monospace}wc.Register(Component.For(typeof(Foo&lt;&gt;)).LifeStyle.Transient);{monospace}, I get the following output:
+
+{monospace}
+Constructing Foo: A
+Constructing Foo: B
+Constructing Foo: C
+Constructing Bar
+Disposing container
+Disposing Foo: C
+Disposing Foo: B
+Disposing Bar
+Disposing Foo: A
+Done
+{monospace}
+
+This is the output I would have expected from the original code.</value>
+    </field>
+    <field name="created">
+      <value>1290021628859</value>
+    </field>
+    <field name="updated">
+      <value>1407822257310</value>
+    </field>
+    <field name="reporterName">
+      <value>Cameron.Harris</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1291203337505</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

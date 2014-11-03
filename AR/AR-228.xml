@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>228</value>
+    </field>
+    <field name="summary">
+      <value>ActiveRecordMediator.FindOne visibility</value>
+    </field>
+    <field name="description">
+      <value>ActiveRecordMediator.FindOne is protected internal in DetachedCriteria overload.</value>
+    </field>
+    <field name="created">
+      <value>1221912748000</value>
+    </field>
+    <field name="updated">
+      <value>1232196446000</value>
+    </field>
+    <field name="reporterName">
+      <value>felixg</value>
+    </field>
+    <field name="updaterName">
+      <value>felixg</value>
+    </field>
+    <field name="resolved">
+      <value>1232196420000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="Applied, thanks." created="1232196447000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1232188020000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1232196420000" />
+  </issue>
+</issues>

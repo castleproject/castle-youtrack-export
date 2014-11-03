@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Usability Problem</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Class proxies with target</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>189</value>
+    </field>
+    <field name="summary">
+      <value>Parameterless Constructor not needed</value>
+    </field>
+    <field name="description">
+      <value>When Creating a Proxy using CreateClassProxyWithTarget the Target must have a parameterless Constructor.
+From my point of view, it would be easy sometimes, to be able to create a non initialized object, by calling
+{code}
+object newObject = FormatterServices.GetUninitializedObject(type);
+{code} 
+
+
+{code}
+ protected object CreateClassProxyInstance(Type proxyType, List&lt;object&gt; proxyArguments, Type classToProxy, object[] constructorArguments)
+    {
+      try
+      {
+          if (constructorArguments != null &amp;&amp; constructorArguments.Length != 0)
+            return Activator.CreateInstance(proxyType, proxyArguments.ToArray());
+
+          foreach (var ctor in proxyType.GetConstructors())
+            if (!ctor.GetParameters().Any())
+              return Activator.CreateInstance(proxyType, proxyArguments.ToArray());
+           
+           return FormatterServices.GetUninitializedObject(proxyType)
+      }
+      catch (MissingMethodException ex)
+      {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.AppendFormat("Can not instantiate proxy of class: {0}.", (object) classToProxy.FullName);
+        stringBuilder.AppendLine();
+        if (constructorArguments == null || constructorArguments.Length == 0)
+        {
+          stringBuilder.Append("Could not find a parameterless constructor.");
+        }
+        else
+        {
+          stringBuilder.AppendLine("Could not find a constructor that would match given arguments:");
+          foreach (object obj in constructorArguments)
+          {
+            string str = obj == null ? "&lt;null&gt;" : obj.GetType().ToString();
+            stringBuilder.AppendLine(str);
+          }
+        }
+        throw new InvalidProxyConstructorArgumentsException(((object) stringBuilder).ToString(), proxyType, classToProxy);
+      }
+    }
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1409571773505</value>
+    </field>
+    <field name="updated">
+      <value>1409832358488</value>
+    </field>
+    <field name="reporterName">
+      <value>jan.schmidmaier</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1409832358485</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-1263[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Hi Jan, sorry for the delay in replying.&#xA;&#xA;We are phasing out the use of YouTrack for Castle Project issues, may I ask you to relog your enhancement on GitHub (https://github.com/castleproject/Core/issues).&#xA;&#xA;Thanks, Jono" created="1409820823462" />
+    <comment author="jan.schmidmaier" text="Hi Jono,&#xA;no problem  the answer seemed quick ;)&#xA;I reloged the issue to https://github.com/castleproject/Core/issues/63&#xA;&#xA;Thanks&#xA;Jan" created="1409831057161" />
+  </issue>
+</issues>

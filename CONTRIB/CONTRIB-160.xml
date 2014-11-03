@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>160</value>
+    </field>
+    <field name="summary">
+      <value>Add Support for CustomGenerator for Identifier Generator</value>
+    </field>
+    <field name="description">
+      <value>Support is added for defining a Custom PrimaryKeyType and defining a Custom Generator Type.  Usually the Custom Generator Type should inherits from IIdentifier.  I am adding a patch that has this functionality.</value>
+    </field>
+    <field name="created">
+      <value>1259801847000</value>
+    </field>
+    <field name="updated">
+      <value>1260671052000</value>
+    </field>
+    <field name="reporterName">
+      <value>eskianis</value>
+    </field>
+    <field name="updaterName">
+      <value>eskianis</value>
+    </field>
+    <field name="resolved">
+      <value>1260671040000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="eskianis" text="Please ignore this patch for now.  There is something wrong with it.  I will send another patch soon" created="1259825210000" />
+    <comment author="jonorossi" text="Closing as requested.&#xA;&#xA;http://groups.google.com/group/castle-project-devel/browse_thread/thread/cff127fde7410cfd/d8a9346b08232234" created="1260671048000" />
+    <comment author="eskianis" text="* '''Attachment''' CustomGenerator.patch added.&#xD;&#xA;" created="1259801847001" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1260671040000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1260671040000" />
+  </issue>
+</issues>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>79</value>
+    </field>
+    <field name="summary">
+      <value>Kernel.GetHandlers(Type) does not consider generic handlers when satisfying the type</value>
+    </field>
+    <field name="description">
+      <value>Basically this is a reaction to Ayende's recent fix to support smart chaining decorators.
+This feature only works when the service types of the decorators are exactly the same (generic or not)
+It would be consistent and desirable to be able to use generic components when trying to satisify
+component dependencies and simplify the configuration.
+
+e.g. If I have the following registrations
+
+   &lt;component id="active.record.repository"
+                   service="Rhino.Commons.IRepository`1, Rhino.Commons"
+                   type="Rhino.Commons.ARRepository`1, Rhino.Commons "&gt;
+       &lt;/component&gt;
+ 
+       &lt;component id="smart.canister.repository"
+                 service="Rhino.Commons.IRepository`1[[EC.DomainModel.Canister, EC.DomainModel]], Rhino.Commons"
+                 type=" EC.Application.JVM.SmartCanisterRepositoryDecorator, EC.Application"&gt;
+       &lt;/component&gt;
+
+And the EC.Application.JVM.SmartCanisterRepositoryDecorator component has a constructor that
+expects an IRepository&lt;Canister&gt;, the kernel does not recognize that the "active.record.repository"
+can satisfy the dependency.
+
+So one of the questions is how do we properly consider IHandler equivelance?  
+Should we add and bool IHandler.Implies(Type) or something like that to determine
+when a give handler can satisfy a particular type?
+
+Any ideas are welcome.
+</value>
+    </field>
+    <field name="created">
+      <value>1181587628000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838932</value>
+    </field>
+    <field name="reporterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142035073</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

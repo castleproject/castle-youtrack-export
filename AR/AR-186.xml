@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>186</value>
+    </field>
+    <field name="summary">
+      <value>Remove from SortedSet is sometimes not working</value>
+    </field>
+    <field name="description">
+      <value>I'm not sure if this problem is me, IESI Collections or AR. I used the RC3 of AR and NHibernate that comes with the binaries. My sample app shows only parts of my problem, but it will show the important part. Sorry for the stupid entities, but I couldn't think of better ones. What I try to show is: I have an entity (here Order) that has two parents (here Customer and OrderRecord). One of the parents has AllDeleteOrphan and the other one just have SaveUpdate for cascading. When I now delete a Customer and AR will delete all its orders, I need to make sure that the orders are removed from their other parent. To do that, I use the OnDelete event for the Order class that it removes itself from the other parent. And here is the funny thing (line 177 in Order.cs). Please set there a breakpoint and run the app. You will see that there are three orders in the Orders collection from the orderRecord parent. The remove is called three times, BUT only the second and third one actually remove an order from the collection, the first one is still there! I have this problem in a much bigger app and because of that, I get an error when trying to delete the parent (here Customer), because another entity (here OrderRecord) still has references to the orders in its collections. Unfortunately this error does not happen here and I'm not sure why, but you can still see the not removing behavior.</value>
+    </field>
+    <field name="created">
+      <value>1192720874000</value>
+    </field>
+    <field name="updated">
+      <value>1225973317000</value>
+    </field>
+    <field name="reporterName">
+      <value>cepheus</value>
+    </field>
+    <field name="updaterName">
+      <value>cepheus</value>
+    </field>
+    <field name="resolved">
+      <value>1225973280000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="This is a programming error. You add instances to a SortedSet before all members are initialized that are used for comparing. Because of this, CompareTo doesn't return deterministic results, which make SortedSet &quot;lose&quot; an instance because it uses a binary search to locate items.&#xA;&#xA;I changed the Order constructor to:&#xA;public Order(Customer customer, OrderRecord orderRecord, string description, decimal value, DateTime orderDate)&#xA;{&#xA;	this.customer = customer;&#xA;	this.description = description;&#xA;	this.value = value;&#xA;	this.orderDate = orderDate;&#xA;	this.orderRecord = orderRecord;&#xA;	this.customer.Orders.Add(this);&#xA;	this.orderRecord.Orders.Add(this);&#xA;}&#xA;&#xA;and all goes well. Consider using a value object for comparison and hasing." created="1225973265000" />
+    <comment author="mzywitza" text="Programming Error, see comment" created="1225973318000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1225851000000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1225973280000" />
+  </issue>
+</issues>

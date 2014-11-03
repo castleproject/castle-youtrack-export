@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generator</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>310</value>
+    </field>
+    <field name="summary">
+      <value>View page cause webserver stop</value>
+    </field>
+    <field name="description">
+      <value>1. execute script\server
+2. View any page, the server will stop.
+
+Because /path: need full path.
+
+The way I found: /path:%CD%\public</value>
+    </field>
+    <field name="created">
+      <value>1185944037000</value>
+    </field>
+    <field name="updated">
+      <value>1244676888000</value>
+    </field>
+    <field name="reporterName">
+      <value>elleryq</value>
+    </field>
+    <field name="updaterName">
+      <value>elleryq</value>
+    </field>
+    <field name="resolved">
+      <value>1282143926323</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676840000" />
+  </issue>
+</issues>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>20</value>
+    </field>
+    <field name="summary">
+      <value>Added SetValidator</value>
+    </field>
+    <field name="description">
+      <value>SetValidator will validate the contents of a property against a set of known values. In all cases. the string representation of the property (via the ToString() method) is compared to a set of strings.
+
+The ValidateSetAttribute has six possible constructors:
+
+1&gt; ValidateSetAttribute()
+2&gt; ValidateSetAttribute(string errorMessage)
+3&gt; ValidateSetAttribute(params string[] set)
+4&gt; ValidateSetAttribute(string errorMessage, params string[] set)
+5&gt; ValidateSetAttribute(Type type)
+6&gt; ValidateSetAttribute(Type type, string errorMessage)
+
+Numbers 1-2 create an empty validation set. 
+Numbers 3-4 create a validation set based on the provided string(s). 
+Numbers 5-6 create a validation set based on the values of an enum.
+
+The SetValidator implementation has three constructors:
+
+1&gt; SetValidator()
+2&gt; SetValidator(params string[] set)
+3&gt; SetValidator(Type type)
+
+The IsValid() returns true if the value is null or an empty string, or if the value is in the set. Comparison to the set is a simple iteration of the set (a string array). Not efficient if sets are huge, but that little piece can be enhanced if considered necessary.</value>
+    </field>
+    <field name="created">
+      <value>1176219981000</value>
+    </field>
+    <field name="updated">
+      <value>1176752406000</value>
+    </field>
+    <field name="reporterName">
+      <value>bdemarzo</value>
+    </field>
+    <field name="updaterName">
+      <value>bdemarzo</value>
+    </field>
+    <field name="resolved">
+      <value>1282137482635</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

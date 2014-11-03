@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>155</value>
+    </field>
+    <field name="summary">
+      <value>Error on generation with Lazy and INotifyPropertyChanged</value>
+    </field>
+    <field name="description">
+      <value>I've created an ActiveWriter diagram with Implement INotifyPropertyChanged set to true, and Use Virtual Properties also set to true. Then, i've created an entity with Lazy = true. 
+
+All the properties and methods were created as virtual, but the INotifyPropertyChanged event wasn't, so i get a NHibernate exception saying that the entity can't be a proxy.</value>
+    </field>
+    <field name="created">
+      <value>1254405627000</value>
+    </field>
+    <field name="updated">
+      <value>1255518312000</value>
+    </field>
+    <field name="reporterName">
+      <value>leopuglia</value>
+    </field>
+    <field name="updaterName">
+      <value>leopuglia</value>
+    </field>
+    <field name="resolved">
+      <value>1255518300000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="patearl" text="This now works with C#.  At the time of the fix, VB didn't allow virtual events." created="1255518312000" />
+    <comment author="patearl" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1255518300000" />
+  </issue>
+</issues>

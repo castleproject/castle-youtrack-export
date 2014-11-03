@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Javascript Libraries</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>166</value>
+    </field>
+    <field name="summary">
+      <value>Prototype and fValidate array prototypes are conflicting</value>
+    </field>
+    <field name="description">
+      <value>The script libraries of Prototype and fValidate are both defining a function with the same name: Reduce. But they are defining it with different behaviors.</value>
+    </field>
+    <field name="created">
+      <value>1162040716000</value>
+    </field>
+    <field name="updated">
+      <value>1244675798000</value>
+    </field>
+    <field name="reporterName">
+      <value>henry</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1282143511948</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675760000" />
+  </issue>
+</issues>

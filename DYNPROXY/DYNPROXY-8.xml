@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>1.1.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>8</value>
+    </field>
+    <field name="summary">
+      <value>proxy.GetProperties(... ) return duplicate property info</value>
+    </field>
+    <field name="description">
+      <value>[Test]
+public void TestGetPropertiesOfProxy()
+{
+       PropertyInfo[] propertiesType = (typeof(ClassWithGuid)).GetProperties(BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance);
+			PropertyInfo[] propertiesProxy = (_generator.CreateClassProxy(typeof(ClassWithGuid), new StandardInterceptor())).GetType().GetProperties(BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance);
+
+	Assert.AreEqual(propertiesType.Length,propertiesProxy.Length); //Fail
+	Assert.AreEqual(propertiesType[0].Name,propertiesProxy[0].Name);
+}</value>
+    </field>
+    <field name="created">
+      <value>1125327316000</value>
+    </field>
+    <field name="updated">
+      <value>1127151324000</value>
+    </field>
+    <field name="reporterName">
+      <value>d.marzo</value>
+    </field>
+    <field name="updaterName">
+      <value>d.marzo</value>
+    </field>
+    <field name="resolved">
+      <value>1282140546401</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>312</value>
+    </field>
+    <field name="summary">
+      <value>Change compiled view code to support rendering view with ViewComponents  without full HTTP pipeline</value>
+    </field>
+    <field name="description">
+      <value>If we have view with ViewComponents - in my case AuthenticatedContent , then compiled brail assembly contains following code:
+
+public override void Run()
+{
+    ....
+    ViewComponent component = ((IViewComponentFactory)   RuntimeServices.DuckImplicitCast(MonoRailHttpHandler.CurrentContext.GetService(typeof(IViewComponentFactory)), typeof(IViewComponentFactory))).Create("AuthenticatedContent");
+    ....
+}
+
+This  code requires HttpContext  and will not allow to render view in tests derived from BaseControllerTest - it will fail with NullReferenceException. Please modify this to get IViewComponentFactory from IRailsEngineContext instance passed to BrailBase.</value>
+    </field>
+    <field name="created">
+      <value>1186471270000</value>
+    </field>
+    <field name="updated">
+      <value>1244676930000</value>
+    </field>
+    <field name="reporterName">
+      <value>vladimirak</value>
+    </field>
+    <field name="updaterName">
+      <value>vladimirak</value>
+    </field>
+    <field name="resolved">
+      <value>1282143928995</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676900000" />
+  </issue>
+</issues>

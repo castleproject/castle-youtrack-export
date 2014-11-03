@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle Visual Studio Integration</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>41</value>
+    </field>
+    <field name="summary">
+      <value>Implement folding</value>
+    </field>
+    <field name="description">
+      <value>For both XHTML and NVelocity blocks.
+
+I can live with only NVelocity folding first, then XHTML.</value>
+    </field>
+    <field name="created">
+      <value>1184174837000</value>
+    </field>
+    <field name="updated">
+      <value>1200213873000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282138195573</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

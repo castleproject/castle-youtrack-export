@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>AutomaticTransactionManagement</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>49</value>
+    </field>
+    <field name="summary">
+      <value>Using System.Transactions</value>
+    </field>
+    <field name="description">
+      <value>Hi,
+
+I have a prototype working of the ATM facility using the .net System.Transactions. I faced several problems porting the existing facility to use the new transaction framework in 2.0 but at the end managed to make it work. 
+
+I have attached some of the classes I am using in the ATM facility and in the transaction services.
+
+The main problem I faced was adding external synchronization items to the transaction in place. The tests I did were using a modified IBatis facility to use the new transactions. The Enlist methods in the Transaction class did not work because they are executed by a thread pool and there is no way to find the current session in IBatis (to close the session) since it is stored in the CallContext. I have created my own SynchronizationManager that executes the synchronization process after the transaction has been committed or rolled-back in the thread it was created (see DefaultSynchronizationManager.cs)
+
+As a sample on how to use the new ATM see AutomaticSessionInterceptor.cs, it is a modified code from the IBatis facility that creates IBatis sessions for methods that have the [Session] attribute defined.
+
+Let's discuss this implementation to see if it works in all scenarios.
+
+Thanks,
+
+Rogelio J. Baucells</value>
+    </field>
+    <field name="created">
+      <value>1156400247000</value>
+    </field>
+    <field name="updated">
+      <value>1169418936000</value>
+    </field>
+    <field name="reporterName">
+      <value>rjb</value>
+    </field>
+    <field name="updaterName">
+      <value>rjb</value>
+    </field>
+    <field name="resolved">
+      <value>1282141025526</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

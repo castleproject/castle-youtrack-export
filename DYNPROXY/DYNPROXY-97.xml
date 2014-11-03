@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>97</value>
+    </field>
+    <field name="summary">
+      <value>BadImageFormatException</value>
+    </field>
+    <field name="description">
+      <value>using System;
+using Castle.Core.Interceptor;
+using Castle.DynamicProxy;
+using NUnit.Framework;
+using System.Collections.Generic;
+
+namespace Pharmatechnik.Apotheke.XTplus.Framework.TestLibrary.Tests {
+    public interface IPersistenceQuery2&lt;TResult&gt; {}
+
+    public interface IBOBase2 {}
+
+    public interface ITest1 {
+        List&lt;TBase&gt; Find&lt;TBase, T&gt;(IPersistenceQuery2&lt;T&gt; query) where TBase : class where T : class, TBase, IBOBase2;
+    }
+
+    public interface IDummyFactory {}
+
+    public class Test2 {
+        private readonly IDummyFactory[] _factories;
+
+        public Test2(IDummyFactory[] factories) {
+            _factories = factories;
+        }
+    }
+
+    public class Interceptor : IInterceptor {
+        public void Intercept(IInvocation invocation) {
+            invocation.Proceed();
+        }
+    }
+
+    public interface ITest3 {
+        T New&lt;T&gt;(params Action&lt;T&gt;[] actions) where T : class;
+    }
+
+    public class Test3 : ITest3 {
+        private readonly Test4 _test4;
+
+        public Test3(Test4 test4) {
+            _test4 = test4;
+        }
+
+        public virtual T New&lt;T&gt;(params Action&lt;T&gt;[] actions) where T : class {
+            _test4.Execute();
+            return default(T);
+        }
+    }
+
+    public class Test4 {
+        public virtual void Execute() {}
+    }
+
+    [TestFixture]
+    public class DP2Troubles {
+        [Test]
+        public void BadImageFormatException_CreateInterfaceProxyWithoutTarget_Case1() {
+            Assert.Throws&lt;BadImageFormatException&gt;(() =&gt; {
+                var generator = new ProxyGenerator();
+                generator.CreateInterfaceProxyWithoutTarget&lt;ITest1&gt;();
+            });    
+        }
+
+        [Test]
+        public void MissingMethodException_CreateClassProxy_Case2() {
+            Assert.Throws&lt;MissingMethodException&gt;(() =&gt;{
+            var generator = new ProxyGenerator();
+            generator.CreateClassProxy(typeof (Test2), new IInterceptor[] {new Interceptor()}, new IDummyFactory[] {});
+            });    
+        }
+
+        [Test]
+        public void BadImageFormatException_CreateClassProxy_Case3() {
+            Assert.Throws&lt;BadImageFormatException&gt;(() =&gt; {
+            var generator = new ProxyGenerator();
+            var test3 = (Test3) generator.CreateClassProxy(typeof (Test3), new IInterceptor[] {new Interceptor()}, new Test4());
+            test3.New&lt;object&gt;();
+            });    
+        }
+    }
+}</value>
+    </field>
+    <field name="created">
+      <value>1245741119000</value>
+    </field>
+    <field name="updated">
+      <value>1245858261000</value>
+    </field>
+    <field name="reporterName">
+      <value>martl76</value>
+    </field>
+    <field name="updaterName">
+      <value>martl76</value>
+    </field>
+    <field name="resolved">
+      <value>1245858120000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="I just fixed all three of your bugs. It was a great fun, but please next time be more descriptive and attach your tests as patch.&#xA;&#xA;I'll commit the fixes tomorrow as it's very late and I barely sit." created="1245773689000" />
+    <comment author="xtoff" text="Fixed in 5804" created="1245858142000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1245857160000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1245858120000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1245858240000" />
+  </issue>
+</issues>

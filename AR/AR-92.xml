@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>92</value>
+    </field>
+    <field name="summary">
+      <value>Add support for generic NH collections</value>
+    </field>
+    <field name="description">
+      <value>NHibernate now has support for generic collections, so we need to add this support to AR as well:
+
+&lt;bag name="Items" cascade="all-delete-orphan" generic="true"&gt;
+	&lt;key column="a_id" /&gt;
+	&lt;one-to-many class="B" /&gt;
+&lt;/bag&gt;
+
+NH test cases and source code are the best source of information, btw.</value>
+    </field>
+    <field name="created">
+      <value>1164488233000</value>
+    </field>
+    <field name="updated">
+      <value>1164519982000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282136210745</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

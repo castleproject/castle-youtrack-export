@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>None</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>40</value>
+    </field>
+    <field name="summary">
+      <value>Algorithm to print error message in ProxyGenerator.CreateClassProxyInstance doesn't test for null arguments</value>
+    </field>
+    <field name="description">
+      <value>When ProxyGenerator.CreateClassProxyInstance is called and the MissingMethodException is caught, an error message is built. This message building code doesn't account for the fact that an argument in constructorArguments may be null, and a NullReferenceException is then thrown on `message.AppendLine(argument.GetType().ToString())`.</value>
+    </field>
+    <field name="created">
+      <value>1310426928317</value>
+    </field>
+    <field name="updated">
+      <value>1310430957270</value>
+    </field>
+    <field name="reporterName">
+      <value>Rory.Plaire</value>
+    </field>
+    <field name="updaterName">
+      <value>Rory.Plaire</value>
+    </field>
+    <field name="resolved">
+      <value>1310430538973</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-174[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Thanks Rory" created="1310430564317" />
+    <comment author="Rory.Plaire" text="That was the fastest bug patch-apply I have ever seen!" created="1310430957270" />
+  </issue>
+</issues>

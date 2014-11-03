@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>72</value>
+    </field>
+    <field name="summary">
+      <value>Support [Layout] attribute on Actions</value>
+    </field>
+    <field name="description">
+      <value>Some controllers have "helper" actions, for things like AJAX support. I know we already have CancelLayout() and RenderView(..., skiplayout), but what if a rescue is called?
+
+I have a rescue named "ajax", but it is displayed inside the controller layout. There should be some way to either:
+ a) Tell the rescue to skip the layout: [Rescue("myrescue", SkipLayout=true)]
+ b) Assign a different layout to the action.
+
+I already implemented the second approach for the current project I'm working on. I can commit it to SVN, but I want to know what do you think about it.
+
+The following is how the controller code looks like, using my current solution:
+
+[Layout("myrichlayout")]
+public class CityController : ARSmartDispatcherController {
+  public void Add() { ... }
+
+  [Rescue("ajax"), Layout("ajax")]
+  public void GetStates([ARFetch(Create=false)] Country country)
+  {
+    MyAjaxComponent.RenderDropDown(...)
+  }
+}
+</value>
+    </field>
+    <field name="created">
+      <value>1134311431000</value>
+    </field>
+    <field name="updated">
+      <value>1134325014000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282143377448</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

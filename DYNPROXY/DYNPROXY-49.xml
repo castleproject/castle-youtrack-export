@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>.NET 2.0 Support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.0 Beta 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>49</value>
+    </field>
+    <field name="summary">
+      <value>Type exception when generic type implementation has a constraint that the interface doesn't have</value>
+    </field>
+    <field name="description">
+      <value>public interface IFoo&lt;T&gt;
+{
+   void Bar(T b);
+}
+
+public class FooImpl&lt;T&gt; where T : class
+{
+   void Bar(T b);
+}
+
+ generator.CreateInterfaceProxyWithTarget&lt;IFoo&lt;string&gt;&gt;(
+                new FooImpl&lt;string&gt;(), logger);
+
+Will cause exception</value>
+    </field>
+    <field name="created">
+      <value>1173624839000</value>
+    </field>
+    <field name="updated">
+      <value>1235539213000</value>
+    </field>
+    <field name="reporterName">
+      <value>ayenderahien</value>
+    </field>
+    <field name="updaterName">
+      <value>ayenderahien</value>
+    </field>
+    <field name="resolved">
+      <value>1235539200000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="This works for me, the following test passes&#xA;        public interface IFoo&lt;T&gt;&#xA;        {&#xA;            void Bar(T b);&#xA;        }&#xA;&#xA;        public class FooImpl&lt;T&gt; : IFoo&lt;T&gt; where T : class&#xA;        {&#xA;            public void Bar(T b) { }&#xA;        }&#xA;&#xA;	    [Test]&#xA;	    public void DYNPROXY_ISSUE_49_Test()&#xA;	    {&#xA;	        generator.CreateInterfaceProxyWithTarget&lt;IFoo&lt;string&gt;&gt;(&#xA;	            new FooImpl&lt;string&gt;(), new SkipCallingMethodInterceptorWithOutputParams() );&#xA;	    }&#xA;&#xA;on .NET 3.5 sp1" created="1232429787000" />
+    <comment author="jonorossi" text="Ayende, I am closing this with cannot reproduce for now.&#xA;&#xA;As Krzysztof mentioned this works. If your case contains more than the IFoo example then please reopen this issue with more details." created="1235539213000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Version Fixed''' changed from ''Future'' to ''&lt;empty&gt;''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1235539200000" />
+  </issue>
+</issues>

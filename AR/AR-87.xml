@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>87</value>
+    </field>
+    <field name="summary">
+      <value>JoinedBase doesn´t handle having CompositKey split between base class and derived class</value>
+    </field>
+    <field name="description">
+      <value>It seems to me that JoinedBase doesn´t handle having CompositKey split between base class and derived class. 
+
+More specifically I  have a structure like this:
+
+class EventBase &lt;- JoinBase (table has column "store_id" and has Property Store)
+class MyEvent: EventBase &lt;- JoinedKey (has column "scale_id" and property Scale which includes a Store)
+
+MyEvent has method
+[BelongsTo(
+            CompositeKeyColumns = new string[] { "store_id", "scale_id" },
+            Cascade = CascadeEnum.None,
+            NotNull = true)]
+        public Scale Scale
+        {
+            get { return _scale; }
+            set { _scale = value; }
+        }
+
+where "store_id" is found in EventBase table and "scale_id" is found in MyEvent table
+
+I get and error which informs me that "store_id" is an invalid column twice.
+
+I´m guessing that the relation is not intelligent enaugh to check the JoinBase when resolving</value>
+    </field>
+    <field name="created">
+      <value>1162637357000</value>
+    </field>
+    <field name="updated">
+      <value>1414999707582</value>
+    </field>
+    <field name="reporterName">
+      <value>freyzor</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999707575</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="ActiveRecord is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/ActiveRecord/issues" created="1414999707584" />
+  </issue>
+</issues>

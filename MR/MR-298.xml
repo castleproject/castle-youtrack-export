@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>298</value>
+    </field>
+    <field name="summary">
+      <value>ColumnRenderer with an empty enumeration still renders table start and end sections</value>
+    </field>
+    <field name="description">
+      <value>Could not find documentation saying that but:
+
+	#blockcomponent(ColumnRenderer with "cols=4" "items=$logos")
+	#empty
+	No logos/headshots uploaded.
+	#end
+...
+
+renders:
+
+&lt;table&gt;
+	No logos/headshots uploaded.
+&lt;/table&gt;
+
+What isn't a good chunk of HTML. The component should not render the start and endblock section when empty, because even if documented it is cumbersome to have:
+
+	#blockcomponent(ColumnRenderer with "cols=4" "items=$logos")
+	#empty
+	&lt;tr&gt;&lt;td colspan="4"&gt;No logos/headshots uploaded.&lt;/td&gt;&lt;/tr&gt;
+	#end
+
+But as that may break things for deployed solution, i suggest to add a boolean "emptyness" parameter that when set, would not render any other section besides empty when the collection is empty. Suggested patch attached</value>
+    </field>
+    <field name="created">
+      <value>1184253724000</value>
+    </field>
+    <field name="updated">
+      <value>1263055910000</value>
+    </field>
+    <field name="reporterName">
+      <value>monoman</value>
+    </field>
+    <field name="updaterName">
+      <value>monoman</value>
+    </field>
+    <field name="resolved">
+      <value>1282143902338</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055860000" />
+  </issue>
+</issues>

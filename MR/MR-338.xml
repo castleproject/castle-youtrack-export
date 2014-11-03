@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>338</value>
+    </field>
+    <field name="summary">
+      <value>FormHelper does not resolve ViewComponent PropertyBag data</value>
+    </field>
+    <field name="description">
+      <value>per forum post http://forum.castleproject.org/viewtopic.php?t=3562</value>
+    </field>
+    <field name="created">
+      <value>1191260462000</value>
+    </field>
+    <field name="updated">
+      <value>1278876818000</value>
+    </field>
+    <field name="reporterName">
+      <value>mattyr</value>
+    </field>
+    <field name="updaterName">
+      <value>mattyr</value>
+    </field>
+    <field name="resolved">
+      <value>1278876780000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="This topic has a wiki page here: http://using.castleproject.org/display/MR/PropertyBag+scoping+Spec&#xA;&#xA;Any chance of getting a patch for this?&#xA;&#xA;" created="1262991995000" />
+    <comment author="jsimons" text="Related issue: http://support.castleproject.org/projects/MR/issues/view/MR-ISSUE-203" created="1262992068000" />
+    <comment author="jsimons" text="Related issue: http://support.castleproject.org/projects/MR/issues/view/MR-ISSUE-203" created="1262992068000" />
+    <comment author="jsimons" text="The PropertyBag on the level of a view component is a contextual dictionary, only available to the view, formhelper has no access to it.&#xA;&#xA;A solution is to use Context.CurrentController.PropertyBag instead." created="1278876813000" />
+    <comment author="jsimons" text="* '''Version Affected''' changed from ''Release Candidate 3'' to ''Future''.&#xD;&#xA;" created="1262991780000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1278876780000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278876780000" />
+    <comment author="jsimons" text="* '''Version Affected''' changed from ''Future'' to ''2.0''.&#xD;&#xA;" created="1278809460000" />
+  </issue>
+</issues>

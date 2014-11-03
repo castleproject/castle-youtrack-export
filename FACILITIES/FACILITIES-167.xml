@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Wcf</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>3.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>167</value>
+    </field>
+    <field name="summary">
+      <value>Channels are always Disposed even if they are in Faulted state</value>
+    </field>
+    <field name="description">
+      <value>Channels are always Disposed even if they are in Faulted state. Calling Dispose always triggers a CommunicationObjectAbortedException. This results in crashes of the IIS server process. 
+
+They should be aborted first.
+
+Server stack trace: 
+   bei System.ServiceModel.Channels.CommunicationObject.Close(TimeSpan timeout)
+Exception rethrown at [0]: 
+   bei System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   bei System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData&amp; msgData, Int32 type)
+   bei System.IDisposable.Dispose()
+   bei Castle.MicroKernel.LifecycleConcerns.DisposalConcern.Apply(ComponentModel model, Object component)
+   bei Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.ApplyConcerns(IEnumerable`1 steps, Object instance)
+   bei Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.ApplyDecommissionConcerns(Object instance)
+   bei Castle.Facilities.WcfIntegration.WcfClientActivator.ApplyDecommissionConcerns(Object instance)
+   bei Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalDestroy(Object instance)
+   bei Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Destroy(Object instance)
+   bei Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Release(Object instance)
+   bei Castle.MicroKernel.Handlers.DefaultHandler.ReleaseCore(Burden burden)
+   bei Castle.MicroKernel.Handlers.AbstractHandler.Release(Burden burden)
+   bei Castle.MicroKernel.Burden.Release()
+   bei XXXXXXXXXXX.DependencyInjection.Castle.DependencyInjectionContainer.FixedLifecycledComponentsReleasePolicy.Release(Object instance)
+   bei Castle.MicroKernel.DefaultKernel.ReleaseComponent(Object instance)
+   bei Castle.MicroKernel.Internal.LazyEx`1.Dispose()
+   bei Castle.MicroKernel.LifecycleConcerns.DisposalConcern.Apply(ComponentModel model, Object component)
+   bei Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.ApplyConcerns(IEnumerable`1 steps, Object instance)
+   bei Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.ApplyDecommissionConcerns(Object instance)
+   bei Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalDestroy(Object instance)
+   bei Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Destroy(Object instance)
+   bei Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Release(Object instance)
+   bei Castle.MicroKernel.Handlers.DefaultHandler.ReleaseCore(Burden burden)
+   bei Castle.MicroKernel.Handlers.AbstractHandler.Release(Burden burden)
+   bei Castle.MicroKernel.Burden.Release()
+   bei Castle.MicroKernel.Burden.&lt;Release&gt;b__0(Burden c)
+   bei System.Collections.Generic.List`1.ForEach(Action`1 action)
+   bei Castle.MicroKernel.Burden.Release()
+   bei Castle.MicroKernel.Lifestyle.Scoped.ScopeCache.&lt;Dispose&gt;b__0(Burden b)
+   bei Castle.Core.Internal.CollectionExtensions.ForEach[T](IEnumerable`1 items, Action`1 action)
+   bei Castle.MicroKernel.Lifestyle.Scoped.ScopeCache.Dispose()
+   bei Castle.MicroKernel.Lifestyle.Scoped.DefaultLifetimeScope.Dispose()
+   bei Castle.Facilities.WcfIntegration.Lifestyles.WcfOperationScopeHolder.Dispose()
+   bei Castle.Facilities.WcfIntegration.Lifestyles.WcfOperationScopeHolder.Shutdown(Object sender, EventArgs e)
+   bei System.ServiceModel.OperationContext.FireOperationCompleted()
+
+A temporary workaround is to modify the Apply method in the DisposalConcern in Windsor:
+
+{code:lang=scala|title=Code}
+public void Apply(ComponentModel model, object component)
+{
+	// HACK
+	var attributes = component.GetType().GetCustomAttributes(typeof(ServiceContractAttribute), true);
+	if (attributes.Any())
+	{
+		var channel = component as IChannel;
+		if (channel != null &amp;&amp; channel.State == CommunicationState.Faulted)
+		{
+			channel.Abort();
+		}
+	}
+
+	var disposable = component as IDisposable;
+	if (disposable == null)
+	{
+		return;
+	}
+	disposable.Dispose();
+}
+{code}
+</value>
+    </field>
+    <field name="created">
+      <value>1402578597972</value>
+    </field>
+    <field name="updated">
+      <value>1414998515620</value>
+    </field>
+    <field name="reporterName">
+      <value>Antineutrino</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414998515615</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Closing. Relogged on GitHub.&#xA;https://github.com/castleproject/Windsor/issues/71" created="1414998515621" />
+  </issue>
+</issues>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>426</value>
+    </field>
+    <field name="summary">
+      <value>Use view templates of base classes.</value>
+    </field>
+    <field name="description">
+      <value>If a controller doen't specify a view template, but the base class of the controller does, the view engine should select the view template of the base class.
+
+Example:
+Controller CommonMaintenance specifies Index, List and Edit actions along with view templates. Usergroup-specific subclasses TechMaintenance and FinancialMaintenance define their own Edit template and a Save action, because both usergroups can only edit part of the domain class.
+Currently, it is necessary to use RenderSharedView in CommonMaintenance actions to render a template defined for the base class. If the template must be replaced, the action must be overridden, too.
+
+Wanted behaviour:
+If a template is not specified for an action of the current controller, try to take a template defined for the controller's base classes. This way it is possible to factor out common actions of multiple controllers along with the needed view templates to base classes, without the need of overriding an action if a specific view must be used in a child class.
+</value>
+    </field>
+    <field name="created">
+      <value>1205203657000</value>
+    </field>
+    <field name="updated">
+      <value>1262993264000</value>
+    </field>
+    <field name="reporterName">
+      <value>mzywitza</value>
+    </field>
+    <field name="updaterName">
+      <value>mzywitza</value>
+    </field>
+    <field name="resolved">
+      <value>1262993220000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Fixed in trunk" created="1262993259000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1262993220000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1262993220000" />
+  </issue>
+</issues>

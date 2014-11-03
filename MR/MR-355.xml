@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>355</value>
+    </field>
+    <field name="summary">
+      <value>Small refactoring of EngineContextModule</value>
+    </field>
+    <field name="description">
+      <value>There's a little bit duplication in the EngineContextModule around the raising of events on the container.extensionmanager. Patch just pulls that duplication out into a shared method.
+
+Any comments before I apply it?</value>
+    </field>
+    <field name="created">
+      <value>1194173348000</value>
+    </field>
+    <field name="updated">
+      <value>1198686967000</value>
+    </field>
+    <field name="reporterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="updaterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="resolved">
+      <value>1282145338370</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

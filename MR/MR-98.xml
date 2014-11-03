@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>98</value>
+    </field>
+    <field name="summary">
+      <value>Consider using views from one or more assemblies instead of file system</value>
+    </field>
+    <field name="description">
+      <value>On the project I'm working on we have a set of reusable controllers and their views. Currently we have set up a build event to copy the views to the web project, but this is a hack. It would nice if views could be loaded directly from an assembly resource. </value>
+    </field>
+    <field name="created">
+      <value>1141995224000</value>
+    </field>
+    <field name="updated">
+      <value>1162413621000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282143397557</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

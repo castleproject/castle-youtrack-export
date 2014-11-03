@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>109</value>
+    </field>
+    <field name="summary">
+      <value>RailsFacility doesn't detect pre-existing controllers in the Kernel</value>
+    </field>
+    <field name="description">
+      <value>If you load your controllers before you load the RailsFacility the RailsFacility will not pickup the controller.
+
+You can recreate this by:
+1. Loading your controllers via the config file and loading the RailsFacility via code.
+2. Loading your controllers via code before loading the RailsFacility via code.
+
+This is because the RailsFacility does not search the Container for Controllers that may already exist.
+
+You can work around this by adding the RailsFacility in the config file or by adding all of your controllers via code after adding the RailsFacility via code.</value>
+    </field>
+    <field name="created">
+      <value>1144934982000</value>
+    </field>
+    <field name="updated">
+      <value>1162414230000</value>
+    </field>
+    <field name="reporterName">
+      <value>dsellers</value>
+    </field>
+    <field name="updaterName">
+      <value>dsellers</value>
+    </field>
+    <field name="resolved">
+      <value>1282143406057</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

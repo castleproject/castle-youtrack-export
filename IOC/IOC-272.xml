@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>EventWiringFacility</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.5.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>272</value>
+    </field>
+    <field name="summary">
+      <value>EventWiringFacility download broken</value>
+    </field>
+    <field name="description">
+      <value>Download link broken on website at: http://www.castleproject.org/container/facilities/v1rc3/eventwiring/index.html
+
+The zip file is present but is empty when downloaded and unzipped.</value>
+    </field>
+    <field name="created">
+      <value>1297090883499</value>
+    </field>
+    <field name="updated">
+      <value>1298782012585</value>
+    </field>
+    <field name="reporterName">
+      <value>jonathan.peppers</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1298782012585</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonathan.peppers" text="I noticed this is no longer needed, and is in Castle.Windsor.dll.  Might be nice to update the website to reflect this." created="1297105222156" />
+    <comment author="xtoff" text="The page will be decommissioned." created="1298782002553" />
+  </issue>
+</issues>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>136</value>
+    </field>
+    <field name="summary">
+      <value>"Timeout expired" exception when invalid data in table with ValidateIsUnique</value>
+    </field>
+    <field name="description">
+      <value>Let say I have an ActiveRecord class:
+
+[ActiveRecord]
+class Customer {
+  ...
+  [Property]
+  public string Name { get...}
+}
+
+I insert and update data then add [ValidateIsUnique] to the Name property. Next time I try to update a Customer with duplicated Name I get an "Timeout error" exception.
+
+Several connections to the database are made in loop and a timeout exception is thrown when the connection pool is full.
+
+See attached file for the Stack Trace.
+
+I'll try to create a test case for this later, but this can easily reporduced manually for now.</value>
+    </field>
+    <field name="created">
+      <value>1172757834000</value>
+    </field>
+    <field name="updated">
+      <value>1176904757000</value>
+    </field>
+    <field name="reporterName">
+      <value>macournoyer</value>
+    </field>
+    <field name="updaterName">
+      <value>macournoyer</value>
+    </field>
+    <field name="resolved">
+      <value>1282136300791</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Documentation</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.0 Alpha1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>259</value>
+    </field>
+    <field name="summary">
+      <value>Documentation improvements</value>
+    </field>
+    <field name="description">
+      <value>I've corrected some links, some typos and inserted some links to useful pages received at the castle users group.
+
+I also added a small fix for Monorail: The method signature of perform wasn't correct anymore.</value>
+    </field>
+    <field name="created">
+      <value>1244014140000</value>
+    </field>
+    <field name="updated">
+      <value>1244163341000</value>
+    </field>
+    <field name="reporterName">
+      <value>Flominator</value>
+    </field>
+    <field name="updaterName">
+      <value>Flominator</value>
+    </field>
+    <field name="resolved">
+      <value>1244163300000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Applied in r5737" created="1244163336000" />
+    <comment author="Flominator" text="Did you export it to the site as well?" created="1244186579000" />
+    <comment author="roelofb" text="The site update is a batch process, that runs nightly I think. Otherwise ask Henry to run it." created="1244212058000" />
+    <comment author="Flominator" text="* '''Attachment''' doc_imrovements_090503.patch added.&#xD;&#xA;" created="1244014140001" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.0 Alpha1''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1244163300000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244163300000" />
+  </issue>
+</issues>

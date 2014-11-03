@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Duplicate</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>237</value>
+    </field>
+    <field name="summary">
+      <value>AbstractValidator: function IsValid() is not working for the ValidateIsUnique when using generics inherited properties</value>
+    </field>
+    <field name="description">
+      <value>I have same exception as "AR- 122: Problems validating inherited 
+properties when using generics" [http://support.castleproject.org/ 
+browse/AR-122]. 
+
+I work with RC3. So, this problem should fixed in this RC? Am I write? 
+
+
+All the validations are functional except, ValidateIsUnique() is not 
+seems to functional. 
+
+To REPRODUCE:
+
+I will try to illustrate this with an example. 
+
+If you have the following abstract base class with the parameterized type t. 
+
+    [ActiveRecord("TimeSlot", 
+        DiscriminatorColumn = "type", 
+        DiscriminatorType = "String", 
+        DiscriminatorValue = "AbstractTimeSlot"), Serializable] 
+    public abstract class AbstractTimeSlot&lt;t&gt; : ValueObjectBase 
+    { 
+        private int myId; 
+        private string myName;
+        protected int myHour; 
+
+        [PrimaryKey(Column = "timeslot_id")] 
+        public int Id 
+        { 
+            get { return myId; } 
+            set { myId = value; } 
+        } 
+
+        [Property, ValidateNotEmpty, ValidateIsUnique] 
+        public string Name
+        { 
+            get { return myName; } 
+            set { myName= value; } 
+        } 
+
+        [Property] 
+        [ValidateNotEmpty] 
+        public int Hour 
+        { 
+            get { return myHour; } 
+            set { myHour = value; } 
+        } 
+    } 
+
+And the following subclass: 
+
+    [ActiveRecord(DiscriminatorValue = "TimeSlotFixedDate")] 
+    public class TimeSlotFixedDate : AbstractTimeSlot&lt;TimeSlotFixedDate&gt; 
+    { 
+        private int myDay; 
+
+        [Property] 
+        [ValidateNotEmpty] 
+        public int Day 
+        { 
+            get { return myDay; } 
+            set { myDay = value; } 
+        } 
+    } 
+
+
+Test case:
+[Test]
+public void ValidateIsUnique()
+{
+TimeSlotFixedDate timeDate = new TimeSlotFixedDate();
+timeDate.Hour = 1;
+timeDate .Name = null;
+
+Assert.IsFalse(timeDate.IsValid());  // Will thorw the exception
+}
+
+All type of validations  will succed except the validation  VALIDATEISUNIQUE on the field Name . When it tries to validate the Name field in the base class the following exception is thrown:
+
+failed: Castle.ActiveRecord.Framework.ActiveRecordException : Error 
+performing Execute for Breakage 
+  ----&gt; System.InvalidOperationException : Late bound operations 
+cannot be performed on types or methods for which 
+ContainsGenericParameters is true. 
+           at Castle.ActiveRecord.ActiveRecordBase.Execute(Type targetType, 
+NHibernateDelegate call, Object instance) in c:\ccnet\CastleWorkDir 
+\WorkingDirectory\ActiveRecord\Castle.ActiveRecord\Framework 
+\ActiveRecordBase.cs:line 579 
+           at Castle.ActiveRecord.ActiveRecordMediator.Execute(Type 
+targetType, NHibernateDelegate call, Object instance) in c:\ccnet 
+\CastleWorkDir\WorkingDirectory\ActiveRecord\Castle.ActiveRecord 
+\Framework\ActiveRecordMediator.cs:line 40 
+           at 
+Castle.ActiveRecord.Framework.Validators.IsUniqueValidator.Perform(Object 
+instance, Object fieldValue) in c:\ccnet\CastleWorkDir\WorkingDirectory 
+\ActiveRecord\Castle.ActiveRecord\Framework\Validators 
+\IsUniqueValidator.cs:line 83 
+           at 
+Castle.ActiveRecord.Framework.Validators.AbstractValidator.Perform(Object 
+instance) in c:\ccnet\CastleWorkDir\WorkingDirectory\ActiveRecord 
+\Castle.ActiveRecord\Framework\Validators\AbstractValidator.cs:line 96 
+           at Castle.ActiveRecord.ActiveRecordValidationBase`1.IsValid() in c: 
+\ccnet\CastleWorkDir\WorkingDirectory\ActiveRecord\Castle.ActiveRecord 
+\Framework\ActiveRecordValidationBase.Generic.cs:line 110 
+           at Spinoff.Management.Tests.Events.BreakageTest.ValidateIsUnique() 
+in C:\Projects\QITMgnt\src\Core.Tests\Events\BreakageTest.cs:line 31 
+        --ActiveRecordException 
+           at System.Reflection.RuntimeMethodInfo.ThrowNoInvokeException() 
+           at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, 
+BindingFlags invokeAttr, Binder binder, Object[] parameters, 
+CultureInfo culture, Boolean skipVisibilityChecks) 
+           at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, 
+BindingFlags invokeAttr, Binder binder, Object[] parameters, 
+CultureInfo culture) 
+           at System.Reflection.RuntimePropertyInfo.GetValue(Object obj, 
+BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo 
+culture) 
+           at System.Reflection.RuntimePropertyInfo.GetValue(Object obj, 
+Object[] index) 
+           at 
+Castle.ActiveRecord.Framework.Validators.IsUniqueValidator.CheckUniqueness(­ISession 
+session, Object instance) in c:\ccnet\CastleWorkDir\WorkingDirectory 
+\ActiveRecord\Castle.ActiveRecord\Framework\Validators 
+\IsUniqueValidator.cs:line 105 
+           at Castle.ActiveRecord.ActiveRecordBase.Execute(Type targetType, 
+NHibernateDelegate call, Object instance) in c:\ccnet\CastleWorkDir 
+\WorkingDirectory\ActiveRecord\Castle.ActiveRecord\Framework 
+\ActiveRecordBase.cs:line 571 
+
+please replay me as soon as possible. 
+
+
+Thanks 
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1174904010000</value>
+    </field>
+    <field name="updated">
+      <value>1244675557000</value>
+    </field>
+    <field name="reporterName">
+      <value>sakter</value>
+    </field>
+    <field name="updaterName">
+      <value>sakter</value>
+    </field>
+    <field name="resolved">
+      <value>1282143702495</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675520000" />
+  </issue>
+</issues>

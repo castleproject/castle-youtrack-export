@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>22</value>
+    </field>
+    <field name="summary">
+      <value>EmailValidator must invalidate empty text</value>
+    </field>
+    <field name="description">
+      <value>Using a Castle.Components.Validator.ValidateEmailAttribute in a text field, causes the shown of the error message at client execution if i insert some invalid text like"p", "pippo" or other, but if i use an empty text the error is not shown.
+It's possible to use ValidateEmail in conjunction with ValidateNonEmpty, but in this case two error messages are generated (same behaviour if i insert an empty or an invalid text).</value>
+    </field>
+    <field name="created">
+      <value>1177259793000</value>
+    </field>
+    <field name="updated">
+      <value>1177300955000</value>
+    </field>
+    <field name="reporterName">
+      <value>d_guidi</value>
+    </field>
+    <field name="updaterName">
+      <value>d_guidi</value>
+    </field>
+    <field name="resolved">
+      <value>1282137492854</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

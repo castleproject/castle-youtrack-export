@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Build Scripts</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>46</value>
+    </field>
+    <field name="summary">
+      <value>Build Error for Keyfiles in Directories with Spaces</value>
+    </field>
+    <field name="description">
+      <value>The common.project.xml build configuration does not quote the keyfile, which causes build errors when the project in located in a directory with space. Which by default, Visual Studio uses $user\Documents\Visual Studio 2008\... which obviously has spaces.</value>
+    </field>
+    <field name="created">
+      <value>1219592720000</value>
+    </field>
+    <field name="updated">
+      <value>1235463707000</value>
+    </field>
+    <field name="reporterName">
+      <value>stevendelapena</value>
+    </field>
+    <field name="updaterName">
+      <value>stevendelapena</value>
+    </field>
+    <field name="resolved">
+      <value>1235463660000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="stevendelapena" text="Attached is a patch that corrects this problem." created="1219592814000" />
+    <comment author="stevendelapena" text="Hmmm... attaching files doesn't seem to work. Here's the patch:&#xA;&#xA;Index: common-project.xml&#xA;===================================================================&#xA;--- common-project.xml	(revision 5283)&#xA;+++ common-project.xml	(working copy)&#xA;@@ -141,7 +141,7 @@&#xA; 				&lt;sources refid=&quot;project.sources&quot; /&gt;&#xA; 				&lt;references refid=&quot;project.references&quot; /&gt;&#xA; 				&lt;resources refid=&quot;project.resources&quot; /&gt;&#xA;-				&lt;arg line=&quot;${csc.keyfile}&quot; if=&quot;${assembly.sign}&quot; /&gt;&#xA;+				&lt;arg line=&quot;&amp;quot;${csc.keyfile}&amp;quot;&quot; if=&quot;${assembly.sign}&quot; /&gt;&#xA; 				&lt;arg line=&quot;${csc.args}&quot; /&gt;&#xA; 			&lt;/csc&gt;&#xA; 		&lt;/if&gt;&#xA;@@ -187,7 +187,7 @@&#xA; 			&lt;sources refid=&quot;project.sources&quot; /&gt;&#xA; 			&lt;references refid=&quot;project.references&quot; /&gt;&#xA; 			&lt;resources refid=&quot;project.resources&quot; /&gt;&#xA;-			&lt;arg line=&quot;${csc.keyfile}&quot; if=&quot;${assembly.sign}&quot; /&gt;&#xA;+			&lt;arg line=&quot;&amp;quot;${csc.keyfile}&amp;quot;&quot; if=&quot;${assembly.sign}&quot; /&gt;&#xA; 			&lt;arg line=&quot;${csc.args}&quot; /&gt;&#xA; 		&lt;/csc&gt;&#xA; 	&lt;/target&gt;&#xA;@@ -204,7 +204,7 @@&#xA; 		&lt;property overwrite=&quot;false&quot; name=&quot;assembly.version&quot; value=&quot;${project.major}.${project.minor}.${project.build}.0&quot; /&gt;&#xA; 		&lt;property overwrite=&quot;false&quot; name=&quot;assembly.version.informational&quot; value=&quot;${assembly.major}.${assembly.minor}.${assembly.build}.${svn.revision}&quot; /&gt;&#xA; 		&lt;property overwrite=&quot;false&quot; name=&quot;assembly.copyright&quot; value=&quot;Castle Project, original author or authors&quot; /&gt;&#xA;-		&lt;property overwrite=&quot;false&quot; name=&quot;assembly.keyfile&quot; value=&quot;${key.file}&quot; /&gt;&#xA;+		&lt;property overwrite=&quot;false&quot; name=&quot;assembly.keyfile&quot; value=&quot;&amp;quot;${key.file}&amp;quot;&quot; /&gt;&#xA; 		&lt;property overwrite=&quot;false&quot; name=&quot;assembly.sign&quot; value=&quot;${sign}&quot; /&gt;&#xA; 	&lt;/target&gt;&#xA; &#xA;" created="1219592937000" />
+    <comment author="roelofb" text="Fixed in r5304" created="1235463708000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1235463660000" />
+  </issue>
+</issues>

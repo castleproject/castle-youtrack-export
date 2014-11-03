@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Registration API</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>301</value>
+    </field>
+    <field name="summary">
+      <value>Add ConfigureIf method to be used with custom predicate when configuring components registered via convention</value>
+    </field>
+    <field name="description">
+      <value>In addition to {{Configure()}} and {{ConfigureFor&lt;SomeType&gt;()}} a more generic method should be provided to allow custom predicate to determine if configuration should be applied, so for example we only attach security interceptor to types with an attibute.
+
+{code lang=java}
+void ConfigureIf(Predicate&lt;ComponentRegistration&gt; condition, Action&lt;ComponentRegistration&gt; action);
+
+void ConfigureIf(Predicate&lt;ComponentRegistration&gt; condition, Action&lt;ComponentRegistration&gt; actionWhenTrue, Action&lt;ComponentRegistration&gt; actionWhenFalse);
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1310254208332</value>
+    </field>
+    <field name="updated">
+      <value>1311078827104</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1311078827088</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

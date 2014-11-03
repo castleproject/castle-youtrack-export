@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>34</value>
+    </field>
+    <field name="summary">
+      <value>Cannot use types having their own base type as constructor argument</value>
+    </field>
+    <field name="description">
+      <value>Attached is a patch (on trunk) that demonstrates a problem with the MicroKernel. The problem is that you cannot use types having their own base type as constructor argument, even if you specify the constructor argument as a parameter. It fails with the message 'A cycle was detected when trying to resolve a dependency. The dependency graph that resulted in a cycle is: blabla'. Looks like the parameters are not checked before raising a cyclic dependency error.
+
+This used to work, but looks to have ceased to do so in r2338 or 2162 (dependencies cycle checking).
+</value>
+    </field>
+    <field name="created">
+      <value>1161259960000</value>
+    </field>
+    <field name="updated">
+      <value>1162412478000</value>
+    </field>
+    <field name="reporterName">
+      <value>roelofb</value>
+    </field>
+    <field name="updaterName">
+      <value>roelofb</value>
+    </field>
+    <field name="resolved">
+      <value>1282141775510</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

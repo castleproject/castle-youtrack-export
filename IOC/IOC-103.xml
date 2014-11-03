@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>103</value>
+    </field>
+    <field name="summary">
+      <value>exception message when file passed to XmlInterpreter has non valid element should be more explainfull</value>
+    </field>
+    <field name="description">
+      <value>disclaimer: sorry for this to happen, but it was already solved in the trunk by Markus Zywitza when I created the issue, please close this and sorry for the burden
+
+a day after reading http://www.ayende.com/Blog/archive/2007/11/05/Castle-Style-Errors.aspx, I spent a quarter figuring that my windsor configuration was invalid (I got a configuration element in the root node of windsor config file)
+
+I wonder how much time was spent on such dumb issue but I decided to solve it according to the previous article.
+
+The attached patch is only a test case because I tried to solve the issue occuring on me while it was already solved in the trunk, so the testcase could be used to assert verbosity of such exception in windsor.</value>
+    </field>
+    <field name="created">
+      <value>1194389941000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853182</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142112057</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

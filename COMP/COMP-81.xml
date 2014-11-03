@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Binder</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>81</value>
+    </field>
+    <field name="summary">
+      <value>DataBinder Generic List More Eager Collection</value>
+    </field>
+    <field name="description">
+      <value>Hydrating values from request parameters should add as many elements as it can. Currently any empty ("") values in the params collection causes a generic list .Add exception that prevents any values from getting added to the list.
+
+This patch corrects both indexed and non-indexed scenarios where these params:
+myList[0]=1&amp;myList[1]=2&amp;myList[2]=&amp;myList[3]= 
+and
+myList=1&amp;myList=2&amp;myList=&amp;myList= 
+
+will result in a List&lt;int&gt; or List&lt;int?&gt; with two items.
+
+Tests included define the intent better too.</value>
+    </field>
+    <field name="created">
+      <value>1233225729000</value>
+    </field>
+    <field name="updated">
+      <value>1233226756000</value>
+    </field>
+    <field name="reporterName">
+      <value>mnichols</value>
+    </field>
+    <field name="updaterName">
+      <value>mnichols</value>
+    </field>
+    <field name="resolved">
+      <value>1233226740000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="applied on rev. 5535&#xA;&#xA;thx" created="1233226757000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1233226620000" />
+    <comment author="kenegozi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1233226740000" />
+  </issue>
+</issues>

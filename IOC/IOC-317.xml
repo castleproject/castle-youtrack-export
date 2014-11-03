@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>XML configuration</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>317</value>
+    </field>
+    <field name="summary">
+      <value>Add ability to reference AppSettings values in XML using #{property} syntax</value>
+    </field>
+    <field name="description">
+      <value>When {{#{property} }} is used and there's no matching element in properties node, Windsor should fall back to looking in appSettings node.</value>
+    </field>
+    <field name="created">
+      <value>1315830813083</value>
+    </field>
+    <field name="updated">
+      <value>1315908121958</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1315908121958</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - NVelocity</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>505</value>
+    </field>
+    <field name="summary">
+      <value>prevent Exception when passing a null dictionary as ComponentParameters of a ViewComponent</value>
+    </field>
+    <field name="description">
+      <value>Supplying the ComponentParameters to a view component via a "$" parameter or helper throws an exception if the dictionary is null. The error checking wrongly interprets the nullity of the parameter as a missing 'with' keyword.
+
+The following examples should be entirely valid in a view:
+
+#component(ComponentName $paramsDict)
+#component(ComponentName $myHelper.GetParamsDict())
+
+even if the value of $paramDict or $myHelper.GetParamsDict() evaluate to null.</value>
+    </field>
+    <field name="created">
+      <value>1226089067000</value>
+    </field>
+    <field name="updated">
+      <value>1253863102000</value>
+    </field>
+    <field name="reporterName">
+      <value>jonspalmer</value>
+    </field>
+    <field name="updaterName">
+      <value>jonspalmer</value>
+    </field>
+    <field name="resolved">
+      <value>1253863080000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonspalmer" text="The attached patch is against the RC3 tag and includes expanded test cases." created="1226089377000" />
+    <comment author="roelofb" text="r5995" created="1253863099000" />
+    <comment author="jonspalmer" text="* '''Summary''' changed from ''prevent Exception when passing a null dictionary as ComponentParameter of a ViewComponent'' to ''prevent Exception when passing a null dictionary as ComponentParameters of a ViewComponent''.&#xD;&#xA;" created="1226089140000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1253863080000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253863080000" />
+  </issue>
+</issues>

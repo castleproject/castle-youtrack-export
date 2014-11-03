@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Transaction</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>8</value>
+    </field>
+    <field name="summary">
+      <value>Exception says: Tried to dispose a transaction that is not on the current active transaction</value>
+    </field>
+    <field name="description">
+      <value>I have a concurrency test where a large number of threads are doing some active record operations that are declared with the TransactionAttribute. The threads are instantiated by me and not fetched from the thread pool.
+
+Recently this test has failed with an ArgumentException in DefaultTransactionManager.Dispose (line 255):
+
+if (CurrentTransaction != transaction)
+{
+	throw new ArgumentException("transaction", "Tried to dispose a transaction that is not on the current active transaction");
+}
+
+Upon investigating this problem further it became clear that when Dispose fetches CurrentTransaction  
+(i.e. activityManager.CurrentActivity.CurrentTransaction) it sometimes retrieve the wrong stack (which is stored in Activity).
+Typically the first and second threads succeed, but the third thread gets the first thread's CurrentTransaction and that is
+causing this exception.
+
+The real reason is that Castle is using CallContext.SetData and CallContext.GetData in CallContextActivityManager.CurrentActivity 
+to store a stack of transactions. Appearently under some circumstances can GetData return the same object for two different threads. 
+
+The reason for this is still unclear to me, but I'm absolutely sure that this is happening and I have a number of traces to back it up.
+
+I have now rewritten CallContextActivityManager to use Thread.SetData and Thread.GetData and the problem is gone. 
+Appearently there is a difference between how Thread.SetData and CallContext.SetData are handling the sharing 
+of data between threads.
+
+I have attached a patch with my fix, but I assume that you want to solve this in some other way (so it's just for inspiration). 
+
+I'm aware of the fact that Thread.SetData may have problems with state being shared when a thread is returned to the pool, but for me this fix is sufficient for now.
+</value>
+    </field>
+    <field name="created">
+      <value>1174410356000</value>
+    </field>
+    <field name="updated">
+      <value>1407823104043</value>
+    </field>
+    <field name="reporterName">
+      <value>jpersson</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1396694755770</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="sverlet" text="I got the same issue.&#xA;I think the trouble is due that the activity is propagated to every thread because Activity implements ILogicalThreadAffinative" created="1223983951000" />
+    <comment author="henke" text="Is this still a problem?" created="1272932902000" />
+  </issue>
+</issues>

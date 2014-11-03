@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>137</value>
+    </field>
+    <field name="summary">
+      <value>Databinding through DataBindAttribute does not register errors with SmartDispatcherController</value>
+    </field>
+    <field name="description">
+      <value>The DataBindAttribute had no way of registering errors generated during binding with the SmartDispatcherController. I  added a public property BoundInstanceErrors exposing the boundInstances field to SmartDispatcherController and modified the DataBindAttribute to store the generated errors like the controller it seld does.
+I found another issue in the process which is that in GetDataBindErrors(object instance) object stored in boundInstances are cast to ArrayList when they are in fact of type ErrorList an as a result the cast always returned null (no cast exception?) so the ErrorList returned always returned an empty list.
+
+Patch attached</value>
+    </field>
+    <field name="created">
+      <value>1155290111000</value>
+    </field>
+    <field name="updated">
+      <value>1162413188000</value>
+    </field>
+    <field name="reporterName">
+      <value>freyzor</value>
+    </field>
+    <field name="updaterName">
+      <value>freyzor</value>
+    </field>
+    <field name="resolved">
+      <value>1282143478932</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

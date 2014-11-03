@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>179</value>
+    </field>
+    <field name="summary">
+      <value>Support for Any properties on Joined Subclasses</value>
+    </field>
+    <field name="description">
+      <value>I had an Any property on a JoinedSubclass and the framework wasn't generating the proper schema and not persisting the property.  Attached patch includes a fix and unit test.</value>
+    </field>
+    <field name="created">
+      <value>1188523775000</value>
+    </field>
+    <field name="updated">
+      <value>1190436222000</value>
+    </field>
+    <field name="reporterName">
+      <value>wcpierce</value>
+    </field>
+    <field name="updaterName">
+      <value>wcpierce</value>
+    </field>
+    <field name="resolved">
+      <value>1282136508198</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

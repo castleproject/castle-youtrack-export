@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging - log4net</value>
+    </field>
+    <field name="Fix versions">
+      <value>Version 1.5</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>12</value>
+    </field>
+    <field name="summary">
+      <value>Prevent String.Format exceptions by using log4net.Util.SystemStringFormat</value>
+    </field>
+    <field name="description">
+      <value>Log4net provides a SystemStringFormat class that handles incorrect String.Format parameters:
+
+ String.Format("{0} {2}", "Hello", "World");
+
+and reports errors to log4net's error handling system without throwing exceptions.</value>
+    </field>
+    <field name="created">
+      <value>1200867745000</value>
+    </field>
+    <field name="updated">
+      <value>1256218357000</value>
+    </field>
+    <field name="reporterName">
+      <value>rgrabowski</value>
+    </field>
+    <field name="updaterName">
+      <value>rgrabowski</value>
+    </field>
+    <field name="resolved">
+      <value>1256218320000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="rbellamy" text="Applied." created="1256218349000" />
+    <comment author="rbellamy" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Version 1.5''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1256218320000" />
+    <comment author="rbellamy" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1256218320000" />
+  </issue>
+</issues>

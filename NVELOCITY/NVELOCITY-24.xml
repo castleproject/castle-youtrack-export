@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>1.1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>24</value>
+    </field>
+    <field name="summary">
+      <value>Improved enum support</value>
+    </field>
+    <field name="description">
+      <value>I have written this enhancement to NVelocity that can retrieve enums in a more "intuitive" way then the previously supported way, consider the following pseudo code (c is context):
+
+       public enum EnumData
+       {
+          VALUE_1,
+          VALUE_2,
+          VALUE_3
+       }
+       c.Put("EnumData", typeof(EnumData) );
+       c.Put("enumValue", EnumData.VALUE_2 );
+
+Right now you can say:
+
+       #if($enumValue == "VALUE_2") equal #end
+
+But with this patch you can now say:
+
+      #if($enumValue == $EnumData.VALUE_2) equal #end
+
+More intuive in my opinion (no magic strings), and enum name is prefixed for increased readability.
+
+This patch contains the required change plus a modified test case.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1212473003000</value>
+    </field>
+    <field name="updated">
+      <value>1287754263930</value>
+    </field>
+    <field name="reporterName">
+      <value>rasmus</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1254102300000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Applied in r6000. Thanks." created="1254102309000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1254102300000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1254102300000" />
+  </issue>
+</issues>

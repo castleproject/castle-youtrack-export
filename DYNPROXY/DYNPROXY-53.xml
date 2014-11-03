@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0 Beta 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>53</value>
+    </field>
+    <field name="summary">
+      <value>Serialization does not work if no default constructor</value>
+    </field>
+    <field name="description">
+      <value>Proxies for classes tagged as [Serializable] (without implementing ISerializable) cannot be proxied if they have no default constructor. The reason for this is that DynamicProxy uses this constructor (augmented with an IInterceptor[]) to instantiate the deserialized proxy in ProxyObjectReference.RecreateClassProxy (line 132).
+
+Suggested fix: Use System.Runtime.Serialization.FormatterServices.GetSafeUninitializedObject instead of calling the constructor, set interceptors manually.
+
+Failing test case:
+
+[Serializable]
+public class C
+{
+	public int I;
+
+	public C (int i)
+	{
+		I = i;
+	}
+}
+
+[Test]
+public void SerializationFails ()
+{
+	ProxyObjectReference.ResetScope ();
+
+	C proxy = (C) generator.CreateClassProxy (typeof (C), new IInterceptor[] { new StandardInterceptor () }, 1);
+	C otherProxy = (C) SerializeAndDeserialize (proxy);
+
+	Assert.AreEqual (proxy.I, otherProxy.I);
+}</value>
+    </field>
+    <field name="created">
+      <value>1176466077000</value>
+    </field>
+    <field name="updated">
+      <value>1177089267000</value>
+    </field>
+    <field name="reporterName">
+      <value>fcs</value>
+    </field>
+    <field name="updaterName">
+      <value>fcs</value>
+    </field>
+    <field name="resolved">
+      <value>1282140679838</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.0 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>162</value>
+    </field>
+    <field name="summary">
+      <value>Resolve&lt;T&gt;(IDictionary) will not override ctor args; only optional property args.</value>
+    </field>
+    <field name="description">
+      <value>When using the Resolve&lt;T&gt;(IDictionary) method, it was noticed that ctor args cannot be overridden at runtime, unlike properties.  Issue was originally found in 1.0.3.433, but also verified on latest trunk (2.0).  There is no documentation indicating that this method will _only_ override optional args, therefore this is either unexpected behavior for the given method, or an actual bug.
+
+If this is by-design, a possible suggestion would be to change the name of this method's argument name to indicate the IDictionary is _only_ for optional (property) args.  However, I would hope this is a bug, since the runtime overriding of ctor args can be an extremely useful feature.</value>
+    </field>
+    <field name="created">
+      <value>1247207440000</value>
+    </field>
+    <field name="updated">
+      <value>1269679656000</value>
+    </field>
+    <field name="reporterName">
+      <value>mjyeaney</value>
+    </field>
+    <field name="updaterName">
+      <value>mjyeaney</value>
+    </field>
+    <field name="resolved">
+      <value>1269679620000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="felixg" text="I think it may be related to my problem from discussion thread http://groups.google.com/group/castle-project-users/browse_thread/thread/ad3430081ce9c86b/46e78716e5202cce" created="1258953010000" />
+    <comment author="xtoff" text="Is there a test case for that?" created="1260777803000" />
+    <comment author="xtoff" text="can anyone provide a testcase for that? I can't reproduce this on latest version, so unless someone provides a reproduction, I'm gonna close this as can not reproduce" created="1266755339000" />
+    <comment author="xtoff" text="at this point it can't be reproduced. Please provide a failing testcase." created="1269679656000" />
+    <comment author="xtoff" text="at this point it can't be reproduced. Please provide a failing testcase." created="1269679656000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1269679620000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Resolved''.&#xD;&#xA;" created="1269679620000" />
+  </issue>
+</issues>

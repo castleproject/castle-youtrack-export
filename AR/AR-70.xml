@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>70</value>
+    </field>
+    <field name="summary">
+      <value>Type parameter for the BelongsTo attribute</value>
+    </field>
+    <field name="description">
+      <value>I need a type parameter for the BelongsTo attribute. Explanation below. 
+
+I am implementing a project using a lot of unit-testing. My problem occurs when I would like to mock off a Document object in a Case object. 
+I am implementing an IDocument interface and gets the following code: 
+
+Code: 
+   [ActiveRecord("CASE_TABLE")] 
+   public class Case : ActiveRecordBase, ICase 
+   { 
+      private IDocument document; 
+
+      [BelongsTo("DOCUMENT_ID")] 
+      public IDocument Document 
+      { 
+         get { return document; } 
+         set { document = value; } 
+      } 
+   } 
+
+
+Now i get the error: 
+
+Code: 
+An association from the table CASE_TABLE refers to an unmapped class: IDocument 
+
+I can't really tell AR that the object it would like to look for is Document, as there is no type parameter for the BelongsTo attribute - as with HasAndBelongsToMany, etc. 
+
+Anders</value>
+    </field>
+    <field name="created">
+      <value>1155121617000</value>
+    </field>
+    <field name="updated">
+      <value>1162409973000</value>
+    </field>
+    <field name="reporterName">
+      <value>anders</value>
+    </field>
+    <field name="updaterName">
+      <value>anders</value>
+    </field>
+    <field name="resolved">
+      <value>1282136129463</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

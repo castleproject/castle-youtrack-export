@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle Visual Studio Integration</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>90</value>
+    </field>
+    <field name="summary">
+      <value># in quotes stops all colouring in file</value>
+    </field>
+    <field name="description">
+      <value>&lt;a href=""&gt;Home&lt;/a&gt; and &lt;a href="#home"&gt;Home&lt;/a&gt; are colorised properly.
+
+&lt;a href="#"&gt;Home&lt;/a&gt; is not and the whole file is not colorised anymore.
+</value>
+    </field>
+    <field name="created">
+      <value>1197898252000</value>
+    </field>
+    <field name="updated">
+      <value>1223619420000</value>
+    </field>
+    <field name="reporterName">
+      <value>arnoud</value>
+    </field>
+    <field name="updaterName">
+      <value>arnoud</value>
+    </field>
+    <field name="resolved">
+      <value>1223619420000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="This defect was fixed in 0.3.2." created="1223619420000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1223619360000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1223619420000" />
+  </issue>
+</issues>

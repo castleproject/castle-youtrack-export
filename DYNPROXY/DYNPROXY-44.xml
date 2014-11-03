@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.0 Beta 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>44</value>
+    </field>
+    <field name="summary">
+      <value>Provide access to the Interceptor of a Proxy</value>
+    </field>
+    <field name="description">
+      <value>Often, it is convenient to implement generic logic (comparators, ...) that deal with dynamic proxies as their data/invocation arguments. Therefore, you need an efficient way of accessing/extracting the interceptors out of the proxy objects. E.g., emitting the access code in the proxy is faster and more safe than using reflection in the generic logic.
+
+Of course there are several ways to do this, but here are my suggestions:
+
+1) Use Reflection to retrive the value of the (generated) Field __interceptor of the generated Proxy
+(Would be the (afaik) easiest but not the nicest way to achive this)
+
+2) Introduce an Interface (IProxy) which provides an Interceptor Property. (Then manipulate the generated
+get_Interceptor Property Accessor method such that it will return the actual Interceptor ... such as the content of the __interceptor Attribute of the generated Proxy)
+this could look like this:
+
+The IProxy Interface:
+
+using System;
+using IInterceptor = Castle.DynamicProxy.IInterceptor;
+
+namespace Castle.DynamicProxy
+{
+    public interface IProxy
+    {
+        IInterceptor Interceptor
+        {
+            get;
+        }
+    }
+}
+
+
+private EasyProperty CreateInterceptorProperty(PropertyInfo propertyInfo)
+        {
+            EasyProperty interceptorProperty  = MainTypeBuilder.CreateProperty(propertyInfo);
+            EasyMethod getMethod = interceptorProperty.CreateGetMethod();
+            MethodInfo baseMethod = typeof(MulticastDelegate).GetMethod("get_Interceptor");
+            getMethod.CodeBuilder.AddStatement(new ReturnStatement(base.InterceptorField));
+            return interceptorProperty;
+        }
+
+within the InterfaceProxyGenerator which is derived from BaseCodeGenerator.</value>
+    </field>
+    <field name="created">
+      <value>1167827214000</value>
+    </field>
+    <field name="updated">
+      <value>1170529158000</value>
+    </field>
+    <field name="reporterName">
+      <value>thomas.darimont</value>
+    </field>
+    <field name="updaterName">
+      <value>thomas.darimont</value>
+    </field>
+    <field name="resolved">
+      <value>1282140658229</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

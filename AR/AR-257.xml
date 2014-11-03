@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Queries</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.0 Alpha 2</value>
+    </field>
+    <field name="Affected versions">
+      <value>AR 2.0 Alpha 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>257</value>
+    </field>
+    <field name="summary">
+      <value>Add NHSearch</value>
+    </field>
+    <field name="description">
+      <value>Add a possibility to include NHSearch by simple using
+&lt;activerecord searchable="true"&gt;
+.....
+
+</value>
+    </field>
+    <field name="created">
+      <value>1243599748000</value>
+    </field>
+    <field name="updated">
+      <value>1245964733000</value>
+    </field>
+    <field name="reporterName">
+      <value>mzywitza</value>
+    </field>
+    <field name="updaterName">
+      <value>mzywitza</value>
+    </field>
+    <field name="resolved">
+      <value>1245964680000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.0 Alpha 2''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1245964680000" />
+  </issue>
+</issues>

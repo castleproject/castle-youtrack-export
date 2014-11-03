@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validators</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>79</value>
+    </field>
+    <field name="summary">
+      <value>ValidateIsUnique not working with TransactionScope</value>
+    </field>
+    <field name="description">
+      <value>With a model with a property using the ValidateIsUnique attribute:
+
+	[Property, ValidateIsUnique, ValidateNotEmpty]
+	public string Name
+
+The following code fails:
+
+	using (TransactionScope scope = new TransactionScope())
+	{
+		User user = new User();
+		user.Name = "Test";
+		user.Create();
+			
+		user = new User();
+		user.Name = "Test2";
+		user.Create();
+		
+		scope.VoteCommit();
+	}
+
+With the exception: 
+
+1) Tests.ArTransactionScopeTest.CreateTwice :
+Castle.ActiveRecord.Framework.ActiveRecordException : Could not perform Create for User
+  ----&gt; NHibernate.ADOException : Could not save object
+  ----&gt; Castle.ActiveRecord.Framework.ActiveRecordException : Error performing Execute for User
+  ----&gt; NHibernate.ADOException : Unable to perform find
+  ----&gt; System.Data.SqlClient.SqlException : Timeout expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+at
+e:\dev\ccnet\server\CastleProject\WorkingDirectory\ActiveRecord\Castle.ActiveRecord\Framework\ActiveRecordBase.cs(123)
+at
+e:\dev\ccnet\server\CastleProject\WorkingDirectory\ActiveRecord\Castle.ActiveRecord\Framework\ActiveRecordBase.cs(892)
+at
+c:\Projects\QITMgntSync\src\Core\Models\User.cs(173)
+at
+c:\Projects\QITMgntSync\src\Synchronizer.Tests\ArTransactionScopeTest.cs(55)
+at
+--ActiveRecordException
+at
+at NHibernate.Impl.SessionImpl.SaveWithGeneratedIdentifier(Object obj, CascadingAction action, Object anything)
+at
+at NHibernate.Impl.SessionImpl.Save(Object obj)
+at
+e:\dev\ccnet\server\CastleProject\WorkingDirectory\ActiveRecord\Castle.ActiveRecord\Framework\ActiveRecordBase.cs(110)
+at
+--ADOException
+at
+e:\dev\ccnet\server\CastleProject\WorkingDirectory\ActiveRecord\Castle.ActiveRecord\Framework\ActiveRecordBase.cs(437)
+at
+e:\dev\ccnet\server\CastleProject\WorkingDirectory\ActiveRecord\Castle.ActiveRecord\Framework\ActiveRecordMediator.cs(42)
+at
+e:\dev\ccnet\server\CastleProject\WorkingDirectory\ActiveRecord\Castle.ActiveRecord\Framework\Validators\IsUniqueValidator.cs(61)
+at
+e:\dev\ccnet\server\CastleProject\WorkingDirectory\ActiveRecord\Castle.ActiveRecord\Framework\Validators\AbstractValidator.cs(68)
+at
+e:\dev\ccnet\server\CastleProject\WorkingDirectory\ActiveRecord\Castle.ActiveRecord\Framework\ActiveRecordValidationBase.cs(110)
+at
+e:\dev\ccnet\server\CastleProject\WorkingDirectory\ActiveRecord\Castle.ActiveRecord\Framework\ActiveRecordValidationBase.cs(165)
+at
+at NHibernate.Impl.SessionImpl.DoSave(Object theObj, Key key, IClassPersister persister, Boolean replicate, Boolean useIdentityColumn, CascadingAction cascadeAction, Object anything)
+at
+at NHibernate.Impl.SessionImpl.DoSave(Object obj, Object id, IClassPersister persister, Boolean useIdentityColumn, CascadingAction cascadeAction, Object anything)
+at
+at NHibernate.Impl.SessionImpl.SaveWithGeneratedIdentifier(Object obj, CascadingAction action, Object anything)
+at
+--ActiveRecordException
+at
+at NHibernate.Impl.SessionImpl.Find(CriteriaImpl criteria)
+at
+at NHibernate.Impl.CriteriaImpl.List()
+at
+e:\dev\ccnet\server\CastleProject\WorkingDirectory\ActiveRecord\Castle.ActiveRecord\Framework\Validators\IsUniqueValidator.cs(84)
+at
+e:\dev\ccnet\server\CastleProject\WorkingDirectory\ActiveRecord\Castle.ActiveRecord\Framework\ActiveRecordBase.cs(429)
+at
+--ADOException
+at
+at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+at
+at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+at
+at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+at
+at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+at
+at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+at
+at System.Data.SqlClient.SqlDataReader.get_MetaData()
+at
+at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+at
+at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+at
+at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+at
+at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+at
+at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+at
+at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+at
+at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+at
+at NHibernate.Impl.BatcherImpl.ExecuteReader(IDbCommand cmd)
+at
+at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, RowSelection selection, ISessionImplementor session)
+at
+at NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Object optionalObject, Object optionalId, Object[] optionalCollectionKeys, Boolean returnProxies)
+at
+at NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Object optionalObject, Object optionalId, Object[] optionalCollectionKeys, Boolean returnProxies)
+at
+at NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet querySpaces, IType[] resultTypes)
+at
+at NHibernate.Loader.CriteriaLoader.List(ISessionImplementor session)
+at
+at NHibernate.Impl.SessionImpl.Find(CriteriaImpl criteria)</value>
+    </field>
+    <field name="created">
+      <value>1158299914000</value>
+    </field>
+    <field name="updated">
+      <value>1162409603000</value>
+    </field>
+    <field name="reporterName">
+      <value>macournoyer</value>
+    </field>
+    <field name="updaterName">
+      <value>macournoyer</value>
+    </field>
+    <field name="resolved">
+      <value>1282136188666</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

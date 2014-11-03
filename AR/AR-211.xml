@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Attributes</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.0 Alpha 2</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>211</value>
+    </field>
+    <field name="summary">
+      <value>MetaValueAttribute only accepts value as string</value>
+    </field>
+    <field name="description">
+      <value>When using AnyAttribute one can specify a MetaType however MetaValueAttribute only has a constructor to accept a string. The database doesn't need a string and a integer makes more sense from a db design point of view. When using enum as meta value (why I created this patch) one cannot cast to enum type and then tostring() as the parameter must be static. This patch creates three new constructors where the value type can be byte, short or int. Within the constructor .ToString() is run on the value and set as originally.</value>
+    </field>
+    <field name="created">
+      <value>1207938803000</value>
+    </field>
+    <field name="updated">
+      <value>1243595714000</value>
+    </field>
+    <field name="reporterName">
+      <value>tiggerthump</value>
+    </field>
+    <field name="updaterName">
+      <value>tiggerthump</value>
+    </field>
+    <field name="resolved">
+      <value>1243595700000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="Applied in r5721." created="1243595708000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.0 Alpha 2''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1243595700000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1243595700000" />
+  </issue>
+</issues>

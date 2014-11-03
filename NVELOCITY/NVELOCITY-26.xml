@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>26</value>
+    </field>
+    <field name="summary">
+      <value>View components used in a layout don't render the capturefor blocks</value>
+    </field>
+    <field name="description">
+      <value>If a default layout includes a view component, the capturefor() blocks are not rendered. The rest of content is, just not the capturefor.
+eg
+Views\layouts\default.vm
+&lt;html &gt;...
+&lt;script type="text/javascript"&gt;
+    $!scripts
+&lt;/script&gt;
+..&lt;div&gt;
+#component(DivisionSelectComponent)
+&lt;/div...
+...&lt;/html&gt;
+
+Views\components\DivisionalSelectComponent\default.vm
+#capturefor(scripts)
+var division;
+
+function onDivisionChange(e,a){
+alert('changed');
+alert(this.value);
+
+}
+#end
+
+&lt;select id="divisionSelect" name="divisionSelect"&gt;
+    &lt;option&gt;Force Total&lt;/option&gt;
+    &lt;option value="AA"&gt;North West Leeds&lt;/option&gt;
+    &lt;option value="BA"&gt;North East Leeds&lt;/option&gt;
+&lt;/select&gt;
+
+
+When the view is rendered, the divisionSelect list is rendered, but the code onDivisionChange is not.
+If the view passes the component into a named section, it all renders fine.</value>
+    </field>
+    <field name="created">
+      <value>1212632369000</value>
+    </field>
+    <field name="updated">
+      <value>1253854844000</value>
+    </field>
+    <field name="reporterName">
+      <value>oharab</value>
+    </field>
+    <field name="updaterName">
+      <value>oharab</value>
+    </field>
+    <field name="resolved">
+      <value>1282142822776</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253854800000" />
+  </issue>
+</issues>

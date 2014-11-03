@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>175</value>
+    </field>
+    <field name="summary">
+      <value>invalid CompositionInvocation type used when code uses interface proxies with and without InterceptorSelector</value>
+    </field>
+    <field name="description">
+      <value>copied from github:
+
+In CreateInterfaceProxyWithoutTarget, when user code creates proxies of the same type, but some without IInterceptorSelector and some with it, the proxy components generated second will end up being invalid, e.g:
+{code lang=csharp}
+using System;
+using System.Reflection;
+using Castle.DynamicProxy;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace Testing.Common.Model.DependenciesResolution.Windsor.Tests.Bugs
+{
+    /// &lt;summary&gt;https://github.com/castleproject/Core/issues/14&lt;/summary&gt;
+    [TestClass]
+    public class InterfaceProxyInvocationTypeCachingBug
+    {
+        [TestMethod]
+        public void BugExists()
+        {
+            var ProxyGenerator = new ProxyGenerator();
+            var someInstanceOfProxyWithoutSelector = (IService)ProxyGenerator.CreateInterfaceProxyWithoutTarget(interfaceToProxy: typeof(IService), interceptors: new IInterceptor[] { new DummyInterceptor() });
+            var someInstanceOfProxyWithSelector = (IService)ProxyGenerator.CreateInterfaceProxyWithoutTarget(interfaceToProxy: typeof(IService), interceptors: new IInterceptor[] { new DummyInterceptor() }, options: new ProxyGenerationOptions { Selector = new DummyInterceptorSelector() });
+
+            // This runs fine
+            someInstanceOfProxyWithoutSelector.DoSomething();
+            // This will throw System.InvalidProgramException
+            someInstanceOfProxyWithSelector.DoSomething();
+        }
+
+        public interface IService
+        {
+            void DoSomething();
+        }
+
+        public class DummyInterceptor : IInterceptor
+        {
+            public void Intercept(IInvocation invocation)
+            {
+            }
+        }
+
+        public class DummyInterceptorSelector : IInterceptorSelector
+        {
+            public IInterceptor[] SelectInterceptors(Type type, MethodInfo method, IInterceptor[] interceptors)
+            {
+                return interceptors;
+            }
+        }
+
+    }
+}
+{code}
+The reason this is happening is because Castle generates a dedicated IInvocation type for each method of the proxied service type. The type derives from CompositionInvocation, which has two constructors, but only one constructor for the generated type is added, which - that depends on whether a selector is being used or not. This can be seen here:
+https://github.com/castleproject/Core/blob/master/src/Castle.Core/DynamicProxy/Generators/CompositionInvocationTypeGenerator.cs : line 39
+
+However the generated IInvocation with just one constructor is then reused from cache regardless whether the constructor is right for the provided ProxyGenerationOptions.Selector:
+https://github.com/castleproject/Core/blob/master/src/Castle.Core/DynamicProxy/Contributors/InterfaceProxyWithoutTargetContributor.cs
+line 76:
+
+    {code}var key = new CacheKey(method.Method, CompositionInvocationTypeGenerator.BaseType, invocationInterfaces, /* Issue cause: ProxyGenerationOptions is not part of cache key */ null);{code}
+Strangely enough, i had some cases when on invocation, the Constructor with completely mismatched arguments (even typewise!) returns successfully. The program only protested on the invocation's Proceed() method because there is some null object access attempt.
+
+Some solutions that come to my mind:
+
+always overload both constructors of CompositionInvocation and keep the caching behaviour as is
+the Cache key should include ProxyGenerationOptions
+the caching should be refactored so the cache key used takes all the information that differentiate the generated types
+P.S. I think this happens elsewhere, e.g. in: 
+https://github.com/castleproject/Core/blob/master/src/Castle.Core/DynamicProxy/Contributors/InterfaceProxyTargetContributor.cs
+Possibly in more places near usages of CompositionInvocationTypeGenerator constructor.
+I've wasted couple days on this one, so forgive me for the report not being exhaustive in this regard. If I find some more time I might elaborate.</value>
+    </field>
+    <field name="created">
+      <value>1345717967471</value>
+    </field>
+    <field name="updated">
+      <value>1345880094328</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1345880094328</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

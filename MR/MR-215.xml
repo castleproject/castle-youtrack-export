@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>215</value>
+    </field>
+    <field name="summary">
+      <value>additionalSources never initialized by ViewEngine</value>
+    </field>
+    <field name="description">
+      <value>The "additionalSources" attribute of viewEngine config is loaded but never actually used
+
+My Config
+
+    &lt;viewEngine
+      viewPathRoot=""
+      customEngine="Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine, Castle.MonoRail.Framework.Views.NVelocity"&gt;
+      &lt;additionalSources&gt;
+        &lt;assembly name="MonoRailUtils" namespace="MonoRailUtils.Views"/&gt;
+        &lt;assembly name="Diagnostics" namespace="Diagnostics.Views"/&gt;
+      &lt;/additionalSources&gt;
+    &lt;/viewEngine&gt;
+
+
+The Fix
+
+Inside Service(IServiceProvider provider), assign the sources from ViewEngineConfig to additionalSources (which must be non-readonly). Here's the complete method
+
+		public void Service(IServiceProvider provider)
+		{
+			MonoRailConfiguration config = (MonoRailConfiguration) provider.GetService(typeof(MonoRailConfiguration));
+			
+			if (config != null)
+			{
+				viewRootDir = config.ViewEngineConfig.ViewPathRoot;
+                additionalSources = config.ViewEngineConfig.Sources;
+			}
+		}
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1169153955000</value>
+    </field>
+    <field name="updated">
+      <value>1244675858000</value>
+    </field>
+    <field name="reporterName">
+      <value>dfields</value>
+    </field>
+    <field name="updaterName">
+      <value>dfields</value>
+    </field>
+    <field name="resolved">
+      <value>1282143665729</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675820000" />
+  </issue>
+</issues>

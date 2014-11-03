@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Usability Problem</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Wcf</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>158</value>
+    </field>
+    <field name="summary">
+      <value>Make it easy to register WCF Services by convention</value>
+    </field>
+    <field name="description">
+      <value>Currently there's not nice way to register services by convention. The best I could come up with is this:
+
+{code lang=csharp}
+container.Register(
+	Classes.FromAssemblyContaining&lt;UserService&gt;()
+		.Where(Component.IsInSameNamespaceAs&lt;UserService&gt;())
+		.WithService.DefaultInterfaces()
+		.LifestyleTransient()
+		.Configure(c =&gt; c.AsWcfService(new DefaultServiceModel()
+					                    .Hosted()
+					                    .OpenEagerly()
+					                    .AddExtensions(new WcfMetadataExtension().EnableHttpGet())
+										// NOTE: yes - it is lame, not sure we can do it better ATM
+					                    .AddEndpoints(WcfEndpoint.ForContract(c.Implementation.GetInterfaces().Single())))));
+{code}
+
+
+Most notably the way to specify endpoints sucks badly as we don't have access to the information about which service contracts are available on the component.
+
+All-in-all this feels way too verbose to me and there's way too many brackets involved.</value>
+    </field>
+    <field name="created">
+      <value>1335916496551</value>
+    </field>
+    <field name="updated">
+      <value>1396694946983</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396694946969</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Perhaps the simplest thing would be to just implicitly add endpoints for each service interface exposed by such component?" created="1336104993921" />
+  </issue>
+</issues>

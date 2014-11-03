@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.0</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>232</value>
+    </field>
+    <field name="summary">
+      <value>Possible race in SelfValidationContributor.Initialize</value>
+    </field>
+    <field name="description">
+      <value>I've had a few exceptions in SelfValidationContributor.Initialize which seems to be caused by the same type being added several times to the hashtable methodsPerType. As far as I can see, it looks like there is not sufficient locking being made in the caller AbstractValidationContributor.IsValid.
+
+The code in IsValid looks like this:
+
+if (!initialized.Contains(instanceType))
+{
+    Initialize(instanceType);
+    initialized.Add(instanceType);
+}
+
+and that is not sufficient to guarantee that two threads will never enter initialize.Add with the same instanceType.
+
+I'm using ver. 5332 of the trunk.</value>
+    </field>
+    <field name="created">
+      <value>1225349900000</value>
+    </field>
+    <field name="updated">
+      <value>1244090622000</value>
+    </field>
+    <field name="reporterName">
+      <value>jpersson</value>
+    </field>
+    <field name="updaterName">
+      <value>jpersson</value>
+    </field>
+    <field name="resolved">
+      <value>1244090580000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jpersson" text="This has started to happen in our code base once again. Anyone who has any clues?" created="1236232822000" />
+    <comment author="bw9" text="This is how it might look in Visual Studio (I work on the samme application as Jan)" created="1236234601000" />
+    <comment author="jpersson" text="I've now made patch of my own. I assume this is the correct way to do it, but please do a sanity check on my code before you include it in Castle." created="1236826018000" />
+    <comment author="daveg" text="I believe I fixed this a while ago at revision 5510. Can you check to see whether this addresses your problem?" created="1242210908000" />
+    <comment author="daveg" text="There has not been a reply to say this has not fixed the problem so I'm marking it resolved." created="1244090623000" />
+    <comment author="daveg" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1244090580000" />
+    <comment author="bw9" text="* '''Attachment''' 2009-03-05 10-31-00.bmp added.&#xD;&#xA;" created="1236234540000" />
+    <comment author="jpersson" text="* '''Attachment''' AR-ISSUE-232.patch added.&#xD;&#xA;" created="1236826020000" />
+  </issue>
+</issues>

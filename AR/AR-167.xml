@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>167</value>
+    </field>
+    <field name="summary">
+      <value>A CompositeKey class with multiple Equals() overloads throws exception</value>
+    </field>
+    <field name="description">
+      <value>If you use Resharper 3.0 to "Generate Equals and GetHashCode", you get two overloads of the Equals method. One takes the Type of the current class, the other a plain object. This causes the SemanticVerifierVisitor to throw an AmbiguousMatchException when it tries to GetMethod("Equals"). The attached patch changes the behaviour to iterate through the methods looking for Equals(object).</value>
+    </field>
+    <field name="created">
+      <value>1183912353000</value>
+    </field>
+    <field name="updated">
+      <value>1186924679000</value>
+    </field>
+    <field name="reporterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="updaterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="resolved">
+      <value>1282136438276</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

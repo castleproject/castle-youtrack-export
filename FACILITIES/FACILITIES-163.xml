@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>163</value>
+    </field>
+    <field name="summary">
+      <value>TypedFactoryInterceptor Memory Leak</value>
+    </field>
+    <field name="description">
+      <value>Using a Release/Destroy method (void method) in a TypedFactory cause a memory leak on tracked components. 
+
+The instance released from a TypedFactory (e.g. Factory1.RelaseObjA(objA)) is disposed but never garbage collected. They are not garbage collected because the class TypedFactoryInterceptor keep an internal list (trackedComponents) of resolved components. TypedFactoryInterceptor doesnt remove components from this list when Releasing a component. It only remove them from this list when calling Dispose on the TypedFactory. 
+
+See the code below taken from BuildHandlersMap method in TypedFactoryInterceptor (not sure its the latest but reproduced the problem with 2.5 --and 3.2 version--) :
+
+foreach (MethodInfo method in service.GetMethods())			
+{				
+  if (IsReleaseMethod(method))				
+  {
+    methods.Add(method, new Release(kernel) {color:red}MISSING call to trackedComponents.Remove{color});
+    continue;
+  }
+  methods.Add(method, new Resolve(kernel, ComponentSelector, {color:red}trackedComponents.Add{color}));
+}</value>
+    </field>
+    <field name="created">
+      <value>1362422206643</value>
+    </field>
+    <field name="updated">
+      <value>1362438274499</value>
+    </field>
+    <field name="reporterName">
+      <value>jcviau</value>
+    </field>
+    <field name="updaterName">
+      <value>jcviau</value>
+    </field>
+    <field name="resolved">
+      <value>1362438228932</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="It's a known bug that existed in 2.5. It was fixed in 3.0  and this part of the codebase was largely rewritten.&#xA;&#xA;Are you sure the problem still exists in 3.x?&#xA;&#xA;Can you build a reproduction?" created="1362429796431" updated="1362429839955" />
+    <comment author="jcviau" text="I just re-tested with 3.2 and it works, I probably made a mistake when switching dlls the first time. Sorry for taking your time and thanks for your quick feedback.&#xA;&#xA;" created="1362437871317" />
+  </issue>
+</issues>

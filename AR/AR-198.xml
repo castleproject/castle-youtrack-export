@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Attributes</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>198</value>
+    </field>
+    <field name="summary">
+      <value>Support for NHibernate naming strategy "pascalcase-underscore"</value>
+    </field>
+    <field name="description">
+      <value>The PropertyAccess enumeration does not have the "pascalcase-underscore" NHibernate naming strategy.
+
+I just added it to the enumeration values and applied the modifications to the PropertyAccessHelper.ToString() method.
+
+It's tested at least with my models. Next time, I will also add an NUnit test to the patch. Sorry for that.
+
+Gildas</value>
+    </field>
+    <field name="created">
+      <value>1201148210000</value>
+    </field>
+    <field name="updated">
+      <value>1201531807000</value>
+    </field>
+    <field name="reporterName">
+      <value>djhi</value>
+    </field>
+    <field name="updaterName">
+      <value>djhi</value>
+    </field>
+    <field name="resolved">
+      <value>1282136646932</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

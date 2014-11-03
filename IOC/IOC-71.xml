@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>71</value>
+    </field>
+    <field name="summary">
+      <value>Synchronization problem resolving services</value>
+    </field>
+    <field name="description">
+      <value>I'm currently using Windsor IoC in an asp.net context. When I started posting simultaneous requests (around 100 or so), in some requests I get the following exception when trying to resolve a service:
+
+System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.Collections.Stack.Push(Object obj)
+   at
+Castle.MicroKernel.SubSystems.Conversion.DefaultConversionManager.PushModel(ComponentModel
+model) in e:\dev\castle\trunk\InversionOfControl\Castle.MicroKernel
+\SubSystems\Conversion\DefaultConversionManager.cs:line 147
+   at
+Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveParameterDependency(CreationContext
+context, ComponentModel model, DependencyModel dependency) in e:\dev \castle\trunk\InversionOfControl\Castle.MicroKernel\Resolvers
+\DefaultDependencyResolver.cs:line 335
+   at
+Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(CreationContext
+context, ISubDependencyResolver parentResolver, ComponentModel model, DependencyModel dependency) in e:\dev\castle\trunk\InversionOfControl
+\Castle.MicroKernel\Resolvers\DefaultDependencyResolver.cs:line 215
+   at
+Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArguments(ConstructorCandidate
+constructor, CreationContext context, Type[]&amp; signature) in e:\dev \castle\trunk\InversionOfControl\Castle.MicroKernel\ComponentActivator
+\DefaultComponentActivator.cs:line 205
+   at
+Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(CreationContext
+context) in e:\dev\castle\trunk\InversionOfControl\Castle.MicroKernel
+\ComponentActivator\DefaultComponentActivator.cs:line 68
+   at
+Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext
+context) in e:\dev\castle\trunk\InversionOfControl\Castle.MicroKernel
+\ComponentActivator\DefaultComponentActivator.cs:line 47
+   at
+Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext
+context) in e:\dev\castle\trunk\InversionOfControl\Castle.MicroKernel
+\ComponentActivator\AbstractComponentActivator.cs:line 72
+   at
+Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext
+context) in e:\dev\castle\trunk\InversionOfControl\Castle.MicroKernel
+\Lifestyle\AbstractLifestyleManager.cs:line 36
+   at
+Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext
+context) in e:\dev\castle\trunk\InversionOfControl\Castle.MicroKernel
+\Handlers\DefaultHandler.cs:line 46
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler
+handler, Type service, IDictionary additionalArguments) in e:\dev \castle\trunk\InversionOfControl\Castle.MicroKernel
+\DefaultKernel.cs:line 985
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler
+handler, Type service) in e:\dev\castle\trunk\InversionOfControl
+\Castle.MicroKernel\DefaultKernel.cs:line 973
+   at Castle.MicroKernel.DefaultKernel.get_Item(Type service) in e:\dev \castle\trunk\InversionOfControl\Castle.MicroKernel
+\DefaultKernel.cs:line 505
+   at Castle.Windsor.WindsorContainer.Resolve(Type service) in e:\dev \castle\trunk\InversionOfControl\Castle.Windsor
+\WindsorContainer.cs:line 267
+   at Castle.Windsor.WindsorContainer.Resolve[T]() in e:\dev\castle \trunk\InversionOfControl\Castle.Windsor\WindsorContainer.cs:line 305
+
+
+The configuration of the service is as follows:
+
+			&lt;component id="sgcTemplatesRepository"
+type="SgcTemplatesRepository, DocumentEngine.Core"
+lifestyle="transient"&gt;
+				&lt;parameters&gt;
+					&lt;sgcApiUrl&gt;http://someurl&lt;/sgcApiUrl&gt;
+					&lt;templateQuery&gt;&lt;![CDATA[uri']]</value>
+    </field>
+    <field name="created">
+      <value>1174904466000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838932</value>
+    </field>
+    <field name="reporterName">
+      <value>jhosm</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142014245</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

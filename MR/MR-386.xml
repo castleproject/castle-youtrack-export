@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>386</value>
+    </field>
+    <field name="summary">
+      <value>Provide key name in exception</value>
+    </field>
+    <field name="description">
+      <value>ArgumentException
+
+Message:
+An entry with the same key already exists.
+
+StackTrace:
+   at System.Collections.Specialized.ListDictionary.Add(Object key, Object value)
+   at System.Collections.Specialized.HybridDictionary.Add(Object key, Object value)
+   at Castle.MonoRail.Framework.Internal.ResourceDictionary.Add(Object key, IResource resource) in I:\Castle Source Code\1.0.x-RC3\MonoRail\Castle.MonoRail.Framework\Internal\ResourceDictionary.cs:line 35
+   at Castle.MonoRail.Framework.ControllerLifecycleExecutor.CreateResources(MethodInfo method) in I:\Castle Source Code\1.0.x-RC3\MonoRail\Castle.MonoRail.Framework\ControllerLifecycleExecutor.cs:line 710
+   at Castle.MonoRail.Framework.ControllerLifecycleExecutor.PrepareResources() in I:\Castle Source Code\1.0.x-RC3\MonoRail\Castle.MonoRail.Framework\ControllerLifecycleExecutor.cs:line 695
+   at Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction(IDictionary actionArgs) in I:\Castle Source Code\1.0.x-RC3\MonoRail\Castle.MonoRail.Framework\ControllerLifecycleExecutor.cs:line 290
+
+
+It would be nice to know the name of the key.</value>
+    </field>
+    <field name="created">
+      <value>1198625048000</value>
+    </field>
+    <field name="updated">
+      <value>1263055877000</value>
+    </field>
+    <field name="reporterName">
+      <value>elendal</value>
+    </field>
+    <field name="updaterName">
+      <value>elendal</value>
+    </field>
+    <field name="resolved">
+      <value>1282145460323</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055860000" />
+  </issue>
+</issues>

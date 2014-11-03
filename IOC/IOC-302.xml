@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generics</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>302</value>
+    </field>
+    <field name="summary">
+      <value>support open generic components where implementation has more generic parameters than service if they can be figured out based on generic constraints</value>
+    </field>
+    <field name="description">
+      <value>Basically the case like this should be supported OOTB, since Windsor has enough information to resolve that service properly.
+
+{code lang=csharp}
+public class Foo&lt;T1, T2&gt;: IFoo&lt;T1&gt; where T1: IBar&lt;T2&gt;
+{
+}
+
+public class Baz : IBar&lt;Bar&gt;
+{
+}
+
+container.Register(Component.For(typeof(IFoo&lt;&gt;)).ImplementedBy(typeof(Foo&lt;,&gt;)));
+
+var instance = container.Resolve&lt;IFoo&lt;Baz&gt;&gt;();
+
+Assert.InstanceOf&lt;Foo&lt;Baz,Bar&gt;&gt;(instance);
+{code}
+
+</value>
+    </field>
+    <field name="created">
+      <value>1310893876447</value>
+    </field>
+    <field name="updated">
+      <value>1394976694577</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1394976694566</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>86</value>
+    </field>
+    <field name="summary">
+      <value>Castle Validation should make propertyname AND friendlyname available in ErrorSummary</value>
+    </field>
+    <field name="description">
+      <value>Currently, if friendlyname is specified in a validation attribute, it still has to be the same as the property in your model. Friendlyname replaces the propertyname in the errorsummary. I would find it more intuitive and useful if InvalidProperties in the summary would always contain the propertyname and eg. InvalidPropertiesFriendlyName would contain the specified friendlyname.</value>
+    </field>
+    <field name="created">
+      <value>1237216769000</value>
+    </field>
+    <field name="updated">
+      <value>1285401786484</value>
+    </field>
+    <field name="reporterName">
+      <value>rekna</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1285401786484</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="If the dev provided a FriendlyName, it seems more probable that he wants to roll with the Friendly Name and not the property name.&#xA;&#xA;Maybe a list containing only the raw property name.&#xA;&#xA;Anyway, you're invited to reopen this discussion on the devel list if you want to." created="1285401786484" />
+  </issue>
+</issues>

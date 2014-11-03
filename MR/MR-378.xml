@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>378</value>
+    </field>
+    <field name="summary">
+      <value>Exception thrown when accessing index of object returned from property.</value>
+    </field>
+    <field name="description">
+      <value>When trying to access an index of the value returned from a property, the following exception is thrown..
+
+System.Reflection.TargetParameterCountException: Parameter count mismatch.
+ Source File:  c:\svn\Castle\trunk\MonoRail\Castle.MonoRail.Views.Brail\ExpandDuckTypedExpressions_WorkaroundForDuplicateVirtualMethods.cs    Line:  247 
+
+---
+
+Code to reproduce...
+
+public class Container
+{
+	public string[] array = new string[] {"one", "two", "three"};
+	
+	public string[] Array
+	{
+		get { return array; }
+	}
+}
+
+Controller:
+
+public void Action()
+{
+	Container container = new Container();
+	PropertyBag["Container"] = new Container();
+}
+
+
+Brail:
+
+${Container.Array[0]}
+
+-----
+
+Other notes:
+
+- The exception also happens with IList's and IDictionary's, and I'm assuming any other indexable object.
+- This only happens with properties, changing the Array property to a GetArray() function will not cause an exception.
+
+-----
+
+
+Stack Trace:
+
+[TargetParameterCountException: Parameter count mismatch.]
+   System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks) +2283782
+   System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture) +29
+   System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters) +17
+   Castle.MonoRail.Views.Brail.ExpandDuckTypedExpressions_WorkaroundForDuplicateVirtualMethods.GetSlice(Object target, MemberInfo member, Object[] args) in c:\svn\Castle\trunk\MonoRail\Castle.MonoRail.Views.Brail\ExpandDuckTypedExpressions_WorkaroundForDuplicateVirtualMethods.cs:247
+   Castle.MonoRail.Views.Brail.ExpandDuckTypedExpressions_WorkaroundForDuplicateVirtualMethods.GetSlice(Object target, String name, Object[] args) in c:\svn\Castle\trunk\MonoRail\Castle.MonoRail.Views.Brail\ExpandDuckTypedExpressions_WorkaroundForDuplicateVirtualMethods.cs:155
+   BrailView_EditLayer.___closure3(TextWriter OutputStream) +430
+   CompilerGenerated.___callable0.Call(Object[] args) +79
+   Castle.MonoRail.Views.Brail.BrailViewComponentContext.RenderBody(TextWriter writer) in c:\svn\Castle\trunk\MonoRail\Castle.MonoRail.Views.Brail\BrailViewComponentContext.cs:97
+   Castle.MonoRail.Framework.ViewComponents.CaptureFor.Render() in c:\svn\Castle\trunk\MonoRail\Castle.MonoRail.Framework\ViewComponents\CaptureFor.cs:51
+   BrailView_EditLayer.Run() +1666
+   Castle.MonoRail.Views.Brail.BooViewEngine.Process(TextWriter output, IRailsEngineContext context, IController controller, String templateName) in c:\svn\Castle\trunk\MonoRail\Castle.MonoRail.Views.Brail\BooViewEngine.cs:138
+
+[MonoRailException: Exception on process view: QualityTests/TestForm\CreateNewTestForm\EditLayer
+Last accessed variable: Container]
+   Castle.MonoRail.Views.Brail.BooViewEngine.HandleException(String templateName, BrailBase view, Exception e) in c:\svn\Castle\trunk\MonoRail\Castle.MonoRail.Views.Brail\BooViewEngine.cs:169
+   Castle.MonoRail.Views.Brail.BooViewEngine.Process(TextWriter output, IRailsEngineContext context, IController controller, String templateName) in c:\svn\Castle\trunk\MonoRail\Castle.MonoRail.Views.Brail\BooViewEngine.cs:142
+   Castle.MonoRail.Views.Brail.BooViewEngine.Process(IRailsEngineContext context, IController controller, String templateName) in c:\svn\Castle\trunk\MonoRail\Castle.MonoRail.Views.Brail\BooViewEngine.cs:117
+   Castle.MonoRail.Framework.Services.DefaultViewEngineManager.Process(IRailsEngineContext context, IController controller, String templateName) in c:\svn\Castle\trunk\MonoRail\Castle.MonoRail.Framework\Services\DefaultViewEngineManager.cs:151
+   Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessView() in c:\svn\Castle\trunk\MonoRail\Castle.MonoRail.Framework\ControllerLifecycleExecutor.cs:896
+   Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction(IDictionary actionArgs) in c:\svn\Castle\trunk\MonoRail\Castle.MonoRail.Framework\ControllerLifecycleExecutor.cs:360
+   Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction() in c:\svn\Castle\trunk\MonoRail\Castle.MonoRail.Framework\ControllerLifecycleExecutor.cs:274
+   Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext context) in c:\svn\Castle\trunk\MonoRail\Castle.MonoRail.Framework\MonoRailHttpHandler.cs:107
+   Castle.MonoRail.Framework.MonoRailHttpHandler.ProcessRequest(HttpContext context) in c:\svn\Castle\trunk\MonoRail\Castle.MonoRail.Framework\MonoRailHttpHandler.cs:52
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +303
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +64</value>
+    </field>
+    <field name="created">
+      <value>1197373355000</value>
+    </field>
+    <field name="updated">
+      <value>1244676916000</value>
+    </field>
+    <field name="reporterName">
+      <value>markhildreth</value>
+    </field>
+    <field name="updaterName">
+      <value>markhildreth</value>
+    </field>
+    <field name="resolved">
+      <value>1282145443682</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676900000" />
+  </issue>
+</issues>

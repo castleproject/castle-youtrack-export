@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>124</value>
+    </field>
+    <field name="summary">
+      <value>WcfFacility - Channel.Close() not being called for Transient Components</value>
+    </field>
+    <field name="description">
+      <value>See http://groups.google.com/group/castle-project-users/browse_thread/thread/5c4cf4595fda809b
+
+</value>
+    </field>
+    <field name="created">
+      <value>1249954553000</value>
+    </field>
+    <field name="updated">
+      <value>1250658498000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1250615700000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Summary''' changed from ''WcfFacility - ChannelFactory.Close() not being called for Transient Components'' to ''WcfFacility - Channel.Close() not being called for Transient Components''.&#xD;&#xA;* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;See http://groups.google.com/group/castle-project-users/browse_thread/thread/5c4cf4595fda809b&#xD;&#xA;&#xD;&#xA;Here is a unit test that shows the bug (you need to copy this to WcfClientFixture.cs)&#xD;&#xA;&#xD;&#xA;[Test]&#xD;&#xA;public void WillDisposeOfChannelWhenTransientComponentIsReleased()&#xD;&#xA;{&#xD;&#xA;	windsorContainer.Register(&#xD;&#xA;		Component.For&lt;IOperations&gt;()&#xD;&#xA;			.Named(&quot;operations&quot;)&#xD;&#xA;			.LifeStyle.Transient&#xD;&#xA;			.ActAs(new DefaultClientModel()&#xD;&#xA;			{&#xD;&#xA;				Endpoint = WcfEndpoint&#xD;&#xA;					.BoundTo(new NetTcpBinding { PortSharingEnabled = true })&#xD;&#xA;					.At(&quot;net.tcp://localhost/Operations&quot;)&#xD;&#xA;			}.AddExtensions(new ChannelFactoryListener()))&#xD;&#xA;		);&#xD;&#xA;&#xD;&#xA;	IOperations client = windsorContainer.Resolve&lt;IOperations&gt;(&quot;operations&quot;);&#xD;&#xA;	client.GetValueFromConstructor();&#xD;&#xA;	windsorContainer.Release(client);&#xD;&#xA;	Assert.IsTrue(ChannelFactoryListener.ClosedCalled);&#xD;&#xA;}&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;See http://groups.google.com/group/castle-project-users/browse_thread/thread/5c4cf4595fda809b&#xD;&#xA;{quote}&#xD;&#xA;" created="1250612640000" />
+    <comment author="cneuwirt" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1250615700000" />
+    <comment author="cneuwirt" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1250615700000" />
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1250658480000" />
+  </issue>
+</issues>

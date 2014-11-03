@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>162</value>
+    </field>
+    <field name="summary">
+      <value>ref or out parameters can not be passed back if proxied method throw an exception</value>
+    </field>
+    <field name="description">
+      <value>If we call a method might throw an exception with ref or out parameters, ref or out parameters that assigned before the exception thrown should be passed back.</value>
+    </field>
+    <field name="created">
+      <value>1315396827395</value>
+    </field>
+    <field name="updated">
+      <value>1319636517938</value>
+    </field>
+    <field name="reporterName">
+      <value>Fossil.Jue</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1318246761748</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-800[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Transaction</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>9</value>
+    </field>
+    <field name="summary">
+      <value>Add Name and Resources properties to ITransaction</value>
+    </field>
+    <field name="description">
+      <value>http://forum.castleproject.org/viewtopic.php?t=963
+
+Add Name property on ITransaction so transactions in place of GetHashCode (transactions created without a name use GetHashCode()).
+
+Add Resources property to ITransaction that contains a list of IResources that were added with Enlist.
+
+Added CommitResourceException and RollbackResourceException that contain the most recently failed IResource as well as all the failed IResources.
+
+Added test cases.
+</value>
+    </field>
+    <field name="created">
+      <value>1176242360000</value>
+    </field>
+    <field name="updated">
+      <value>1178492058000</value>
+    </field>
+    <field name="reporterName">
+      <value>rgrabowski</value>
+    </field>
+    <field name="updaterName">
+      <value>rgrabowski</value>
+    </field>
+    <field name="resolved">
+      <value>1282143015151</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

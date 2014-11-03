@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>152</value>
+    </field>
+    <field name="summary">
+      <value>Castle Windsor ProxyGenerationException With Interface With No Target</value>
+    </field>
+    <field name="description">
+      <value>I'm getting the following error trying to proxy an Interface (without target) that implements two different generic forms of the same generic interface.
+
+So, I have:
+
+public interface IGenericFoo&lt;T&gt; 
+{
+    void DoSomething&lt;T&gt;();
+}
+
+// this is the interface I'm trying to proxy without target
+public interface IFoo : IGenericFoo&lt;MyType1&gt;, IGenericFoo&lt;MyType2&gt;
+{
+}
+
+I get the following error:
+
+Duplicate element: Castle.DynamicProxy.Generators.MetaMethod
+
+at DefaultProxyBuilder.CreateInterfaceProxyTypeWithoutTarget
+</value>
+    </field>
+    <field name="created">
+      <value>1292424631913</value>
+    </field>
+    <field name="updated">
+      <value>1304883207230</value>
+    </field>
+    <field name="reporterName">
+      <value>JeffN825</value>
+    </field>
+    <field name="updaterName">
+      <value>JeffN825</value>
+    </field>
+    <field name="resolved">
+      <value>1304836501011</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="The reason I think is because generic argument from method T is hiding argument T from the type. C# compiler generates a warning for that. I think it's a bad practice and probably not worth supporting. Or is the sample code accidentally wrong?" created="1304836496152" />
+    <comment author="JeffN825" text="The sample code is incorrect...you're right...it should say DoSomething(T value). But please consider the following scenario. I have a repository interface whose behavior is dynamically controlled by interceptors (there is no concrete repository). I have an interface called IUpdatable&lt;T&gt;, that specifies methods Update(T value) and Update(IEnumerable&lt;T&gt; values). My repository interface should implement IUpdatable&lt;T&gt; for all supported entity types (the aggregate roots). Could you elaborate on why you think this is bad practice?" created="1304855341824" updated="1304855437199" />
+    <comment author="xtoff" text="Hi Jeff,&#xA;&#xA;The bad practice I was referring to was to have two separate generic parameter, one on the type and one on the method both with the same name ('T' in the code sample above). In this case you lose ability to reference the type argument as it is hidden by the method argument. It seems though that's incidental in your example and not the cause of the actual issue as I originally thought.&#xA;&#xA;Can you provide an entire failing test case for that?&#xA;&#xA;cheers,&#xA;Krzysztof" created="1304856062277" />
+    <comment author="JeffN825" text="Hi,&#xA;&#xA;It's strange. I just grabbed latest bits and tried a simple failing test case and I can't reproduce the error anymore..... Sorry for the inconvenience." created="1304883207214" />
+  </issue>
+</issues>

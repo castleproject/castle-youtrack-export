@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle Visual Studio Integration</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>89</value>
+    </field>
+    <field name="summary">
+      <value>CVSI 0.2 + Resharper 2.5 causes massive increase in memory usage leading to VS2005 lockup</value>
+    </field>
+    <field name="description">
+      <value>Opened the attached view file and added the line #set($switchValue=$question.Type) before the #blockcomponent.  Resharper memory usage (as shown in bottom right hand corner of IDE) climbed from ~20MB to over 800MB within 20 - 30 seconds and IDE became progressively less responsive, eventually requiring me to end the process as I could not close it.
+
+I have narrowed the cause down to something in between CVSI 0.1 (MSI release) and CVSI 0.2 by repeating the above test with the same results a number of times, I then uninstalled CVSI and  reran the test and did not see any runaway memory use (but that results in an ugly editing experience).  I reinstalled CVSI 0.1 and tried the test again, this time I had the nice colorising and no runaway memory use.</value>
+    </field>
+    <field name="created">
+      <value>1196962120000</value>
+    </field>
+    <field name="updated">
+      <value>1223618968000</value>
+    </field>
+    <field name="reporterName">
+      <value>neal</value>
+    </field>
+    <field name="updaterName">
+      <value>neal</value>
+    </field>
+    <field name="resolved">
+      <value>1223618940000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="This defect has been fixed in 0.3.2." created="1223618968000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1223618940000" />
+  </issue>
+</issues>

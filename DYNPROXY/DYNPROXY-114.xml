@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>114</value>
+    </field>
+    <field name="summary">
+      <value>SecurityException in medium trust when proxying types from strongly named assemblies</value>
+    </field>
+    <field name="description">
+      <value>When proxying types from strongly named asseblies DP tries to create a strongly named assembly, which causes SecurityException under medium trust.
+
+See http://support.castleproject.org/projects/AR/issues/view/AR-ISSUE-272 (this issue is duplication of the other one, but I have no rights to move it to DP where it belongs)</value>
+    </field>
+    <field name="created">
+      <value>1254383797000</value>
+    </field>
+    <field name="updated">
+      <value>1314680487239</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>beanpole</value>
+    </field>
+    <field name="resolved">
+      <value>1254385800000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-771[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Fixed in 6037 (hopefully)" created="1254385817000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1254383797001" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1254385800000" />
+    <comment author="beanpole" text="Here is a discussion which narrows down the directory requiring permissions.&#xA;http://orchard.codeplex.com/discussions/265805" created="1314680487223" />
+  </issue>
+</issues>

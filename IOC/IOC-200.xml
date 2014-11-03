@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generics</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.0 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>200</value>
+    </field>
+    <field name="summary">
+      <value>Issues when registering generic components with generic generic arguments</value>
+    </field>
+    <field name="description">
+      <value>Doing this:
+
+AllTypes.Of(typeof(ConsumerOf&lt;&gt;)).FromAssembly(..some assembly...);
+
+This registers and then resolves successfully when asking for ConsumerOf&lt;SomeMessage&gt;:
+
+class SomeConsumer : ConsumerOf&lt;SomeMessage&gt;  {}
+
+While this doesn't when asking for ConsumerOf&lt;SomeMessage&lt;SomeClass&gt;&gt;:
+
+class SomeOtherConsumer&lt;T&gt;  : ConsumerOf&lt;SomeMessage&lt;T&gt;&gt;  {}</value>
+    </field>
+    <field name="created">
+      <value>1272025310000</value>
+    </field>
+    <field name="updated">
+      <value>1396694916513</value>
+    </field>
+    <field name="reporterName">
+      <value>simone_b</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396694916499</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="I now remember why it felt so familiar - I dealt with this issue before :)&#xA;http://kozmic.pl/archive/0001/01/01/advanced-castle-windsor-custom-registration-conventions-for-partially-closed-types.aspx&#xA;&#xA;Thing is, we're dealing here with partially closed type: typeof(ConsumerOf&lt;SomeMessage&lt;&gt;&gt;)&#xA;&#xA;This is a non-trivial task to implement a universal (generic, no pun intended) solution for this..." created="1272026804000" />
+    <comment author="simone_b" text="I can try to tackle it, since you dealt with this before, do you think it's worth trying?" created="1272092460000" />
+    <comment author="xtoff" text="Simone,&#xA;&#xA;This can get pretty complicated pretty soon, once you enter nested-multi generics, and I'm not sure how well that would perform.&#xA;&#xA;However if you've got the time, don't let that discourage you :) Fork away. I would only suggest you to profile the performance for more complicated scenarios." created="1272156990000" />
+    <comment author="simone_b" text="Any hints where to start from? :)" created="1272162683000" />
+    <comment author="xtoff" text="tests :)&#xA;&#xA;and in the code itself, I guess I would start by adding to naming subsystem method like GetPartiallyClosedServicesFor(Type openRootType) and something like ISemiClosedGenericMatcher that would check if any of semi-closed services can satisfy requested type." created="1272163952000" />
+    <comment author="simone_b" text="Thanks, not sure when but I'll try to give it a look." created="1272289217000" />
+    <comment author="xtoff" text="ok, there's no rush :)" created="1272290297000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1272025560000" />
+    <comment author="xtoff" text="Any chance to get the patch before v3?" created="1304744148277" />
+    <comment author="xtoff" text="One more case reported here: http://groups.google.com/group/castle-project-users/browse_thread/thread/9c42856849f82242" created="1313491755583" />
+  </issue>
+</issues>

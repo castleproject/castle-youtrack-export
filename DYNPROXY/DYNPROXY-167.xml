@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>167</value>
+    </field>
+    <field name="summary">
+      <value>Dynamic proxy fails to copy attribute with params constructor</value>
+    </field>
+    <field name="description">
+      <value>The following unit test fails:
+
+{code lang=cs}
+using System;
+using NUnit.Framework;
+using Castle.Windsor;
+using Castle.MicroKernel.Registration;
+
+namespace Tests
+{
+	public interface IAnyInterface
+	{
+		
+	}
+	
+    [AttributeUsage(AttributeTargets.Class, Inherited = false)]
+    public class FooAttribute : Attribute
+    {
+        public FooAttribute (params Type[] privateInterfaces)
+        {
+        }
+    }
+	
+	
+	public interface IProxyIface
+	{
+		int Number { get; set; }
+	}
+	
+	
+	public class ProxyImpl: IProxyIface
+	{
+		public int Number { get; set; }
+	}
+	
+	
+	[Foo(typeof(IAnyInterface))]
+	public class FooBar: IAnyInterface
+	{
+
+		
+	}	
+	
+	
+	[TestFixture]
+	public class Tester
+	{
+		[Test]
+		public void MonoCrashTest()
+		{
+
+			var container = new WindsorContainer();
+			
+			container.Register(Component.For&lt;FooBar&gt;()
+				.LifeStyle.Transient.Named("foo")
+				.Proxy.MixIns(new ProxyImpl()));
+			
+			container.Resolve&lt;FooBar&gt;();
+		}
+	}
+}
+{code}
+
+of course workaround is to use Castle.DynamicProxy.Generators.AttributesToAvoidReplicating.Add(typeof(FooAttribute))
+			</value>
+    </field>
+    <field name="created">
+      <value>1323762663027</value>
+    </field>
+    <field name="updated">
+      <value>1349762205947</value>
+    </field>
+    <field name="reporterName">
+      <value>starbreaker</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1349762205931</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="It does work for me. Does it only fail on Mono for you?" created="1344136204445" />
+    <comment author="xtoff" text="Any update here, or should I close it as cannot reproduce?" created="1349676042012" />
+  </issue>
+</issues>

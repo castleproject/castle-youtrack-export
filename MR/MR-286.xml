@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>286</value>
+    </field>
+    <field name="summary">
+      <value>DSL support does not work when using complex types inside a loop</value>
+    </field>
+    <field name="description">
+      <value>Here's a controller method:
+public void TestXmlWithPropertyAccess()
+		{
+			CancelLayout();
+			Response.ContentType = "text/xml";
+			PropertyBag["item"] = new XmlItem();
+
+
+			PropertyBag["testItems"] = new XmlItem[]
+			{
+				new XmlItem(),
+				new XmlItem()
+			};
+		}
+
+Test Class
+public class XmlItem
+	{
+		public String Text
+		{
+			get { return "XmlItem"; }
+		}
+
+		public override string ToString()
+		{
+			return "XmlItem To String";
+		}
+	}
+
+
+And the view file
+&lt;%
+dsl xml:
+	rootNode:
+		testElementProperty:
+			text "${item.Text}"
+		end
+		testElementToString {"text":"${item.Text}"}:
+			text item.ToString()
+		end
+		testArray:
+			for ti in testItems:
+				atestItem: 
+					text "${ti.Text}"
+				end
+			end					
+		end
+	end
+end
+%&gt;
+
+Maybe i'm not using this correctly, but this seems like it should work, instead it throws a NullReferenceException because ti is null. (inside atestItem:)</value>
+    </field>
+    <field name="created">
+      <value>1183136218000</value>
+    </field>
+    <field name="updated">
+      <value>1244676627000</value>
+    </field>
+    <field name="reporterName">
+      <value>chriso</value>
+    </field>
+    <field name="updaterName">
+      <value>chriso</value>
+    </field>
+    <field name="resolved">
+      <value>1282143885010</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676600000" />
+  </issue>
+</issues>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>390</value>
+    </field>
+    <field name="summary">
+      <value>Adding AbstractHelper(IEngineContext) ctor</value>
+    </field>
+    <field name="description">
+      <value>With the new code refactoring, one needed change involves going from :
+
+ScriptaculousHelper helper = new ScriptaculousHelper();
+helper.SetController(RailsContext.CurrentController);
+
+to:
+
+ScriptaculousHelper helper = new ScriptaculousHelper();
+helper.SetController(EngineContext.CurrentController, EngineContext.CurrentControllerContext);
+helper.SetContext(EngineContext);
+
+That's getting a bit cumbersome, and worse, error-prone.  I propose creating a ctor for AbstractHelper like this:
+
+public AbstractHelper(IEngineContext engineContext)
+{
+   SetController(engineContext.CurrentController, EngineContext.CurrentControllerContext);
+   SetContext(engineContext);
+}
+
+With complimentary "pass-along" ctors for the various helpers (ie,
+
+public ScriptaculousHelper(IEngineContext engineContext) :
+base(engineContext) {}
+
+
+The original ctor will remain, so no code is broken, however, with this change, the code fragment given at the top can now be written  as:
+ScriptaculousHelper helper = new ScriptaculousHelper(engineContext);</value>
+    </field>
+    <field name="created">
+      <value>1199639180000</value>
+    </field>
+    <field name="updated">
+      <value>1263055514000</value>
+    </field>
+    <field name="reporterName">
+      <value>jamescurran</value>
+    </field>
+    <field name="updaterName">
+      <value>jamescurran</value>
+    </field>
+    <field name="resolved">
+      <value>1282145468541</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055500000" />
+  </issue>
+</issues>

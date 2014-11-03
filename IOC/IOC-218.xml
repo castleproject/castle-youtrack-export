@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Silverlight</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>218</value>
+    </field>
+    <field name="summary">
+      <value>Enable methods that take arguments as anonymous objects in Silverlight version</value>
+    </field>
+    <field name="description">
+      <value>In Silverlight it is possible to use API from .NET version that takes anonymous object as a shorthand for named arguments. This requires
+{code}
+[assembly: InternalsVisibleTo(Castle.Core.Internal.InternalsVisible.ToCastleCore)]
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1283645505432</value>
+    </field>
+    <field name="updated">
+      <value>1407822257341</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1283645505432</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

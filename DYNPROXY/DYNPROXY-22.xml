@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>1.2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>1.1.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>22</value>
+    </field>
+    <field name="summary">
+      <value>Can't handle `char' type in Interface Proxy</value>
+    </field>
+    <field name="description">
+      <value>When I test NHibernate, and use lazy-load case, find that `char' type property can't be proxied well.
+
+Example: ---------------- Start
+
+// in Cat.hbm.xml, defined( lazy="true" )
+public interface ICat
+{
+  long   Id { get; set; }
+  string Name { get; set; }
+  char   Sex  { get; set; } // Can't get correct data via lazy-proxy
+  float  Weight { get; set; }
+  ICat   Father { get; set; }
+}
+...
+ICat cat = session.Load( typeof( Cat ), id ); // use lazy-load
+ICat cat2 = session.Get( typeof( Cat ), id ); // direct load
+
+Console.WriteLine( cat.Sex ); // incorrect, echo unknown character
+Console.WriteLine( cat.Sex ); // incorrect, echo unknown character, and different with above..., seems as random value
+Console.WriteLine( cat2.Sex ); // correct, echo 'M' or 'F'
+
+Example: ---------------- End
+
+While doing some test, I found the problem is located in DynamicProxy .... Huumm. And I can't find solution. So, submit this bug to you guys~~ :-)
+
+Thanks!
+
+Regards,
+Sopl Wang.</value>
+    </field>
+    <field name="created">
+      <value>1149434099000</value>
+    </field>
+    <field name="updated">
+      <value>1162411269000</value>
+    </field>
+    <field name="reporterName">
+      <value>soplwang</value>
+    </field>
+    <field name="updaterName">
+      <value>soplwang</value>
+    </field>
+    <field name="resolved">
+      <value>1282140562604</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

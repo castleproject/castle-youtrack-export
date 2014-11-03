@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Registration API</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.5.1</value>
+      <value>2.5.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>276</value>
+    </field>
+    <field name="summary">
+      <value>IRegistration.Configure does not work when combined with multiple BasedOnDescriptors</value>
+    </field>
+    <field name="description">
+      <value>I noticed recently that some of my components were not being registered with the lifestyle I had set.
+
+container.Register(AllTypes.FromAssemblyContaining&lt;SomeService&gt;()
+     .BasedOn&lt;A&gt;()
+     .BasedOn&lt;B&gt;()
+     .Configure(registration =&gt; registration.LifeStyle.Transient);
+
+var handler = container.Kernel.GetHandler(typeof(SomeService));
+Assert.AreEqual(LifestyleType.Transient, handler.ComponentModel.LifestyleType);
+
+The test passes if you use only one based on. I am using 2.5.1 but I confirmed this is failing on master.
+
+Pull request coming shortly.</value>
+    </field>
+    <field name="created">
+      <value>1298504200553</value>
+    </field>
+    <field name="updated">
+      <value>1304744026777</value>
+    </field>
+    <field name="reporterName">
+      <value>João.Bragança</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1304743951402</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="João.Bragança" text="https://github.com/castleproject/Castle.Windsor/pull/7" created="1298505858991" />
+    <comment author="xtoff" text="João,&#xA;&#xA;I know this sucks and is not discoverable at all, but this is by design. Have a look at the documentation [http://stw.castleproject.org/Windsor.Registering-components-by-conventions.ashx#Additional_filtering_and_configuration_5 here].&#xA;&#xA;In other words you would have to call Configure for every BasedOn, Where or Pick separately." created="1298515609537" />
+    <comment author="João.Bragança" text="I combed through the doc... it's not clear that is what you have to do. Plus it violates DRY.&#xA;&#xA;Still, it's not hard to work around... AllTypes.FromAssemblyContaining&lt;SomeService&gt;().Where(t =&gt; typeof(A).IsAssignableFrom(t) || typeof(B).IsAssignableFrom(t))... or introduce a marker interface that both interfaces inherit from." created="1298594635209" />
+    <comment author="xtoff" text="This functionality is now obsolete. Only one BasedOnDescriptor should be registered at a time" created="1304744026777" />
+  </issue>
+</issues>

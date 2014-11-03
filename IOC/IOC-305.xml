@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>305</value>
+    </field>
+    <field name="summary">
+      <value>GenericListConverter throwing NotImplementedException</value>
+    </field>
+    <field name="description">
+      <value>Have the following object:
+{code lang=java}
+    public interface IMyObject
+    {
+        int Count { get; }
+    }
+
+    public class MyObject : IMyObject
+    {
+        protected readonly IDictionary&lt;int, IList&lt;string&gt;&gt; m_stuff;
+
+        public MyObject(IDictionary&lt;int, IList&lt;string&gt;&gt; _stuff)
+        {
+            if (null == _stuff) throw new ArgumentNullException(@"_stuff");
+
+            m_stuff = _stuff;
+        }
+
+        public virtual int Count { get { return m_stuff.Count; } }
+    }
+{code}
+And the following in my configuration XML:
+{code}
+&lt;component id="myObjectID"
+               service="Tsavo.Common.Tests.IoC.IMyObject, Tsavo.Common.Tests"
+               type="Tsavo.Common.Tests.IoC.MyObject, Tsavo.Common.Tests"&gt;
+      &lt;parameters&gt;
+        &lt;_stuff&gt;
+          &lt;dictionary keyType="System.Int32, mscorlib" valueType="System.Collections.Generic.IList`1[[System.String, mscorlib]], mscorlib"&gt;
+            &lt;entry key="0"&gt;
+              &lt;list&gt;
+                &lt;item&gt;test1&lt;/item&gt;
+                &lt;item&gt;test2&lt;/item&gt;
+              &lt;/list&gt;
+            &lt;/entry&gt;
+          &lt;/dictionary&gt;
+        &lt;/_stuff&gt;
+      &lt;/parameters&gt;
+    &lt;/component&gt;
+{code}
+When I try to resolve my object using:
+MyObject o = container.Resolve&lt;MyObject&gt;("myObjectID");
+
+I get a NotImplementedException from GenericListConverter.PerformConversion, here is the Stack Trace:
+Castle.MicroKernel.SubSystems.Conversion.GenericListConverter.PerformConversion(String value, Type targetType) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\SubSystems\Conversion\GenericListConverter.cs: line 46
+Castle.MicroKernel.SubSystems.Conversion.DefaultConversionManager.PerformConversion(String value, Type targetType) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\SubSystems\Conversion\DefaultConversionManager.cs: line 134
+Castle.MicroKernel.SubSystems.Conversion.GenericDictionaryConverter.DictionaryHelper`2.ConvertConfigurationToCollection(IConfiguration configuration) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\SubSystems\Conversion\GenericDictionaryConverter.cs: line 138
+Castle.MicroKernel.SubSystems.Conversion.GenericDictionaryConverter.PerformConversion(IConfiguration configuration, Type targetType) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\SubSystems\Conversion\GenericDictionaryConverter.cs: line 81
+Castle.MicroKernel.SubSystems.Conversion.DefaultConversionManager.PerformConversion(IConfiguration configuration, Type targetType) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\SubSystems\Conversion\DefaultConversionManager.cs: line 150
+Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveParameterDependency(CreationContext context, ComponentModel model, DependencyModel dependency) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\Resolvers\DefaultDependencyResolver.cs: line 426
+Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(CreationContext context, ISubDependencyResolver contextHandlerResolver, ComponentModel model, DependencyModel dependency) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\Resolvers\DefaultDependencyResolver.cs: line 247
+Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArgumentsCore(ConstructorCandidate constructor, Object[] arguments, CreationContext context, Type[] signature) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\ComponentActivator\DefaultComponentActivator.cs: line 353
+Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArguments(ConstructorCandidate constructor, CreationContext context, Type[]&amp; signature) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\ComponentActivator\DefaultComponentActivator.cs: line 338
+Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(CreationContext context) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\ComponentActivator\DefaultComponentActivator.cs: line 90
+Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\ComponentActivator\DefaultComponentActivator.cs: line 70
+Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\ComponentActivator\AbstractComponentActivator.cs: line 75
+Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\Lifestyle\AbstractLifestyleManager.cs: line 42
+Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(CreationContext context) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\Lifestyle\SingletonLifestyleManager.cs: line 50
+Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\Handlers\DefaultHandler.cs: line 61
+Castle.MicroKernel.Handlers.AbstractHandler.Resolve(CreationContext context, Boolean instanceRequired) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\Handlers\AbstractHandler.cs: line 771
+Castle.MicroKernel.Handlers.AbstractHandler.Resolve(CreationContext context) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\Handlers\AbstractHandler.cs: line 369
+Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\DefaultKernel.cs: line 904
+Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\DefaultKernel.cs: line 888
+Castle.MicroKernel.DefaultKernel.Resolve(String key, Type service) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\MicroKernel\DefaultKernel_Resolve.cs: line 53
+Castle.Windsor.WindsorContainer.Resolve(String key, Type service) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\Windsor\WindsorContainer.cs: line 790
+Castle.Windsor.WindsorContainer.Resolve[T](String key) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\Windsor\WindsorContainer.cs: line 878
+
+I am running the latest Stable 2.5.2 Windsor libraries.</value>
+    </field>
+    <field name="created">
+      <value>1295285495015</value>
+    </field>
+    <field name="updated">
+      <value>1312806310098</value>
+    </field>
+    <field name="reporterName">
+      <value>stunney</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1312806310098</value>
+    </field>
+    <field name="voterName">
+      <value>Omer.Katz</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-723[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

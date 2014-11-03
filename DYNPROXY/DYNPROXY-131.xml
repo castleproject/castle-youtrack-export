@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>131</value>
+    </field>
+    <field name="summary">
+      <value>Caching issue with order of interfaces</value>
+    </field>
+    <field name="description">
+      <value>generator.CreateInterfaceProxyWithoutTarget( typeof( IFoo ), new[] { typeof( IBar ), typeof( IBaz ) } );
+generator.CreateInterfaceProxyWithoutTarget( typeof( IFoo ), new[] { typeof( IBaz ), typeof( IBar ) } );
+
+These two calls will generate two proxy types which will obviously be semantically identical. Instead caching mechanism should be order independent. This should also include inherited interfaces.</value>
+    </field>
+    <field name="created">
+      <value>1266220818000</value>
+    </field>
+    <field name="updated">
+      <value>1266642597000</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1266642540000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="added in r6749" created="1266642597000" />
+    <comment author="xtoff" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;generator.CreateInterfaceProxyWithoutTarget( typeof( IFoo ), new[] { typeof( IBar ), typeof( IBaz ) } );&#xD;&#xA;generator.CreateInterfaceProxyWithoutTarget( typeof( IFoo ), new[] { typeof( IBar ), typeof( IBaz ) } );&#xD;&#xA;&#xD;&#xA;These two calls will generate two proxy types which will obviously be semantically identical. Instead caching mechanism should be order independent. This should also include inherited interfaces.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;generator.CreateInterfaceProxyWithoutTarget( typeof( IFoo ), new[] { typeof( IBar ), typeof( IBaz ) } );&#xD;&#xA;generator.CreateInterfaceProxyWithoutTarget( typeof( IBar ), new[] { typeof( IFoo ), typeof( IBaz ) } );&#xD;&#xA;&#xD;&#xA;These two calls will generate two proxy types which will obviously be semantically identical. Instead caching mechanism should be order independent. This should also include inherited interfaces.&#xD;&#xA;{quote}&#xD;&#xA;" created="1266220860000" />
+    <comment author="xtoff" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;generator.CreateInterfaceProxyWithoutTarget( typeof( IFoo ), new[] { typeof( IBar ), typeof( IBaz ) } );&#xD;&#xA;generator.CreateInterfaceProxyWithoutTarget( typeof( IBar ), new[] { typeof( IFoo ), typeof( IBaz ) } );&#xD;&#xA;&#xD;&#xA;These two calls will generate two proxy types which will obviously be semantically identical. Instead caching mechanism should be order independent. This should also include inherited interfaces.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;generator.CreateInterfaceProxyWithoutTarget( typeof( IFoo ), new[] { typeof( IBar ), typeof( IBaz ) } );&#xD;&#xA;generator.CreateInterfaceProxyWithoutTarget( typeof( IFoo ), new[] { typeof( IBaz ), typeof( IBar ) } );&#xD;&#xA;&#xD;&#xA;These two calls will generate two proxy types which will obviously be semantically identical. Instead caching mechanism should be order independent. This should also include inherited interfaces.&#xD;&#xA;{quote}&#xD;&#xA;" created="1266220860000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1266586080000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Work Started'' to ''Work Stopped''.&#xD;&#xA;" created="1266589080000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Work Stopped'' to ''Work Stopped''.&#xD;&#xA;" created="1266632580000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Work Stopped'' to ''Work Started''.&#xD;&#xA;" created="1266632580000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''3.0''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1266642540000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1266642540000" />
+  </issue>
+</issues>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>130</value>
+    </field>
+    <field name="summary">
+      <value>ISupportInitialize and Active Reports Issue</value>
+    </field>
+    <field name="description">
+      <value>Hi,
+
+I posted issue in the forums and didn't receive a reply... so in that respect I'm assuming that it may be a bug. As far as the importance, unfortunately it is high enough to prevent us from using Castle for our IoC... and for time being we'll being using StructureMap which does not have this issue.
+
+Anyway, the description of this issue is below:
+
+I just starting using Castle Windsor for my IoC in a project that I had recently developed using another IoC container.
+
+I was able to successfully use all my classes that utilize IoC over to Windsor except my ActiveReport inherited classes. Has anyone had problems with ActiveReport inherited classes with Castle Windsor?
+
+If not, I'll go into more detail. The class that is causing the problem is meant for injection and inherits off a custom report base class, which in turn inherits off of the 3rd party class ActiveReport3. Now the ActiveReport3 class implements the ISupportInitialize interface. This means that BeginInit() and EndInit() functions will get called I believe during initialization. Now in Castle, there is support for the ISupportInitialize interface, but I believe the problem is that the BeginInit() and EndInit() functions are getting called at the wrong time. To keep it simple there is a property in the base report class that is supposed to be true but is actually false... which will cause an exception to be thrown in the EndInit() method. I'm afraid I may not have too much more on the details since it is ActiveReports code... but I believe Active Reports is sensitive to having BeginInit() and/or EndInit() getting called at the correct time.
+
+
+BTW, I'm really loving Castle Windsor, and I definitely want it to be the IoC tool that I use. Compare to others it is very easy to configure and it has some really nice features such as utilizing factories to create pluggable objects. Keep up the good work!
+
+Thanks,
+Darren</value>
+    </field>
+    <field name="created">
+      <value>1217333678000</value>
+    </field>
+    <field name="updated">
+      <value>1228857893000</value>
+    </field>
+    <field name="reporterName">
+      <value>DDarren</value>
+    </field>
+    <field name="updaterName">
+      <value>DDarren</value>
+    </field>
+    <field name="resolved">
+      <value>1228857840000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="can't do much without a test case" created="1228857893000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228857840000" />
+  </issue>
+</issues>

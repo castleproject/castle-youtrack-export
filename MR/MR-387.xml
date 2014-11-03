@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - NVelocity</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>387</value>
+    </field>
+    <field name="summary">
+      <value>ViewComponent selective caching</value>
+    </field>
+    <field name="description">
+      <value>Allows not caching view components with custom generators by returning null key.
+Boo is not patched for the same behaviour.</value>
+    </field>
+    <field name="created">
+      <value>1198856521000</value>
+    </field>
+    <field name="updated">
+      <value>1263055521000</value>
+    </field>
+    <field name="reporterName">
+      <value>felixg</value>
+    </field>
+    <field name="updaterName">
+      <value>felixg</value>
+    </field>
+    <field name="resolved">
+      <value>1282145461010</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055500000" />
+  </issue>
+</issues>

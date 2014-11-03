@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>121</value>
+    </field>
+    <field name="summary">
+      <value>IKernel.AddComponentInstance&lt;T&gt;(object instance) should use typeof(T) as "serviceType" parameter</value>
+    </field>
+    <field name="description">
+      <value>IKernel.AddComponentInstance&lt;T&gt;(object instance) uses T just to generate "key" parameter for IKernel.AddComponentInstance(string key, Type serviceType, object instance), so useer needs to use the following code to add specific instance for some specific serviceType:
+
+kernel.AddComponentInstance&lt;ServiceType&gt;(typeof(ServiceType), classInstance);
+
+if "classInstance" type is different from (derived from)  ServiceType. If T was used for get ServiceType as well, the following line could have been used instead:
+
+kernel.AddComponentInstance&lt;ServiceType&gt;(classInstance);
+
+And if classType and the serviceType is of the same ServiceType type, the normal
+
+kernel.AddComponentInstance(classInstance);
+
+may be still used.
+</value>
+    </field>
+    <field name="created">
+      <value>1204582632000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838885</value>
+    </field>
+    <field name="reporterName">
+      <value>edushka</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1232177820000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="hammett" text="I'm not following.." created="1230315714000" />
+    <comment author="ayenderahien" text="Already fixed." created="1232177835000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''RC 4''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1232177820000" />
+  </issue>
+</issues>

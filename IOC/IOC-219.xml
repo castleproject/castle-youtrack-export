@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>219</value>
+    </field>
+    <field name="summary">
+      <value>Cannot resolve component that has a dependency on a subcomponent, that has a dependency that is satisied via IDictionary&lt;Type,object&gt; parameters at resolve time</value>
+    </field>
+    <field name="description">
+      <value>A component that has a dependency on a subcomponent passed in via Dictionary&lt;Type, object&gt; at resolve time, is successfully resolved.
+But if the take this one level down, that is, a rootcomponent that has a dependency on a subcomponent that has a dependency that should be satisfied via a dictionary at resolve time, the root component cannot be resolved.
+
+In previous versions of Windsor I've used the same technique but passing the name and instances as a dictionary (since the Type,object way of doing it wasn't implemented),
+which could resolve all components that had a dependency to be satisfied via params to resolve, unrelated to how many levels down that dependency actualy existed.
+
+Attached unit tests to clarify:
+
+    [TestFixture]
+    public class ResolveParametersFixture
+    {
+        private IWindsorContainer _container;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _container = new WindsorContainer();
+        }
+
+        #region Dummy types used in testing
+        
+        public interface IRootComponent { }
+        public interface IDependencyComponent1 { }
+        public interface IDependencyComponent2 { }
+
+        public class RootComponent : IRootComponent
+        {
+            public RootComponent(IDependencyComponent1 dependency) { }
+        }
+
+        public class DependencyComponent1 : IDependencyComponent1
+        {
+            public DependencyComponent1(IDependencyComponent2 dependency2) { }
+        }
+
+        public class DependencyComponent2 : IDependencyComponent2 { }
+
+        #endregion
+
+        [Test]
+        public void When_All_Dependencies_Are_Registered_In_Container_Should_Be_Able_To_Resolve_IRootComponent()
+        {
+            _container.Register(
+                Component.For&lt;IRootComponent&gt;().ImplementedBy&lt;RootComponent&gt;(),
+                Component.For&lt;IDependencyComponent1&gt;().ImplementedBy&lt;DependencyComponent1&gt;(),
+                Component.For&lt;IDependencyComponent2&gt;().ImplementedBy&lt;DependencyComponent2&gt;());
+
+            Assert.That(_container.Resolve&lt;IRootComponent&gt;(), Is.InstanceOf&lt;RootComponent&gt;());
+        }
+
+        [Test]
+        public void Should_Resolve_Sub_Dependencies_Supplied_At_Resolve_Time_That_Is_A_Direct_Dependency_Of_The_Component_Beeing_Resolved()
+        {
+            _container.Register(
+                Component.For&lt;IRootComponent&gt;().ImplementedBy&lt;RootComponent&gt;());
+
+            IDependencyComponent1 dependencyComponent1Instance = new DependencyComponent1(new DependencyComponent2());
+
+            var resolveParams = new Dictionary&lt;Type, object&gt; { { typeof(IDependencyComponent1), dependencyComponent1Instance } };
+            
+
+            Assert.That(_container.Resolve&lt;IRootComponent&gt;(resolveParams), Is.InstanceOf&lt;RootComponent&gt;());
+        }
+
+        [Test]
+        public void Should_Resolve_Sub_Dependencies_Supplied_At_Resolve_Time_That_Is_Not_A_Direct_Dependency_Of_The_Component_Beeing_Resolved()
+        {
+            _container.Register(
+                Component.For&lt;IRootComponent&gt;().ImplementedBy&lt;RootComponent&gt;(),
+                Component.For&lt;IDependencyComponent1&gt;().ImplementedBy&lt;DependencyComponent1&gt;());
+
+            var dependencyComponent2Instance = new DependencyComponent2();
+
+            var resolveParams =
+                new Dictionary&lt;Type, object&gt; { { typeof(IDependencyComponent2), dependencyComponent2Instance } };
+
+            Assert.That(_container.Resolve&lt;IRootComponent&gt;(resolveParams), Is.InstanceOf&lt;RootComponent&gt;());
+        }
+        
+    }
+</value>
+    </field>
+    <field name="created">
+      <value>1284984139421</value>
+    </field>
+    <field name="updated">
+      <value>1285025485920</value>
+    </field>
+    <field name="reporterName">
+      <value>john.gunnarsson</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1285025485920</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Interesting how that comes up twice during a single day from two different people&#xA;&#xA;http://groups.google.com/group/castle-project-devel/browse_thread/thread/52b56e9f896d6841&#xA;&#xA;In short - that's not a bug, it's a feature." created="1284985287140" />
+    <comment author="xtoff" text="&gt; In previous versions of Windsor I've used the same technique but passing the name and instances as a dictionary (since the Type,object way of doing it wasn't implemented),&#xA;&#xA;Which previous version? I'm pretty sure that behavior has not changed at least since Windsor 2.0" created="1284985506125" />
+    <comment author="john.gunnarsson" text="The feature I talked about was used in windsor &quot;1.0.3.4333&quot;&#xA;&#xA;I think I've been looking at the wrong direction for a solution to my specific problem, but I can't simpy understand how to solve it.&#xA;May I ask for a hint in the right direction?&#xA;My problem is simple, I've got a bunch of components registered in the container, but want to add context specific parameters when I resolve a component, a ISessionFactory amongst other things. (The context is not per-request, childcontainer totaly Ok)&#xA;&#xA;The guy in the google groups thread said he resolved his problem by using a childcontainer, but as I see it, this cannot be done due to  IOC-116?&#xA;&#xA;Thanks for making this clear, I should have read the google-groups before posting a bugreport." created="1284987605640" />
+    <comment author="xtoff" text="I suggest we take this discussion to the group. WRT {{ISesssionFactory}} - it feels like it should be a component within the container, then either custom lifestyle or {{IHandlerSelector}} should solve that for you. I need more context to help you out here." created="1284988308937" />
+  </issue>
+</issues>

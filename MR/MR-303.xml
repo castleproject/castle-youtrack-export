@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>303</value>
+    </field>
+    <field name="summary">
+      <value>Behavior is not consistent between FormToAttributed and LinkToAttributed in HtmlHelper</value>
+    </field>
+    <field name="description">
+      <value>[View]
+$HtmlHelper.LinkToWithPost("Name", "Controller", "Action", ${instance.Id}, "Are you sure to ...?")
+
+[HTML]
+&lt;form action="/Controller/Action.rails?id=xxx" style="display:inline;margin:0;" method="post" &gt;&lt;a href="/area/Controller/Action.rails?id=xxx" onclick="if(confirm('Are you sure to ...?')){{this.parentNode.submit();}};return false;" &gt;Name&lt;/a&gt;&lt;/form&gt;
+
+FormToAttributed will ignores "Area", but LinkToAttributed will retrieve "Area" from Controller.Context.UrlInfo (via UrlHelper.For)</value>
+    </field>
+    <field name="created">
+      <value>1184561241000</value>
+    </field>
+    <field name="updated">
+      <value>1244676645000</value>
+    </field>
+    <field name="reporterName">
+      <value>james_su</value>
+    </field>
+    <field name="updaterName">
+      <value>james_su</value>
+    </field>
+    <field name="resolved">
+      <value>1282143913120</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676600000" />
+  </issue>
+</issues>

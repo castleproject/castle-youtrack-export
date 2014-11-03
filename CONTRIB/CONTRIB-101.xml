@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngines</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>101</value>
+    </field>
+    <field name="summary">
+      <value>AspView does not support system.codedom configuration</value>
+    </field>
+    <field name="description">
+      <value>The patch tries to construct C# CodeDom provider from system.codedom configuration if available. This allows specifying v3.5 for Csc.</value>
+    </field>
+    <field name="created">
+      <value>1200071109000</value>
+    </field>
+    <field name="updated">
+      <value>1204600181000</value>
+    </field>
+    <field name="reporterName">
+      <value>felixg</value>
+    </field>
+    <field name="updaterName">
+      <value>felixg</value>
+    </field>
+    <field name="resolved">
+      <value>1282140039901</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

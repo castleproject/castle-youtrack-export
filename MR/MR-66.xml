@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>66</value>
+    </field>
+    <field name="summary">
+      <value>DataBinder and ConvertUtils should support TypeConverter's</value>
+    </field>
+    <field name="description">
+      <value>Some types define Type Converters. The type converters encapsulate the logic on converting one type to another.
+
+See:
+http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpref/html/frlrfsystemcomponentmodeltypeconverterclasstopic.asp</value>
+    </field>
+    <field name="created">
+      <value>1131020810000</value>
+    </field>
+    <field name="updated">
+      <value>1136170026000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282143370104</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

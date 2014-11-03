@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Ajax Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>252</value>
+    </field>
+    <field name="summary">
+      <value>Support for AjaxAction on wizard steps</value>
+    </field>
+    <field name="description">
+      <value>Add support for ajax actions on wizardstep via attribute and initialize like :
+
+   ${AjaxHelper.GenerateJSProxy("myWizard", "MyWizard")}
+
+so something like this can be done in  Java script
+
+  myWizard.firstStep.fooBar();
+ 
+</value>
+    </field>
+    <field name="created">
+      <value>1177044472000</value>
+    </field>
+    <field name="updated">
+      <value>1414392552299</value>
+    </field>
+    <field name="reporterName">
+      <value>ernst</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392552291</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Version Affected''' changed from ''Release Candidate 3'' to ''2.0''.&#xD;&#xA;" created="1269791340000" />
+  </issue>
+</issues>

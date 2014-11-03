@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Documentation</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>97</value>
+    </field>
+    <field name="summary">
+      <value>Web Site patch (not XML generated) with spelling and grammar corrections.</value>
+    </field>
+    <field name="description">
+      <value>Attached is a patch for the Containers section of the web site.  I patched v1rc3, but other branches could probably benefit from these changes.
+
+http://www.castleproject.org/container/documentation/v1rc3/concepts/choosing.html
+http://www.castleproject.org/container/documentation/v1rc3/samples/tt.html
+</value>
+    </field>
+    <field name="created">
+      <value>1192622066000</value>
+    </field>
+    <field name="updated">
+      <value>1192629628000</value>
+    </field>
+    <field name="reporterName">
+      <value>roy_tate</value>
+    </field>
+    <field name="updaterName">
+      <value>roy_tate</value>
+    </field>
+    <field name="resolved">
+      <value>1282142087541</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

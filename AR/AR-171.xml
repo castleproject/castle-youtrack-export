@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>171</value>
+    </field>
+    <field name="summary">
+      <value>Nested + BelongsTo - Unclear Exception Message</value>
+    </field>
+    <field name="description">
+      <value>I have 3 classes, call them class1, class2, and class3.
+
+class2 is nested in class1 and class2 belongsto class3.  Coded that way, it produced an "Object reference not set..." exception as listed below, with the stack trace indicating it was working on parsing the belongsto relationship.  I was banging my head against the wall for hours trying every variation and nuance of the belongsto and hasmany relationships between class2 and class3, but in the end it turned out to be the nested relationship between class2 and class1 that caused the problem.
+
+I imagine that maybe I needed class1 belongsto class3, but for now I've simply removed the nested relationship.
+
+The improvement I'm suggesting is: If the "Object reference" exception was trapped and re-thrown with details of the class that caused it, or if it made the suggestion to check nested relationships, it would speed the diagnosis.
+
+Thanks, Tim
+
+-----------------
+
+Unhandled Exception: System.NullReferenceException: Object reference not set to
+an instance of an object.
+   at Castle.ActiveRecord.Framework.Internal.SemanticVerifierVisitor.VisitBelong
+sTo(BelongsToModel model)
+   at Castle.ActiveRecord.Framework.Internal.BelongsToModel.Accept(IVisitor visi
+tor)
+   at Castle.ActiveRecord.Framework.Internal.AbstractDepthFirstVisitor.VisitNode
+(IVisitable visitable)
+   at Castle.ActiveRecord.Framework.Internal.AbstractDepthFirstVisitor.VisitNode
+s(IEnumerable nodes)
+   at Castle.ActiveRecord.Framework.Internal.AbstractDepthFirstVisitor.VisitMode
+l(ActiveRecordModel model)
+   at Castle.ActiveRecord.Framework.Internal.SemanticVerifierVisitor.VisitModel(
+ActiveRecordModel model)
+   at Castle.ActiveRecord.Framework.Internal.ActiveRecordModel.Accept(IVisitor v
+isitor)
+   at Castle.ActiveRecord.Framework.Internal.AbstractDepthFirstVisitor.VisitNode
+(IVisitable visitable)
+   at Castle.ActiveRecord.Framework.Internal.AbstractDepthFirstVisitor.VisitNest
+ed(NestedModel model)
+   at Castle.ActiveRecord.Framework.Internal.NestedModel.Accept(IVisitor visitor
+)
+   at Castle.ActiveRecord.Framework.Internal.AbstractDepthFirstVisitor.VisitNode
+(IVisitable visitable)
+   at Castle.ActiveRecord.Framework.Internal.AbstractDepthFirstVisitor.VisitNode
+s(IEnumerable nodes)
+   at Castle.ActiveRecord.Framework.Internal.AbstractDepthFirstVisitor.VisitMode
+l(ActiveRecordModel model)
+   at Castle.ActiveRecord.Framework.Internal.SemanticVerifierVisitor.VisitModel(
+ActiveRecordModel model)
+   at Castle.ActiveRecord.Framework.Internal.ActiveRecordModel.Accept(IVisitor v
+isitor)
+   at Castle.ActiveRecord.Framework.Internal.AbstractDepthFirstVisitor.VisitNode
+(IVisitable visitable)
+   at Castle.ActiveRecord.Framework.Internal.AbstractDepthFirstVisitor.VisitNode
+s(IEnumerable nodes)
+   at Castle.ActiveRecord.ActiveRecordStarter.Initialize(IConfigurationSource so
+urce, Type[] types)</value>
+    </field>
+    <field name="created">
+      <value>1184825424000</value>
+    </field>
+    <field name="updated">
+      <value>1186922280000</value>
+    </field>
+    <field name="reporterName">
+      <value>bv</value>
+    </field>
+    <field name="updaterName">
+      <value>bv</value>
+    </field>
+    <field name="resolved">
+      <value>1282136496370</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

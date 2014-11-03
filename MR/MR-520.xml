@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>520</value>
+    </field>
+    <field name="summary">
+      <value>JQueryValidator maxlength case is incorrect</value>
+    </field>
+    <field name="description">
+      <value>The jquery validation plugin uses maxlength as the rule name to validate for maxlength (http://docs.jquery.com/Plugins/Validation/Methods/maxlength#length).
+The JQueryValidator is generating maxLength, the casing is important in javascript!
+
+This patch fixes the casing and it also adds 2 tests.</value>
+    </field>
+    <field name="created">
+      <value>1235575247000</value>
+    </field>
+    <field name="updated">
+      <value>1263055436000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1235607780000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="applied, thx." created="1235607786000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1235607660000" />
+    <comment author="kenegozi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1235607780000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055380000" />
+  </issue>
+</issues>

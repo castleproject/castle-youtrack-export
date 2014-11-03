@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Lifestyles</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>273</value>
+    </field>
+    <field name="summary">
+      <value>Auto register PerWebRequestLifestyleModule using PreApplicationStartMethodAttribute at runtime</value>
+    </field>
+    <field name="description">
+      <value>We should investigate if it is possible to auto register the PerWebRequestLifestyleModule using the new features of ASP.NET 4.0.
+See http://blog.davidebbo.com/2011/02/register-your-http-modules-at-runtime.html</value>
+    </field>
+    <field name="created">
+      <value>1297748935603</value>
+    </field>
+    <field name="updated">
+      <value>1407822257306</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1297780666743</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="I peeked in reflector at how that's implemented. There's ton of Reflection and hackery but good news is it looks like we can implement the behavior ourselves if needed (which we probably will - the code lives in {{Microsoft.Web.Infrastructure.dll}} which is shipped with Razor/WebMatrix so it's not available for plain vanilla ASP.NET 4 )" created="1297758843868" />
+    <comment author="xtoff" text="ok, after more investigation and playing with it I decided to forgo trying to reimplement the logic. There's TON of reflection going on and extreme hackery in this code.&#xA;So instead I opted for different solution - I'll try to call to the code in {{Microsoft.Web.Infrastructure.dll}} and delegate to Microsoft's implementation. If not, I'll fallback to current behavior. I'll also update the exception message thrown when handler is not in the config suggesting installation of MVC3, or whatever adds this assembly, as alternative solution." created="1297777753603" />
+  </issue>
+</issues>

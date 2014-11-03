@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>291</value>
+    </field>
+    <field name="summary">
+      <value>refactor ActiveRecordStarter to support serialized configuration</value>
+    </field>
+    <field name="description">
+      <value>For every application_start, I call ActiveRecordStarter.Initialize (actually it's part of the ActiveRecordIntegration facitliy). This seems to be very heavy, takeing around 3.5 seconds to initialize my 16 objects.
+
+some background: 1. got 16 AR objects for now, almost never changed (maybe once a week). 2. most of the changes are not AR related, still I'm "suffering" from the huge application startup time when developing locally (need to wait 3.4sec to AR to load, although nothing really changed there).
+
+My thoughts: it seems that if I'll persist the configuration of AR into binary file and load it, if noting changed (for example, by looking at the AR objects and doing some MD5 on their source files to see changes). If something was changed, I need to re-create the binary file. From testing I've done, it looks like most of the time is from there.
+
+http://stackoverflow.com/questions/3952828/optimize-activerecord-initialization-time-on-application-start</value>
+    </field>
+    <field name="created">
+      <value>1287500438305</value>
+    </field>
+    <field name="updated">
+      <value>1415000006665</value>
+    </field>
+    <field name="reporterName">
+      <value>Oren.Ellenbogen</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1415000006660</value>
+    </field>
+    <field name="voterName">
+      <value>xtoff</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-601[up-to-date]</value>
+      <value>User: id = 20-650[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="A patch, preferable with uts, is always welcome." created="1288995536062" />
+    <comment author="llc86" text="I uploaded a patch that allows to serialize the configuration. For use it put &quot;ActiveRecordStarter.SerializeConfiguration = true&quot; before call Initialize. The first time is going to serialize the configuration and then the others it will load the serialized config. Just delete the file &quot;Configuration.serialized&quot; when you make changes to your ActiveRecord types for recreate it." created="1292335624726" updated="1292510103382" />
+    <comment author="jonorossi" text="ActiveRecord is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/ActiveRecord/issues" created="1415000006666" />
+  </issue>
+</issues>

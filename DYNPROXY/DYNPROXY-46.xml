@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>46</value>
+    </field>
+    <field name="summary">
+      <value>Changes that make custom CodeGenerators easier to build.</value>
+    </field>
+    <field name="description">
+      <value>1) In Castle.DynamicProxy.Builder.CodeGenerators.BaseCodeGenerator:
+
+How about changing this method:
+protected virtual Type[] AddISerializable(Type[] interfaces)
+
+to 
+protected virtual Type[] AddInterface(Type[] interfacesToAdd, Type[] interfaces)
+this would make this a little bit more generic :)
+++++
+
+2) In Castle.DynamicProxy.Builder.CodeBuilder.AbstractEasyType:
+
+There is already a Constructors / Methods Property... but no Properties Property 
+
+How about adding:
+public PropertiesCollection Properties
+{
+    get { return _properties; }
+}
+
+for completeness. This makes it easier to extend the generated properties in
+custom ProxyGenerators.
+
+++++
+
+3) In Castle.DynamicProxy.Builder.CodeGenerators.BaseCodeGenerator:
+
+Change the 
+protected EasyProperty CreateProperty(PropertyInfo property)
+to this:
+protected virtual EasyProperty CreateProperty(PropertyInfo property)
+
+this would make it possible to handle "exceptional" properties in custom
+CodeGenerators more easily.
+
+E.g.: In a Custom InterfaceProxyGenerator:
+       protected override EasyProperty CreateProperty(PropertyInfo property)
+        {
+            if ("Interceptor".Equals(property.Name) &amp;&amp; typeof(IInterceptor).Equals(property.PropertyType))
+            {
+                return CreateInterceptorProperty(property);
+            }
+            return base.CreateProperty(property);
+        }
+
+( this is related to: ) http://support.castleproject.org/browse/DYNPROXY-44</value>
+    </field>
+    <field name="created">
+      <value>1167827667000</value>
+    </field>
+    <field name="updated">
+      <value>1173608572000</value>
+    </field>
+    <field name="reporterName">
+      <value>thomas.darimont</value>
+    </field>
+    <field name="updaterName">
+      <value>thomas.darimont</value>
+    </field>
+    <field name="resolved">
+      <value>1282140668807</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

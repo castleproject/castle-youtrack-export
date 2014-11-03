@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>156</value>
+    </field>
+    <field name="summary">
+      <value>Castle.Facilities.NHibernateIntegration does not work for Castle Windsor 3</value>
+    </field>
+    <field name="description">
+      <value>Hello,
+
+Castle.Facilities.NHibernateIntegration does not currently work with Castle Windsor 3 due to a few breaking changes in the release. Please see my posts at the following URLs for example code and discussion:
+
+Stack Overflow:
+
+http://www.google.com/url?sa=D&amp;q=http://stackoverflow.com/questions/8557327/castle-windsor-3-fluent-nhibernate-castle-nhibernate-integration&amp;usg=AFQjCNE6kRzZUL0FOYuXJ9IcG5vj0fDkPg
+
+Development List:
+
+http://groups.google.com/group/castle-project-devel/browse_thread/thread/25c7902873cbad8b
+
+I have attached two patch files generated with TortoiseGit which solve this issue.
+
+Thanks,
+
+Ross</value>
+    </field>
+    <field name="created">
+      <value>1324430285848</value>
+    </field>
+    <field name="updated">
+      <value>1407819067303</value>
+    </field>
+    <field name="reporterName">
+      <value>ross</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1394963651693</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-67[up-to-date]</value>
+      <value>User: id = 20-856[up-to-date]</value>
+      <value>User: id = 20-921[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="digitalbricklayer" text="Any ideas when this fix is going to be pushed through to a version on Nuget?" created="1331652251188" />
+    <comment author="xtoff" text="I think currently NHibernateIntegration facility doesn't have a designated maintainer. What that means is it's best to submit pull requests to make it easier for everyone to integrate the changes. Also if you'd like to get more involved feel free to step in." created="1338173973617" />
+    <comment author="mahara" text="I have my own fork updated to latest NH 3.3.1 and Windsor 3.1.0 here: https://github.com/mahara/Castle.Facilities.NHibernateIntegration/tree/3.3.x&#xA;It's based on the old https://github.com/castleproject/Castle.Facilities.NHibernateIntegration-READONLY.&#xA;&#xA;To make it work, I had to update Castle.Transactions first to use Windsor 3.1.0 as well here: https://github.com/mahara/Castle.Transactions/tree/3.1.x&#xA;It's based on https://github.com/castleproject/Castle.Transactions, tagged at version 2.5.1.&#xA;&#xA;So far it works for me. And all tests are passed, some with minor modifications. But you should test it first to see whether it would work in your scenario." created="1347135056922" updated="1347434217649" />
+    <comment author="Peter.van.der.Woude" text="Thanks for your fork Maximilian. I'm forking it now to test it. Perhaps someone will at least post a &quot;renegade&quot; version to NuGet as it's been almost 2 years now and the old assembly, of limited use, is still showing." created="1358725563038" updated="1358725688681" />
+    <comment author="xtoff" text="Peter/Maximilian we're open to the prospect of updating the official facility, no renegade version required :) We just need someone to commit to maintaining it, as the old maintainer is no longer involved with the project.&#xA;&#xA;If any of you is interested in taking this on, that is an option" created="1360907361984" />
+  </issue>
+</issues>

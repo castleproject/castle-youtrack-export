@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>504</value>
+    </field>
+    <field name="summary">
+      <value>Can't parse ?var1, ${var1}, !{var1}, ${?var1} in .brailjs</value>
+    </field>
+    <field name="description">
+      <value>With simple .brailjs script like this
+
+if IsDefined("err"):
+	page.Alert(err)
+else:
+	page.Alert(?id)
+end
+
+?var1 will throw exception:
+Parser Error Message: Unexpected token: ?.
+
+${var1}will throw exception:
+Parser Error Message: Node '$({ return self.GetParameter('var1')() })' has not been correctly processed.
+
+!{var1} will throw exception:
+Parser Error Message: unexpected char: '!'.
+
+${?var1} will throw exception:
+Parser Error Message: Unexpected token: {.
+</value>
+    </field>
+    <field name="created">
+      <value>1226006973000</value>
+    </field>
+    <field name="updated">
+      <value>1292859664131</value>
+    </field>
+    <field name="reporterName">
+      <value>csokun</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1278877260000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Ayende, Can you have a look at this one too :)" created="1263050701000" />
+    <comment author="jsimons" text="Already fixed" created="1278877279000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1278877260000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278877260000" />
+    <comment author="jsimons" text="* '''Version Affected''' changed from ''Future'' to ''2.0''.&#xD;&#xA;" created="1278808440000" />
+  </issue>
+</issues>

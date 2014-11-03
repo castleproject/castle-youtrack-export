@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Wcf</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>140</value>
+    </field>
+    <field name="summary">
+      <value>Allow Wcf Facility to register multiple types at once</value>
+    </field>
+    <field name="description">
+      <value>It would be nice to have the WcfFacility be able to register all the interfaces inside an assembly.
+i.e)
+{code lang=java}
+AllTypes.FromAssemblyContaining&lt;IBusinessFunctionDAO&gt;()
+                    .Where(o =&gt; o.Name.EndsWith("DAO"))
+                    .Configure(
+                        o =&gt; o.AsWcfClient(WcfEndpoint.FromConfiguration("WSHttpBinding_" + o.Name))
+                    )
+{code}
+This would help out when you have a lot of ServiceContracts in an assembly.</value>
+    </field>
+    <field name="created">
+      <value>1288194976072</value>
+    </field>
+    <field name="updated">
+      <value>1351947331622</value>
+    </field>
+    <field name="reporterName">
+      <value>Raul.Rangel</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1351947302759</value>
+    </field>
+    <field name="voterName">
+      <value>xtoff</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="it is possible in Windsor 3.1 using {{Types.FromAssembly()}}" created="1351947331622" />
+  </issue>
+</issues>

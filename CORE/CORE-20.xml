@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>20</value>
+    </field>
+    <field name="summary">
+      <value>Castle.Core.Tests won't build via nant because it use TraceContext without referencing System.Web.dll</value>
+    </field>
+    <field name="description">
+      <value>Castle.Core.Tests.build script need to reference System.Web.dll explicitely
+
+</value>
+    </field>
+    <field name="created">
+      <value>1228949507000</value>
+    </field>
+    <field name="updated">
+      <value>1253855105000</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>gauthier</value>
+    </field>
+    <field name="resolved">
+      <value>1235877540000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="gauthier" text="fail.log is output before the patch&#xA;castle.core.tests.build.diff is the patch to be applied that solve the problem" created="1228949574000" />
+    <comment author="jonorossi" text="Applied in r5571. I haven't tested this on Mono so I will take your word that this fixes the issue." created="1235877561000" />
+    <comment author="gauthier" text="the build ignite ok on mono now (same environment as when I created the ticket)" created="1236250604000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1235877540000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253855100000" />
+  </issue>
+</issues>

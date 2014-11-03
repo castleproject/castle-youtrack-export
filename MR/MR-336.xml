@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>336</value>
+    </field>
+    <field name="summary">
+      <value> View file name case sensitivity with brail on linux</value>
+    </field>
+    <field name="description">
+      <value>Brail view engine converts the view name to uppercase. On linux which has a case sensitive file system this means the view file cannot be found for compilation.
+
+Offending lines...
+In 'MonoRail/Castle.MonoRail.Views.Brail/BooViewEngine.cs'
+Line 113: string file = templateName.ToUpper() + ViewFileExtension;
+Line 227: return templateName.ToUpper();
+Line 280: return templateName.ToUpper() + extention;
+
+There's a forum post about this too http://forum.castleproject.org/viewtopic.php?p=8968 
+
+Ayende said on the mailing list: 
+The reason was that it caused problems with views that started with get add, etc. </value>
+    </field>
+    <field name="created">
+      <value>1190867165000</value>
+    </field>
+    <field name="updated">
+      <value>1244675751000</value>
+    </field>
+    <field name="reporterName">
+      <value>tiggerthump</value>
+    </field>
+    <field name="updaterName">
+      <value>tiggerthump</value>
+    </field>
+    <field name="resolved">
+      <value>1282144032463</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675700000" />
+  </issue>
+</issues>

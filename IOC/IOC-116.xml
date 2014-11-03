@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container hierarchies</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>116</value>
+    </field>
+    <field name="summary">
+      <value>Child Container Depenency Resolution</value>
+    </field>
+    <field name="description">
+      <value>When I first submitted the patch for IOC-56, in the time between when the patch was submitted and the patch was applied, other changes had been made to the trunk which caused my patch code to fail with a stack overflow.  None of the submitted tests passed for this reason.
+
+The attached patch resolves those issues and brings the originally intended features of IOC-56 to the trunk.</value>
+    </field>
+    <field name="created">
+      <value>1199899200000</value>
+    </field>
+    <field name="updated">
+      <value>1287657150383</value>
+    </field>
+    <field name="reporterName">
+      <value>wcpierce</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1228860120000</value>
+    </field>
+    <field name="voterName">
+      <value>john.gunnarsson</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-591[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="thanks" created="1228860125000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228860120000" />
+    <comment author="john.gunnarsson" text="Is this feature planned in a release? Just made some unit tests for verifying this in windsor 2.5, but they still fails." created="1284851262025" />
+    <comment author="xtoff" text="After having a closer look at this, the feature was revoked. See the following blogposts for discussion and explanation why the cure is worse than the disease.&#xA;http://kozmic.pl/archive/0001/01/01/castle-windsor-and-child-containers.aspx&#xA;http://kozmic.pl/archive/0001/01/01/castle-windsor-and-child-containers-reloaded.aspx&#xA;http://kozmic.pl/archive/0001/01/01/castle-windsor-and-child-containers-empire-strikes-back.aspx&#xA;&#xA;In short while in some cases this may be what you really want, this can also lead to bugs, and components &quot;escaping&quot; their scope, and as such is a bug. We might consider addition of that in the future, but it would be very tricky to implement and would require some serious internal changes." created="1284852090806" />
+    <comment author="john.gunnarsson" text="I've read your blogposts, and understand that the problem is more complex that I initially thought. &#xA;Since I'm only interested in adding singletons to my childcontainer, I played around with the extremely nice feature that allows sub-dependencies to supplied via a Dictionary&lt;Type, object&gt; at Resolve time. (as an alternative solution to register them in a childcontainer which obviously don't work)&#xA;However the same issue arises when you register a singelton component in the container that has a dependency which you satisfy via params to Resolve.&#xA;The first Resolve instantiates the component with the dependency supplied in resolve. The second time we resolve the same service, the component already exists and don't need to be instantiated, which will result in that the params supplied to resolve is ignored. The behavior will differ depending on the root service is transient or singelton. &#xA;&#xA;I think this problem resembles the problem with parent and childcontainer, if we see the dictionary with additional params as a childcontainer, kind of. &#xA;&#xA;The more i think about it, the more I believe that you should simply not be able to resolve a component (from the childcontainer) which is registered in the parent container and has a dependency on a component registered in the childcontainer, unless the parent component is transient. Kind of a crippled solution, but i think it's a god start.&#xA;&#xA;Attached unittest for clarifying the case with resolve and params:&#xA;&#xA;[TestFixture]&#xA;    public class SubResolverFixture&#xA;    {&#xA;        #region Dummy types used in testing&#xA;        public interface IWorldWideDummyService&#xA;        {&#xA;            IRealmWideDummyService InjectedRealmWideDummyService { get; }&#xA;        }&#xA;&#xA;        public interface IRealmWideDummyService { }&#xA;&#xA;        public class WorldWideDummyService : IWorldWideDummyService&#xA;        {&#xA;            private readonly IRealmWideDummyService _realmWideDummyService;&#xA;&#xA;            public WorldWideDummyService(IRealmWideDummyService realmWideDummyService)&#xA;            {&#xA;                _realmWideDummyService = realmWideDummyService;&#xA;            }&#xA;&#xA;            public IRealmWideDummyService InjectedRealmWideDummyService&#xA;            {&#xA;                get { return _realmWideDummyService; }&#xA;            }&#xA;        }&#xA;        public class RealmWideDummyService : IRealmWideDummyService { }&#xA;        #endregion&#xA;&#xA;&#xA;        public void Should_Resolve_Sub_Dependencies_Via_Supplied_Dictionary()&#xA;        {&#xA;            var container = new WindsorContainer();&#xA;            container.Register(Component.For&lt;IWorldWideDummyService&gt;().ImplementedBy&lt;WorldWideDummyService&gt;().LifeStyle.Singleton);&#xA;&#xA;            var subdependency1 = new RealmWideDummyService();&#xA;            var subdependency2 = new RealmWideDummyService();&#xA;&#xA;&#xA;            var subDeps1 = new Dictionary&lt;Type, object&gt; { { typeof(IRealmWideDummyService), subdependency1 } };&#xA;            var subDeps2 = new Dictionary&lt;Type, object&gt; { { typeof(IRealmWideDummyService), subdependency2 } };&#xA;&#xA;            var resolvedService1 = container.Resolve&lt;IWorldWideDummyService&gt;(subDeps1);&#xA;            var resolvedService2 = container.Resolve&lt;IWorldWideDummyService&gt;(subDeps2);&#xA;            &#xA;            Assert.That(resolvedService1.InjectedRealmWideDummyService, Is.SameAs(subdependency1)); &#xA;&#xA;&#xA;            Assert.That(resolvedService2.InjectedRealmWideDummyService, Is.SameAs(subdependency1)); // passes when lifestyle is singelton&#xA;            Assert.That(resolvedService2.InjectedRealmWideDummyService, Is.SameAs(subdependency2)); // passes when lifestye is transient&#xA;            &#xA;        }&#xA;    }" created="1284905005500" />
+    <comment author="xtoff" text="You are absolutely right. I plan to do much thought to the nested containers thing for v3, however for now the things will have to stay the way they are right now. Thanks for your feedback." created="1284945446734" />
+  </issue>
+</issues>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>223</value>
+    </field>
+    <field name="summary">
+      <value>AmbiguousMatch exception when querying properties from NHibernate-enabled objects</value>
+    </field>
+    <field name="description">
+      <value>When using NHibernate on an object model, querying an instance triggers an AmbiguousMatchException.
+
+Some debugging learns that the ambiguous match arises from the fact that the object contains both its real properties, as the NHibernate proxied versions.
+
+The problem does _not_ arise when looping over a fetched collection of those instances (might make sense for those into it :) )
+
+I have no code at hand here, but let me know if you need it to reproduce this issue, then I'll have a look at it later.</value>
+    </field>
+    <field name="created">
+      <value>1170395923000</value>
+    </field>
+    <field name="updated">
+      <value>1244676522000</value>
+    </field>
+    <field name="reporterName">
+      <value>grimace</value>
+    </field>
+    <field name="updaterName">
+      <value>grimace</value>
+    </field>
+    <field name="resolved">
+      <value>1282143679166</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676480000" />
+  </issue>
+</issues>

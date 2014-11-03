@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle Visual Studio Integration</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>35</value>
+    </field>
+    <field name="summary">
+      <value>Problem with colorizer with multiple files open</value>
+    </field>
+    <field name="description">
+      <value>Opening multiple NVelocity files in the same instance of Visual Studio will cause the files to overwrite the same scanner state causing the colourising to work incorrectly.
+
+Workarounds:
+- When changing files press Ctrl+A to select all the text in the file, this causes Visual Studio to rescan the whole file, which will replace the scanner state with the current file's state information.
+- Run multiple instances of Visual Studio with a single file in each instance.</value>
+    </field>
+    <field name="created">
+      <value>1183372847000</value>
+    </field>
+    <field name="updated">
+      <value>1200213772000</value>
+    </field>
+    <field name="reporterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1282138190166</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

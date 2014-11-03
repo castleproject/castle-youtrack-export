@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle.Tools.CodeGenerator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>82</value>
+    </field>
+    <field name="summary">
+      <value>RouteMapGenerator Handles Numbers and Options Incorrectly</value>
+    </field>
+    <field name="description">
+      <value>The new RouteModuleEx assumes patterns to be &lt;name:string&gt; or &lt;name:number&gt; or &lt;name:option1|option2&gt;.  The regex currently only matches patterns for &lt;name:string&gt; and &lt;name:int&gt;.  &lt;name:int&gt; isn't even valid.  This patch fixes the regex and patterns to handle the above cases and uses types of (int) and (string) only.  It would probably be best to fix this further be matching the param name on the action and using the actual type of the action method parameter instead of assuming int and string.</value>
+    </field>
+    <field name="created">
+      <value>1195740280000</value>
+    </field>
+    <field name="updated">
+      <value>1414392390075</value>
+    </field>
+    <field name="reporterName">
+      <value>abombss</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392390067</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

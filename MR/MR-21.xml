@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>beta 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>21</value>
+    </field>
+    <field name="summary">
+      <value>Support to associate Action providers</value>
+    </field>
+    <field name="description">
+      <value>Allow a kind of mixin for Controllers that dynamically associate actions. For example:
+
+[ControllerMixin( typeof(MyCrudMixin) )]
+public class MyCustomerController
+{
+}
+
+
+public class MyCrudMixin : IDynamicActionProvider
+{
+   public void InstallActions(Controller controller)
+   {
+      controller.DynamicActions.Add( "new", new NewAction() );
+      controller.DynamicActions.Add( "edit", new NewAction() );
+   }
+}
+
+Maybe mixin is not a good name, but the idea is to allow the user to bind one or more actions providers. Probably the action providers are going to use one or more arguments, think about that as well.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1120807480000</value>
+    </field>
+    <field name="updated">
+      <value>1127055312000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282143254885</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

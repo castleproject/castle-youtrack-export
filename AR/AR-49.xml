@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>49</value>
+    </field>
+    <field name="summary">
+      <value>Different behavior on net-1.1 and net-2.0</value>
+    </field>
+    <field name="description">
+      <value>Quote from user list 
+
+"Your problem only occour when inheriting from non-generic
+ActiveRecordBase/ActiveRecordValidationBase, the same code with the simple
+change of inherting from generic ActiveRecordBase&lt;&gt; works flawless.
+
+I haven't had the time to take a good look at the ActiveRecord source yet so
+perhaps some of the guys that are more at home in the repository have an
+answer that gives the reason for this."
+
+Project to reproduce
+
+&lt;http://www.fernandonajera.es/ConsoleApplication1.zip&gt; 
+
+
+Stack trace
+
+at
+Castle.ActiveRecord.Framework.Internal.SemanticVerifierVisitor.ThrowIfDoesnt
+HavePrimaryKey(ActiveRecordModel model)
+  at
+Castle.ActiveRecord.Framework.Internal.SemanticVerifierVisitor.VisitModel(Ac
+tiveRecordModel model)
+  at
+Castle.ActiveRecord.Framework.Internal.ActiveRecordModel.Accept(IVisitor
+visitor)
+  at
+Castle.ActiveRecord.Framework.Internal.AbstractDepthFirstVisitor.VisitNode(I
+Visitable visitable)
+  at
+Castle.ActiveRecord.Framework.Internal.AbstractDepthFirstVisitor.VisitNodes(
+IEnumerable nodes)
+  at
+Castle.ActiveRecord.ActiveRecordStarter.Initialize(IConfigurationSource
+source, Type[] types)
+  at Castle.ActiveRecord.ActiveRecordStarter.Initialize(Assembly assembly,
+IConfigurationSource source)
+  at ActiveRecordTest.Program.Main(String[] args) in ....
+
+</value>
+    </field>
+    <field name="created">
+      <value>1147101624000</value>
+    </field>
+    <field name="updated">
+      <value>1162410756000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282135944932</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

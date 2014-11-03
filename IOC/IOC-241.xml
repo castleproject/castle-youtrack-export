@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>241</value>
+    </field>
+    <field name="summary">
+      <value>.NET 4 security transparency and APTCA</value>
+    </field>
+    <field name="description">
+      <value>Used to track work regarding .NET 4 security transparency and APTCA.
+
+- Audit the codebase for security transparency, using SecAnnotate.exe
+- Attempt to run automated tests in medium trust.</value>
+    </field>
+    <field name="created">
+      <value>1288512754088</value>
+    </field>
+    <field name="updated">
+      <value>1407819474510</value>
+    </field>
+    <field name="reporterName">
+      <value>roelofb</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1337423969400</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="As of https://github.com/castleproject/Castle.Windsor/commit/e6a35c58fb5418f237db29879111dd6f1f51af86 the build passes running SecAnnotate.exe" created="1289635406930" />
+    <comment author="xtoff" text="would be great if we could make secannotate part of our build on the build server..." created="1337423934705" />
+    <comment author="xtoff" text="anyway, I guess we can close it at this point" created="1337423955485" />
+  </issue>
+</issues>

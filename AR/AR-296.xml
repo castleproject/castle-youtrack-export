@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Attributes</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>296</value>
+    </field>
+    <field name="summary">
+      <value>Field Camelcase Underscore for Property Access</value>
+    </field>
+    <field name="description">
+      <value>Add support for FieldPascalcaseUnderscore to the PropertyAccess attribute.
+
+A patch to implement it is attached.</value>
+    </field>
+    <field name="created">
+      <value>1296498880939</value>
+    </field>
+    <field name="updated">
+      <value>1407822526752</value>
+    </field>
+    <field name="reporterName">
+      <value>Dan.Jasek</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1296600952236</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="Applied. Tks." created="1296600975751" />
+  </issue>
+</issues>

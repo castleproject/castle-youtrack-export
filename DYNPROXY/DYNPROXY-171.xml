@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>.NET 2.0 Support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>171</value>
+    </field>
+    <field name="summary">
+      <value>PEVerify error on generic method definition</value>
+    </field>
+    <field name="description">
+      <value>At first I had an issue where a guid passed in as an argument was being changed inside of DP before the interceptor receives it.  When I went to create a test case, I received a PEVerify error.  This test should handle both of those cases.
+
+
+
+{code}
+namespace Castle.DynamicProxy.Tests.BugsReported
+{
+	using System;
+	using NUnit.Framework;
+
+	[TestFixture]
+	public class DynProxy171 : BasePEVerifyTestCase
+	{
+		[Test]
+		public void ShouldGenerateTypeWithGenericMethods()
+		{
+			var guid = Guid.NewGuid();
+			var interceptor = new ParameterInspectorInterceptor();
+
+			var proxy = generator.CreateInterfaceProxyWithoutTarget&lt;IHaveGenericMethods&gt;(interceptor);
+
+			proxy.MethodVoid(null as object, null as string, guid);
+
+			//ISSUE 2: the Guid argument is being changed from the call above to the comparison below.
+			Assert.AreEqual(guid, interceptor.Arguments[2]);
+		}
+
+		// ISSUE 1: PEVerify can't verify the assembly
+		//public override void TearDown()
+		//{
+			
+		//}
+	}
+
+	public class ParameterInspectorInterceptor : IInterceptor
+	{
+		public object[] Arguments { get; private set; }
+
+		public void Intercept(IInvocation invocation)
+		{
+			Arguments = invocation.Arguments;
+		}
+	}
+
+	public interface IHaveGenericMethods
+	{
+		void MethodVoid(int r, int g, int b);
+		void MethodVoid&lt;T, U, V&gt;(T arg1, U arg2, V arg3)
+			where T : new()
+			where U : class
+			where V : struct;
+
+	}
+}
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1340754664372</value>
+    </field>
+    <field name="updated">
+      <value>1340972071893</value>
+    </field>
+    <field name="reporterName">
+      <value>p.w</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1340972055076</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="can you pull request it?" created="1340918476563" />
+  </issue>
+</issues>

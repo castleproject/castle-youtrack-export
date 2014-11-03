@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>XML configuration</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>295</value>
+    </field>
+    <field name="summary">
+      <value>registration via XML ignores service specofied in attribute</value>
+    </field>
+    <field name="description">
+      <value>If I register the following type:
+
+{code lang=java}
+[CastleComponent(typeof (ISomeInterface))]
+public class TypeWithServiceViaAttribute : ISomeInterface
+{
+}
+{code}
+via xml without specifying {{service}} only {{type}}.
+{code}
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;configuration&gt;
+  &lt;components&gt;
+    &lt;component type="TypeWithServiceViaAttribute" /&gt;
+  &lt;/components&gt;
+&lt;/configuration&gt;
+{code}
+
+I'd expect the component to be registered with {{ISomeInterface}} as its service, is {{TypeWithServiceViaAttribute}}.</value>
+    </field>
+    <field name="created">
+      <value>1305342982113</value>
+    </field>
+    <field name="updated">
+      <value>1407822257289</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1305424689863</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

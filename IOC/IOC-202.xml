@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Proxies_Interception</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>202</value>
+    </field>
+    <field name="summary">
+      <value>ListResolver breaks with multiple interceptors of the same type</value>
+    </field>
+    <field name="description">
+      <value>[Test]
+        public void List_resolver_should_not_throw_on_registration()
+        {
+            IWindsorContainer c = new WindsorContainer();
+            c.Kernel.Resolver.AddSubResolver(new ListResolver(c.Kernel));
+            c.AddComponent&lt;StandardInterceptor&gt;("a");
+            c.AddComponent&lt;StandardInterceptor&gt;("b");
+            Assert.DoesNotThrow(() =&gt; c.Register(Component.For&lt;object&gt;().Interceptors("a")));
+        }</value>
+    </field>
+    <field name="created">
+      <value>1272899043000</value>
+    </field>
+    <field name="updated">
+      <value>1287656742665</value>
+    </field>
+    <field name="reporterName">
+      <value>bling</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1273067280000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="bling" text="ArrayResolver works fine, and what I'm using as a replacement." created="1272899099000" />
+    <comment author="bling" text="Turned out to be a trivial null reference check.  Patch with test case attached." created="1272913860000" />
+    <comment author="bling" text="* '''Attachment''' list_resolver.patch added.&#xD;&#xA;" created="1272913800000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1273067280000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1273067280000" />
+  </issue>
+</issues>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>68</value>
+    </field>
+    <field name="summary">
+      <value>Support for external validations</value>
+    </field>
+    <field name="description">
+      <value>Provides support for custom validation logic beyond IValidator instances as discussed here:
+
+http://groups.google.com/group/castle-project-devel/browse_thread/thread/f8200a255d1bb30b
+
+The patch includes a contributor that allows for classes to decorate a method with a [ValidateSelf] attribute so the class can provide validation logic in code.</value>
+    </field>
+    <field name="created">
+      <value>1219573030000</value>
+    </field>
+    <field name="updated">
+      <value>1219665699000</value>
+    </field>
+    <field name="reporterName">
+      <value>ewhauser</value>
+    </field>
+    <field name="updaterName">
+      <value>ewhauser</value>
+    </field>
+    <field name="resolved">
+      <value>1219665660000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Fixed in r5285" created="1219665699000" />
+    <comment author="roelofb" text="Fixed in r5285" created="1219665699000" />
+    <comment author="gauthier" text="added comp-issue-68-fix-AbstractValidationContributor.patch that prevent static &quot;initialized&quot; member to be shared across inheritors.&#xA;&#xA;Replaced with a synchronized Hashtable mapping inheritors to synchronized ArrayList of initialized types." created="1220106938000" />
+    <comment author="roelofb" text="Applied comp-issue-68-fix-AbstractValidationContributor.patch in r5302" created="1220271622000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1219665660000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Resolved''.&#xD;&#xA;" created="1219665660000" />
+  </issue>
+</issues>

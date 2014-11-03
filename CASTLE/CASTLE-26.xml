@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Build Scripts</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>26</value>
+    </field>
+    <field name="summary">
+      <value>Enable build on mono</value>
+    </field>
+    <field name="description">
+      <value>This patch enables building castle on mono:
+	
+	On mono 2.0, some tests are not running, mainly MonoRail tests that depends on TestSupport that for some reason can be executed only once.
+	On mono 1.1, almost all code is building, except DP2 and some code on MonoRail (String.IsNullOrEmpty, String.ToLowerInvariant are not available to mono 1.0).
+
+Please note that there were changes in build scripts, source code and test cases in many castle's svn projects.
+
+-------------------------------------------------------------------------------
+	
+General:
+	- SharedLibs:
+		- replicated "net" folder to "mono", mapping net/1.1 to mono/1.0 and net/2.0 to mono/2.0
+	- common-project.xml: 
+		- all path separators changed from '\' to '/'
+		- "${build.dir}\" removed from nunit-console exec task commandline parameter since workingdir is already set
+		- assembly sign preprocessor changed from #if !DOTNET2 to #if !DOTNET2 || MONO
+
+	- common.xml:
+		- ".exe" suffix removed from nunit-console executable, so win and *nix can find him.
+		- nunit-console2 is now tested and used if found, instead of nunit-console. This was done because build fails using nunit-console
+		- added target "set-mono-2.0-framework-configuration"
+		- added gacutil.file property for mono builds, using default from PATH
+		- removed &lt;script&gt; at end of build since nant was rejecting deprecated Uri.MakeRelative on mono-2.0. Is this function used somewhere?
+		- changed "build.warnaserrors" to false, since mono report warnings like "private method never used", "obsolete method", among others stopping the build
+		- reporting mono as DOTNET2 to use existing preprocessors "#if DOTNET2"
+
+Components:
+	- Castle.Components.Binder.build: added reference to assemblies System.Data.dll and System.Web.dll
+	- Castle.Components.Binder.Tests.build: added reference to assemblies System.Data.dll and System.Web.dll
+	- Castle.Components.Common.TemplateEngine.NVelocityTemplateEngine.build: added reference to assembly System.Web.dll
+	- Castle.Components.Common.TemplateEngine.NVelocityTemplateEngine.Tests.build: added reference to assembly System.Configuration.dll
+	- Castle.Components.Common.EmailSender.build: added reference to assembly System.Web.dll
+	- Castle.Components.Winforms.AssemblyResolver.build: added reference to assemblies System.Data.dll and System.Windows.Forms.dll
+
+Facilities:
+	- Castle.Facilities.ActiveRecordIntegration.build: added reference to assemblies System.Data.dll and System.Configuration.dll
+	- Castle.Facilities.AutomaticTransactionManagement.Tests.build: added reference to assembly System.Configuration.dll
+	- Castle.Facilities.BatchRegistration.build: added reference to assembly System.Configuration.dll
+	- Castle.Facilities.BatchRegistration.Tests.build: added reference to assembly System.Configuration.dll
+	- Castle.Facilities.Cache.build: added reference to assembly System.Configuration.dll
+	- Castle.Facilities.Cache.Tests.build: added reference to assembly System.Configuration.dll
+	- Castle.Facilities.IBatisNetIntegration.build: added reference to assembly System.Configuration.dll
+	- Castle.Facilities.IBatisNetIntegration.Tests.build: added reference to assembly System.Configuration.dll
+	- IBatisNet tests failing
+	- Castle.Facilities.Logging.build: added reference to assembly System.Configuration.dll
+	- ConsoleFacitlyTest.cs: replaced '\r\n' by Environment.NewLine
+	- ExtendedLog4NetFacilityTests.cs: replaced '\r\n' by Environment.NewLine
+	- Log4NetFacilityTests.cs: replaced '\r\n' by Environment.NewLine
+	- Castle.Facilities.NHibernateIntegration.build: added reference to assemblies System.Data.dll, System.Web.dll and System.Configuration.dll
+	- Castle.Facilities.NHibernateIntegration.Tests.build: added reference to assembly System.Configuration.dll
+	- Prevalence FacilityTestCase.cs not runnning. Added preprocessor to not run on mono. Stack:
+		System.DllNotFoundException : KERNEL32.DLL
+		at (wrapper managed-to-native) Bamboo.Prevalence.Implementation.CommandLogWriter:FlushFileBuffers (intptr)
+		at Bamboo.Prevalence.Implementation.CommandLogWriter.Win32HardFlush
+
+Core:
+	- Castle.Core.build: added reference to assembly System.Configuration.dll
+	- Castle.Core.Tests.build: added reference to assembly System.Configuration.dll
+	- ConsoleLoggerTestCase.cs:
+		- tests were using line termination '\r\n' in expected results. Abstracted using StringWriter for expected content.
+	- CustomUri.cs: changed ParseIdentifier to consider file starting with '/', as file paths dont't start always with drive letters.
+
+MicroKernel:
+	- Castle.MicroKernel.build: added reference to assembly System.Configuration.dll
+	- RemotingFacility.cs: RemotingConfiguration.Configure(String, bool) doesn't exists on mono. Adjusting preprocessor #if to be aware of that (brokes portability).
+	- SerializationTestCase.cs: RemoteAccessToComponentGraph method doesn't running on mono 2.0. Added preprocessor #if.
+
+Windsor:
+	- Castle.Windsor.build: added reference to assembly System.Configuration.dll
+	- Castle.Windsor.Tests.build: added reference to assembly System.Configuration.dll
+	- Castle.Windsor.Tests.Configuration2.IncludesTestCase: test FileResourceAndRelativeIncludes2 was failing by miss of folder RelativeTest2, so I believe is acceptable create such folder or change the xml to not refer that
+	- XmlProcessorTestCase.cs: in RunTests, "PropertiesWithAttributesTest.xml" is failing.
+	- CircularDependencyTests.cs: because some weird behavior (nunit?), ExpectedException attribute doesn't get CircularDependencyException. Changed to try..catch block
+	- WindsorDotNet2Tests.cs: preprocessor changed to not run on mono. Generics support for mono must be reviewed in DP.
+
+ActiveRecord:
+	- Castle.ActiveRecord.build: added reference to assemblies System.Data.dll, System.Web.dll and System.Configuration.dll
+	- Castle.ActiveRecord.Tests.build: added reference to assemblies System.Data.dll and System.Configuration.dll
+	- Castle.ActiveRecord.Framework.Internal.Tests.build: added reference to assembly System.Configuration.dll
+
+MonoRail:
+	- App.config in some Tests dir: replacing '\' by '/'
+	- Castle.MonoRail.Framework.build: added reference to assemblies System.Data.dll, System.Web.dll and System.Configuration.dll
+	- Castle.MonoRail.Framework.Tests.build: added reference to assembly System.Data.dll
+	- Castle.MonoRail.WindsorExtension.build: added reference to assembly System.Web.dll
+	- Castle.MonoRail.TestSupport.build: added reference to assemblies System.Web.dll and System.Configuration.dll
+	- Castle.MonoRail.Views.Brail.build: added reference to assembly System.Configuration.dll
+	- FileAssemblyViewSourceLoaderTestCase.cs: changed '\' by Path.DirectorySeparatorChar
+	- TestSite.build: added reference to assemblies System.Data.dll, System.Drawing.dll and System.Web.dll
+	- TestSiteWindsor.build: added reference to assembly System.Web.dll
+	- TestSiteARSupport.build:  added reference to assembly System.Web.dll
+	- FormHelperSelectTestCase.cs: replaced '\r\n' by Environment.NewLine
+	- FormHelperTestCase.cs: replaced '\r\n' by Environment.NewLine
+	- HtmlHelperTestCase.cs: replaced '\r\n' by Environment.NewLine
+	- MonoRailTestWorkerRequest.cs: replaced '\' by 'Path.DirectorySeparatorChar'. Now requests can proceed.
+	- FileAssemblyViewSourceLoaderTestCase.cs: replaced '\' by 'Path.DirectorySeparatorChar' in method ListViews
+	- WebFormsViewEngine.cs: HttpServerUtiliy.Execute(string path, bool) is not implemented on mono. Changing preprocessor to be aware (brokes portability).
+
+NVelocity:
+	- MethodCallTestCase.cs: RelaxedSignature* tests doesn't work
+	- DuckTestCase.cs:
+		- using line termination '\r\n' in expected results. Changed to StringBuilder for expected content.
+		- changed sb.AppendLine(str) by sb.Append(str + Environment.NewLine), because former is not implemented on mono 1.0 profile.
+	- NVelocity.Tests.build: added reference to assembly System.Configuration.dll
+
+Services:
+	- Castle.Services.Logging.NLogIntegration.build: adjusting case ("nlog.dll" by "NLog.dll").
+
+DP1:
+	- Castle.DynamicProxy.Tests.build:
+		- added reference to assembly System.Data.dll
+	- MethodTokenExpression.cs:
+		- gen.Emit(OpCodes.Ldtoken, declaringType) doesn't work on mono. Changed preprocessor. Binaries built on win box will not run on mono, and vice-versa. Testing in runtime will remain portability, with some performance penalty.
+	- mixin Tests doesn't work (seams to be a kwnow issue)
+		- MixinTestCase.cs: added preprocessor to not run on mono build
+		- SerializableClassTestCase.cs: method MixinSerialization. Added preprocessor to not run on mono build.
+
+DP2:
+	- don't build on mono 1.0. Mostly by generics support not preprocessored with #if DOTNET2
+	- Castle.DynamicProxy.Tests.build: added reference to assemblies System.Data.dll and System.Configuration.dll
+	- PEVerify: is that tool available to mono?
+	- MethodTokenExpression.cs:
+		- gen.Emit(OpCodes.Ldtoken, declaringType) doesn't work on mono. Changed preprocessor. Binaries built on win box will not run on mono, and vice-versa.
+		- I guess DP2 generic support is broken on mono
+	- Build OK on mono 2.0, but tests are failing
+	- Castle.DynamicProxy.Tests.build:
+		- added support for disable tests (-D:dp2.test=false)
+		- all path separators changed from '\' to '/'
+</value>
+    </field>
+    <field name="created">
+      <value>1167753242000</value>
+    </field>
+    <field name="updated">
+      <value>1167771992000</value>
+    </field>
+    <field name="reporterName">
+      <value>mliberato</value>
+    </field>
+    <field name="updaterName">
+      <value>mliberato</value>
+    </field>
+    <field name="resolved">
+      <value>1282137326495</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>.NET 2.0 Support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>111</value>
+    </field>
+    <field name="summary">
+      <value>Add more smarts to HasAndBelongsToMany in generics scenarios</value>
+    </field>
+    <field name="description">
+      <value>[HasAndBelongsToMany(typeof(Group),RelationType.Set)]
+public ISet&lt;Group&gt; Groups
+
+The above is not unnecessary and can be summarized as:
+
+[HasAndBelongsToMany]
+public ISet&lt;Group&gt; Groups
+</value>
+    </field>
+    <field name="created">
+      <value>1166975755000</value>
+    </field>
+    <field name="updated">
+      <value>1167415922000</value>
+    </field>
+    <field name="reporterName">
+      <value>ayenderahien</value>
+    </field>
+    <field name="updaterName">
+      <value>ayenderahien</value>
+    </field>
+    <field name="resolved">
+      <value>1282136251854</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

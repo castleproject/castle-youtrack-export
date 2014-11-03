@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>512</value>
+    </field>
+    <field name="summary">
+      <value>UrlParts.CreateForRelativePath fails if application uses urls without extensions</value>
+    </field>
+    <field name="description">
+      <value>Exception is: "System.ArgumentOutOfRangeException: Index is out of range... Parameter: startIndex
+   ? System.String.IndexOf(Char value, Int32 startIndex, Int32 count)
+   ? Castle.MonoRail.Framework.Services.UrlParts.CreateForRelativePath(String url) ? c:\ccnet\CastleWorkDir\WorkingDirectory\MonoRail\Castle.MonoRail.Framework\Services\UrlParts.cs:line 325
+
+This bug could be fixed like this:
+
+//-- Original code ----------------------------------
+
+int fileExtIndex = url.IndexOf('.');
+
+if (queryStringStartIndex != -1)
+{
+    qs = url.Substring(queryStringStartIndex);
+    path = url.Substring(0, queryStringStartIndex);
+}
+
+//-- Changes ----------------------------------
+
+if (queryStringStartIndex != -1)
+{
+    qs = url.Substring(queryStringStartIndex);
+    path = url.Substring(0, queryStringStartIndex);
+}
+
+int fileExtIndex = path.IndexOf('.');
+</value>
+    </field>
+    <field name="created">
+      <value>1230193377000</value>
+    </field>
+    <field name="updated">
+      <value>1263055451000</value>
+    </field>
+    <field name="reporterName">
+      <value>rook</value>
+    </field>
+    <field name="updaterName">
+      <value>rook</value>
+    </field>
+    <field name="resolved">
+      <value>1242291660000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Can you provide a patch with a failing test?" created="1242096306000" />
+    <comment author="jsimons" text="Roelof,&#xA;I think this one can be closed, see attached patch that passes this scenario.&#xA;&#xA;Cheers&#xA;John" created="1242098911000" />
+    <comment author="roelofb" text="Probably fixed after this issue was created. Added patch with regression tests in r5682" created="1242101478000" />
+    <comment author="rook" text="Please try the following url:&#xA;&#xA;home/index/state?file=index.pdf" created="1242281914000" />
+    <comment author="roelofb" text="A query string with a dot in it fails indeed." created="1242290458000" />
+    <comment author="roelofb" text="Fixed in r5695" created="1242291681000" />
+    <comment author="rook" text="* '''Summary''' changed from ''UrlParts#CreateForRelativePath fails if application uses urls without extensions'' to ''UrlParts.CreateForRelativePath fails if application uses urls without extensions''.&#xD;&#xA;" created="1230193380000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055440000" />
+    <comment author="jsimons" text="* '''Attachment''' TestForExtensionLessUrlParts.patch added.&#xD;&#xA;" created="1242098820000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1242101460000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1242101460000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Closed'' to ''Reopened''.&#xD;&#xA;" created="1242290400000" />
+    <comment author="roelofb" text="* '''Resolution''' changed from ''Cannot Reproduce'' to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Reopened'' to ''Resolved''.&#xD;&#xA;" created="1242291660000" />
+  </issue>
+</issues>

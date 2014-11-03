@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Transaction</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>v2.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>20</value>
+    </field>
+    <field name="summary">
+      <value>Implement retry-policies for transactions</value>
+    </field>
+    <field name="description">
+      <value>It should be obvious when a tx fails and fully possible to handle in the framework. This improvement is best done together with a realistic load-test which can run a longer period of time, in order to expose weak code and code which might fail.
+
+A sample project using the transactions should be implemented with e.g. MonoRail or MVC2 (and e.g. async actions) where the actions are contending for the same file resources; this would allow some transactions to fail with ERROR_TRANSACTIONAL_CONFLICT, which should be handled similar to how STM.Net handles transactional retries.</value>
+    </field>
+    <field name="created">
+      <value>1272933454000</value>
+    </field>
+    <field name="updated">
+      <value>1407823161644</value>
+    </field>
+    <field name="reporterName">
+      <value>henke</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1396694843167</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>134</value>
+    </field>
+    <field name="summary">
+      <value>AR model builder will not assemble fields on nested types</value>
+    </field>
+    <field name="description">
+      <value>Currently when using the nested attribute, only property entries are added to the active record model.  This patch includes a fix to collect fields as well.  I've also updated the relevant tests (at least what I believe to be) that demonstrate the change.</value>
+    </field>
+    <field name="created">
+      <value>1172338276000</value>
+    </field>
+    <field name="updated">
+      <value>1173513985000</value>
+    </field>
+    <field name="reporterName">
+      <value>krsgoss</value>
+    </field>
+    <field name="updaterName">
+      <value>krsgoss</value>
+    </field>
+    <field name="resolved">
+      <value>1282136297338</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

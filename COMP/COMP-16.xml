@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>16</value>
+    </field>
+    <field name="summary">
+      <value>RangeValidator cleanup, added RangeValidationType.String</value>
+    </field>
+    <field name="description">
+      <value>Change log:
+
+* Added support for RangeValidationType, allowing cleaner definition of validation properties and better handling of DateTime/string issues via the RangeValidator(RangeValidationType type, object min, object max) constructor. Calling this constructor skips the friendly min/max programming logic errors, giving the user an option to avoid this if necessary. Further, passing a null to the min or max in this constructor will automatically translate to the appropriate MinValue or MaxValue for your RangeValidationType.
+* Added a string range validator with unit tests. This also required changed functionality for one constructor, as calling RangeValidator(string,string) now implies string validation as oppopsed to DateTime validation. String comparisons use StringComparison.InvariantCultureIgnoreCase.
+* Changing a RangeValidator's validation type (Type property) resets the min/max values, since they would otherwise be invalid (the wrong type).
+* Added smart handling for passing null or incorrect types to the Min/Max properties.
+* Rewrote IsValid -- a little cleaner now. Falls back to parsing as a failsafe mechanism.
+* Renamed min and max fields to _min and _max. Harder typing, less prone to errors.
+* Resolved issue where empty strings passed to IsValid were causing false negatives.
+* Updated existing unit tests to use different constructors for more comprehensive testing.
+</value>
+    </field>
+    <field name="created">
+      <value>1174497076000</value>
+    </field>
+    <field name="updated">
+      <value>1174688055000</value>
+    </field>
+    <field name="reporterName">
+      <value>bdemarzo</value>
+    </field>
+    <field name="updaterName">
+      <value>bdemarzo</value>
+    </field>
+    <field name="resolved">
+      <value>1282137472026</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

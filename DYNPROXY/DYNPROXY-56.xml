@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>56</value>
+    </field>
+    <field name="summary">
+      <value>CLR serialization bug triggered by DynamicProxy</value>
+    </field>
+    <field name="description">
+      <value>The CLR seems to have a bug, which causes object[]'s containing delegates not to be serialized correctly when using ISerializable, see my bug report at https://connect.microsoft.com/VisualStudio/feedback/ViewFeedback.aspx?FeedbackID=271173 .
+
+Since DynamicProxy 2 serializes all members of the target type into an object[] (__data), it triggers this bug when proxying an object holding delegates or events.
+
+E.g.
+
+[Test]
+public void SerializingObjectsWithDelegate ()
+{
+	ProxyObjectReference.ResetScope ();
+
+	DelegateHolder dh = (DelegateHolder) generator.CreateClassProxy (typeof (DelegateHolder), new IInterceptor[] { new StandardInterceptor () });
+	dh.ComplexTypeMember = new ArrayList (new int[] { 1, 2, 3 });
+	Assert.IsNotNull (dh.ComplexTypeMember);
+	Assert.AreEqual (1, dh.ComplexTypeMember[0]);
+	Assert.AreEqual (2, dh.ComplexTypeMember[1]);
+	Assert.AreEqual (3, dh.ComplexTypeMember[2]);
+	Assert.IsNotNull (dh.DelegateMember);
+
+	DelegateHolder dh2 = (DelegateHolder) SerializeAndDeserialize (dh);
+	Assert.IsNotNull (dh2.ComplexTypeMember);
+	Assert.AreEqual (1, dh2.ComplexTypeMember[0]);
+	Assert.AreEqual (2, dh2.ComplexTypeMember[1]);
+	Assert.AreEqual (3, dh2.ComplexTypeMember[2]);
+	Assert.IsNotNull (dh2.DelegateMember);
+}
+
+This fails, although it seems perfectly alright to me.
+
+I don't think DP is responsible for hacking around this CLR bug, however it might be sensible not to use the __data array, but instead put each of the base type's members separately into the SerializationInfo. Then at least DP is not the one causing the bug to apear.</value>
+    </field>
+    <field name="created">
+      <value>1176714887000</value>
+    </field>
+    <field name="updated">
+      <value>1177768162000</value>
+    </field>
+    <field name="reporterName">
+      <value>fcs</value>
+    </field>
+    <field name="updaterName">
+      <value>fcs</value>
+    </field>
+    <field name="resolved">
+      <value>1282140685166</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.0 Beta 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>78</value>
+    </field>
+    <field name="summary">
+      <value>Custom attributes of virtual properties absent on proxy</value>
+    </field>
+    <field name="description">
+      <value>Custom attributes defined on virtual properties are not getting added to the proxy.  See also:  http://forum.castleproject.org/viewtopic.php?t=4906
+
+I've included a patch which resolves the problem.  Please apply the patch to Tools\Castle.DynamicProxy2.</value>
+    </field>
+    <field name="created">
+      <value>1225828962000</value>
+    </field>
+    <field name="updated">
+      <value>1235023210000</value>
+    </field>
+    <field name="reporterName">
+      <value>neilb14</value>
+    </field>
+    <field name="updaterName">
+      <value>neilb14</value>
+    </field>
+    <field name="resolved">
+      <value>1235023200000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Applied in r5556. Thanks." created="1235023211000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1235023140000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1235023200000" />
+    <comment author="neilb14" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Custom attributes defined on virtual properties are not getting added to the proxy.  See also:  http://forum.castleproject.org/viewtopic.php?t=4906&#xD;&#xA;&#xD;&#xA;I have created a patch to resolve this issue but am unsure how to attach it to the issue.  I'll try and send it to the dev mailing list.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Custom attributes defined on virtual properties are not getting added to the proxy.  See also:  http://forum.castleproject.org/viewtopic.php?t=4906&#xD;&#xA;&#xD;&#xA;I've included a patch which resolves the problem.  Please apply the patch to Tools\Castle.DynamicProxy2.&#xD;&#xA;{quote}&#xD;&#xA;" created="1225829040000" />
+  </issue>
+</issues>

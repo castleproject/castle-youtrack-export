@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>67</value>
+    </field>
+    <field name="summary">
+      <value>Don't make IList property setters public</value>
+    </field>
+    <field name="description">
+      <value>Setters for relation collection properties should not be public.. eg. instead of the following code
+
+        Public Overridable Property Orders() As IList(Of Order)
+            Get
+                Return Me._orders
+            End Get
+            Set
+                Me._orders = value
+            End Set
+        End Property
+
+The setter should be made Protected like so:
+
+        Public Overridable Property Orders() As IList(Of Order)
+            Get
+                Return Me._orders
+            End Get
+            Protected Set
+                Me._orders = value
+            End Set
+        End Property
+
+That way inheritors and NHibernate can still set the field but everyone else can't.</value>
+    </field>
+    <field name="created">
+      <value>1192154204000</value>
+    </field>
+    <field name="updated">
+      <value>1407821976867</value>
+    </field>
+    <field name="reporterName">
+      <value>flcdrg</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1407821976842</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

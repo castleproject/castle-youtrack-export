@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Proxies_Interception</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>369</value>
+    </field>
+    <field name="summary">
+      <value>Probably bug with generic interceptors</value>
+    </field>
+    <field name="description">
+      <value>I'm trying to use generic interceptors to do some magic. In the component registration interceptor specified as _closed_ generic type. 
+
+I'm trying to do following:
+
+{code}
+    public class MySuperInstaller : IWindsorInstaller
+    {
+        public void Install(IWindsorContainer container, IConfigurationStore store)
+        {
+            container.Register(
+                Component.For(typeof (MyInterceptor&lt;&gt;)),
+                Component.For&lt;IFoo&gt;().Interceptors&lt;MyInterceptor&lt;Bar&gt;&gt;());
+        }
+    }
+
+    public class MyInterceptor&lt;T&gt; : IInterceptor
+    {
+        public void Intercept(IInvocation invocation)
+        {
+// Some work that depends on T
+        }
+    }
+{code}
+
+And latter I'm trying to inject {{IFoo}} into my controller, but getting exception:
+
+
+[DependencyResolverException: The interceptor 'MyInterceptor`1[[Bar]]' could not be resolved. Component 'MyInterceptor`1' matching the type specified was found in the container. Did you mean to use it? If so, please specify the reference via name, or register the interceptor without specifying its name.]
+   Castle.Core.InterceptorReference.Castle.MicroKernel.IReference&lt;Castle.DynamicProxy.IInterceptor&gt;.Resolve(IKernel kernel, CreationContext context) +152
+   Castle.Windsor.Proxy.AbstractProxyFactory.ObtainInterceptors(IKernel kernel, ComponentModel model, CreationContext context) +596
+   Castle.Windsor.Proxy.DefaultProxyFactory.Create(IKernel kernel, Object target, ComponentModel model, CreationContext context, Object[] constructorArguments) +112
+   Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments) +688
+
+[ComponentActivatorException: ComponentActivator: could not proxy IFoo]
+   Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments) +975
+   Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(CreationContext context) +114
+   Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context) +49
+   Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context, Burden burden) +55
+   Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(CreationContext context, Boolean trackedExternally) +117
+   Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(CreationContext context, IReleasePolicy releasePolicy) +196
+   Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired, Burden&amp; burden) +583
+   Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context, Boolean instanceRequired) +55
+   Castle.MicroKernel.Handlers.AbstractHandler.Resolve(CreationContext context) +46
+   Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveFromKernelByType(CreationContext context, ComponentModel model, DependencyModel dependency) +504
+   Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveFromKernel(CreationContext context, ComponentModel model, DependencyModel dependency) +273
+   Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveCore(CreationContext context, ISubDependencyResolver contextHandlerResolver, ComponentModel model, DependencyModel dependency) +475
+   Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(CreationContext context, ISubDependencyResolver contextHandlerResolver, ComponentModel model, DependencyModel dependency) +85
+   Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArguments(ConstructorCandidate constructor, CreationContext context) +408
+   Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(CreationContext context) +85
+   Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context) +49
+   Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context, Burden burden) +55
+   Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(CreationContext context, Boolean trackedExternally) +117
+   Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context, IReleasePolicy releasePolicy) +53
+   Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired, Burden&amp; burden) +583
+   Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context, Boolean instanceRequired) +55
+   Castle.MicroKernel.Handlers.AbstractHandler.Resolve(CreationContext context) +46
+   Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments, IReleasePolicy policy) +147
+   Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(Type service, IDictionary arguments, IReleasePolicy policy) +126
+   Castle.MicroKernel.DefaultKernel.Resolve(Type service) +90
+   WindsorControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType) in Global.asax.cs:93
+   System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName) +74
+   System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController&amp; controller, IControllerFactory&amp; factory) +197
+   System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state) +49
+   System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state) +50
+   System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData) +16
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +301
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +155
+
+</value>
+    </field>
+    <field name="created">
+      <value>1353497214905</value>
+    </field>
+    <field name="updated">
+      <value>1407822257259</value>
+    </field>
+    <field name="reporterName">
+      <value>hazzik</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1355981054631</value>
+    </field>
+    <field name="voterName">
+      <value>xtoff</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="hazzik" text="Pull request https://github.com/castleproject/Windsor/pull/16" created="1353500375923" />
+    <comment author="xtoff" text="So what's the actual scenario here? Why is the interceptor an open generic?" created="1353530670178" />
+    <comment author="hazzik" text="The interceptor in the registration of it is open generic because I don't want to register many of these. The what I want to make is injectable client-side services with signalr.&#xA;&#xA;I have HubInterceptor which is able to pass method calls to the client side. &#xA;&#xA;{code}&#xA;    public class HubInterceptor&lt;THub&gt; : IInterceptor where THub : IHub&#xA;    {&#xA;        public void Intercept(IInvocation invocation)&#xA;        {&#xA;            object[] args;&#xA;            var clientAgent = GetClientAgent(invocation, out args);&#xA;            if (clientAgent != null)&#xA;                invocation.ReturnValue = clientAgent.Invoke(invocation.Method.Name, args);&#xA;        }&#xA;&#xA;        private static IClientProxy GetClientAgent(IInvocation call, out object[] args)&#xA;        {&#xA;            var hub = GlobalHost.ConnectionManager.GetHubContext&lt;THub&gt;();&#xA;//some additional arguments processing&#xA;            args = call.Arguments.ToArray();&#xA;            return hub.Clients.All;&#xA;        }&#xA;    }&#xA;{code}&#xA;&#xA;And i would like to use it like so&#xA;{code}&#xA;            container.Register(&#xA;                Component.For(typeof (HubInterceptor&lt;&gt;)),&#xA;                Component.For&lt;IChatClientService&gt;().Interceptors&lt;HubInterceptor&lt;Hub1&gt;&gt;(),&#xA;                Component.For&lt;IAnotherClientService&gt;().Interceptors&lt;HubInterceptor&lt;Hub2&gt;&gt;());&#xA;{code}&#xA;&#xA;In one of my previous projects was 3 client side services. But I want to make a generic facility-like solution." created="1353533320419" />
+  </issue>
+</issues>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>NHibernate</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>117</value>
+    </field>
+    <field name="summary">
+      <value>PersistentConfigurationBuilder improvements</value>
+    </field>
+    <field name="description">
+      <value>Suggested by German Schauger in user group
+
+#  Derive the filename from session factory ID or alias when not explicitly specified.
+# Derive dependant files from the &lt;assemblies&gt;&lt;/assemblies&gt; node entries (common usage) when not explicitly specified.</value>
+    </field>
+    <field name="created">
+      <value>1237695161000</value>
+    </field>
+    <field name="updated">
+      <value>1243565258000</value>
+    </field>
+    <field name="reporterName">
+      <value>tehlike</value>
+    </field>
+    <field name="updaterName">
+      <value>tehlike</value>
+    </field>
+    <field name="resolved">
+      <value>1237937520000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="tehlike" text="Fixed in rev 5601 by the patch of German Schauger" created="1237937541000" />
+    <comment author="tehlike" text="* '''Type''' changed from ''Bug'' to ''Improvement''.&#xD;&#xA;* '''Importance''' changed from ''High'' to ''Medium''.&#xD;&#xA;" created="1237695180000" />
+    <comment author="german" text="* '''Attachment''' facilities117.patch added.&#xD;&#xA;" created="1237725120000" />
+    <comment author="tehlike" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1237937520000" />
+    <comment author="tehlike" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1243565220000" />
+  </issue>
+</issues>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>385</value>
+    </field>
+    <field name="summary">
+      <value>The PropertyBag is not working in the WizardStepPage.Initialize method</value>
+    </field>
+    <field name="description">
+      <value>Issue MR-260 is marked as resolved in RC3, but I just downloaded RC3 and it still seems to be not working. 
+
+With this code my $genres are *not* getting populated:
+
+protected override void  Initialize()
+{
+	PropertyBag["genres"] = Repository&lt;Genre&gt;.Find(Where.Genre.IsTopLevel);
+ 			
+ 	base.Initialize();
+}	
+
+With this code they are:
+
+protected override void RenderWizardView()
+{
+	PropertyBag["genres"] = Repository&lt;Genre&gt;.Find(Where.Genre.IsTopLevel);
+ 			
+	base.RenderWizardView();
+}</value>
+    </field>
+    <field name="created">
+      <value>1198531836000</value>
+    </field>
+    <field name="updated">
+      <value>1263055881000</value>
+    </field>
+    <field name="reporterName">
+      <value>nick72</value>
+    </field>
+    <field name="updaterName">
+      <value>nick72</value>
+    </field>
+    <field name="resolved">
+      <value>1282145458823</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055860000" />
+  </issue>
+</issues>

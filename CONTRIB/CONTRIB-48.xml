@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle Visual Studio Integration</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>48</value>
+    </field>
+    <field name="summary">
+      <value>Simpler than code-completion: auto-closing of XHTML tags</value>
+    </field>
+    <field name="description">
+      <value>Since intelissense could take a while, an interesting new feature could be the auto-closing of XHTML tags, when typing the "&gt;".</value>
+    </field>
+    <field name="created">
+      <value>1185202584000</value>
+    </field>
+    <field name="updated">
+      <value>1223619254000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1223619240000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="XHTML intellisense was added in 0.3.0 which also allows auto-closing of elements easier." created="1223619254000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1223619240000" />
+  </issue>
+</issues>

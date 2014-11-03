@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>506</value>
+    </field>
+    <field name="summary">
+      <value>Brail render JS throw exception IF custom Filter applied on Controller</value>
+    </field>
+    <field name="description">
+      <value>I had a custom filter
+
+AuthenticationFilterAttribute: FilterAttribute  { ... }
+AuthenticationFilter : Filter, IFilterAttributeAware 
+{ ... this filter will run before action execute ... }
+
+[AuthenticationFilter(RequiredAuth = false)]
+public abstract class AbstractBaseController: SmartDispatcherController{ ... }
+
+For normal http access everything work perfectly; except when I want to process .brailjs view i always get the follow exception
+
+---------------------------------------------------------------------------------
+MonoRailException
+
+Message:
+  Error generating JS. Template: monthly\report
+  
+StackTrace:
+     at Castle.MonoRail.Views.Brail.BooViewEngine.GenerateJS(String templateName, TextWriter output, JSCodeGeneratorInfo generatorInfo, IEngineContext context, IController controller, IControllerContext controllerContext)
+   at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.Process(String templateName, TextWriter output, IEngineContext context, IController controller, IControllerContext controllerContext)
+   at Castle.MonoRail.Framework.Controller.ProcessView()
+   at Castle.MonoRail.Framework.Controller.RunActionAndRenderView()
+  
+InnerException:
+  $System.Exception: Error invoking method on generator. Method invoked [ReplaceHtml] with 2 argument(s) ---&amp;gt; System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---&amp;gt; Castle.MonoRail.Framework.MonoRailException: Could not process partial monthly/_form ---&amp;gt; Castle.MonoRail.Framework.MonoRailException: Error generating partial: monthly/_form ---&amp;gt; System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---&amp;gt; System.NullReferenceException: Object reference not set to an instance of an object.
+   at System.Web.HttpRequest.CalcDynamicServerVariable(DynamicServerVariable var)
+   at System.Web.HttpServerVarsCollectionEntry.GetValue(HttpRequest request)
+   at System.Web.HttpServerVarsCollection.GetServerVar(Object e)
+   at System.Web.HttpServerVarsCollection.Get(Int32 index)
+   at System.Web.HttpServerVarsCollection.GetValues(Int32 index)
+   at System.Collections.Specialized.NameValueCollection.Add(NameValueCollection c)
+   at System.Web.HttpRequest.FillInParamsCollection()
+   at System.Web.HttpRequest.GetParams()
+   at System.Web.HttpRequest.get_Params()
+   at Castle.MonoRail.Framework.Adapters.RequestAdapter.get_Params()
+   at Castle.MonoRail.Framework.Helpers.AbstractFormRelatedHelper.ObtainRootInstance(RequestContext context, String target)
+   at Castle.MonoRail.Framework.Helpers.AbstractFormRelatedHelper.ObtainRootInstance(RequestContext context, String target, String[]&amp;amp; pieces)
+   at Castle.MonoRail.Framework.Helpers.AbstractFormRelatedHelper.ObtainValue(RequestContext context, String target)
+   at Castle.MonoRail.Framework.Helpers.AbstractFormRelatedHelper.ObtainValue(String target)
+   at Castle.MonoRail.Framework.Helpers.AbstractFormRelatedHelper.ObtainValue(String target, IDictionary attributes)
+   at Castle.MonoRail.Framework.Helpers.FormHelper.TextField(String target, IDictionary attributes)
+   at Castle.MonoRail.Framework.Helpers.FormHelper.TextField(String target)
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle._InvokeMethodFast(Object target, Object[] arguments, SignatureStruct&amp;amp; sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.RuntimeMethodHandle.InvokeMethodFast(Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.RuntimeType.InvokeMember(String name, BindingFlags bindingFlags, Binder binder, Object target, Object[] providedArgs, ParameterModifier[] modifiers, CultureInfo culture, String[] namedParams)
+   at System.Type.InvokeMember(String name, BindingFlags invokeAttr, Binder binder, Object target, Object[] args)
+   at Castle.MonoRail.Views.Brail.ExpandDuckTypedExpressions_WorkaroundForDuplicateVirtualMethods.Invoke(Object target, String name, Object[] args)
+   at BrailView__form.Run()
+   at Castle.MonoRail.Views.Brail.BooViewEngine.ProcessPartial(String partialName, TextWriter output, IEngineContext context, IController controller, IControllerContext controllerContext)
+   --- End of inner exception stack trace ---
+   at Castle.MonoRail.Views.Brail.BooViewEngine.ProcessPartial(String partialName, TextWriter output, IEngineContext context, IController controller, IControllerContext controllerContext)
+   at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.ProcessPartial(String partialName, TextWriter output, IEngineContext context, IController controller, IControllerContext controllerContext)
+   at Castle.MonoRail.Framework.JSGeneration.JSCodeGenerator.Render(Object renderOptions)
+   --- End of inner exception stack trace ---
+   at Castle.MonoRail.Framework.JSGeneration.JSCodeGenerator.Render(Object renderOptions)
+   at Castle.MonoRail.Framework.JSGeneration.AbstractJSGenerator.Render(Object renderOptions)
+   at Castle.MonoRail.Framework.JSGeneration.jQuery.JQueryGenerator.ReplaceHtml(String id, Object renderOptions)
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle._InvokeMethodFast(Object target, Object[] arguments, SignatureStruct&amp;amp; sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.RuntimeMethodHandle.InvokeMethodFast(Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Castle.MonoRail.Framework.JSGeneration.DynamicDispatching.DynamicDispatcher.Dispatch(String method, Object[] args)
+   --- End of inner exception stack trace ---
+   at Castle.MonoRail.Framework.JSGeneration.DynamicDispatching.DynamicDispatcher.Dispatch(String method, Object[] args)
+   at Castle.MonoRail.Framework.JSGeneration.DynamicDispatching.JSGeneratorDispatcherBase.InternalInvoke(String method, Object[] args)
+   at Castle.MonoRail.Views.Brail.BrailJSGenerator.QuackInvoke(String method, Object[] args)
+   at Castle.MonoRail.Views.Brail.ExpandDuckTypedExpressions_WorkaroundForDuplicateVirtualMethods.Invoke(Object target, String name, Object[] args)
+   at BrailView_report.Run()
+   at Castle.MonoRail.Views.Brail.BooViewEngine.GenerateJS(String templateName, TextWriter output, JSCodeGeneratorInfo generatorInfo, IEngineContext context, IController controller, IControllerContext controllerContext)
+
+</value>
+    </field>
+    <field name="created">
+      <value>1227640636000</value>
+    </field>
+    <field name="updated">
+      <value>1263055723000</value>
+    </field>
+    <field name="reporterName">
+      <value>csokun</value>
+    </field>
+    <field name="updaterName">
+      <value>csokun</value>
+    </field>
+    <field name="resolved">
+      <value>1228861320000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="Can you also attach the Filter code?&#xA;" created="1227661316000" />
+    <comment author="csokun" text="Please close this bug; it cause from my bad IPrincipal, IIdentity implementation." created="1228428960000" />
+    <comment author="ayenderahien" text="Closed by user request" created="1228861330000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228861320000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055680000" />
+  </issue>
+</issues>

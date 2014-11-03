@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>View Components</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>165</value>
+    </field>
+    <field name="summary">
+      <value>SmartGridComponent: Column header links do not carry over existing query string parameters.</value>
+    </field>
+    <field name="description">
+      <value>Column header links do not carry over existing query string parameters.
+
+Current behavior: If you have a filter on the view containing the grid
+
+index.rails?toSearch=someString
+
+The grid column links are generated like:
+
+index.rails?sortBy=someColumn&amp;sortAsc=True
+
+Suggested behavior: Links should be generated like
+
+index.rails?toSearch=someString&amp;sortBy=someColumn&amp;sortAsc=True
+
+The attached patch implements the suggestion.
+
+Thanks.
+
+ademar</value>
+    </field>
+    <field name="created">
+      <value>1279212032000</value>
+    </field>
+    <field name="updated">
+      <value>1414392246117</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392246107</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Moved bug from http://support.castleproject.org/projects/MR/issues/view/MR-ISSUE-477 to here" created="1279212090000" />
+    <comment author="jsimons" text="* '''Attachment''' GridComponent-preserve-queryString.patch added.&#xD;&#xA;" created="1279212060000" />
+    <comment author="jsimons" text="* '''Attachment''' SmartGridComponent-column-links.patch added.&#xD;&#xA;" created="1279212060000" />
+  </issue>
+</issues>

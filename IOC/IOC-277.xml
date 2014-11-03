@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Activators</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>277</value>
+    </field>
+    <field name="summary">
+      <value>Add ability for components activated in a custom way to opt out of container lifetime management</value>
+    </field>
+    <field name="description">
+      <value>Say components that are provided by {{UsingFactoryMethod}} should have at registration time ability to opt out of having lifetime concerns applied and from being tracked by the release policy if they're transient.
+
+That should be a opt out mechanism as it may make or not make sense on a case by case basis. Since current behavior is to track them (and that's a reasonable default) it should stay that way.</value>
+    </field>
+    <field name="created">
+      <value>1298631410084</value>
+    </field>
+    <field name="updated">
+      <value>1407822257303</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1298635159069</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

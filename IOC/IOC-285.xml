@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>285</value>
+    </field>
+    <field name="summary">
+      <value>Add abilitty to make a component the default for a service without ensuring it's the first component exposed that service registered.</value>
+    </field>
+    <field name="description">
+      <value>This will be very useful in following scenarios:
+
+Someone (3rd party facility for example) registers a default implementation for some service. User wants to override that with his own implementation. Right now they have to ensure they register the custom implementation before the facility which is not the most convenient and not always possible.</value>
+    </field>
+    <field name="created">
+      <value>1302532457787</value>
+    </field>
+    <field name="updated">
+      <value>1407822257294</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1302686665567</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>409</value>
+    </field>
+    <field name="summary">
+      <value>Adding MonoRail_ContainerInitialized method to interface or base class, so it's more discoverable</value>
+    </field>
+    <field name="description">
+      <value>Basically, it's not obvious how to get hold of Monorail's life cycle events/stages. Proposed is a interface or base class for Application object, which defines a clear contract for this. Similar to how ASP.NET Application class exposes it's events and allows to subscribe/override them.</value>
+    </field>
+    <field name="created">
+      <value>1201598702000</value>
+    </field>
+    <field name="updated">
+      <value>1263055546000</value>
+    </field>
+    <field name="reporterName">
+      <value>weex</value>
+    </field>
+    <field name="updaterName">
+      <value>weex</value>
+    </field>
+    <field name="resolved">
+      <value>1282145530932</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055500000" />
+  </issue>
+</issues>

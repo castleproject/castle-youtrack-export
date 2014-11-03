@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Duplicate</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>80</value>
+    </field>
+    <field name="summary">
+      <value>Unexpected exception thrown using TransactionScope but not using SessionScope...</value>
+    </field>
+    <field name="description">
+      <value>As code attached, i have created two test methods that updates a list of objects, the first using a SessionScope and the second using a TransactionScope: both methods perform the same operations, but the second fail at the validation of the second object...
+Please take a look at the source for more explainations, the code is very trivial.</value>
+    </field>
+    <field name="created">
+      <value>1159424638000</value>
+    </field>
+    <field name="updated">
+      <value>1162409585000</value>
+    </field>
+    <field name="reporterName">
+      <value>d_guidi</value>
+    </field>
+    <field name="updaterName">
+      <value>d_guidi</value>
+    </field>
+    <field name="resolved">
+      <value>1282136192104</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

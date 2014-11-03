@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>86</value>
+    </field>
+    <field name="summary">
+      <value>Support Visual Studio 2008</value>
+    </field>
+    <field name="description">
+      <value>I've had a go at porting ActiveWriter to 2008.
+
+After first trying the "upgrade" method without much success, I then generated completely new projects and ported the files over.
+
+Things mostly work, though I do know i've managed to break the "right-click on the model designer" functionality.
+
+I renamed things a bit, so it should be possible to install this alongside the 2005 version. I'm not sure whether you could have the same version do 2005 and 2008, so I thought this would be easier in the first instance.
+
+The code probably includes a few of my extra patches - it works for me, other people's mileage may vary :-)
+
+-dave</value>
+    </field>
+    <field name="created">
+      <value>1196148597000</value>
+    </field>
+    <field name="updated">
+      <value>1207281309000</value>
+    </field>
+    <field name="reporterName">
+      <value>flcdrg</value>
+    </field>
+    <field name="updaterName">
+      <value>flcdrg</value>
+    </field>
+    <field name="resolved">
+      <value>1282139429932</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

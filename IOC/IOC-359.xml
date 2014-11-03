@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Registration API</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>359</value>
+    </field>
+    <field name="summary">
+      <value>Property filtering API is confusing and buggy</value>
+    </field>
+    <field name="description">
+      <value>The API (using {{.Properties(...)}} methods with delegates) is structured in a way that is not natural to use, and it's not immediately obvious what the result of a call will be in many cases (especially when calling the methods multiple times for a single component.
+
+Also for multiple calls to a single component, possibly multiple dependencies are added to the {{ComponentModel}} for a single property.
+
+As such the methods should be deprecated and two other, more clearly named methods should be introduced:
+{{.PropertiesIgnore()}} and {{.PropertiesRequire()}} which more clearly suggest what the result of delegate provided returning {{true}} is going to be.
+
+The overload {{.Properties(PropertyFilter filter)}} is quite reasonable so it should stay.</value>
+    </field>
+    <field name="created">
+      <value>1349211612760</value>
+    </field>
+    <field name="updated">
+      <value>1407822257266</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1349212575253</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

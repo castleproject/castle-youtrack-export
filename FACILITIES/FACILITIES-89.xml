@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Duplicate</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>FactorySupport</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>89</value>
+    </field>
+    <field name="summary">
+      <value>FactorySupport Facility Does Not Honour Additional Arguments</value>
+    </field>
+    <field name="description">
+      <value>I want to be able to pass values into the factory at run-time, for example:
+
+Hashtable props = new Hashtable();
+props["storeName"] = "MyStore";
+MyComp comp = (MyComp) container.Kernel.Resolve("mycomp", props);
+
+At the moment, I get this exception:
+Castle.MicroKernel.Facilities.FacilityException: Factory Method MyCompFactory.Create requires an argument 'storeName' that could not be resolved.
+  at Castle.Facilities.FactorySupport.FactoryActivator.Create(Object factoryInstance, String factoryId, MethodInfo instanceCreateMethod, String factoryCreate)
+
+I've done some investigation, and it looks like the reason this is happening is because the FactoryActivator.Create method is passing CreationContext.Empty into the IDependencyResolver (lines 114-122):
+
+if (!Kernel.Resolver.CanResolve(CreationContext.Empty, null, Model, depModel))
+   {
+      String message = String.Format(
+         "Factory Method {0}.{1} requires an argument '{2}' that could not be resolved",
+            instanceCreateMethod.DeclaringType.FullName, instanceCreateMethod.Name, parameter.Name);
+      throw new FacilityException(message);
+   }
+object arg = Kernel.Resolver.Resolve(CreationContext.Empty, null, Model, depModel);
+
+I tried changing the source locally so that the Create method takes in an addtional parameter (CreationContext context) and passed this in from the Instantiate method. This worked for me. 
+
+Originally raised in: http://forum.castleproject.org/viewtopic.php?p=8169</value>
+    </field>
+    <field name="created">
+      <value>1181777025000</value>
+    </field>
+    <field name="updated">
+      <value>1181854939000</value>
+    </field>
+    <field name="reporterName">
+      <value>scott_brady</value>
+    </field>
+    <field name="updaterName">
+      <value>scott_brady</value>
+    </field>
+    <field name="resolved">
+      <value>1282141201432</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

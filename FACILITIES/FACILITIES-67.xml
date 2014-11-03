@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>AutomaticTransactionManagement</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>67</value>
+    </field>
+    <field name="summary">
+      <value>ATM does not work in an Initialize method of IInitializable</value>
+    </field>
+    <field name="description">
+      <value>I have a component that implements IInitializable. This class is declared Transactional and the method Initialize has the 
+attribute Transaction(TransactionMode.Requires), but there is no automatic transaction being created when Initialize is being called after the container has created this component.
+
+Other methods marked with the attribute Transaction in the same class, gives me automatic transactions. 
+
+I have tested this with version 3054 of the trunk.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1165429640000</value>
+    </field>
+    <field name="updated">
+      <value>1175646675000</value>
+    </field>
+    <field name="reporterName">
+      <value>jpersson</value>
+    </field>
+    <field name="updaterName">
+      <value>jpersson</value>
+    </field>
+    <field name="resolved">
+      <value>1282141062448</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

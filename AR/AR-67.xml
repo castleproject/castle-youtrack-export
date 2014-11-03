@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>67</value>
+    </field>
+    <field name="summary">
+      <value>AmbiguousMatchException when attempting to invoke a lazy loaded ActiveRecord object from brail</value>
+    </field>
+    <field name="description">
+      <value>NOTE: Although this bug affects ActiveRecord, it is more than likely a problem with DynamicProxy. I have not used DynamicProxy by itself so I was not sure how to go about reproducing the issue separate of ActiveRecord.
+
+When using the lazy loading feature in ActiveRecord/NHibernate, DynamicProxy appears to create two entries for virtual properties which return interfaces. This poses a problem for dynamic languages like boo, as the Type.InvokeMember function throws an AmbiguousMatchException when attempting to get the value of the property.
+
+Below is a sample of code that should help you to recreate the problem:
+
+[ActiveRecord( ..., Lazy = true )]
+public class Blog : ActiveRecordBase
+{
+  //
+  // ...
+  //
+
+  public virtual IList BrokenPosts
+  {
+    get { return posts; }
+  }
+
+  public IList WorkingPosts
+  {
+    get { return GetPosts(); }
+  }
+
+  protected virtual GetPosts()
+  {
+    return posts;
+  }
+
+  //
+  // ...
+  //
+}
+
+// Problem code
+object target = Blog.Find( 1 );
+object result = target.GetType().InvokeMember( name, BindingFlags.OptionalParamBinding | BindingFlags.GetProperty | BindingFlags.GetField | BindingFlags.FlattenHierarchy | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance, null, target, null ); // throws AmbiguousMatchException
+</value>
+    </field>
+    <field name="created">
+      <value>1153172697000</value>
+    </field>
+    <field name="updated">
+      <value>1162410272000</value>
+    </field>
+    <field name="reporterName">
+      <value>jystic</value>
+    </field>
+    <field name="updaterName">
+      <value>jystic</value>
+    </field>
+    <field name="resolved">
+      <value>1282136126026</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>139</value>
+    </field>
+    <field name="summary">
+      <value>Better error message</value>
+    </field>
+    <field name="description">
+      <value>I would like a better error message around this section in defaultproxybuilder.cs.  One specifying that nested internal is not supported and the developer should try not nesting.  Thanks.
+
+{code lang=java}
+private void AssertValidType(Type target)
+{
+	#if SILVERLIGHT
+	var isTargetNested = target.IsNested();
+	var isAccessible = target.IsPublic || target.IsNestedPublic;
+	#else
+	bool isTargetNested = target.IsNested;
+	bool isNestedAndInternal = isTargetNested &amp;&amp; (target.IsNestedAssembly || target.IsNestedFamORAssem);
+	bool isInternalNotNested = target.IsVisible == false &amp;&amp; isTargetNested == false;
+
+	bool internalAndVisibleToDynProxy = (isInternalNotNested || isNestedAndInternal) &amp;&amp;
+	InternalsHelper.IsInternalToDynamicProxy(target.Assembly);
+	var isAccessible = target.IsPublic || target.IsNestedPublic || internalAndVisibleToDynProxy;
+	#endif
+
+	if (!isAccessible)
+	{
+		throw new GeneratorException("Type " + target.FullName + "is not public. " +
+		"Can not create proxy for types that are not accessible.");
+	}
+	if (target.IsGenericTypeDefinition)
+	{
+		throw new GeneratorException("Type " + target.FullName + "is a generic type definition. " +
+		"Can not create proxy for open generic types.");
+	}
+}
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1282770777611</value>
+    </field>
+    <field name="updated">
+      <value>1288181602618</value>
+    </field>
+    <field name="reporterName">
+      <value>p.w</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1288181530868</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="So what wording would you suggest?" created="1282802250549" />
+    <comment author="p.w" text="I wanted to add another &quot;if&quot; but lets try this.  The &quot;is not public&quot; part doesn't tell the whole story because the type doesn't have to be public.&#xA;&#xA;New message for the first throw:&#xA;&quot;Can not create proxy for type '&quot; + target.FullName + &quot;' because it is not accessible to DynamicProxy.  Types that are nested in another class and only visible to that class/assembly is not supported even if the InternalsVisibleTo attribute is specified.&quot;&#xA;&#xA;&#xA;Kind of related:&#xA;Should the IsGenericTypeDefinition check come at the very top of the method to avoid the other checks and loop that is inside of IsInternalToDynamicProxy if the check is always performed?" created="1282830015971" />
+    <comment author="xtoff" text="that's an obscure scenario, but you're right :)&#xA;&#xA;About IsGenericTypeDefinition you're also right. This has not been a real issue because in standard usage of DP open generics will be filtered out by ProxyGenerator, so by the time call reaches proxyfactory the type is guaranteed to not be a generic type definition, but I agree that should be changed." created="1282830981658" />
+    <comment author="xtoff" text=" p w&#xA;&#xA;&gt; Types that are nested in another class and only visible to that class/assembly is not supported even if the InternalsVisibleTo attribute is specified.&#xA;&#xA;To make sure were on the same page here - can you give a concrete example?&#xA;&#xA;is that this case?&#xA;&#xA;{{target.IsNestedAssembly || target.IsNestedFamORAssem}}" created="1282976972296" />
+    <comment author="p.w" text="Here are some tests.  After playing around with the InternalsVisibleTo attribute, I think I found the right combination of attribute and type visibility.  The main part of this request is the correct wording in the error.  You will see that types don't have to be &quot;public&quot; to be proxied.  The first test is supposed to fail to show that the type can not be proxied because it is nested and private, thus the updated error message.  The test assembly had to be signed.&#xA;&#xA;{code}&#xA;using System;&#xA;using System.Collections.Generic;&#xA;using System.Linq;&#xA;using System.Runtime.CompilerServices;&#xA;using System.Text;&#xA;using Castle.DynamicProxy;&#xA;using NUnit.Framework;&#xA;&#xA;//[assembly: InternalsVisibleTo(&quot;Castle.Core, PublicKey=0024000004800000940000000602000000240000525341310004000001000100c547cac37abd99c8db225ef2f6c8a3602f3b3606cc9891605d02baa56104f4cfc0734aa39b93bf7852f7d9266654753cc297e7d2edfe0bac1cdcf9f717241550e0a7b191195b7667bb4f64bcb8e2121380fd1d9d46ad2d92d2d15605093924cceaf74c4861eff62abf69b9291ed0a340e113be11e6a7d3113e92484cf7045cc7&quot;)]&#xA;&#xA;//[assembly: InternalsVisibleTo(&quot;DynamicProxyGenAssembly2, PublicKey=null&quot;)]&#xA;[assembly: InternalsVisibleTo(&quot;DynamicProxyGenAssembly2, PublicKey=0024000004800000940000000602000000240000525341310004000001000100c547cac37abd99c8db225ef2f6c8a3602f3b3606cc9891605d02baa56104f4cfc0734aa39b93bf7852f7d9266654753cc297e7d2edfe0bac1cdcf9f717241550e0a7b191195b7667bb4f64bcb8e2121380fd1d9d46ad2d92d2d15605093924cceaf74c4861eff62abf69b9291ed0a340e113be11e6a7d3113e92484cf7045cc7&quot;)]&#xA;namespace ClassLibrary3&#xA;{&#xA;	[TestFixture]&#xA;	public class Class1&#xA;	{&#xA;		[Test]&#xA;		public void Test()&#xA;		{&#xA;			var builder = new DefaultProxyBuilder();&#xA;			var generator = new ProxyGenerator(builder);&#xA;&#xA;			var proxy = generator.CreateClassProxy&lt;IHaveAnObjectProperty&gt;();&#xA;&#xA;			object hello = &quot;Hello&quot;;&#xA;			proxy.ObjProp = hello;&#xA;&#xA;			Assert.AreSame(hello, proxy.ObjProp);&#xA;		}&#xA;&#xA;		[Test]&#xA;		public void Test2()&#xA;		{&#xA;			var builder = new DefaultProxyBuilder();&#xA;			var generator = new ProxyGenerator(builder);&#xA;&#xA;			var proxy = generator.CreateClassProxy&lt;IHaveAStringProperty&gt;();&#xA;&#xA;			string hello = &quot;Hello&quot;;&#xA;			proxy.FullName = hello;&#xA;&#xA;			Assert.AreSame(hello, proxy.FullName);&#xA;		}&#xA;&#xA;		[Test]&#xA;		public void Test3()&#xA;		{&#xA;			var builder = new DefaultProxyBuilder();&#xA;			var generator = new ProxyGenerator(builder);&#xA;&#xA;			var proxy = generator.CreateClassProxy&lt;IHaveAStringProperty.IHaveAnIntProperty&gt;();&#xA;&#xA;			int counter = 2;&#xA;			proxy.Count = counter;&#xA;&#xA;			Assert.AreEqual(counter, proxy.Count);&#xA;		}&#xA;		&#xA;&#xA;		class IHaveAnObjectProperty&#xA;		{&#xA;			public object ObjProp { get; set; }&#xA;		}&#xA;	}&#xA;&#xA;	class IHaveAStringProperty&#xA;	{&#xA;		public string FullName { get; set; }&#xA;&#xA;		protected internal class IHaveAnIntProperty&#xA;		{&#xA;			public int Count { get; set; }&#xA;		}&#xA;&#xA;&#xA;	}&#xA;&#xA;}&#xA;&#xA;{code}" created="1284475582201" updated="1284475620654" />
+    <comment author="xtoff" text="Thanks, I'll look into this when I get back home, and if all is fine I'll roll it into upcoming 2.5.1 release" created="1284506672103" />
+    <comment author="xtoff" text="I'm not sure I get the point with the tests. The {{IHaveAStringProperty}} is internal but with {{InternalsVisibleTo}} it gets proxies just fine. The {{IHaveAnObjectProperty}} is private nested and as such the error message is correct. If you make it internal, it will get proxied just fine. So it feels I'm missing your point here." created="1284897671046" />
+    <comment author="p.w" text="I do understand your points.  It is just that...DP can proxy internal types and the error message says that they have to be public.  That's why I threw out the new error message in my Aug 26 reply above.  I would want the error clear to all users as to why their type can't be proxied.  If I were to see the new proposed error message and knew that my type wasn't nested and it was internal, then my InternalsVisibleTo attribute parameter may be wrong.  New users may not know about the &quot;DPGenAssembly2&quot;.  If you believe it to be fine and haven't had many questions on the error message, then I can support leaving it as is.  When I encountered the error for the first time it confused me a bit because I knew DP could proxy non-public types." created="1285213156263" />
+  </issue>
+</issues>

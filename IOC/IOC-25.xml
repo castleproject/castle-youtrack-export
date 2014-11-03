@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>25</value>
+    </field>
+    <field name="summary">
+      <value>Overrides on the configuration should be considered a non-optional dependency</value>
+    </field>
+    <field name="description">
+      <value>You can have a component with a parameterless constructor and a constructor that takes a service reference. If the configuration for that components has an override
+
+&lt;component&gt;
+  &lt;parameters&gt;
+    &lt;myservice&gt;${otherservice}&lt;/myservice&gt;
+  &lt;/parameters&gt;
+&lt;/component&gt;
+
+That means that the developer wants the component to use exclusively the 'otherservice'. In other words, the parameterless constructor won't be an option anymore.
+
+This is an easy fix. There are three types of dependencies: constructor, property and component. Each on its on model. For this fix just add a dependency to the component level. This will force the Handler to not put the component in a ready state while the dependency is not reachable.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1146725189000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838869</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282141676651</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

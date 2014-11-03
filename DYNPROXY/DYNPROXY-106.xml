@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>106</value>
+    </field>
+    <field name="summary">
+      <value>Proxying COM interfaces produces invalid proxies</value>
+    </field>
+    <field name="description">
+      <value>I just built castle from trunk (r5862) and tried to use the newest dp to build rhino.mocks.  The test below is now failing with the following exception.
+
+TestCase 'MbUnit v1.0.2700.29885/Rhino.Mocks.Tests/FieldProblem_dyowee/MockingRecordSet' failed: 
+	Exception
+	System.TypeLoadException: Method 'add_WillChangeField' on type 'Castle.Proxies.RecordsetProxy1f7750507a8e4d9085a92bf9446dfbe7' from assembly 'DynamicProxyGenAssembly2, Version=0.0.0.0, Culture=neutral, PublicKeyToken=a621a9e7e5c32e69' is overriding a method that has been overridden.
+	at System.Reflection.Emit.TypeBuilder._TermCreateClass(Int32 handle, Module module)
+	at System.Reflection.Emit.TypeBuilder.CreateTypeNoLock()
+	at System.Reflection.Emit.TypeBuilder.CreateType()
+	c:\export\code\OSS\castle\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\Generators\Emitters\AbstractTypeEmitter.cs(278,0): at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()
+	c:\export\code\OSS\castle\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\Generators\InterfaceProxyWithTargetGenerator.cs(337,0): at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode(Type proxyTargetType, Type[] interfaces, ProxyGenerationOptions options)
+	c:\export\code\OSS\castle\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\ProxyGenerator.cs(573,0): at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, IInterceptor[] interceptors)
+	C:\export\code\OSS\rhino-tools\mocks\Rhino.Mocks\MockRepository.cs(768,0): at Rhino.Mocks.MockRepository.MockInterface(CreateMockState mockStateFactory, Type type, Type[] extras)
+	C:\export\code\OSS\rhino-tools\mocks\Rhino.Mocks\MockRepository.cs(822,0): at Rhino.Mocks.MockRepository.CreateMockObject(Type type, CreateMockState factory, Type[] extras, Object[] argumentsForConstructor)
+	C:\export\code\OSS\rhino-tools\mocks\Rhino.Mocks\MockRepository.cs(1088,0): at Rhino.Mocks.MockRepository.StrictMock[T](Object[] argumentsForConstructor)
+	C:\export\code\OSS\rhino-tools\mocks\Rhino.Mocks.Tests\FieldsProblem\FieldProblem_dyowee.cs(18,0): at Rhino.Mocks.Tests.FieldsProblem.FieldProblem_dyowee.MockingRecordSet()
+
+
+
+namespace Rhino.Mocks.Tests.FieldsProblem
+{
+	[TestFixture]
+	public class FieldProblem_dyowee
+	{
+		[Test, Ignore("Latest Castle Libs Break This Test")]
+		public void MockingRecordSet()
+		{
+			MockRepository mr = new MockRepository();
+			Recordset mock = mr.StrictMock&lt;ADODB.Recordset&gt;();
+			Assert.IsNotNull(mock);
+			Expect.Call(mock.ActiveConnection).Return("test");
+			mr.ReplayAll();
+			Assert.AreEqual("test", mock.ActiveConnection);
+			mr.VerifyAll();
+		}
+	}
+}
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1247606087000</value>
+    </field>
+    <field name="updated">
+      <value>1249223349000</value>
+    </field>
+    <field name="reporterName">
+      <value>abombss</value>
+    </field>
+    <field name="updaterName">
+      <value>abombss</value>
+    </field>
+    <field name="resolved">
+      <value>1249223340000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="From the brief look I had at this, it seems to have been there for a while but it affects only COM interfaces AFAICT." created="1247703908000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1249218480000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1249223340000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1249223340000" />
+    <comment author="xtoff" text="* '''Importance''' changed from ''High'' to ''Low''.&#xD;&#xA;" created="1247703780000" />
+    <comment author="xtoff" text="* '''Summary''' changed from ''Newest Build Breaks Regression in Rhino.Mocks'' to ''Proxying COM interfaces produces invalid proxies''.&#xD;&#xA;" created="1248494640000" />
+  </issue>
+</issues>

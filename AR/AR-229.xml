@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>229</value>
+    </field>
+    <field name="summary">
+      <value>XmlGenerationVisitor does not generate fully qualified type names</value>
+    </field>
+    <field name="description">
+      <value>Initializing AR from an assembly in the GAC does not seem to be supported. Attempting to initialize this way gives the following error:
+
+Castle.ActiveRecord.Framework.ActiveRecordException :
+Error adding information from class
+Lsr.Phoenix.Model.Export.ExportedEvent to NHibernate. Check the inner
+exception for more information
+  ----&gt; NHibernate.MappingException : Could not compile the mapping
+document: (string)
+  ----&gt; NHibernate.MappingException : persistent class
+Lsr.Phoenix.Model.Export.ExportedEvent, Lsr.Phoenix.Model not found
+  ----&gt; System.IO.FileNotFoundException : Could not load file or
+assembly 'Lsr.Phoenix.Model' or one of its dependencies. The system
+cannot find the file specified.
+at Castle.ActiveRecord.ActiveRecordStarter.AddXmlString(Configuration
+config, String xml, ActiveRecordModel model)
+at
+Castle.ActiveRecord.ActiveRecordStarter.AddXmlToNHibernateCfg(ISessionFactoryHolder
+holder, ActiveRecordModelCollection models)
+at
+Castle.ActiveRecord.ActiveRecordStarter.RegisterTypes(ISessionFactoryHolder
+holder, IConfigurationSource source, IEnumerable`1 types, Boolean
+ignoreProblematicTypes)
+at
+Castle.ActiveRecord.ActiveRecordStarter.Initialize(IConfigurationSource
+source, Type[] types)
+at Castle.ActiveRecord.ActiveRecordStarter.Initialize(Assembly
+assembly, IConfigurationSource source)
+at Lsr.Phoenix.Model.Util.ActiveRecordInitializer.InitFromAppDomain()
+at Lsr.Phoenix.Tests.DatabaseTestFixtureBase.TestFixtureSetup()
+at Lsr.Phoenix.Model.Test.CaseTests.TestFixtureSetup() in c:\Builds
+\Phoenix\Source\Tests\Lsr.Phoenix.Model\CaseTests.cs:line 18
+--MappingException
+at NHibernate.Cfg.Configuration.LogAndThrow(Exception exception)
+at NHibernate.Cfg.Configuration.AddValidatedDocument(NamedXmlDocument
+doc)
+at NHibernate.Cfg.Configuration.ProcessMappingsQueue()
+at
+NHibernate.Cfg.Configuration.AddDocumentThroughQueue(NamedXmlDocument
+document)
+at NHibernate.Cfg.Configuration.AddXmlReader(XmlReader hbmReader,
+String name)
+at NHibernate.Cfg.Configuration.AddXml(String xml, String name)
+at NHibernate.Cfg.Configuration.AddXml(String xml)
+at NHibernate.Cfg.Configuration.AddXmlString(String xml)
+at Castle.ActiveRecord.ActiveRecordStarter.AddXmlString(Configuration
+config, String xml, ActiveRecordModel model)
+--MappingException
+at NHibernate.Cfg.XmlHbmBinding.Binder.ClassForFullNameChecked(String
+fullName, String errorMessage)
+at NHibernate.Cfg.XmlHbmBinding.Binder.ClassForNameChecked(String
+name, Mappings mappings, String errorMessage)
+at NHibernate.Cfg.XmlHbmBinding.ClassBinder.BindClass(XmlNode node,
+PersistentClass model)
+at NHibernate.Cfg.XmlHbmBinding.RootClassBinder.Bind(XmlNode node,
+HbmClass classSchema)
+at
+NHibernate.Cfg.XmlHbmBinding.MappingRootBinder.AddRootClasses(XmlNode
+parentNode)
+at NHibernate.Cfg.XmlHbmBinding.MappingRootBinder.Bind(XmlNode node)
+at NHibernate.Cfg.Configuration.AddValidatedDocument(NamedXmlDocument
+doc)
+--FileNotFoundException
+at System.Reflection.Assembly._nLoad(AssemblyName fileName, String
+codeBase, Evidence assemblySecurity, Assembly locationHint,
+StackCrawlMark&amp; stackMark, Boolean throwOnFileNotFound, Boolean
+forIntrospection)
+at System.Reflection.Assembly.nLoad(AssemblyName fileName, String
+codeBase, Evidence assemblySecurity, Assembly locationHint,
+StackCrawlMark&amp; stackMark, Boolean throwOnFileNotFound, Boolean
+forIntrospection)
+at System.Reflection.Assembly.InternalLoad(AssemblyName assemblyRef,
+Evidence assemblySecurity, StackCrawlMark&amp; stackMark, Boolean
+forIntrospection)
+at System.Reflection.Assembly.InternalLoad(String assemblyString,
+Evidence assemblySecurity, StackCrawlMark&amp; stackMark, Boolean
+forIntrospection)
+at System.Reflection.Assembly.Load(String assemblyString)
+at
+NHibernate.Util.ReflectHelper.TypeFromAssembly(AssemblyQualifiedTypeName
+name, Boolean throwOnError)
+at NHibernate.Util.ReflectHelper.ClassForName(String name)
+at NHibernate.Cfg.XmlHbmBinding.Binder.ClassForFullNameChecked(String
+fullName, String errorMessage) 
+
+The error is in XmlGenerationVisitor.MakeTypeName(Type type), which only returns a partial name for the assembly that type belongs to. The comments say this is on purpose, but I have found no reference as to why. Changing this to return a fully qualified name allows NHibernate to successfully initialize with the Xml from AR.</value>
+    </field>
+    <field name="created">
+      <value>1223879430000</value>
+    </field>
+    <field name="updated">
+      <value>1232187944000</value>
+    </field>
+    <field name="reporterName">
+      <value>CompSciStud4U</value>
+    </field>
+    <field name="updaterName">
+      <value>CompSciStud4U</value>
+    </field>
+    <field name="resolved">
+      <value>1232187900000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="CompSciStud4U" text="I believe this can be closed as invalid as I just discovered the &lt;qualifyAssembly&gt; config element.&#xA;&#xA;http://msdn.microsoft.com/en-us/library/cd71chf0.aspx&#xA;&#xA;This allows assemblies to be loaded from the GAC while using a partial assembly name in code." created="1223883684000" />
+    <comment author="mzywitza" text="Resolved as per reporter's request:&#xA;I believe this can be closed as invalid as I just discovered the &lt;qualifyAssembly&gt; config element.&#xA;&#xA;http://msdn.microsoft.com/en-us/library/cd71chf0.aspx&#xA;&#xA;This allows assemblies to be loaded from the GAC while using a partial assembly name in code." created="1232187944000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1232187900000" />
+  </issue>
+</issues>

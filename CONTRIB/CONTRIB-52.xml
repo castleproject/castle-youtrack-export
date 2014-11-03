@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>52</value>
+    </field>
+    <field name="summary">
+      <value>ActiveWriter: Problem with code generation in n-1 relations if Relation Type = Map</value>
+    </field>
+    <field name="description">
+      <value>I want to create a mapping between the class Phrase (BelongsTo) and PhraseContainer(HasMany).
+Phrase has a key of type string named Handle.
+When I try to create a ManyToOne relation with a Target Property Type  = IDictionary&lt;string, Phrase&gt; and a Target Relation Type = Map, de code generated looks like this:
+        private IDictionary&lt;string, Phrase&gt;&lt;Phrase&gt; _phrases;
+             
+        [HasMany(typeof(Phrase), RelationType=RelationType.Map, IndexType="string", Index="Handle")]
+        public virtual IDictionary&lt;string, Phrase&gt;&lt;Phrase&gt; Phrases {
+            get {
+                return this._phrases;
+            }
+            set {
+                this._phrases = value;
+            }
+        }
+
+I have set the 
+Target Property Type to IDictionary&lt;string, Phrase&gt;
+Target Index to Handle
+Target Index type to string
+Target Relation Type to  Map.
+When I remove the &lt;Phrase&gt;  in teh generated code  (that is change "IDictionary&lt;string, Phrase&gt;&lt;Phrase&gt;" into "IDictionary&lt;string, Phrase&gt;" the generated code compiles and works fine.
+I can upload pics of all settings and properties when needed.</value>
+    </field>
+    <field name="created">
+      <value>1186495559000</value>
+    </field>
+    <field name="updated">
+      <value>1189232599000</value>
+    </field>
+    <field name="reporterName">
+      <value>hugob</value>
+    </field>
+    <field name="updaterName">
+      <value>hugob</value>
+    </field>
+    <field name="resolved">
+      <value>1282138203666</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

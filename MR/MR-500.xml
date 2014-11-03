@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>500</value>
+    </field>
+    <field name="summary">
+      <value>In OutputSubView brail process querystring '?' as variable</value>
+    </field>
+    <field name="description">
+      <value>Define a template file _list.brail with content like this:
+
+&lt;a href="http://.../data.aspx?id=12"&gt;label&lt;/a&gt; 
+&lt;img src="http://.../getimage?file=test.jpg" /&gt;
+
+And render it using OutputSubView("_list") brail always try to process the ?id or ?file etc every time it step on one.
+
+note: a quick fix as could be would be to do ...?' + 'id... or ?&amp;id= ... ?&amp;file=
+
+</value>
+    </field>
+    <field name="created">
+      <value>1223972598000</value>
+    </field>
+    <field name="updated">
+      <value>1278809559000</value>
+    </field>
+    <field name="reporterName">
+      <value>csokun</value>
+    </field>
+    <field name="updaterName">
+      <value>csokun</value>
+    </field>
+    <field name="resolved">
+      <value>1278809520000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="davef" text="I think we (Matt Findley &amp; I) fixed this issue (that we separately encountered) in the attached patch." created="1225439641000" />
+    <comment author="davef" text="attaching files doesn't seem to be working... I'll post this to the dev list." created="1225439728000" />
+    <comment author="davef" text="n/m... Attaching files appears to work in FF, but is broken in Chrome." created="1225440031000" />
+    <comment author="davef" text="Please ignore first patch. Added second patch including preprocessor code &amp; test for output expressions that include strings with \&quot; (escaped quotes)." created="1225713516000" />
+    <comment author="davef" text="Found another bug and fixed it. Please disregard previous patches and apply #3.&#xA;&#xA;Thanks&#xA;" created="1225908166000" />
+    <comment author="jsimons" text="Ayende, Can you have a look at this one?" created="1263050648000" />
+    <comment author="jsimons" text="Not reproducible" created="1278809555000" />
+    <comment author="jsimons" text="* '''Version Affected''' changed from ''Future'' to ''2.0''.&#xD;&#xA;" created="1278808980000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1278809100000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1278809520000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278809520000" />
+  </issue>
+</issues>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>306</value>
+    </field>
+    <field name="summary">
+      <value>PrototypeWebValidator - regular expression validation</value>
+    </field>
+    <field name="description">
+      <value>When PrototypeWebValidator renders validation attributes to CSS class names, regular expression validations are rendered to something like "validate-regex-^\w+$". Such class names are not valid (in general) and aren't recognized by validation library.
+
+Proposed patch changes this to more "normal" behavior by rendering custom validator before form closing tag. The only tricky thing is names of generated CSS classes - they are postfixed with Regex's hash code, since I did not found anything else in calling context that can be used to produce unique class name - as a result we get something like "validate-regex-128376"  in resulting HTML.</value>
+    </field>
+    <field name="created">
+      <value>1185441558000</value>
+    </field>
+    <field name="updated">
+      <value>1244676886000</value>
+    </field>
+    <field name="reporterName">
+      <value>somaka</value>
+    </field>
+    <field name="updaterName">
+      <value>somaka</value>
+    </field>
+    <field name="resolved">
+      <value>1282143918682</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676840000" />
+  </issue>
+</issues>

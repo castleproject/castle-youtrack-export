@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - NVelocity</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 4</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>19</value>
+    </field>
+    <field name="summary">
+      <value>NVelocityVE improvements</value>
+    </field>
+    <field name="description">
+      <value>I'm sending a patch containing all NVelocityVE improvements I've made.
+
+Here's a summary:
+
+-* Changed the Velocity.Init(ExtendedProperties) call to Velocity.Init() [fixes MR-18];
+-* Wrapped the following operations into protected virtual method calls, so they can be overriden:
+----* Velocity properties initialization;
+----* Inclusion of the extension ".vm" to the view names [fixes MR-17];
+</value>
+    </field>
+    <field name="created">
+      <value>1120757391000</value>
+    </field>
+    <field name="updated">
+      <value>1120888631000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282143252776</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

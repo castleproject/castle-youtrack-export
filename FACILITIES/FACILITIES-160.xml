@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Wcf</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>160</value>
+    </field>
+    <field name="summary">
+      <value>Wcf Facility doesn't support multiple IErrorHandlers</value>
+    </field>
+    <field name="description">
+      <value>the facility tries to add to serviceHost.Description.Behaviors an instance of WcfErrorBehavior wrapping the handler for each handler we have, and Behaviors collection only supports one element of each time, therefore throwing for subsequent error handlers</value>
+    </field>
+    <field name="created">
+      <value>1349832372150</value>
+    </field>
+    <field name="updated">
+      <value>1349855486391</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1349855486391</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>159</value>
+    </field>
+    <field name="summary">
+      <value>Sorting MemberInfo array for serialization has side effects</value>
+    </field>
+    <field name="description">
+      <value>The array sort added to fix DYNPROXY-ISSUE-127 sorts the array in place. .Net has not returned a copy, so subsequent calls to GetSerializableMembers will return the sorted array. Further, .Net's serialization caches the field names and types in two arrays, for use in the same serialization call.
+
+So if you attempt to serialize an object graph with a non-proxied instance, a proxied instance, followed by another non-proxied instance, you'll get either a cast exception or data in incorrect fields on the final non-proxied instance as it attempts to serialize the alphabetized member data according to the cached non-alphabetized member names and types.
+
+It can be solved by copying the array before sorting it in TypeUtil.Sort, as in the attached patch. I can fork and send a pull request if that will be easier to merge.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1305811997202</value>
+    </field>
+    <field name="updated">
+      <value>1313314075208</value>
+    </field>
+    <field name="reporterName">
+      <value>dbroudy</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1313314075208</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-727[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Hi David,&#xA;&#xA;yeah pull request would be most welcome. Could you also provide a test that fails before applying the change and passes after?&#xA;&#xA;cheers,&#xA;Krzysztof" created="1306238198858" />
+    <comment author="dbroudy" text="I have a unit test that demonstrates the side effect, just by comparing the before and after arrays returned from GetSerializableMembers. But I'm having trouble recreating the actual serialization problem that occurs as a result. I should have some time later this week to figure out that test.&#xA;&#xA;Thanks,&#xA;David" created="1306850029619" />
+    <comment author="xtoff" text="Hi David,&#xA;&#xA;any luck with the test?" created="1312804509661" />
+    <comment author="dbroudy" text="Yes, I submitted a pull request on github. &#xA;&#xA;Thanks,&#xA;David" created="1312822846692" />
+  </issue>
+</issues>

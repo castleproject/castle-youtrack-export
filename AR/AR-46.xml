@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>46</value>
+    </field>
+    <field name="summary">
+      <value>OneToOne Attribute Does Not Support Specifying a Target Type</value>
+    </field>
+    <field name="description">
+      <value>The OneToOne attribute should support specifying a target type similar to other mapping attributes.</value>
+    </field>
+    <field name="created">
+      <value>1146212869000</value>
+    </field>
+    <field name="updated">
+      <value>1162410810000</value>
+    </field>
+    <field name="reporterName">
+      <value>crz</value>
+    </field>
+    <field name="updaterName">
+      <value>crz</value>
+    </field>
+    <field name="resolved">
+      <value>1282135940823</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

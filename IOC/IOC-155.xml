@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>155</value>
+    </field>
+    <field name="summary">
+      <value>If the type and service is flipped no exception if thrown</value>
+    </field>
+    <field name="description">
+      <value>If the type and service is flipped no exception if thrown
+
+BTW this might be considered a feature request and not a bug???
+
+So i should have had this
+    &lt;component
+	id="tasks.service"
+	type="AssemblyName.ServiceA, AssemblyName"
+	service="AssemblyName.IServiceA, AssemblyName" /&gt;
+Instead i had this 
+    &lt;component
+	id="tasks.service"
+	type="AssemblyName.IServiceA, AssemblyName"
+	service="AssemblyName.ServiceA, AssemblyName" /&gt;
+
+This meant my property of type IServiceA was not injected.
+
+Since there is no way that IServiceA can impliment ServiceA can some kind of configuration exception be thrown when the components.config is parsed</value>
+    </field>
+    <field name="created">
+      <value>1244062082000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853104</value>
+    </field>
+    <field name="reporterName">
+      <value>tedfordgif</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1261065480000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="tedfordgif" text="i think there are some problems with your openid usage since i logged this bug&#xA;-regards Simon Cropp" created="1244062214000" />
+    <comment author="xtoff" text="applied in r6450" created="1261065496000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1261065480000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1261065480000" />
+    <comment author="mausch" text="* '''Attachment''' ioc-155.patch added.&#xD;&#xA;" created="1244662860000" />
+  </issue>
+</issues>

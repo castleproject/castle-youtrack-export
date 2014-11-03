@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>56</value>
+    </field>
+    <field name="summary">
+      <value>Use Child Components for Parent Dependencies When Requesting Parent Component via Child Kernel</value>
+    </field>
+    <field name="description">
+      <value>I would like to see the following functionality:
+
+Create Parent Kernel
+Add Comonent X to parent Kernel.  Component X has dependencies A and B
+Add Component A to parent Kernel.
+
+Create Child Kernel
+Add Component B to child Kernel.
+
+Request Component X from child kernel, receive component fully populated with dependency component B from Child kernel
+
+Request Component X from parent kernel, receive component without dependency component B fulfullied.
+
+I have a patch + unit tests for this, however, I have made other changes for other patches that haven't been added to the trunk quite yet.  I'm not sure how to isolate changes between two patches.</value>
+    </field>
+    <field name="created">
+      <value>1167936028000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838901</value>
+    </field>
+    <field name="reporterName">
+      <value>wcpierce</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282141972088</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

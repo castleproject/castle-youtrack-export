@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveRecord Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>226</value>
+    </field>
+    <field name="summary">
+      <value>ARDataBinder has problems when using generic collections</value>
+    </field>
+    <field name="description">
+      <value>The ARDataBinder does not bind generic collections used in relations.
+
+Sample to illustrate the problem:
+I have a Wine class with a relation to Raisins (via a generic IList). When I use the ARDataBind attribute in my WinesController the "Raisins" are not filled.
+
+Solution: (see attached patch)
+The CreatContainer should take generic collections into account.
+I have tested my patch againt generic IList and generic ISet. 
+Apparently the unit tests are Watir unit tests. I do not really know yet how to run them, left alone how to create them, but if someone can point me to some documentation, I'd be happy to add some for this patch.</value>
+    </field>
+    <field name="created">
+      <value>1170697188000</value>
+    </field>
+    <field name="updated">
+      <value>1244676528000</value>
+    </field>
+    <field name="reporterName">
+      <value>bart</value>
+    </field>
+    <field name="updaterName">
+      <value>bart</value>
+    </field>
+    <field name="resolved">
+      <value>1282143683323</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676480000" />
+  </issue>
+</issues>

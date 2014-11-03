@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>439</value>
+    </field>
+    <field name="summary">
+      <value>RenderMailMessage does not look in the Layouts folder by default</value>
+    </field>
+    <field name="description">
+      <value>Method throws ResourceNotFound Exception if layouts folder and view template extension are omitted.
+
+Doesn't work
+RenderMailMessage("Email", "Empty", parameters); 
+
+Works
+RenderMailMessage("Email", "Layouts\\Empty.vm", parameters); 
+</value>
+    </field>
+    <field name="created">
+      <value>1209450126000</value>
+    </field>
+    <field name="updated">
+      <value>1263055794000</value>
+    </field>
+    <field name="reporterName">
+      <value>erdah</value>
+    </field>
+    <field name="updaterName">
+      <value>erdah</value>
+    </field>
+    <field name="resolved">
+      <value>1242115800000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Fixed in r5687" created="1242115801000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055740000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1242115800000" />
+  </issue>
+</issues>

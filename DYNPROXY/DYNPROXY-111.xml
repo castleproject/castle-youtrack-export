@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Duplicate</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>111</value>
+    </field>
+    <field name="summary">
+      <value>Castle.DynamicProxy2 class proxy fails to call some generic methods</value>
+    </field>
+    <field name="description">
+      <value>Consider a class like:
+
+public class Foo
+{
+	public virtual void DoSomething&lt;T&gt;(Expression&lt;Func&lt;T,bool&gt;&gt; filter)
+	{
+	}
+}
+
+Note that the generic parameter 'T' in DoSomething is used in declaration of the method parameter as a generic parameter of Func&lt;,&gt; which is itself the generic parameter for Expression&lt;&gt;.
+
+Now, if you create a class proxy from Foo, you'll get the following BadImageFormatException upon call to DoSomething:
+
+An attempt was made to load a program with an incorrect format. (Exception from HRESULT: 0x8007000B)
+
+
+Note that if DoSomething is like the following:
+
+public virtual void DoSomething&lt;T&gt;(Func&lt;T,bool&gt; filter);
+
+or this:
+
+public virtual void DoSomething&lt;T&gt;(T filter);
+
+
+the generated proxy works without any problems. I have tested the latest revision(5967) and it had the same problem.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1252548828000</value>
+    </field>
+    <field name="updated">
+      <value>1252557438000</value>
+    </field>
+    <field name="reporterName">
+      <value>tedfordgif</value>
+    </field>
+    <field name="updaterName">
+      <value>tedfordgif</value>
+    </field>
+    <field name="resolved">
+      <value>1252557420000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Exact duplicate of DYNPROXY-ISSUE-110." created="1252557439000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Duplicate''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1252557420000" />
+  </issue>
+</issues>

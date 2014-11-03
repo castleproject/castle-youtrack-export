@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>195</value>
+    </field>
+    <field name="summary">
+      <value>OptimizeDependencyResolution breaks startable facility</value>
+    </field>
+    <field name="description">
+      <value>When registering a startable component with an unsatisfied dependency, and then this dependency is satisfied with a fluent registration, the startable component isn't started. This seems to be a bug in OptimizeDependencyResolutionDisposable, which disables the events needed for the kernel to realize that the dependency has been satisfied. Test case: http://github.com/mausch/Castle.InversionOfControl/commit/8320337199ef5ca1d4f8ecd723ef5104867c9ecb
+
+Another issue with this is that by introducing OptimizeDependencyResolutionDisposable only in the fluent registration, the non-fluent registration can have a different behavior (like this bug).</value>
+    </field>
+    <field name="created">
+      <value>1267733587000</value>
+    </field>
+    <field name="updated">
+      <value>1283221117416</value>
+    </field>
+    <field name="reporterName">
+      <value>mausch</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1283221117416</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="I want to push usage of single call to container.Install (and in it using only container.Register calls) and have Install-wide OptimizeDependencyResolution and an event IKernelEvents.InstallComplete that the facility could subscribe to and react to that *single* event instead of *multiple* component registered.&#xA;&#xA;I want to also deprecate all AddComponent API.&#xA;&#xA;Objections?" created="1273475680000" />
+  </issue>
+</issues>

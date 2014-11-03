@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>163</value>
+    </field>
+    <field name="summary">
+      <value>Ambiguous match exception</value>
+    </field>
+    <field name="description">
+      <value>After enabling lazy on class, 
+
+
+WARN (e:\Projects\EMC\trunk\EMC.Properties\ReflectionPropertyAccess.cs:115) - Failed on type 
+
+CProxyTypeEMC_BLL_ModelGroupModel_NHibernate_ProxyINHibernateProxy1. Requested path SearchCodeProperty
+System.Reflection.AmbiguousMatchException: Ambiguous match found.
+   at System.RuntimeType.GetPropertyImpl(String name, BindingFlags bindingAttr, Binder binder, Type returnType, Type[] types, ParameterModifier[] modifiers)
+   at System.Type.GetProperty(String name)
+
+
+The problem occurs when getting the class indirectly. 
+I.e. when loading ActiveRecordMediator&lt;Group&gt;.FindAll()  returned Group classes are initialized ok, but
+if I load students = ActiveRecorcdMediator&lt;Student&gt;.FindAll()  and access the group via a property like (
+students[0].GroupStudent[0].Group ) then I get the exception
+
+
+
+This Issue might be related to http://support.castleproject.org/browse/MR-208
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1181895056000</value>
+    </field>
+    <field name="updated">
+      <value>1186925190000</value>
+    </field>
+    <field name="reporterName">
+      <value>darkcloud</value>
+    </field>
+    <field name="updaterName">
+      <value>darkcloud</value>
+    </field>
+    <field name="resolved">
+      <value>1282136357885</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

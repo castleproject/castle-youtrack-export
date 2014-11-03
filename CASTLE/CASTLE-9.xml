@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Build Scripts</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>9</value>
+    </field>
+    <field name="summary">
+      <value>Visual Studio project references need to point to framework specific build directory as created by NAnt</value>
+    </field>
+    <field name="description">
+      <value>The file VSNET.Readme.txt states that to work with the VS solution files you must first successfully build the project with NAnt. However, project references point to the subproject output dir, for instance the Castle.Core reference in the DataBinder points to ..\..\..\..\Core\bin\Castle.Core.dll.
+
+For easy switching between VS2003 and VS2005 wouldn't the project references need to point to the build directory as created by NAnt? So the above example would become ..\..\..\..\build\net- 1.1\Castle.Core.dll.</value>
+    </field>
+    <field name="created">
+      <value>1158884551000</value>
+    </field>
+    <field name="updated">
+      <value>1159756434000</value>
+    </field>
+    <field name="reporterName">
+      <value>roelofb</value>
+    </field>
+    <field name="updaterName">
+      <value>roelofb</value>
+    </field>
+    <field name="resolved">
+      <value>1282137238088</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

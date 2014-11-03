@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>beta 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>25</value>
+    </field>
+    <field name="summary">
+      <value>DataBind with an existing object (and its sub-objects)</value>
+    </field>
+    <field name="description">
+      <value>The DataBinder.BindObjectInstance() allows to bind the posted fields into an existing object. It is a very usefull method for me but I would need some improvements:
+
+1) It seems the "." management of the prefix is not working properly with BindObjectInstance(). I think the reason is this line of code in the BindObject() should be removed:
+
+  String prefix = (paramPrefix != null &amp;&amp; paramPrefix != String.Empty) ?  
+     paramPrefix.ToLower( CultureInfo.InvariantCulture ) + "." : String.Empty;
+
+And replaced by this line at the top of the BindObjectInstance():
+
+  paramPrefix = (paramPrefix != null &amp;&amp; paramPrefix != String.Empty) ?  
+     paramPrefix.ToLower( CultureInfo.InvariantCulture ) + "." : String.Empty;
+
+
+2) For me the BindObjectInstance() should be able to bind with existing objects both at the top level and at sub-levels (properties being real objects). Also, the data binding should not overwrite some properties if the corresponding fields do not exist in the posted form.
+To do this the method should be changed in something like this:
+
+		public object BindObjectInstance( object instance, String paramPrefix, NameValueCollection paramList, IDictionary files, IList errorList )
+		{
+			paramPrefix = (paramPrefix != null &amp;&amp; paramPrefix != String.Empty) ?  paramPrefix.ToLower( CultureInfo.InvariantCulture ) + "." : String.Empty;
+
+			PropertyInfo[] props = instance.GetType().GetProperties( BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic );
+
+			foreach ( PropertyInfo prop in props )
+			{
+				if ( prop.CanWrite )
+				{
+					Type propType = prop.PropertyType;
+					String oldParent = parent;
+					
+					try
+					{
+						if ( !propType.IsPrimitive &amp;&amp; !propType.IsArray &amp;&amp; propType != typeof(String) &amp;&amp; propType != typeof(Guid)
+							&amp;&amp; propType != typeof(DateTime) &amp;&amp; propType != typeof(HttpPostedFile) )
+						{
+							parent += prop.Name + ".";		
+						
+							// if the property is an object, we look if it is already instanciated
+							object value = prop.GetValue(instance, null);
+							if (value == null) // if it does not exists, we will create it
+							{
+								value = BindObject( prop.PropertyType, paramPrefix + prop.Name, paramList, files, errorList );
+								prop.SetValue( instance, value, null );
+							}
+							else // if the object already instanciated, then we use it 
+							{
+								BindObjectInstance( value, paramPrefix + prop.Name, paramList, files, errorList );
+							}
+						}
+						else
+						{
+							string[] values = paramList.GetValues( paramPrefix + prop.Name );
+							if (values != null) // if the field does not exists in the form we don't set the property
+							{					
+								object value = Convert( prop.PropertyType, values, prop.Name, files, context );
+								prop.SetValue( instance, value, null );
+							}
+						}
+						
+						
+					}
+					catch ( Exception e )
+					{
+						if ( errorList != null )
+							errorList.Add( new DataBindError( root, parent + prop.Name, e ) );
+						else
+							throw e;
+					}
+
+					parent = oldParent;
+				}
+			}
+
+			if ( parent == String.Empty ) root = null;
+
+			return instance;
+		}
+
+
+3) It would be nice to have an overload with less arguments for easy calling from the controller:
+
+ public object BindObjectInstance( object instance, String paramPrefix)
+ {
+     return BindObjectInstance(instance,  paramPrefix, context.Params, context.Request.Files, null );
+ }
+
+
+Thanks
+Fred
+
+</value>
+    </field>
+    <field name="created">
+      <value>1121208215000</value>
+    </field>
+    <field name="updated">
+      <value>1127055284000</value>
+    </field>
+    <field name="reporterName">
+      <value>fredericsalve</value>
+    </field>
+    <field name="updaterName">
+      <value>fredericsalve</value>
+    </field>
+    <field name="resolved">
+      <value>1282143337823</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

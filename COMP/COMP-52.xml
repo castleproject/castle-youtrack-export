@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>52</value>
+    </field>
+    <field name="summary">
+      <value>It should be possible to apply validators declared on a base interface of a given type</value>
+    </field>
+    <field name="description">
+      <value>I need to separate class implementation and validation logic that apply to it.
+
+I prefer having an interface with validation attributes rather than have them in my concrete class.
+
+My current implementation of this feature allow this test case to pass (and no regression for other tests):
+
+[TestFixture]
+public class ValidatorContainerInterfaceTestCase  {
+
+	class Form1 
+		: IForm1Validation1
+		, IForm1Validation2
+		, IForm1Validation3
+	{
+		public string UserId { get; set; }
+		public string Password { get; set; }
+		public string PasswordConfirmation { get; set; }
+	}
+
+	[ValidatorContainerInterfaceFlag]
+	interface IForm1Validation1 
+		: IValidatorContainerInterface
+	{
+		[ValidateNonEmpty]
+		[ValidateLength(1)]
+		string UserId { get; }
+		[ValidateNonEmpty]
+		[ValidateLength(8)]
+		string Password { get; }
+	}
+
+	[ValidatorContainerInterfaceFlag]
+	interface IForm1Validation2 
+		: IValidatorContainerInterface
+	{
+		[ValidateSameAs("Password")]
+		string PasswordConfirmation { get; }
+	}
+
+
+	interface IForm1Validation3
+		: IValidatorContainerInterface {
+		[ValidateSameAs("Password")]
+		string PasswordConfirmation { get; }
+	}
+
+	[Test]
+	public void AssertValidatorsAreFoundInImplementedInterfaceMembers() {
+		ValidatorRunner runner = new ValidatorRunner(true, new CachedValidationRegistry());
+		Form1 f = new Form1();
+		bool v = runner.IsValid(f);
+		Assert.IsFalse(v);
+	}
+
+	[Test]
+	public void AssertOnlySpecfiedInterfaceValidatorsAreFound() {
+		ValidatorRunner runner = new ValidatorRunner(true, new CachedValidationRegistry());
+		Form1 f = new Form1();
+		f.PasswordConfirmation = f.Password = "password";
+		bool v = runner.IsValid&lt;IForm1Validation2&gt;(f);
+		Assert.IsTrue(v);
+		f.Password = "another";
+		v = runner.IsValid&lt;IForm1Validation2&gt;(f);
+		Assert.IsFalse(v);
+	}
+
+	[Test]
+	public void AssertRequireAttributeOnValidatorContainerInterfaceDefinition() {
+		ValidatorRunner runner = new ValidatorRunner(true, new CachedValidationRegistry());
+		Form1 f = new Form1();
+		f.Password = "another";
+		f.PasswordConfirmation =  "password";
+		bool v;
+		try {
+			v = runner.IsValid&lt;IForm1Validation3&gt;(f);
+			Assert.Fail("should have raised NotSupportedException");
+		}
+		catch (NotSupportedException nse) {
+			// expected exception
+			Assert.IsTrue(nse.Message.Contains(typeof(IForm1Validation3).Name));
+			Assert.IsTrue(nse.Message.Contains(typeof(ValidatorContainerInterfaceFlagAttribute).Name));
+		}
+		catch (Exception e) {
+			Assert.Fail(string.Format("should have raised NotSupportedException instead of {0}, exception message: {1}", e.GetType().Name, e));			
+		}
+	}
+
+	[Test]
+	public void AssertRequireValidatorContainerInterfaceDefinitionIsAnInterface() {
+		ValidatorRunner runner = new ValidatorRunner(true, new CachedValidationRegistry());
+		Form1 f = new Form1();
+		f.Password = "another";
+		f.PasswordConfirmation = "password";
+		bool v;
+		try {
+			v = runner.IsValid&lt;Form1&gt;(f);
+			Assert.Fail("should have raised NotSupportedException");
+		}
+		catch (NotSupportedException nse) {
+			// expected exception
+			Assert.IsTrue(nse.Message.Contains(typeof(Form1).Name));
+			Assert.IsTrue(nse.Message.Contains("interface"));
+		}
+		catch (Exception e) {
+			Assert.Fail(string.Format("should have raised NotSupportedException instead of {0}, exception message: {1}", e.GetType().Name, e));
+		}
+	}
+}
+
+If anyone is interested, I can push the patch here.</value>
+    </field>
+    <field name="created">
+      <value>1201186806000</value>
+    </field>
+    <field name="updated">
+      <value>1285402212359</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1285402212359</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="The comp-52-firstproposition.patch has gone stale.&#xA;&#xA;The comp-52-enablingproposition(commentsfixed).patch was already applied IIRC" created="1219381686000" />
+    <comment author="hammett" text="Should we close this one?" created="1229881520000" />
+    <comment author="henry" text="The patch was partially and the validator today can extract validation info from metadata or interfaces." created="1285402212359" />
+  </issue>
+</issues>

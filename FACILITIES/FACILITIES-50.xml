@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>NHibernate</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>50</value>
+    </field>
+    <field name="summary">
+      <value>Possible bug in SessionManager with transactions</value>
+    </field>
+    <field name="description">
+      <value>Reported on the forum "if you use the nhibernate facility with multiple databases and the transactional attribute like in Castle.Facilities.NHibernateIntegration.Tests.TwoSessionFactoriesTestCase.BusinessLayerWithTransactions() the sessions are not correctly removed from the SessionManager because they are in a wrong order on the stack (look at: Castle.Facilities.NHibernateIntegration.SessionKeeper.AfterCompletion()).
+If you are running a debug assembly then an Assertion exception will be thrown in Line 95 of the SessionManager."
+
+and 
+
+"You have to take a look at the source code within the SessionKeeper. If you run the test case contained in the sample project and watch the session-stack of SessionManager in SessionKeeper.AfterCompletion() you will see that the sessions are removed in wrong order."
+
+http://forum.castleproject.org/viewtopic.php?t=1072</value>
+    </field>
+    <field name="created">
+      <value>1157032320000</value>
+    </field>
+    <field name="updated">
+      <value>1162411661000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282141027213</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

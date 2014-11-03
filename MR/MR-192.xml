@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>192</value>
+    </field>
+    <field name="summary">
+      <value>Add TextHelper</value>
+    </field>
+    <field name="description">
+      <value>This patch adds a new helper, TextHelper. In its current state it has only one method (with several overloads): ToSentence. This is basically a port of RoR's to_sentence which is mixed into the Ruby Array class by Rails. It formats a collection for use in a sentence by separating elements with commas and then a connector (like "and") between the last two elements.
+
+I tried my darndest to get the website to build, but couldn't (site build relies on .net-1.1 and .net-1.1 fails on DynamicProxy2), so the documentation patch that I'll attach along with the main one has not been fully tested.
+
+My future plans for this helper include adding Pluralize and Singularize methods.</value>
+    </field>
+    <field name="created">
+      <value>1165978814000</value>
+    </field>
+    <field name="updated">
+      <value>1263055659000</value>
+    </field>
+    <field name="reporterName">
+      <value>lukemelia</value>
+    </field>
+    <field name="updaterName">
+      <value>lukemelia</value>
+    </field>
+    <field name="resolved">
+      <value>1282143635229</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055620000" />
+  </issue>
+</issues>

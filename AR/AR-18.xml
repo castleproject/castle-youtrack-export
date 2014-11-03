@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>beta 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>18</value>
+    </field>
+    <field name="summary">
+      <value>.CHM Help file Link Error</value>
+    </field>
+    <field name="description">
+      <value>The following error is produced in the ActiveRecord.chm help file:
+
+The Page can not be displayed, Cannot find server or DNS error
+
+Open the file ActiveRecord.chm
+Open Castle.ActiveRecord
+Open Castle.ActiveRecord.Framework
+Open HookDispatcher Class
+Open Methods
+Click on OnSave
+Click on IInterceptor.OnSave == Error
+
+Implements
+  IInterceptor.OnSave  &lt;--- This link produces the error
+
+Just an FYI,
+Eric</value>
+    </field>
+    <field name="created">
+      <value>1126082122000</value>
+    </field>
+    <field name="updated">
+      <value>1136169525000</value>
+    </field>
+    <field name="reporterName">
+      <value>seraph</value>
+    </field>
+    <field name="updaterName">
+      <value>seraph</value>
+    </field>
+    <field name="resolved">
+      <value>1282135911916</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

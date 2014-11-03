@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>397</value>
+    </field>
+    <field name="summary">
+      <value>DynamicActions collection is not case insensitive</value>
+    </field>
+    <field name="description">
+      <value>ControllerContext is not creating a dictionary with case insensitive keys..
+this humble patch fixes that so that actions are not case sensitive (IDynamicAction , that is).</value>
+    </field>
+    <field name="created">
+      <value>1200660513000</value>
+    </field>
+    <field name="updated">
+      <value>1244676979000</value>
+    </field>
+    <field name="reporterName">
+      <value>mnichols</value>
+    </field>
+    <field name="updaterName">
+      <value>mnichols</value>
+    </field>
+    <field name="resolved">
+      <value>1282145506854</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676960000" />
+  </issue>
+</issues>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Duplicate</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>529</value>
+    </field>
+    <field name="summary">
+      <value>HtmlHelper.Link has wrong parameter order</value>
+    </field>
+    <field name="description">
+      <value>When using b1007 (not tested on other ones), the documentation [1]
+says:
+
+HtmlHelper.Link( "mypage.html", "This is a link to my page" )
+
+The function actually does it the other way round. What do we do?
+Change the code or the docs?
+
+Was it maybe already changed in newer builds?</value>
+    </field>
+    <field name="created">
+      <value>1238972101000</value>
+    </field>
+    <field name="updated">
+      <value>1242044562000</value>
+    </field>
+    <field name="reporterName">
+      <value>Flominator</value>
+    </field>
+    <field name="updaterName">
+      <value>Flominator</value>
+    </field>
+    <field name="resolved">
+      <value>1242044520000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Duplicate of MR-ISSUE-532" created="1242044559000" />
+    <comment author="Flominator" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;When using b1007 (not tested on other ones), the documentation [1]&#xD;&#xA;says:&#xD;&#xA;&#xD;&#xA;HtmlHelper.Link( &quot;mypage.html&quot;, &quot;This is a link to my page&quot; )&#xD;&#xA;&#xD;&#xA;The function actually does it the other way round. What do we do?&#xD;&#xA;Change the code or the docs?&#xD;&#xA;&#xD;&#xA;Was it maybe already changed in never builds (got no download&#xD;&#xA;possibility at this pc)?&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;When using b1007 (not tested on other ones), the documentation [1]&#xD;&#xA;says:&#xD;&#xA;&#xD;&#xA;HtmlHelper.Link( &quot;mypage.html&quot;, &quot;This is a link to my page&quot; )&#xD;&#xA;&#xD;&#xA;The function actually does it the other way round. What do we do?&#xD;&#xA;Change the code or the docs?&#xD;&#xA;&#xD;&#xA;Was it maybe already changed in newer builds?&#xD;&#xA;{quote}&#xD;&#xA;" created="1238972101001" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Duplicate''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1242044520000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1242044520000" />
+  </issue>
+</issues>

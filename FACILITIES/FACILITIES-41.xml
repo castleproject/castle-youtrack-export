@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>AutomaticTransactionManagement</value>
+    </field>
+    <field name="Fix versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Affected versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>41</value>
+    </field>
+    <field name="summary">
+      <value>Transaction is not being started on methods on base classes</value>
+    </field>
+    <field name="description">
+      <value>This bug was introduced after my refactor that cached the transaction attributes.
+
+From the forum
+
+"I am having a problem intercepting method calls in the Transaction Manager facility when that method is declared in a base class:
+
+[Transactional]
+public class Class1 {
+[Transaction(TransactionMode.Support)]
+public void Method1() {}
+}
+
+[Transactional]
+public class Class2: Class1 {
+}
+
+The class 2 is published into the container but the TransactionInterceptor is not able to match the method being executed (Class2.Method1) with the one in the TransactionMetaInfo. (see metaInfo.Contains(methodInfo) in TransactionInterceptor.Intercept).
+
+I have debuged the problem to the method TransactionMetaInfo.Contains and the IDictionary in that class (method2Att) does not contains a key that matches the method being invoked. There is one very similar but have a couple of fields different (as far as I can notice there).
+
+I checked the definition of both attributes and they can be inherited so the problem is not related with that. The only solution I see is to change the object been used as key in that dictionary (System.Reflection.MethodInfo) to simpler one that matches the information available at the time of invocation. "</value>
+    </field>
+    <field name="created">
+      <value>1146058218000</value>
+    </field>
+    <field name="updated">
+      <value>1162411769000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282140989495</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

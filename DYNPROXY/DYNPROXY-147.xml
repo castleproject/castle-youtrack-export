@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Class proxies with target</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>147</value>
+    </field>
+    <field name="summary">
+      <value>Can't create class proxies with two non-public methods having same argument types but different return type</value>
+    </field>
+    <field name="description">
+      <value>Hi there,
+
+We're trying to create a proxy on a DbConnection inheritor's instance and we got the following exception.  We can't figure what's wrong with our case.
+
+Is there any way to create a proxy on an existing DbConnection's instance?
+
+Thank you very much.
+
+
+{quote}
+Castle.DynamicProxy.Tests.ClassProxyWithTargetTestCase: 0 code 
+Test 'Castle.DynamicProxy.Tests.ClassProxyWithTargetTestCase.Can_create_proxy_on_DbConnection' failed: System.Reflection.TargetInvocationException : Exception has been thrown by the target of an invocation.
+  ----&gt; System.TypeInitializationException : The type initializer for 'Castle.Proxies.SomeConnectionProxy' threw an exception.
+  ----&gt; System.ArgumentException : Error binding to target method.
+	at System.RuntimeFieldHandle.SetValue(RtFieldInfo field, Object obj, Object value, RuntimeType fieldType, FieldAttributes fieldAttr, RuntimeType declaringType, Boolean&amp; domainInitialized)
+	at System.Reflection.RtFieldInfo.InternalSetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, CultureInfo culture, Boolean doVisibilityCheck, Boolean doCheckConsistency)
+	at System.Reflection.RtFieldInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, CultureInfo culture)
+	at System.RuntimeType.InvokeMember(String name, BindingFlags bindingFlags, Binder binder, Object target, Object[] providedArgs, ParameterModifier[] modifiers, CultureInfo culture, String[] namedParams)
+	at System.Type.InvokeMember(String name, BindingFlags invokeAttr, Binder binder, Object target, Object[] args)
+	DynamicProxy\Generators\Emitters\TypeUtil.cs(68,0): at Castle.DynamicProxy.Generators.Emitters.TypeUtil.SetStaticField(Type type, String fieldName, BindingFlags additionalFlags, Object value)
+	DynamicProxy\Generators\BaseProxyGenerator.cs(91,0): at Castle.DynamicProxy.Generators.BaseProxyGenerator.InitializeStaticFields(Type builtType)
+	DynamicProxy\Generators\ClassProxyWithTargetGenerator.cs(117,0): at Castle.DynamicProxy.Generators.ClassProxyWithTargetGenerator.GenerateType(String name, INamingScope namingScope)
+	DynamicProxy\Generators\BaseProxyGenerator.cs(382,0): at Castle.DynamicProxy.Generators.BaseProxyGenerator.ObtainProxyType(CacheKey cacheKey, Func`3 factory)
+	DynamicProxy\Generators\ClassProxyWithTargetGenerator.cs(60,0): at Castle.DynamicProxy.Generators.ClassProxyWithTargetGenerator.GetGeneratedType()
+	DynamicProxy\DefaultProxyBuilder.cs(123,0): at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyTypeWithTarget(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+	DynamicProxy\ProxyGenerator.cs(1480,0): at Castle.DynamicProxy.ProxyGenerator.CreateClassProxyTypeWithTarget(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+	DynamicProxy\ProxyGenerator.cs(1095,0): at Castle.DynamicProxy.ProxyGenerator.CreateClassProxyWithTarget(Type classToProxy, Type[] additionalInterfacesToProxy, Object target, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+	DynamicProxy\ProxyGenerator.cs(982,0): at Castle.DynamicProxy.ProxyGenerator.CreateClassProxyWithTarget(Type classToProxy, Object target, IInterceptor[] interceptors)
+	DynamicProxy.Tests\ClassProxyWithTargetTestCase.cs(118,0): at Castle.DynamicProxy.Tests.ClassProxyWithTargetTestCase.Can_create_proxy_on_DbConnection()
+	--TypeInitializationException
+	
+	--ArgumentException
+	at System.Delegate.CreateDelegate(Type type, Object firstArgument, MethodInfo method, Boolean throwOnBindFailure)
+	at System.Delegate.CreateDelegate(Type type, Object firstArgument, MethodInfo method)
+	at Castle.Proxies.SomeConnectionProxy..cctor()
+
+{quote}
+
+Our test case:
+{code lang=java}
+[TestFixture]
+public class ClassProxyWithTargetTestCase : BasePEVerifyTestCase
+{
+
+        // ......
+
+        [Test]
+        public void Can_create_proxy_on_DbConnection()
+        {
+            var proxy = generator.CreateClassProxyWithTarget(typeof(SomeConnection),
+                                                             new SomeConnection());
+            Assert.IsNotNull(proxy);
+        }
+
+        // DbConnection dummy inheritor.  Not implemented.
+        public class SomeConnection : DbConnection
+        {
+            #region Overrides of DbConnection
+
+            private string _connectionString = "";
+
+            private string _database = "";
+
+            private string _dataSource = "";
+
+            private string _serverVersion = "1";
+
+            private ConnectionState _state = ConnectionState.Closed;
+
+            protected override DbTransaction BeginDbTransaction(IsolationLevel isolationLevel)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override void Close()
+            {
+                throw new NotImplementedException();
+            }
+
+            public override void ChangeDatabase(string databaseName)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override void Open()
+            {
+                throw new NotImplementedException();
+            }
+
+            public override string ConnectionString
+            {
+                get { return _connectionString; }
+                set { _connectionString = value; }
+            }
+
+            public override string Database
+            {
+                get { return _database; }
+            }
+
+            public override ConnectionState State
+            {
+                get { return _state; }
+            }
+
+            public override string DataSource
+            {
+                get { return _dataSource; }
+            }
+
+            public override string ServerVersion
+            {
+                get { return _serverVersion; }
+            }
+
+            protected override DbCommand CreateDbCommand()
+            {
+                throw new NotImplementedException();
+            }
+
+            #endregion
+        }
+}
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1287058950087</value>
+    </field>
+    <field name="updated">
+      <value>1407822235377</value>
+    </field>
+    <field name="reporterName">
+      <value>Phil</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1289656723184</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

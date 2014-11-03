@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Wcf</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>154</value>
+    </field>
+    <field name="summary">
+      <value>Windsor injects disposed instance with PerWcfOperation lifestyle into user classes</value>
+    </field>
+    <field name="description">
+      <value>Quite often I get ObjectDisposedException in quite high load environment (~100 request/sec). This happens because Windsor provides already disposed instance of NHibernate session to my queries.</value>
+    </field>
+    <field name="created">
+      <value>1313153290755</value>
+    </field>
+    <field name="updated">
+      <value>1313251651114</value>
+    </field>
+    <field name="reporterName">
+      <value>Dmitry.Kryuchkov</value>
+    </field>
+    <field name="updaterName">
+      <value>Dmitry.Kryuchkov</value>
+    </field>
+    <field name="resolved">
+      <value>1313236635020</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="which version is that? Of Windsor and WCF Facility (build number)" created="1313206109255" />
+    <comment author="Dmitry.Kryuchkov" text="Windsor 2.5.3 and latest revision of WcfFacility from github. Commit:108681b3904f361971e9799f1d3b07351ab62a46" created="1313213026802" />
+    <comment author="xtoff" text="I did reproduce it, but honestly I'm not too sure what the reason for that behaviour was.&#xA;&#xA;Anyway, I ran it against lastest build of WCF Facility (which uses Windsor 3) and it seems to be running just fine so I hope the issue is resolved." created="1313236627880" />
+    <comment author="Dmitry.Kryuchkov" text="Yeah, I've been watching through WcfFacility codebase and I didn't find out any reason either. Well, let's wait for Windsor 3 release. By the way, will WcfFacility be released simultaneously with Windsor 3? " created="1313251651114" />
+  </issue>
+</issues>

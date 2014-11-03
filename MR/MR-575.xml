@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>575</value>
+    </field>
+    <field name="summary">
+      <value>WizardStepPages are not being Disposed </value>
+    </field>
+    <field name="description">
+      <value>When using Windsor integration with MR, the recommended way to implement wizards is:
+{code lang=csharp}
+[DynamicActionProvider( typeof(WizardActionProvider) )]
+public class MyWizardController : Controller, IWizardController
+{ 
+    private readonly IKernel kernel;
+
+    public MyWizardController(IKernel kernel)
+    {
+        this.kernel = kernel;
+    }
+
+    public WizardStepPage[] GetSteps(IRailsEngineContext context)
+    {
+        return new WizardStepPage[]
+        {
+            (WizardStepPage) kernel[ typeof(IntroductionStep) ], 
+            (WizardStepPage) kernel[ typeof(MainInfoStep) ], 
+            (WizardStepPage) kernel[ typeof(SubscribeStep) ], 
+            (WizardStepPage) kernel[ typeof(ConfirmationStep) ], 
+            (WizardStepPage) kernel[ typeof(ResultStep) ]
+        };
+    }
+}
+{code}
+
+However if we do it this way the WizardStepPages do not get Released. These are Transient!</value>
+    </field>
+    <field name="created">
+      <value>1296801690470</value>
+    </field>
+    <field name="updated">
+      <value>1414999409956</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999409951</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="I have the following workaround in the meantime.&#xA;&#xA;{code lang=csharp}&#xA;public abstract class DisposableWizardController : Controller, IWizardController&#xA;{&#xA;	private readonly List&lt;IWizardStepPage&gt; wizardStepPages = new List&lt;IWizardStepPage&gt;();&#xA;&#xA;	protected abstract IEnumerable&lt;Type&gt; GetSteps();&#xA;&#xA;	public IKernel Kernel { get; set; }&#xA;&#xA;	public void OnWizardStart()&#xA;	{&#xA;			&#xA;	}&#xA;&#xA;	public bool OnBeforeStep(string wizardName, string stepName, IWizardStepPage step)&#xA;	{&#xA;		return true;&#xA;	}&#xA;&#xA;	public void OnAfterStep(string wizardName, string stepName, IWizardStepPage step)&#xA;	{&#xA;			&#xA;	}&#xA;&#xA;	public IWizardStepPage[] GetSteps(IEngineContext context)&#xA;	{&#xA;		foreach (var step in GetSteps())&#xA;		{&#xA;			var wizardStepPage = (DisposableWizardStepPage)Kernel.Resolve(step);&#xA;			wizardStepPage.DoCleanup += () =&gt; Kernel.ReleaseComponent(wizardStepPage);&#xA;			wizardStepPages.Add(wizardStepPage);&#xA;		}&#xA;&#xA;		return wizardStepPages.ToArray();&#xA;	}&#xA;&#xA;	public bool UseCurrentRouteForRedirects { get { return true; } }&#xA;}&#xA;&#xA;public abstract class DisposableWizardStepPage : WizardStepPage&#xA;{&#xA;	public event Action DoCleanup;&#xA;&#xA;	public override void Process(IEngineContext engineContext, IControllerContext context)&#xA;	{&#xA;		try&#xA;		{&#xA;			base.Process(engineContext, context);&#xA;		}&#xA;		finally&#xA;		{&#xA;			if (DoCleanup != null)&#xA;			{&#xA;				DoCleanup();&#xA;			}&#xA;		}&#xA;	}&#xA;}&#xA;{code}" created="1296801939126" />
+    <comment author="jonorossi" text="MonoRail2 is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/MonoRail/issues" created="1414999409957" />
+  </issue>
+</issues>

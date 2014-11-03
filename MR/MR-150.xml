@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveRecord Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>150</value>
+    </field>
+    <field name="summary">
+      <value>Patch to fix problem with ARDataBinder and ARFetcher when dealing with joined subclasses.</value>
+    </field>
+    <field name="description">
+      <value>The ARDataBinder and ARFetcher both look for Primary keys on the model but with joined sub classes the primary key is only available on the parent.
+
+Patches ARFetcher like this:
+  private object LoadActiveRecord(Type type, object pk, ARFetchAttribute attr, ActiveRecordModel model)
+  {
+      object instance = null;
+
+      if (pk != null &amp;&amp; !String.Empty.Equals(pk))
+      {
+          PrimaryKeyModel pkModel;
+          if (model.IsJoinedSubClass)
+          {
+              pkModel = model.Parent.PrimaryKey;
+          }
+          else
+          {
+              pkModel = model.PrimaryKey;
+          }
+
+Also ARDataBinder similarly:
+  private object ObtainPrimaryKeyValue(ActiveRecordModel model, CompositeNode node, String prefix, out PrimaryKeyModel pkModel)
+  {
+
+      if (model.IsJoinedSubClass)
+      {
+          pkModel = model.Parent.PrimaryKey;
+      }
+      else
+      {
+          pkModel = model.PrimaryKey;
+      }
+
+Also included are models, controllers, and views for TestSiteARSupport and watir tests in WatirTestCases
+
+Thank you.
+Don</value>
+    </field>
+    <field name="created">
+      <value>1158795314000</value>
+    </field>
+    <field name="updated">
+      <value>1162413017000</value>
+    </field>
+    <field name="reporterName">
+      <value>goodenough</value>
+    </field>
+    <field name="updaterName">
+      <value>goodenough</value>
+    </field>
+    <field name="resolved">
+      <value>1282143493541</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

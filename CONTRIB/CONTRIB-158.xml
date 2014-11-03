@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>158</value>
+    </field>
+    <field name="summary">
+      <value>Generate classes on different namespaces</value>
+    </field>
+    <field name="description">
+      <value>My ActiveRecord classes inherit from interfaces with some propertied that need to be implemented in the partial file.
+I'd like to place this files inside other directories, such as Root\Name1\Class1 Root\Name2\Class2, and the namespaces should match Name1.Class1.
+In activewriter, i have to create the file in the Root folder, and it generates only in the Root namespace.
+I could create 2 activewriter files, in Root\Name1 and Root\Name2, but then they cannot have relationships...</value>
+    </field>
+    <field name="created">
+      <value>1255951499000</value>
+    </field>
+    <field name="updated">
+      <value>1407822033456</value>
+    </field>
+    <field name="reporterName">
+      <value>leopuglia</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1407822033441</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

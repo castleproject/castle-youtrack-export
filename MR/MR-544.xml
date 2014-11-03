@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>544</value>
+    </field>
+    <field name="summary">
+      <value>customized Form.EnumToPairs</value>
+    </field>
+    <field name="description">
+      <value>The patch and demo project for a customized Form.EnumToPairs, as started here:
+http://groups.google.com/group/castle-project-users/browse_frm/thread/7812ddafd76a5493
+
+The Form.EnumToPairsWithExtension creates an array of Pair&lt;int, string&gt; same as the original EnumToPairs, but it can invoke a method (default is "Description") to create a localized text of the enum.</value>
+    </field>
+    <field name="created">
+      <value>1248828089000</value>
+    </field>
+    <field name="updated">
+      <value>1279477450000</value>
+    </field>
+    <field name="reporterName">
+      <value>bdaniel7</value>
+    </field>
+    <field name="updaterName">
+      <value>bdaniel7</value>
+    </field>
+    <field name="resolved">
+      <value>1279477440000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="bdaniel7" text="EnumDescription-patch should be applied to trunk\Core\Castle.Core.&#xA;EnumToPairsWithExtension-patch should be applied to trunk\MonoRail." created="1249352054000" />
+    <comment author="jsimons" text="Move to contrib" created="1279477440000" />
+    <comment author="jsimons" text="Move to contrib project" created="1279477451000" />
+    <comment author="bdaniel7" text="* '''Attachment''' EnumDescription-patch.patch added.&#xD;&#xA;" created="1249351860000" />
+    <comment author="bdaniel7" text="* '''Attachment''' EnumToPairsWithExtension-patch.patch added.&#xD;&#xA;" created="1249351860000" />
+    <comment author="jsimons" text="* '''Type''' changed from ''Patch'' to ''New Feature''.&#xD;&#xA;* '''Version Affected''' set to ''Future''.&#xD;&#xA;" created="1262658840000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1279477440000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1279477440000" />
+    <comment author="bdaniel7" text="* '''Attachment''' FormsHelper-src.7z added.&#xD;&#xA;" created="1248828089001" />
+  </issue>
+</issues>

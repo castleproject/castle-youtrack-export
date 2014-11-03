@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>212</value>
+    </field>
+    <field name="summary">
+      <value>IModelBuilderExtension.cs and ModelBuilderExtensionComposite.cs not included in vs2005 project file</value>
+    </field>
+    <field name="description">
+      <value>IModelBuilderExtension.cs and ModelBuilderExtensionComposite.cs are referenced from ActiveRecordStarter.cs and are not included in the vs2005 project file
+
+¿Could someone apply the patch?
+</value>
+    </field>
+    <field name="created">
+      <value>1208846681000</value>
+    </field>
+    <field name="updated">
+      <value>1209131491000</value>
+    </field>
+    <field name="reporterName">
+      <value>jcuadrado</value>
+    </field>
+    <field name="updaterName">
+      <value>jcuadrado</value>
+    </field>
+    <field name="resolved">
+      <value>1282136679104</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

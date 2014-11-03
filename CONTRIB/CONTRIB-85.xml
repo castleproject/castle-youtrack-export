@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngines</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>85</value>
+    </field>
+    <field name="summary">
+      <value>[MR - ASPVIEW] vcompile fail to find bin directory if it's name doesn't match exactly "\\bin"</value>
+    </field>
+    <field name="description">
+      <value>vcompile give the following message:
+
+&gt;VCompile.exe -w
+
+
+Unhandled Exception: System.ArgumentOutOfRangeException: Length cannot be less than zero.
+Parameter name: length
+   at System.String.InternalSubStringWithChecks(Int32 startIndex, Int32 length, Boolean fAlwaysCopy)
+
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at Castle.MonoRail.AspView.VCompile.vcompile.Main(String[] args) in C:\home\dev\src\dotnet\libs\c
+astlecontrib\viewengines\aspview\trunk\vcompile\Program.cs:line 39
+
+the reason could be that bin directory name isn't lowercase or such
+
+debugging vcompile lead to  
+
+vcompile/program.cs:39 siteRoot = baseDirectory.Substring(0, baseDirectory.LastIndexOf("\\bin"));
+
+comparison should be against lowercased baseDirectory or with case Invariant comparison?</value>
+    </field>
+    <field name="created">
+      <value>1195995062000</value>
+    </field>
+    <field name="updated">
+      <value>1197352464000</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>gauthier</value>
+    </field>
+    <field name="resolved">
+      <value>1282138253823</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

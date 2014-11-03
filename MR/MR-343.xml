@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>343</value>
+    </field>
+    <field name="summary">
+      <value>BaseControllerTest "PrepareController" method overload throws ArgumentNullException</value>
+    </field>
+    <field name="description">
+      <value>After revision 4399, "Support the ContextInitializer delegate.", the first overload for PrepareController looks like this (no change)
+
+protected void PrepareController(Controller controller)
+{
+	PrepareController(controller, null);
+}
+
+But that "null" eventually propegates to the main PrepareController method, which now looks like this...
+
+protected void PrepareController(Controller controller, string areaName, string controllerName, string actionName, ContextInitializer contextInitializer)
+{
+	if (controller == null)
+	{
+		throw new ArgumentNullException("controller", "'controller' cannot be null");
+	}
+	if (areaName == null)
+	{
+		throw new ArgumentNullException("areaName");
+	}
+	if (controllerName == null)
+	{
+		throw new ArgumentNullException("controllerName");
+	}
+	if (actionName == null)
+	{
+		throw new ArgumentNullException("actionName");
+	}
+	if( contextInitializer == null) {
+		throw new ArgumentNullException("contextInitializer");
+	}
+...
+}
+
+This final ArgumentNullException for the contextInitializer is thrown every time if you use the PrepareController method with just the controller argument. Here is an example test case that is affected...
+
+[Test]
+public void CustomerSearchTableCallsGetSearchTableFromName()
+{
+            MyController controller = new MyController();
+            PrepareController(controller);  // Thrown Here
+
+            controller.TestAction();
+
+            Assert.AreEqual(controller.PropertyBag["MyProperty"] = "Filled";
+}</value>
+    </field>
+    <field name="created">
+      <value>1192466489000</value>
+    </field>
+    <field name="updated">
+      <value>1244676952000</value>
+    </field>
+    <field name="reporterName">
+      <value>markhildreth</value>
+    </field>
+    <field name="updaterName">
+      <value>markhildreth</value>
+    </field>
+    <field name="resolved">
+      <value>1282144040541</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676900000" />
+  </issue>
+</issues>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.1</value>
+      <value>3.2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>185</value>
+    </field>
+    <field name="summary">
+      <value>ProxyUtil.GetUnproxiedInstance returns proxy object for ClassProxyWithTarget instead of its target.</value>
+    </field>
+    <field name="description">
+      <value>{{ProxyUtil.IsProxy(value)}} returns true, but then {{ProxyUtil.GetUnproxiedInstance(value);}} returns {{value}} itself.
+
+The underlying problem is that the proxy implements {{IProxyTargetAccessor}}, but the method {{DynProxyGetTarget()}} just returns {{this}}. 
+
+To be clear, I use {{proxyGenerator.CreateClassProxyWithTarget(target, ...)}} method, so the proxy has a target.
+
+I've tested with Castle.Core 3.2 from NuGet, the tracker here doesn't have version '3.2'.</value>
+    </field>
+    <field name="created">
+      <value>1362159544301</value>
+    </field>
+    <field name="updated">
+      <value>1379120205337</value>
+    </field>
+    <field name="reporterName">
+      <value>gman</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1375391386055</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-947[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="hey,&#xA;&#xA;first of all - sorry for responding only now. I didn't get a notification for this issue :(&#xA;&#xA;I added the tag for v3.2.&#xA;&#xA;Would you like to try fixing this and submitting a pull request?" created="1373673906196" />
+    <comment author="dsx" text="Fixed this&#xA;https://github.com/castleproject/Core/pull/29" created="1375369019971" />
+    <comment author="xtoff" text="Awesome. Thanks" created="1375391359216" />
+  </issue>
+</issues>

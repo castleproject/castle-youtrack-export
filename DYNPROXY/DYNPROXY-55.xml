@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>55</value>
+    </field>
+    <field name="summary">
+      <value>Create API support for saving and loading generated assemblies</value>
+    </field>
+    <field name="description">
+      <value>Currently, the only way to have proxy types saved into a DLL is to set the PHYSICALASSEMBLY preprocessor flag, which causes the ModuleScope to be saved whenever a proxy is generated. This is very unflexible for tests and cannot be used in production code (since it renders the proxy builder unusable after just one proxy generation). In production code, a reliable save/load feature could be used as a big performance optimization, because proxies can be saved and don't need to be regenerated.
+
+I therefore suggest to add the feature of explicitly saving a ModuleScope to a physical assembly file for both testing and production purposes. For production code, a feature to load an assembly into the proxy type cache would also be necessary.</value>
+    </field>
+    <field name="created">
+      <value>1176608400000</value>
+    </field>
+    <field name="updated">
+      <value>1202891909000</value>
+    </field>
+    <field name="reporterName">
+      <value>fcs</value>
+    </field>
+    <field name="updaterName">
+      <value>fcs</value>
+    </field>
+    <field name="resolved">
+      <value>1282140684338</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

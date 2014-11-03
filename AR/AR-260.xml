@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Attributes</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>260</value>
+    </field>
+    <field name="summary">
+      <value>Single Table Inheritance issue, HasMany Relationship, Discriminator not displayed in SQL Statement</value>
+    </field>
+    <field name="description">
+      <value>Bug Description:
+When using a HasMany relationship to an object collection that is based off a Single Table Inheritance, the discriminator is not being included in the SQL statement, so it's returning all parent objects instead of only the specified object type.
+
+Here's the draft. I've got the following classes:
+-Country
+-Image (Single Table Inheritance)
+   -Map
+   -Photo
+
+Statements:
+Map and Photo inherit from Image.
+A Country can have as many Photos as possible.
+A Country can have as many Maps as possible.
+
+Situation:
+The database is populated with plenty countries to test with, no maps,
+no photos. I can add, remove, edit Photos and Maps as I please.
+
+How to generate the Exception:
+Upon adding a new Map object to the database everything works as
+expected, the record is inserted, etc. When I try to load a Country
+object that has a Map associated with it, it crashes because it's
+trying to cast a Map record into the Photo collection (Upon examining
+the SQL statement, it's not including the discriminator so it's
+loading all records)
+
+Here are the classes (at least the interesting part):
+
+--- Country.cs
+
+    [ActiveRecord]
+    public class Country : ActiveRecordBase&lt;Country&gt;
+    {
+        // Omitted for clarity
+        private int m_ID;
+        private IList&lt;Photo&gt; m_photoList = new List&lt;Photo&gt;();
+        private IList&lt;Map&gt; m_mapList = new List&lt;Map&gt;();
+
+        [PrimaryKey(PrimaryKeyType.Native,
+Access=PropertyAccess.NosetterPascalcaseMUndersc)]
+        public int ID
+        {
+            get { return m_ID; }
+        }
+
+        [HasMany(typeof(Photo), Table="Image", ColumnKey="CountryId",
+Inverse=true,
+            Cascade=ManyRelationCascadeEnum.AllDeleteOrphan)]
+        public IList&lt;Photo&gt; PhotoList
+        {
+            get { return m_photoList; }
+            set { m_photoList = value; }
+        }
+
+        [HasMany(typeof(Map), Table="Image", ColumnKey="CountryId",
+Inverse=true,
+            Cascade=ManyRelationCascadeEnum.AllDeleteOrphan)]
+        public IList&lt;Map&gt; MapList
+        {
+            get { return m_mapList; }
+            set { m_mapList = value; }
+        }
+    }
+
+--- Image.cs
+
+    [ActiveRecord(DiscriminatorColumn="ImageType",
+DiscriminatorType="String", DiscriminatorValue="Image")]
+    public class Image : ActiveRecordBase&lt;Image&gt;
+    {
+        [BelongsTo("CountryId")]
+        public Country Country
+        {
+            get { return m_country; }
+            set { m_country = value; }
+        }
+     }
+
+--- Photo.cs
+
+[ActiveRecord(DiscriminatorValue="Photo")]
+    public class Photo : Image
+    {
+        public Photo()  : base()
+        {
+            // Empty
+        }
+
+        public Photo(string imgName, string imgDescription, Country
+imgCountry, string imgUrl)
+            : base(imgName, imgDescription, imgCountry, imgUrl)
+        {
+            // Empty
+        }
+
+--- Map.cs
+
+[ActiveRecord(DiscriminatorColumn="ImageType",
+DiscriminatorType="String", DiscriminatorValue="Map")]
+    public class Map : Image
+    {
+        // No custom variables yet
+
+        public Map() : base()
+        {
+            // Empty
+        }
+
+        public Map(string imgName, string imgDescription, Country
+imgCountry, string imgUrl) : base(imgName, imgDescription, imgCountry,
+imgUrl)
+        {
+            // Empty
+        }
+    }
+
+--- SQL Executed to get the Photo Collection
+NHibernate: SELECT maplist0_.CountryId as CountryId__1_, maplist0_.ID
+as ID1_, m
+aplist0_.ID as ID3_0_, maplist0_.Name as Name3_0_,
+maplist0_.Description as Desc
+ript4_3_0_, maplist0_.URL as URL3_0_, maplist0_.CountryId as
+CountryId3_0_ FROM
+Image maplist0_ WHERE maplist0_.CountryId=@p0; @p0 = '31'
+
+--- SQL Executed to get the Map Collection
+NHibernate: SELECT photolist0_.CountryId as CountryId__1_,
+photolist0_.ID as ID1
+_, photolist0_.ID as ID3_0_, photolist0_.Name as Name3_0_,
+photolist0_.Descripti
+on as Descript4_3_0_, photolist0_.URL as URL3_0_,
+photolist0_.CountryId as Count
+ryId3_0_ FROM Image photolist0_ WHERE photolist0_.CountryId=@p0; @p0 =
+'31'
+
+As you can see it doesn't include the Discriminator in the query, no
+idea why, otherwise it would work.
+
+--- Exception
+A first chance exception of type
+'Castle.ActiveRecord.Framework.ActiveRecordException' occurred in
+Castle.ActiveRecord.dll
+System.Transactions Critical: 0 : &lt;TraceRecord xmlns="http://
+schemas.microsoft.com/2004/10/E2ETraceEvent/TraceRecord"
+Severity="Critical"&gt;&lt;TraceIdentifier&gt;http://msdn.microsoft.com/
+TraceCodes/System/ActivityTracing/2004/07/Reliability/Exception/
+Unhandled&lt;/TraceIdentifier&gt;&lt;Description&gt;Unhandled exception&lt;/
+Description&gt;&lt;AppDomain&gt;ConsoleApp.vshost.exe&lt;/
+AppDomain&gt;&lt;Exception&gt;&lt;ExceptionType&gt;Castle.ActiveRecord.Framework.ActiveRecordException,
+Castle.ActiveRecord, Version=1.0.3.0, Culture=neutral,
+PublicKeyToken=407dd0808d44fbdc&lt;/ExceptionType&gt;&lt;Message&gt;Could not
+perform SlicedFindAll for Country&lt;/Message&gt;&lt;StackTrace&gt;   at
+Castle.ActiveRecord.ActiveRecordBase.SlicedFindAll(Type targetType,
+Int32 firstResult, Int32 maxResults, Order[] orders, ICriterion[]
+criteria)
+   at Castle.ActiveRecord.ActiveRecordBase.SlicedFindAll(Type
+targetType, Int32 firstResult, Int32 maxResults, ICriterion[]
+criteria)
+   at Castle.ActiveRecord.ActiveRecordBase.FindOne(Type targetType,
+ICriterion[] criteria)
+   at DataAccessLayer.Country.FindCountryByName(String name) in C:
+\Documents and Settings\ts36751\My Documents\Visual Studio
+2008\Projects\HighlandAdventures\DataAccessLayer\Country.cs:line 108
+   at ConsoleApp.Program.Main(String[] args) in C:\Documents and
+Settings\ts36751\My Documents\Visual Studio 2008\Projects
+\HighlandAdventures\ConsoleApp\Program.cs:line 20
+   at System.AppDomain._nExecuteAssembly(Assembly assembly, String[]
+args)
+   at System.AppDomain.ExecuteAssembly(String assemblyFile, Evidence
+assemblySecurity, String[] args)
+   at Microsoft.VisualStudio.HostingProcess.HostProc.RunUsersAssembly
+()
+   at System.Threading.ThreadHelper.ThreadStart_Context(Object state)
+   at System.Threading.ExecutionContext.Run(ExecutionContext
+executionContext, ContextCallback callback, Object state)
+   at System.Threading.ThreadHelper.ThreadStart()&lt;/
+StackTrace&gt;&lt;ExceptionString&gt;Castle.ActiveRecord.Framework.ActiveRecordException:
+Could not perform SlicedFindAll for Country ---&amp;amp;gt;
+NHibernate.WrongClassException: Object with id: 1 was not of the
+specified sublcass: DataAccessLayer.Photo (loading object was of wrong
+class [DataAccessLayer.Map])
+   at NHibernate.Loader.Loader.InstanceAlreadyLoaded(IDataReader rs,
+Int32 i, ILoadable persister, EntityKey key, Object obj, LockMode
+lockMode, ISessionImplementor session)
+   at NHibernate.Loader.Loader.GetRow(IDataReader rs, ILoadable[]
+persisters, EntityKey[] keys, Object optionalObject, EntityKey
+optionalObjectKey, LockMode[] lockModes, IList hydratedObjects,
+ISessionImplementor session)
+   at NHibernate.Loader.Loader.GetRowFromResultSet(IDataReader
+resultSet, ISessionImplementor session, QueryParameters
+queryParameters, LockMode[] lockModeArray, EntityKey
+optionalObjectKey, IList hydratedObjects, EntityKey[] keys, Boolean
+returnProxies)
+   at NHibernate.Loader.Loader.DoQuery(ISessionImplementor session,
+QueryParameters queryParameters, Boolean returnProxies)
+   at NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections
+(ISessionImplementor session, QueryParameters queryParameters, Boolean
+returnProxies)
+   at NHibernate.Loader.Loader.LoadCollection(ISessionImplementor
+session, Object id, IType type)
+   at NHibernate.Loader.Collection.CollectionLoader.Initialize(Object
+id, ISessionImplementor session)
+   at
+NHibernate.Persister.Collection.AbstractCollectionPersister.Initialize
+(Object key, ISessionImplementor session)
+   at NHibernate.Impl.SessionImpl.InitializeCollection
+(IPersistentCollection collection, Boolean writing)
+   at
+NHibernate.Collection.AbstractPersistentCollection.ForceInitialization
+()
+   at NHibernate.Impl.SessionImpl.InitializeNonLazyCollections()
+   at NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections
+(ISessionImplementor session, QueryParameters queryParameters, Boolean
+returnProxies)
+   at NHibernate.Loader.Loader.DoList(ISessionImplementor session,
+QueryParameters queryParameters)
+   at NHibernate.Loader.Loader.ListIgnoreQueryCache
+(ISessionImplementor session, QueryParameters queryParameters)
+   at NHibernate.Loader.Loader.List(ISessionImplementor session,
+QueryParameters queryParameters, ISet querySpaces, IType[]
+resultTypes)
+   at NHibernate.Loader.Criteria.CriteriaLoader.List
+(ISessionImplementor session)
+   at NHibernate.Impl.SessionImpl.Find(CriteriaImpl criteria, IList
+results)
+   at NHibernate.Impl.SessionImpl.Find(CriteriaImpl criteria)
+   at NHibernate.Impl.CriteriaImpl.List()
+   at Castle.ActiveRecord.ActiveRecordBase.SlicedFindAll(Type
+targetType, Int32 firstResult, Int32 maxResults, Order[] orders,
+ICriterion[] criteria)
+   --- End of inner exception stack trace ---
+   at Castle.ActiveRecord.ActiveRecordBase.SlicedFindAll(Type
+targetType, Int32 firstResult, Int32 maxResults, Order[] orders,
+ICriterion[] criteria)
+   at Castle.ActiveRecord.ActiveRecordBase.SlicedFindAll(Type
+targetType, Int32 firstResult, Int32 maxResults, ICriterion[]
+criteria)
+   at Castle.ActiveRecord.ActiveRecordBase.FindOne(Type targetType,
+ICriterion[] criteria)
+   at DataAccessLayer.Country.FindCountryByName(String name) in C:
+\Documents and Settings\ts36751\My Documents\Visual Studio
+2008\Projects\HighlandAdventures\DataAccessLayer\Country.cs:line 108
+   at ConsoleApp.Program.Main(String[] args) in C:\Documents and
+Settings\ts36751\My Documents\Visual Studio 2008\Projects
+\HighlandAdventures\ConsoleApp\Program.cs:line 20
+   at System.AppDomain._nExecuteAssembly(Assembly assembly, String[]
+args)
+   at System.AppDomain.ExecuteAssembly(String assemblyFile, Evidence
+assemblySecurity, String[] args)
+   at Microsoft.VisualStudio.HostingProcess.HostProc.RunUsersAssembly
+()
+   at System.Threading.ThreadHelper.ThreadStart_Context(Object state)
+   at System.Threading.ExecutionContext.Run(ExecutionContext
+executionContext, ContextCallback callback, ...</value>
+    </field>
+    <field name="created">
+      <value>1244111464000</value>
+    </field>
+    <field name="updated">
+      <value>1244781744000</value>
+    </field>
+    <field name="reporterName">
+      <value>Serenus</value>
+    </field>
+    <field name="updaterName">
+      <value>Serenus</value>
+    </field>
+    <field name="resolved">
+      <value>1244781720000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="This is an NHibernate bug. Can you please add it to NH's JIRA?" created="1244781744000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1244781720000" />
+  </issue>
+</issues>

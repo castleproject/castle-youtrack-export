@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Wcf</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>151</value>
+    </field>
+    <field name="summary">
+      <value>Support svc-less services hosted in IIS</value>
+    </field>
+    <field name="description">
+      <value>Provide ability to work with just WCF Facility set up and not having to create .svc files which are very boilerplate anyway...</value>
+    </field>
+    <field name="created">
+      <value>1309826372427</value>
+    </field>
+    <field name="updated">
+      <value>1407823118483</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1396695188996</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-88[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="We might use the routing for that. Not sure if that works in WCF 3.5sp1" created="1338174134874" />
+    <comment author="cneuwirt" text="yes, I think that would be a good idea" created="1338292972217" />
+    <comment author="xtoff" text="Would that work on older WCF versions? (3.5sp1)?" created="1338413151209" />
+    <comment author="cneuwirt" text="Docs seem to limit api to 4.0 or greater so I suspect not.  Will have to try it with that environment I guess" created="1338564691590" />
+    <comment author="xtoff" text="There are docs for v3.5 http://msdn.microsoft.com/en-us/library/system.web.routing.routecollection(v=vs.90).aspx and I have a friend who claims that he built a web-forms app on 3.5 with it. Not sure if WCF requires anything beyond bare routing to work with it.&#xA;&#xA;If not I think it's still worth it. Worst case scenario we conditionally compile it so that it's only .NET 4+ feature." created="1338586269548" />
+  </issue>
+</issues>

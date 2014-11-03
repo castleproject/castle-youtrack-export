@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>1.1.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>52</value>
+    </field>
+    <field name="summary">
+      <value>DynamicProxy doesn't work on Medium Trust</value>
+    </field>
+    <field name="description">
+      <value>The Assembly.GetName() call on IsAssemblySigned throws an exception on medium trust. This is preventing NHibernate to work on medium trust.</value>
+    </field>
+    <field name="created">
+      <value>1174388192000</value>
+    </field>
+    <field name="updated">
+      <value>1246612056000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1235856960000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Fixed in r5569. GetName is no longer called. This fixes the reported issue for not working on partial trust." created="1235857000000" />
+    <comment author="tijn" text="Unfortunately, it still didn't work under medium trust. Added another patch that should make it work. DefineDynamicModule is now called without creating debug symbols. This was the tiny extra step that was required to make it work.&#xA;&#xA;Not that according to MS docs, you'll need at least .NET 2.0 SP1 to make it happen. Older versions don't allow DefineDynamicModule under medium trust at all." created="1246595310000" />
+    <comment author="xtoff" text="If should be OK (.NET 2sp1), we don't support earlier versions anyway IIRC." created="1246597581000" />
+    <comment author="captainramen" text="I take it this will solve the issue of NHibernate proxies (using the castle bytecode generator) not working in medium trust." created="1246610555000" />
+    <comment author="xtoff" text="Patch applied" created="1246612057000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' changed from ''1.2.0'' to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1235856960000" />
+    <comment author="tijn" text="* '''Attachment''' ModuleScope-mediumtrust.patch added.&#xD;&#xA;" created="1246594920000" />
+    <comment author="xtoff" text="* '''Summary''' changed from ''DynamicProxy 1.1.5 doesn't work on Medium Trust'' to ''DynamicProxy doesn't work on Medium Trust''.&#xD;&#xA;" created="1246608780000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1246612020000" />
+  </issue>
+</issues>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Ajax Support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>144</value>
+    </field>
+    <field name="summary">
+      <value>Consider enabling [AjaxAction]s to perform DOM updates</value>
+    </field>
+    <field name="description">
+      <value>Idea: use CLR's output parameter modifier for that.
+
+C# side:
+  [AjaxAction]
+  public void UpdaterAction(int param1, string param2, out string content)
+  { ... }</value>
+    </field>
+    <field name="created">
+      <value>1157039985000</value>
+    </field>
+    <field name="updated">
+      <value>1167463393000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282143488526</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

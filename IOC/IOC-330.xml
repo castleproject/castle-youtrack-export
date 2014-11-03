@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>330</value>
+    </field>
+    <field name="summary">
+      <value>New element in component diagnostics: list of dependencies</value>
+    </field>
+    <field name="description">
+      <value>It would be useful if the diagnostics view of a component listed all of its dependencies.
+
+Make it recursive, to be able to see dependency's dependencies inline.
+
+At the root level display number of direct/indirect depedencies like:
+
+{{Foo / IFoo | 3 (25)}}
+
+That means Foo has 3 direct dependencies and altogether 25 dependencies in the graph</value>
+    </field>
+    <field name="created">
+      <value>1329636579796</value>
+    </field>
+    <field name="updated">
+      <value>1407823055546</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1394861475570</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

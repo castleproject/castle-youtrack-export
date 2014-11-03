@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Proxies_Interception</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>245</value>
+    </field>
+    <field name="summary">
+      <value>Proxies (for interface services) should not implicitly proxy all interfaces that the service implementation type happens to implement.</value>
+    </field>
+    <field name="description">
+      <value>Currently if I have {{IFoo}} service implemented by {{DisposableFooBar}} which also implements {{IBar}} and {{IDisposable}} the resulting proxy type will also implement all three interfaces and calls to all three of them will be intercepted (unless overriden by {{IProxyGenerationHook}}).</value>
+    </field>
+    <field name="created">
+      <value>1289468341197</value>
+    </field>
+    <field name="updated">
+      <value>1407822257321</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1289468341197</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

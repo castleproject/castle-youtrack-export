@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>265</value>
+    </field>
+    <field name="summary">
+      <value>(Re)enable initialization of Controller.AreaName, Controller.Name and Controller.Action before invoking Controller.Initialize().</value>
+    </field>
+    <field name="description">
+      <value>Small fix for making Controller.AreaName, Controller.Name and Controller.Action available to custom user code in an overridden Controller.Initialize().</value>
+    </field>
+    <field name="created">
+      <value>1181214227000</value>
+    </field>
+    <field name="updated">
+      <value>1263055610000</value>
+    </field>
+    <field name="reporterName">
+      <value>sirthias</value>
+    </field>
+    <field name="updaterName">
+      <value>sirthias</value>
+    </field>
+    <field name="resolved">
+      <value>1282143824401</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055560000" />
+  </issue>
+</issues>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Scaffolding</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>537</value>
+    </field>
+    <field name="summary">
+      <value>Custom scaffolded views are broken (incl. patch)</value>
+    </field>
+    <field name="description">
+      <value>Scaffolding uses embedded views, unless some are provided locally. Unfortunately, this feature is broken for all scaffolded views except list.vm. It boils down to the various ComputeTemplateName method being vastly incoherent and returning broken paths.
+
+I successfully patched the affected files and rebuild MonoRail. The feature then works as expected.
+
+Affected files (patch against trunk follows):
+
+$ svn status
+M      MonoRail/Castle.MonoRail.ActiveRecordSupport/Scaffold/RemoveAction.cs
+M      MonoRail/Castle.MonoRail.ActiveRecordSupport/Scaffold/UpdateAction.cs
+M      MonoRail/Castle.MonoRail.ActiveRecordSupport/Scaffold/CreateAction.cs
+M      MonoRail/Castle.MonoRail.ActiveRecordSupport/Scaffold/EditAction.cs
+M      MonoRail/Castle.MonoRail.ActiveRecordSupport/Scaffold/NewAction.cs
+M      MonoRail/Castle.MonoRail.ActiveRecordSupport/Scaffold/ConfirmRemoveAction.cs
+</value>
+    </field>
+    <field name="created">
+      <value>1244421738000</value>
+    </field>
+    <field name="updated">
+      <value>1278992623000</value>
+    </field>
+    <field name="reporterName">
+      <value>lloeki</value>
+    </field>
+    <field name="updaterName">
+      <value>lloeki</value>
+    </field>
+    <field name="resolved">
+      <value>1278992580000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Applied patch, but there is still a lot of inconsistency in scaffolding code :(" created="1278992619000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Work Started'' to ''Work Stopped''.&#xD;&#xA;" created="1278992400000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''2.1''.&#xD;&#xA;* '''Status''' changed from ''Work Stopped'' to ''Resolved''.&#xD;&#xA;" created="1278992580000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278992580000" />
+    <comment author="lloeki" text="* '''Attachment''' custom_scaffolded_view_path.patch added.&#xD;&#xA;" created="1244421900000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1245034800000" />
+  </issue>
+</issues>

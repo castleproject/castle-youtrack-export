@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>549</value>
+    </field>
+    <field name="summary">
+      <value>ValidateRange ignores custom message</value>
+    </field>
+    <field name="description">
+      <value>If a custom message is set to a ValidateRange validator, the custom message is ignored and the default one is used.
+
+See the test cases.</value>
+    </field>
+    <field name="created">
+      <value>1251264168000</value>
+    </field>
+    <field name="updated">
+      <value>1260661444000</value>
+    </field>
+    <field name="reporterName">
+      <value>bdaniel7</value>
+    </field>
+    <field name="updaterName">
+      <value>bdaniel7</value>
+    </field>
+    <field name="resolved">
+      <value>1260661440000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="bdaniel7" text="TestRangeValueCustomMessage will fail" created="1251264259000" />
+    <comment author="roelofb" text="Do you have a fix?" created="1253854358000" />
+    <comment author="jsimons" text="Fix applied to Validator project r6410.&#xA;This will go out with the next release." created="1260658176000" />
+    <comment author="bdaniel7" text="* '''Attachment''' RangeValidatorIgnoresCustomMessage.patch added.&#xD;&#xA;" created="1251264180000" />
+    <comment author="kenegozi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1260661440000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1260661440000" />
+  </issue>
+</issues>

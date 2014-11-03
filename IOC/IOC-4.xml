@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Beta 3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>4</value>
+    </field>
+    <field name="summary">
+      <value>Offer a binary distribution of all projects in Castle</value>
+    </field>
+    <field name="description">
+      <value>Offer a binary distribution of all projects in Castle in one .zip file.
+Example: castlebeta2.zip contains all binary files of all projects under Castle.
+</value>
+    </field>
+    <field name="created">
+      <value>1118817046000</value>
+    </field>
+    <field name="updated">
+      <value>1127056622000</value>
+    </field>
+    <field name="reporterName">
+      <value>carlosjac</value>
+    </field>
+    <field name="updaterName">
+      <value>carlosjac</value>
+    </field>
+    <field name="resolved">
+      <value>1282141583963</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="tathamoddie" text="Nightlies are coming... my fault they are taking so long.&#xA;&#xA;Once these are up, whenever a realease is made we can just copy the latest nightly and put it somewhere. Voila." created="1218366898000" />
+  </issue>
+</issues>

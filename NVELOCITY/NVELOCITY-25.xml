@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>25</value>
+    </field>
+    <field name="summary">
+      <value>Introduce an introspection attribute to be able to support Dotfuscated objects</value>
+    </field>
+    <field name="description">
+      <value>When using dotfuscate (http://www.preemptive.com/dotfuscator.html) to "fuscate" your code, the objects get so severely mangled that NVelocity can not use the objects, consider the following scenario as part of a library:
+
+    public class IInterface {}
+    
+    internal class MyImplementation : IInterface {}
+
+For a library we may wish to expose the IInterface (it is public after all),  but MyImplementation can be dotfuscated to avoid making reverse engineering too easy. But when trying to use an instance of IInterface with NVelocity the Object.GetType() will return a "mangled" type - certainly not something which can be resolved as an instance of IInterface.
+
+This patch introduces an attribute named Introspection which can be applied to dotfuscated objects to tell which type to use when NVelocity introspects an instance of the given type. This could be used as following:
+
+    [Introspection(typeof(IInterface))]
+   internal class MyImplementation : IInterface {}
+
+This works because dotfuscator can not fuscate public attributes away, and hence the type resolving works again.
+
+One could use the IDuck interface instead, but it is difficult to use without having to write tons of boiler-plate code.
+</value>
+    </field>
+    <field name="created">
+      <value>1212499136000</value>
+    </field>
+    <field name="updated">
+      <value>1253854838000</value>
+    </field>
+    <field name="reporterName">
+      <value>rasmus</value>
+    </field>
+    <field name="updaterName">
+      <value>rasmus</value>
+    </field>
+    <field name="resolved">
+      <value>1235008560000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Rasmus, the patch doesn't include the IntrospectionAttribute class.&#xA;&#xA;Also, is there a reason you can't just add the ObfuscationAttribute to your internal class. I assume it is because you want the internal class to be obfuscated like the rest of you application." created="1232422907000" />
+    <comment author="jonorossi" text="Closing because the patch is missing code. Please reopen with a full patch if you are still interested." created="1235008600000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Incomplete''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1235008560000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253854800000" />
+  </issue>
+</issues>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>View Components</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>107</value>
+    </field>
+    <field name="summary">
+      <value>SmartGridComponent.SplitPascalCase does not work correctly</value>
+    </field>
+    <field name="description">
+      <value>Line 334 of SmartGridComponent uses the following code:
+return Regex.Replace(input, "([A-Z])", "$1", RegexOptions.Compiled);
+
+There should be a space before the $1, so the line should read:
+return Regex.Replace(input, "([A-Z])", " $1", RegexOptions.Compiled);</value>
+    </field>
+    <field name="created">
+      <value>1193903241000</value>
+    </field>
+    <field name="updated">
+      <value>1414392160203</value>
+    </field>
+    <field name="reporterName">
+      <value>jez</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392160196</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>326</value>
+    </field>
+    <field name="summary">
+      <value>Add property UseViewFor to ControllerDetailsAttribute to override the views for a controller</value>
+    </field>
+    <field name="description">
+      <value>This is useful for inheriting a controller's behaviour, and keeping it's views, instead of having to override manually in subclass code. i.e.:
+
+//different layout
+[Layout("FooSub")]
+[ControllerDetails(UseViewFor=typeof(Foo))]
+class FooSub: Foo
+{
+}
+
+Instead of 
+[Layout...]
+class FooSub:Foo
+{
+public void Index()
+{
+  base();
+  RenderView("foo","index");
+}
+}
+
+
+Basically for utilising controller functionality in different parts of a website (i.e. in an iframe window, which may have a different layout, but same views).
+
+This hits the Controller class &amp; may introduce some subtle bugs. 
+
+It has also only been tested with nvelocity, but others should work.</value>
+    </field>
+    <field name="created">
+      <value>1188367029000</value>
+    </field>
+    <field name="updated">
+      <value>1244676674000</value>
+    </field>
+    <field name="reporterName">
+      <value>nihm</value>
+    </field>
+    <field name="updaterName">
+      <value>nihm</value>
+    </field>
+    <field name="resolved">
+      <value>1282144001276</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676660000" />
+  </issue>
+</issues>

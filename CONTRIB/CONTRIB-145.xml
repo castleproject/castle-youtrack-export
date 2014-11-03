@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>View Components</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>145</value>
+    </field>
+    <field name="summary">
+      <value>SmartGridComponent moreHeader is rendered once per property</value>
+    </field>
+    <field name="description">
+      <value>The optional section moreHeader is rendered after each property's column.  The attached patch corrects that behaviour (on my interpretation that the section is for writing out the header to a section, where the section can contain x columns, where x is those that one wants to add to the grid).</value>
+    </field>
+    <field name="created">
+      <value>1221627476000</value>
+    </field>
+    <field name="updated">
+      <value>1414392207799</value>
+    </field>
+    <field name="reporterName">
+      <value>petemounce</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392207791</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

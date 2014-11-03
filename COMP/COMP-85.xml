@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions">
+      <value>Validator 2.5.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>85</value>
+    </field>
+    <field name="summary">
+      <value>CachedMetadataValidationRegistry</value>
+    </field>
+    <field name="description">
+      <value>CachedMetadataValidationRegistry is an alternative registry to the CachedValidationRegistry, which allow to define attributes on a MetaDataClass instead of on the entity class (usefull when entity classes are generated like Linq to SQL) requires System.ComponentModel.DataAnnotations : 
+Eg.
+
+[MetadataType(typeof(PersonMetaData))
+public class Person
+{
+  public string Name {get;set;}
+}
+
+public class PersonMetaData
+{
+  [ValidateNonEmpty][ValidateLength(1,40)]
+  public string Name {get;set;}
+}</value>
+    </field>
+    <field name="created">
+      <value>1236267337000</value>
+    </field>
+    <field name="updated">
+      <value>1292001584710</value>
+    </field>
+    <field name="reporterName">
+      <value>rekna</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1285401435640</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="djanosik" text="* '''Attachment''' MetadataValidatorRegistry.cs added.&#xD;&#xA;" created="1244637240000" />
+    <comment author="rekna" text="* '''Attachment''' CachedMetadataValidationRegistry.cs added.&#xD;&#xA;" created="1236267360000" />
+    <comment author="henry" text="Patch applied." created="1285401435640" />
+  </issue>
+</issues>

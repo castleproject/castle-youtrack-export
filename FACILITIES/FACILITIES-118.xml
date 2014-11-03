@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>118</value>
+    </field>
+    <field name="summary">
+      <value>Replacement for TypedFactoryFacility</value>
+    </field>
+    <field name="description">
+      <value>This is a patch that introduces a new facility that is intended to replace the existing TypedFactoryFacility.  The facility adds fluent registration, interception of Dispose and implementation of multiple return types.  It also requires less configuration than the current facility.  There are about 40 tests demonstrating its intended behaviour.
+
+This is my first patch to the Castle project, so any feedback would be welcome.</value>
+    </field>
+    <field name="created">
+      <value>1239427146000</value>
+    </field>
+    <field name="updated">
+      <value>1278755382000</value>
+    </field>
+    <field name="reporterName">
+      <value>JulianBirch</value>
+    </field>
+    <field name="updaterName">
+      <value>JulianBirch</value>
+    </field>
+    <field name="resolved">
+      <value>1278755340000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Thanks for the patch! I guess this is the same code as on http://code.google.com/p/castleautogen. What's happening to that place should this facility be committed to Castle's SVN?&#xA;&#xA;A couple of remarks regarding the coding standards of the patch:&#xA;1. We are using tabs, not spaces.&#xA;2. Files must include the Castle license header&#xA;3. Public methods and types must be documented.&#xA;4. namespace ColourCoding.AutoGen.Castle -&gt; Castle.Facilities.AutoGen ?&#xA;&#xA;See http://www.castleproject.org/community/codingstandards.html for all coding standards." created="1239682851000" />
+    <comment author="roelofb" text="- There's no csproj for the unit tests&#xA;- A solution file is missing&#xA;- The project references are referring to folder that does not exist in the Castle source tree&#xA;- Microsoft.Practices.ServiceLocation.dll is used: is it legal to put this assembly in Castle's svn?" created="1239683217000" />
+    <comment author="Phaedo" text="Okay, sorry, will fix the problems.  Should the patch get accepted, I'll kill the google code project.  Namespace was intended to be Castle.Facilities.AutoGen, I may have missed something.&#xA;&#xA;Thanks for looking at it.  I'll get the problems fixed." created="1239684209000" />
+    <comment author="Phaedo" text="On the subject of ServiceLocation.dll, this is an interesting question.  There are actually a few parts to this:&#xA;&#xA;1) Can we include the DLL according to the MS-PL?  (I /think/ the answer is yes.)&#xA;2) Can we include an MS-PL project according to the Apache license?  (I'm not sure.)&#xA;3) The tests are actually ripped off Oren Eini's test suite for the CSL.  I'm guessing in this case we could probably just ask him to licence the code under Apache as well.&#xA;&#xA;Just to clarify: the dependency affects the tests /only/.  The facility actually works fine without it." created="1239684490000" />
+    <comment author="JulianBirch" text="Included revised patch.  Thankyou very much for the feedback on the previous patch.  I've performed the following changes:&#xA;1) Converted all indentation to use tabs (4 spaces to one tab)&#xA;2) Placed the castle license header at the top&#xA;3) Documented all public methods and types.&#xA;4) Fixed outstanding namespace issues&#xA;5) Moved using declarations within the namespaces as directed in coding standards&#xA;6) Placed small solution file in Solution directory.&#xA;7) Added csproj files.&#xA;8) References should now be to the .net3.5 build directory, which seems to be the standard mode of reference in the rest of the project &#xA;9) Removed CSL.  I've kept the tests, slightly modified with a similar interface.&#xA;10) And a refactor.  Code now relies on a NoTargetActivator and a DelegatingFactoryActivator (the second isn't heavily used, but it is generally useful.&#xA;&#xA;I hope this patch causes fewer problems.  Sadly, it's huge." created="1240648263000" />
+    <comment author="JulianBirch" text="Added convention-based approach to event wiring.  Tweaked API." created="1244369305000" />
+    <comment author="xtoff" text="I think we can close it since TFF supports now most of the stuff discussed here." created="1278755378000" />
+    <comment author="JulianBirch" text="* '''Attachment''' AutoGen.patch added.&#xD;&#xA;" created="1239427146001" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1239682800000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Work Started'' to ''Work Stopped''.&#xD;&#xA;" created="1239682860000" />
+    <comment author="JulianBirch" text="* '''Attachment''' AutoGen2 Root from Facilities.patch added.&#xD;&#xA;" created="1240648260000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' set to ''2.5''.&#xD;&#xA;* '''Status''' changed from ''Work Stopped'' to ''Resolved''.&#xD;&#xA;" created="1278755340000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278755340000" />
+    <comment author="JulianBirch" text="* '''Attachment''' AutoGen 3 Root from Facilities.patch added.&#xD;&#xA;" created="1244369220000" />
+  </issue>
+</issues>

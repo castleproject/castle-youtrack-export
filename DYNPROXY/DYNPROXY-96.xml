@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>96</value>
+    </field>
+    <field name="summary">
+      <value>Implement order of precenence for interfaces on proxy</value>
+    </field>
+    <field name="description">
+      <value>Proxy should implement the following order of precedence when it comes to deciding where to forward calls to interfaces:
+
+1. If target implements the interface - forward to target
+2. If one of mixed in objects implements the interface - forward to that object
+3. If none of above - don't forward (standard behavior for 'additional
+interfaces')
+4. If more than one mixed in object implements the interface, then it's confusing
+and we throw. 
+
+More on it here:
+http://groups.google.com/group/castle-project-devel/browse_thread/thread/5238442509b489c5
+
+This is actually a bug, as seen here: http://groups.google.com/group/castle-project-users/browse_thread/thread/2e507f47dbb831f1</value>
+    </field>
+    <field name="created">
+      <value>1245541973000</value>
+    </field>
+    <field name="updated">
+      <value>1248972557000</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1248972540000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jfromaniello" text="TestCase_InterfacesInheritance.cs &#xA;&#xA;5-If the target implement the interface A, but some additional interface inherit from A, forward to the target too. Currently is forwarding to the proxy itself." created="1246862932000" />
+    <comment author="xtoff" text="* '''Type''' changed from ''Improvement'' to ''Bug''.&#xD;&#xA;* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Proxy should implement the following order of precedence when it comes to deciding where to forward calls to interfaces:&#xD;&#xA;&#xD;&#xA;1. If target implements the interface - forward to target&#xD;&#xA;2. If one of mixed in objects implements the interface - forward to that object&#xD;&#xA;3. If none of above - don't forward (standard behavior for 'additional&#xD;&#xA;interfaces')&#xD;&#xA;4. If more than one mixed in object implements the interface, then it's confusing&#xD;&#xA;and we throw. &#xD;&#xA;&#xD;&#xA;More on it here:&#xD;&#xA;http://groups.google.com/group/castle-project-devel/browse_thread/thread/5238442509b489c5&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Proxy should implement the following order of precedence when it comes to deciding where to forward calls to interfaces:&#xD;&#xA;&#xD;&#xA;1. If target implements the interface - forward to target&#xD;&#xA;2. If one of mixed in objects implements the interface - forward to that object&#xD;&#xA;3. If none of above - don't forward (standard behavior for 'additional&#xD;&#xA;interfaces')&#xD;&#xA;4. If more than one mixed in object implements the interface, then it's confusing&#xD;&#xA;and we throw. &#xD;&#xA;&#xD;&#xA;More on it here:&#xD;&#xA;http://groups.google.com/group/castle-project-devel/browse_thread/thread/5238442509b489c5&#xD;&#xA;&#xD;&#xA;This is actually a bug, as seen here: http://groups.google.com/group/castle-project-users/browse_thread/thread/2e507f47dbb831f1&#xD;&#xA;{quote}&#xD;&#xA;" created="1246860720000" />
+    <comment author="jfromaniello" text="* '''Attachment''' TestCase_InterfacesInheritance.cs added.&#xD;&#xA;" created="1246862880000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Work Stopped'' to ''Work Started''.&#xD;&#xA;" created="1246868520000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Work Started'' to ''Work Stopped''.&#xD;&#xA;" created="1248970740000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Work Stopped'' to ''Resolved''.&#xD;&#xA;" created="1248972540000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1248972540000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1245858300000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Work Started'' to ''Work Started''.&#xD;&#xA;" created="1245858600000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Work Started'' to ''Work Stopped''.&#xD;&#xA;" created="1246361880000" />
+  </issue>
+</issues>

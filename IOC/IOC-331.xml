@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>TypedFactoryFacility</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>3.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>331</value>
+    </field>
+    <field name="summary">
+      <value>TypedFactoryFacility should ignore Func&lt;string&gt;</value>
+    </field>
+    <field name="description">
+      <value>Windsor does not allow services of type string and with the TypedFactoryFacility they are added.
+
+The bug was found by using Windsor and Automapper together.
+Look at https://gist.github.com/1852705#file_windsor_automapper_test_fixture.cs for a failing test.
+
+More info and a quick workaround can be found at https://groups.google.com/d/msg/castle-project-users/FotV-tBtGiQ/id31pps10EsJ</value>
+    </field>
+    <field name="created">
+      <value>1329727835542</value>
+    </field>
+    <field name="updated">
+      <value>1337413960753</value>
+    </field>
+    <field name="reporterName">
+      <value>Jochen.Jonckheere</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1337413960753</value>
+    </field>
+    <field name="voterName">
+      <value>xtoff</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Transaction</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Tx 2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>22</value>
+    </field>
+    <field name="summary">
+      <value>Different behavior in Nested Transaction Context (2.5) compared to (1.0)</value>
+    </field>
+    <field name="description">
+      <value>Objects added to the Nested Transaction’s Context (version 1.0.3.x) were registered in the parent transaction all the way up until a StandardTransaction (IsChildTransaction == false) instance was found. Current implementation (version 2.5.0.48) stores those objects in the local NestedTransaction. This breaks existing functionality when Castle.Transactions is updated to the latest release.</value>
+    </field>
+    <field name="created">
+      <value>1284736095728</value>
+    </field>
+    <field name="updated">
+      <value>1407823104044</value>
+    </field>
+    <field name="reporterName">
+      <value>Rogelio.Baucells</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1284868661791</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="Rogelio.Baucells" text="Attached patch file with Unit Test and fix" created="1284740118385" />
+    <comment author="henry" text="The old behavior was buggy. The isolation of the context promotes more consistency for the tx machinery." created="1284868715166" />
+  </issue>
+</issues>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>64</value>
+    </field>
+    <field name="summary">
+      <value>JoinedKey is used in an inherited class but it leads to "A type must declare a primary key" exception</value>
+    </field>
+    <field name="description">
+      <value>I'm trying to persist an inherited object. I have defined 3 classes. A BB class that holds a collection of BBMessage objects and BBMessage is inherited from Message. I've read Type hierarchy tutorial and used JoinedKey attribute for BBMessage, PrimaryKey attribute for the Message class. Now I get exception:
+
+"A type must declare a primary key. Check type eMBA.CollaborationService.BBMessage"
+
+This exception is produced as soon as the 
+
+ActiveRecordStarter.Initialize(new XmlConfigurationSource(@"eMBA_CS_ActiveRecord.xml"),
+                    typeof(BB)
+                ,   typeof(BBMessage)
+                ,   typeof(Message)); 
+
+statemen is encountered in the sample application that is trying to use my class library.
+
+I just couldn't understand why. I also placed isDebug="true" in the config file as advised but I couldn't see any freshly generated NHibernate mappings.
+
+The details are described in the thread:
+
+http://forum.castleproject.org/viewtopic.php?t=586
+
+I'm including my project files as well as the SQL script that reflects the latest situation of the database structure I'm using. There are two projects, one that is the class library which includes classes BB, BBMessage and Message, the other is just a simple test application which creates the exception.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1152088092000</value>
+    </field>
+    <field name="updated">
+      <value>1162410378000</value>
+    </field>
+    <field name="reporterName">
+      <value>emresevinc</value>
+    </field>
+    <field name="updaterName">
+      <value>emresevinc</value>
+    </field>
+    <field name="resolved">
+      <value>1282136038401</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

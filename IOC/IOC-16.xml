@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>16</value>
+    </field>
+    <field name="summary">
+      <value>Add support for properties in config file </value>
+    </field>
+    <field name="description">
+      <value>Add support for properties in config file making it easy to reconfigure application for multiple environments ?
+ 
+something like 
+&lt;configuration&gt;
+    &lt;properties uri="... properties.config" /&gt;
+
+    &lt;/components&gt;
+       &lt;component id="MyComponent"&gt;
+          &lt;parameters&gt;
+             &lt;sender&gt;#{url}&lt;/sender&gt;
+          &lt;/parameters&gt;
+       &lt;/component&gt; 
+   &lt;/components&gt;
+&lt;/configuration&gt;
+
+where "url" is defined in properties.config
+
+</value>
+    </field>
+    <field name="created">
+      <value>1129628861000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853104</value>
+    </field>
+    <field name="reporterName">
+      <value>gilles</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282141628057</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

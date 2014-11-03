@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>TypedFactoryFacility</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>294</value>
+    </field>
+    <field name="summary">
+      <value>DefaultTypedFactoryComponentSelector does not handle being passed a name and a null type</value>
+    </field>
+    <field name="description">
+      <value>According to GitHub sources, code in DefaultTypedFactoryComponentSelector.BuildFactoryComponent calls GetCompatibleArrayItemType on what may be a null ComponentType pointer, which causes an exception. This seems like a bug, plain and simple.
+
+I also appears that TypedFactoryComponentResolver.Resolve method doesn't quite arrange to call the right overloads on the kernel to resolve in cases where ComponentType is null. I'm much less clear whether this is a bug or a lack in my understanding of which IWindsorContainer.Resolve methods do what. That said, a dispatch to the various methods (Resolve&lt;object&gt;(string key), for example) seems to do the trick.
+</value>
+    </field>
+    <field name="created">
+      <value>1305304380316</value>
+    </field>
+    <field name="updated">
+      <value>1407822257285</value>
+    </field>
+    <field name="reporterName">
+      <value>sebastiang</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1305321038113</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-698[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="This was fixed a few days ago as a part of bigger change: https://github.com/castleproject/Castle.Windsor/commit/88a2c97c84f5791416ecc1316fcfb4210afd1285&#xA;cheers" created="1305321119534" />
+    <comment author="Kenneth.Siewers.Møller" text="So this is still a bug in 2.5.3? :(" created="1306566507353" />
+  </issue>
+</issues>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>EmailSender</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>79</value>
+    </field>
+    <field name="summary">
+      <value>SmtpSender.CreateMailMessage supplies incorrect mime type when created from stream</value>
+    </field>
+    <field name="description">
+      <value>Line #192 in SmtpSender.cs creates an attachment from a stream. It is using an incorrect overload for the constructor and as a consequence is assigning the media type as the file name.
+
+if (attachment.Stream != null)
+{
+    mailAttach = new Attachment(attachment.Stream, attachment.MediaType);
+}
+
+Correct code should be:
+
+if (attachment.Stream != null)
+{
+    mailAttach = new Attachment(attachment.Stream, attachment.FileName, attachment.MediaType);
+}
+
+I do have some tests to display this issue but wasn't sure where to put them (There doesn't appear to be any tests currently for the EmailSender). The tests also require CreateMailMessage to be made public (which is another open issue it seems: COMP-ISSUE-74)</value>
+    </field>
+    <field name="created">
+      <value>1229594081000</value>
+    </field>
+    <field name="updated">
+      <value>1229880602000</value>
+    </field>
+    <field name="reporterName">
+      <value>oppoll</value>
+    </field>
+    <field name="updaterName">
+      <value>oppoll</value>
+    </field>
+    <field name="resolved">
+      <value>1229880600000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="oppoll" text="The patch was created from:&#xA;Components\EmailSender\Castle.Components.Common.EmailSender\Smtp" created="1229594189000" />
+    <comment author="hammett" text="Applied, thanks" created="1229880602000" />
+    <comment author="hammett" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1229880600000" />
+  </issue>
+</issues>

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>By design</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>376</value>
+    </field>
+    <field name="summary">
+      <value>I got an Exception : ComponentActivator: could not proxy AsFactoryImplementation.&lt;FacotryName&gt;</value>
+    </field>
+    <field name="description">
+      <value>I got this exception when trying to resolve the Factory Component. I am a newer with the Windsor, so i followed the documentation site for Windsor and got this exception during one project i did, here is my complete code for the project where i got the exception 
+
+
+
+using System;
+using System.Windows.Forms;
+using Castle.Facilities.TypedFactory;
+using Castle.MicroKernel.Proxy;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Castle.MicroKernel.Registration;
+using Castle.Windsor;
+
+namespace AsFactoryImplementation
+{
+    interface IDummyComponnentFactory
+    {
+        IDummyComponnent Creat();
+//        void Relese(IDummyComponnent factory);
+    }
+
+    interface IDummyComponnent
+    {
+        void Show();
+    }
+
+    class DummyComponnent:IDummyComponnent
+    {
+        public DummyComponnent()
+        {
+            Console.WriteLine("we are working here");
+        }
+        public void Show()
+        {
+            Console.WriteLine("just testing this for better performance");
+        }
+    }
+
+    class Program:WindsorContainer
+    {
+        static void Main(string[] args)
+        {
+            var container = new WindsorContainer();
+            container.AddFacility&lt;TypedFactoryFacility&gt;();
+            
+            container.Register(Component.For&lt;IDummyComponnent&gt;().ImplementedBy&lt;DummyComponnent&gt;().Named("FirstConnection").LifeStyle.Transient
+                , Component.For&lt;IDummyComponnentFactory&gt;().AsFactory());
+            
+            var val = container.Resolve&lt;IDummyComponnent&gt;();
+            val.Show();
+
+            var val2 = container.Resolve&lt;IDummyComponnentFactory&gt;();              //  &lt;&lt;&lt;======= Here Exception occures
+            var idummy = val2.Creat();
+
+        }
+    }
+}
+
+
+please someone help me out , where i am wrong ?</value>
+    </field>
+    <field name="created">
+      <value>1360309473159</value>
+    </field>
+    <field name="updated">
+      <value>1360374961187</value>
+    </field>
+    <field name="reporterName">
+      <value>Karn</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1360374942640</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Make the type public" created="1360374961185" />
+  </issue>
+</issues>

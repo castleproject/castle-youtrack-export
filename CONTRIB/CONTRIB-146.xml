@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle Visual Studio Integration</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>146</value>
+    </field>
+    <field name="summary">
+      <value>CVSI Velocity/HTML Parser cannot handle HTML comments</value>
+    </field>
+    <field name="description">
+      <value>The Velocity/HTML-Parser has an error. It is not able to handle the following simple example:
+
+ &lt;p&gt;Some text&lt;/p&gt; &lt;!-- A comment --&gt;
+
+At the end of the comment it signals an error. The error output is as follows:
+
+The parser has been pre-emptively terminated because it appears as if the parser is stuck. [In ParseXmlRestElement()]
+Expected 'XmlTagStart' but was 'XmlComment'
+Expected 'XmlForwardSlash' but was 'XmlComment'
+Expected '&gt;'
+
+Obviously it doesn't expect a comment there but a tag.</value>
+    </field>
+    <field name="created">
+      <value>1223619614000</value>
+    </field>
+    <field name="updated">
+      <value>1414392293020</value>
+    </field>
+    <field name="reporterName">
+      <value>claudio</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392293013</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

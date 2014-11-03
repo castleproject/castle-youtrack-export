@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveRecord Support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>118</value>
+    </field>
+    <field name="summary">
+      <value> ARDataBind problem with inherited model</value>
+    </field>
+    <field name="description">
+      <value>I have a little problem: ARDataBind works fine in base classes/models,
+but when I try to bind a joined subclass I always get this exception:
+Error building method arguments. Last param analized was CLASSNAME with
+value ''
+stacktrace
+
+in &lt;0x00212&gt; Castle.MonoRail.Framework.SmartDispatcherController:BuildMethodArguments (System.Reflection.ParameterInfo[] parameters, IRequest request)
+in &lt;0x0002a&gt; Castle.MonoRail.ActiveRecordSupport.ARSmartDispatcherController:BuildMethodArguments (System.Reflection.ParameterInfo[] parameters, IRequest request)
+in &lt;0x00034&gt; Castle.MonoRail.Framework.SmartDispatcherController:InvokeMethod (System.Reflection.MethodInfo method, IRequest request)
+in &lt;0x00030&gt; Castle.MonoRail.Framework.Controller:InvokeMethod (System.Reflection.MethodInfo method)
+in &lt;0x002fb&gt; Castle.MonoRail.Framework.Controller:InternalSend (System.String action)
+
+This is the part of the joined subclass (A group of users):
+
+   [ActiveRecord("`group`")] 
+   public class Group : Permission
+   {
+      private int _GroupId;
+      private string _Name;
+
+      private ISet _Users;
+
+      public Group () { }
+
+      [JoinedKey]
+      public int GroupId
+      {
+         get { return _GroupId; }
+         set { _GroupId = value; }
+      }
+    ....
+
+This is the form:
+
+&lt;form action="method.rails"&gt;
+ ...
+ &lt;input type="hidden" name="group.Id" value="$group.Id&gt;
+ &lt;input type="submit"&gt;
+&lt;/form&gt;
+
+This is the controller:
+
+public void Method([ARDataBind(Prefix="group")]Group group){ ... }
+
+
+This works with a base class.
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1146656503000</value>
+    </field>
+    <field name="updated">
+      <value>1162414174000</value>
+    </field>
+    <field name="reporterName">
+      <value>carlosble</value>
+    </field>
+    <field name="updaterName">
+      <value>carlosble</value>
+    </field>
+    <field name="resolved">
+      <value>1282143454245</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>225</value>
+    </field>
+    <field name="summary">
+      <value>KeyBelongsTo</value>
+    </field>
+    <field name="description">
+      <value>So you can do something like this in a [CompositeKey]:
+
+
+
+        [KeyBelongsTo(Column = "pat_id")]
+        public virtual Patient Patient
+        {
+            get { return patient; }
+            set { patient = value; }
+        }
+
+        [KeyBelongsTo(Column = "which_address")]
+        public virtual ContactType Type
+        {
+            get { return type; }
+            set { type = value; }
+        }
+
+        [KeyProperty(Column = "date_from")]
+        public virtual DateTime FromDate
+        {
+            get { return fromdate; }
+            set { fromdate = value; }
+        }
+
+        [KeyProperty(Column = "seq_no", Length = 2)]
+        public virtual decimal SequenceNumber
+        {
+            get { return sequencenumber; }
+            set { sequencenumber = value; }
+        }</value>
+    </field>
+    <field name="created">
+      <value>1219044567000</value>
+    </field>
+    <field name="updated">
+      <value>1415000059378</value>
+    </field>
+    <field name="reporterName">
+      <value>DaBuddhaMan123</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1415000059373</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="gauthier" text="That look great:&#xA;&#xA;I've worked around this too many time by adding relaying properties with [BelongsTo(Update=false, Insert=false)] with specific implementation that set the key inner properties.&#xA;&#xA;Also, a test case illustrating the usage and proving actual working would be great.&#xA;&#xA;Thanks!" created="1227705226000" />
+    <comment author="mzywitza" text="This is an interesting patch, but it cannot be applied without a proper testcase." created="1232199914000" />
+    <comment author="Maethorin" text="Its possible to get a version (some branch) with this patch applied? Or how can I apply this patch im my local version? I want to produce the testcases.&#xA;&#xA;Thanks" created="1238924866000" />
+    <comment author="mzywitza" text="Download the most recent version of the patch and drag it with right mouse button pressed onto the ActiveRecord folder in your trunk. Select &quot;Apply patch here&quot;.&#xA;(This requires TortoiseSVN)." created="1238927335000" />
+    <comment author="Maethorin" text="I download the NH2.0 version in the branches... I pretend to use the NH2... Do you recomend using the trunk? (problems like conflicts in merging)" created="1238934060000" />
+    <comment author="mzywitza" text="Marcio, I added a patch that applies painlessly to current trunk (5719). And yes, I recommend changing to trunk in any case. Both AR and NH are by now reasonably close to release.&#xA;To include the patch, I need at least one test in C.AR.T.Internal testing the XML generation and one test case with a simple model showing how it is used.&#xA;Thanks for your efforts." created="1243595309000" />
+    <comment author="mzywitza" text="* '''Attachment''' KeyBelongsTo_trunk.patch added.&#xD;&#xA;" created="1243595100000" />
+    <comment author="mzywitza" text="* '''Assignees''' set to ''Markus Zywitza''.&#xD;&#xA;" created="1227677220000" />
+    <comment author="jonorossi" text="ActiveRecord is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/ActiveRecord/issues" created="1415000059380" />
+  </issue>
+</issues>

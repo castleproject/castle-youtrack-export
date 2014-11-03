@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Ajax Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>502</value>
+    </field>
+    <field name="summary">
+      <value>JQueryGenerator Enhancement</value>
+    </field>
+    <field name="description">
+      <value>JQueryGenerator Enhancement
+Added JQuery generation methods for some ui.jquery components.
+New methods:
+AddDatePicker: for generating JQuery script for ui.jquery.datepicker
+AddTimeEntry: for generating JQuery script for jquery.timeentry
+Cycle: for generating JQuery script for jquery.cycle ( slideshow control cycles thru pics or any other content)
+CycleWithOptions: for generating JQuery script for jquery.cycle with options specified.</value>
+    </field>
+    <field name="created">
+      <value>1225370053000</value>
+    </field>
+    <field name="updated">
+      <value>1279477314000</value>
+    </field>
+    <field name="reporterName">
+      <value>driscoll.davidj</value>
+    </field>
+    <field name="updaterName">
+      <value>driscoll.davidj</value>
+    </field>
+    <field name="resolved">
+      <value>1279477260000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="This should be added to contrib" created="1279477307000" />
+    <comment author="jsimons" text="Move to contrib" created="1279477314000" />
+    <comment author="jsimons" text="* '''Version Affected''' changed from ''Future'' to ''2.0''.&#xD;&#xA;" created="1279477080000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1279477260000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1279477260000" />
+    <comment author="driscoll.davidj" text="* '''Importance''' changed from ''High'' to ''Medium''.&#xD;&#xA;" created="1225459740000" />
+  </issue>
+</issues>

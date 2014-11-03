@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>127</value>
+    </field>
+    <field name="summary">
+      <value>Can add items to db but can't update or delete them.</value>
+    </field>
+    <field name="description">
+      <value>I can add items to the database but I cannot update or delete them. It works in RC1 so maybe its something thats changed on the trunk.
+
+I created the tables/schema with ActiveRecordStarter.CreateSchema();
+
+my code is below for my model.
+
+using System;
+using Castle.ActiveRecord;
+using Castle.ActiveRecord.Queries;
+using NetCoders.Helpers;
+ 
+namespace NetCoders.NFSCars.Model.Article
+{
+    [ActiveRecord("Articles")]
+    public class Article : ActiveRecordBase&lt;Article&gt;
+    {
+        #region Properties / Methods
+        private int _articleId;
+        private User.User _author;
+        private ArticleCategory _category;
+        private string _title;
+        private string _body;
+        private string _bodyParsed;
+        private DateTime _postDateTime;
+ 
+        [PrimaryKey(PrimaryKeyType.Native, "ArticleID")]
+        public int ArticleID
+        {
+            get
+            {
+                return _articleId;
+            }
+            set
+            {
+                _articleId = value;
+            }
+        }
+ 
+        [BelongsTo("AuthorUserID", NotNull = true, Update = false)]
+        public User.User Author
+        {
+            get
+            {
+                return _author;
+            }
+            set
+            {
+                _author = value;
+            }
+        }
+ 
+        [BelongsTo("CategoryID", NotNull = true)]
+        public ArticleCategory Category
+        {
+            get
+            {
+                return _category;
+            }
+            set
+            {
+                _category = value;
+            }
+        }
+ 
+        [Property("Title", NotNull = true)]
+        public string Title
+        {
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                _title = value;
+            }
+        }
+ 
+        [Property("Body", ColumnType = "StringClob", SqlType = "Text", NotNull = true)]
+        public string Body
+        {
+            get
+            {
+                return _body;
+            }
+            set
+            {
+                _body = value;
+            }
+        }
+ 
+        [Property("BodyParsed", ColumnType = "StringClob", SqlType = "Text", NotNull = true)]
+        public string BodyParsed
+        {
+            get
+            {
+                return _bodyParsed;
+            }
+            set
+            {
+                _bodyParsed = value;
+            }
+        }
+ 
+        [Property("PostDateTime", NotNull = true, Update = false)]
+        public DateTime PostDateTime
+        {
+            get
+            {
+                return _postDateTime;
+            }
+            set
+            {
+                _postDateTime = value;
+            }
+        }
+        #endregion
+ 
+        #region FindAll
+        public static ListHelper&lt;Article&gt; FindAll(int pageIndex, int pageSize)
+        {
+            SimpleQuery&lt;Article&gt; query = new SimpleQuery&lt;Article&gt;(@"
+                FROM Article a 
+                ORDER BY a.PostDateTime DESC");
+ 
+            if (pageIndex &lt;= 0)
+            {
+                pageIndex = 1;
+            }
+ 
+            int start = (pageIndex * pageSize) - pageSize;
+ 
+            query.SetQueryRange(start, pageSize);
+ 
+            ListHelper&lt;Article&gt; articles = new ListHelper&lt;Article&gt;((Article[])ExecuteQuery(query));
+ 
+            articles.TotalItems = CountItems();
+ 
+            return articles;
+        }
+        #endregion
+ 
+        #region FindAllByCategory
+        public static ListHelper&lt;Article&gt; FindAllByCategory(string category, int pageIndex, int pageSize)
+        {
+            SimpleQuery&lt;Article&gt; query = new SimpleQuery&lt;Article&gt;(@"
+                FROM Article a 
+                WHERE a.Category.Name = :category 
+                ORDER BY a.PostDateTime DESC");
+ 
+            query.SetParameter("category", category);
+ 
+            if (pageIndex &lt;= 0)
+            {
+                pageIndex = 1;
+            }
+ 
+            int start = (pageIndex * pageSize) - pageSize;
+ 
+            query.SetQueryRange(start, pageSize);
+ 
+            ListHelper&lt;Article&gt; articles = new ListHelper&lt;Article&gt;((Article[])ExecuteQuery(query));
+ 
+            articles.TotalItems = CountItems();
+ 
+            return articles;
+        }
+        #endregion
+ 
+        #region CountItems
+        public static int CountItems()
+        {
+            return CountItems(null, null);
+        }
+ 
+        public static int CountItems(string filter,
+            params object[] parameters)
+        {
+            string queryString = null;
+ 
+            if (filter != null &amp;&amp; parameters != null)
+            {
+                queryString = " WHERE " + string.Format(filter, parameters);
+            }
+ 
+            ScalarQuery query = new ScalarQuery(typeof(Article),
+                @"SELECT COUNT(*) FROM Article a" + queryString);
+ 
+            return int.Parse(ExecuteQuery(query).ToString());
+        }
+        #endregion
+    }
+} </value>
+    </field>
+    <field name="created">
+      <value>1170949632000</value>
+    </field>
+    <field name="updated">
+      <value>1174060168000</value>
+    </field>
+    <field name="reporterName">
+      <value>mike343</value>
+    </field>
+    <field name="updaterName">
+      <value>mike343</value>
+    </field>
+    <field name="resolved">
+      <value>1282136281510</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

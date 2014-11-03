@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>By design</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>TypedFactoryFacility</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>363</value>
+    </field>
+    <field name="summary">
+      <value>Releasing method should be allow to have bool return type to indicate whether the passed in argument was successfully released</value>
+    </field>
+    <field name="created">
+      <value>1351740046241</value>
+    </field>
+    <field name="updated">
+      <value>1407819024601</value>
+    </field>
+    <field name="reporterName">
+      <value>Bishoy.Ghaly</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1371371486705</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="After some thinking it turns out that wouldn't be the best solution to the problem anyway.&#xA;&#xA;As such, closing as by-design" created="1371371481957" />
+  </issue>
+</issues>

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>21</value>
+    </field>
+    <field name="summary">
+      <value>Using  NHibernate + Mono + Sqlite on Linux : Trouble in Dinamyc Proxies</value>
+    </field>
+    <field name="description">
+      <value>Hello !
+
+I'm new to NHibernate anf I would like to learn ... So I'm reading the doc and I download the step-by-step exemple ...
+But as I'm a not a Windows/SqlServer user I'm trying to make it work on Linux/Mono/Sqlite ... I'm fighting against small problems ... I've tried to read docs but now.
+
+After some modifications (see the end), I arrived to this error. On the NHibernate Forum they say to come here :-) ! So here I am .
+
+The exception trace : (For info : by settings to false all lazy values, I'm able to load part of Data ...)
+
+Full stack trace of any exception that occurs:
+Unhandled Exception: NHibernate.LazyInitializationException: Failed to lazily initialize a collection ---&gt; NHibernate.HibernateException: Creating a proxy instance failed ---&gt; System.NullReferenceException: Object reference not set to an instance of an object
+in &lt;0x00088&gt; Castle.DynamicProxy.Builder.CodeBuilder.EasyType:IsAssemblySigned (System.Type baseType)
+in &lt;0x00032&gt; Castle.DynamicProxy.Builder.CodeBuilder.EasyType:.ctor (Castle.DynamicProxy.Builder.CodeGenerators.ModuleScope modulescope, System.String name, System.Type baseType, System.Type[] interfaces, Boolean serializable)
+in &lt;0x0003e&gt; Castle.DynamicProxy.Builder.CodeGenerators.BaseCodeGenerator:CreateTypeBuilder (System.String typeName, System.Type baseType, System.Type[] interfaces)
+in &lt;0x000e6&gt; Castle.DynamicProxy.Builder.CodeGenerators.ClassProxyGenerator:GenerateCode (System.Type baseClass, System.Type[] interfaces)
+in &lt;0x00033&gt; Castle.DynamicProxy.Builder.DefaultProxyBuilder:CreateClassProxy (System.Type theClass, System.Type[] interfaces)
+in &lt;0x00061&gt; Castle.DynamicProxy.ProxyGenerator:CreateClassProxy (System.Type baseClass, System.Type[] interfaces, IInterceptor interceptor, Boolean checkAbstract, System.Object[] argumentsForConstructor)
+in [0x00040] (at [HOME]/NHibernate/src/NHibernate/Proxy/CastleProxyFactory.cs:59) NHibernate.Proxy.CastleProxyFactory:GetProxy (System.Object id, ISessionImplementor session)--- End of inner exception stack trace ---
+
+in [0x00096] (at [HOME]/NHibernate/src/NHibernate/Proxy/CastleProxyFactory.cs:72) NHibernate.Proxy.CastleProxyFactory:GetProxy (System.Object id, ISessionImplementor session)
+in [0x00008] (at [HOME]/NHibernate/src/NHibernate/Persister/AbstractEntityPersister.cs:1496) NHibernate.Persister.AbstractEntityPersister:CreateProxy (System.Object id, ISessionImplementor session)
+in [0x000a3] (at [HOME]/NHibernate/src/NHibernate/Impl/SessionImpl.cs:2407) NHibernate.Impl.SessionImpl:DoLoadByClass (System.Type clazz, System.Object id, Boolean checkDeleted, Boolean allowProxyCreation)
+in [0x00005] (at [HOME]/NHibernate/src/NHibernate/Impl/SessionImpl.cs:2319) NHibernate.Impl.SessionImpl:InternalLoad (System.Type clazz, System.Object id)
+in [0x00008] (at [HOME]/NHibernate/src/NHibernate/Type/ManyToOneType.cs:90) NHibernate.Type.ManyToOneType:ResolveIdentifier (System.Object id, ISessionImplementor session)
+in [0x00016] (at [HOME]/NHibernate/src/NHibernate/Type/EntityType.cs:277) NHibernate.Type.EntityType:ResolveIdentifier (System.Object id, ISessionImplementor session, System.Object owner)
+in [0x0000f] (at [HOME]/NHibernate/src/NHibernate/Type/EntityType.cs:177) NHibernate.Type.EntityType:NullSafeGet (IDataReader rs, System.String[] names, ISessionImplementor session, System.Object owner)
+in [0x0000f] (at [HOME]/NHibernate/src/NHibernate/Collection/AbstractCollectionPersister.cs:397) NHibernate.Collection.AbstractCollectionPersister:ReadElement (IDataReader rs, System.Object owner, ISessionImplementor session)
+in [0x00009] (at [HOME]/NHibernate/src/NHibernate/Collection/Set.cs:432) NHibernate.Collection.Set:ReadFrom (IDataReader rs, ICollectionPersister persister, System.Object owner)
+in [0x0006f] (at [HOME]/NHibernate/src/NHibernate/Loader/Loader.cs:467) NHibernate.Loader.Loader:ReadCollectionElement (System.Object optionalOwner, System.Object optionalKey, IDataReader rs, ISessionImplementor session)
+in [0x00150] (at [HOME]/NHibernate/src/NHibernate/Loader/Loader.cs:282) NHibernate.Loader.Loader:GetRowFromResultSet (IDataReader resultSet, ISessionImplementor session, NHibernate.Engine.QueryParameters queryParameters, IList hydratedObjects, System.Object optionalObject, System.Object optionalId, NHibernate.Engine.Key[] keys, Boolean returnProxies)
+in [0x000cc] (at [HOME]/NHibernate/src/NHibernate/Loader/Loader.cs:337) NHibernate.Loader.Loader:DoQuery (ISessionImplementor session, NHibernate.Engine.QueryParameters queryParameters, System.Object optionalObject, System.Object optionalId, System.Object[] optionalCollectionKeys, Boolean returnProxies)--- End of inner exception stack trace ---
+
+in [0x0006a] (at [HOME]/NHibernate/src/NHibernate/Collection/PersistentCollection.cs:263) NHibernate.Collection.PersistentCollection:Initialize (Boolean writing)
+in [0x00002] (at [HOME]/NHibernate/src/NHibernate/Collection/PersistentCollection.cs:78) NHibernate.Collection.PersistentCollection:Read ()
+in [0x00001] (at [HOME]/NHibernate/src/NHibernate/Collection/Set.cs:368) NHibernate.Collection.Set:GetEnumerator ()
+in [0x000ae] (at [HOME]/NHibernate_Exemple/SourceCode/OrderSystem/OrderSystem.UI/CrudSamples.cs:53) OrderSystem.UI.CrudSamples:ListSupplierProductsAndManufacturers (Int32 supplierId)
+in [0x00019] (at [HOME]/NHibernate_Exemple/SourceCode/OrderSystem/OrderSystem.UI/Program.cs:25) OrderSystem.UI.Program:Main ()
+
+
+
+The different modification i've made in NHibernate to arrive to that point ...
+Point 1 : Mono does not include Sqlite.Net but Mono.Data.SqliteClient ...
+So after a small reading, I've seen that I've have to change the present Driver to make it point to Mono.Data.SqliteClient instead of Sqlite.Net ...
+
+==&gt; object not set to an instance of an object
+
+Point 2 : Compile NHibernate with MonoDevelop
+
+In fact, the problem is the that the ressource name is NHibernate.&lt;RessourceName&gt;. Compiling with MonoDevelop, the ressource Name is &lt;RessouceName&gt;. In order to make it work, I've put a test to check both ... First Ok, is used ...
+
+Point 3 : Parameters ...
+
+It seems that @ is not recognize by my Sqllite or Mono.Data.SqliteClient but : works better ...
+
+Point 4 : A new object not set to an instance of an object ...
+see the trace :-)
+
+</value>
+    </field>
+    <field name="created">
+      <value>1149243779000</value>
+    </field>
+    <field name="updated">
+      <value>1162411289000</value>
+    </field>
+    <field name="reporterName">
+      <value>xiii29</value>
+    </field>
+    <field name="updaterName">
+      <value>xiii29</value>
+    </field>
+    <field name="resolved">
+      <value>1282140561260</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

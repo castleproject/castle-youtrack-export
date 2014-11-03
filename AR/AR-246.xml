@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.0 Alpha1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>246</value>
+    </field>
+    <field name="summary">
+      <value>Exists overloads ICriterion and SimpleExpression for different uses</value>
+    </field>
+    <field name="description">
+      <value>this is an API problem.
+is comes to realization in the following situations:
+both code compiles, but still has "behavior" problems:
+
+Works as expected:
+if (Exists((ICriterion) Expression.Eq("Username", Username)))
+
+Doesn't work as expected:
+if (Exists(Expression.Eq("Username", Username)))
+
+is it because the second expression overloads (SimpleExpression(ID)).</value>
+    </field>
+    <field name="created">
+      <value>1236523568000</value>
+    </field>
+    <field name="updated">
+      <value>1237105870000</value>
+    </field>
+    <field name="reporterName">
+      <value>codedemon</value>
+    </field>
+    <field name="updaterName">
+      <value>codedemon</value>
+    </field>
+    <field name="resolved">
+      <value>1237105800000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="Fixed in r5599" created="1237105818000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.0 Alpha1''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1237105800000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1237105860000" />
+  </issue>
+</issues>

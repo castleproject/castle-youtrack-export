@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>268</value>
+    </field>
+    <field name="summary">
+      <value>Code for suggested feature for ActiveRecordBase&lt;T&gt;</value>
+    </field>
+    <field name="description">
+      <value>After spending 2 hours figuring out how to make SlicedFindAll sort on the fields of joined objects, here is a suggested overload of SlicedFind.. that intelligently builds the proper criteria, providing a simple method interface...
+
+Callable like: SlicedFindSmartJoin&lt;T&gt;(0, 10, "User.Address.Zipcode", false);
+
+That will left outer join T -&gt; User -&gt; Adress, sorting descending on Zipcode
+
+It will not join if the field name has no '.' in it.
+It uses a '-' in place of a '.' sort on fields from nested objects
+
+        /// &lt;summary&gt;
+        /// Perform a sliced find, intelligently sorting on properties of joined objects
+        /// Each level of join is performed as left outer
+        /// 
+        /// Format examples for property field:
+        /// 
+        /// "Name" - sort on the Name field
+        /// "User.Email" - join to User and sort on the user's Email field
+        /// "Aggregate-SomeField" - sort on "SomeField" of the [Nested] object represented by the Aggregate property
+        /// &lt;/summary&gt;
+        /// &lt;param name="startRowIndex"&gt;&lt;/param&gt;
+        /// &lt;param name="maximumRows"&gt;&lt;/param&gt;
+        /// &lt;param name="property"&gt;&lt;/param&gt;
+        /// &lt;param name="asc"&gt;&lt;/param&gt;
+        /// &lt;returns&gt;&lt;/returns&gt;
+        public static T[] SlicedFindSmartJoin(int startRowIndex, int maximumRows, string property, bool asc)
+        {
+            DetachedCriteria dc = DetachedCriteria.For&lt;T&gt;();
+            string[] props = property.Split('.');
+            for (int i = 0; i &lt; props.Length - 1; i++)
+            {
+                string p = props[i];
+                dc = dc.CreateCriteria(p, JoinType.LeftOuterJoin);
+            }
+            string field = props[props.Length - 1];
+            field = field.Replace('-', '.');
+            dc.AddOrder(new Order(field, asc));
+            return SlicedFindAll(startRowIndex, maximumRows, dc);
+        }
+</value>
+    </field>
+    <field name="created">
+      <value>1249054807000</value>
+    </field>
+    <field name="updated">
+      <value>1263030965000</value>
+    </field>
+    <field name="reporterName">
+      <value>bataras</value>
+    </field>
+    <field name="updaterName">
+      <value>bataras</value>
+    </field>
+    <field name="resolved">
+      <value>1263030900000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="I'm not sure it's common enough scenario to justify adding it to an already huge class, especially that it introduces its own micro DSL." created="1262957901000" />
+    <comment author="mzywitza" text="As xtoff said, it is an uncommon case and the proposed patch doesn't allow to add restrictions on the objects loaded. &#xD;&#xA;Such functionality is better placed in your own repositories or services." created="1263030947000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1263030900000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263030960000" />
+  </issue>
+</issues>

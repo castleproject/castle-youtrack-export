@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>507</value>
+    </field>
+    <field name="summary">
+      <value>Async action &amp; LocalizationFilter</value>
+    </field>
+    <field name="description">
+      <value>Controllers have filter : LocalizationFilter to set good culture
+
+controllers using async paterns:
+in BeginXXXX -&gt; it's ok
+
+in EndXXXX -&gt; we lost language (set by filter) in CurrentThread.CurrentCulture and CurrentThread.CurrentUICulture (framework set default computer culture)</value>
+    </field>
+    <field name="created">
+      <value>1228202293000</value>
+    </field>
+    <field name="updated">
+      <value>1278813928000</value>
+    </field>
+    <field name="reporterName">
+      <value>kamil</value>
+    </field>
+    <field name="updaterName">
+      <value>kamil</value>
+    </field>
+    <field name="resolved">
+      <value>1278813900000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Fixed" created="1278813925000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1278813360000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.1''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1278813900000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278813900000" />
+    <comment author="jsimons" text="* '''Version Affected''' set to ''2.0''.&#xD;&#xA;" created="1278808980000" />
+  </issue>
+</issues>

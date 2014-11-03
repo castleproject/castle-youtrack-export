@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>118</value>
+    </field>
+    <field name="summary">
+      <value>Support for configuration of Windsor via JSON configuration file (class included)</value>
+    </field>
+    <field name="description">
+      <value>The attached class within the zip file is called JsonInterpreter, and utilizes the Newtonsoft.Json (http://james.newtonking.com/archive/tags/Json.NET/default.aspx) library to convert the JSON based configuration to XML, which in turn is parsed by the XmlInterpreter as normal.
+
+This is the start of the implementation, there needs to be unit testing created as well as flushing out error handling and checks, as well as modifications to castle project coding standards (I prefer _ in spite of CLI compliance, etc...).
+
+I originally had placed this into a side assembly which loaded the class into the same namespace as the XmlInterpreter, to eliminate adding the dependancy upon Newtonsoft.Json into Castle.Windsor, however I have supplied just the class here as to it can be decided by the group as a whole whether to place this directly into Windsor, as a separate assembly, or not at all.
+
+I have successfully tested this within a separate project integrated into the ContainersIntegrated sample utilizing the following configuration file for the ClientApp project:
+
+{
+  "configuration": {
+    "facilities": {
+      "facility": [
+        {
+          "@id": "remote.facility",
+          "@type": "Castle.Facilities.Remoting.RemotingFacility, Castle.MicroKernel",
+          "@baseUri": "tcp://localhost:2133",
+          "@isClient": "true",
+          "@remoteKernelUri": "tcp://localhost:2133/kernel.rem",
+          "@remotingConfigurationFile": "RemotingTcpConfigClient.config"
+        }]
+    },
+    "components": {
+      "component": [
+        {
+          "@id": "remote.console.component",
+          "@service": "Example.Shared.IRemoteConsole, Example.Shared",
+          "@type": "System.Object, mscorlib",
+          "@remoteclient": "component"
+        }]
+    }
+  }
+}</value>
+    </field>
+    <field name="created">
+      <value>1201364033000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853198</value>
+    </field>
+    <field name="reporterName">
+      <value>rickfleming</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1228858200000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="This would be an interesting contrib project, but I don't think we take take dependencies on JSON in the container." created="1228858237000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228858200000" />
+  </issue>
+</issues>

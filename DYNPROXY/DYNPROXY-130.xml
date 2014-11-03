@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>130</value>
+    </field>
+    <field name="summary">
+      <value>Bind AttributesToAvoidReplicating with ProxyGenerationOptions</value>
+    </field>
+    <field name="description">
+      <value>currently attributes we don't want to replicate are set globally. It might be reasonable to control this on a more granular, per-proxy level.</value>
+    </field>
+    <field name="created">
+      <value>1265818834000</value>
+    </field>
+    <field name="updated">
+      <value>1396694827815</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396694827798</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

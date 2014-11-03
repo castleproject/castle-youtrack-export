@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>101</value>
+    </field>
+    <field name="summary">
+      <value>ValidateLength attribute fails on empty string</value>
+    </field>
+    <field name="description">
+      <value>Code like this fails if UserName is set to ""
+
+[Property]
+[ValidateLength(1, 64)]
+public virtual string UserName { get; set; }
+
+Yes you can also use ValidateNonEmptyAttribute, but ValidateLength should do what it appears to do.
+
+Patch for this:
+
+Index: Components/Validator/Castle.Components.Validator/Validators/LengthValidator.cs
+===================================================================
+--- Components/Validator/Castle.Components.Validator/Validators/LengthValidator.cs	(revision 5918)
++++ Components/Validator/Castle.Components.Validator/Validators/LengthValidator.cs	(working copy)
+@@ -118,7 +118,6 @@
+ 			if (fieldValue == null) return true;
+ 
+ 			int length = fieldValue.ToString().Length;
+-			if (length == 0) return true;
+ 
+ 			if (exactLength != int.MinValue)
+ 			{
+</value>
+    </field>
+    <field name="created">
+      <value>1249997284000</value>
+    </field>
+    <field name="updated">
+      <value>1254111130000</value>
+    </field>
+    <field name="reporterName">
+      <value>bataras</value>
+    </field>
+    <field name="updaterName">
+      <value>bataras</value>
+    </field>
+    <field name="resolved">
+      <value>1254111120000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="This was explicitly changed to handle empty strings like null. See the following links, so we can't really make that change:&#xA;&#xA;http://support.castleproject.org/projects/COMP/issues/view/COMP-ISSUE-30&#xA;http://groups.google.com/group/castle-project-devel/browse_thread/thread/65eb489b5fad9baa" created="1253323665000" />
+    <comment author="jonorossi" text="Closing for now. Bill you can reopen this issue if you would like to discuss the design." created="1254111126000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1254111120000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1254111120000" />
+  </issue>
+</issues>

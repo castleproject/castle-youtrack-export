@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>.NET 2.0 Support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>191</value>
+    </field>
+    <field name="summary">
+      <value>ActiveRecord Fail to generate INSERT INTO statement when use PrimarykeyType.Guid/GuidComb</value>
+    </field>
+    <field name="description">
+      <value>I tried to create a simple object.
+
+   [ActiveRecord("App_Users")]
+    public class User: ActiveRecordBase&lt;User&gt;
+    {
+        private System.Guid _id;
+        private string _userName;
+        private string _salt;
+        private string _email;
+
+        [PrimaryKey(PrimaryKeyType.Guid)]
+        public Guid Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+
+        [Property(NotNull = true, Length = 45)]
+        public string UserName
+        {
+            get { return _userName; }
+            set { _userName = value; }
+        }
+        
+        [Property(NotNull = true, Length = 256)]
+        public string Salt
+        {
+            get { return _salt; }
+            set { _salt = value; }
+        }
+
+        [Property(NotNull = true, Length = 85)]
+        public string Email
+        {
+            get { return _email; }
+            set { _email = value; }
+        }
+    }
+
+Instead of creating the schema myself I let ActiveRecord create schema for me. [ref: http://forum.castleproject.org/viewtopic.php?t=3794&amp;highlight=primarykeytype+guidcomb]
+I fire up a simple unit test
+    [TestFixture]
+    public class UserTest: AbstractModelTestCase
+    {
+
+        [Test]
+        public void CreateNewUser()
+        {
+            User u1 = new User();
+
+            u1.Id = Guid.NewGuid();
+            u1.UserName = "sokun";
+            u1.Salt = "**somesecret**";
+            u1.Email = "chornsokun@gmail.com";
+
+            u1.Create();
+        }
+    }
+Compile and run the test:
+- all test passed
+- I check the record in the database (there is no record persisted)
+
+I decided to enable: &lt;add key="hibernate.show_sql" value="true" /&gt; to see if something wrong with the INSERT statement and the result is: "NHibernate doesn't generate any Sql statement [INSERT INTO ...] at all"????
+
+http://lh4.google.com/chornsokun/R0jqiZ7KQpI/AAAAAAAAAh8/NfYBht646PI/pass-into-space.jpg
+
+PS: If I change the PrimaryKey column to Identity it works no doubt.
+</value>
+    </field>
+    <field name="created">
+      <value>1195950145000</value>
+    </field>
+    <field name="updated">
+      <value>1195991057000</value>
+    </field>
+    <field name="reporterName">
+      <value>csokun</value>
+    </field>
+    <field name="updaterName">
+      <value>csokun</value>
+    </field>
+    <field name="resolved">
+      <value>1282136568135</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

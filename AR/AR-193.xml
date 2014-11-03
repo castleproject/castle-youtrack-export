@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>193</value>
+    </field>
+    <field name="summary">
+      <value>Nested build failed, stop at Castle.ActiveRecord.build</value>
+    </field>
+    <field name="description">
+      <value>I checked code out this morning and try to rebuilt from Nant I got the following error:
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                 [nant] D:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Castle.ActiveRecord.build 
+                        Buildfile: file:///D:/a/_SVN/Castle/ActiveRecord/Castle.ActiveRecord/Castle.ActiveRecord.build
+                        Target framework: Microsoft .NET Framework 2.0
+                        Target(s) specified: build 
+.....
+                        common.compile-dll:
+                        
+                              [csc] Compiling 153 files to 'D:\a\_SVN\Castle\build\net-2.0\debug\Castle.ActiveRecord.dll'.
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\Validations\ValidateIsUniqueAttribute.cs(27,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'ValidateIsUniqueAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\Validations\ValidateIsUniqueAttribute.cs(27,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\ActiveRecordAttribute.cs(37,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'ActiveRecordAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\ActiveRecordAttribute.cs(37,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\ActiveRecordSkip.cs(25,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'ActiveRecordSkipAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\ActiveRecordSkip.cs(25,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\AnyAttribute.cs(53,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'AnyAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\AnyAttribute.cs(53,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\AnyAttribute.cs(177,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'Any'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\AnyAttribute.cs(177,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\AnyAttribute.cs(184,16): error CS0102: The type 'Castle.ActiveRecord.Any' already contains a definition for 'MetaValueAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\AnyAttribute.cs(184,16): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\BaseAttribute.cs(24,24): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'BaseAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\BaseAttribute.cs(24,24): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\BelongsToAttribute.cs(23,14): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'NotFoundBehaviour'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\BelongsToAttribute.cs(23,14): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\BelongsToAttribute.cs(64,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'BelongsToAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\BelongsToAttribute.cs(64,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\CollectionIDAttribute.cs(23,14): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'CollectionIDType'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\CollectionIDAttribute.cs(23,14): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\CollectionIDAttribute.cs(85,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'CollectionIDAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\CollectionIDAttribute.cs(85,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\CompositeKeyAttribute.cs(24,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'CompositeKeyAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\CompositeKeyAttribute.cs(24,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\CompositeUserTypeAttribute.cs(49,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'CompositeUserTypeAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\CompositeUserTypeAttribute.cs(49,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\Enums.cs(23,14): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'OptimisticLocking'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\Enums.cs(23,14): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\Enums.cs(50,14): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'Polymorphism'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\Enums.cs(50,14): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\Enums.cs(66,14): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'CacheEnum'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\Enums.cs(66,14): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\Enums.cs(91,14): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'OuterJoinEnum'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\Enums.cs(91,14): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\Enums.cs(110,14): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'FetchEnum'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\Enums.cs(110,14): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\Enums.cs(140,14): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'CascadeEnum'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\Enums.cs(140,14): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\Enums.cs(177,14): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'ManyRelationCascadeEnum'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\Enums.cs(177,14): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\FieldAttribute.cs(35,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'FieldAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\FieldAttribute.cs(35,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\HasAndBelongsToManyAttribute.cs(40,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'HasAndBelongsToManyAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\HasAndBelongsToManyAttribute.cs(40,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\HasManyAttribute.cs(35,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'HasManyAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\HasManyAttribute.cs(35,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\HasManyToAnyAttribute.cs(47,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'HasManyToAnyAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\HasManyToAnyAttribute.cs(47,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\HiLoAttribute.cs(37,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'HiloAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\HiLoAttribute.cs(37,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\HqlNamedQueryAttribute.cs(27,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'HqlNamedQueryAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\HqlNamedQueryAttribute.cs(27,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\ImportAttribute.cs(29,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'ImportAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\ImportAttribute.cs(29,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\JoinedBaseAttribute.cs(24,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'JoinedBaseAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\JoinedBaseAttribute.cs(24,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\JoinedKeyAttribute.cs(23,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'JoinedKeyAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\JoinedKeyAttribute.cs(23,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\KeyPropertyAttribute.cs(23,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'KeyPropertyAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\KeyPropertyAttribute.cs(23,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\NestedAttribute.cs(95,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'NestedAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\NestedAttribute.cs(95,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\NestedParentReferenceAttribute.cs(102,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'NestedParentReferenceAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\NestedParentReferenceAttribute.cs(102,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\OneToOneAttribute.cs(102,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'OneToOneAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\OneToOneAttribute.cs(102,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\PrimaryKeyAttribute.cs(23,14): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'PrimaryKeyType'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\PrimaryKeyAttribute.cs(23,14): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\PrimaryKeyAttribute.cs(111,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'PrimaryKeyAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\PrimaryKeyAttribute.cs(111,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\PropertyAccess.cs(23,14): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'PropertyAccess'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\PropertyAccess.cs(23,14): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\PropertyAccess.cs(169,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'PropertyAccessHelper'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\PropertyAccess.cs(169,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\PropertyAttribute.cs(48,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'PropertyAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\PropertyAttribute.cs(48,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\RawXmlMappingAttribute.cs(24,24): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'RawXmlMappingAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\RawXmlMappingAttribute.cs(24,24): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\RelationAttribute.cs(24,14): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'RelationType'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\RelationAttribute.cs(24,14): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\RelationAttribute.cs(56,24): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'RelationAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\RelationAttribute.cs(56,24): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\TimestampAttribute.cs(23,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'TimestampAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\TimestampAttribute.cs(23,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\VersionAttribute.cs(23,15): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'VersionAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\VersionAttribute.cs(23,15): (Location of symbol related to previous error)
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Diagrams\Attributes\WithAccessAttribute.cs(23,24): error CS0101: The namespace 'Castle.ActiveRecord' already contains a definition for 'WithAccessAttribute'
+                              [csc] d:\a\_SVN\Castle\ActiveRecord\Castle.ActiveRecord\Attributes\WithAccessAttribute.cs(23,24): (Location of symbol related to previous error)
+                        
+                        BUILD FAILED
+                        
+                        D:\a\_SVN\Castle\common-project.xml(127,5):
+                        External Program Failed: C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727\csc.exe (return code was 1)
+                        
+                        Total time: 2.2 seconds.
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+But if I built  Castle.ActiveRecord from Visual Studio 2005 it built without any problem, so I assume it is a Nant script bug.</value>
+    </field>
+    <field name="created">
+      <value>1196745905000</value>
+    </field>
+    <field name="updated">
+      <value>1196983175000</value>
+    </field>
+    <field name="reporterName">
+      <value>csokun</value>
+    </field>
+    <field name="updaterName">
+      <value>csokun</value>
+    </field>
+    <field name="resolved">
+      <value>1282136637166</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

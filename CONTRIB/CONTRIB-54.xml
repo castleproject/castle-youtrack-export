@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>54</value>
+    </field>
+    <field name="summary">
+      <value>Integrate NHibernateQueryGenerator into ActiveWriter</value>
+    </field>
+    <field name="description">
+      <value>It would be nice to have NHQG integrated with ActiveWriter for automatic generation of query classes along entity classes. AW could provide an global option to active/deactivate this functionality.
+</value>
+    </field>
+    <field name="created">
+      <value>1189579856000</value>
+    </field>
+    <field name="updated">
+      <value>1190027551000</value>
+    </field>
+    <field name="reporterName">
+      <value>stiiifff</value>
+    </field>
+    <field name="updaterName">
+      <value>stiiifff</value>
+    </field>
+    <field name="resolved">
+      <value>1282138205620</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

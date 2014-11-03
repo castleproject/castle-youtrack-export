@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>560</value>
+    </field>
+    <field name="summary">
+      <value>When a view from an additionalSource has changed, the wrong key is used to remove the view from the compiled cache.</value>
+    </field>
+    <field name="description">
+      <value>When a view from an additionalSource has changed, the wrong key is used to remove the view from the compiled cache. The cached entry remains till application restart. This is especialy anoying while developing.
+
+The key used is derived from e.FullPath.Substring(viewRoot.Length) where viewRoot is set to the viewRootDir of the ViewSourceLoader instead of the additionalSourceDir (PathSources in ViewSourceLoader).
+
+FIX:
+
+In BooViewEngine.OnViewChanged:
+
+viewRoot = loaderThatDetectedTheChange.ViewRootDir;
+
+Should be something like:
+
+                    ArrayList viewDirs = new ArrayList(loaderThatDetectedTheChange.PathSources);
+                    viewDirs.Add(loaderThatDetectedTheChange.ViewRootDir);
+                    foreach (string viewDir in viewDirs)
+                        if (viewDir.Length &gt; viewRoot.Length &amp;&amp; e.FullPath.StartsWith(viewDir))
+                            viewRoot = viewDir;
+</value>
+    </field>
+    <field name="created">
+      <value>1270176077000</value>
+    </field>
+    <field name="updated">
+      <value>1414392610896</value>
+    </field>
+    <field name="reporterName">
+      <value>Edwin</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392610888</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Hi Edwin,&#xA;Can you provide us with a breaking unit test?&#xA;&#xA;Cheers&#xA;John" created="1270565078000" />
+    <comment author="Edwin" text="* '''Version Affected''' changed from ''Future'' to ''&lt;empty&gt;''.&#xD;&#xA;" created="1270514280000" />
+    <comment author="jsimons" text="* '''Version Affected''' set to ''2.0''.&#xD;&#xA;" created="1278808860000" />
+  </issue>
+</issues>

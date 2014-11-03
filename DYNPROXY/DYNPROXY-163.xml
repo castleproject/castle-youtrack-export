@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Silverlight support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>163</value>
+    </field>
+    <field name="summary">
+      <value>Silverlight 4,5 with Castle 3.0.1 Beta dynamicproxy fails when calling generator.CreateInterfaceProxyWithoutTarget</value>
+    </field>
+    <field name="description">
+      <value>
+Same code works with Castle 2.5.3!
+
+---------------------------
+A strong name key pair is required to emit a strong-named dynamic assembly.
+
+   at System.Reflection.Emit.AssemblyBuilder.nCreateDynamicAssembly(AppDomain domain, AssemblyName name, Evidence identity, StackCrawlMark&amp; stackMark, PermissionSet requiredPermissions, PermissionSet optionalPermissions, PermissionSet refusedPermissions, Byte[] securityRulesBlob, Byte[] aptcaBlob, AssemblyBuilderAccess access, DynamicAssemblyFlags flags, SecurityContextSource securityContextSource)
+
+   at System.Reflection.Emit.AssemblyBuilder..ctor(AppDomain domain, AssemblyName name, AssemblyBuilderAccess access, String dir, Evidence evidence, PermissionSet requiredPermissions, PermissionSet optionalPermissions, PermissionSet refusedPermissions, StackCrawlMark&amp; stackMark, IEnumerable`1 unsafeAssemblyAttributes, SecurityContextSource securityContextSource)
+
+   at System.Reflection.Emit.AssemblyBuilder.InternalDefineDynamicAssembly(AssemblyName name, AssemblyBuilderAccess access, String dir, Evidence evidence, PermissionSet requiredPermissions, PermissionSet optionalPermissions, PermissionSet refusedPermissions, StackCrawlMark&amp; stackMark, IEnumerable`1 unsafeAssemblyAttributes, SecurityContextSource securityContextSource)
+
+   at System.AppDomain.InternalDefineDynamicAssembly(AssemblyName name, AssemblyBuilderAccess access, String dir, Evidence evidence, PermissionSet requiredPermissions, PermissionSet optionalPermissions, PermissionSet refusedPermissions, StackCrawlMark&amp; stackMark, IEnumerable`1 assemblyAttributes, SecurityContextSource securityContextSource)
+
+   at System.AppDomain.DefineDynamicAssembly(AssemblyName name, AssemblyBuilderAccess access)
+
+   at Castle.DynamicProxy.ModuleScope.CreateModule(Boolean signStrongName)
+
+   at Castle.DynamicProxy.ModuleScope.ObtainDynamicModuleWithStrongName()
+
+   at Castle.DynamicProxy.ModuleScope.ObtainDynamicModule(Boolean isStrongNamed)
+
+   at Castle.DynamicProxy.ModuleScope.DefineType(Boolean inSignedModulePreferably, String name, TypeAttributes flags)
+
+   at Castle.DynamicProxy.Generators.Emitters.ClassEmitter.CreateTypeBuilder(ModuleScope modulescope, String name, Type baseType, IEnumerable`1 interfaces, TypeAttributes flags, Boolean forceUnsigned)
+
+   at Castle.DynamicProxy.Generators.Emitters.ClassEmitter..ctor(ModuleScope modulescope, String name, Type baseType, IEnumerable`1 interfaces, TypeAttributes flags, Boolean forceUnsigned)
+
+   at Castle.DynamicProxy.Generators.Emitters.ClassEmitter..ctor(ModuleScope modulescope, String name, Type baseType, IEnumerable`1 interfaces)
+
+   at Castle.DynamicProxy.Generators.InvocationTypeGenerator.GetEmitter(ClassEmitter class, Type[] interfaces, INamingScope namingScope, MethodInfo methodInfo)
+
+   at Castle.DynamicProxy.Generators.InvocationTypeGenerator.Generate(ClassEmitter class, ProxyGenerationOptions options, INamingScope namingScope)
+
+   at Castle.DynamicProxy.Contributors.InterfaceProxyWithoutTargetContributor.GetInvocationType(MetaMethod method, ClassEmitter emitter, ProxyGenerationOptions options)
+
+   at Castle.DynamicProxy.Contributors.InterfaceProxyWithoutTargetContributor.GetMethodGenerator(MetaMethod method, ClassEmitter class, ProxyGenerationOptions options, OverrideMethodDelegate overrideMethod)
+
+   at Castle.DynamicProxy.Contributors.CompositeTypeContributor.ImplementMethod(MetaMethod method, ClassEmitter class, ProxyGenerationOptions options, OverrideMethodDelegate overrideMethod)
+
+   at Castle.DynamicProxy.Contributors.CompositeTypeContributor.Generate(ClassEmitter class, ProxyGenerationOptions options)
+
+   at Castle.DynamicProxy.Generators.InterfaceProxyWithoutTargetGenerator.GenerateType(String typeName, Type proxyTargetType, Type[] interfaces, INamingScope namingScope)
+
+   at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.&lt;&gt;c__DisplayClass1.&lt;GenerateCode&gt;b__0(String n, INamingScope s)
+
+   at Castle.DynamicProxy.Generators.BaseProxyGenerator.ObtainProxyType(CacheKey cacheKey, Func`3 factory)
+
+   at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode(Type proxyTargetType, Type[] interfaces, ProxyGenerationOptions options)
+
+   at Castle.DynamicProxy.DefaultProxyBuilder.CreateInterfaceProxyTypeWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+
+   at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyTypeWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+
+   at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, IInterceptor[] interceptors)
+
+   at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget(Type interfaceToProxy, IInterceptor interceptor)
+
+   at SilverlightApplication1.ChannelProxy.Create[T](Binding binding, EndpointAddress endpoint)
+
+   at SilverlightApplication1.MainPage.button1_Click(Object sender, RoutedEventArgs e)
+---------------------------
+OK   
+---------------------------
+</value>
+    </field>
+    <field name="created">
+      <value>1319322262339</value>
+    </field>
+    <field name="updated">
+      <value>1396695031112</value>
+    </field>
+    <field name="reporterName">
+      <value>liviuu</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1341015365171</value>
+    </field>
+    <field name="voterName">
+      <value>Konstantin.K</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-812[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Hi there,&#xA;Can you provide a failing test that works with v2.5 and fails with v3?" created="1320664149052" />
+    <comment author="liviuu" text="Yes. I will post an test..." created="1320666397437" />
+    <comment author="xtoff" text="Were you able to reproduce it?" created="1329308876869" />
+    <comment author="liviuu" text="i rook a break from the project. I'll try as soon as possible to test it on both versions." created="1329309169292" />
+    <comment author="xtoff" text="ok, let me know when you can reproduce it and if you want to pair program on a fix for this." created="1329309342327" />
+    <comment author="xtoff" text="Any luck with the reproduction?:" created="1338174345693" />
+    <comment author="xtoff" text="Still waiting for the test as I wasn't able to reproduce the issue with the information you've given us. I will close the issue as Cannot reproduce for now. Feel free to submit the reproduction and we can reopen the issue." created="1341015335578" />
+    <comment author="xtoff" text="Actually it would seem this is related to a breaking change in Silverlight 5, which no longer allows us to sign an assembly in memory" created="1341033167711" />
+  </issue>
+</issues>

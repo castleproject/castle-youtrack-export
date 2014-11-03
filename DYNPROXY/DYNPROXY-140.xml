@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Silverlight support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>1.1.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>140</value>
+    </field>
+    <field name="summary">
+      <value>DynamicProxy cannot create an interface (with target) proxy for 'IInitializable'</value>
+    </field>
+    <field name="description">
+      <value>My class is 
+{code lang=java}
+public interface IServiceA
+{
+    void DoSomething();
+}
+
+public class ServiceA : IServiceA, Castle.Core.IInitializable
+{
+    public ServiceA()
+    {
+    }
+
+    void Castle.Core.IInitializable.Initialize()
+    {
+            OnInitialize();
+    }
+
+    public virtual void DoSomething()
+    {
+    }
+}
+{code}
+I got an exception below when the component is registered for IServiceA as serviceType (but no exception when it is registered for ServiceA as serviceType)
+{{
+DynamicProxy cannot create an interface (with target) proxy for 'IInitializable' as the target 'ServiceA' has an explicit implementation of one of the methods exposed by the 
+interface. The runtime prevents use from invoking the private method on the target. Method Castle.Core.IInitializable.Initialize
+}}
+
+I am wondering why there is an exception in that case.</value>
+    </field>
+    <field name="created">
+      <value>1282805232142</value>
+    </field>
+    <field name="updated">
+      <value>1282976632234</value>
+    </field>
+    <field name="reporterName">
+      <value>tdhung80</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282976602671</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="How are you registering the component?&#xA;&#xA;Why are you proxying it?&#xA;&#xA;Which version of Silverlight are you using?" created="1282811702299" />
+    <comment author="tdhung80" text="1. I used WindsorContainer as container, container.Kernel.AddComponent(&quot;ServiceA&quot;, typeof(IServiceA), typeof(ServiceA);&#xA;2. I would like to proxy it by IServiceA interface (not IInitializable interface), just want to take advantages of IoC, DJ features&#xA;3. No, not any version of Silverlight." created="1282832562346" />
+    <comment author="xtoff" text="that's interesting - I thought that exception is only ever thrown in SIlverlight.&#xA;Anyway - can you provide a failing test for this?" created="1282832801252" />
+    <comment author="xtoff" text="oh and by the way - can you specify version you are using? I set 2.5 but I've got a feeling it may be older. Did you try to reproduce this issue on version 2.5?" created="1282833255377" />
+    <comment author="tdhung80" text="Yup, they may be old&#xA;&#xA;// Assembly Castle.Core, Version 1.0.0.0&#xA;// Assembly Castle.MicroKernel, Version 1.0.0.2&#xA;// Assembly Castle.Windsor, Version 1.0.0.5&#xA;// Assembly Castle.DynamicProxy2, Version 2.0.0.1&#xA;&#xA;I will try the code with latest version." created="1282842800611" updated="1282843275752" />
+    <comment author="xtoff" text="I'm marking it as obsolete. If you can reproduce it on the latest version I will reopen it." created="1282976632218" />
+  </issue>
+</issues>

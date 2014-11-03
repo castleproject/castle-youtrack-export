@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generator</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>59</value>
+    </field>
+    <field name="summary">
+      <value>add support for Brail to Generator</value>
+    </field>
+    <field name="description">
+      <value>Currently the Generator only supports aspnet and nvelocity.</value>
+    </field>
+    <field name="created">
+      <value>1129675137000</value>
+    </field>
+    <field name="updated">
+      <value>1130258128000</value>
+    </field>
+    <field name="reporterName">
+      <value>k-dub</value>
+    </field>
+    <field name="updaterName">
+      <value>k-dub</value>
+    </field>
+    <field name="resolved">
+      <value>1282143363854</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

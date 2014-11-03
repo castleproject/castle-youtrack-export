@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>93</value>
+    </field>
+    <field name="summary">
+      <value>Extra constructors on LoggingFacility</value>
+    </field>
+    <field name="description">
+      <value>I've created a patch that makes it easier to add the LoggingFacility from code by adding more constructors to the facility.
+
+f.i.
+
+		/// &lt;summary&gt;
+		/// Initializes a new instance of the &lt;see cref="LoggingFacility"/&gt; class.
+		/// &lt;/summary&gt;
+		/// &lt;param name="loggingApi"&gt;
+		/// The LoggerImplementation that should be used
+		/// &lt;/param&gt;
+		/// &lt;param name="configFile"&gt;
+		/// The configuration file that should be used by the chosen LoggerImplementation
+		/// &lt;/param&gt;
+		/// &lt;param name="customLoggerFactory"&gt;
+		/// The type name of the type of the custom logger factory. (only used when loggingApi is set to LoggerImplementation.Custom)
+		/// &lt;/param&gt;
+		public LoggingFacility(LoggerImplementation loggingApi, string customLoggerFactory, string configFile)
+
+
+
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1185778459000</value>
+    </field>
+    <field name="updated">
+      <value>1187095991000</value>
+    </field>
+    <field name="reporterName">
+      <value>masterpoi</value>
+    </field>
+    <field name="updaterName">
+      <value>masterpoi</value>
+    </field>
+    <field name="resolved">
+      <value>1282141216541</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

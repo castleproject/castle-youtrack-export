@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>164</value>
+    </field>
+    <field name="summary">
+      <value>LoggerResolver.CanResolve type checking is too strict</value>
+    </field>
+    <field name="description">
+      <value>I wish to wrap/decorate ILogger with my own interface. However, the LoggerResolver.CanResolve has 2 very specific type-checks. I recommend the following change to allow end-users to decorate logger interfaces/classes:
+
+		public bool CanResolve(CreationContext context, ISubDependencyResolver parentResolver, ComponentModel model, DependencyModel dependency)
+		{
+			//return dependency.TargetType == typeof(ILogger) || dependency.TargetType == typeof(IExtendedLogger);
+            return typeof(Castle.Core.Logging.ILogger).IsAssignableFrom(dependency.TargetType);
+		}
+</value>
+    </field>
+    <field name="created">
+      <value>1383249835704</value>
+    </field>
+    <field name="updated">
+      <value>1396695179762</value>
+    </field>
+    <field name="reporterName">
+      <value>Craig.Perras</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396695179748</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="sounds simple enough. Can you pull request it?" created="1394860840434" />
+    <comment author="xtoff" text="Actually, after giving it some thought, I'm not sure this change is a good idea.&#xA;&#xA;Since you're wrapping (and I assume extending) the logger interface, wouldn't it make more sense to add a custom, application specific subresolver to handle your new interface?&#xA;" created="1394975669225" />
+  </issue>
+</issues>

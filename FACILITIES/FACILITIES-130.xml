@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>130</value>
+    </field>
+    <field name="summary">
+      <value>WCF Facility: proxies types not being cached</value>
+    </field>
+    <field name="description">
+      <value>We having some perf problems getting web service proxies 
+
+I noted that proxy types are meant to be cached but from stepping through the code ours were not.
+
+It seemed to be caused by Equals and GetHashCode in ProxyGenerationOptions returning false and different values respectivly. Even when we were requesting the same Type+interfaces combination.
+
+DynamicProxy\src\Castle.DynamicProxy\ProxyGenerationOptions.cs
+
+
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(this, obj)) return true;
+
+			var proxyGenerationOptions = obj as ProxyGenerationOptions;
+			if (ReferenceEquals(proxyGenerationOptions, null)) return false;
+
+			// ensure initialization before accessing MixinData
+			Initialize();
+			proxyGenerationOptions.Initialize();
+
+			if (!Equals(Hook, proxyGenerationOptions.Hook)) return false;
+		 	if (!Equals(Selector, proxyGenerationOptions.Selector)) return false;
+			if (!Equals(MixinData, proxyGenerationOptions.MixinData)) return false;
+			if (!Equals(BaseTypeForInterfaceProxy, proxyGenerationOptions.BaseTypeForInterfaceProxy)) return false;
+			return true;
+		}
+
+		public override int GetHashCode()
+		{
+			// ensure initialization before accessing MixinData
+			Initialize();
+
+			int result = Hook != null ? Hook.GetType().GetHashCode() : 0;
+			result = 29 * result + (Selector != null ? Selector.GetHashCode() : 0);
+			result = 29 * result + MixinData.GetHashCode();
+			result = 29 * result + (BaseTypeForInterfaceProxy != null ? BaseTypeForInterfaceProxy.GetHashCode() : 0);
+			return result;
+		}
+
+
+During my debugging Hook is of type Castle.Facilities.WcfIntegration.Async.AsyncChannelFactoryProxyHook or Castle.Facilities.WcfIntegration.Async.WcfProxyGenerationHook
+Selector is of type Castle.Facilities.WcfIntegration.Proxy.WcfInterceptorSelector
+
+But neither AsyncChannelFactoryProxyHook nor WcfInterceptorSelector override GetHashcode or Equals and they are different instances.
+
+Since each time we come in these seem to be different instances is causes issues with 
+
+\DynamicProxy\src\Castle.DynamicProxy\ModuleScope.cs
+
+		public Type GetFromCache(CacheKey key)
+		{
+			Type type;
+			if (typeCache.TryGetValue(key, out type))
+				return type;
+			else
+				return null;
+		}
+
+		public void RegisterInCache(CacheKey key, Type type)
+		{
+			typeCache[key] = type;
+		}
+
+Basically we never get a cached type and typeCache keeps on growing.
+
+
+In the attached patch I have 
+-made WcfProxyGenerationHook a single instance per WcfProxyFactory
+-made AsyncChannelFactoryProxyHook a single instance per AsynChannelFactoryBuilder
+-implemented GetHashCode and Equals on WcfInterceptorSelector
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1256772434000</value>
+    </field>
+    <field name="updated">
+      <value>1256794364000</value>
+    </field>
+    <field name="reporterName">
+      <value>simoncropp</value>
+    </field>
+    <field name="updaterName">
+      <value>simoncropp</value>
+    </field>
+    <field name="resolved">
+      <value>1256794320000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="simoncropp" text="* '''Attachment''' NotCaching.patch added.&#xD;&#xA;" created="1256772480000" />
+    <comment author="simoncropp" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;We having some perf problems problems getting web service proxies &#xD;&#xA;&#xD;&#xA;I noted that proxies are meant to be cached but from stepping through the code ours were not.&#xD;&#xA;&#xD;&#xA;It seemed to be caused by Equals and GetHashCode in ProxyGenerationOptions returning false and different values respectivly. Even when we were requesting the same Type+interfaces combination.&#xD;&#xA;&#xD;&#xA;DynamicProxy\src\Castle.DynamicProxy\ProxyGenerationOptions.cs&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;		public override bool Equals(object obj)&#xD;&#xA;		{&#xD;&#xA;			if (ReferenceEquals(this, obj)) return true;&#xD;&#xA;&#xD;&#xA;			var proxyGenerationOptions = obj as ProxyGenerationOptions;&#xD;&#xA;			if (ReferenceEquals(proxyGenerationOptions, null)) return false;&#xD;&#xA;&#xD;&#xA;			// ensure initialization before accessing MixinData&#xD;&#xA;			Initialize();&#xD;&#xA;			proxyGenerationOptions.Initialize();&#xD;&#xA;&#xD;&#xA;			if (!Equals(Hook, proxyGenerationOptions.Hook)) return false;&#xD;&#xA;		 	if (!Equals(Selector, proxyGenerationOptions.Selector)) return false;&#xD;&#xA;			if (!Equals(MixinData, proxyGenerationOptions.MixinData)) return false;&#xD;&#xA;			if (!Equals(BaseTypeForInterfaceProxy, proxyGenerationOptions.BaseTypeForInterfaceProxy)) return false;&#xD;&#xA;			return true;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;		public override int GetHashCode()&#xD;&#xA;		{&#xD;&#xA;			// ensure initialization before accessing MixinData&#xD;&#xA;			Initialize();&#xD;&#xA;&#xD;&#xA;			int result = Hook != null ? Hook.GetType().GetHashCode() : 0;&#xD;&#xA;			result = 29 * result + (Selector != null ? Selector.GetHashCode() : 0);&#xD;&#xA;			result = 29 * result + MixinData.GetHashCode();&#xD;&#xA;			result = 29 * result + (BaseTypeForInterfaceProxy != null ? BaseTypeForInterfaceProxy.GetHashCode() : 0);&#xD;&#xA;			return result;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;During my debugging Hook is of type Castle.Facilities.WcfIntegration.Async.AsyncChannelFactoryProxyHook or Castle.Facilities.WcfIntegration.Async.WcfProxyGenerationHook&#xD;&#xA;Selector is of type Castle.Facilities.WcfIntegration.Proxy.WcfInterceptorSelector&#xD;&#xA;&#xD;&#xA;But neither AsyncChannelFactoryProxyHook nor WcfInterceptorSelector override GetHashcode or Equals and they are different instances.&#xD;&#xA;&#xD;&#xA;Since each time we come in these seem to be different instances is causes issues with &#xD;&#xA;&#xD;&#xA;\DynamicProxy\src\Castle.DynamicProxy\ModuleScope.cs&#xD;&#xA;&#xD;&#xA;		public Type GetFromCache(CacheKey key)&#xD;&#xA;		{&#xD;&#xA;			Type type;&#xD;&#xA;			if (typeCache.TryGetValue(key, out type))&#xD;&#xA;				return type;&#xD;&#xA;			else&#xD;&#xA;				return null;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;		public void RegisterInCache(CacheKey key, Type type)&#xD;&#xA;		{&#xD;&#xA;			typeCache[key] = type;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;Basically we never get a cached type and typeCache keeps on growing.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;In the attached patch I have &#xD;&#xA;-made WcfProxyGenerationHook a single instance per WcfProxyFactory&#xD;&#xA;-made AsyncChannelFactoryProxyHook a single instance per AsynChannelFactoryBuilder&#xD;&#xA;-implemented GetHashCode and Equals on WcfInterceptorSelector&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;We having some perf problems problems getting web service proxies &#xD;&#xA;&#xD;&#xA;I noted that proxy types are meant to be cached but from stepping through the code ours were not.&#xD;&#xA;&#xD;&#xA;It seemed to be caused by Equals and GetHashCode in ProxyGenerationOptions returning false and different values respectivly. Even when we were requesting the same Type+interfaces combination.&#xD;&#xA;&#xD;&#xA;DynamicProxy\src\Castle.DynamicProxy\ProxyGenerationOptions.cs&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;		public override bool Equals(object obj)&#xD;&#xA;		{&#xD;&#xA;			if (ReferenceEquals(this, obj)) return true;&#xD;&#xA;&#xD;&#xA;			var proxyGenerationOptions = obj as ProxyGenerationOptions;&#xD;&#xA;			if (ReferenceEquals(proxyGenerationOptions, null)) return false;&#xD;&#xA;&#xD;&#xA;			// ensure initialization before accessing MixinData&#xD;&#xA;			Initialize();&#xD;&#xA;			proxyGenerationOptions.Initialize();&#xD;&#xA;&#xD;&#xA;			if (!Equals(Hook, proxyGenerationOptions.Hook)) return false;&#xD;&#xA;		 	if (!Equals(Selector, proxyGenerationOptions.Selector)) return false;&#xD;&#xA;			if (!Equals(MixinData, proxyGenerationOptions.MixinData)) return false;&#xD;&#xA;			if (!Equals(BaseTypeForInterfaceProxy, proxyGenerationOptions.BaseTypeForInterfaceProxy)) return false;&#xD;&#xA;			return true;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;		public override int GetHashCode()&#xD;&#xA;		{&#xD;&#xA;			// ensure initialization before accessing MixinData&#xD;&#xA;			Initialize();&#xD;&#xA;&#xD;&#xA;			int result = Hook != null ? Hook.GetType().GetHashCode() : 0;&#xD;&#xA;			result = 29 * result + (Selector != null ? Selector.GetHashCode() : 0);&#xD;&#xA;			result = 29 * result + MixinData.GetHashCode();&#xD;&#xA;			result = 29 * result + (BaseTypeForInterfaceProxy != null ? BaseTypeForInterfaceProxy.GetHashCode() : 0);&#xD;&#xA;			return result;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;During my debugging Hook is of type Castle.Facilities.WcfIntegration.Async.AsyncChannelFactoryProxyHook or Castle.Facilities.WcfIntegration.Async.WcfProxyGenerationHook&#xD;&#xA;Selector is of type Castle.Facilities.WcfIntegration.Proxy.WcfInterceptorSelector&#xD;&#xA;&#xD;&#xA;But neither AsyncChannelFactoryProxyHook nor WcfInterceptorSelector override GetHashcode or Equals and they are different instances.&#xD;&#xA;&#xD;&#xA;Since each time we come in these seem to be different instances is causes issues with &#xD;&#xA;&#xD;&#xA;\DynamicProxy\src\Castle.DynamicProxy\ModuleScope.cs&#xD;&#xA;&#xD;&#xA;		public Type GetFromCache(CacheKey key)&#xD;&#xA;		{&#xD;&#xA;			Type type;&#xD;&#xA;			if (typeCache.TryGetValue(key, out type))&#xD;&#xA;				return type;&#xD;&#xA;			else&#xD;&#xA;				return null;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;		public void RegisterInCache(CacheKey key, Type type)&#xD;&#xA;		{&#xD;&#xA;			typeCache[key] = type;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;Basically we never get a cached type and typeCache keeps on growing.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;In the attached patch I have &#xD;&#xA;-made WcfProxyGenerationHook a single instance per WcfProxyFactory&#xD;&#xA;-made AsyncChannelFactoryProxyHook a single instance per AsynChannelFactoryBuilder&#xD;&#xA;-implemented GetHashCode and Equals on WcfInterceptorSelector&#xD;&#xA;{quote}&#xD;&#xA;" created="1256772540000" />
+    <comment author="simoncropp" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;We having some perf problems problems getting web service proxies &#xD;&#xA;&#xD;&#xA;I noted that proxy types are meant to be cached but from stepping through the code ours were not.&#xD;&#xA;&#xD;&#xA;It seemed to be caused by Equals and GetHashCode in ProxyGenerationOptions returning false and different values respectivly. Even when we were requesting the same Type+interfaces combination.&#xD;&#xA;&#xD;&#xA;DynamicProxy\src\Castle.DynamicProxy\ProxyGenerationOptions.cs&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;		public override bool Equals(object obj)&#xD;&#xA;		{&#xD;&#xA;			if (ReferenceEquals(this, obj)) return true;&#xD;&#xA;&#xD;&#xA;			var proxyGenerationOptions = obj as ProxyGenerationOptions;&#xD;&#xA;			if (ReferenceEquals(proxyGenerationOptions, null)) return false;&#xD;&#xA;&#xD;&#xA;			// ensure initialization before accessing MixinData&#xD;&#xA;			Initialize();&#xD;&#xA;			proxyGenerationOptions.Initialize();&#xD;&#xA;&#xD;&#xA;			if (!Equals(Hook, proxyGenerationOptions.Hook)) return false;&#xD;&#xA;		 	if (!Equals(Selector, proxyGenerationOptions.Selector)) return false;&#xD;&#xA;			if (!Equals(MixinData, proxyGenerationOptions.MixinData)) return false;&#xD;&#xA;			if (!Equals(BaseTypeForInterfaceProxy, proxyGenerationOptions.BaseTypeForInterfaceProxy)) return false;&#xD;&#xA;			return true;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;		public override int GetHashCode()&#xD;&#xA;		{&#xD;&#xA;			// ensure initialization before accessing MixinData&#xD;&#xA;			Initialize();&#xD;&#xA;&#xD;&#xA;			int result = Hook != null ? Hook.GetType().GetHashCode() : 0;&#xD;&#xA;			result = 29 * result + (Selector != null ? Selector.GetHashCode() : 0);&#xD;&#xA;			result = 29 * result + MixinData.GetHashCode();&#xD;&#xA;			result = 29 * result + (BaseTypeForInterfaceProxy != null ? BaseTypeForInterfaceProxy.GetHashCode() : 0);&#xD;&#xA;			return result;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;During my debugging Hook is of type Castle.Facilities.WcfIntegration.Async.AsyncChannelFactoryProxyHook or Castle.Facilities.WcfIntegration.Async.WcfProxyGenerationHook&#xD;&#xA;Selector is of type Castle.Facilities.WcfIntegration.Proxy.WcfInterceptorSelector&#xD;&#xA;&#xD;&#xA;But neither AsyncChannelFactoryProxyHook nor WcfInterceptorSelector override GetHashcode or Equals and they are different instances.&#xD;&#xA;&#xD;&#xA;Since each time we come in these seem to be different instances is causes issues with &#xD;&#xA;&#xD;&#xA;\DynamicProxy\src\Castle.DynamicProxy\ModuleScope.cs&#xD;&#xA;&#xD;&#xA;		public Type GetFromCache(CacheKey key)&#xD;&#xA;		{&#xD;&#xA;			Type type;&#xD;&#xA;			if (typeCache.TryGetValue(key, out type))&#xD;&#xA;				return type;&#xD;&#xA;			else&#xD;&#xA;				return null;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;		public void RegisterInCache(CacheKey key, Type type)&#xD;&#xA;		{&#xD;&#xA;			typeCache[key] = type;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;Basically we never get a cached type and typeCache keeps on growing.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;In the attached patch I have &#xD;&#xA;-made WcfProxyGenerationHook a single instance per WcfProxyFactory&#xD;&#xA;-made AsyncChannelFactoryProxyHook a single instance per AsynChannelFactoryBuilder&#xD;&#xA;-implemented GetHashCode and Equals on WcfInterceptorSelector&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;We having some perf problems getting web service proxies &#xD;&#xA;&#xD;&#xA;I noted that proxy types are meant to be cached but from stepping through the code ours were not.&#xD;&#xA;&#xD;&#xA;It seemed to be caused by Equals and GetHashCode in ProxyGenerationOptions returning false and different values respectivly. Even when we were requesting the same Type+interfaces combination.&#xD;&#xA;&#xD;&#xA;DynamicProxy\src\Castle.DynamicProxy\ProxyGenerationOptions.cs&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;		public override bool Equals(object obj)&#xD;&#xA;		{&#xD;&#xA;			if (ReferenceEquals(this, obj)) return true;&#xD;&#xA;&#xD;&#xA;			var proxyGenerationOptions = obj as ProxyGenerationOptions;&#xD;&#xA;			if (ReferenceEquals(proxyGenerationOptions, null)) return false;&#xD;&#xA;&#xD;&#xA;			// ensure initialization before accessing MixinData&#xD;&#xA;			Initialize();&#xD;&#xA;			proxyGenerationOptions.Initialize();&#xD;&#xA;&#xD;&#xA;			if (!Equals(Hook, proxyGenerationOptions.Hook)) return false;&#xD;&#xA;		 	if (!Equals(Selector, proxyGenerationOptions.Selector)) return false;&#xD;&#xA;			if (!Equals(MixinData, proxyGenerationOptions.MixinData)) return false;&#xD;&#xA;			if (!Equals(BaseTypeForInterfaceProxy, proxyGenerationOptions.BaseTypeForInterfaceProxy)) return false;&#xD;&#xA;			return true;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;		public override int GetHashCode()&#xD;&#xA;		{&#xD;&#xA;			// ensure initialization before accessing MixinData&#xD;&#xA;			Initialize();&#xD;&#xA;&#xD;&#xA;			int result = Hook != null ? Hook.GetType().GetHashCode() : 0;&#xD;&#xA;			result = 29 * result + (Selector != null ? Selector.GetHashCode() : 0);&#xD;&#xA;			result = 29 * result + MixinData.GetHashCode();&#xD;&#xA;			result = 29 * result + (BaseTypeForInterfaceProxy != null ? BaseTypeForInterfaceProxy.GetHashCode() : 0);&#xD;&#xA;			return result;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;During my debugging Hook is of type Castle.Facilities.WcfIntegration.Async.AsyncChannelFactoryProxyHook or Castle.Facilities.WcfIntegration.Async.WcfProxyGenerationHook&#xD;&#xA;Selector is of type Castle.Facilities.WcfIntegration.Proxy.WcfInterceptorSelector&#xD;&#xA;&#xD;&#xA;But neither AsyncChannelFactoryProxyHook nor WcfInterceptorSelector override GetHashcode or Equals and they are different instances.&#xD;&#xA;&#xD;&#xA;Since each time we come in these seem to be different instances is causes issues with &#xD;&#xA;&#xD;&#xA;\DynamicProxy\src\Castle.DynamicProxy\ModuleScope.cs&#xD;&#xA;&#xD;&#xA;		public Type GetFromCache(CacheKey key)&#xD;&#xA;		{&#xD;&#xA;			Type type;&#xD;&#xA;			if (typeCache.TryGetValue(key, out type))&#xD;&#xA;				return type;&#xD;&#xA;			else&#xD;&#xA;				return null;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;		public void RegisterInCache(CacheKey key, Type type)&#xD;&#xA;		{&#xD;&#xA;			typeCache[key] = type;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;Basically we never get a cached type and typeCache keeps on growing.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;In the attached patch I have &#xD;&#xA;-made WcfProxyGenerationHook a single instance per WcfProxyFactory&#xD;&#xA;-made AsyncChannelFactoryProxyHook a single instance per AsynChannelFactoryBuilder&#xD;&#xA;-implemented GetHashCode and Equals on WcfInterceptorSelector&#xD;&#xA;{quote}&#xD;&#xA;" created="1256772840000" />
+    <comment author="cneuwirt" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1256794320000" />
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1256794320000" />
+  </issue>
+</issues>

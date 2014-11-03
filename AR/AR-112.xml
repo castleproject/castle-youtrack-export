@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Attributes</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>112</value>
+    </field>
+    <field name="summary">
+      <value>Null reference exception when [any] is used but MetaType is not specified</value>
+    </field>
+    <field name="description">
+      <value>[Any(typeof(int), ,IdColumn = "EntityId", TypeColumn = "EntityType")]
+
+The above will cause a Null Ref error, but should give a meaningful exception.</value>
+    </field>
+    <field name="created">
+      <value>1166987451000</value>
+    </field>
+    <field name="updated">
+      <value>1167415330000</value>
+    </field>
+    <field name="reporterName">
+      <value>ayenderahien</value>
+    </field>
+    <field name="updaterName">
+      <value>ayenderahien</value>
+    </field>
+    <field name="resolved">
+      <value>1282136252526</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

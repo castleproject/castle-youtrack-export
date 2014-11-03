@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>274</value>
+    </field>
+    <field name="summary">
+      <value>FIx broken build after r3973</value>
+    </field>
+    <field name="description">
+      <value>After r3973 the build file was missing a dep to Cast.Core.dll and there was an ambiguous cref reference which was treated as an error, warning cs0419.</value>
+    </field>
+    <field name="created">
+      <value>1182005871000</value>
+    </field>
+    <field name="updated">
+      <value>1244676826000</value>
+    </field>
+    <field name="reporterName">
+      <value>abombss</value>
+    </field>
+    <field name="updaterName">
+      <value>abombss</value>
+    </field>
+    <field name="resolved">
+      <value>1282143845713</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676780000" />
+  </issue>
+</issues>

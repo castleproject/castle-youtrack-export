@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>.NET 2.0 Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>115</value>
+    </field>
+    <field name="summary">
+      <value>InterfaceProxyWithoutTarget &amp; Generic contraints can't be debugged</value>
+    </field>
+    <field name="description">
+      <value>I can't debug code if I create an interface proxy without target of an Interface that has a method with generics constraints. Unfortunately, this only fail when you debug.. So be careful with the attached test case.</value>
+    </field>
+    <field name="created">
+      <value>1254986813000</value>
+    </field>
+    <field name="updated">
+      <value>1255346700000</value>
+    </field>
+    <field name="reporterName">
+      <value>jfromaniello</value>
+    </field>
+    <field name="updaterName">
+      <value>jfromaniello</value>
+    </field>
+    <field name="resolved">
+      <value>1255346700000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="After a quick spike it seems that there's nothing wrong with that particular proxy (it passes PeVerify). I currently have no idea why this would fail." created="1254995881000" />
+    <comment author="xtoff" text="I was also able to narrow the scope of this bug.&#xA;- The &quot;where T: class &quot; constraint does not affect whether the issue appears or not.&#xA;&#xA;- The issue seems to appear when constraint of one type contains reference to the other one, for example&#xA;TDao GetSpecializedDao&lt;TDao, TEntity&gt;() where TDao : ISomeDao&lt;TEntity&gt;; // bug&#xA;TDao GetSpecializedDao&lt;TDao, TEntity&gt;() where TDao : TEntity; // bug&#xA;TDao GetSpecializedDao&lt;TDao, TEntity&gt;() where TDao : IDisposable; // no bug&#xA;&#xA;However this still does not bring us any step closer to the solution.&#xA;" created="1254996612000" />
+    <comment author="xtoff" text="Updated patch that better integrated with existing DP test suite and removed parts not relevant to the test scenario" created="1255010081000" />
+    <comment author="xtoff" text="I did a quick spike with bare SRE: http://gist.github.com/205810 and that code passes, so the actual issue must be related to not only one generic parameter being used as base type for the other, but also to the method being explicit interface method implementation. I'll do a spike to verify that as well." created="1255047324000" />
+    <comment author="xtoff" text="It _appears_ to be a DP bug, as the following code http://gist.github.com/205833 passes without exceptions, both with and without debugger attached." created="1255048893000" />
+    <comment author="xtoff" text="I was able to make the test pass under the debugger! All it took was to change DP behavior not to make Invocation types generic, when the intercepted method is generic.&#xA;&#xA;However this broke a couple of other scenarios so I have to fix these first before committing any patches. Now at least we know what we're fighting against :)" created="1255068463000" />
+    <comment author="xtoff" text="I expsnded my spike with nested type simulating DP's IInvocation types. http://gist.github.com/207542&#xA;&#xA;Still I was not able to reproduce the issue.&#xA;The code works, and PeVerify reports no errors..." created="1255224885000" />
+    <comment author="xtoff" text="I've been systematically removing parts of code from DP, to check which part generates IL that makes C# debugger to flip.&#xA;So far I have this - when proxy type has .cctor and a generic IInvocation type with generic constraints - the bug manifests itself. If either one of these conditions is not met, the code seems to be working just fine with the debugger attached." created="1255259339000" />
+    <comment author="xtoff" text="There appears to be a very strange dependency in DP code.&#xA;When .cctor is generated as the very last thing, the test passes.&#xA;I was unable to reproduce that issue with my bare SRE code." created="1255261432000" />
+    <comment author="xtoff" text="Making the change (pulling the creation of .cctor to be the very last thing proxygenerator does) on a clean checkout did not do the trick, which suggests, that is just yet another sideeffect of the actual underlying issue which I was so far unable to find." created="1255267237000" />
+    <comment author="xtoff" text="I *think* I got to the underlying cause - I got the repro without using DP. The code is here: http://gist.github.com/207901&#xA;I do not know how the time at which we generate .cctor mentioned above affects this.&#xA;&#xA;Anyway, take a look at the code in the gist.&#xA;If you switch the order of blocks A and B, you'll get the reproduction.&#xA;&#xA;What this changes, is it makes the generic parameter tokens for nested type to appear earlier in the assembly metadata, than generic parameter tokens of the generic method on enclosing type.&#xA;&#xA;While according to the rules of the runtime and PeVerify this is OK, apparently the debugger does not know how to handle this, hence the error.&#xA;&#xA;This is my theory. Feel free to verify it." created="1255271883000" />
+    <comment author="xtoff" text="I did some more poking around, and it appears that there can be no nested type with  generic constraints emitted before any non-nested type, which... well - it's not gonna happen.&#xA;&#xA;I extended previous sample, to show that behavior: http://gist.github.com/208201&#xA;&#xA;I'm gonna report this issue to Connect, and I think our only way to workaround this is by making invocation types non-nested, which is something I had in mind for v3.0 anyway, to improve caching." created="1255305803000" />
+    <comment author="xtoff" text="I think for now we'll just catch that exception and display more helpful error message with link to bug report in Connect (something like this http://gist.github.com/208256).&#xA;We'll investigate moving invocation types out of proxy types for v3.0 (if someone provides a patch for v2.2 I'll be happy to apply it)." created="1255313331000" />
+    <comment author="xtoff" text="Looks like making invocation types to be non-nested is not going to help us - the error still manifests itself, with non-nested types as well." created="1255327314000" />
+    <comment author="jfromaniello" text="Just a DUMB question; What If you remove the constraint definition from http://gist.github.com/208201?&#xA;I mean this line:&#xA;typeParameters[1].SetBaseTypeConstraint(typeParameters[0]);&#xA;&#xA;&quot;Constraints for explicit interface implementation are inherited from the base method&quot;&#xA;&#xA;Will pass PEVerify?" created="1255336962000" />
+    <comment author="xtoff" text="Not to bump your hopes just yet, but I did try to run http://gist.github.com/208201 in Visual Studio 2010 beta1 and it does work without error!" created="1255344661000" />
+    <comment author="xtoff" text="This is a C# debugger bug and it is fixed in Visual Studio 2010." created="1255346701000" />
+    <comment author="xtoff" text="* '''Attachment''' dp_115.patch added.&#xD;&#xA;" created="1255010040000" />
+    <comment author="xtoff" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;I can't debug code if I create an interface proxy without target of an Interface that has a method with generics contrainsts.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;I can't debug code if I create an interface proxy without target of an Interface that has a method with generics constraints.&#xD;&#xA;Here's repro: http://pastie.org/646873&#xD;&#xA;{quote}&#xD;&#xA;" created="1254986940000" />
+    <comment author="jfromaniello" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;I can't debug code if I create an interface proxy without target of an Interface that has a method with generics constraints.&#xD;&#xA;Here's repro: http://pastie.org/646873&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;I can't debug code if I create an interface proxy without target of an Interface that has a method with generics constraints.&#xD;&#xA;Unfortunately, this only fail when you debug.. So be careful with the attached test case.&#xD;&#xA;{quote}&#xD;&#xA;" created="1254987000000" />
+    <comment author="xtoff" text="* '''Components''' set to ''.NET 2.0 Support''.&#xD;&#xA;* '''Version Affected''' set to ''2.1 RTM''.&#xD;&#xA;* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;I can't debug code if I create an interface proxy without target of an Interface that has a method with generics constraints.&#xD;&#xA;Unfortunately, this only fail when you debug.. So be careful with the attached test case.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;I can't debug code if I create an interface proxy without target of an Interface that has a method with generics constraints.&#xD;&#xA;Here's repro: http://pastie.org/646873&#xD;&#xA;{quote}&#xD;&#xA;" created="1254987000000" />
+    <comment author="jfromaniello" text="* '''Attachment''' DynProxy115.patch added.&#xD;&#xA;" created="1254987060000" />
+    <comment author="xtoff" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;I can't debug code if I create an interface proxy without target of an Interface that has a method with generics constraints.&#xD;&#xA;Here's repro: http://pastie.org/646873&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;I can't debug code if I create an interface proxy without target of an Interface that has a method with generics constraints. Unfortunately, this only fail when you debug.. So be careful with the attached test case.&#xD;&#xA;{quote}&#xD;&#xA;" created="1254987360000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1255220520000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' set to ''3.0''.&#xD;&#xA;* '''Status''' changed from ''Work Stopped'' to ''Resolved''.&#xD;&#xA;" created="1255346700000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Work Started'' to ''Work Stopped''.&#xD;&#xA;" created="1255305960000" />
+  </issue>
+</issues>

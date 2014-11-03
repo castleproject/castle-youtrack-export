@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>4.0</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>178</value>
+    </field>
+    <field name="summary">
+      <value>Caching: Cannot Specify Assembly Version</value>
+    </field>
+    <field name="description">
+      <value>When caching the proxies, the assembly version is always 0.0.0.0 
+
+The method GetAssemblyName of ModuleScope class does not sets the assembly version. From my understanding, the AssemblyName.Version must be specified before calling DefineDynamicAssembly (done in CreateModule method after calling GetAssemblyName).
+
+Because all assembly have the same version, they needs different and unique names to differentiate them. This does not work with InternalsVisibleTo (needs to specify a known assembly name/PublicKey) to proxy internal type.
+
+Here's a code example:
+
+      AssemblyName aName = new AssemblyName("TestAssembly");
+      //aName.Version = new Version(1, 2, 3, 4); // Adding this line, would add the version to the assembly.
+      AssemblyBuilder ab = AppDomain.CurrentDomain.DefineDynamicAssembly(aName, AssemblyBuilderAccess.RunAndSave, "c:\\");
+
+      // Note : Adding an AssemblyVersionAttribute doesnt work (it adds another AssemblyVersion attribute but it doesnt 
+      //        affect the assembly), maybe there's another workaround but I doubt it.
+      ConstructorInfo infoAttrCtor = typeof(AssemblyVersionAttribute).GetConstructor(new Type[] { typeof(string) });
+      CustomAttributeBuilder infoAttr = new CustomAttributeBuilder(infoAttrCtor, new object[] { "1.2.3.4" });
+      ab.SetCustomAttribute(infoAttr);
+
+      ab.Save("TestAssembly.dll");
+</value>
+    </field>
+    <field name="created">
+      <value>1351022382197</value>
+    </field>
+    <field name="updated">
+      <value>1414999103854</value>
+    </field>
+    <field name="reporterName">
+      <value>jcviau</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999103849</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="why would you care about the version?" created="1351029074759" />
+    <comment author="jcviau" text="Here's our use-case : our application create proxy when starting the application and also on demand (depends on user operation). We save the proxy when closing the application and reload them at startup. On each application usage, it's possible that some additional proxies are created. These new proxies cannot be saved with the one created earlier (From your tutorial : only types gen­er­ated in this new assem­bly will be saved, not the ones loaded from other assem­blies). This force us to have multiples dlls for the caching (a new one each time we save new proxies when closing the application).&#xA;&#xA;To support proxying internal type of our assembly we needs to ensure that all these proxy assembly (cache) have the same name/public key. This is required to support InternalVisibleTo attribute in our assembly that specify only a fixed number of assembly for cached proxy (cannot be a dynamic name or a variable number of assembly). We managed to find a quick solution that is : having the same assembly name on all proxy assembly (cache) with different version. This would allow loading multiple proxy assembly (cache) with the same name (the one used in InternalVisibleTo attribute) for the caching (LoadAssemblyIntoCache).&#xA;&#xA;Note : If we could always save all proxy (including the previously loaded from another assembly) to an assembly it would be easier.&#xA;&#xA;We appreciate your works, thanks for your times." created="1351046404892" />
+    <comment author="xtoff" text="interesting - that sounds like the scenario I would like to support in the next major version of Dynamic Proxy, except I was aiming at having exactly one proxy assembly to avoid some related problems. Your scenario actually sounds like an interesting example case.&#xA;&#xA;I'll give it some though.&#xA;&#xA;Why exactly would you end up with different proxy types each time you run the app? Is this an open set of types you're proxying?" created="1351047141260" />
+    <comment author="jcviau" text="That would be really great to have only 1 proxy assembly. If added to next major release is there a planed release date ?&#xA;&#xA;The main reason why additional proxy types can be created each time the application run is : Not all type are created/proxied upfront, they are created only when necessary (will be proxied the first time they are used). Here's some use-case:&#xA;- Our application can be seen as an application that contains some sub-applications and the sub-applications types are proxied only the first time they are launched. (sub-applications availability are dynamic, depends on options)&#xA;- Each sub-applications contains multiples mode/configuration and each mode/configuration contains types that are proxied only the first time they are used. (some mode/configuration availability are dynamic, depends on options)&#xA;- If a plugin is added, it will add some new sub-applications that contains types that will be proxied.&#xA;&#xA;&#xA;" created="1351049000226" updated="1351049578202" />
+    <comment author="xtoff" text="Is there a point in the application lifecycle when you know that no new proxies will be created, for example after user logs in and all screens and plugins have been loaded?&#xA;&#xA;No release set in stone yet about release date. We're aiming at around middle of 2013 but it can change." created="1351049576236" />
+    <comment author="jcviau" text="Not really because if some options are changed, some new screens will appears and those would lead to some additional proxies. Why ?" created="1351050091193" />
+    <comment author="xtoff" text="potentially - yes.&#xA;&#xA;What I had in mind is the following workflow (still quite rough, and I didn't prototype anything yet, so feedback is welcome).&#xA;&#xA;Also please notice it explicitly treats the proxy assembly as transient, that is it being eased and re-created is a core part of the workflow, and something that I'm assuming can happen quite frequently.&#xA;&#xA;1. The app starts, we look for the proxy assembly, if found inspect it (an extension point here would be provided to allow you to reject an existing assembly upfront).&#xA;2a. If the assembly is not found or rejected we do nothing (well, if it's rejected we remove the assembly from disk)&#xA;2b. If the assembly is found and not rejected we load all types from it into our cache.&#xA;3. the app runs, proxy types get used (reused from cache, or created on the fly as we need them).&#xA;4. The app shuts down. We look if we generated any new proxy types that weren't available in the loaded assembly&#xA;5a. If we didn't generate any new proxy types, than life is good, nothing for us to do&#xA;5b. If all proxy types are new, then we just save the assembly and life is good still&#xA;5c. That's the complicated one. Assuming we have all the time in the world, we can just simply look at the existing proxy types and recreate them in the new assembly, and then save it (we obviously would have to pick a different file name, which will slightly complicate step 1 the next time we start the app, but this will all be handled internally, so users won't care.&#xA;If we have little time (for example the app pool is recycled or the OS is shutting down) we can discard the new proxy types (if the bulk of them was saved and reused we normally can afford some re-work next time).&#xA;Alternatively, we can do the replicating sooner (for example right after we generated first new type, which means we'll need to replace the proxy assembly) and do it on a background thread, so that likely by the time we shut down the app we will have all the types from old assembly replicated in the new one).&#xA;&#xA;I see this replication strategy as another extension point so that the exact behaviour can be adjusted.&#xA;&#xA;We'll also need to be careful to handle caching appropriately, but that's another matter entirely.&#xA;&#xA;Anyway, does that sound reasonable? Can you see any flaws in that approach?" created="1351051137990" />
+    <comment author="jcviau" text="That sound perfect. My only comments would be to have options to specify the assembly location (for security, installation, ...) and assembly name (to support multiple Proxy Generator that are saved) as seen in the current implementation.&#xA;" created="1351095337358" />
+    <comment author="jonorossi" text="Closing. Relogged on GitHub.&#xA;https://github.com/castleproject/Core/issues/68" created="1414999103855" />
+  </issue>
+</issues>

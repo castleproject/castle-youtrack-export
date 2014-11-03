@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>176</value>
+    </field>
+    <field name="summary">
+      <value>Allow Custom Assembly for DynamicProxy Generation</value>
+    </field>
+    <field name="description">
+      <value>As described here:
+
+http://issues.castleproject.org/youtrack/issue/DYNPROXY-161
+
+I'm interested in overriding the dynamic assembly that DynamicProxy generates to. Is it possible to expose a means of doing this?
+
+Thanks!</value>
+    </field>
+    <field name="created">
+      <value>1346710430180</value>
+    </field>
+    <field name="updated">
+      <value>1414999089988</value>
+    </field>
+    <field name="reporterName">
+      <value>JeffN825</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999089984</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="JeffN825" text="To add a little more background - I'm looking to saving assemblies that are emitted by DynamicProxy (with some of my own dynamic types too) so that they may be loaded in a Metro environment." created="1346710682261" />
+    <comment author="xtoff" text="So what exactly do you find missing currently?&#xA;" created="1347078707813" />
+    <comment author="JeffN825" text="I would like to be able to set the moduleBuilderWithStrongName or moduleBuilder values (currently private) on the ModuleScope used by the IProxyFactory. Or be able to implement my own ModuleScope and override them." created="1347079712829" />
+    <comment author="xtoff" text="why would you like to set them? What is the exact scenario and how current setup is not cutting it?" created="1347169586428" />
+    <comment author="JeffN825" text="I would like to set them so that all my dynamic classes (both those that I make myself and those that DynamicProxy emits for me) go to the same AssemblyBuilder (and the same emitted dll file). That way my Metro application only has 1 dll to reference. Take the following scenario: I have a simple PCL (portable class library) with ViewModels called MyApp.ViewModels. I want to &quot;augment&quot; these ViewModels with Interceptors, Attributes, etc by generating DynamixProxies for them and save to the AssemblyBuilder dll. Ideally, I'd like to internalize everything necessary to that one dll: &#xA;&#xA;A. Ensure only PCL compatible references are included. &#xA;&#xA;B. Embed the IInterceptor implementations themselves. &#xA;&#xA;C. Embed the IInterceptor interface itself so that a reference to Castle from the dll isn't necessary at all (and thus remains PCL compatible).&#xA;&#xA;D. Strong sign the dll and version it so that it matches the strong name and version (and same identity) of the source MyApp.ViewModels dll." created="1347222974402" updated="1347223121120" />
+    <comment author="xtoff" text="Why are your viewmodels in a PCL? Are you reusing them across Silverlight/WPF/WinRT/WP7 ?&#xA;&#xA;anyway, back to your points:&#xA;&#xA;a - couldn't this be done after you've successfully saved the assembly to disk?&#xA;&#xA;b - (and c) this is a huge change, which de-facto changes DynamicProxy to DynamicType generation. &#xA;&#xA;d - that shouldn't be too hard.&#xA;&#xA;&#xA;I guess the best way to get going with this is to just fork DP and spike it, and we'll see how best we can approach it once we've got something working." created="1349214841240" />
+    <comment author="xtoff" text="also I actually think point D is quite separate so perhaps it'd be best to make it a separate item in the issue tracker" created="1349214918056" />
+    <comment author="JeffN825" text="Yes, I'd like to build a WinRT and WPF app and that's why my ViewModels are in a PCL.&#xA;&#xA;To your points.&#xA;A. Yes, I could reload the Assembly instance.&#xA;B and C. I realize that...but it was just an &quot;ideally&quot;&#xA;D. Why do you think D is so separate? It would/could involve giving someone fine grained control over the AssemblyBuilder instance" created="1349216660970" />
+    <comment author="xtoff" text="re: D - I say it's separate because I think someone might want to do D without caring about the other points." created="1349217504625" />
+    <comment author="jonorossi" text="Closing. Relogged on GitHub.&#xA;https://github.com/castleproject/Core/issues/68" created="1414999089990" />
+  </issue>
+</issues>

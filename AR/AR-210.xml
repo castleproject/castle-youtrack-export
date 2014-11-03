@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>210</value>
+    </field>
+    <field name="summary">
+      <value>CacheProvider will never be stopped when using ActiveRecord --&gt; program will not exit and process keeps running </value>
+    </field>
+    <field name="description">
+      <value>When using a second level cache like NHibernate.Caches.MemCache the 
+Castle.ActiveRecord.Framework.SessionFactoryHolder causes the NHibernate.Impl.SessionFactoryImpl to starts the CacheProvider.
+But it never causes the NHibernate.Impl.SessionFactoryImpl to STOP the CacheProvider.
+
+So that in case of memcache we need to manualy call the "Memcached.ClientLibrary.SockIOPool.GetInstance("nhibernate").Shutdown();" function otherwise the SockIOPool thread keeps running and if we close our application the process keeps running! </value>
+    </field>
+    <field name="created">
+      <value>1206929089000</value>
+    </field>
+    <field name="updated">
+      <value>1243596001000</value>
+    </field>
+    <field name="reporterName">
+      <value>dabuddhaman</value>
+    </field>
+    <field name="updaterName">
+      <value>dabuddhaman</value>
+    </field>
+    <field name="resolved">
+      <value>1243596000000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="If you add any contribs (Castle, NH, etc), you are responsible for cleaning up yourself.&#xA;Only contribs included in AR sharedlibs folder are supported by us." created="1243596001000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1243596000000" />
+  </issue>
+</issues>

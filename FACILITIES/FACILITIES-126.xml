@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>NHibernate</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>126</value>
+    </field>
+    <field name="summary">
+      <value>Add TransactedConfigurationPersister as option.</value>
+    </field>
+    <field name="description">
+      <value>Integrate with Services.Transaction as an option. Default persister of configuration crashes with corrupt data, should mapping fail.</value>
+    </field>
+    <field name="created">
+      <value>1254764724000</value>
+    </field>
+    <field name="updated">
+      <value>1396694871588</value>
+    </field>
+    <field name="reporterName">
+      <value>henke</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396694871574</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+      <value>User: id = 20-596[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="Hi Henrik,&#xA;&#xA;Can you please provide more details for this one?" created="1285404341625" />
+    <comment author="henrik@haf.se" text="Hi,&#xA;&#xA;If you map an entity in the wrong way, the persisted configuration builder has already started writing, so the next time you restart the application, that faulty configuration will be loaded. If it's transactional, exceptions will cancel the writing of the configuration." created="1285406250625" />
+  </issue>
+</issues>

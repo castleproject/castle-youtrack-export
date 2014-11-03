@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>67</value>
+    </field>
+    <field name="summary">
+      <value>Castle.Components.Pagination</value>
+    </field>
+    <field name="description">
+      <value>Here is an issue to track what was discussed here: 
+
+http://groups.google.com/group/castle-project-devel/browse_frm/thread/4a5d4d0fe288790c
+
+
+
+this brings some changes in IPaginatedPage:
+
+PreviousIndex become PreviousPageIndex
+CurrentIndex become CurrentPageIndex
+NextPage become NextPageIndex
+FirstItem become FirstItemIndex
+LastItem become LastItemIndex
+HasPrevious become HasPreviousPage
+HasNext become HasNextPage
+
+LastIndex, FirstIndex, HasFirst and HasLast are removed
+
+FirstItem provides access to the first item of current page
+LastItem provides access to the last item of current page
+
+TotalPages and CurrentPageSize properties where added
+
+minor fixes in the documentation (mostly misleading zero based index which where not true)
+
+Also added new IPaginatedPage&lt;T&gt; generic specialization and some test cases for the base implementations provided.
+
+Changed other things in monorail solution to make this works</value>
+    </field>
+    <field name="created">
+      <value>1218790435000</value>
+    </field>
+    <field name="updated">
+      <value>1233052413000</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>gauthier</value>
+    </field>
+    <field name="resolved">
+      <value>1220316420000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Applied in r5305. Also added VS2005 projects and solutions." created="1220316470000" />
+    <comment author="colinramsay" text="This has been applied so closing now." created="1233052414000" />
+    <comment author="colinramsay" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1233052380000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1220316420000" />
+  </issue>
+</issues>

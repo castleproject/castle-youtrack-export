@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions">
+      <value>Validator 2.5.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>113</value>
+    </field>
+    <field name="summary">
+      <value>The Validator Can't Detect Culture Changes</value>
+    </field>
+    <field name="description">
+      <value>After loading the error for the first time, the validator caches the error message and ignores culture changes, returning the wrong error message.</value>
+    </field>
+    <field name="created">
+      <value>1288292814884</value>
+    </field>
+    <field name="updated">
+      <value>1407822447875</value>
+    </field>
+    <field name="reporterName">
+      <value>henry</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1288292828072</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

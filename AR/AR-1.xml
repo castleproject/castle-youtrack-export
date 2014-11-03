@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>alpha 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>1</value>
+    </field>
+    <field name="summary">
+      <value>Add support for Array and PrimitiveArray</value>
+    </field>
+    <field name="description">
+      <value>For beta 1 it would be great to support array and primitive arrays as these are the only missing relation types.
+
+[HasMany( typeof(OrderItem), RelationType.PrimitiveArray )]
+public OrderItem[] Items
+{
+  ...
+}
+
+</value>
+    </field>
+    <field name="created">
+      <value>1118311455000</value>
+    </field>
+    <field name="updated">
+      <value>1136169704000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282135895682</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="hammett" text="These are too specific, demading tables/columns for the index and so on. " created="1218366898000" />
+  </issue>
+</issues>

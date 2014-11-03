@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>1.1.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>73</value>
+    </field>
+    <field name="summary">
+      <value>System.Reflection.AmbiguousMatchException when trying to access NHibernate proxy class properties using reflection</value>
+    </field>
+    <field name="description">
+      <value>
+Properties overidden by DP have the incorrect signature (no HasThis on signature).  This caused an AmbiguousMatchException when trying to use reflection to access the properties on the DP created class.
+
+This was narrowed down to a bug in the .Net Framework.  SP1 of .Net 2.0 now has a new override for DefineProperty() that allows a signature to be specified.
+
+Discussion on subject in forum here:  http://forum.castleproject.org/viewtopic.php?t=3145
+</value>
+    </field>
+    <field name="created">
+      <value>1199451928000</value>
+    </field>
+    <field name="updated">
+      <value>1199600773000</value>
+    </field>
+    <field name="reporterName">
+      <value>flukefan</value>
+    </field>
+    <field name="updaterName">
+      <value>flukefan</value>
+    </field>
+    <field name="resolved">
+      <value>1282140717760</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

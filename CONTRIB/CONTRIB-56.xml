@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>56</value>
+    </field>
+    <field name="summary">
+      <value>Generic List creation</value>
+    </field>
+    <field name="description">
+      <value>When creating a many-one relation, the generation of the Ilist should always be generic, independent of the generic settings for the objects. Ok when using nHibernate 1.0 there is no Generic, so the setting for the object is leading
+ 
+Example:
+ 
+Let's take the order-detail structure.
+ 
+In the present version of AW  the IList of  "detail"  in the "order" is non-generic. It's is only made generic (IList&lt;Detail&gt; ) when the UseGenerics on the Detail is set to true.
+ 
+Instead on this we would always have the structure like this because the fact the detail class is generic is irrelevant to the relation. This always applies then to the fact if generics is supported. Maybe a property UseGenericRelations with default using the UseGeneric of the object should be a solution.
+ 
+ 
+    [ActiveRecord()]
+    public partial class Order {
+        
+    
+        private IList &lt;Detail&gt; _details;
+ 
+</value>
+    </field>
+    <field name="created">
+      <value>1190005304000</value>
+    </field>
+    <field name="updated">
+      <value>1192351926000</value>
+    </field>
+    <field name="reporterName">
+      <value>reasult</value>
+    </field>
+    <field name="updaterName">
+      <value>reasult</value>
+    </field>
+    <field name="resolved">
+      <value>1282138210260</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

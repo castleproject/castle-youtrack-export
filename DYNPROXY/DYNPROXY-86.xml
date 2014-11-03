@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>86</value>
+    </field>
+    <field name="summary">
+      <value>DP2 does not appear to ChangeInvocationTarget correctly</value>
+    </field>
+    <field name="description">
+      <value>DP2 does not correctly assign the channel created by the delegate within the WcfManagedChannelInterceptor.EnsureOpenChannel method once the service has been stopped and restarted; afterwards the ChannelCredentialsInterceptor always receives a closed channel.</value>
+    </field>
+    <field name="created">
+      <value>1239724397000</value>
+    </field>
+    <field name="updated">
+      <value>1248496791000</value>
+    </field>
+    <field name="reporterName">
+      <value>farproc2000</value>
+    </field>
+    <field name="updaterName">
+      <value>farproc2000</value>
+    </field>
+    <field name="resolved">
+      <value>1248496740000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="DP works just fine.&#xA;&#xA;Proxy target does not get changed, because this line:&#xA;	if (channel != null &amp;&amp; !WcfUtils.IsCommunicationObjectReady(channel))&#xA;evaluates to false.&#xA;&#xA;And please, learn how to create tests. You must be joking if you're expecting me to install some custom certificate." created="1239896673000" />
+    <comment author="cneuwirt" text="I am not sure anything can be done about this.  The issue is that once the service is disconnected, WCF doesn't seem to know about it until a request is made, which is too late at that point." created="1240377108000" />
+    <comment author="xtoff" text="We may add something like IRecreationPolicy&#xA;try invoke an operation. If we get faulted proxy exception, ask IRecreationPolicy if we should recrete proxy and retry invoking the operation and act accordingly to the answer." created="1241485137000" />
+    <comment author="cneuwirt" text="Krzysztof,&#xA;&#xA;I believe the proxy is not yet in a faulted state.  Once the invocation is performed, it becomes faulted.  If I recreate the proxy, how can I retry the current invocation since it has already completed?  Are you thinking I should create a new call internally?" created="1244100857000" />
+    <comment author="xtoff" text="If we do it that way, then yes, we should resend messages that we're positive weren't received.&#xA;&#xA;However this is slippery slope on its own, for example we can't say if a oneway message was received or not, unless we use certain bindings.&#xA;&#xA;I think there should be some facility to support this, but due to broken WCF behavior I'm not sure how to implement it, and to what extent." created="1244101812000" />
+    <comment author="xtoff" text="First of all this is not a DP issue.&#xA;Second, this is how WCF works, and we can't really do much about it." created="1248494772000" />
+    <comment author="cneuwirt" text="This will now work with trunk if you add the ChannelReconnectPolicy to the container or endpoint." created="1248496706000" />
+    <comment author="xtoff" text="This will now work with trunk if you add the ChannelReconnectPolicy to the container or endpoint." created="1248496789000" />
+    <comment author="farproc2000" text="* '''Attachment''' WcfIntegrationTest.zip added.&#xD;&#xA;" created="1239724440000" />
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1240300620000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1248494760000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Reopened''.&#xD;&#xA;" created="1248496740000" />
+    <comment author="xtoff" text="* '''Resolution''' changed from ''Invalid'' to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Reopened'' to ''Resolved''.&#xD;&#xA;" created="1248496740000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1248496740000" />
+  </issue>
+</issues>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - AspView</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>550</value>
+    </field>
+    <field name="summary">
+      <value>AspView can't find view when accessing paths with a capital 'I' when set to Turkish locale</value>
+    </field>
+    <field name="description">
+      <value>When the CurrentCulture is set to Turkish and the url path contains a capital 'I' i.e. Home\Index the AspView view engine will return a 'view engine cannot be instantiated/view cannot be found Home/Index' error. Going to the same view in lowercase (Home\index) works with no issues.
+
+This appears to be the same bug found in the Brail view engine:
+MR-ISSUE-180 - Url Tokenizer Bug at Turkish Culture Info</value>
+    </field>
+    <field name="created">
+      <value>1251739337000</value>
+    </field>
+    <field name="updated">
+      <value>1263055425000</value>
+    </field>
+    <field name="reporterName">
+      <value>oppoll</value>
+    </field>
+    <field name="updaterName">
+      <value>oppoll</value>
+    </field>
+    <field name="resolved">
+      <value>1251792780000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Applied in r5965. Thanks." created="1251792808000" />
+    <comment author="oppoll" text="* '''Attachment''' AspView_Turkish.patch added.&#xD;&#xA;" created="1251739337001" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055380000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1251792780000" />
+  </issue>
+</issues>

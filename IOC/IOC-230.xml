@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>230</value>
+    </field>
+    <field name="summary">
+      <value>Missing Mixins/InterceptorSelectors/ProxyGenerationHooks and TypedFactoryFacility's component selectors are not detected until resolution time</value>
+    </field>
+    <field name="description">
+      <value>for example when registering:
+{code lang=java}
+Component.For&lt;ICalcService&gt;().ImplementedBy&lt;CalculatorService&gt;().Proxy.MixIns(m =&gt; m.Service("other"))
+{code}
+
+and there's no service for "other" Windsor will not detect that the dependency is missing, {{Handler}}'s state will be valid and the component will fail only at resolution time. Also the component won't show up in the "potentially misconfigured components" list.
+
+The problem affects in general all dependencies provided via {{IReference&lt;T&gt;}}.</value>
+    </field>
+    <field name="created">
+      <value>1286884596602</value>
+    </field>
+    <field name="updated">
+      <value>1407822257333</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1286884596602</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - NVelocity</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>353</value>
+    </field>
+    <field name="summary">
+      <value>With NVelocity renders the bad view if there is two files with the same name and different extension (aview.vm and aview.njs render always aview.njs)</value>
+    </field>
+    <field name="description">
+      <value>I updated from the trunc the 30 october 2007 and since then I have the following problem (I think last previous time was a week ago):
+
+With a view (.vm) and a ajax partial file (.njs) sharing the same name, it's always the view ending vith .njs which is rendered.
+
+Step to reproduce the problem:
+
+Create a view with some content : test.vm
+Create a empty ajax partial file : test.njs
+Create a controller with an action named test
+
+access to the controllerName/test.rails and see this instead of your view:
+
+&lt;code&gt;
+try 
+{
+}
+catch(e)
+{
+alert('JS error ' + e.toString());
+alert("Generated content: \n");
+}
+&lt;/code&gt;
+
+After tracing the code, it seems that in DefaultViewEngineManager.Process there is this test for endling js which is true if two files with the same name exists: 
+&lt;code&gt;
+		public void Process(IRailsEngineContext context, IController controller, string templateName)
+		{
+			IViewEngine engine = ResolveEngine(templateName);
+
+			ContextualizeViewEngine(engine);
+
+			if (engine.SupportsJSGeneration &amp;&amp; engine.IsTemplateForJSGeneration(templateName))
+			{
+				engine.GenerateJS(context, controller, templateName);
+				return;
+			}
+
+			engine.Process(context, controller, templateName);
+		}
+&lt;/code&gt;
+
+Commenting the test lines (if(engine.SupportJSGeneration...) or renaming the .njs file solve the problem.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1193761833000</value>
+    </field>
+    <field name="updated">
+      <value>1244676910000</value>
+    </field>
+    <field name="reporterName">
+      <value>jpg</value>
+    </field>
+    <field name="updaterName">
+      <value>jpg</value>
+    </field>
+    <field name="resolved">
+      <value>1282145337088</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676900000" />
+  </issue>
+</issues>

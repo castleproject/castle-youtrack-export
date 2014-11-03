@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>207</value>
+    </field>
+    <field name="summary">
+      <value>UseFactoryMethod fails if more than one is registered</value>
+    </field>
+    <field name="description">
+      <value>Registration is using naming 'LateBoundComponent' for key on ComponentModel. Thus, when it tries to build the correct activator it always returns the first one registered.
+Please see this post:
+http://groups.google.com/group/castle-project-devel/browse_thread/thread/445ae0e9b952a707
+
+I'm putting this as critical since it is likely a person would use this method more than once.</value>
+    </field>
+    <field name="created">
+      <value>1278952373000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838869</value>
+    </field>
+    <field name="reporterName">
+      <value>mnichols</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1279073580000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="fixed in 3c8564a..12012a3" created="1279073607000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.5''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1279073580000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1279073580000" />
+  </issue>
+</issues>

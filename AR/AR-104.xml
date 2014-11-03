@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validators</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>104</value>
+    </field>
+    <field name="summary">
+      <value>IsUniqueValidator does not work properly with nullable primary keys</value>
+    </field>
+    <field name="description">
+      <value>IsUniqueValidator adds criteria to prevent inclusion of the current object in the uniqueness checking query. However, if your primary key is a nullable int the criteria will fail.
+
+Enclosed is a patch that changes the criteria if the unsaved primary key is null.</value>
+    </field>
+    <field name="created">
+      <value>1165953103000</value>
+    </field>
+    <field name="updated">
+      <value>1170193776000</value>
+    </field>
+    <field name="reporterName">
+      <value>bromanko</value>
+    </field>
+    <field name="updaterName">
+      <value>bromanko</value>
+    </field>
+    <field name="resolved">
+      <value>1282136234588</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

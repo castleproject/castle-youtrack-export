@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Documentation</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>215</value>
+    </field>
+    <field name="summary">
+      <value>activerecord trunk docs contains an invalid link to wiki.castleproject.org</value>
+    </field>
+    <field name="description">
+      <value>http://www.castleproject.org/activerecord/documentation/trunk/index.html contains an invalid link to ActiveRecord wiki page (http://wiki.castleproject.org/index.php/ActiveRecord ). The server replies Bad Request (Invalid Hostname) for that link.</value>
+    </field>
+    <field name="created">
+      <value>1209198867000</value>
+    </field>
+    <field name="updated">
+      <value>1209220783000</value>
+    </field>
+    <field name="reporterName">
+      <value>gojko</value>
+    </field>
+    <field name="updaterName">
+      <value>gojko</value>
+    </field>
+    <field name="resolved">
+      <value>1282136683166</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>554</value>
+    </field>
+    <field name="summary">
+      <value>Image url's in single quotes get rewritten as empty strings by JSCombine View Component</value>
+    </field>
+    <field name="description">
+      <value>The "CombineJS" view component, when used to combine multiple CSS files, will attempt to rewrite relative image paths to absolute ones.
+
+It handles image url's without quotes well i.e.
+
+.x-shadow .xsmc {
+    background-image: url(../images/default/shadow-c.png);
+}
+
+But for url's in single quotes, i.e.
+
+.file-xslx
+{
+    width: 16px;
+    background-image: url('../images/icons/file-xslx.gif') !important;	
+}
+
+It replaces the background-image attribute with a blank string, rather then correctly rewriting it.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1260113128000</value>
+    </field>
+    <field name="updated">
+      <value>1261061676000</value>
+    </field>
+    <field name="reporterName">
+      <value>bittercoder</value>
+    </field>
+    <field name="updaterName">
+      <value>bittercoder</value>
+    </field>
+    <field name="resolved">
+      <value>1261061640000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="We use a regular expression to extract the urls:&#xA;(.*?)(url)\((?!http|/)(?&lt;Url&gt;.*?)\)(.*?)&#xA;&#xA;I had a go at fixing it and my brain hurts!&#xA;Anyone good at regex?" created="1260661107000" />
+    <comment author="xtoff" text="I pinged Tim Barcz about it. He's one of the two people on the planet who can read RegEx %-)" created="1261014785000" />
+    <comment author="jsimons" text="Fixed in r6448" created="1261061631000" />
+    <comment author="jsimons" text="Fixed in r6448" created="1261061651000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1261058880000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1261061640000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1261061640000" />
+  </issue>
+</issues>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>210</value>
+    </field>
+    <field name="summary">
+      <value>Typed Factory Facility treats constructor dependency as non-optional if resolved as a TFF component</value>
+    </field>
+    <field name="description">
+      <value>Apologies for the bad summary name, I couldn't think of anything better.  Anyways, code speaks for itself.  Thanks.
+{code lang=java}
+        public class A
+        {
+            public int Id { get; set; }
+            public Func&lt;int&gt; Func { get; set; }
+            public A(int id, Func&lt;int&gt; func)
+            {
+                Id = id;
+                Func = func;
+            }
+        }
+
+        public interface IProvider
+        {
+            A Create(int id);
+        }
+
+        [Test]
+        public void Func_should_be_resolved_from_typed_factory_provider()
+        {
+            container.Register(Component.For&lt;A&gt;());
+            container.Register(Component.For&lt;int&gt;().Instance(123));
+            container.Register(Component.For&lt;IProvider&gt;().AsFactory());
+            Assert.That(container.Resolve&lt;IProvider&gt;().Create(1).Func(), Is.EqualTo(123)); // will throw a missing dependency exception
+
+            // container.Resolve&lt;Func&lt;int&gt;&gt;();
+            // if the func is resolved before IProvider is resolved, the test will pass
+        }
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1282795562721</value>
+    </field>
+    <field name="updated">
+      <value>1283212807869</value>
+    </field>
+    <field name="reporterName">
+      <value>bling</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282799407971</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

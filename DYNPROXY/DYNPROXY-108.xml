@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>108</value>
+    </field>
+    <field name="summary">
+      <value>Obtaining replicated custom attributes on proxy may fail when property setter throws exception on default value</value>
+    </field>
+    <field name="description">
+      <value>Attributes are copied over to the generated class (and its properties) but then there is a problem "parsing" them back. The following code will produce the exception (stack trace included below). 
+
+using System; 
+using Castle.DynamicProxy; 
+using System.Runtime.Serialization; 
+using System.Reflection; 
+namespace DynamicProxyAttributes 
+{ 
+    [DataContract] 
+    public class Entity 
+    { 
+        [DataMember] 
+        // [DataMember(Order = 0)] 
+        public virtual string StringProperty { get; set; } 
+        [DataMember] 
+        // [DataMember(Order = 0)] 
+        public virtual int IntProperty { get; set; } 
+    } 
+    class Program 
+    { 
+        static void Main(string[] args) 
+        { 
+            // Print for non proxied class - works fine 
+            PrintAttributes(typeof(Entity)); 
+            var proxy = new ProxyGenerator().CreateClassProxy(typeof 
+(Entity)); 
+            // Print for proxied class - chokes on DataMember 
+attribute of properties. 
+            // Using explicit order in attributes [DataMember(Order = 
+0)] will make 
+            // the exception go away 
+            PrintAttributes(proxy.GetType()); 
+        } 
+        static void PrintProperties(object instance) 
+        { 
+            foreach (PropertyInfo property in instance.GetType 
+().GetProperties()) 
+            { 
+                Console.WriteLine("{0} = {1}", property.Name, 
+property.GetValue(instance, null)); 
+            } 
+        } 
+        static void PrintAttributes(object[] attributes) 
+        { 
+            foreach (var attribute in attributes) 
+            { 
+                Console.WriteLine("{0}:", attribute); 
+                PrintProperties(attribute); 
+            } 
+        } 
+        static void PrintAttributes(Type type) 
+        { 
+            Console.WriteLine("--- {0} ---", type); 
+            PrintAttributes(type.GetCustomAttributes(false)); 
+            foreach (PropertyInfo property in type.GetProperties()) 
+            { 
+                PrintAttributes(property.GetCustomAttributes(false)); 
+            } 
+        } 
+    } 
+} 
+
+--- DynamicProxyAttributes.Entity --- 
+System.Runtime.Serialization.DataContractAttribute: 
+IsReference = False 
+Namespace = 
+Name = 
+TypeId = System.Runtime.Serialization.DataContractAttribute 
+System.Runtime.Serialization.DataMemberAttribute: 
+Name = 
+Order = -1 
+IsRequired = False 
+EmitDefaultValue = True 
+TypeId = System.Runtime.Serialization.DataMemberAttribute 
+System.Runtime.Serialization.DataMemberAttribute: 
+Name = 
+Order = -1 
+IsRequired = False 
+EmitDefaultValue = True 
+TypeId = System.Runtime.Serialization.DataMemberAttribute 
+--- EntityProxyc9b85687934a4e02aedb57316af2fd4f --- 
+System.Xml.Serialization.XmlIncludeAttribute: 
+Type = DynamicProxyAttributes.Entity 
+TypeId = System.Xml.Serialization.XmlIncludeAttribute 
+System.Runtime.Serialization.DataContractAttribute: 
+IsReference = False 
+Namespace = 
+Name = 
+TypeId = System.Runtime.Serialization.DataContractAttribute 
+System.SerializableAttribute: 
+TypeId = System.SerializableAttribute 
+Unhandled Exception: System.Reflection.CustomAttributeFormatException: 
+'Order' p 
+roperty specified was not found. ---&gt; 
+System.Reflection.TargetInvocationExceptio 
+n: Exception has been thrown by the target of an invocation. ---&gt; 
+System.Runtime 
+.Serialization.InvalidDataContractException: Property 'Order' in 
+DataMemberAttri 
+bute attribute cannot be a negative number. 
+   at System.Runtime.Serialization.DataMemberAttribute.set_Order(Int32 
+value) 
+   --- End of inner exception stack trace --- 
+   at System.RuntimeMethodHandle._InvokeMethodFast(Object target, 
+Object[] argum 
+ents, SignatureStruct&amp; sig, MethodAttributes methodAttributes, 
+RuntimeTypeHandle 
+ typeOwner) 
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, 
+BindingFlags invoke 
+Attr, Binder binder, Object[] parameters, CultureInfo culture, Boolean 
+skipVisib 
+ilityChecks) 
+   at System.Reflection.CustomAttribute.GetCustomAttributes(Module 
+decoratedModu 
+le, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType 
+attributeFilterTyp 
+e, Boolean mustBeInheritable, IList derivedAttributes) 
+   --- End of inner exception stack trace --- 
+   at System.Reflection.CustomAttribute.GetCustomAttributes(Module 
+decoratedModu 
+le, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType 
+attributeFilterTyp 
+e, Boolean mustBeInheritable, IList derivedAttributes) 
+   at System.Reflection.CustomAttribute.GetCustomAttributes 
+(RuntimePropertyInfo 
+property, RuntimeType caType) 
+   at DynamicProxyAttributes.Program.PrintAttributes(Type type) in C: 
+\dev\Projec 
+ts\My\DynamicProxyAttributes\Source\DynamicProxyAttributes 
+\Program.cs:line 60 
+   at DynamicProxyAttributes.Program.Main(String[] args) in C:\dev 
+\Projects\My\D 
+ynamicProxyAttributes\Source\DynamicProxyAttributes\Program.cs:line 34</value>
+    </field>
+    <field name="created">
+      <value>1250559990000</value>
+    </field>
+    <field name="updated">
+      <value>1250585511000</value>
+    </field>
+    <field name="reporterName">
+      <value>robert.wilczynski</value>
+    </field>
+    <field name="updaterName">
+      <value>robert.wilczynski</value>
+    </field>
+    <field name="resolved">
+      <value>1250585460000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="The issue seems to be connected with the fact that whereas in DataContractAttribute value -1 for Order is the default, it's also illegal to set it explicitly. When DP is replicating attributes it sets values explicitly, hence the error" created="1250562889000" />
+    <comment author="robert.wilczynski" text="So is there any way to override the default behavior so that I can handle attribute copying myself?" created="1250565667000" />
+    <comment author="xtoff" text="There will be :)&#xA;But also hopefully your scenario will be supported out of the box" created="1250579487000" />
+    <comment author="xtoff" text="Fixed in the trunk" created="1250585508000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1250579400000" />
+    <comment author="xtoff" text="* '''Summary''' changed from ''Attributes (DataMember as example) are not always copied correctly to a proxy class generated by CreateClassProxy'' to ''Obtaining replicated custom attributes on proxy may fail when property setter throws exception on default value''.&#xD;&#xA;" created="1250582880000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1250585460000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1250585460000" />
+  </issue>
+</issues>

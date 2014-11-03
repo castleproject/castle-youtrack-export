@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>492</value>
+    </field>
+    <field name="summary">
+      <value>${?var} syntax causes Boo compile error: BCE0043: Unexpected token: output.</value>
+    </field>
+    <field name="description">
+      <value>Since updating to revision 5346, I've been unable to use the ${?var} or !{?var} syntax anywhere in my Brail views.  Using the ${?var} syntax gives me a compile error from Boo: "BCE0043: Unexpected token: output." !{?var} gives a similar error, except with "OutputEscaped" as the unexpected token.  Removing the question mark causes the error to go away, so it seems that the problem is with it.
+
+From what I can see in the debugger, it's failing to replace "?var" with "TryGetParameter('var')" in the code when specified as ${?var}.
+
+Putting "&lt;% output ?var %&gt;" or "&lt;% OutputEscaped ?var %&gt;" into the same view works fine.  I looked at the NullPropagationTest view and it's only using that syntax, so perhaps there should be an additional test for the other syntax.
+</value>
+    </field>
+    <field name="created">
+      <value>1222760901000</value>
+    </field>
+    <field name="updated">
+      <value>1223663040000</value>
+    </field>
+    <field name="reporterName">
+      <value>mdavis</value>
+    </field>
+    <field name="updaterName">
+      <value>mdavis</value>
+    </field>
+    <field name="resolved">
+      <value>1223662980000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mdavis" text="I've attached a patch that fixed the issue for me.  It includes a new test case to check for this in the future." created="1223370491000" />
+    <comment author="mdavis" text="Disregard the first patch, I changed the file name for the new test view and forgot to correct it in the test case." created="1223371136000" />
+    <comment author="ayenderahien" text="thanks, patch applied" created="1223663031000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1223662980000" />
+    <comment author="ayenderahien" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1223663040000" />
+  </issue>
+</issues>

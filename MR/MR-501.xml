@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>501</value>
+    </field>
+    <field name="summary">
+      <value>Patch to allow to use in DictHelper any type as the value</value>
+    </field>
+    <field name="description">
+      <value>The DictHelper class at the moment is casting all values added to its internal dictionary to strings. 
+This patch allows objects to be stored in the dictionary by using 2 new methods CreateO and O.
+
+
+The reason for this is so that we can use it in situations like:
+$Url.For($Dict.CreateN("action", "myaction").N("controller", "mycontroller").O("querystring", $Dict.CreateN("t", "param1").N("s","param2")))
+or
+$Url.For($Dict.CreateN("route", "myroutename").O("params", $Dict.CreateN("t", "param1").N("s","param2")))</value>
+    </field>
+    <field name="created">
+      <value>1225027570000</value>
+    </field>
+    <field name="updated">
+      <value>1246142050000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1246142040000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="various tests are failing with &quot;Unable to cast object of type 'System.Boolean' to type 'System.String'.&quot;&#xA;&#xA;please make sure it works nicely with current trunk" created="1233022318000" />
+    <comment author="jsimons" text="Hi Ken,&#xA;Sorry for that, my stuff up!, I've added an additional patch that fixes the problems in JQueryFormValidationTestCase.cs.&#xA;Could you please have a look at it again.&#xA;Thanks&#xA;John" created="1233069474000" />
+    <comment author="jsimons" text="Ken,&#xA;I've just updated the patch description to highlight the fact that existing code may break! That is a bagga :(&#xA;So, I guess you may not want to apply this patch? What do u think?&#xA;I still like the idea of being able to have Dictionaries inside Dictionaries.&#xA;&#xA;Also, the exception that you have highlighted &quot;Unable to cast object of type 'System.Boolean' to type 'System.String'.&quot; is being caused by &quot;value = (String)attributes[key];&quot; in CommonUtils.cs: line 84. Would it be possible to change this to &quot;value = attributes[key].ToString();&quot;, what do you think?&#xA;&#xA;Cheers&#xA;John" created="1233076378000" />
+    <comment author="kenegozi" text="The second patch is invalid imo. &#xA;changing existing tests so that they won't break is not a viable option.&#xA;&#xA;options:&#xA;1. add .CreatO() and O() methods to the dictionary, so that it would support objects for values.&#xA;&#xA;2. fix all usages of the dictionary that expects strings, to use ToString() methods&#xA;&#xA;3. do both.&#xA;&#xA;I'll review a single patch (that would not break nor change existing tests)" created="1233101056000" />
+    <comment author="jsimons" text="Thanks a lot for the options :)&#xA;I've implemented option 1.&#xA;New patch DictHelper2 with tests." created="1233113434000" />
+    <comment author="jsimons" text="Sorry!!! The previous patch was still modifying existing tests.&#xA;Please have a look at DictHelper3.patch.&#xA;I've also updated the description." created="1233275878000" />
+    <comment author="jsimons" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Please see http://groups.google.com/group/castle-project-devel/browse_thread/thread/58e7924211f37ba for details&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;The DictHelper class at the moment is casting all values added to its&#xD;&#xA;internal dictionary to strings. &#xD;&#xA;This patch allows objects to be stored in the dictionary by removing the&#xD;&#xA;ToString cast and is backwards compatible.&#xD;&#xA;{quote}&#xD;&#xA;" created="1231942140000" />
+    <comment author="jsimons" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;The DictHelper class at the moment is casting all values added to its&#xD;&#xA;internal dictionary to strings. &#xD;&#xA;This patch allows objects to be stored in the dictionary by removing the&#xD;&#xA;ToString cast and is backwards compatible.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;The DictHelper class at the moment is casting all values added to its&#xD;&#xA;internal dictionary to strings. &#xD;&#xA;This patch allows objects to be stored in the dictionary by removing the&#xD;&#xA;ToString cast and is backwards compatible.&#xD;&#xA;&#xD;&#xA;The reason for this is so that we can use it in situations like:&#xD;&#xA;$Url.For($Dict.CreateN(&quot;action&quot;, &quot;myaction&quot;).N(&quot;controller&quot;,&#xD;&#xA;&quot;mycontroller&quot;).N(&quot;querystring&quot;, $Dict.CreateN(&quot;t&quot;, &quot;param1&quot;).N(&quot;s&quot;,&#xD;&#xA;&quot;param2&quot;)))&#xD;&#xA;or&#xD;&#xA;$Url.For($Dict.CreateN(&quot;action&quot;, &quot;myaction&quot;).N(&quot;controller&quot;,&#xD;&#xA;&quot;mycontroller&quot;).N(&quot;params&quot;, $Dict.CreateN(&quot;t&quot;, &quot;param1&quot;).N(&quot;s&quot;,&#xD;&#xA;&quot;param2&quot;)))&#xD;&#xA;{quote}&#xD;&#xA;" created="1232982420000" />
+    <comment author="jsimons" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;The DictHelper class at the moment is casting all values added to its&#xD;&#xA;internal dictionary to strings. &#xD;&#xA;This patch allows objects to be stored in the dictionary by removing the&#xD;&#xA;ToString cast and is backwards compatible.&#xD;&#xA;&#xD;&#xA;The reason for this is so that we can use it in situations like:&#xD;&#xA;$Url.For($Dict.CreateN(&quot;action&quot;, &quot;myaction&quot;).N(&quot;controller&quot;,&#xD;&#xA;&quot;mycontroller&quot;).N(&quot;querystring&quot;, $Dict.CreateN(&quot;t&quot;, &quot;param1&quot;).N(&quot;s&quot;,&#xD;&#xA;&quot;param2&quot;)))&#xD;&#xA;or&#xD;&#xA;$Url.For($Dict.CreateN(&quot;action&quot;, &quot;myaction&quot;).N(&quot;controller&quot;,&#xD;&#xA;&quot;mycontroller&quot;).N(&quot;params&quot;, $Dict.CreateN(&quot;t&quot;, &quot;param1&quot;).N(&quot;s&quot;,&#xD;&#xA;&quot;param2&quot;)))&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;The DictHelper class at the moment is casting all values added to its&#xD;&#xA;internal dictionary to strings. &#xD;&#xA;This patch allows objects to be stored in the dictionary by removing the&#xD;&#xA;ToString cast.&#xD;&#xA;&#xD;&#xA;This patch may break exiting code if the existing code was taking advantage of the cast ToString.&#xD;&#xA;Eg.&#xD;&#xA;FormHelper.FormTag(DictHelper.CreateN(&quot;isAjax&quot;, true).N(&quot;noaction&quot;, true));&#xD;&#xA;Needs to be replaced with:&#xD;&#xA;FormHelper.FormTag(DictHelper.CreateN(&quot;isAjax&quot;, &quot;true&quot;).N(&quot;noaction&quot;, &quot;true&quot;));&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;The reason for this is so that we can use it in situations like:&#xD;&#xA;$Url.For($Dict.CreateN(&quot;action&quot;, &quot;myaction&quot;).N(&quot;controller&quot;,&#xD;&#xA;&quot;mycontroller&quot;).N(&quot;querystring&quot;, $Dict.CreateN(&quot;t&quot;, &quot;param1&quot;).N(&quot;s&quot;,&#xD;&#xA;&quot;param2&quot;)))&#xD;&#xA;or&#xD;&#xA;$Url.For($Dict.CreateN(&quot;action&quot;, &quot;myaction&quot;).N(&quot;controller&quot;,&#xD;&#xA;&quot;mycontroller&quot;).N(&quot;params&quot;, $Dict.CreateN(&quot;t&quot;, &quot;param1&quot;).N(&quot;s&quot;,&#xD;&#xA;&quot;param2&quot;)))&#xD;&#xA;{quote}&#xD;&#xA;" created="1233075960000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1233014880000" />
+    <comment author="jsimons" text="* '''Summary''' changed from ''Removes the casting to string and allows to store any object types in DictHelper'' to ''Patch to allow to use in DictHelper any type as the value''.&#xD;&#xA;* '''Type''' changed from ''Patch'' to ''New Feature''.&#xD;&#xA;* '''Version Affected''' changed from ''Release Candidate 3'' to ''Future''.&#xD;&#xA;* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;The DictHelper class at the moment is casting all values added to its&#xD;&#xA;internal dictionary to strings. &#xD;&#xA;This patch allows objects to be stored in the dictionary by removing the&#xD;&#xA;ToString cast.&#xD;&#xA;&#xD;&#xA;This patch may break exiting code if the existing code was taking advantage of the cast ToString.&#xD;&#xA;Eg.&#xD;&#xA;FormHelper.FormTag(DictHelper.CreateN(&quot;isAjax&quot;, true).N(&quot;noaction&quot;, true));&#xD;&#xA;Needs to be replaced with:&#xD;&#xA;FormHelper.FormTag(DictHelper.CreateN(&quot;isAjax&quot;, &quot;true&quot;).N(&quot;noaction&quot;, &quot;true&quot;));&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;The reason for this is so that we can use it in situations like:&#xD;&#xA;$Url.For($Dict.CreateN(&quot;action&quot;, &quot;myaction&quot;).N(&quot;controller&quot;,&#xD;&#xA;&quot;mycontroller&quot;).N(&quot;querystring&quot;, $Dict.CreateN(&quot;t&quot;, &quot;param1&quot;).N(&quot;s&quot;,&#xD;&#xA;&quot;param2&quot;)))&#xD;&#xA;or&#xD;&#xA;$Url.For($Dict.CreateN(&quot;action&quot;, &quot;myaction&quot;).N(&quot;controller&quot;,&#xD;&#xA;&quot;mycontroller&quot;).N(&quot;params&quot;, $Dict.CreateN(&quot;t&quot;, &quot;param1&quot;).N(&quot;s&quot;,&#xD;&#xA;&quot;param2&quot;)))&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;The DictHelper class at the moment is casting all values added to its internal dictionary to strings. &#xD;&#xA;This patch allows objects to be stored in the dictionary by using 2 new methods CreateO and O.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;The reason for this is so that we can use it in situations like:&#xD;&#xA;$Url.For($Dict.CreateN(&quot;action&quot;, &quot;myaction&quot;).N(&quot;controller&quot;, &quot;mycontroller&quot;).O(&quot;querystring&quot;, $Dict.CreateN(&quot;t&quot;, &quot;param1&quot;).N(&quot;s&quot;,&quot;param2&quot;)))&#xD;&#xA;or&#xD;&#xA;$Url.For($Dict.CreateN(&quot;route&quot;, &quot;myroutename&quot;).O(&quot;params&quot;, $Dict.CreateN(&quot;t&quot;, &quot;param1&quot;).N(&quot;s&quot;,&quot;param2&quot;)))&#xD;&#xA;{quote}&#xD;&#xA;" created="1233276480000" />
+    <comment author="kenegozi" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1246142040000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1246142040000" />
+  </issue>
+</issues>

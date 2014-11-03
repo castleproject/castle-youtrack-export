@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>384</value>
+    </field>
+    <field name="summary">
+      <value>GenericCustomPage&lt;T&gt; should rely on IEnumerable&lt;T&gt; instead of IList&lt;T&gt; for it's datasource</value>
+    </field>
+    <field name="description">
+      <value>as said in the title, and appart me being wrong it's better to rely on the lesser denominator (IEnumerable&lt;T&gt;) when you don't need stuffs in ICollection&lt;T&gt; or IList&lt;T&gt;.
+
+going up the inheritance line could lead to limitation for future extension of the class or it's bases (which would have impact on others pagination helpers/support classes), but I think current implementation is "complete" as far as the pagination concern goes.
+
+the attached patch is a proposition, I think it won't break any code relying on the PaginationHelper, or just require a recompile for those using GenericCustomPage&lt;T&gt; directly.</value>
+    </field>
+    <field name="created">
+      <value>1198524900000</value>
+    </field>
+    <field name="updated">
+      <value>1263055884000</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>gauthier</value>
+    </field>
+    <field name="resolved">
+      <value>1282145456573</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055860000" />
+  </issue>
+</issues>

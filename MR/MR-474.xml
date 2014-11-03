@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>474</value>
+    </field>
+    <field name="summary">
+      <value>JQueryValidator support for regular expression validation</value>
+    </field>
+    <field name="description">
+      <value>The proposed patch implements the regular expression validator for jQuery validation with a simple custom rule.</value>
+    </field>
+    <field name="created">
+      <value>1218323002000</value>
+    </field>
+    <field name="updated">
+      <value>1222412898000</value>
+    </field>
+    <field name="reporterName">
+      <value>davidohara</value>
+    </field>
+    <field name="updaterName">
+      <value>davidohara</value>
+    </field>
+    <field name="resolved">
+      <value>1222412880000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ernst" text="Applied with changes, thanks" created="1222412891000" />
+    <comment author="ernst" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1222412880000" />
+    <comment author="ernst" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1222412880000" />
+  </issue>
+</issues>

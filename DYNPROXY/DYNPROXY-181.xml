@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Class proxies with target</value>
+    </field>
+    <field name="Fix versions">
+      <value>4.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.0</value>
+      <value>3.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>181</value>
+    </field>
+    <field name="summary">
+      <value>Class proxy with target forwards mixin methods not implemented by proxied class to wrong target</value>
+    </field>
+    <field name="description">
+      <value>This is similar scenario to DYNPROXY-180 except this time related to mixins.
+
+If we create proxy for class Foo (which doesn't implement IBar), use FooBar (which does implement IBar) as target and mix in Bar (which also implements IBar) into the proxy when calling a bar method it should be forwarded to the proxy's target FooBar instance. Currently the target is being ignored and the call is forwarded to the mixin Bar.</value>
+    </field>
+    <field name="created">
+      <value>1352669099614</value>
+    </field>
+    <field name="updated">
+      <value>1407822235391</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1352671575806</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

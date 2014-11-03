@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Scaffolding</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>514</value>
+    </field>
+    <field name="summary">
+      <value>Custom methods with parameters cause exceptions in scaffolded controllers</value>
+    </field>
+    <field name="description">
+      <value>When you try to add methods with parameters to controllers, that use scaffolding, the following exception is thrown:
+
+[TargetParameterCountException: Parameteranzahlkonflikt.] 
+   Castle.MonoRail.Framework.ControllerLifecycleExecutor.PerformErrorHandling() +131 
+   Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction(IDictionary actionArgs) +779 
+   Castle.MonoRail.Framework.ControllerLifecycleExecutor.ProcessSelectedAction() +31 
+   Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext context) +672 
+   Castle.MonoRail.Framework.MonoRailHttpHandler.ProcessRequest(HttpContext context) +58 
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +181 
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +75 
+
+Details: http://forum.castleproject.org/viewtopic.php?t=5058&amp;start=0&amp;postdays=0&amp;postorder=asc
+Sample code: http://mausch.googlecode.com/svn/!svn/bc/128/trunk/MonorailScaffoldingTests/</value>
+    </field>
+    <field name="created">
+      <value>1231469519000</value>
+    </field>
+    <field name="updated">
+      <value>1278881492000</value>
+    </field>
+    <field name="reporterName">
+      <value>Flominator</value>
+    </field>
+    <field name="updaterName">
+      <value>Flominator</value>
+    </field>
+    <field name="resolved">
+      <value>1278881460000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="To work around this bug derive your controllers from SmartDispatcherController instead of Controller." created="1278881477000" />
+    <comment author="jsimons" text="Workaround available" created="1278881492000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1278881460000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278881460000" />
+    <comment author="jsimons" text="* '''Version Affected''' changed from ''Future'' to ''2.0''.&#xD;&#xA;" created="1278808920000" />
+  </issue>
+</issues>

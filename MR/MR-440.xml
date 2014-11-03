@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>440</value>
+    </field>
+    <field name="summary">
+      <value>Minor change to JS emitted on $Form.EndFormTag - changes prototypeValidators from Array to Object.</value>
+    </field>
+    <field name="description">
+      <value>Changes if (!window.prototypeValidators) prototypeValidators = $A([]);\n to if (!window.prototypeValidators) prototypeValidators = new Object();\n
+
+Associative arrays in JavaScript should derive from Object, not array (or any other type).  Using $A([]) creates an empty array to hold the validators that is not used as a conventional (numerically indexed) array, but as an associative array (effectively a map or hash table).  Creating an array and using it in this manner makes it nearly impossible to correctly iterate the elements in the array as doing so also iterates all of the methods and properties of the array.  Better explanation at http://andrewdupont.net/2006/05/18/javascript-associative-arrays-considered-harmful/ </value>
+    </field>
+    <field name="created">
+      <value>1209651251000</value>
+    </field>
+    <field name="updated">
+      <value>1263055796000</value>
+    </field>
+    <field name="reporterName">
+      <value>neal</value>
+    </field>
+    <field name="updaterName">
+      <value>neal</value>
+    </field>
+    <field name="resolved">
+      <value>1242104040000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Applied in r5686" created="1242104090000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055740000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Closed'' to ''Closed''.&#xD;&#xA;" created="1263055740000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1242104040000" />
+  </issue>
+</issues>

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>467</value>
+    </field>
+    <field name="summary">
+      <value>Convenience functions for configuration</value>
+    </field>
+    <field name="description">
+      <value>The attached patch adds some convenience methods to simplify programmatic configuration:
+
+ViewEngineConfig.SetRelativeViewDirectory(string dir)
+-----------------------------------------------------
+Sets ViewEngineConfig.ViewDirectory to a directory relative to the current app domain's base dir.
+
+ViewEngineConfig.AddViewEngine&lt;TViewEngine&gt;(bool xhtmlRendering)
+----------------------------------------------------------------
+Adds a view engine of type TViewEngine. 
+
+
+SmtpConfig.ConfigureFromConfigFile()
+------------------------------------
+Uses the settings found in the system.net/mailSettings/smtp/network element of the app config (app.config or web.config) to configure SmtpConfig.
+
+Example:
+
+protected override void OnMonoRailConfigure(IMonoRailConfiguration configuration) {  
+  configuration.ViewEngineConfig
+    .SetRelativeViewDirectory("views")
+    .AddViewEngine&lt;AspViewEngine&gt;(true)
+    .AddViewEngine&lt;NVelocityViewEngine&gt;(true);
+  configuration.SmtpConfig.ConfigureFromConfigFile();
+}
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1215657905000</value>
+    </field>
+    <field name="updated">
+      <value>1279001149000</value>
+    </field>
+    <field name="reporterName">
+      <value>a.loker</value>
+    </field>
+    <field name="updaterName">
+      <value>a.loker</value>
+    </field>
+    <field name="resolved">
+      <value>1279001100000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Applied with a few modifications" created="1279001145000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1278998640000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''2.1''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1279001100000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1279001100000" />
+  </issue>
+</issues>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>By design</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Registration API</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>361</value>
+    </field>
+    <field name="summary">
+      <value>Add `ConstructorsIgnore` method to ComponentRegistration&lt;T&gt; to allow per-registration selection of constructors, matching the functionality of `PropertiesIgnore` for constructors.</value>
+    </field>
+    <field name="description">
+      <value>Recently IOC-355 was implemented which added {monospace}DoNotSelectAttribute{monospace} on constructors to mirror the {monospace}DoNotWireAttribute{monospace} on properties. This has the limitation of being too generalized when the constructor needs to be used for activation. The registration-time {monospace}PropertiesIgnore{monospace} anticipates this. This feature request is for a registration-time filter for constructors to be considered as candiates for activation.</value>
+    </field>
+    <field name="created">
+      <value>1350263318893</value>
+    </field>
+    <field name="updated">
+      <value>1371371813895</value>
+    </field>
+    <field name="reporterName">
+      <value>rplaire</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1371371805555</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Isn't this very limited in usefulness? I honestly can't remember if I ever needed filtering like that. 99% of the time I have one constructor, and in the remaining cases which constructor gets picked up is insignificant.&#xA;&#xA;I'd see this more as an application-specific extension, rather than part of the core API.&#xA;&#xA;We also need to keep in mind that the more stuff we put in the API the harder it becomes to use, and in this case I think the very limited number of cases where this might be useful is not worth it." created="1350264010668" />
+  </issue>
+</issues>

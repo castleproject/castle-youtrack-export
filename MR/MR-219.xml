@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>219</value>
+    </field>
+    <field name="summary">
+      <value>FormHelper.Select with an interface datasource throws an Object mismatch exception.</value>
+    </field>
+    <field name="description">
+      <value>The form helper.select method crashes when it's get an interface array as a datasource;
+
+controller:
+List&lt;IFoo&gt; list = new List&lt;IFoo&gt;();
+list.Add(new foo1);
+list.Add(new foo2);
+
+view:
+$Form.Select("ContentProvider",$contentProviders,"%{name='ContentProviderType', Text='Title', firstoption='Please Select'}")
+
+fails in an object type mismatch exception. 
+
+This is because the property getters are taken from the first object in the array; which is of type foo1.  When it tries to get the value of entry 2, it bombs.
+
+I've 'fixed' the code by adding;
+
+	if (source.GetType().IsArray)
+		return source.GetType().GetElementType();
+
+to the SetOperation.cs:97 private static Type ExtractType(IEnumerable source) method.
+but by doing do the testcase EmptyDataSource in Castle.MonoRail.Framework.Tests\Helpers\FormHelperSetOperation.cs fails.. :(
+
+any thoughts?
+
+Thanks.
+</value>
+    </field>
+    <field name="created">
+      <value>1169553675000</value>
+    </field>
+    <field name="updated">
+      <value>1244675550000</value>
+    </field>
+    <field name="reporterName">
+      <value>ernst</value>
+    </field>
+    <field name="updaterName">
+      <value>ernst</value>
+    </field>
+    <field name="resolved">
+      <value>1282143672885</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675520000" />
+  </issue>
+</issues>

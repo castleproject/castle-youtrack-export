@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Usability Problem</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>XML configuration</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>222</value>
+    </field>
+    <field name="summary">
+      <value>Make XML registration more DRY</value>
+    </field>
+    <field name="description">
+      <value>Given the following XML configuration:
+
+{code lang=xml}
+&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;configuration&gt;
+  &lt;facilities&gt;
+    &lt;facility id="event.wiring"
+              type="Castle.Facilities.EventWiring.EventWiringFacility, Castle.Windsor" /&gt;
+  &lt;/facilities&gt;
+  &lt;components&gt;
+    &lt;component id="fooRepository"
+               service="Acme.Crm.IFooRepository, Acme.Crm"
+               type="Acme.Crm.FooRepository, Acme.Crm"
+               lifestyle="custom"
+               customLifestyleType="Acme.Crm.FooCustomLifestyle"&gt;
+    &lt;/component&gt;
+  &lt;/components&gt;
+&lt;/configuration&gt;
+{code}
+
+The following things could be safely removed and replaced by defaults:
+
+* facility id - if type is provided, the type should be the id (like it is when we register from code)
+* component id - if type is provided, the type should be the id (like it is when we register from code)
+* lifestyle - if no lifestyle is provided but {{customLifestyleType}} is specified, custom lifestyle with the type provided should be used</value>
+    </field>
+    <field name="created">
+      <value>1285760322807</value>
+    </field>
+    <field name="updated">
+      <value>1294888565468</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1294888441530</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Krzysztof, are you saying you want to remove facility id and component id, or are you saying they should be optional?" created="1285808289448" />
+    <comment author="xtoff" text="Make them optional. I want to avoid breaking changes where they don't really make sense" created="1285816625260" />
+    <comment author="jsimons" text="I may be wrong here but isn't it safe to remove the facility id? What is it used for?&#xA;" created="1285819737901" />
+    <comment author="xtoff" text="I'm not planning to remove it. I want to make it optional. It is used to look up facilities. I want to change how that's done so the type would be used primarily for that. That would also enforce you can only have a single instance of a facility in the container." created="1285820041729" />
+  </issue>
+</issues>

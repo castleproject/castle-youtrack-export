@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>184</value>
+    </field>
+    <field name="summary">
+      <value>Mixing ARDataBind and DataBind on same action doesn't work if the AR-enabled par is declared before the not AR-enabled one</value>
+    </field>
+    <field name="description">
+      <value>Mixing ARDataBind and DataBind on same action doesn't work if the AR-enabled par is declared before the not AR-enabled one.
+Here is an example:
+
+/* working binding code*/
+        public void Create
+            ([DataBind("Partner")]Partner partner,
+            [ARDataBind("CreatorRole", AutoLoadBehavior.Always)] CustomerType creatorRole)
+        {  //..// }
+
+/* not working binding code*/
+        public void Create
+            ([ARDataBind("CreatorRole", AutoLoadBehavior.Always)] CustomerType creatorRole,
+            [DataBind("Partner")]Partner partner,)
+        {  //..// }
+
+/*the AR object*/
+    [ActiveRecord("CustomerType",Table="Customers.Type")]
+    public class CustomerType : MyBase&lt;CustomerType&gt;
+    {
+        private int     _id;
+        private string  _name;
+
+	[PrimaryKey(PrimaryKeyType.Native)]
+        public int ID
+        {
+            get {return this._id;}
+            set{this._id = value;}
+        }
+	
+        [Property]
+        public string Name
+        {
+            get{return this._name;}
+            set{this._name = value;}
+        }		
+    }
+
+/*the not AR object*/
+    public class Partner
+    {
+        string _firstname;
+        string _lastname;
+        public string Firstname
+        {
+            get { return _firstname; }
+            set { _firstname = value; }
+        }
+        public string Lastname
+        {
+            get { return _lastname; }
+            set { _lastname = value; }
+        }
+        public Partner()
+        { 
+        }
+    }
+
+Server Error in '/PublicSite.Web' Application.
+Object reference not set to an instance of an object.
+Description: An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code.
+
+Exception Details: System.NullReferenceException: Object reference not set to an instance of an object.
+
+Source Error:
+
+Line 273:		{
+Line 274:
+Line 275:			if (model.IsJoinedSubClass)
+Line 276:			{
+Line 277:				pkModel = model.Parent.PrimaryKey;
+
+
+Here is the stack trace:
+
+Source File: c:\Development\Repository\Castle\MonoRail\Castle.MonoRail.ActiveRecordSupport\ARDataBinder.cs    Line: 275
+
+Stack Trace:
+
+[NullReferenceException: Object reference not set to an instance of an object.]
+   Castle.MonoRail.ActiveRecordSupport.ARDataBinder.ObtainPrimaryKeyValue(ActiveRecordModel model, CompositeNode node, String prefix, PrimaryKeyModel&amp; pkModel) in c:\Development\Repository\Castle\MonoRail\Castle.MonoRail.ActiveRecordSupport\ARDataBinder.cs:275
+   Castle.MonoRail.ActiveRecordSupport.ARDataBinder.CreateInstance(Type instanceType, String paramPrefix, Node node) in c:\Development\Repository\Castle\MonoRail\Castle.MonoRail.ActiveRecordSupport\ARDataBinder.cs:92
+   Castle.Components.Binder.DataBinder.InternalBindObject(Type instanceType, String paramPrefix, Node node, Boolean&amp; succeeded) in c:\Development\Repository\Castle\Components\General\Binder\Castle.Components.Binder\DataBinder.cs:213
+   Castle.Components.Binder.DataBinder.InternalBindObject(Type instanceType, String paramPrefix, Node node) in c:\Development\Repository\Castle\Components\General\Binder\Castle.Components.Binder\DataBinder.cs:192
+   Castle.Components.Binder.DataBinder.BindObject(Type targetType, String prefix, String excludedProperties, String allowedProperties, CompositeNode treeRoot) in c:\Development\Repository\Castle\Components\General\Binder\Castle.Components.Binder\DataBinder.cs:139
+   Castle.MonoRail.Framework.DataBindAttribute.Bind(SmartDispatcherController controller, ParameterInfo parameterInfo) in c:\Development\Repository\Castle\MonoRail\Castle.MonoRail.Framework\Attributes\DataBindAttribute.cs:133
+   Castle.MonoRail.Framework.SmartDispatcherController.BuildMethodArguments(ParameterInfo[] parameters, IRequest request, Object[] actionArgs) in c:\Development\Repository\Castle\MonoRail\Castle.MonoRail.Framework\SmartDispatcherController.cs:259
+
+[RailsException: Error building method arguments. Last param analyzed was partner with value '']
+   Castle.MonoRail.Framework.SmartDispatcherController.BuildMethodArguments(ParameterInfo[] parameters, IRequest request, Object[] actionArgs) in c:\Development\Repository\Castle\MonoRail\Castle.MonoRail.Framework\SmartDispatcherController.cs:300
+   Castle.MonoRail.Framework.SmartDispatcherController.InvokeMethod(MethodInfo method, IRequest request, Object[] actionArgs) in c:\Development\Repository\Castle\MonoRail\Castle.MonoRail.Framework\SmartDispatcherController.cs:71
+   Castle.MonoRail.Framework.Controller.InvokeMethod(MethodInfo method, Object[] methodArgs) in c:\Development\Repository\Castle\MonoRail\Castle.MonoRail.Framework\Controller.cs:1228
+   Castle.MonoRail.Framework.Controller.InternalSend(String action, Object[] actionArgs) in c:\Development\Repository\Castle\MonoRail\Castle.MonoRail.Framework\Controller.cs:1011
+
+[RailsException: Unhandled Exception while rendering view]
+   Castle.MonoRail.Framework.Controller.InternalSend(String action, Object[] actionArgs) in c:\Development\Repository\Castle\MonoRail\Castle.MonoRail.Framework\Controller.cs:1072
+   Castle.MonoRail.Framework.Controller.Process(IRailsEngineContext context, String areaName, String controllerName, String actionName) in c:\Development\Repository\Castle\MonoRail\Castle.MonoRail.Framework\Controller.cs:862
+   Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext context) in c:\Development\Repository\Castle\MonoRail\Castle.MonoRail.Framework\MonoRailHttpHandler.cs:100
+   Castle.MonoRail.Framework.MonoRailHttpHandler.ProcessRequest(HttpContext context) in c:\Development\Repository\Castle\MonoRail\Castle.MonoRail.Framework\MonoRailHttpHandler.cs:52
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +499
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +177
+
+
+Version Information: Microsoft .NET Framework Version:2.0.50727.42; ASP.NET Version:2.0.50727.210</value>
+    </field>
+    <field name="created">
+      <value>1164726249000</value>
+    </field>
+    <field name="updated">
+      <value>1244675820000</value>
+    </field>
+    <field name="reporterName">
+      <value>aledeniz</value>
+    </field>
+    <field name="updaterName">
+      <value>aledeniz</value>
+    </field>
+    <field name="resolved">
+      <value>1282143594713</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675820000" />
+  </issue>
+</issues>

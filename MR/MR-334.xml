@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>334</value>
+    </field>
+    <field name="summary">
+      <value>Allow for easier testing of RenderText using MockResponse.</value>
+    </field>
+    <field name="description">
+      <value>Currently, to test that a controller rendered text correctly (for example, by using RenderText()), you must manually manipulate the OutputStream on the MockResponse class (flushing, seeking, etc., see link below for example). This could be cleaned up to allow for easier testing.
+
+See relevant forum topic:
+
+http://forum.castleproject.org/viewtopic.php?t=3461</value>
+    </field>
+    <field name="created">
+      <value>1190402403000</value>
+    </field>
+    <field name="updated">
+      <value>1263055581000</value>
+    </field>
+    <field name="reporterName">
+      <value>markhildreth</value>
+    </field>
+    <field name="updaterName">
+      <value>markhildreth</value>
+    </field>
+    <field name="resolved">
+      <value>1282144029276</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055560000" />
+  </issue>
+</issues>

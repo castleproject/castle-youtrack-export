@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>18</value>
+    </field>
+    <field name="summary">
+      <value>Clean up more code in nvelocity</value>
+    </field>
+    <field name="description">
+      <value>use string.empty where appropriate
+
+use "type" not "clazz", "claz" or "clas"
+
+clean up some variable names
+
+remove some unused code
+
+remove some redundant casts
+
+KeyedList removed as it is not used internally to nvelocity
+
+more usage of generics
+
+should not catch NullReferenceException
+
+make some variable readonly
+
+fix some spelling errors
+
+use "as" and check for null is more efficient than "is" and then casting a second time 
+
+invert some "if"s to stop the negation of the condition
+
+remove redundant contructors
+
+clean up usings
+</value>
+    </field>
+    <field name="created">
+      <value>1197265508000</value>
+    </field>
+    <field name="updated">
+      <value>1253854813000</value>
+    </field>
+    <field name="reporterName">
+      <value>simoncropp</value>
+    </field>
+    <field name="updaterName">
+      <value>simoncropp</value>
+    </field>
+    <field name="resolved">
+      <value>1282142779041</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253854800000" />
+  </issue>
+</issues>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>NHibernate</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>108</value>
+    </field>
+    <field name="summary">
+      <value>NHibernate SessionDelegate needs to be converted to an interceptor+proxy</value>
+    </field>
+    <field name="description">
+      <value>It is particularly useful when NH framework adds something to its session interface, it won't break the existing code etc.</value>
+    </field>
+    <field name="created">
+      <value>1227099955000</value>
+    </field>
+    <field name="updated">
+      <value>1396694787750</value>
+    </field>
+    <field name="reporterName">
+      <value>tehlike</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396694787732</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="The description of the is very laconic. What is this about?" created="1278755501000" />
+    <comment author="tehlike" text="* '''Importance''' changed from ''High'' to ''Medium''.&#xD;&#xA;" created="1227106560000" />
+  </issue>
+</issues>

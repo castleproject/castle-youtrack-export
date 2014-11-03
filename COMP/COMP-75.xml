@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>EmailSender</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>75</value>
+    </field>
+    <field name="summary">
+      <value>EmailSender VS2008 Project DEBUG constant fix</value>
+    </field>
+    <field name="description">
+      <value>Someone's put an inadvertent slash (\) in the VS2008 project file which breaks the standard DEBUG constant (and thus the project properties)
+
+This patch corrects that</value>
+    </field>
+    <field name="created">
+      <value>1223639337000</value>
+    </field>
+    <field name="updated">
+      <value>1229881098000</value>
+    </field>
+    <field name="reporterName">
+      <value>DavidMoore</value>
+    </field>
+    <field name="updaterName">
+      <value>DavidMoore</value>
+    </field>
+    <field name="resolved">
+      <value>1229881080000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="hammett" text="Applied fix, thanks" created="1229881098000" />
+    <comment author="hammett" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1229881080000" />
+  </issue>
+</issues>

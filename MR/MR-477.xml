@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>477</value>
+    </field>
+    <field name="summary">
+      <value>SmartGridComponent: Column header links do not carry over existing query string parameters.</value>
+    </field>
+    <field name="description">
+      <value>Column header links do not carry over existing query string parameters.
+
+Current behavior:  If you have a filter on the view containing the grid
+
+index.rails?toSearch=someString
+
+The grid column links are generated like:
+
+index.rails?sortBy=someColumn&amp;sortAsc=True
+
+Suggested behavior: Links should be generated like
+
+index.rails?toSearch=someString&amp;sortBy=someColumn&amp;sortAsc=True
+
+The attached patch implements the suggestion.
+
+Thanks.
+
+ademar</value>
+    </field>
+    <field name="created">
+      <value>1220304954000</value>
+    </field>
+    <field name="updated">
+      <value>1279212125000</value>
+    </field>
+    <field name="reporterName">
+      <value>ademar</value>
+    </field>
+    <field name="updaterName">
+      <value>ademar</value>
+    </field>
+    <field name="resolved">
+      <value>1279212120000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="I moved this one into the Contrib area.&#xA;http://support.castleproject.org/projects/CONTRIB/issues/view/CONTRIB-ISSUE-165" created="1279212122000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1279212120000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1279212120000" />
+  </issue>
+</issues>

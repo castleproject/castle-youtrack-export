@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>383</value>
+    </field>
+    <field name="summary">
+      <value>Databinding object with non-public constructor</value>
+    </field>
+    <field name="description">
+      <value>When using the SmartDispatcherController to databind to an object the object must have a parameterless constructor in order for MonoRail to create it and set the properties. However there are times when you would not want a parameterless constructor available to the developer in order to force them to create an object via a constructor accepting parameters. NHibernate gets pass this by using reflection and can populate any of the non-public members / methods and constructors.</value>
+    </field>
+    <field name="created">
+      <value>1198158162000</value>
+    </field>
+    <field name="updated">
+      <value>1263055887000</value>
+    </field>
+    <field name="reporterName">
+      <value>bronumski</value>
+    </field>
+    <field name="updaterName">
+      <value>bronumski</value>
+    </field>
+    <field name="resolved">
+      <value>1282145455260</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055860000" />
+  </issue>
+</issues>

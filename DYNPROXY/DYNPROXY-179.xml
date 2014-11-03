@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.0</value>
+      <value>2.5.1</value>
+      <value>2.5.2</value>
+      <value>3.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>179</value>
+    </field>
+    <field name="summary">
+      <value>Exception when creating a generic proxy (from cache)</value>
+    </field>
+    <field name="description">
+      <value>PROBLEM:
+A MissingMethodException occurs when creating a proxy (interface with target). The problem come from the cache, the cache contains a mismatch between 2 proxy. It returns another proxy and the MissingMethodException is thrown when trying to create the proxy (CreateInstance in CreateInterfaceProxyWithTargetInterface method from ProxyGenerator class) because the arguments passed does not match the constructor of the returned (from cache) proxy.
+
+USAGE:
+Our application load proxy at startup and save them when closing it. On each application run there is potentially some proxy to save. After 2 or more close, this problem will occurs.
+
+ATTACHMENT:
+Test Application to reproduce the problem. 
+
+STEP TO REPRODUCE: (used IList&lt;T&gt; in this example, but could be any generic. Happens also for interface or class proxy with 2 different additional interface)
+Proxy generator #1
+1) Create an interface with target proxy (IList&lt;IClass1&gt;)
+2) Save proxy (assembly #1)
+Proxy generator #2
+3) Load proxy (assembly #1)
+4) Create an interface with target proxy (IList&lt;IClass2&gt;, must be IList&lt;T&gt; where T is different then step 1)
+5) Save proxy (assembly #2)
+Proxy generator #3
+6) Load proxy (assembly #2)
+7) Create the proxy from step 1 (IList&lt;IClass1&gt;)
+=&gt; Exception
+
+Note : Exception not present if step 3 is removed and step 6 load both assembly.
+
+VERSION:
+Tested with 2.5.1 and 3.1 version of Castle.Core
+</value>
+    </field>
+    <field name="created">
+      <value>1351221321491</value>
+    </field>
+    <field name="updated">
+      <value>1407822235388</value>
+    </field>
+    <field name="reporterName">
+      <value>jcviau</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1351986807230</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Can you create a failing test and pull request it?" created="1351222610342" />
+    <comment author="jcviau" text="Yeah sure, I will check this tomorrow." created="1351224921072" />
+    <comment author="jcviau" text="I added a pull request for this issue but i found the same issue (the cache is invalid, it return the wrong proxy) for:&#xA;&#xA;-   same interface proxy in 2 assembly with different additional interface. (e.g. in Step 1 create interface proxy IToto with additional type IToto1, Step 4 create interface proxy IToto with additional type IToto2, Step 7 create interface proxy IToto with additional type IToto1 will return the proxy that implement IToto2 instead)&#xA;&#xA;-   same class proxy in 2 assembly with different additional interface. (e.g. in Step 1 create class proxy Toto with additional type IToto1, Step 4 create class proxy Toto with additional type IToto2, Step 7 create class proxy Toto with additional type IToto1 will return the proxy that implement IToto2 instead)&#xA;&#xA;" created="1351795416869" updated="1351795707919" />
+    <comment author="jcviau" text="I have no clue where to ask/find this information this so here is my question : do you have a planned release date (or estimate) for version 3.2 (need this fix for caching in our application) ? &#xA;&#xA;I tested a compiled version of Windsor + Core with your fix and could not reproduce the issue. Thanks again ! :)" created="1356109280002" updated="1356109344976" />
+    <comment author="xtoff" text="No ETA, probably somewhere in January but don't quote me one that" created="1356125190782" />
+  </issue>
+</issues>

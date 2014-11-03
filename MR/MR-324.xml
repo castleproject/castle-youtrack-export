@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>324</value>
+    </field>
+    <field name="summary">
+      <value>Unable to send emails to multiple recipients</value>
+    </field>
+    <field name="description">
+      <value>It is impossible to send emails to multiple recipients (to,cc,bcc).
+
+Given an email template like the following:
+
+from: junk@junk.com
+to: junk1@junk.com;junk2@junk.com
+subject: This is a test
+
+This is a test.
+
+An exception will be thrown with the message; "The specified string in not in the form required for an email address.".   The reason for this exception is the email addresses are separated by semi-colons.   This is no longer allowed in System.Net.Mail as described from this excerpt from the MailMessage constructor documentation.
+
+NOTE: You cannot use the semi-colon for the delimiter. You must use the comma
+or the constructor will throw a System.Format exception.
+
+If you switch to using a comma between the recipients, then the parsing code in MonoRail does not recognize the email addresses after the first address.   The reason for this can be found in the Constants class.
+
+public static readonly String ToAddressPattern   = @"[ \t]*(?&lt;header&gt;(to|cc|bcc)):[ \t]*(?&lt;value&gt;([\w-\.]+@([\w\.]){1,}\w+[ \t]*;?[ \t]*)+)[ \t]*(\r*\n*)?";
+
+This regex requires that addresses are separated by semi-colons.    In order to fix the problem, the semi-colon should be switched to a comma.</value>
+    </field>
+    <field name="created">
+      <value>1188343669000</value>
+    </field>
+    <field name="updated">
+      <value>1244676672000</value>
+    </field>
+    <field name="reporterName">
+      <value>aesterline</value>
+    </field>
+    <field name="updaterName">
+      <value>aesterline</value>
+    </field>
+    <field name="resolved">
+      <value>1282143999182</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676660000" />
+  </issue>
+</issues>

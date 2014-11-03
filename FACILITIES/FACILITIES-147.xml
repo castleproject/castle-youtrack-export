@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>147</value>
+    </field>
+    <field name="summary">
+      <value>NHibernateIntegration.SessionDelegate does not implement NHibernate.Engine.ISessionImplementor</value>
+    </field>
+    <field name="description">
+      <value>The Linq extension "Query&lt;T&gt;" expects the session object implement ISessionImplementor, hence, when using ISessionManager to construct the session, Linq cannot be used. If it is used, it results in a NullReferenceException within NHQueryProvider.</value>
+    </field>
+    <field name="created">
+      <value>1302572884724</value>
+    </field>
+    <field name="updated">
+      <value>1302577942084</value>
+    </field>
+    <field name="reporterName">
+      <value>Adam.Langley</value>
+    </field>
+    <field name="updaterName">
+      <value>Adam.Langley</value>
+    </field>
+    <field name="resolved">
+      <value>1302574400693</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="This is NHibernate bug and will be fixed for the next release (3.2)" created="1302574423709" />
+    <comment author="Adam.Langley" text="Thanks - I located the issue for further reference: NH-2626" created="1302577942084" />
+  </issue>
+</issues>

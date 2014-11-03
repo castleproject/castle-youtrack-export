@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0 Beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0 Alpha</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>34</value>
+    </field>
+    <field name="summary">
+      <value>Cant proxy generic interfaces</value>
+    </field>
+    <field name="description">
+      <value>Can't proxy nested generic interfaces. Specifically, trying to do so with IList&lt;T&gt; result in an error.  When I am testing with my InterfaceGeneratorWithoutTarget, I get "Type handle 'System.Collections.Generic.IList`1[T]' and method handle with declaring type 'System.Collections.Generic.ICollection`1[System.Int32]' are incompatible. Get RuntimeMethodHandle and declaring RuntimeTypeHandle off the same MethodBase.", when I use InterfaceGeneratoWithTarget, I get: "Could not find a matching method on System.Collections.Generic.List`1. Method CopyTo".</value>
+    </field>
+    <field name="created">
+      <value>1162665493000</value>
+    </field>
+    <field name="updated">
+      <value>1164298044000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282140571526</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

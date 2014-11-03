@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>151</value>
+    </field>
+    <field name="summary">
+      <value>Cumulative IModelInterceptorsSelectors</value>
+    </field>
+    <field name="description">
+      <value>The registered IModelInterceptorsSelectors aren't cumulative for the same ComponentModel. Just the first IModelInterceptorsSelector that has an interceptor for a ComponentModel is used, also overriding any interceptors the model had defined.</value>
+    </field>
+    <field name="created">
+      <value>1242933823000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853104</value>
+    </field>
+    <field name="reporterName">
+      <value>mausch</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1261140060000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="applied in r6455" created="1261140096000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1261140060000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1261140060000" />
+    <comment author="mausch" text="* '''Attachment''' cumulative_interceptorselector.patch added.&#xD;&#xA;" created="1242933823001" />
+  </issue>
+</issues>

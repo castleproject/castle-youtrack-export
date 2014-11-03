@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0 Beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0 Alpha</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>35</value>
+    </field>
+    <field name="summary">
+      <value>Can't handle params that are multi dimensional arrays.</value>
+    </field>
+    <field name="description">
+      <value>Can't handle params that are multi dimensional arrays.</value>
+    </field>
+    <field name="created">
+      <value>1162665537000</value>
+    </field>
+    <field name="updated">
+      <value>1164478439000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282140572198</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

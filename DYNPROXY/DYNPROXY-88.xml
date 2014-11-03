@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>88</value>
+    </field>
+    <field name="summary">
+      <value>proxy generation fail when multiple interfaces have common base interface</value>
+    </field>
+    <field name="description">
+      <value>Considering we have the following hierarchy
+public interface IBase
+{
+    void Foo();
+}
+public interface ISub1:IBase
+{
+    void Bar();
+}
+public interface ISub2:IBase
+{
+    void Baz();
+}
+
+The following test will fail:
+[Test]
+public void ShouldGenerateTypeWithDuplicatedBaseInterfaces()
+{
+    //NOTE: This will fail for other kinds of proxies as well obviously 
+    generator.CreateInterfaceProxyWithoutTarget( typeof( IBase ), new[] { typeof( ISub1 ), typeof( ISub2 ) } );
+}
+
+with error:
+[MD]: Error: Method has a duplicate, token=0x06000009. [token:0x06000006]
+[MD]: Error: Method has a duplicate, token=0x06000009. [token:0x06000008]
+[MD]: Error: Method has a duplicate, token=0x06000008. [token:0x06000009]
+
+The proxy type will have 3 Foo methods, which obviousely is wrong.
+
+To clarify: proxy type is generated without error. It's PeVerify that throws the exception. Hence for the test to exhibit the misbehavior if has to be ran inside DP text fixture .
+</value>
+    </field>
+    <field name="created">
+      <value>1241499556000</value>
+    </field>
+    <field name="updated">
+      <value>1245858287000</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1245856620000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Fixed in 5803" created="1245856668000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1245856620000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1245858240000" />
+    <comment author="xtoff" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Considering we have the following hierarchy&#xD;&#xA;public interface IBase&#xD;&#xA;{&#xD;&#xA;    void Foo();&#xD;&#xA;}&#xD;&#xA;public interface ISub1:IBase&#xD;&#xA;{&#xD;&#xA;    void Bar();&#xD;&#xA;}&#xD;&#xA;public interface ISub2:IBase&#xD;&#xA;{&#xD;&#xA;    void Baz();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;The following test will fail:&#xD;&#xA;[Test]&#xD;&#xA;public void ShouldGenerateTypeWithDuplicatedBaseInterfaces()&#xD;&#xA;{&#xD;&#xA;    //NOTE: This will fail for other kinds of proxies as well obviously &#xD;&#xA;    generator.CreateInterfaceProxyWithoutTarget( typeof( IBase ), new[] { typeof( ISub1 ), typeof( ISub2 ) } );&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;with error:&#xD;&#xA;[MD]: Error: Method has a duplicate, token=0x06000009. [token:0x06000006]&#xD;&#xA;[MD]: Error: Method has a duplicate, token=0x06000009. [token:0x06000008]&#xD;&#xA;[MD]: Error: Method has a duplicate, token=0x06000008. [token:0x06000009]&#xD;&#xA;&#xD;&#xA;The proxy type will have 3 Foo methods, which obviousely is wrong.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Considering we have the following hierarchy&#xD;&#xA;public interface IBase&#xD;&#xA;{&#xD;&#xA;    void Foo();&#xD;&#xA;}&#xD;&#xA;public interface ISub1:IBase&#xD;&#xA;{&#xD;&#xA;    void Bar();&#xD;&#xA;}&#xD;&#xA;public interface ISub2:IBase&#xD;&#xA;{&#xD;&#xA;    void Baz();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;The following test will fail:&#xD;&#xA;[Test]&#xD;&#xA;public void ShouldGenerateTypeWithDuplicatedBaseInterfaces()&#xD;&#xA;{&#xD;&#xA;    //NOTE: This will fail for other kinds of proxies as well obviously &#xD;&#xA;    generator.CreateInterfaceProxyWithoutTarget( typeof( IBase ), new[] { typeof( ISub1 ), typeof( ISub2 ) } );&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;with error:&#xD;&#xA;[MD]: Error: Method has a duplicate, token=0x06000009. [token:0x06000006]&#xD;&#xA;[MD]: Error: Method has a duplicate, token=0x06000009. [token:0x06000008]&#xD;&#xA;[MD]: Error: Method has a duplicate, token=0x06000008. [token:0x06000009]&#xD;&#xA;&#xD;&#xA;The proxy type will have 3 Foo methods, which obviousely is wrong.&#xD;&#xA;&#xD;&#xA;To clarify: proxy type is generated without error. It's PeVerify that throws the exception. Hence for the test to exhibit the misbehavior if has to be ran inside DP text fixture .&#xD;&#xA;{quote}&#xD;&#xA;" created="1242342720000" />
+  </issue>
+</issues>

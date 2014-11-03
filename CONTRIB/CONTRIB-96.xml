@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngines</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>96</value>
+    </field>
+    <field name="summary">
+      <value>For AspView - Implement IsDefined</value>
+    </field>
+    <field name="description">
+      <value>The ViewAtDesignTime implementation of Properties is a generic Dictionary. The AspViewBase implementation is an IDictionary. So, if I want to do Properties.ContainsKey("Foo") VS likes it, but vCompile complains that IDictionary does not contain that method, so you need to use Properties.Contains, which make VS unhappy. I suggest settling the matter by adding a simple, stolen from brail, IsDefined method to AspViewBase:
+
+/// &lt;summary&gt;
+        /// Determines whether the specified key is defined in the Properties collection.
+        /// &lt;/summary&gt;
+        /// &lt;param name="key"&gt;The key.&lt;/param&gt;
+        /// &lt;returns&gt;
+        /// 	&lt;c&gt;true&lt;/c&gt; if the specified key is defined; otherwise, &lt;c&gt;false&lt;/c&gt;.
+        /// &lt;/returns&gt;
+        protected bool IsDefined(string key)
+        {
+            return properties.Contains(key);
+        }</value>
+    </field>
+    <field name="created">
+      <value>1199980768000</value>
+    </field>
+    <field name="updated">
+      <value>1200983235000</value>
+    </field>
+    <field name="reporterName">
+      <value>pcbender</value>
+    </field>
+    <field name="updaterName">
+      <value>pcbender</value>
+    </field>
+    <field name="resolved">
+      <value>1282140031354</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

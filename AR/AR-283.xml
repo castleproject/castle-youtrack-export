@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>AR 2.1.2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>283</value>
+    </field>
+    <field name="summary">
+      <value>SessionScope.PerformDisposal don't account for ConfigurationSource.DefaultFlushType</value>
+    </field>
+    <field name="description">
+      <value>Using the SessionScopeModule the default FlushAction of the SessionScope is FlushAction.Config. According to how I understnd it, the flush behaviour shall be read from the config, which is the case for example in AbstractScope.SetFlushMode method, where the declared 'flush="Transaction"' is respected.
+The Flushmode of the used Session is "Never", which is totally right.
+Nevertheless, it is flushed on th end on the end of an http request because of the SessionScope.PerformDisposal method.</value>
+    </field>
+    <field name="created">
+      <value>1273210842000</value>
+    </field>
+    <field name="updated">
+      <value>1274789683000</value>
+    </field>
+    <field name="reporterName">
+      <value>leroy@castle</value>
+    </field>
+    <field name="updaterName">
+      <value>leroy@castle</value>
+    </field>
+    <field name="resolved">
+      <value>1274789640000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="When flush=&quot;transaction&quot; is set, the SessionScope has to flush the changes when it commits the implicit transaction of the scope.&#xD;&#xA;&#xD;&#xA;If I did not understand you correctly, please reopen the issue and attach your configuration and a code sample that illustrates the issue." created="1274789677000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1274789640000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1274789640000" />
+  </issue>
+</issues>

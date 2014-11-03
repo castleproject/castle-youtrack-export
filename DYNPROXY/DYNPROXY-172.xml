@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Usability Problem</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>172</value>
+    </field>
+    <field name="summary">
+      <value>Provide better exception when return return value of value type on intnercepted method not set</value>
+    </field>
+    <field name="description">
+      <value>if we have a method like:
+
+{{int Foo();}}
+
+and interceptor doesn't {{Proceed()}} and doesn't set {{invocation.ReturnValue}} user gets cryptic {{NullReferenceException}} See
+http://stackoverflow.com/questions/8241907/castledynamic-proxy-nullreferenceexception-when-calling-method-of-a-proxy
+for example.
+
+We should look into providing nice descriptive exception message here.
+
+This most likely concerns value type {{out}} and {{ref}} parameters</value>
+    </field>
+    <field name="created">
+      <value>1341175225635</value>
+    </field>
+    <field name="updated">
+      <value>1407823070818</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1396695025287</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Postponing into the future, since it's not a big issue and there's no easy and lightweight solution to that." created="1349762126324" />
+  </issue>
+</issues>

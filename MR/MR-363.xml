@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Performance Problem</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - NVelocity</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>363</value>
+    </field>
+    <field name="summary">
+      <value>Very high CPU utilizaition</value>
+    </field>
+    <field name="description">
+      <value>Create a new monorails project only home/index.rails and publish to a new server, then i test simulate 10 users and 5 seconds click, the w3wp.exe always &gt;90% .
+Every request against the server results in a high CPU peak on the webserver. With only 2-3 people surfing on the site at the same time there is a request load time for 7-8 seconds. With more people the request load is as much as 20-30 seconds.
+
+After some tests we have tried to create a new monorail project with only home/index.rails and found that the problem is still there. meaning it is likely that there is a problem with the monorail configuration. </value>
+    </field>
+    <field name="created">
+      <value>1194836888000</value>
+    </field>
+    <field name="updated">
+      <value>1244675738000</value>
+    </field>
+    <field name="reporterName">
+      <value>shine-chendy</value>
+    </field>
+    <field name="updaterName">
+      <value>shine-chendy</value>
+    </field>
+    <field name="resolved">
+      <value>1282145362401</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675700000" />
+  </issue>
+</issues>

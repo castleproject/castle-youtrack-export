@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>144</value>
+    </field>
+    <field name="summary">
+      <value>params argument not supported in constructor</value>
+    </field>
+    <field name="description">
+      <value>When using {{Castle.DynamicProxy.ProxyGenerator.CreateClassProxy }}
+params attribute is lost in proxy class.
+
+{code lang=java}
+public class C
+{
+    protected C(params object[] o) { }
+}
+{code}
+is created as 
+
+{code lang=java}
+public class CProxy
+{
+    protected CProxy(object[] o) { }
+}
+{code}
+
+This information can be obtained in 
+{{Castle.DynamicProxy.Generators.BaseProxyGenerator.GenerateConstructor }}
+with
+{code lang=java}
+lastArgIsParams =
+    baseConstructorParams[baseConstructorParams.Length - 1]
+    .GetCustomAttributes(typeof(ParamArrayAttribute), false).Length &gt; 0;
+{code}
+but I don't know how to propagate it to builder ;(</value>
+    </field>
+    <field name="created">
+      <value>1285938545729</value>
+    </field>
+    <field name="updated">
+      <value>1289699151458</value>
+    </field>
+    <field name="reporterName">
+      <value>rikard.pavelic</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1289699151458</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Can you explain how that is problematic?&#xA;Also please update Affected version so that we're on the same page as to which version you're referring to.&#xA;&#xA;I added a test that ensures this scenario is supported (i.e. - you can create such proxy, and it passes) http://github.com/castleproject/Castle.Core/commit/9b3c3929fdfe523c44a5a75e93ebe0f0648e4c05&#xA;" created="1285979709682" />
+    <comment author="rikard.pavelic" text="Maybe I'm doing something wrong, but if I do&#xD;&#xA;&#xD;&#xA;generator.CreateClassProxy(typeof(ClassWithParamsArrayCtorArg), new object[] { &quot;xxx&quot;, &quot;aaa&quot; });&#xD;&#xA;&#xD;&#xA;I get an Could not find a constructor that would match given arguments&#xD;&#xA;Reflection Activator works:&#xD;&#xA;&#xD;&#xA;Activator.CreateInstance(typeof(ClassWithParamsArrayCtorArg), new object[] { &quot;xxx&quot;, &quot;aaa&quot; });" created="1286066401244" />
+    <comment author="xtoff" text="I think you're confusing you class's constructor with {{generator.CreateClassProxy}}. {{CreteClassProxy}} takes arguments for your constructor as a normal array. And your ctor (I'm guessing) has a single argument - of type {{string[]}}. The fact that it's a params array is only a syntactic sugar for C# compiler.&#xA;&#xA;In order to get this to work you should call it like this:&#xA;&#xA;{{generator.CreateClassProxy(typeof(ClassWithParamsArrayCtorArg), new object[]{ new string[]{ &quot;xxx&quot;, &quot;aaa&quot; } }); }}" created="1286081418760" />
+    <comment author="rikard.pavelic" text="It actually has more arguments and last one is params.&#xD;&#xA;For classes:&#xD;&#xA;&#xD;&#xA;public class ClassWithParamsArrayCtorArgPlain&#xD;&#xA;{&#xD;&#xA;	public ClassWithParamsArrayCtorArgPlain(int x, string[] arguments) { }&#xD;&#xA;}&#xD;&#xA;public class ClassWithParamsArrayCtorArgParams&#xD;&#xA;{&#xD;&#xA;	public ClassWithParamsArrayCtorArgParams(int x, params string[] arguments) { }&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;This will work in reflection:&#xD;&#xA;Activator.CreateInstance(typeof(ClassWithParamsArrayCtorArgPlain), new object[] { 1, new[] { &quot;xx&quot;, &quot;aa&quot; } });&#xD;&#xA;Activator.CreateInstance(typeof(ClassWithParamsArrayCtorArgParams), new object[] { 1, new[] { &quot;xx&quot;, &quot;aa&quot; } });&#xD;&#xA;for arguments: int, string[]&#xD;&#xA;Activator.CreateInstance(typeof(ClassWithParamsArrayCtorArgParams), new object[] { 1, &quot;xx&quot;, &quot;aa&quot; });&#xD;&#xA;for arguments: int, string, string, ....&#xD;&#xA;&#xD;&#xA;This will not:&#xD;&#xA;Activator.CreateInstance(typeof(ClassWithParamsArrayCtorArgPlain), new object[] { 1, &quot;xx&quot;, &quot;aa&quot; });&#xD;&#xA;because it can't find (int, string[])&#xD;&#xA;&#xD;&#xA;Since DP uses Activator.CreateInstance to create instance of a proxy&#xD;&#xA;it would behave the same if the params attribute was preserved in proxy class. But it's not." created="1286093157979" />
+    <comment author="xtoff" text="No, it wouldn't. {{params}} is only a C# compiler thing. You have to wrap your arguments in a {{object[]}} to get this to work. {{Activator.CreateInstance}} works in C# because it also has {{params}} argument." created="1286095817276" />
+    <comment author="rikard.pavelic" text="I think you're missing the point.&#xD;&#xA;&#xD;&#xA;For this class&#xD;&#xA;&#xD;&#xA;public class ClassWithParamsArrayCtorArg&#xD;&#xA;{&#xD;&#xA;	public ClassWithParamsArrayCtorArg(int x, params string[] arguments) { }&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;This is generic .NET code (without special C# features):&#xD;&#xA;&#xD;&#xA;var type = typeof(ClassWithParamsArrayCtorArg);&#xD;&#xA;var obj = new object[] { 1, &quot;xxx&quot;, &quot;aaa&quot; };&#xD;&#xA;var inst = Activator.CreateInstance(type, obj);&#xD;&#xA;Assert.IsNotNull(inst);&#xD;&#xA;&#xD;&#xA;This works. It doesn't need to be casted to new object[]{ 1, new string[]{&quot;xxx&quot;,&quot;aaa&quot;}}&#xD;&#xA;It could be, but it doesn't need to be.&#xD;&#xA;&#xD;&#xA;This is C# code:&#xD;&#xA;&#xD;&#xA;var inst2 = Activator.CreateInstance(type, 1, &quot;xxx&quot;, &quot;aaa&quot;);&#xD;&#xA;Assert.IsNotNull(inst2);&#xD;&#xA;&#xD;&#xA;This works too, but only because of C# params support.&#xD;&#xA;&#xD;&#xA;What is required for this to work is ParamArrayAttribute on last argument in constructor.&#xD;&#xA;http://msdn.microsoft.com/en-us/library/system.paramarrayattribute.aspx&#xD;&#xA;" created="1286097951401" />
+    <comment author="xtoff" text="sorry I misread your point. Yeah - looks like you're right. Interesting - I didn't know that {{Activator}} supports that :)" created="1286101927119" />
+    <comment author="xtoff" text="OK, I'm gonna queue it up for vNext, unless you want to give at shot at implementing it?&#xA;" created="1286158903869" />
+    <comment author="rikard.pavelic" text="Here it is.&#xD;&#xA;I'm not very familiar with castle source, so I didn't try to integrate it too much.&#xD;&#xA;And I don't have NUnit, so I didn't write tests for it :)" created="1286201457026" />
+  </issue>
+</issues>

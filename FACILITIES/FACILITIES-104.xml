@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>NHibernate</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>104</value>
+    </field>
+    <field name="summary">
+      <value>NHibernateGenericDao does not return consistant references within a transaction conversation.</value>
+    </field>
+    <field name="description">
+      <value>When using a long running transaction to interact with an instance of the NhibernateGenericDao for multiple gets, finds and saves, the FindById method will not return repeatable changes made within the transaction as it calls the Load(type, id) method.
+
+If this was changed to the Get(type, id) method, then it will use the current transaction cache for the session, and provide a repeatable read for the transaction.
+
+One usefull extension to the interface would be to add a Reload(Type, object) method to call the Load(type, id) method on the session to reload an instance of an object. This can be used to handle optimistic locking issues etc.</value>
+    </field>
+    <field name="created">
+      <value>1219958640000</value>
+    </field>
+    <field name="updated">
+      <value>1396694785007</value>
+    </field>
+    <field name="reporterName">
+      <value>pdiddy</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396694784991</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="tehlike" text="Can you add a test case, Peter?" created="1225669815000" />
+  </issue>
+</issues>

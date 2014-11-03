@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>92</value>
+    </field>
+    <field name="summary">
+      <value>Proxy fails when creating a Proxy for certain Generic signatures</value>
+    </field>
+    <field name="description">
+      <value>I am trying to stub IUnityContainer (for Microsoft's Unity IoC) using Rhino Mocks but am getting a BadImageFormatException
+
+With a bit of investigation I have found that it is this signature 
+that is causing the problem: 
+
+
+   IUnityContainer RegisterType&lt;TFrom, TTo&gt;() where TTo : TFrom; 
+
+
+And I have isolated it to this test which doesn't require a reference 
+to Unity or RhinoMocks: 
+
+
+    [TestClass] 
+    public class UnitTest1 
+    { 
+        // Current implementation fails with: 
+        //  System.BadImageFormatException: An attempt was made to 
+load a program with an incorrect format. (Exception from HRESULT: 
+0x8007000B). 
+        [TestMethod] 
+        public void CreateInterfaceProxyWithoutTarget_GenericError() 
+        { 
+            Type type = typeof(ISomeInterface); 
+
+            StandardInterceptor interceptor = new StandardInterceptor(); 
+
+            List&lt;Type&gt; types = new List&lt;Type&gt;(); 
+
+            object proxy = 
+                new ProxyGenerator().CreateInterfaceProxyWithoutTarget 
+                         (type, new Type[] {}, interceptor); 
+        } 
+    } 
+
+
+    public interface ISomeInterface 
+    { 
+        ISomeInterface RegisterType&lt;TFrom, TTo&gt;() where TTo : TFrom; 
+    } 
+
+
+Thanks for looking at this!
+
+Some more info on this thread:
+http://groups.google.com/group/castle-project-users/browse_thread/thread/291499bdaf73071/64073c72d0b878e8</value>
+    </field>
+    <field name="created">
+      <value>1244422750000</value>
+    </field>
+    <field name="updated">
+      <value>1246361856000</value>
+    </field>
+    <field name="reporterName">
+      <value>marcos</value>
+    </field>
+    <field name="updaterName">
+      <value>marcos</value>
+    </field>
+    <field name="resolved">
+      <value>1244447340000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="fcs" text="Fixed on trunk, revision 5752" created="1244447394000" />
+    <comment author="fcs" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1244447340000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1246361820000" />
+  </issue>
+</issues>

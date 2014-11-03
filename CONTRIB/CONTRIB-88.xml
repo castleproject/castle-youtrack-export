@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>88</value>
+    </field>
+    <field name="summary">
+      <value>Add support for 'generated' attribute for properties</value>
+    </field>
+    <field name="description">
+      <value>Add support for the 'generated' attribute - never|insert|always for properties
+
+</value>
+    </field>
+    <field name="created">
+      <value>1196893321000</value>
+    </field>
+    <field name="updated">
+      <value>1407821976873</value>
+    </field>
+    <field name="reporterName">
+      <value>flcdrg</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1407821976853</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

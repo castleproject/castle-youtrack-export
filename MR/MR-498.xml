@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - AspView</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>498</value>
+    </field>
+    <field name="summary">
+      <value>Support reference assemblies configuration within a child node</value>
+    </field>
+    <field name="description">
+      <value>This patch allows also declaring reference assemblies configuration within a child node called "references" (like it was in older versions).</value>
+    </field>
+    <field name="created">
+      <value>1223800542000</value>
+    </field>
+    <field name="updated">
+      <value>1407823449890</value>
+    </field>
+    <field name="reporterName">
+      <value>felixg</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1407823449886</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="I'm cool with this change, but I'd like to have a test in place for this" created="1223805102000" />
+    <comment author="kenegozi" text="* '''Assignees''' set to ''Ken Egozi''.&#xD;&#xA;" created="1223805060000" />
+  </issue>
+</issues>

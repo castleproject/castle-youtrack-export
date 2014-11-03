@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Wcf</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>135</value>
+    </field>
+    <field name="summary">
+      <value>Added IErrorHandler support to WCF Facility</value>
+    </field>
+    <field name="description">
+      <value>Add the ability to register IErrorHandler components in the container and have them hooked up automatically like the behaviors do</value>
+    </field>
+    <field name="created">
+      <value>1263907021000</value>
+    </field>
+    <field name="updated">
+      <value>1279978331000</value>
+    </field>
+    <field name="reporterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="updaterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="resolved">
+      <value>1279978320000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="cneuwirt" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1279978320000" />
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1279978320000" />
+  </issue>
+</issues>

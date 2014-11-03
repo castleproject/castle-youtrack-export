@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Usability Problem</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>357</value>
+    </field>
+    <field name="summary">
+      <value>Provide some internal logging in Windsor to be able to see non-critical errors</value>
+    </field>
+    <field name="description">
+      <value>This is mostly useful for scenarios where an exception may occur but Windsor ends up ignoring it (like when resolving a non-mandatory property dependency fails)</value>
+    </field>
+    <field name="created">
+      <value>1348909002686</value>
+    </field>
+    <field name="updated">
+      <value>1407822257270</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1348919634455</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

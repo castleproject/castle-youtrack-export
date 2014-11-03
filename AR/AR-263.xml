@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>AR 2.0 Alpha1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>263</value>
+    </field>
+    <field name="summary">
+      <value>MySQL ColumnType = "StringClob" becomes nvarchar(255)</value>
+    </field>
+    <field name="description">
+      <value>After letting ActiveRecord create the database schema for MySQL, I noticed one of my columns, "postBody", is using type "varchar(255)", which is wrong and limiting.
+
+Here is some of my code, if it helps you:
+[Property(NotNull = true,  Default = "''", ColumnType = "StringClob")]
+public String postBody {get;set;}
+
+For your information, it is related to the bug using MSSQL (MS SQL Server 2005):
+http://support.castleproject.org/projects/AR/issues/view/AR-ISSUE-262</value>
+    </field>
+    <field name="created">
+      <value>1244920011000</value>
+    </field>
+    <field name="updated">
+      <value>1263009208000</value>
+    </field>
+    <field name="reporterName">
+      <value>diehard</value>
+    </field>
+    <field name="updaterName">
+      <value>diehard</value>
+    </field>
+    <field name="resolved">
+      <value>1263009180000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Use &#xA;[Property(NotNull = true, Default = &quot;''&quot;, Length=10000]" created="1263009205000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1263009180000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263009180000" />
+  </issue>
+</issues>

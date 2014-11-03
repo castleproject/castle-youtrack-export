@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generics</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>336</value>
+    </field>
+    <field name="summary">
+      <value>Failing resolution of proxied components implementing multiple generic service interfaces</value>
+    </field>
+    <field name="description">
+      <value>Resolution of a proxied open generic component implementing multiple generic service interfaces and registered with all these interfaces (e.g. ExtendedGenericServiceImpl&lt;T&gt; in the attached test case), leads to an exception.
+I've digged a little and the trouble seems to originate from DefaultGenericHandler.BuildSubHandler method, which creates a new component model having only the requested type as a service. This leads to have the first handler cached and used in following resolutions.
+This behavior can be observed in the test case I've attached, specifically has to be noted that while the test 
+"Dependency_resolution_generic_proxy_should_implement_all_services" fails because in TestComponent constructor I've forced the less specific service to be resolved first, the test "Generic_handler_caching_should_not_affect_resolution" does NOT fail because of there the most specific service is resolved first.
+
+This issue did not arose in a project using Windsor 2.5.2 version, until I updated to 3.0.
+
+This is my first issue submission for this project, so I'm sorry for any formal divergence from your standards and conventions, especially in the attached test case.
+
+
+Best regards,
+Andrea Montemaggio</value>
+    </field>
+    <field name="created">
+      <value>1336727187503</value>
+    </field>
+    <field name="updated">
+      <value>1407822257277</value>
+    </field>
+    <field name="reporterName">
+      <value>Andrea.Montemaggio</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1337842438378</value>
+    </field>
+    <field name="voterName">
+      <value>xtoff</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-875[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Andrea &#xA;&#xA;can you attach the test case again? I con't see it, I'm getting 404" created="1337384081673" />
+    <comment author="Andrea.Montemaggio" text="I tried to upload the test case again, but the result is the same 404 to me.&#xA;I've put that file here: http://www.stilnovo.ws/GenericMultipleServicesComponentResolutionTestCase.cs" created="1337424501930" />
+    <comment author="xtoff" text="thanks" created="1337425151842" />
+  </issue>
+</issues>

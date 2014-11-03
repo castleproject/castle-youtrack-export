@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>530</value>
+    </field>
+    <field name="summary">
+      <value>DiggStylePagination viewcomponent render elipsis between page 2 and 3</value>
+    </field>
+    <field name="description">
+      <value>When adjacents is set to 2 (default) and you are at page 5, the component will render: 1 2 ... 3 4 5 6 7 ... 11 12
+
+In this case, it should not render elipsis between 2 and 3.</value>
+    </field>
+    <field name="created">
+      <value>1240029115000</value>
+    </field>
+    <field name="updated">
+      <value>1242044474000</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>gauthier</value>
+    </field>
+    <field name="resolved">
+      <value>1242044460000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="gauthier" text="Attached mr-diggstylepagination-adjacent-bug.patch contains a simple test case and correction for review.&#xA;&#xA;I just added condition check before calling to WriteEllipsis call in the Render method" created="1240029232000" />
+    <comment author="roelofb" text="Applied in r5670" created="1242044471000" />
+    <comment author="gauthier" text="* '''Attachment''' mr-diggstylepagination-adjacent-bug.patch added.&#xD;&#xA;" created="1240029180000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1242044460000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1242044460000" />
+  </issue>
+</issues>

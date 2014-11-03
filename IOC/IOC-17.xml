@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>17</value>
+    </field>
+    <field name="summary">
+      <value>Resource tests are failing on .net 2.0</value>
+    </field>
+    <field name="description">
+      <value>FileResourceAndIncludes Fail : Castle.Windsor.Tests.Configuration2.IncludesTestCase.FileResourceAndIncludes : System.IO.IOException : A sintaxe do nome do arquivo, pasta ou nome do volume está incorreta.
+
+ 
+
+?
+
+ 
+
+at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy)
+
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+
+   at System.IO.File.OpenRead(String path)
+
+   at Castle.Model.Resource.FileResource.CreateStreamFromPath(String filePath, String basePath) in H:\Castler.NET\InversionOfControl\Castle.Model\Resource\FileResource.cs:line 106
+
+   at Castle.Model.Resource.FileResource.CreateStreamFromUri(Uri resource, String basePath) in H:\Castler.NET\InversionOfControl\Castle.Model\Resource\FileResource.cs:line 80
+
+   at Castle.Model.Resource.FileResource..ctor(Uri resource, String basePath) in H:\Castler.NET\InversionOfControl\Castle.Model\Resource\FileResource.cs:line 35
+
+   at Castle.Model.Resource.FileResourceFactory.Create(Uri uri, String basePath) in H:\Castler.NET\InversionOfControl\Castle.Model\Resource\FileResourceFactory.cs:line 42
+
+   at Castle.MicroKernel.SubSystems.Resource.DefaultResourceSubSystem.CreateResource(Uri uri, String basePath)
+
+   at Castle.MicroKernel.SubSystems.Resource.DefaultResourceSubSystem.CreateResource(String resource, String basePath)
+
+   at Castle.MicroKernel.SubSystems.Configuration.DefaultConfigurationStore.GetResource(String resourceUri, IResource resource)
+
+   at Castle.Windsor.Configuration.Interpreters.AbstractInterpreter.ProcessInclude(String uri, IConfigurationStore store)
+
+   at Castle.Windsor.Configuration.Interpreters.XmlInterpreter.ProcessInclude(XmlNode includeNode, IConfigurationStore store)
+
+   at Castle.Windsor.Configuration.Interpreters.XmlInterpreter.Deserialize(XmlNode section, IConfigurationStore store)
+
+   at Castle.Windsor.Configuration.Interpreters.XmlInterpreter.ProcessResource(IResource source, IConfigurationStore store)
+
+   at Castle.Windsor.WindsorContainer..ctor(IConfigurationInterpreter interpreter)
+
+   at Castle.Windsor.WindsorContainer..ctor(String xmlFile)
+
+   at Castle.Windsor.Tests.Configuration2.IncludesTestCase.FileResourceAndIncludes() in H:\Castler.NET\InversionOfControl\Castle.Windsor.Tests\Configuration2\IncludesTestCase.cs:line 41
+
+ 
+
+?
+
+ 
+
+FileResourceAndRelativeIncludes Fail : Castle.Windsor.Tests.Configuration2.IncludesTestCase.FileResourceAndRelativeIncludes : System.UriFormatException : Invalid URI: The hostname could not be parsed.
+
+ 
+
+?
+
+ 
+
+at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+
+   at System.Uri..ctor(String uriString)
+
+   at Castle.MicroKernel.SubSystems.Resource.DefaultResourceSubSystem.CreateResource(String resource, String basePath)
+
+   at Castle.MicroKernel.SubSystems.Configuration.DefaultConfigurationStore.GetResource(String resourceUri, IResource resource)
+
+   at Castle.Windsor.Configuration.Interpreters.AbstractInterpreter.ProcessInclude(String uri, IConfigurationStore store)
+
+   at Castle.Windsor.Configuration.Interpreters.XmlInterpreter.ProcessInclude(XmlNode includeNode, IConfigurationStore store)
+
+   at Castle.Windsor.Configuration.Interpreters.XmlInterpreter.Deserialize(XmlNode section, IConfigurationStore store)
+
+   at Castle.Windsor.Configuration.Interpreters.XmlInterpreter.ProcessResource(IResource source, IConfigurationStore store)
+
+   at Castle.Windsor.WindsorContainer..ctor(IConfigurationInterpreter interpreter)
+
+   at Castle.Windsor.WindsorContainer..ctor(String xmlFile)
+
+   at Castle.Windsor.Tests.Configuration2.IncludesTestCase.FileResourceAndRelativeIncludes() in H:\Castler.NET\InversionOfControl\Castle.Windsor.Tests\Configuration2\IncludesTestCase.cs:line 52
+
+ 
+
+?</value>
+    </field>
+    <field name="created">
+      <value>1129818094000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838869</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282141644948</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

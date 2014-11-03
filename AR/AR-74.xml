@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>74</value>
+    </field>
+    <field name="summary">
+      <value>ActiveRecordStarter Initialize method assembply overloads fail to add derived base types from config</value>
+    </field>
+    <field name="description">
+      <value>Found a bug in ActiveRecordStarter when loading AR types from assembly in the Initialize method.  The method failed to include base classes defined in the config derived from ActiveRecordBase (as you must when uning multiple databases).  The method only picked out types decorated with ActiveRecordAttribure and implied ActiveRecordBase as the only base type.  Initialize() overload with the Type[] constructor does not suffer from this since it expects you to include the base classes manually.  
+
+I've refactored the Assembly Initialize() overloads to remove code duplications and created a new method to extract types from the asembly where it includes a class if it is decorated OR defined in the IConfigurationSource.  
+
+Including all classes derived from ActiveRecordBase would probably fail sooner or later since someone is probablly going to greate a base hierarchy where you could have two or more levels derived classes in between ARBase and a class decorated with ARAttribute which I afraid will throw exceptions at some point.
+
+patch included.</value>
+    </field>
+    <field name="created">
+      <value>1157174756000</value>
+    </field>
+    <field name="updated">
+      <value>1162409798000</value>
+    </field>
+    <field name="reporterName">
+      <value>freyzor</value>
+    </field>
+    <field name="updaterName">
+      <value>freyzor</value>
+    </field>
+    <field name="resolved">
+      <value>1282136181182</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

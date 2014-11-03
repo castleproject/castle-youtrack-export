@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>1.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>1.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>33</value>
+    </field>
+    <field name="summary">
+      <value>uberinspectimp nullref exception</value>
+    </field>
+    <field name="description">
+      <value>line checks for nullness of abstractExecutor.Property.Name rather than abstractExecutor.Property
+
+throws nullref if using .Method
+
+patch attached, but it's crazy simple to fix.</value>
+    </field>
+    <field name="created">
+      <value>1234183278000</value>
+    </field>
+    <field name="updated">
+      <value>1287754586758</value>
+    </field>
+    <field name="reporterName">
+      <value>mattyr</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1234547100000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mattyr" text="couldn't attach a file (using safari -- is that a known issue in donjon?), here's the patch:&#xA;Index: UberspectImpl.cs&#xA;===================================================================&#xA;--- UberspectImpl.cs	(revision 5542)&#xA;+++ UberspectImpl.cs	(working copy)&#xA;@@ -235,7 +235,7 @@&#xA; 			{&#xA; 				get&#xA; 				{&#xA;-					if (abstractExecutor.Property.Name != null)&#xA;+					if (abstractExecutor.Property != null)&#xA; 					{&#xA; 						return abstractExecutor.Property.Name;&#xA; 					}&#xA;&#xA;" created="1234183528000" />
+    <comment author="jonorossi" text="Thanks Matthew, a small unit test to ensure this defect doesn't come back would be great if you get a chance." created="1234187392000" />
+    <comment author="mattyr" text="made another patch with simple test case" created="1234351086000" />
+    <comment author="jonorossi" text="Applied in r5549.&#xA;&#xA;I made a minor change to your test case to check the inner exception.&#xA;&#xA;Thanks." created="1234547151000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1234546320000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1234547100000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253854860000" />
+  </issue>
+</issues>

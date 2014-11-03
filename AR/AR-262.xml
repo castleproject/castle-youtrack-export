@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>AR 2.0 Alpha1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>262</value>
+    </field>
+    <field name="summary">
+      <value>nvarchar(max) for ColumnType = "StringClob"</value>
+    </field>
+    <field name="description">
+      <value>Using ColumnType = "StringClob" to avoid truncated text if it gets too long, but schema creation still output nvarchar(255), which is totally wrong and too small. It suppose to use the latest MS SQL standard, nvarchar(max) from MS SQL Server 2005 to future versions.
+
+For your information, ntext has been deprecated in MS SQL Server 2005.
+
+For more explanation:
+http://yorch.org/2009/05/sql-servers-nvarcharmax-on-castle-activerecord/
+
+Please include in your documentation on using ColumnType = "StringClob" because it was hard to find.</value>
+    </field>
+    <field name="created">
+      <value>1244917940000</value>
+    </field>
+    <field name="updated">
+      <value>1263009279000</value>
+    </field>
+    <field name="reporterName">
+      <value>diehard</value>
+    </field>
+    <field name="updaterName">
+      <value>diehard</value>
+    </field>
+    <field name="resolved">
+      <value>1263009240000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kayluhb" text="This still seems to be an issue with the release version of AR 2.0.  Has there been any resolution?" created="1250774592000" />
+    <comment author="xtoff" text="If you set columntype to string, and length to 10,000 will it work?" created="1250816432000" />
+    <comment author="xtoff" text="That's how NHibernate works. I'm not sure we want to try to override this in some way..." created="1262957486000" />
+    <comment author="xtoff" text="Use [Property(Length = 10000)]" created="1263009276000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1263009240000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263009240000" />
+    <comment author="diehard" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Using ColumnType = &quot;StringClob&quot; to avoid truncated text if it gets too long, but schema creation still output nvarchar(255), which is totally wrong and too small. It suppose to use the latest MS SQL standard, nvarchar(max) from MS SQL Server 2005 to future versions.&#xD;&#xA;&#xD;&#xA;For your information, ntext has been deprecated in MS SQL Server 2005.&#xD;&#xA;&#xD;&#xA;More explanation:&#xD;&#xA;http://yorch.org/2009/05/sql-servers-nvarcharmax-on-castle-activerecord/&#xD;&#xA;&#xD;&#xA;Please include in your documentation on using ColumnType = &quot;StringClob&quot; because it was hard to find.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Using ColumnType = &quot;StringClob&quot; to avoid truncated text if it gets too long, but schema creation still output nvarchar(255), which is totally wrong and too small. It suppose to use the latest MS SQL standard, nvarchar(max) from MS SQL Server 2005 to future versions.&#xD;&#xA;&#xD;&#xA;For your information, ntext has been deprecated in MS SQL Server 2005.&#xD;&#xA;&#xD;&#xA;For more explanation:&#xD;&#xA;http://yorch.org/2009/05/sql-servers-nvarcharmax-on-castle-activerecord/&#xD;&#xA;&#xD;&#xA;Please include in your documentation on using ColumnType = &quot;StringClob&quot; because it was hard to find.&#xD;&#xA;{quote}&#xD;&#xA;" created="1244917940001" />
+  </issue>
+</issues>

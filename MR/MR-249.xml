@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Scaffolding</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>249</value>
+    </field>
+    <field name="summary">
+      <value>Scaffold broken with run time error ProcessContents can only work with layout</value>
+    </field>
+    <field name="description">
+      <value>I tried to implement Scaffold today and realize this error, I have traced thru the code and realize controller.LayoutName is empty at the point of ProcessContents checking, thus the error is thrown. 
+
+</value>
+    </field>
+    <field name="created">
+      <value>1176764503000</value>
+    </field>
+    <field name="updated">
+      <value>1244675537000</value>
+    </field>
+    <field name="reporterName">
+      <value>goodwill</value>
+    </field>
+    <field name="updaterName">
+      <value>goodwill</value>
+    </field>
+    <field name="resolved">
+      <value>1282143798666</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675520000" />
+  </issue>
+</issues>

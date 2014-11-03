@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Remoting</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>73</value>
+    </field>
+    <field name="summary">
+      <value>GetUnproxiedInstance should not dive into SingleCall remoting proxies</value>
+    </field>
+    <field name="description">
+      <value>Using current trunk:
+
+DefaultComponentActivator.GetUnproxiedInstance dives into SingleCall remoting proxies. This happens because the following check yields true for remoting proxies:
+--
+IProxyTargetAccessor accessor = instance as IProxyTargetAccessor;
+--
+I'm not sure if this only happens when the services have been set up with RemotingFacility, neither have I tested other remoting lifecycles like singleton and client-activated. Anyway, right after this check, the proxy is gets "deproxied" with DynProxyGetTarget, which gives, in my case:
+
+Cannot load type Castle.Core.Interceptor.IProxyTargetAccessor, Castle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc.
+
+Server stack trace: 
+   at System.Runtime.Remoting.Messaging.MethodCall.ResolveMethod(Boolean bThrowIfNotResolved)
+   at System.Runtime.Remoting.Messaging.MethodCall..ctor(Object handlerObject, BinaryMethodCallMessage smuggledMsg)
+   at System.Runtime.Serialization.Formatters.Binary.BinaryMethodCall.ReadArray(Object[] callA, Object handlerObject)
+   at System.Runtime.Serialization.Formatters.Binary.ObjectReader.Deserialize(HeaderHandler handler, __BinaryParser serParser, Boolean fCheck, IMethodCallMessage methodCallMessage)
+   at System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Deserialize(Stream serializationStream, HeaderHandler handler, Boolean fCheck, IMethodCallMessage methodCallMessage)
+   at System.Runtime.Remoting.Channels.CoreChannel.DeserializeBinaryRequestMessage(String objectUri, Stream inputStream, Boolean bStrictBinding, TypeFilterLevel securityLevel)
+   at System.Runtime.Remoting.Channels.BinaryServerFormatterSink.ProcessMessage(IServerChannelSinkStack sinkStack, IMessage requestMsg, ITransportHeaders requestHeaders, Stream requestStream, IMessage&amp; responseMsg, ITransportHeaders&amp; responseHeaders, Stream&amp; responseStream)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData&amp; msgData, Int32 type)
+   at Castle.Core.Interceptor.IProxyTargetAccessor.DynProxyGetTarget()
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.GetUnproxiedInstance(Object instance) in e:\dev\ccnet\server\CastleProject\WorkingDirectory\InversionOfControl\Castle.MicroKernel\ComponentActivator\DefaultComponentActivator.cs:line 258
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.SetUpProperties(Object instance, CreationContext context) in e:\dev\ccnet\server\CastleProject\WorkingDirectory\InversionOfControl\Castle.MicroKernel\ComponentActivator\DefaultComponentActivator.cs:line 225
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context) in e:\dev\ccnet\server\CastleProject\WorkingDirectory\InversionOfControl\Castle.MicroKernel\ComponentActivator\DefaultComponentActivator.cs:line 50
+   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context) in e:\dev\ccnet\server\CastleProject\WorkingDirectory\InversionOfControl\Castle.MicroKernel\ComponentActivator\AbstractComponentActivator.cs:line 72
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context) in e:\dev\ccnet\server\CastleProject\WorkingDirectory\InversionOfControl\Castle.MicroKernel\Lifestyle\AbstractLifestyleManager.cs:line 36
+   at Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(CreationContext context) in e:\dev\ccnet\server\CastleProject\WorkingDirectory\InversionOfControl\Castle.MicroKernel\Lifestyle\SingletonLifestyleManager.cs:line 38
+   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context) in e:\dev\ccnet\server\CastleProject\WorkingDirectory\InversionOfControl\Castle.MicroKernel\Handlers\DefaultHandler.cs:line 46
+[cut away proprietary call-stack]</value>
+    </field>
+    <field name="created">
+      <value>1167903963000</value>
+    </field>
+    <field name="updated">
+      <value>1170609372000</value>
+    </field>
+    <field name="reporterName">
+      <value>grimace</value>
+    </field>
+    <field name="updaterName">
+      <value>grimace</value>
+    </field>
+    <field name="resolved">
+      <value>1282141170166</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

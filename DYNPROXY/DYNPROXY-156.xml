@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>156</value>
+    </field>
+    <field name="summary">
+      <value>Provide mechanism for interceptors to implement retry logic</value>
+    </field>
+    <field name="description">
+      <value>Currently interceptors have no way if doing retry logic.  Add a mechanism that lets interceptors control moving the invocation chain back so they can proceed more than once.</value>
+    </field>
+    <field name="created">
+      <value>1300674984112</value>
+    </field>
+    <field name="updated">
+      <value>1304828679589</value>
+    </field>
+    <field name="reporterName">
+      <value>ewhauser</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1304828652152</value>
+    </field>
+    <field name="voterName">
+      <value>BlairJ</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-734[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ewhauser" text="Link to pull request- https://github.com/castleproject/Castle.Core/pull/11" created="1300675841347" />
+    <comment author="xtoff" text="That's now implemented, without additional method." created="1304828679589" />
+  </issue>
+</issues>

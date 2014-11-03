@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>24</value>
+    </field>
+    <field name="summary">
+      <value>Using del in ActiveWriter Class Details deletes class from model</value>
+    </field>
+    <field name="description">
+      <value>When the designer for AR entities is used and the cursor is within one of the textfields of the "ActiveWriter Class Details" window, using the key "del" to delete on char in the textfield leads to deletion of the current selected class from the model.
+This behaviour occurs both when the window is floating or docked. There is no difference between classes created manually in the designer and those created automatically by dragging from a server explorer database.</value>
+    </field>
+    <field name="created">
+      <value>1174481394000</value>
+    </field>
+    <field name="updated">
+      <value>1407822033450</value>
+    </field>
+    <field name="reporterName">
+      <value>mzywitza</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1407822033428</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngines</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>119</value>
+    </field>
+    <field name="summary">
+      <value>Change GetFilterType implementation to only look for IViewFilters in the view assembly's referenced assemblies</value>
+    </field>
+    <field name="description">
+      <value>See here:
+
+http://groups.google.com/group/castle-project-users/browse_thread/thread/414f12f54bbac97c
+
+for complete description.
+
+Note: Introduced breaking change with this patch.  Assemblies referenced in AspView configuration section should use the assembly name now instead of the assembly file name.
+
+So, this will not work:
+
+&lt;reference assembly="MyAssembly.dll" /&gt;
+&lt;reference assembly="System.Core.dll" isFromGac="true"  /&gt;
+
+
+It should be replaced with this:
+
+&lt;reference assembly="MyAssembly" /&gt;
+&lt;reference assembly="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"  /&gt;</value>
+    </field>
+    <field name="created">
+      <value>1208775809000</value>
+    </field>
+    <field name="updated">
+      <value>1407823268896</value>
+    </field>
+    <field name="reporterName">
+      <value>chadly69</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1407823268893</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

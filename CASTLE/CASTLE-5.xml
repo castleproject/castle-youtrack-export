@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Update third party dependencies</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>5</value>
+    </field>
+    <field name="summary">
+      <value>upgrade to log4net 1.2.10.0</value>
+    </field>
+    <field name="description">
+      <value>log4net has released 1.2.10.0
+
+Should we upgrade? Do we need to worry about NHibernate playing nicely?</value>
+    </field>
+    <field name="created">
+      <value>1145989639000</value>
+    </field>
+    <field name="updated">
+      <value>1166027692000</value>
+    </field>
+    <field name="reporterName">
+      <value>dsellers</value>
+    </field>
+    <field name="updaterName">
+      <value>dsellers</value>
+    </field>
+    <field name="resolved">
+      <value>1282137231854</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngines</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>122</value>
+    </field>
+    <field name="summary">
+      <value>AspView: sections of nested view component are not recognized</value>
+    </field>
+    <field name="description">
+      <value>[Similar to http://support.castleproject.org/browse/CONTRIB-80]
+
+&lt;component:CaptureFor id="whatever"&gt;
+  &lt;component:SomeComponentWithSections&gt;
+    &lt;section:header&gt;...&lt;/section:header&gt;
+    &lt;section:footer&gt;...&lt;/section:footer&gt;
+    ...
+  &lt;/component:SomeComponentWithSections&gt;
+&lt;/component&gt;
+
+The sections are not recognized in SomeComponentWithSections (HasSections returns false for any of the sections)
+
+Similarly, nesting a component with sections within another component that has sections confuses the parser such that it emits some of the &lt;component&gt; and &lt;section&gt; tags.
+
+I consider this bug critical as components should be arbitrarily nestable.
+
+[see attached testcase patch]</value>
+    </field>
+    <field name="created">
+      <value>1209136321000</value>
+    </field>
+    <field name="updated">
+      <value>1407823243399</value>
+    </field>
+    <field name="reporterName">
+      <value>aloker</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1407823241161</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="a.loker" text="I updated the patch to the current trunk version." created="1220936647000" />
+    <comment author="a.loker" text="The bug appears in two situations:&#xA;a)A component nested in the body of another component&#xA;&lt;component:X&gt;&#xA;  body body body&#xA;  &lt;component:Y&gt;...&lt;/component:Y&gt;&#xA;  body body body&#xA;&lt;/component:X&gt;&#xA;&#xA;b) Nested component having a section with the same name of it's parent component in case the nested component is not nested within the section with that name:&#xA;&lt;component:X&gt;&#xA;  &lt;section:A&gt;...&lt;/section:A&gt;&#xA;  ...&#xA;  &lt;component:Y&gt;&#xA;    &lt;section:A&gt;...&lt;/section:A&gt;&#xA;  &lt;/component:Y&gt;&#xA;&lt;/component:X&gt;" created="1220937449000" />
+  </issue>
+</issues>

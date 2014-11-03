@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>101</value>
+    </field>
+    <field name="summary">
+      <value>Unable to create proxy for interface with Square Array paramter</value>
+    </field>
+    <field name="description">
+      <value>Bug surfaces when using Moq to mock an interface with a method that contains a square array parameter. 
+
+See this bug report http://code.google.com/p/moq/issues/detail?id=182
+Moq owner thinks it's a Dynamic Proxy issue, rather than a Moq one.
+
+
+&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+Moq issue copied below for reference.
+&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+
+What steps will reproduce the problem?
+
+trying to mock below interface.
+
+interface IArray
+{
+    object DoWork(double[,] array);
+}
+
+//then in test method
+
+var mock = new Mock&lt;IArray&gt;();
+var obj = mock.Object
+
+Exception is thrown on above line
+
+"Method 'DoWork' in type 'IArrayProxy424870d0979b484a9e7e44cc389f7ef3' from
+assembly 'DynamicProxyGenAssembly2, Version=0.0.0.0, Culture=neutral,
+PublicKeyToken=null' does not have an implementation"
+
+There are no issues if a normal or jagged array is used.
+eg,
+object DoWork(double[] array);
+object DoWork(double[][] array);
+
+
+What is the expected output? What do you see instead?
+
+Moq should be able to mock this interface, but see below exception and
+stack trace
+
+Test method IArrayTest threw exception:  System.TypeLoadException: Method
+'DoWork' in type 'IArray424870d0979b484a9e7e44cc389f7ef3' from assembly
+'DynamicProxyGenAssembly2, Version=0.0.0.0, Culture=neutral,
+PublicKeyToken=null' does not have an implementation..
+
+System.Reflection.Emit.TypeBuilder._TermCreateClass(Int32 handle, Module
+module)
+System.Reflection.Emit.TypeBuilder.CreateTypeNoLock()
+System.Reflection.Emit.TypeBuilder.CreateType()
+Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()
+Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode(Type
+proxyTargetType, Type[] interfaces, ProxyGenerationOptions options)
+Castle.DynamicProxy.DefaultProxyBuilder.CreateInterfaceProxyTypeWithoutTarget(Type
+interfaceToProxy, Type[] additionalInterfacesToProxy,
+ProxyGenerationOptions options)
+Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget(Type
+interfaceToProxy, Type[] additionalInterfacesToProxy,
+ProxyGenerationOptions options, IInterceptor[] interceptors)
+b__0()
+Moq.PexProtector.Invoke(Action action)
+InitializeInstance()
+get_Object()
+IArrayTest.IArrayTest() in C:\Projects\IArrayTest.cs: line 147
+
+
+What version of the product are you using? On what operating system?
+
+Using VS2008 SP1 on Win XP SP2.
+Moq 3.1.416.3
+Using MSTEST
+
+Please provide any additional information below.
+This look like a bug to me, unless its by design.
+I can't see any reason why square arrays as parameters can't be mocked.
+</value>
+    </field>
+    <field name="created">
+      <value>1246589084000</value>
+    </field>
+    <field name="updated">
+      <value>1246592673000</value>
+    </field>
+    <field name="reporterName">
+      <value>tedfordgif</value>
+    </field>
+    <field name="updaterName">
+      <value>tedfordgif</value>
+    </field>
+    <field name="resolved">
+      <value>1246592640000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="tedfordgif" text="Seems to be an issue with google openid login.&#xA;&#xA;I (dmmalam@gmail.com) used https://www.google.com/accounts/o8/id, to login,&#xA;but it logged in as ted Gifford???&#xA;&#xA;This issue was reported by dmmalam@gmail.com, not Ted Gifford.&#xA;Could admins change this, and also investigate broken google openid login." created="1246589497000" />
+    <comment author="xtoff" text="This is bug in Reflection.Emit. This has been raised on RhinoMocks list some time ago already.&#xA;See here:&#xA;http://support.microsoft.com/kb/960240&#xA;http://ayende.com/Blog/archive/2007/02/17/Emitting-Multi-Dimentional-Arrays.aspx&#xA;http://groups.google.com/group/RhinoMocks/browse_thread/thread/d8344b48f214492f&#xA;&#xA;There's nothing we can do I'm afraid, other than asking Microsoft to fix this in the next version of the framework :/&#xA;Yeah, this sucks." created="1246592649000" />
+    <comment author="xtoff" text="According to Microsoft this is fixed in .NET 4.0 (see https://connect.microsoft.com/VisualStudio/feedback/ViewFeedback.aspx?FeedbackID=472621)&#xA;" created="1247181112000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1246592640000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1246592640000" />
+  </issue>
+</issues>

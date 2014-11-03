@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>AR 2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>270</value>
+    </field>
+    <field name="summary">
+      <value>Setting Fetch = FetchEnum.Join on a HasMany property returns duplicate records</value>
+    </field>
+    <field name="description">
+      <value>Setting Fetch = FetchEnum.Join on a HasMany property returns duplicate records
+
+Steps to reproduce:
+
+Using the Castle.ActiveRecord.Tests-vs2008 project:
+
+Edit /Model/GenericModel/Blog.cs line 59 to read:
+
+   	[HasMany(Table="Posts", Fetch = FetchEnum.Join ,ColumnKey="blogid")]
+
+
+Create as new unit test class with the following code:
+
+namespace Castle.ActiveRecord.Tests
+{
+	using System;
+	using System.Text;
+	using System.Reflection;
+	using System.Collections.Generic;
+
+	using NUnit.Framework;
+
+	using Castle.ActiveRecord.Tests.Model.GenericModel;
+
+	using NHibernate.Criterion;
+
+	[TestFixture]
+	public class EricsTestCase : AbstractActiveRecordTest
+	{
+		[SetUp]
+		public void Setup()
+		{
+			ActiveRecordStarter.ResetInitializationFlag();
+			
+            ActiveRecordStarter.Initialize(GetConfigSource(),
+				typeof(Blog),
+				typeof(Post),
+				typeof(Company),
+				typeof(Award),
+				typeof(Employee),
+				typeof(Person));
+
+			Recreate();
+
+            Post.DeleteAll();
+            Blog.DeleteAll();
+            Company.DeleteAll();
+            Award.DeleteAll();
+            Employee.DeleteAll();
+		}
+
+
+        [Test]
+        public void EricsTest()
+        {
+            Blog[] blogs = Blog.FindAll();
+
+            Assert.IsNotNull(blogs);
+            Assert.AreEqual(0, blogs.Length);
+
+            Blog blog = new Blog();
+            blog.Name = "Test blog";
+            blog.Author = "Eric Bowen";
+
+            blog.Save();
+
+            var post = new Post(blog, "Post1", "Content1", "Category1");
+            post.Save();
+
+            blog.Posts.Add(post);
+
+            var post2 = new Post(blog, "Post2", "Content2", "Category2");
+            post2.Save();
+
+            blog.Posts.Add(post2);
+
+            blog.Save();
+
+            blogs = Blog.FindAll();
+
+            Assert.IsNotNull(blogs);
+            Assert.AreEqual(1, blogs.Length,"I think this is a bug...");
+
+        }
+
+	
+	}
+}
+
+</value>
+    </field>
+    <field name="created">
+      <value>1252517803000</value>
+    </field>
+    <field name="updated">
+      <value>1263023709000</value>
+    </field>
+    <field name="reporterName">
+      <value>Scrappydog</value>
+    </field>
+    <field name="updaterName">
+      <value>Scrappydog</value>
+    </field>
+    <field name="resolved">
+      <value>1263023640000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="This can be fixed by changing:&#xA;&#xA;blogs = Blog.FindAll();&#xA;&#xA;to:&#xA;&#xA;blogs = Blog.FindAll(DetachedCriteria.For&lt;Blog&gt;()&#xA;	.SetResultTransformer(CriteriaSpecification.DistinctRootEntity));&#xA;&#xA;&#xA;I'm not sure AR can, and should do this itself under the cover in a consistent manner.&#xA;&#xA;What should happen if you pass your own result transformer? What if you wanted duplicate root entities?&#xA;&#xA;I think this should be closed as ByDesign. Markus?" created="1263006671000" />
+    <comment author="mzywitza" text="No. When I call FindAll(), I can expect to get all objects only once." created="1263018413000" />
+    <comment author="xtoff" text="Fix works only for no-parameters overload of FindAll.&#xA;For all other overloads, it is the responsibility of the caller to pass criteria with appropriate IResultTransformer.&#xA;" created="1263023691000" />
+    <comment author="xtoff" text="fixed in r6608" created="1263023709000" />
+    <comment author="andypbwilson" text="Is this issue fixed yet?&#xA;We're using ActiveRecord 2.1.2, and we're still seeing the same behaviour with a simple model, i.e.:&#xA; if 2 records exist, each with the same child category, and there is only 1 category, then doing ActiveRecordMediator&lt;Category&gt;.FindAll() will return 2 categories (would obviously expect 1).&#xA;Changing the configuration from (Fetch = FetchEnum.Join) to (Lazy = true) fixes the issue, as detailed above." created="1271213676000" />
+    <comment author="xtoff" text="can you create a failing test?" created="1271229654000" />
+    <comment author="andypbwilson" text="Sure can, and thanks for the quick reply!.....&#xA;&#xA;Two classes, RepairCategory &amp; Repair, as follows:&#xA;&#xA;----------&#xA;&#xA;    [ActiveRecord(Cache = CacheEnum.ReadWrite, Lazy = true)]&#xA;    public class RepairCategory : Entity&#xA;    {&#xA;        public RepairCategory()&#xA;        {&#xA;            Repairs = new List&lt;Repair&gt;();&#xA;        }&#xA;&#xA;        [Property]&#xA;        [ValidateNonEmpty(&quot;error.repaircategory.name.mandatory&quot;)]&#xA;        public virtual string Name { get; set; }&#xA;&#xA;&#xA;        [DataMember]&#xA;        [HasMany(Inverse = true, Cache = CacheEnum.ReadWrite, Cascade = ManyRelationCascadeEnum.All, Fetch = FetchEnum.Join)]&#xA;//        [HasMany(Inverse = true, Cache = CacheEnum.ReadWrite, Cascade = ManyRelationCascadeEnum.All, Lazy = true)]&#xA;        public virtual IList&lt;Repair&gt; Repairs { get; set; }&#xA;&#xA;    }&#xA;&#xA;	&#xA;	&#xA;    [ActiveRecord]&#xA;    public class Repair : Entity&#xA;    {&#xA;        [Property]&#xA;        [ValidateNonEmpty(&quot;error.repair.code.mandatory&quot;)]&#xA;        public string Code{get;set;}&#xA;&#xA;        [BelongsTo(&quot;RepairCategoryId&quot;, Cascade = CascadeEnum.None)]&#xA;        public RepairCategory RepairCategory {get; set;}&#xA;&#xA;	}&#xA;	&#xA;	&#xA;----------&#xA;&#xA;And our test&#xA;	&#xA;----------&#xA;&#xA;    [TestFixture]&#xA;    public class RepairCategoryTest : AbstractDatabaseTest&#xA;    {&#xA;        private RepairCategory mechanical;&#xA;        private RepairCategory electrical;&#xA;&#xA;        [SetUp]&#xA;        public void SetUp()&#xA;        {&#xA;            mechanical = new RepairCategory { Name = &quot;Mechanical Repairs&quot; };&#xA;            electrical = new RepairCategory { Name = &quot;Electrical Repairs&quot; };&#xA;&#xA;            using(new TransactionScope(TransactionMode.Inherits))&#xA;            {&#xA;                ActiveRecordMediator.Save(mechanical);&#xA;                ActiveRecordMediator.Save(electrical);&#xA;            }  &#xA;        }&#xA;&#xA;        [Test]&#xA;        public void Each_RepairCategory_Retrieved_Once_when_multiple_items_per_category()&#xA;        {&#xA;            Repair housing = new Repair { Code = &quot;Replace Housing&quot;, RepairCategory = mechanical };&#xA;            Repair frame = new Repair { Code = &quot;Repair Frame&quot;, RepairCategory = mechanical };&#xA;            Repair solder = new Repair { Code = &quot;ReSolder CPU&quot;, RepairCategory = electrical };&#xA;&#xA;            using(new TransactionScope(TransactionMode.New))&#xA;            {&#xA;                ActiveRecordMediator.Save(housing);&#xA;                ActiveRecordMediator.Save(frame);&#xA;                ActiveRecordMediator.Save(solder);&#xA;            }&#xA;&#xA;            RepairCategory[] repairCategories = ActiveRecordMediator&lt;RepairCategory&gt;.FindAll();&#xA;&#xA;            Assert.IsNotNull(repairCategories);&#xA;            Assert.AreEqual(2, repairCategories.Length);&#xA;            Assert.Contains(mechanical, repairCategories);&#xA;            Assert.Contains(electrical, repairCategories);&#xA;        }&#xA;    }&#xA;&#xA;----------&#xA;&#xA;The above test passes if we swap the IList&lt;Repair&gt; Repairs line to be lazy loaded, fails if we leave it a a join.&#xA;" created="1271295119000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.1''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1263023640000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263023700000" />
+  </issue>
+</issues>

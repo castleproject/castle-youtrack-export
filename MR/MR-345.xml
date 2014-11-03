@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>345</value>
+    </field>
+    <field name="summary">
+      <value>BrailBase throws exception when trying to make use of the 404 Rescue view.</value>
+    </field>
+    <field name="description">
+      <value>Hi,
+
+With NVelocity it is possible to create a rescue called 404.vm which will automatically be rendered if the specified controller does not exist. If you try this wil Brail (with a view called rescues/404.brail), BrailBase will throw an "object reference not set to an instance of an object" exception in the InitialiseProperties method.
+
+The problem occurs because a number of properties on the Context and the EmptyController are null (such as the Flash). BrailBase does not check for nulls on these properties so an exception is thrown.
+
+I have fixed the issue in my local copy of the Trunk. Please find enclosed a patch file that includes 1) a modified version of BrailBase 2) a new test in BrailBugsTestCase and 3) a 404.brail rescue view in BrailTestSite.</value>
+    </field>
+    <field name="created">
+      <value>1192976378000</value>
+    </field>
+    <field name="updated">
+      <value>1244676904000</value>
+    </field>
+    <field name="reporterName">
+      <value>jez</value>
+    </field>
+    <field name="updaterName">
+      <value>jez</value>
+    </field>
+    <field name="resolved">
+      <value>1282144043666</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676900000" />
+  </issue>
+</issues>

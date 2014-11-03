@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>213</value>
+    </field>
+    <field name="summary">
+      <value>Castle.ActiveRecord.Framework.Config.ActiveRecordSectionHandler.Instance</value>
+    </field>
+    <field name="description">
+      <value>It would be nice to convert the Castle.ActiveRecord.Framework.Config.ActiveRecordSectionHandler.Instance static Property to a static Method instead, as this would make this into a factory method that could be used in spring.Net configuration.</value>
+    </field>
+    <field name="created">
+      <value>1208922195000</value>
+    </field>
+    <field name="updated">
+      <value>1232206747000</value>
+    </field>
+    <field name="reporterName">
+      <value>dcanning</value>
+    </field>
+    <field name="updaterName">
+      <value>dcanning</value>
+    </field>
+    <field name="resolved">
+      <value>1232206740000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="I won't change the Instance-property, but add a GetInstance()-method for that purpose instead." created="1232204653000" />
+    <comment author="mzywitza" text="Fixed in revision: 5521  &#xA;" created="1232206747000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1232204580000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1232206740000" />
+  </issue>
+</issues>

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>31</value>
+    </field>
+    <field name="summary">
+      <value>Databind Validate=true ignoring the FriendlyName property</value>
+    </field>
+    <field name="description">
+      <value>DataBind method appears to ignore the FriendlyNames property set on the model. FriendlyName is working fine with the ValidationRunner class.
+
+REF Email On Castle Project Users :
+
+Hi All,
+
+Quick question on the Castle.Components.Validator...
+
+When using the Validator in Monorail should I be using the
+ValidatorRunner class or the Validate=true method on the databind?
+
+Hammett's original blog post shows using the ValidatorRunner to do the
+validation but later posts with Monorail examples are using the
+Validate attribute on the controller action e.g:
+
+public void Create([DataBind("user", Validate=true)] User user)
+
+I was using the DataBind method but it appears to ignore the Friendly
+Names I have set on the model. I've changed to using the
+ValidationRunner class which does not have this problem but I'm not
+sure this is best practice.
+
+Anyone else come across the problem of DataBind ignoring the Friendly
+Name or care to share how they are using the Validator?
+
+I'm using a day old build from the trunk by the way.
+
+Cheers,
+
+Justin 
+</value>
+    </field>
+    <field name="created">
+      <value>1182332919000</value>
+    </field>
+    <field name="updated">
+      <value>1183679439000</value>
+    </field>
+    <field name="reporterName">
+      <value>justin</value>
+    </field>
+    <field name="updaterName">
+      <value>justin</value>
+    </field>
+    <field name="resolved">
+      <value>1282137543510</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

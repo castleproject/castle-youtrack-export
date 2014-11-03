@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>AutomaticTransactionManagement</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>132</value>
+    </field>
+    <field name="summary">
+      <value>Build of TransactionComponentInspector.cs failing after IOC-ISSUE-173 patch</value>
+    </field>
+    <field name="description">
+      <value>The applied patch to Castle.MicroKernel\ModelBuilder\Inspectors\MethodMetaInspector.cs for IOC-ISSUE-173 has caused Castle.Facilities.AutomaticTransactionManagement\TransactionComponentInspector.cs to fail with error CS0115:
+
+'Castle.Facilities.AutomaticTransactionManagement.TransactionComponentInspector.ProcessMeta(Castle.Core.ComponentModel, System.Reflection.MethodInfo[], Castle.Core.MethodMetaModel)': no suitable method found to override
+
+The second parameter should now be an IList&lt;MethodInfo&gt;</value>
+    </field>
+    <field name="created">
+      <value>1261126264000</value>
+    </field>
+    <field name="updated">
+      <value>1282597372375</value>
+    </field>
+    <field name="reporterName">
+      <value>ericbock</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1282597372375</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ericbock" text="I attached a patch that updates the TransactionComponentInspector.ProcessMeta signature to match that of MethodMetaInspector.  However, I didn't trace to see if there are any subclasses of TransactionComponentInspector that need to be updated as well.  I also didn't touch metaStore (of type TransactionMetaInfoStore) that gets called in the ProcessMeta method, instead just converting the IList&lt;MethodInfo&gt; back to the MethodInfo[] it expects." created="1261129844000" />
+    <comment author="ericbock" text="* '''Attachment''' transactioncomponentinspector.patch added.&#xD;&#xA;" created="1261129380000" />
+  </issue>
+</issues>

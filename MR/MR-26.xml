@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>beta 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>26</value>
+    </field>
+    <field name="summary">
+      <value>SmartDispatcher: support for enums</value>
+    </field>
+    <field name="description">
+      <value>Given this html snippet:
+
+&lt;input type="radio" id="type1" name="type" value="online"&gt; $HtmlHelper.LabelFor( "type1", "Online" )
+&lt;input type="radio" id="type2" name="type" value="offline"&gt; $HtmlHelper.LabelFor( "type2", "Offline" )
+
+It would be fantastic if the values could be converted into a enum on the controller side:
+
+public enum ParticipantMode
+{
+  Offline,
+  Online
+}
+
+public class MyController : SmartDispatcherController
+{
+  ..
+
+  public void MyAction(ParticipantMode type)
+  {
+    
+  }
+
+How to accomplish this? 
+
+if the argument is a System.Enum, use 
+
+System.Enum.Parse( typeof(argumentType), paramValue, true );
+
+Dont remember if the last argument should be true of false to be case insensitive.
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1121700708000</value>
+    </field>
+    <field name="updated">
+      <value>1127055272000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282143338557</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

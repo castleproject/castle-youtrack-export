@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>FactorySupport</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>82</value>
+    </field>
+    <field name="summary">
+      <value>Programmatic configuration for FactorySupport</value>
+    </field>
+    <field name="description">
+      <value>It would be nice if one could configure the FactorySupport facility in (imperative, C#) code, as opposed to XML.
+
+A patch providing this is included in the zip. I don't know where the facilities are normally configured imperatively, so I just added some methods to the facility - which may or may not be what is wanted. 
+
+There's also a testcase, anyway.</value>
+    </field>
+    <field name="created">
+      <value>1180358865000</value>
+    </field>
+    <field name="updated">
+      <value>1181416106000</value>
+    </field>
+    <field name="reporterName">
+      <value>mawi</value>
+    </field>
+    <field name="updaterName">
+      <value>mawi</value>
+    </field>
+    <field name="resolved">
+      <value>1282141185901</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

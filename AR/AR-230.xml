@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>230</value>
+    </field>
+    <field name="summary">
+      <value>BlogSample-vs2003 generates several errors in VS2008 and will not compile using RC3</value>
+    </field>
+    <field name="description">
+      <value>I have installed RC3 of the for Castle.  I downloaded the Getting Started example for ActiveRecord (BlogSample-vs2003).  I am using Visual Studio 2008 (VS2008) and it upgraded the project without errors.  When I attempted to compile I did get several mentions about missing *.resx files for the forms.  I deleted these from the project.  That seemed to take care of that and i was able to double click on the form name (ex:  PostManagement.cs) and see the form in the designer.  I then attempted to rebuild the Solution, but at that point I get the following error:  
+
+Error	1	The name 'CountAll' does not exist in the current context	C:\Documents and Settings\mmurphy\My Documents\Visual Studio 2008\Projects\ActiveRecordInitAndConfig\Models\User.cs	63	11	BlogSample-vs2003
+
+Is there a fix for this?</value>
+    </field>
+    <field name="created">
+      <value>1223894497000</value>
+    </field>
+    <field name="updated">
+      <value>1227397627000</value>
+    </field>
+    <field name="reporterName">
+      <value>mmurphy</value>
+    </field>
+    <field name="updaterName">
+      <value>mmurphy</value>
+    </field>
+    <field name="resolved">
+      <value>1227397560000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="Trunk contains an working VS2008 Project file for this sample" created="1227397611000" />
+    <comment author="mzywitza" text="Fixed in Trunk" created="1227397627000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1227397560000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1227397620000" />
+  </issue>
+</issues>

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>81</value>
+    </field>
+    <field name="summary">
+      <value>inspectionBehavior declaredonly does not work</value>
+    </field>
+    <field name="description">
+      <value>I create a component with inspectionBehavior="declaredonly", but it's property gets assigned by Windsor even if I do not explicitly specifiy in the config. Here is a little example
+
+{code lang=java}
+public interface ILogger
+{
+    void LogDebug(String message);
+}
+
+public class DevNullLogger : ILogger
+{
+    public static ILogger Instance = new DevNullLogger();
+
+    public void LogDebug(string message)
+    {
+    }
+}
+
+public class AlertManager
+{
+    private ILogger mLogger = DevNullLogger.Instance;
+
+    public ILogger Logger
+    {
+        get { return mLogger; }
+        set { mLogger = value; }
+    }
+
+    public void Alert(String message)
+    {
+        mLogger.LogDebug(String.Format("Alert send {0} message", message));
+    }
+}
+{code}
+I mapped this component in this way.
+
+{code lang=xml}
+&lt;component id="Log4NetLogger" service="IoC.ILogger, IoC" type="IoC.Log4netLogger, IoC" lifestyle="Singleton"&gt;
+&lt;/component&gt;
+&lt;component id="AlertManager" service="IoC.AlertManager, IoC" type="IoC.AlertManager, IoC" lifestyle="Transient" inspectionBehavior="declaredonly"&gt;
+   &lt;parameters&gt;
+   &lt;/parameters&gt;
+&lt;/component&gt;
+{code}
+I expect that the Logger property will be not touched by windsor, but at runtime I see that windsor assign the Log4Net logger to my alertManager instances.
+
+Alk.</value>
+    </field>
+    <field name="created">
+      <value>1182133668000</value>
+    </field>
+    <field name="updated">
+      <value>1304746239574</value>
+    </field>
+    <field name="reporterName">
+      <value>alkampfer</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142044073</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

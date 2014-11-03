@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>iBatis</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>96</value>
+    </field>
+    <field name="summary">
+      <value>Add helper methods IBatisNetFacility to make it easier to add &lt;sqlMap /&gt; nodes in code.</value>
+    </field>
+    <field name="description">
+      <value>In order to use the IBatisNetFacility you must properly configure the appropriate configuration nodes:
+
+ MutableConfiguration confignode = new MutableConfiguration("facility");
+ IConfiguration sqlMap = confignode.Children.Add(new MutableConfiguration("sqlMap"));
+ sqlMap.Attributes["id"] = "defaultSqlMapper";
+ sqlMap.Attributes["config"] = "sqlMap.config";
+ sqlMap.Attributes["connectionString"] = connectionString;
+ container.Kernel.ConfigurationStore.AddFacilityConfiguration("IBatisNet", confignode);
+
+The attached patch adds methods to the facility to make it easier to configure via code (i.e. in one line of code instead of in 6 lines using string properties):
+
+ IBatisNetFacility.AddToKernel("IBatisNetFacility", container.Kernel, new IBatisNetFacility(
+  "defaultSqlMapper",
+  "sqlMap.config",
+  false,
+  connectionString));
+
+ -or-
+
+ IBatisNetFacility facility = new IBatisNetFacility();
+ facility.AddSqlMap("sqlMapper1", sqlMapConfigPath, false, connectionString);
+ facility.AddSqlMap("sqlMapper2", sqlMapConfigPath, false, connectionString);
+ facility.AddSqlMap("sqlMapper3", sqlMapConfigPath, false, connectionString);
+ IBatisNetFacility.AddToKernel("IBatisNetFacility", container.Kernel, facility);
+
+without having to worry about the correct attributes on the MutableConfiguration object. The IBatisNetFacility.AddToKernel static method is necessary to ensure that the configuration nodes gets added to the kernel's ConfigurationStore before the facility does. Overriding the facility's Init method was too late in the lifecycle to attach the configuration.</value>
+    </field>
+    <field name="created">
+      <value>1193347312000</value>
+    </field>
+    <field name="updated">
+      <value>1241445280000</value>
+    </field>
+    <field name="reporterName">
+      <value>rgrabowski</value>
+    </field>
+    <field name="updaterName">
+      <value>rgrabowski</value>
+    </field>
+    <field name="resolved">
+      <value>1241445240000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="iBatis.Net is moving to attic" created="1241445263000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1241445240000" />
+    <comment author="ayenderahien" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1241445240000" />
+  </issue>
+</issues>

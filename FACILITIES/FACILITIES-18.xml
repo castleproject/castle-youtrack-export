@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>iBatis</value>
+    </field>
+    <field name="Fix versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>18</value>
+    </field>
+    <field name="summary">
+      <value>Update the iBatisNet Facility to newer iBatis version</value>
+    </field>
+    <field name="description">
+      <value>After working with the iBatisNet facility in a project I am porting I've come to need a newer version.  
+
+In the end I updated the facility to adhere to coding standards, and use the newer DomSqlMapBuilder.  The tests now run through Nunit-Gui and the build script.  I've additionally updated the facilities.build in my patch to include the facility.
+
+The one note which can be viewed as a negative is that the IBatis libraries I've included are of a non official subversion release (a new release build).  This was done to reflect the project from which I am porting using the new IBatis library and in turn the newer DTD's.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1128978153000</value>
+    </field>
+    <field name="updated">
+      <value>1162412065000</value>
+    </field>
+    <field name="reporterName">
+      <value>chadh</value>
+    </field>
+    <field name="updaterName">
+      <value>chadh</value>
+    </field>
+    <field name="resolved">
+      <value>1282140968323</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

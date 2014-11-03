@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>271</value>
+    </field>
+    <field name="summary">
+      <value>support open generic  components where implementing class has more generic parameters than the service but the missing ones can be somehow inferred</value>
+    </field>
+    <field name="description">
+      <value>in other words, for cases like this:
+{code}
+interface IFoo&lt;T&gt;{}
+
+class Foo&lt;T, TDto&gt;:IFoo&lt;T&gt; {}
+{code}
+we may have convention to provide {{TDto}} and as such be able to successfully resolve this component. An extension point should exist to allow users to do this.</value>
+    </field>
+    <field name="created">
+      <value>1295936107876</value>
+    </field>
+    <field name="updated">
+      <value>1407822257301</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1298785602835</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

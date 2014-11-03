@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Performance Problem</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>1.1.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>72</value>
+    </field>
+    <field name="summary">
+      <value>Poor performance while running in Debug Mode inside Visual Studio 2005</value>
+    </field>
+    <field name="description">
+      <value>I'm building a 2-tiers application using NHibernate which uses DynamicProxy 1.1.5.
+I'm experiencing performance issues at my application startup and I discovered that it is due to the DynamicProxy generation.
+I'm always using the method : CreateProxy(Type[] interfaces, IInterceptor interceptor, new object());
+For 10 types to generate in DEBUG MODE : it takes 27 seconds if I use one single ProxyGenerator instance and 11 seconds if I use a ProxyGenerator instance per type
+In NON DEBUG MODE : it takes respectively 2.5 seconds in the first case and 3 seconds in the second case (so no big difference in NON DEBUG MODE)
+
+Do you have an idea why performances are so BAD when running in Debug mode (which is very important while developping the application)  ?
+Is there a solution ?
+Thanks a lot for your help !
+</value>
+    </field>
+    <field name="created">
+      <value>1195799149000</value>
+    </field>
+    <field name="updated">
+      <value>1252290903000</value>
+    </field>
+    <field name="reporterName">
+      <value>gherold</value>
+    </field>
+    <field name="updaterName">
+      <value>gherold</value>
+    </field>
+    <field name="resolved">
+      <value>1252290840000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Is this issue still relevant? I don't have VS05 and was not able to reproduce this in VS08" created="1246633073000" />
+    <comment author="xtoff" text="As far as I know this is the bug in BCL and there is no workaround for it, so there is nothing we can do." created="1252290894000" />
+    <comment author="xtoff" text="With the help of Rob Redmond we found that the issue lies in TypeBuilder._TermCreateClass method, which is an unmanaged method.&#xA;&#xA;At this point only thing we can do is to create a reproduction and submit this to Microsoft Connect, and then hope they'll be willing to fix that for .NET 6.0" created="1253876785000" />
+    <comment author="perlun" text="I ran into this problem recently, and it was quite annoying. However, I did some testing now with Visual Studio 2010, beta 2.&#xA;&#xA;I recompiled my own projects with .NET 4.0, no change (still the bad performance).&#xA;&#xA;I recompiled DynamicProxy with .NET 4.0 as well, and *now* the bug is actually _gone_!!! Which is way cool, great news for us, since DynamicProxy plays a key role in this project.&#xA;&#xA;So, no need to wait for .NET 6.0; this will very likely work with the final version of .NET 4.0 as well." created="1268799329000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1252290840000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1252290900000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Closed'' to ''Closed''.&#xD;&#xA;" created="1252290900000" />
+    <comment author="xtoff" text="* '''Attachment''' issue.png added.&#xD;&#xA;" created="1253876580000" />
+  </issue>
+</issues>

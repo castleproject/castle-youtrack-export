@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>304</value>
+    </field>
+    <field name="summary">
+      <value>How you register components may stop injection working</value>
+    </field>
+    <field name="description">
+      <value>We wasted a bit of time on this yesterday – not sure if it is a bug or a knowledge gap on usage. 
+
+Both examples are shown below. If you register a component using example A, then injection never works for those components - Windsor will never inject that component to either a constructor parameter or public property – it always just injects a null object – even though the component is successfully registered in the container’s component graph. We placed breakpoints on constructors and inspection of the GraphNodes of the container indicates successful component registration, you can even call Resolve&lt;T&gt;() manually and the component resolves perfectly without error at that point - however the constructor properties and public properties are always null - injection does not work. No errors are thrown when registering/resolving, it registers successfully but injects as null. 
+
+If you register components using example B - everything works fine as expected (note that Lifestyle config has nothing to do with the problem).
+
+Is this a bug or expected and is it documented anywhere?
+
+
+
+Example A:
+Container.Register(
+   new ComponentRegistration(
+   new ComponentModel("IVideoContextv6", typeof(IVideoContext), typeof(Viostream.Domain.Contexts.VideoContext))));
+
+
+Example B:
+Container.Register(Component.For&lt;IVideoContext&gt;()
+  .ImplementedBy&lt;Viostream.Domain.Contexts.VideoContext&gt;().Named("IVideoContextv6")
+  .LifeStyle.PerWebRequest);
+
+
+
+
+  
+</value>
+    </field>
+    <field name="created">
+      <value>1312250050263</value>
+    </field>
+    <field name="updated">
+      <value>1312804130098</value>
+    </field>
+    <field name="reporterName">
+      <value>noofny</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1312804097708</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="The overload taking ComponentModel is now removed." created="1312804130083" />
+  </issue>
+</issues>

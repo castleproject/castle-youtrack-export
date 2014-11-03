@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>15</value>
+    </field>
+    <field name="summary">
+      <value>DynamicProxy doesn't work with Array-Generics</value>
+    </field>
+    <field name="description">
+      <value>I have an interface:
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ExampleTest
+{
+	public interface IGenerics
+	{
+		KeyValuePair&lt;int, string&gt;[] GetKeyPair();
+	}
+}
+
+And following Code
+
+
+	object proxy = _generator.CreateProxy(typeof(IGenerics), new Interceptor(), new object());
+	IGenerics p = (IGenerics)proxy;
+	KeyValuePair&lt;int, string&gt;[] pairs = p.GetKeyPair();
+
+
+on the last line I get following error:
+
+BadImageFormatException:
+A valid typedef or typeref token is expected to follow a ELEMENT_TYPE_CLASS or ELEMENT_TYPE_VALUETYPE.
+
+
+"KeyValuePair&lt;int, string&gt;[]" must be an array!!! If it isn't an array it works perfect!
+
+Can you help me to solve the Problem.
+
+
+THANK YOU
+
+Jürgen</value>
+    </field>
+    <field name="created">
+      <value>1133859860000</value>
+    </field>
+    <field name="updated">
+      <value>1162411366000</value>
+    </field>
+    <field name="reporterName">
+      <value>juergen</value>
+    </field>
+    <field name="updaterName">
+      <value>juergen</value>
+    </field>
+    <field name="resolved">
+      <value>1282140553291</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

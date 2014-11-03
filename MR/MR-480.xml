@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>480</value>
+    </field>
+    <field name="summary">
+      <value>JQueryValidator generate bad formed javascript for group definitions</value>
+    </field>
+    <field name="description">
+      <value>there was an error in JQueryConfiguration.MergeGroupDefinitionsWithOptions:
+
+it would render groups with a trailing comma, which choke IE and some javascript interpreters:
+
+groups: {Group1:'field1 field2',}
+
+the patch fix:
+- test case JQueryFormValidationTestCase.GroupValidationUsingScopes
+- JQueryConfiguration.MergeGroupDefinitionsWithOptions implementation</value>
+    </field>
+    <field name="created">
+      <value>1220777051000</value>
+    </field>
+    <field name="updated">
+      <value>1263055768000</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>gauthier</value>
+    </field>
+    <field name="resolved">
+      <value>1220878740000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="gauthier" text="updated the patch to r5307&#xA;&#xA;changed test case with verbatim string for better readability" created="1220792297000" />
+    <comment author="gauthier" text="issue with formatting in JQueryValidator.cs change fixed in mr-480.upto.r5307(formatting).patch" created="1220877490000" />
+    <comment author="roelofb" text="Applied in r5308" created="1220878786000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055740000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1220878740000" />
+  </issue>
+</issues>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>123</value>
+    </field>
+    <field name="summary">
+      <value>WCF Facility: Applying Contract Behavior Extension to WcfClientModel throws ArgumentException</value>
+    </field>
+    <field name="description">
+      <value>After updating to revision 5885 i started receiving an ArgumentException when applying ContractBehavior to WcfClientModel. The test case to reproduce the problem is attached in the patch. Test passes in revision 5599, but fails in 5885. 
+
+The stack trace is the following:
+System.ArgumentException: The value could not be added to the collection, as the collection already contains an item of the same type: 'Castle.Facilities.WcfIntegration.Tests.WcfClientFixture+StubContractBehavior'. This collection only supports one instance of each type.
+Parameter name: item
+at System.Collections.Generic.KeyedByTypeCollection`1.InsertItem(Int32 index, TItem item)
+at System.Collections.ObjectModel.Collection`1.Add(T item)
+at Castle.Facilities.WcfIntegration.WcfExplicitExtension.Install(ServiceEndpoint endpoint, IKernel kernel, IWcfBurden burden) in WcfExplicitExtension.cs: line 86
+at Castle.Facilities.WcfIntegration.ServiceEndpointExtensions.Castle.Facilities.WcfIntegration.IWcfExtensionVisitor.VisitEndpointExtension(IWcfEndpointExtension extension) in ServiceEndpointExtensions.cs: line 63
+at Castle.Facilities.WcfIntegration.WcfExplicitExtension.Accept(IWcfExtensionVisitor visitor) in WcfExplicitExtension.cs: line 134
+at Castle.Facilities.WcfIntegration.ServiceEndpointExtensions.Install(ICollection`1 extensions, IWcfBurden burden) in ServiceEndpointExtensions.cs: line 40
+at Castle.Facilities.WcfIntegration.AbstractChannelBuilder.ConfigureChannelFactory(ChannelFactory channelFactory, IWcfClientModel clientModel, IWcfBurden burden) in AbstractChannelBuilder.cs: line 53
+at Castle.Facilities.WcfIntegration.AbstractChannelBuilder`1.ConfigureChannelFactory(ChannelFactory channelFactory) in AbstractChannelBuilder.Generic.cs: line 68
+at Castle.Facilities.WcfIntegration.AbstractChannelBuilder`1.CreateChannelCreator(Type contract, M clientModel, Object[] channelFactoryArgs) in AbstractChannelBuilder.Generic.cs: line 135
+at Castle.Facilities.WcfIntegration.AbstractChannelBuilder`1.GetChannel(M clientModel, Type contract, Binding binding, String address) in AbstractChannelBuilder.Generic.cs: line 119
+at Castle.Facilities.WcfIntegration.AbstractChannelBuilder`1.GetChannel(Type contract, Binding binding, String address) in AbstractChannelBuilder.Generic.cs: line 90
+at Castle.Facilities.WcfIntegration.AbstractChannelBuilder.Castle.Facilities.WcfIntegration.IWcfEndpointVisitor.VisitBindingAddressEndpoint(BindingAddressEndpointModel model) in AbstractChannelBuilder.cs: line 120
+at Castle.Facilities.WcfIntegration.BindingAddressEndpointModel.Accept(IWcfEndpointVisitor visitor) in WcfEndpoint.cs: line 386
+at Castle.Facilities.WcfIntegration.WcfEndpointBase.Castle.Facilities.WcfIntegration.IWcfEndpoint.Accept(IWcfEndpointVisitor visitor) in WcfEndpoint.cs: line 102
+at Castle.Facilities.WcfIntegration.AbstractChannelBuilder.GetEndpointChannelCreator(IWcfEndpoint endpoint, Type contract) in AbstractChannelBuilder.cs: line 68
+at Castle.Facilities.WcfIntegration.AbstractChannelBuilder`1.GetChannelCreator(M clientModel, Type contract, ref IWcfBurden burden) in AbstractChannelBuilder.Generic.cs: line 63
+at Castle.Facilities.WcfIntegration.WcfClientActivator.CreateChannelCreatorInternal&lt;M&gt;(IKernel kernel, IWcfClientModel clientModel, ComponentModel model, ref IWcfBurden burden) in WcfClientActivator.cs: line 229
+at Castle.Facilities.WcfIntegration.WcfClientActivator.CreateChannelCreator(IKernel kernel, ComponentModel model, IWcfClientModel clientModel, ref IWcfBurden burden) in WcfClientActivator.cs: line 221
+at Castle.Facilities.WcfIntegration.WcfClientActivator.GetChannelCreator(CreationContext context, ref IWcfBurden burden) in WcfClientActivator.cs: line 121
+at Castle.Facilities.WcfIntegration.WcfClientActivator.Instantiate(CreationContext context) in WcfClientActivator.cs: line 75
+at Castle.Facilities.WcfIntegration.WcfClientActivator.InternalCreate(CreationContext context) in WcfClientActivator.cs: line 67
+at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context) in d:\Projects\OSS\castle\InversionOfControl\Castle.MicroKernel\ComponentActivator\AbstractComponentActivator.cs: line 72
+at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context) in d:\Projects\OSS\castle\InversionOfControl\Castle.MicroKernel\Lifestyle\AbstractLifestyleManager.cs: line 39
+at Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(CreationContext context) in d:\Projects\OSS\castle\InversionOfControl\Castle.MicroKernel\Lifestyle\SingletonLifestyleManager.cs: line 40
+at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context) in d:\Projects\OSS\castle\InversionOfControl\Castle.MicroKernel\Handlers\DefaultHandler.cs: line 53
+at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments) in d:\Projects\OSS\castle\InversionOfControl\Castle.MicroKernel\DefaultKernel.cs: line 905
+at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service) in d:\Projects\OSS\castle\InversionOfControl\Castle.MicroKernel\DefaultKernel.cs: line 887
+at Castle.MicroKernel.DefaultKernel.Resolve(String key, Type service) in d:\Projects\OSS\castle\InversionOfControl\Castle.MicroKernel\DefaultKernel_Resolve.cs: line 296
+at Castle.Windsor.WindsorContainer.Resolve(String key, Type service) in d:\Projects\OSS\castle\InversionOfControl\Castle.Windsor\WindsorContainer.cs: line 733
+at Castle.Windsor.WindsorContainer.Resolve&lt;T&gt;(String key) in d:\Projects\OSS\castle\InversionOfControl\Castle.Windsor\WindsorContainer.cs: line 821
+at Castle.Facilities.WcfIntegration.Tests.WcfClientFixture.WillApplyContractBehaviors() in WcfClientFixture.cs: line 416</value>
+    </field>
+    <field name="created">
+      <value>1248761622000</value>
+    </field>
+    <field name="updated">
+      <value>1248767653000</value>
+    </field>
+    <field name="reporterName">
+      <value>vitalya</value>
+    </field>
+    <field name="updaterName">
+      <value>vitalya</value>
+    </field>
+    <field name="resolved">
+      <value>1248767640000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="vitalya" text="* '''Attachment''' applying_contract_behavior_ test.patch added.&#xD;&#xA;" created="1248761640000" />
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1248767160000" />
+    <comment author="cneuwirt" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1248767640000" />
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1248767640000" />
+  </issue>
+</issues>

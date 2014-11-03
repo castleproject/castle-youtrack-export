@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>128</value>
+    </field>
+    <field name="summary">
+      <value>ColumnType="Some ICompositeUserType derived type' generates invalid mapping</value>
+    </field>
+    <field name="description">
+      <value>If you use a ColumnType that implements ICompositeUserType the following error message NH raises 'property mapping has wrong number of columns'
+
+In case of the classical Money (Amount and Currency) example you would expect a mapping like this:
+&lt;property name="Price" access="property" type="MoneyType,Model.Assembly"&gt;
+  &lt;column name="Amount"/&gt;  or &lt;column name="Price_Amount"/&gt;
+  &lt;column name="Currency"/&gt; or &lt;column name="Price_Currency"/&gt;
+&lt;/property&gt;
+
+currently the following mapping is generated:
+&lt;property name="Price" access="property" type="MoneyType,Model.Assembly"&gt;
+ &lt;column name="Price"/&gt;
+&lt;/property&gt;</value>
+    </field>
+    <field name="created">
+      <value>1171376318000</value>
+    </field>
+    <field name="updated">
+      <value>1177356766000</value>
+    </field>
+    <field name="reporterName">
+      <value>roelofb</value>
+    </field>
+    <field name="updaterName">
+      <value>roelofb</value>
+    </field>
+    <field name="resolved">
+      <value>1282136282198</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

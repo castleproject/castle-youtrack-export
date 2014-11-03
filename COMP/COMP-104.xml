@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>104</value>
+    </field>
+    <field name="summary">
+      <value>CachedValidationRegistry does not fetch validators of DynamicProxies</value>
+    </field>
+    <field name="description">
+      <value>CachedValidationRegistry does not fetch validators of DynamicProxies 
+
+See http://groups.google.com/group/castle-project-users/browse_thread/thread/8c09fe3deffdc094  for details</value>
+    </field>
+    <field name="created">
+      <value>1251773537000</value>
+    </field>
+    <field name="updated">
+      <value>1253327372000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1253327340000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Forgot to include a class!" created="1251814911000" />
+    <comment author="jonorossi" text="Applied in r5982. Thanks." created="1253327369000" />
+    <comment author="jsimons" text="* '''Attachment''' CachedValidationRegistry2.patch added.&#xD;&#xA;" created="1251814860000" />
+    <comment author="jsimons" text="* '''Attachment''' CachedValidationRegistry.patch added.&#xD;&#xA;" created="1251773580000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1253327340000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253327340000" />
+  </issue>
+</issues>

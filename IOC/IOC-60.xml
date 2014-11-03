@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>60</value>
+    </field>
+    <field name="summary">
+      <value>Custom Parameters do not play a role in resolving chains</value>
+    </field>
+    <field name="description">
+      <value>
+Two service:
+IClock / FakeClock (custom parameter: currentDate = 2007-01-01)
+IService / ServiceImp -&gt; depends on IClock
+
+Trying to resolve a IClock from IService will result in a failure, because it can't find the currentDate.
+Turn out that it is only searching the _root_ handler, and not the current one.
+</value>
+    </field>
+    <field name="created">
+      <value>1168810609000</value>
+    </field>
+    <field name="updated">
+      <value>1169834102000</value>
+    </field>
+    <field name="reporterName">
+      <value>ayenderahien</value>
+    </field>
+    <field name="updaterName">
+      <value>ayenderahien</value>
+    </field>
+    <field name="resolved">
+      <value>1282141994901</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

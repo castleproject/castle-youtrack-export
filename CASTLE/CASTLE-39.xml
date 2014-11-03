@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>VS.Net Wizards</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>39</value>
+    </field>
+    <field name="summary">
+      <value>MonoRail Project Wizard references wrong version of log4net for project creation</value>
+    </field>
+    <field name="description">
+      <value>Create a monorail project with AR Integration. The resulting project references log4net assembly version v1.2.1.40796. 
+
+When the project is started the following runtime error happens:
+
+Could not load file or assembly 'log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
+
+Workaround: delete the log4net reference from the web project, clean the solution, and then add a reference to version 1.2.10.0 of log4net.</value>
+    </field>
+    <field name="created">
+      <value>1190825989000</value>
+    </field>
+    <field name="updated">
+      <value>1191327682000</value>
+    </field>
+    <field name="reporterName">
+      <value>waynequinliva</value>
+    </field>
+    <field name="updaterName">
+      <value>waynequinliva</value>
+    </field>
+    <field name="resolved">
+      <value>1282137352885</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

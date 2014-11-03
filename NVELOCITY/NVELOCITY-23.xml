@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>1.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>23</value>
+    </field>
+    <field name="summary">
+      <value>Exception Handling And Logging</value>
+    </field>
+    <field name="description">
+      <value>First attempt at refactoring exception handling and logging.</value>
+    </field>
+    <field name="created">
+      <value>1199613987000</value>
+    </field>
+    <field name="updated">
+      <value>1407823014079</value>
+    </field>
+    <field name="reporterName">
+      <value>simoncropp</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1396694876571</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="I appreciate your efforts" created="1254102443000" />
+    <comment author="jonorossi" text="My comment was chopped really short for some reason.&#xA;&#xA;I appreciate your efforts, but I cannot easily review a 163KB patch, especially since the codebase has moved on a little. I am happy to work with you if you want to provide smaller patches." created="1254103166000" />
+    <comment author="jonorossi" text="* '''Version Affected''' set to ''Future''.&#xD;&#xA;" created="1254102480000" />
+  </issue>
+</issues>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>157</value>
+    </field>
+    <field name="summary">
+      <value>Allow fluent registration to include interfaces and abstract types</value>
+    </field>
+    <field name="description">
+      <value>Allow interfaces and abstract types to be included in the fluent registration to allow proxies and other intercepted components to be registered</value>
+    </field>
+    <field name="created">
+      <value>1244789917000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838901</value>
+    </field>
+    <field name="reporterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1263210480000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="what's the status of this?" created="1261013269000" />
+    <comment author="xtoff" text="This seems to be working, can this issue be closed?&#xA;" created="1261551248000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1263210480000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263210480000" />
+    <comment author="cneuwirt" text="* '''Type''' changed from ''Bug'' to ''Improvement''.&#xD;&#xA;" created="1244789940000" />
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1244790060000" />
+  </issue>
+</issues>

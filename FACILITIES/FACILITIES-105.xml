@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>105</value>
+    </field>
+    <field name="summary">
+      <value>Anyone interested in event based context logging properties</value>
+    </field>
+    <field name="description">
+      <value>Hi guys
+I have a need to utilise event based logging within log4net (see
+http://logging.apache.org/log4net/release/manual/contexts.html).
+
+The problem is that as far as I can tell, the Logging Facility in
+Castle doesn't allow one to define properties at this level of scope.
+Please let me know if this is not the case.
+
+I have been looking through the implementation details of Logging
+Facility and I think that it wouldn't be that difficult to add the
+functionality in. I think that the functionality would go really well
+in Castle.Core.Logging.IExtendedLogger. And it shouldn't be a breaking
+change (unless someone has implemented their own IExtendedLogger - in
+which case they would need to implement the additional event based
+context properties on the interface).
+
+Now what I was wondering is if anyone would be interested in myself
+(or if someone can do it in a timely fashion as I have a need for it
+directly) adding this functionality into Castle itself.
+
+The alternative is that I just create a class which inherits from
+ExtendedXYZFactory. But this implementation isn't as clean and it
+doesn't help Castle move forward if this functionality is wanted in
+Castle itself.
+
+Let me know
+Anthony
+
+Please note it says that my name is "Mark Holtman". I don't know where it got this from but that is not my name or email address. OpenId must be playing up...
+
+
+See the following for posible implementation details:
+
+Ok guys here is what I was thinking.
+
+The concept of “event based context logging properties” is that here are a set of custom properties that are only applicable for this individual log entry. 
+
+For instance if I had the below scenario I would only want the custom properties being set for the middle log entry:
+….
+Logger.Error("Test error");   //Normal log entry
+…. 
+Logger.Error("Test error", ….);   //Need to set some custom properties
+…. 
+Logger.Error("Test error");   //Normal log entry
+….
+
+These custom properties may be the state of given object or a custom log type id that means something to us or custom details of the user who is currently logged in (not just their user name).
+
+Now a fair amount of the pluming required to do this currently already exists, for instance IContextProperties is what one would use as the interface for the new event properties class. 
+
+Next, because the way in which the event based properties would “normal” work, there is no difference between event properties from one logger to the next. Specifically, GlobalContextProperties needs to be implemented differently for each logger because when a property is set it goes directly into what ever global cache the logging implementation uses – meaning it is actioned on as soon as the property is added to GlobalContextProperties. Where as, event based properties are only actioned on when a log entry is made, not when the are added to the new EventContextProperties object. Hence I was thinking that there would only be the 1 event based property class (EventContextProperties) which could be used by all implementations and EventContextProperties would be very simple and only implement a basic key/value structure of some sort.
+
+Hence the way in which I was thinking one would actually use event based properties is like this:
+
+….
+Logger.Error("Test error");   //Normal log entry
+…. 
+IContextProperties tempProperties = ….; //Where you get the instance of EventContextProperties for the moment is not that important
+
+tempProperties[“CustomProperty1”] = “Custom Value 1”; 
+tempProperties[“CustomProperty2”] = “Custom Value 2”; 
+tempProperties[“CustomProperty3”] = “Custom Value 3”;
+
+Logger.Error("Test error", tempProperties);   //Need to set some custom properties
+…. 
+Logger.Error("Test error");   //Normal log entry
+….
+
+From the above you can see that my initial thoughts is to make a slight modification to the IExtendedLogger interface to include the ability for users to pass in IContextProperties (which is what EventContextProperties inherits from) as a parameter. 
+
+Now the methods that allow for IContextProperties to be passed in would need to be different from logging implementation to looking implementation. If the logger doesn’t have the ability to implement event based properties, then either they throw an exception if that overload is used or they only throw an exception for those situations where IContextProperties contains values (I think the former would be the better more reliable scenario). Or maybe it could just ignore the properties all together if a setting in the config is set but by default it would throw an exception. In situations where it is possible to implement event based properties something like the following would occur (note this is what would be in the log4net implementation):
+
+public void Error(string message, IContextProperties eventProperties)
+{
+    LoggingEvent loggingEvent = new LoggingEvent(declaringType, Logger.Repository, Logger.Name, Level.Error, message, null);
+
+    foreach (….)     
+         loggingEvent.Properties[eventProperty.Key] = eventProperty.Value;
+
+    Logger.Log(loggingEvent);
+}
+
+
+As you can see from the above, log4net implements event based looking through the use of LoggingEvent. Also look at the above we may need to use a interface that implements IEnumerable so we can loop through the EventContextProperties pairs.
+
+Lastly, as for where we get an instance of EventContextProperties from, I was thinking that it could be something like the below. If this is done, it helps abstract way the creation of EventContextProperties and means that for extensibility reasons, different loggers could implement different versions if required (although I couldn’t see why this would occur).
+
+….
+Logger.Error("Test error");   //Normal log entry
+…. 
+IContextProperties tempProperties = Logger.GetEventContextProperties();
+tempProperties[“CustomProperty1”] = “Custom Value 1”;
+…
+
+Logger.Error("Test error", tempProperties);   //Need to set some custom properties
+…. 
+
+Hope that helps clear up what I was thinking.
+Cheers
+Anthony
+
+</value>
+    </field>
+    <field name="created">
+      <value>1225334906000</value>
+    </field>
+    <field name="updated">
+      <value>1241445249000</value>
+    </field>
+    <field name="reporterName">
+      <value>mholtman</value>
+    </field>
+    <field name="updaterName">
+      <value>mholtman</value>
+    </field>
+    <field name="resolved">
+      <value>1241444640000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="there seems to be no interest in this" created="1241444666000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1241444640000" />
+    <comment author="ayenderahien" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1241445240000" />
+    <comment author="mholtman" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Hi guys&#xD;&#xA;I have a need to utilise event based logging within log4net (see&#xD;&#xA;http://logging.apache.org/log4net/release/manual/contexts.html).&#xD;&#xA;&#xD;&#xA;The problem is that as far as I can tell, the Logging Facility in&#xD;&#xA;Castle doesn't allow one to define properties at this level of scope.&#xD;&#xA;Please let me know if this is not the case.&#xD;&#xA;&#xD;&#xA;I have been looking through the implementation details of Logging&#xD;&#xA;Facility and I think that it wouldn't be that difficult to add the&#xD;&#xA;functionality in. I think that the functionality would go really well&#xD;&#xA;in Castle.Core.Logging.IExtendedLogger. And it shouldn't be a breaking&#xD;&#xA;change (unless someone has implemented their own IExtendedLogger - in&#xD;&#xA;which case they would need to implement the additional event based&#xD;&#xA;context properties on the interface).&#xD;&#xA;&#xD;&#xA;Now what I was wondering is if anyone would be interested in myself&#xD;&#xA;(or if someone can do it in a timely fashion as I have a need for it&#xD;&#xA;directly) adding this functionality into Castle itself.&#xD;&#xA;&#xD;&#xA;The alternative is that I just create a class which inherits from&#xD;&#xA;ExtendedXYZFactory. But this implementation isn't as clean and it&#xD;&#xA;doesn't help Castle move forward if this functionality is wanted in&#xD;&#xA;Castle itself.&#xD;&#xA;&#xD;&#xA;Let me know&#xD;&#xA;Anthony&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Hi guys&#xD;&#xA;I have a need to utilise event based logging within log4net (see&#xD;&#xA;http://logging.apache.org/log4net/release/manual/contexts.html).&#xD;&#xA;&#xD;&#xA;The problem is that as far as I can tell, the Logging Facility in&#xD;&#xA;Castle doesn't allow one to define properties at this level of scope.&#xD;&#xA;Please let me know if this is not the case.&#xD;&#xA;&#xD;&#xA;I have been looking through the implementation details of Logging&#xD;&#xA;Facility and I think that it wouldn't be that difficult to add the&#xD;&#xA;functionality in. I think that the functionality would go really well&#xD;&#xA;in Castle.Core.Logging.IExtendedLogger. And it shouldn't be a breaking&#xD;&#xA;change (unless someone has implemented their own IExtendedLogger - in&#xD;&#xA;which case they would need to implement the additional event based&#xD;&#xA;context properties on the interface).&#xD;&#xA;&#xD;&#xA;Now what I was wondering is if anyone would be interested in myself&#xD;&#xA;(or if someone can do it in a timely fashion as I have a need for it&#xD;&#xA;directly) adding this functionality into Castle itself.&#xD;&#xA;&#xD;&#xA;The alternative is that I just create a class which inherits from&#xD;&#xA;ExtendedXYZFactory. But this implementation isn't as clean and it&#xD;&#xA;doesn't help Castle move forward if this functionality is wanted in&#xD;&#xA;Castle itself.&#xD;&#xA;&#xD;&#xA;Let me know&#xD;&#xA;Anthony&#xD;&#xA;&#xD;&#xA;Please note it says that my name is &quot;Mark Holtman&quot;. I don't know where it got this from but that is not my name or email address. OpenId must be playing up...&#xD;&#xA;{quote}&#xD;&#xA;" created="1225335480000" />
+    <comment author="mholtman" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Hi guys&#xD;&#xA;I have a need to utilise event based logging within log4net (see&#xD;&#xA;http://logging.apache.org/log4net/release/manual/contexts.html).&#xD;&#xA;&#xD;&#xA;The problem is that as far as I can tell, the Logging Facility in&#xD;&#xA;Castle doesn't allow one to define properties at this level of scope.&#xD;&#xA;Please let me know if this is not the case.&#xD;&#xA;&#xD;&#xA;I have been looking through the implementation details of Logging&#xD;&#xA;Facility and I think that it wouldn't be that difficult to add the&#xD;&#xA;functionality in. I think that the functionality would go really well&#xD;&#xA;in Castle.Core.Logging.IExtendedLogger. And it shouldn't be a breaking&#xD;&#xA;change (unless someone has implemented their own IExtendedLogger - in&#xD;&#xA;which case they would need to implement the additional event based&#xD;&#xA;context properties on the interface).&#xD;&#xA;&#xD;&#xA;Now what I was wondering is if anyone would be interested in myself&#xD;&#xA;(or if someone can do it in a timely fashion as I have a need for it&#xD;&#xA;directly) adding this functionality into Castle itself.&#xD;&#xA;&#xD;&#xA;The alternative is that I just create a class which inherits from&#xD;&#xA;ExtendedXYZFactory. But this implementation isn't as clean and it&#xD;&#xA;doesn't help Castle move forward if this functionality is wanted in&#xD;&#xA;Castle itself.&#xD;&#xA;&#xD;&#xA;Let me know&#xD;&#xA;Anthony&#xD;&#xA;&#xD;&#xA;Please note it says that my name is &quot;Mark Holtman&quot;. I don't know where it got this from but that is not my name or email address. OpenId must be playing up...&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Hi guys&#xD;&#xA;I have a need to utilise event based logging within log4net (see&#xD;&#xA;http://logging.apache.org/log4net/release/manual/contexts.html).&#xD;&#xA;&#xD;&#xA;The problem is that as far as I can tell, the Logging Facility in&#xD;&#xA;Castle doesn't allow one to define properties at this level of scope.&#xD;&#xA;Please let me know if this is not the case.&#xD;&#xA;&#xD;&#xA;I have been looking through the implementation details of Logging&#xD;&#xA;Facility and I think that it wouldn't be that difficult to add the&#xD;&#xA;functionality in. I think that the functionality would go really well&#xD;&#xA;in Castle.Core.Logging.IExtendedLogger. And it shouldn't be a breaking&#xD;&#xA;change (unless someone has implemented their own IExtendedLogger - in&#xD;&#xA;which case they would need to implement the additional event based&#xD;&#xA;context properties on the interface).&#xD;&#xA;&#xD;&#xA;Now what I was wondering is if anyone would be interested in myself&#xD;&#xA;(or if someone can do it in a timely fashion as I have a need for it&#xD;&#xA;directly) adding this functionality into Castle itself.&#xD;&#xA;&#xD;&#xA;The alternative is that I just create a class which inherits from&#xD;&#xA;ExtendedXYZFactory. But this implementation isn't as clean and it&#xD;&#xA;doesn't help Castle move forward if this functionality is wanted in&#xD;&#xA;Castle itself.&#xD;&#xA;&#xD;&#xA;Let me know&#xD;&#xA;Anthony&#xD;&#xA;&#xD;&#xA;Please note it says that my name is &quot;Mark Holtman&quot;. I don't know where it got this from but that is not my name or email address. OpenId must be playing up...&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;See the following for posible implementation details:&#xD;&#xA;&#xD;&#xA;Ok guys here is what I was thinking.&#xD;&#xA;&#xD;&#xA;The concept of “event based context logging properties” is that here are a set of custom properties that are only applicable for this individual log entry. &#xD;&#xA;&#xD;&#xA;For instance if I had the below scenario I would only want the custom properties being set for the middle log entry:&#xD;&#xA;….&#xD;&#xA;Logger.Error(&quot;Test error&quot;);   //Normal log entry&#xD;&#xA;…. &#xD;&#xA;Logger.Error(&quot;Test error&quot;, ….);   //Need to set some custom properties&#xD;&#xA;…. &#xD;&#xA;Logger.Error(&quot;Test error&quot;);   //Normal log entry&#xD;&#xA;….&#xD;&#xA;&#xD;&#xA;These custom properties may be the state of given object or a custom log type id that means something to us or custom details of the user who is currently logged in (not just their user name).&#xD;&#xA;&#xD;&#xA;Now a fair amount of the pluming required to do this currently already exists, for instance IContextProperties is what one would use as the interface for the new event properties class. &#xD;&#xA;&#xD;&#xA;Next, because the way in which the event based properties would “normal” work, there is no difference between event properties from one logger to the next. Specifically, GlobalContextProperties needs to be implemented differently for each logger because when a property is set it goes directly into what ever global cache the logging implementation uses – meaning it is actioned on as soon as the property is added to GlobalContextProperties. Where as, event based properties are only actioned on when a log entry is made, not when the are added to the new EventContextProperties object. Hence I was thinking that there would only be the 1 event based property class (EventContextProperties) which could be used by all implementations and EventContextProperties would be very simple and only implement a basic key/value structure of some sort.&#xD;&#xA;&#xD;&#xA;Hence the way in which I was thinking one would actually use event based properties is like this:&#xD;&#xA;&#xD;&#xA;….&#xD;&#xA;Logger.Error(&quot;Test error&quot;);   //Normal log entry&#xD;&#xA;…. &#xD;&#xA;IContextProperties tempProperties = ….; //Where you get the instance of EventContextProperties for the moment is not that important&#xD;&#xA;&#xD;&#xA;tempProperties[“CustomProperty1”] = “Custom Value 1”; &#xD;&#xA;tempProperties[“CustomProperty2”] = “Custom Value 2”; &#xD;&#xA;tempProperties[“CustomProperty3”] = “Custom Value 3”;&#xD;&#xA;&#xD;&#xA;Logger.Error(&quot;Test error&quot;, tempProperties);   //Need to set some custom properties&#xD;&#xA;…. &#xD;&#xA;Logger.Error(&quot;Test error&quot;);   //Normal log entry&#xD;&#xA;….&#xD;&#xA;&#xD;&#xA;From the above you can see that my initial thoughts is to make a slight modification to the IExtendedLogger interface to include the ability for users to pass in IContextProperties (which is what EventContextProperties inherits from) as a parameter. &#xD;&#xA;&#xD;&#xA;Now the methods that allow for IContextProperties to be passed in would need to be different from logging implementation to looking implementation. If the logger doesn’t have the ability to implement event based properties, then either they throw an exception if that overload is used or they only throw an exception for those situations where IContextProperties contains values (I think the former would be the better more reliable scenario). Or maybe it could just ignore the properties all together if a setting in the config is set but by default it would throw an exception. In situations where it is possible to implement event based properties something like the following would occur (note this is what would be in the log4net implementation):&#xD;&#xA;&#xD;&#xA;public void Error(string message, IContextProperties eventProperties)&#xD;&#xA;{&#xD;&#xA;    LoggingEvent loggingEvent = new LoggingEvent(declaringType, Logger.Repository, Logger.Name, Level.Error, message, null);&#xD;&#xA;&#xD;&#xA;    foreach (….)     &#xD;&#xA;         loggingEvent.Properties[eventProperty.Key] = eventProperty.Value;&#xD;&#xA;&#xD;&#xA;    Logger.Log(loggingEvent);&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;As you can see from the above, log4net implements event based looking through the use of LoggingEvent. Also look at the above we may need to use a interface that implements IEnumerable so we can loop through the EventContextProperties pairs.&#xD;&#xA;&#xD;&#xA;Lastly, as for where we get an instance of EventContextProperties from, I was thinking that it could be something like the below. If this is done, it helps abstract way the creation of EventContextProperties and means that for extensibility reasons, different loggers could implement different versions if required (although I couldn’t see why this would occur).&#xD;&#xA;&#xD;&#xA;….&#xD;&#xA;Logger.Error(&quot;Test error&quot;);   //Normal log entry&#xD;&#xA;…. &#xD;&#xA;IContextProperties tempProperties = Logger.GetEventContextProperties();&#xD;&#xA;tempProperties[“CustomProperty1”] = “Custom Value 1”;&#xD;&#xA;…&#xD;&#xA;&#xD;&#xA;Logger.Error(&quot;Test error&quot;, tempProperties);   //Need to set some custom properties&#xD;&#xA;…. &#xD;&#xA;&#xD;&#xA;Hope that helps clear up what I was thinking.&#xD;&#xA;Cheers&#xD;&#xA;Anthony&#xD;&#xA;{quote}&#xD;&#xA;" created="1225389300000" />
+  </issue>
+</issues>

@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>TypedFactoryFacility</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.0 beta 1</value>
+      <value>2.5.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>321</value>
+    </field>
+    <field name="summary">
+      <value>TypedFactory with singleton lifestyle and child containers</value>
+    </field>
+    <field name="description">
+      <value>Typed factory whith singleton lifestyle (default) when first resolved in child container is disposing with child container. 
+Then when we resolve this factory with parent conatiner and are trying to create some service instance with that factory the factory method throws an ObjectDisposedException.
+
+Right behavoir for me is to dispose factory when parent container is disposing.
+
+Checked on 2.5.3 and 3.0.RC1 versions.
+
+Failed tests
+
+{code lang=cs}
+using System;
+using System.Diagnostics;
+using Castle.Facilities.TypedFactory;
+using Castle.MicroKernel.Registration;
+using Castle.Windsor;
+using Xunit;
+public class LifestileTests
+{
+	[Fact]
+	public void TestForTypedFactories()
+	{
+		using (var container = new WindsorContainer())
+		{
+			container.AddFacility&lt;TypedFactoryFacility&gt;();
+			container.Register(Component.For&lt;IFactory&gt;().AsFactory(),
+							   Component.For(typeof(IInterface)).ImplementedBy(typeof(InterfaceImpl)).LifeStyle.Transient);
+
+			IFactory childFactory;
+			using (var childContainer = new WindsorContainer())
+			{
+				container.AddChildContainer(childContainer);
+				childFactory = childContainer.Resolve&lt;IFactory&gt;();
+			} // childFactory is disposing here
+			var factory = container.Resolve&lt;IFactory&gt;();
+			Assert.Same(factory, childFactory);
+			Assert.DoesNotThrow(() =&gt; factory.Create()); // throws an ObjectDisposedException exception
+		} // but should be disposed here
+	}
+
+	[Fact]
+	public void TestForSerivces()
+	{
+		using (var container = new WindsorContainer())
+		{
+			container.Register(Component.For&lt;IInterface&gt;().ImplementedBy&lt;InterfaceImpl&gt;());
+			IInterface childInterface;
+			using (var childContainer = new WindsorContainer())
+			{
+				container.AddChildContainer(childContainer);
+				childInterface = container.Resolve&lt;IInterface&gt;();
+			} // childIhterface is NOT disposing here
+			var @interface = container.Resolve&lt;IInterface&gt;();
+			Assert.Same(@interface, childInterface);
+			@interface.Do();
+		} // but is disposing here and this is right behavior
+	}
+
+	#region Nested type: IFactory
+	public interface IFactory
+	{
+		IInterface Create();
+	}
+	#endregion
+
+	#region Nested type: IInterface
+	public interface IInterface
+	{
+		void Do();
+	}
+	#endregion
+
+	#region Nested type: InterfaceImpl
+	public class InterfaceImpl : IInterface,IDisposable
+	{
+		private bool disposed;
+
+		public void Dispose()
+		{
+			disposed = true;
+			Console.WriteLine(new StackTrace(true));
+		}
+
+		public void Do()
+		{
+			if (disposed)
+				throw new NotSupportedException();
+		}
+	}
+	#endregion
+}
+{code}
+
+https://gist.github.com/1393099</value>
+    </field>
+    <field name="created">
+      <value>1322212978833</value>
+    </field>
+    <field name="updated">
+      <value>1407822090171</value>
+    </field>
+    <field name="reporterName">
+      <value>hazzik</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1322299362020</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="The reason why you're observing the behaviour is that typed factory depends internally on an {{IInterceptor}} to provide the implementation. The interceptor is transient and hence scoped by the container from which it was resolved, that is the nested one.&#xA;&#xA;It's a known limitation of nested containers, and one that might not be trivial to fix. The best workaround is not to use nested containers, or in this case to resolve the factory from the parent container first, so that the parent container owns the interceptor.&#xA;&#xA;What is your particular scenario, why do you need nested containers?&#xA;&#xA;cheers,&#xA;Krzysztof" created="1322214463924" />
+    <comment author="hazzik" text="For temporary fix I set Factory lifestyle to transient (Can it cause some perfomance problems for me?).&#xA;&#xA;I want to inject properties into Asp.Net MVC's ActionFilterAttribute and do it with manual resolving of services. I've tried manual releasing of resolved components on end of request, but it is cause some strange bugged behavior. --That is because we can release some components with singleton instance by mistake.--&#xA;&#xA;And so I decided to resolve that services from nested container and release the container on end of request. But unfortunatelly some of this services are typed factories with singleton lifestyle.&#xA;&#xA;It is an framework library, and I can not guaranty that clients will resolve that kind of services with parent container first.&#xA;&#xA;&#xA;My cross questing is why IInterceptor can not be with lifestyle of parent component?&#xA;" created="1322215553227" updated="1322216467124" />
+    <comment author="hazzik" text="Than can we resolve new instance of factory if previous was released and disposed with child container?" created="1322216050946" />
+    <comment author="xtoff" text="I looked into that today, and it looks like it would be a pretty fundamental change. Therefore I think we will need to put it in v4 backlog.&#xA;&#xA;Going back to your problem at hand - what was the reason for not making it per-web-request?&#xA;&#xA;Also in general, providing component dependencies into attributes is a tricky business and I try to avoid it wherever I can.&#xA;&#xA;I did write few apps on MSMVC where I needed to have custom ActionFilters, but in those cases I apply one of two approaches:&#xA;- I put the dependencies on controllers and access them from there in the filter.&#xA;- I use custom ActionInvoker and my action filters are *not* attributes but normal classes fully managed by the container.&#xA;&#xA;Not sure if any of those options is viable in your case, but I would advise you to try to avoid nested containers.&#xA;&#xA;" created="1322299346732" />
+  </issue>
+</issues>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Binder</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>110</value>
+    </field>
+    <field name="summary">
+      <value>DateTimeOffset can be re-included with mono 2.6</value>
+    </field>
+    <field name="description">
+      <value>Mono 2.6 successfully passes the following tests:
+
+* DateTimeOffsetAlternativeSourceBinding
+* DateTimeOffsetAlternativeSourceBindingWithNullableDateTime
+* DateTimeOffsetArrayBinding</value>
+    </field>
+    <field name="created">
+      <value>1259108896000</value>
+    </field>
+    <field name="updated">
+      <value>1259226969000</value>
+    </field>
+    <field name="reporterName">
+      <value>tiggerthump</value>
+    </field>
+    <field name="updaterName">
+      <value>tiggerthump</value>
+    </field>
+    <field name="resolved">
+      <value>1259226960000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="Applied on 6358. Tks." created="1259226971000" />
+    <comment author="tiggerthump" text="* '''Attachment''' castle-binder-mono-2.6-DateTimeOffset.diff added.&#xD;&#xA;" created="1259108940000" />
+    <comment author="tiggerthump" text="* '''Attachment''' castle-binder-mono-2.6-DateTimeOffset1.diff added.&#xD;&#xA;" created="1259109180000" />
+    <comment author="henry" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1259226960000" />
+  </issue>
+</issues>

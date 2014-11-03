@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>408</value>
+    </field>
+    <field name="summary">
+      <value>Helpers not initialized with the correct IControllerContext when using WizardSteps</value>
+    </field>
+    <field name="description">
+      <value>If you put an object into the PropertyBag on a WizardStep and try to bind it to a text field using FormHelper, you will not see anything displayed in that text field. This is because the helpers are initialized using the IControllerContext from within IEngineContext, as opposed to the IControllerContext for the WizardStep (I think in the case of wizard steps, the IControllerContext in IEngineContext is that of the Wizard Controller?). I propose an overload for IServiceInitializer to accept an IControllerContext, and calling that overload from Controller.CreateAndInitializeHelpers using the IControllerContext from the current controller (in this case, the WizardStep).</value>
+    </field>
+    <field name="created">
+      <value>1201598512000</value>
+    </field>
+    <field name="updated">
+      <value>1244676736000</value>
+    </field>
+    <field name="reporterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="updaterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="resolved">
+      <value>1282145528651</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676720000" />
+  </issue>
+</issues>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>69</value>
+    </field>
+    <field name="summary">
+      <value>Log4netIntegration not working</value>
+    </field>
+    <field name="description">
+      <value>I can't get to use log4net with Windsor
+
+I configure the facility with : &lt;facility id="logging" loggingApi="log4net" configFile="logger.xml" /&gt;
+Attached is the logger.xml file
+
+Here's the stacktrace of the error when I try to access the Logger
+==============
+TestFixture failed: Could not convert from 'Castle.Services.Logging.Log4netIntegration.Log4netFactory,Castle.Services.Logging.Log4netIntegration,Version=1.0.0.0, Culture=neutral,PublicKeyToken=407dd0808d44fbdc' to System.Type.
+   at Castle.MicroKernel.SubSystems.Conversion.TypeNameConverter.PerformConversion(String value, Type targetType) in e:\dev\castle\trunk\InversionOfControl\Castle.MicroKernel\SubSystems\Conversion\Converters\TypeNameConverter.cs:line 59
+   at Castle.MicroKernel.SubSystems.Conversion.DefaultConversionManager.PerformConversion(String value, Type targetType) in e:\dev\castle\trunk\InversionOfControl\Castle.MicroKernel\SubSystems\Conversion\DefaultConversionManager.cs:line 113
+   at Castle.Facilities.Logging.LoggingFacility.CreateProperLoggerFactory(LoggerImplementation logApi, String customType, String configFile) in e:\dev\castle\trunk\Facilities\Logging\Castle.Facilities.Logging\LoggingFacility.cs:line 128
+   at Castle.Facilities.Logging.LoggingFacility.ReadConfigurationAndCreateLoggerFactory() in e:\dev\castle\trunk\Facilities\Logging\Castle.Facilities.Logging\LoggingFacility.cs:line 104
+   at Castle.Facilities.Logging.LoggingFacility.Init() in e:\dev\castle\trunk\Facilities\Logging\Castle.Facilities.Logging\LoggingFacility.cs:line 68
+   at Castle.MicroKernel.Facilities.AbstractFacility.Init(IKernel kernel, IConfiguration facilityConfig) in e:\dev\castle\trunk\InversionOfControl\Castle.MicroKernel\Facilities\AbstractFacility.cs:line 48
+   at Castle.MicroKernel.DefaultKernel.AddFacility(String key, IFacility facility) in e:\dev\castle\trunk\InversionOfControl\Castle.MicroKernel\DefaultKernel.cs:line 729
+   at Castle.Windsor.WindsorContainer.AddFacility(String key, IFacility facility) in e:\dev\castle\trunk\InversionOfControl\Castle.Windsor\WindsorContainer.cs:line 192
+   at MyApp.Container.RegisterCoreFacilities() in C:\Projects\MyApp\src\Core\Container.cs:line 31
+   at MyApp.Container..ctor(String environment) in C:\Projects\MyApp\src\Core\Container.cs:line 23
+   at MyApp.Tests.TestContainer..ctor() in C:\Projects\MyApp\src\Core.Tests\TestContainer.cs:line 11
+   at MyApp.Tests.TestContainer.Initialize() in C:\Projects\MyApp\src\Core.Tests\TestContainer.cs:line 17
+   at MyApp.Tests.Models.ActiveRecordTestCase.FixtureInit() in C:\Projects\MyApp\src\Core.Tests\Models\ActiveRecordTestCase.cs:line 36</value>
+    </field>
+    <field name="created">
+      <value>1166274133000</value>
+    </field>
+    <field name="updated">
+      <value>1166667828000</value>
+    </field>
+    <field name="reporterName">
+      <value>macournoyer</value>
+    </field>
+    <field name="updaterName">
+      <value>macournoyer</value>
+    </field>
+    <field name="resolved">
+      <value>1282141165791</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

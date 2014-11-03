@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>35</value>
+    </field>
+    <field name="summary">
+      <value>Latvian language resources for Castle.Components.Validator</value>
+    </field>
+    <field name="description">
+      <value>Attached patch contains Latvian language (lv) text resources for Castle.Components.Validator.dll</value>
+    </field>
+    <field name="created">
+      <value>1185974226000</value>
+    </field>
+    <field name="updated">
+      <value>1186726982000</value>
+    </field>
+    <field name="reporterName">
+      <value>andris</value>
+    </field>
+    <field name="updaterName">
+      <value>andris</value>
+    </field>
+    <field name="resolved">
+      <value>1282137552385</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

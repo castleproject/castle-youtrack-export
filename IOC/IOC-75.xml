@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>75</value>
+    </field>
+    <field name="summary">
+      <value> not able to put component into Dictionary&lt;System.Type, System.Object&gt;</value>
+    </field>
+    <field name="description">
+      <value>When i try to put a component into Dictionary&lt;System.Type, System.Object&gt; through xml configuration -&gt; setter injection a see following exception:
+
+No converter registered to handle the type System.Object
+
+ Source File:  d:\Castle\trunk\InversionOfControl\Castle.MicroKernel\SubSystems\Conversion\DefaultConversionManager.cs    Line:  125
+
+Relevant part of Call stack (last 4-5 lines dealing with generic dictionary)
+
+[ConverterException: No converter registered to handle the type System.Object]
+
+Castle.MicroKernel.SubSystems.Conversion.DefaultConversionManager.PerformConversion(String value, Type targetType) in d:\Castle\trunk\InversionOfControl\Castle.MicroKernel\SubSystems\Conversion\DefaultConversionManager.cs:125
+
+Castle.MicroKernel.SubSystems.Conversion.DictionaryHelper`2.ConvertConfigurationToCollection(IConfiguration configuration) in d:\Castle\trunk\InversionOfControl\Castle.MicroKernel\SubSystems\Conversion\Converters\Generics\GenericDictionaryConverter.cs:136
+
+Castle.MicroKernel.SubSystems.Conversion.GenericDictionaryConverter.PerformConversion(IConfiguration configuration, Type targetType) in d:\Castle\trunk\InversionOfControl\Castle.MicroKernel\SubSystems\Conversion\Converters\Generics\GenericDictionaryConverter.cs:77
+
+Castle.MicroKernel.SubSystems.Conversion.DefaultConversionManager.PerformConversion(IConfiguration configuration, Type targetType) in d:\Castle\trunk\InversionOfControl\Castle.MicroKernel\SubSystems\Conversion\DefaultConversionManager.cs:134
+
+I have a component like
+
+public class DefaultBuilderRegistry : IBuilderRegistry
+        {
+                private Dictionary&lt;Type, object&gt; _builders;
+                public Dictionary&lt;Type, object&gt; Builders
+                {
+                        get { return _builders; }
+                        set { _builders = value; }
+                }
+
+                public DefaultBuilderRegistry()
+                {
+                        _builders = new Dictionary&lt;Type, object&gt;();
+                }
+
+                public IPageFlowBuilder&lt;TPageFlow&gt; GetBuilder&lt;TPageFlow&gt;() where
+TPageFlow : IPageFlow
+                {
+                        return (IPageFlowBuilder&lt;TPageFlow&gt;) Builders[typeof (TPageFlow)];
+                }
+        }
+
+My config is as follows:
+
+&lt;component
+        id='pageflow.builderRegistry'
+        service='Namespace.IBuilderRegistry, Assembly'
+        type='Namespace.DefaultBuilderRegistry, Assembly'&gt;
+        &lt;parameters&gt;
+                &lt;Builders&gt;
+                        &lt;dictionary keyType="System.Type, mscorlib" valueType="System.Object, mscorlib"&gt;
+                                &lt;entry key="Namespace.ICreateRequestPageFlow, Assembly"&gt;${request.create.pageflow.builder}&lt;/entry&gt;
+                        &lt;/dictionary&gt;
+                &lt;/Builders&gt;
+        &lt;/parameters&gt;
+&lt;/component&gt;
+
+&lt;component
+        id='request.create.pageflow.builder'
+        service='Namespace.IPageFlowBuilder`1[[Namespace.ICreateRequestPageFlow, Assembly]], Assembly'
+        type='Namespace.PageFlowBuilder, Assembly' /&gt; </value>
+    </field>
+    <field name="created">
+      <value>1179408058000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853151</value>
+    </field>
+    <field name="reporterName">
+      <value>weex</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142024479</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

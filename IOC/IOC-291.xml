@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Usability Problem</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Registration API</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>291</value>
+    </field>
+    <field name="summary">
+      <value>Add alias class to AllTypes that is better named, like Classes</value>
+    </field>
+    <field name="description">
+      <value>{{AllTypes}} class from the fluent API in reality only looks at concrete classes. We should have an alias for it, like {{Classes}} that is a better name since it's more to the point.</value>
+    </field>
+    <field name="created">
+      <value>1304684229261</value>
+    </field>
+    <field name="updated">
+      <value>1407822257293</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1304688916089</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

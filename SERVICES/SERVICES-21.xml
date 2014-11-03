@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Transaction</value>
+    </field>
+    <field name="Fix versions">
+      <value>Tx 2.5.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>Tx 2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>21</value>
+    </field>
+    <field name="summary">
+      <value>Transaction Synchronizations not been executed when registered in NestedTransaction</value>
+    </field>
+    <field name="description">
+      <value>Synchronization instances registered in Nested Transaction (ChildTransaction) are not been invoked when Commit or Rollback are executed. Previous Castle.Services.Transaction (version 1.0.3.x) registered those Synchronization instances in parent transaction all the way up to StandardTransaction overriding the RegisterSynchronization method from base. Current implementation (2.5.0.48) keeps those Synchronizations in a private list and since Commit/Rollback do nothing those Synchronization instances are not invoked.</value>
+    </field>
+    <field name="created">
+      <value>1284669222994</value>
+    </field>
+    <field name="updated">
+      <value>1407822464798</value>
+    </field>
+    <field name="reporterName">
+      <value>Rogelio.Baucells</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1284791718541</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="Rogelio.Baucells" text="I have uploaded a patch file with the Unit Tests and the changes to fix the bug." created="1284734142885" />
+  </issue>
+</issues>

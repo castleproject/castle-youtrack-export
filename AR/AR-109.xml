@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>109</value>
+    </field>
+    <field name="summary">
+      <value>Type "Char" and "VarChar" Generating error when using ActiveRecordStarter.CreateScheme()</value>
+    </field>
+    <field name="description">
+      <value>see the following defination:
+
+[Property("cardno",NotNull=false,ColumnType="Char",Length=30)]
+public string CardNumber { get { return cardNumber; } set { cardNumber = value; } }
+
+when using ActiveRecordStarter.CreateScheme() to generate the Database scheme,
+the result will be :
+cardno varchar(30)
+
+the correct result should be : 
+cardno char(30)
+
+these is a mistaken between "varchar" and "char"
+
+But if you change the NotNull to true, it will works right. like this:
+[Property("cardno",NotNull=true,ColumnType="Char",Length=30)]
+public string CardNumber { get { return cardNumber; } set { cardNumber = value; } }
+
+the upper defines will got a right result.</value>
+    </field>
+    <field name="created">
+      <value>1166413040000</value>
+    </field>
+    <field name="updated">
+      <value>1167998088000</value>
+    </field>
+    <field name="reporterName">
+      <value>dreamaster</value>
+    </field>
+    <field name="updaterName">
+      <value>dreamaster</value>
+    </field>
+    <field name="resolved">
+      <value>1282136249854</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

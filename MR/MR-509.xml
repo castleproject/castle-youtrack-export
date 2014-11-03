@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>509</value>
+    </field>
+    <field name="summary">
+      <value>Async &amp;&amp; DefaultActionAttribiute</value>
+    </field>
+    <field name="description">
+      <value>I have async actions. In this scenerio MR not support "DefaultActionAttribiute" (not read it?)</value>
+    </field>
+    <field name="created">
+      <value>1229326280000</value>
+    </field>
+    <field name="updated">
+      <value>1253860851000</value>
+    </field>
+    <field name="reporterName">
+      <value>kamil</value>
+    </field>
+    <field name="updaterName">
+      <value>kamil</value>
+    </field>
+    <field name="resolved">
+      <value>1253860800000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="It currently fails if the DefaultAction attribute is on a method, but you workaround by putting it on the class like this (taken from AsyncControllerTestCase.cs r5680)&#xA;&#xA;[DefaultAction(&quot;Index&quot;)]&#xA;public class MyController : Controller&#xA;{&#xA;  private readonly Output output;&#xA;&#xA;  public IAsyncResult BeginIndex()&#xA;  {&#xA;    return output.BeginInvoke(delegate { }, null);&#xA;  }&#xA;&#xA;  public void EndIndex()&#xA;  {&#xA;    string s = output.EndInvoke(ControllerContext.Async.Result);&#xA;    RenderText(s);&#xA;  }&#xA;}" created="1242097416000" />
+    <comment author="roelofb" text="Has good workaround" created="1253860848000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1242097380000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Work Started'' to ''Work Stopped''.&#xD;&#xA;" created="1242097380000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Work Stopped'' to ''Resolved''.&#xD;&#xA;" created="1253860800000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253860800000" />
+  </issue>
+</issues>

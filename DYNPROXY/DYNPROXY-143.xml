@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Interface proxies with target interface</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>143</value>
+    </field>
+    <field name="summary">
+      <value>Permit call to reach "non-proxied" methods of inherited interfaces.</value>
+    </field>
+    <field name="description">
+      <value>Enhance the current behaviour for handling non-proxied methods defined in inherited interfaces of a target interface being proxied to reach the target method. Please refer to attached file for complete example.
+
+The current implementation of proxy with target interface makes no assumption for presence of implementation to supplied additional interfaces. Discussion can be found on discussion group titled: "IProxyGenerationHook on methods at inherited interface level"</value>
+    </field>
+    <field name="created">
+      <value>1285616409000</value>
+    </field>
+    <field name="updated">
+      <value>1407822235375</value>
+    </field>
+    <field name="reporterName">
+      <value>lee.kam@gmail.com</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1289695516349</value>
+    </field>
+    <field name="voterName">
+      <value>xtoff</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

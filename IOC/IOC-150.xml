@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>150</value>
+    </field>
+    <field name="summary">
+      <value>MicroKernal Converter SubSystem Model not extensible</value>
+    </field>
+    <field name="description">
+      <value>I am creating a component where there is a requirement to pass generic dictionary inside a generic dictionary as a argument. I have created following config entry for my component:
+&lt;component id="comp" type="MyProject.TestType, MyProject"&gt;
+ &lt;parameters&gt;
+   &lt;trackingFields&gt;
+     &lt;dictionary&gt;
+	&lt;item key="Recipient"&gt;
+           &lt;dictionary&gt; 
+             &lt;item key="RecipientID"&gt;Recipient/RecipientID&lt;/item&gt;
+	     &lt;item key="Email"&gt;Recipient/Email&lt;/item&gt;
+	   &lt;/dictionary&gt;
+	&lt;/item&gt;
+     &lt;/dictionary&gt;
+   &lt;/trackingFields&gt;
+  &lt;/parameters&gt;
+&lt;/component&gt;
+
+When I ran my component I got error "Method not supported" exception. I thought that I should create my own generic dictionary converter and replace the built-in converter with my own. But I was surprised to see that the DefaultConversionManager do not contain definition for remove method and an iterator. So I left with no choice but to change the GenericDictionaryConverter code to suit my requirements. I have changed the logic in DictionaryHelper where it calls PerformConversion function for dictionary value item as follows:
+
+if (itemConfig.Children.Count &gt; 0)
+{
+value = (TValue)parent.Context.Composition.PerformConversion(itemConfig.Children[0], convertValueTo);
+}
+else
+{
+value = (TValue)parent.Context.Composition.PerformConversion(itemConfig.Value, convertValueTo);
+}
+
+Also the access modifier of interface IGenericCollectionConverterHelper should be public instead of internal because anybody writing its own generic converter should use it.
+
+Regards,
+Windsor User
+					
+</value>
+    </field>
+    <field name="created">
+      <value>1241208913000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838916</value>
+    </field>
+    <field name="reporterName">
+      <value>navneet13</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1241443440000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="This is expected, Windsor doesn't have enough information about what it is supposed to do about converting the generic dictionary.&#xA;&#xA;I made IGenericCollectionConverterHelper public&#xA;&#xA;Please note that if you want to extend the convertion sub system, you are expect to inherit from DefaultConvertionManager and override InitConvertors, then register this in the kernel as the converison sub system" created="1241443446000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1241443440000" />
+    <comment author="ayenderahien" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1241443440000" />
+  </issue>
+</issues>

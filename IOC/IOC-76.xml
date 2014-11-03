@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>76</value>
+    </field>
+    <field name="summary">
+      <value>Remoting Facility - RecoverableComponent remoting strategy</value>
+    </field>
+    <field name="description">
+      <value>Ok, Firefox crashed when I typed this up the first time.  Here's some psuedocode instead of a big long detailed message.
+
+if(uri != null)
+   remoting.uri = baseUri + uri + UriExtension
+else
+   remoting.uri = baseUri + baseUri + componentId + UriExtension
+
+I'm positive the bottom case is not correct, but I'm pretty sure the top case isn't either.  It appears on every other remoting strategy that the uri should already be a full uri from the config.  I've submitted a patch that does the following.
+
+if(uri != null)
+   remoting.uri = uri + UriExtension
+else
+   remoting.uri = baseUri + componentId + UriExtension
+
+This of course does change the behavior when a uri is specified in the configuration, now the uri needs to be a complete uri with the baseUri prepended. </value>
+    </field>
+    <field name="created">
+      <value>1180627001000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838901</value>
+    </field>
+    <field name="reporterName">
+      <value>scamp</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142026166</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Wcf</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>141</value>
+    </field>
+    <field name="summary">
+      <value>WCF: Add support for WcfFacility to run in partial trust mode</value>
+    </field>
+    <field name="description">
+      <value>When using the WcfFacility in a partial trust XBAP a security exception is thrown when creating an async channel.
+Exception demanded: System.Security.Permissions.SecurityAction.InheritanceDemand
+AsyncChannelFactoryBuilder.cs: Line 48
+
+This one can be mitigated by setting WantsAsyncCapability = false.
+
+The second error occurs at 
+WCFChannelHolder.cs: Line 36
+System.Security.SecurityException occurred
+  Message=Request for the permission of type 'System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089' failed.
+  Source=Castle.Facilities.WcfIntegration
+  StackTrace:
+       at Castle.Facilities.WcfIntegration.WcfChannelHolder.CreateChannel()
+       at Castle.Facilities.WcfIntegration.WcfChannelHolder..ctor(ChannelCreator channelCreator, IWcfBurden burden, Nullable`1 closeTimeout)
+  InnerException: 
+
+It's a link demand error but I can't seem to nail down where it's erroring out.
+CreateChannel() is a private method inside the class so i don't know why that would throw a link error.
+
+Steps to recreate:
+Create a Partial Trust XBAP project
+Setup Windsor and the WcfFacility
+                Component.For&lt;ISecurityService&gt;()
+                    .AsWcfClient(
+                        new DefaultClientModel(
+                            WcfEndpoint.FromConfiguration("WSHttpBinding_ISecurityService")
+                        ).WithoutAsyncCapability()
+                    ),
+Request a channel.
+
+I'll keep tinkering with it and see if I can figure it out.
+
+Raul</value>
+    </field>
+    <field name="created">
+      <value>1288283943993</value>
+    </field>
+    <field name="updated">
+      <value>1396695044950</value>
+    </field>
+    <field name="reporterName">
+      <value>Raul.Rangel</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396695044936</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="a pull request for that would be welcome" created="1351947374747" />
+  </issue>
+</issues>

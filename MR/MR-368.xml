@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveRecord Support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>368</value>
+    </field>
+    <field name="summary">
+      <value>Added DetachedCriteria support to ARPaginationHelper/ARPaginableCriteria</value>
+    </field>
+    <field name="description">
+      <value>Attached a patch that adds DetachedCriteria support to AR pagination support in MR.</value>
+    </field>
+    <field name="created">
+      <value>1195654113000</value>
+    </field>
+    <field name="updated">
+      <value>1263055809000</value>
+    </field>
+    <field name="reporterName">
+      <value>felixg</value>
+    </field>
+    <field name="updaterName">
+      <value>felixg</value>
+    </field>
+    <field name="resolved">
+      <value>1282145416463</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055800000" />
+  </issue>
+</issues>

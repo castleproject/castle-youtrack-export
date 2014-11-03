@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Transaction</value>
+    </field>
+    <field name="Fix versions">
+      <value>v2.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>11</value>
+    </field>
+    <field name="summary">
+      <value>IActivityManager used by DefaultTransactionManager and asp.net</value>
+    </field>
+    <field name="description">
+      <value>The patch is a simple WebActivityManager class
+
+Problem:
+=======
+
+When running in asp.net runtime one must use HttpContext.Items 
+collection, and not CallContext or TLS.
+
+When using the NH-intgration facility, the DefaultTransactionManager will be 
+using the CallContextActivityManager (as a realisation of 
+IActivityManager) to store any thread-scoped transactions. 
+
+So does people using the NH-facility in asp.net register a 
+"WebActivityManager" as the realisation of IActivityManager with the 
+container, before resolving ITransactionManager, so that it will be 
+using the non-default ctor, and thereby using HttpContext.Items 
+(instead of CallContext) to store activities/transactions? 
+
+Just a few comments about the patch: 
+==============================
+
+I am still in doubt about which namespace/assembly the type should be 
+in. The class is dependent on both IActivityManager and System.Web 
+assembly. 
+
+To use it another patch is needed to have the 
+DefaultTransactionManager be wired-up with the new class. Maybe this 
+tells me that the class should go into Castle.Services.Transaction (at 
+the cost of a dependency on system.web). Otherwise I need to create 
+patch to .../Castle.Facilities.NHibernateIntegration/ 
+NHibernateFacility.cs, to have IoC container be using the non-def ctor 
+of DefaultTransactionManager. 
+
+I made the following decisions (in order to create a patch): 
+
+1) The WebActivityManager goes in into Castle.Services.Transaction (at 
+the cost of a dependency on system.web)??? 
+2) When running outside asp.net, just fallback to using CallContext 
+(be robust, no exception)...this way the patch to 
+DefaultTransactionManager.cs is non-breaking. 
+
+
+I leave it to you (or others) to decide, if the type should be part of 
+the Castle.Services.Transaction.dll assembly, another assembly, or 
+just be forgotten? 
+
+</value>
+    </field>
+    <field name="created">
+      <value>1200817666000</value>
+    </field>
+    <field name="updated">
+      <value>1272932725000</value>
+    </field>
+    <field name="reporterName">
+      <value>maxild</value>
+    </field>
+    <field name="updaterName">
+      <value>maxild</value>
+    </field>
+    <field name="resolved">
+      <value>1272932700000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henke" text="1) Acceptable cost since it's in the framework." created="1254764135000" />
+    <comment author="henke" text="Applied a while ago." created="1272932726000" />
+    <comment author="henke" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''v2.2''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1272932700000" />
+    <comment author="henke" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1254764040000" />
+  </issue>
+</issues>

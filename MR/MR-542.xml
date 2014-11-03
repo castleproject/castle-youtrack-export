@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>542</value>
+    </field>
+    <field name="summary">
+      <value>Getting Brail to Work in Medium Trust</value>
+    </field>
+    <field name="description">
+      <value>Medium trust environments do not like FormatterServices.GetUninitializedObject</value>
+    </field>
+    <field name="created">
+      <value>1247138133000</value>
+    </field>
+    <field name="updated">
+      <value>1247151391000</value>
+    </field>
+    <field name="reporterName">
+      <value>captainramen</value>
+    </field>
+    <field name="updaterName">
+      <value>captainramen</value>
+    </field>
+    <field name="resolved">
+      <value>1247151360000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="captainramen" text="replaced it with Activator.CreateInstance&#xA;Brail and boo will now work in medium trust when you update boo with patches found in BOO-1215" created="1247138173000" />
+    <comment author="roelofb" text="Thanks for your patch.&#xA;&#xA;Can you see if you can modify the object creation like the DefaultComponentActivator in MicroKernel does? It uses the fast path when not running on medium trust: check FastCreateInstance() in http://svn.castleproject.org:8080/svn/Castle/trunk/InversionOfControl/Castle.MicroKernel/ComponentActivator/DefaultComponentActivator.cs" created="1247145478000" />
+    <comment author="captainramen" text="Ok, done." created="1247147863000" />
+    <comment author="roelofb" text="Applied in r5853, many thanks!" created="1247151384000" />
+    <comment author="captainramen" text="* '''Attachment''' faster-brail-mediumtrust.patch added.&#xD;&#xA;" created="1247147820000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1247151360000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1247151360000" />
+    <comment author="captainramen" text="* '''Attachment''' brail-mediumtrust.patch added.&#xD;&#xA;" created="1247138160000" />
+  </issue>
+</issues>

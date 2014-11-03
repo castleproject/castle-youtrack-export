@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Performance Problem</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>98</value>
+    </field>
+    <field name="summary">
+      <value>Generation time increases exponentially when generating more than 1000 proxies with one Proxybuilder</value>
+    </field>
+    <field name="description">
+      <value>Generation time increases exponentially when generating more than 1000 proxies with one Proxybuilder.
+My tests showed that this behavior is starting from 150 proxies upwards.
+
+Using multiple Proxybuilders is in my opinion not an option because this increase memory usage.
+Actually DP1 had the same problems. Are you planning any improvements soon?
+</value>
+    </field>
+    <field name="created">
+      <value>1245752597000</value>
+    </field>
+    <field name="updated">
+      <value>1272195394000</value>
+    </field>
+    <field name="reporterName">
+      <value>martl76</value>
+    </field>
+    <field name="updaterName">
+      <value>martl76</value>
+    </field>
+    <field name="resolved">
+      <value>1272195360000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Could you create a sample project that we can use to profile the issue?&#xA;&#xA;Thanks" created="1245755111000" />
+    <comment author="martl76" text="A sample project is attached.&#xA;If you have any questions, please ask." created="1245983615000" />
+    <comment author="martl76" text="Sorry, I can't attach files.&#xA;" created="1245984072000" />
+    <comment author="martl76" text="I have the sample ready, how can I send it to you?" created="1245984800000" />
+    <comment author="martl76" text="Ok, here we go. IE-Proxy troubles" created="1245999276000" />
+    <comment author="xtoff" text="The performance hit is caused by a SRE class looking for name collision. As you create more proxy types it has to perform more checks, hence observed performance degradation.&#xA;Unfortunately we can't do anything about it.&#xA;&#xA;In most cases taking advantage of proxy type caching is the advisable solution." created="1246632858000" />
+    <comment author="xtoff" text="I reported it to MS Connect: https://connect.microsoft.com/VisualStudio/feedback/ViewFeedback.aspx?FeedbackID=472622" created="1246758629000" />
+    <comment author="firestrand" text="There is a work around:&#xA;As each Type is created it keeps a reference to the Module which is actually a ModuleBuilder. In turn each ModuleBuilder keeps a list of all TypeBuilder objects which have been created in the assembly. Assuming that you keep a HashSet to prevent naming conflicts you can actually use reflection to touch the private m__TypeBuilderList and simply call clear. Doing that is a nasty bit of reflection but it speeds up type creation and removes a good amount of memory being held. I can provide code samples if anyone is interested." created="1269586467000" />
+    <comment author="xtoff" text="@Travis Silvers &#xA;&#xA;it seems extremely hacky, but it's better than doing nothing, especially given the fact that last time I checked .NET 4 didn't have a fix for this.&#xA;&#xA;I guess we could provide a switch somewhere that would turn clearing the list on.&#xA;&#xA;so a patch is very much welcome" created="1269591097000" />
+    <comment author="xtoff" text="alternatively we might swap the ArrayList for a type that inherits from ArrayList and uses HashSet to store the items" created="1269591215000" />
+    <comment author="xtoff" text="what about Silverlight? Does this issue exist there?" created="1269591374000" />
+    <comment author="xtoff" text="let's try the hacky solution" created="1272168229000" />
+    <comment author="xtoff" text="I added workaround based on Travis Silvers's suggestion.&#xA;While generation time is still not linear, it was cut down significantly when large number of types is generated.&#xA;In my machine generating 2000 proxy types from attached solution was cut down from roughly 5minutes to around 2minutes." created="1272195384000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Closed'' to ''Reopened''.&#xD;&#xA;" created="1272168180000" />
+    <comment author="xtoff" text="* '''Resolution''' changed from ''By Design'' to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.5''.&#xD;&#xA;* '''Status''' changed from ''Reopened'' to ''Resolved''.&#xD;&#xA;" created="1272195360000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1272195360000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1246632840000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1246632840000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1246616100000" />
+    <comment author="martl76" text="* '''Attachment''' DP2PerformanceTroubles.rar added.&#xD;&#xA;" created="1245999240000" />
+  </issue>
+</issues>

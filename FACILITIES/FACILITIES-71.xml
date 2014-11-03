@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Remoting</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>71</value>
+    </field>
+    <field name="summary">
+      <value>remoteKernelUri should not be obligated</value>
+    </field>
+    <field name="description">
+      <value>Castle.Facilities.Remoting.RemotingFacility has an obligated attribute "remoteKernelUri" when using it in a client. If your RemotingStrategy is not Component-related, this doesn't make sense.
+
+[extra info]
+In my specific case, I'm using the RemotingFacility just to enable easy configuration. My "components" are merely activated by the remoting infrastructure, but using the RemotingFacility for configuration allows me to get all services that implement some interface.</value>
+    </field>
+    <field name="created">
+      <value>1167733910000</value>
+    </field>
+    <field name="updated">
+      <value>1170543083000</value>
+    </field>
+    <field name="reporterName">
+      <value>grimace</value>
+    </field>
+    <field name="updaterName">
+      <value>grimace</value>
+    </field>
+    <field name="resolved">
+      <value>1282141168448</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

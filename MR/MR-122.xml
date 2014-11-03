@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - New Engine Ideas</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>122</value>
+    </field>
+    <field name="summary">
+      <value>STViewEngine throws exception while searching for view files for a Controller with no assigned area</value>
+    </field>
+    <field name="description">
+      <value>While seaching for view files, STViewEngine may throw an exception if the controller for the current action doesn't have an 'area'.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1147194959000</value>
+    </field>
+    <field name="updated">
+      <value>1162414090000</value>
+    </field>
+    <field name="reporterName">
+      <value>kunle</value>
+    </field>
+    <field name="updaterName">
+      <value>kunle</value>
+    </field>
+    <field name="resolved">
+      <value>1282143460307</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

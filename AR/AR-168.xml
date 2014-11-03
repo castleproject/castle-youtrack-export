@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>168</value>
+    </field>
+    <field name="summary">
+      <value>Add support for ISession.SaveOrUpdateCopy to facilitate detached objects (WinForms) .</value>
+    </field>
+    <field name="description">
+      <value>Supporting SaveOrUpdateCopy really simplfies scenarios in which your domain model
+is used to maintan state in the UI and you want to update or create an ActiveRecord entity
+with that state without having to copy individual fields over.</value>
+    </field>
+    <field name="created">
+      <value>1183982329000</value>
+    </field>
+    <field name="updated">
+      <value>1183983755000</value>
+    </field>
+    <field name="reporterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="updaterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="resolved">
+      <value>1282136440370</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>552</value>
+    </field>
+    <field name="summary">
+      <value>Add proper choices from "Version Affected" to bug tracker</value>
+    </field>
+    <field name="description">
+      <value>Add proper choices from "Version Affected" to bug tracker</value>
+    </field>
+    <field name="created">
+      <value>1254764891000</value>
+    </field>
+    <field name="updated">
+      <value>1263055420000</value>
+    </field>
+    <field name="reporterName">
+      <value>henke</value>
+    </field>
+    <field name="updaterName">
+      <value>henke</value>
+    </field>
+    <field name="resolved">
+      <value>1262658720000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Henrik,&#xA;What proper choices would you like to see?&#xA;We can modify them.&#xA;&#xA;Cheers&#xA;John&#xA;" created="1261059015000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1262658720000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055380000" />
+  </issue>
+</issues>

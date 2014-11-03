@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>89</value>
+    </field>
+    <field name="summary">
+      <value>Proxy generation fails when IProxyGenerationHook chooses not to proxy mixin method</value>
+    </field>
+    <field name="description">
+      <value>When we have a type with mixin, and IProxyGenerationHook implementation chooses not to proxy some method from mixin interface we'll get an exception when trying to create the proxy type, saying that method has no implementation.
+
+I think in this case we should simply invoke the method on mixin.
+
+public int IFoo.Bar(int baz)
+{
+   return fooMixin.Bar(baz);
+}</value>
+    </field>
+    <field name="created">
+      <value>1241528280000</value>
+    </field>
+    <field name="updated">
+      <value>1256472714000</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1256472660000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Fixed in 6254" created="1256472707000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1249286040000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Work Started'' to ''Work Stopped''.&#xD;&#xA;" created="1256472660000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1256472660000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1256472660000" />
+  </issue>
+</issues>

@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>370</value>
+    </field>
+    <field name="summary">
+      <value>Deadlock</value>
+    </field>
+    <field name="description">
+      <value>Hello! I'm using asp.net mvc 3, castle windsor 3.1.
+
+My application recently hang on start. After attaching to a IIS Process and pressing Pause (Break-All), program break in CustomControllerFactory:
+
+{code}
+protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
+{
+    if (controllerType == null)
+    {
+        throw new HttpException(404, string.Format("The controller for path '{0}' could not be found.", requestContext.HttpContext.Request.Path));
+    }
+
+    // HANG HERE
+    return (IController) _kernel.Resolve(controllerType);
+}
+{code}
+For _kernel I get Cannot evaluate expression because the current thread is in a sleep, wait, or join.
+
+Stacktrace 1:
+
+{code}
+Castle.Windsor.DLL!Castle.Core.Internal.SimpleThreadSafeDictionary&lt;System.Type,Castle.MicroKernel.IHandler&gt;.Contains(System.Type key) Line 33 + 0x1e bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultGenericHandler.Supports(System.Type service) Line 81 + 0x2b bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.SubSystems.Naming.DefaultNamingSubSystem.GetHandlersNoLock(System.Type service) Line 368 + 0x30 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.SubSystems.Naming.DefaultNamingSubSystem.GetHandlers(System.Type service) Line 238 + 0x13 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.DefaultKernel.GetHandlers(System.Type service) Line 415 + 0x3f bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.HasAnyComponentInValidState(System.Type service, Castle.Core.DependencyModel dependency, Castle.MicroKernel.Context.CreationContext context) Line 285 + 0x50 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.CanResolveFromKernel(Castle.MicroKernel.Context.CreationContext context, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 196 + 0x55 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.CanResolve(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.ISubDependencyResolver contextHandlerResolver, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 112 + 0x29 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.ObtainPropertyValue(Castle.MicroKernel.Context.CreationContext context, Castle.Core.PropertySet property, Castle.MicroKernel.IDependencyResolver resolver) Line 335 + 0xc8 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.SetUpProperties(object instance, Castle.MicroKernel.Context.CreationContext context) Line 311 + 0x1b bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(Castle.MicroKernel.Context.CreationContext context) Line 69 + 0x1e bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.Burden burden) Line 80 + 0x19 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(Castle.MicroKernel.Context.CreationContext context, bool trackedExternally) Line 79 + 0x43 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.IReleasePolicy releasePolicy) Line 56 + 0x21 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(Castle.MicroKernel.Context.CreationContext context, bool requiresDecommission, bool instanceRequired, out Castle.MicroKernel.Burden burden) Line 148 + 0x7a bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultHandler.Resolve(Castle.MicroKernel.Context.CreationContext context, bool instanceRequired) Line 93 + 0x22 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.AbstractHandler.Resolve(Castle.MicroKernel.Context.CreationContext context) Line 200 + 0x21 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.DefaultKernel.ResolveComponent(Castle.MicroKernel.IHandler handler, System.Type service, System.Collections.IDictionary additionalArguments, Castle.MicroKernel.IReleasePolicy policy) Line 742 + 0x24 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.ResolveAll(System.Type service, System.Collections.IDictionary arguments, Castle.MicroKernel.IReleasePolicy policy) Line 249 + 0x2a bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.DefaultKernel.ResolveAll(System.Type service, System.Collections.IDictionary arguments) Line 159 + 0x64 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.SpecializedResolvers.CollectionResolver.Resolve(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.ISubDependencyResolver contextHandlerResolver, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 60 + 0x80 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveCore(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.ISubDependencyResolver contextHandlerResolver, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 358 + 0x53 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.ISubDependencyResolver contextHandlerResolver, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 151 + 0x32 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArguments(Castle.Core.ConstructorCandidate constructor, Castle.MicroKernel.Context.CreationContext context) Line 291 + 0x121 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(Castle.MicroKernel.Context.CreationContext context) Line 85 + 0x1d bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(Castle.MicroKernel.Context.CreationContext context) Line 66 + 0x19 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.Burden burden) Line 80 + 0x19 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(Castle.MicroKernel.Context.CreationContext context, bool trackedExternally) Line 79 + 0x43 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.IReleasePolicy releasePolicy) Line 56 + 0x21 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(Castle.MicroKernel.Context.CreationContext context, bool requiresDecommission, bool instanceRequired, out Castle.MicroKernel.Burden burden) Line 148 + 0x7a bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultHandler.Resolve(Castle.MicroKernel.Context.CreationContext context, bool instanceRequired) Line 93 + 0x22 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.AbstractHandler.Resolve(Castle.MicroKernel.Context.CreationContext context) Line 200 + 0x21 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveFromKernelByType(Castle.MicroKernel.Context.CreationContext context, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 424 + 0x30 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveFromKernel(Castle.MicroKernel.Context.CreationContext context, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 233 + 0x25 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveCore(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.ISubDependencyResolver contextHandlerResolver, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 364 + 0x32 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.ISubDependencyResolver contextHandlerResolver, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 151 + 0x32 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArguments(Castle.Core.ConstructorCandidate constructor, Castle.MicroKernel.Context.CreationContext context) Line 291 + 0x121 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(Castle.MicroKernel.Context.CreationContext context) Line 85 + 0x1d bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(Castle.MicroKernel.Context.CreationContext context) Line 66 + 0x19 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.Burden burden) Line 80 + 0x19 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(Castle.MicroKernel.Context.CreationContext context, bool trackedExternally) Line 79 + 0x43 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.IReleasePolicy releasePolicy) Line 70 + 0x1b bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(Castle.MicroKernel.Context.CreationContext context, bool requiresDecommission, bool instanceRequired, out Castle.MicroKernel.Burden burden) Line 148 + 0x7a bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultHandler.Resolve(Castle.MicroKernel.Context.CreationContext context, bool instanceRequired) Line 93 + 0x22 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.AbstractHandler.Resolve(Castle.MicroKernel.Context.CreationContext context) Line 200 + 0x21 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.DefaultKernel.ResolveComponent(Castle.MicroKernel.IHandler handler, System.Type service, System.Collections.IDictionary additionalArguments, Castle.MicroKernel.IReleasePolicy policy) Line 742 + 0x24 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(System.Type service, System.Collections.IDictionary arguments, Castle.MicroKernel.IReleasePolicy policy) Line 234 + 0x2f bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.DefaultKernel.Resolve(System.Type service) Line 112 + 0x55 bytes  C#
+MyProject.Web.DLL!MyProject.Web.MyProjectControllerFactory.GetControllerInstance(System.Web.Routing.RequestContext requestContext, System.Type controllerType) Line 48 + 0x47 bytes C#
+[External Code] 
+{code}
+
+Stacktrace 2:
+{code}
+Castle.Windsor.DLL!Castle.MicroKernel.SubSystems.Naming.DefaultNamingSubSystem.GetHandlers(System.Type service) Line 225 + 0x21 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.SubSystems.Naming.DefaultNamingSubSystem.GetHandler(System.Type service) Line 196 + 0x27 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.DefaultKernel.GetHandler(System.Type service) Line 398 + 0x3f bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.HasAnyComponentInValidState(System.Type service, Castle.Core.DependencyModel dependency, Castle.MicroKernel.Context.CreationContext context) Line 271 + 0x50 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.CanResolveFromKernel(Castle.MicroKernel.Context.CreationContext context, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 196 + 0x55 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.CanResolve(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.ISubDependencyResolver contextHandlerResolver, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 112 + 0x29 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.AbstractHandler.HasValidComponentFromResolver(Castle.Core.DependencyModel dependency) Line 470 + 0x99 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.AbstractHandler.AddResolvableDependency(Castle.Core.DependencyModel dependency) Line 438 + 0xf bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.AbstractHandler.DependencySatisfied(ref bool stateChanged) Line 345 + 0x12 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.DefaultKernel.DoActualRaisingOfHandlersChanged() Line 126 + 0x24 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.DefaultKernel.RaiseHandlersChanged() Line 107 + 0x9 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.RegisterHandler(string name, Castle.MicroKernel.IHandler handler, bool skipRegistration) Line 711 + 0x19 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultHandlerFactory.Create(Castle.Core.ComponentModel model, bool isMetaHandler) Line 42 + 0x5d bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.DefaultKernel.AddCustomComponent(Castle.Core.ComponentModel model, bool isMetaHandler) Line 259 + 0x42 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultGenericHandler.BuildSubHandler(Castle.MicroKernel.Context.CreationContext context, System.Type closedImplementationType) Line 146 + 0x59 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultGenericHandler.GetSubHandler.AnonymousMethod__5(System.Type t) Line 151 + 0x3f bytes  C#
+Castle.Windsor.DLL!Castle.Core.Internal.SimpleThreadSafeDictionary&lt;System.Type,Castle.MicroKernel.IHandler&gt;.GetOrAdd(System.Type key, System.Func&lt;System.Type,Castle.MicroKernel.IHandler&gt; factory) Line 53 + 0x1c bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultGenericHandler.GetSubHandler(Castle.MicroKernel.Context.CreationContext context, System.Type genericType) Line 151 + 0x6f bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultGenericHandler.Resolve(Castle.MicroKernel.Context.CreationContext context, bool instanceRequired) Line 175 + 0x17 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.AbstractHandler.Resolve(Castle.MicroKernel.Context.CreationContext context) Line 200 + 0x21 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveFromKernelByType(Castle.MicroKernel.Context.CreationContext context, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 424 + 0x30 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveFromKernel(Castle.MicroKernel.Context.CreationContext context, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 233 + 0x25 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveCore(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.ISubDependencyResolver contextHandlerResolver, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 364 + 0x32 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.ISubDependencyResolver contextHandlerResolver, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 151 + 0x32 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArguments(Castle.Core.ConstructorCandidate constructor, Castle.MicroKernel.Context.CreationContext context) Line 291 + 0x121 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(Castle.MicroKernel.Context.CreationContext context) Line 85 + 0x1d bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(Castle.MicroKernel.Context.CreationContext context) Line 66 + 0x19 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.Burden burden) Line 80 + 0x19 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(Castle.MicroKernel.Context.CreationContext context, bool trackedExternally) Line 79 + 0x43 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.IReleasePolicy releasePolicy) Line 56 + 0x21 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(Castle.MicroKernel.Context.CreationContext context, bool requiresDecommission, bool instanceRequired, out Castle.MicroKernel.Burden burden) Line 148 + 0x7a bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultHandler.Resolve(Castle.MicroKernel.Context.CreationContext context, bool instanceRequired) Line 93 + 0x22 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.AbstractHandler.Resolve(Castle.MicroKernel.Context.CreationContext context) Line 200 + 0x21 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveFromKernelByType(Castle.MicroKernel.Context.CreationContext context, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 424 + 0x30 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveFromKernel(Castle.MicroKernel.Context.CreationContext context, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 233 + 0x25 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveCore(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.ISubDependencyResolver contextHandlerResolver, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 364 + 0x32 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.ISubDependencyResolver contextHandlerResolver, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 151 + 0x32 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArguments(Castle.Core.ConstructorCandidate constructor, Castle.MicroKernel.Context.CreationContext context) Line 291 + 0x121 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(Castle.MicroKernel.Context.CreationContext context) Line 85 + 0x1d bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(Castle.MicroKernel.Context.CreationContext context) Line 66 + 0x19 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.Burden burden) Line 80 + 0x19 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(Castle.MicroKernel.Context.CreationContext context, bool trackedExternally) Line 79 + 0x43 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.IReleasePolicy releasePolicy) Line 56 + 0x21 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(Castle.MicroKernel.Context.CreationContext context, bool requiresDecommission, bool instanceRequired, out Castle.MicroKernel.Burden burden) Line 148 + 0x7a bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultHandler.Resolve(Castle.MicroKernel.Context.CreationContext context, bool instanceRequired) Line 93 + 0x22 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.AbstractHandler.Resolve(Castle.MicroKernel.Context.CreationContext context) Line 200 + 0x21 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveFromKernelByType(Castle.MicroKernel.Context.CreationContext context, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 424 + 0x30 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveFromKernel(Castle.MicroKernel.Context.CreationContext context, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 233 + 0x25 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveCore(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.ISubDependencyResolver contextHandlerResolver, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 364 + 0x32 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.ISubDependencyResolver contextHandlerResolver, Castle.Core.ComponentModel model, Castle.Core.DependencyModel dependency) Line 151 + 0x32 bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArguments(Castle.Core.ConstructorCandidate constructor, Castle.MicroKernel.Context.CreationContext context) Line 291 + 0x121 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(Castle.MicroKernel.Context.CreationContext context) Line 85 + 0x1d bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(Castle.MicroKernel.Context.CreationContext context) Line 66 + 0x19 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.Burden burden) Line 80 + 0x19 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(Castle.MicroKernel.Context.CreationContext context, bool trackedExternally) Line 79 + 0x43 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(Castle.MicroKernel.Context.CreationContext context, Castle.MicroKernel.IReleasePolicy releasePolicy) Line 70 + 0x1b bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(Castle.MicroKernel.Context.CreationContext context, bool requiresDecommission, bool instanceRequired, out Castle.MicroKernel.Burden burden) Line 148 + 0x7a bytes C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.DefaultHandler.Resolve(Castle.MicroKernel.Context.CreationContext context, bool instanceRequired) Line 93 + 0x22 bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.Handlers.AbstractHandler.Resolve(Castle.MicroKernel.Context.CreationContext context) Line 200 + 0x21 bytes    C#
+Castle.Windsor.DLL!Castle.MicroKernel.DefaultKernel.ResolveComponent(Castle.MicroKernel.IHandler handler, System.Type service, System.Collections.IDictionary additionalArguments, Castle.MicroKernel.IReleasePolicy policy) Line 742 + 0x24 bytes  C#
+Castle.Windsor.DLL!Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(System.Type service, System.Collections.IDictionary arguments, Castle.MicroKernel.IReleasePolicy policy) Line 234 + 0x2f bytes   C#
+Castle.Windsor.DLL!Castle.MicroKernel.DefaultKernel.Resolve(System.Type service) Line 112 + 0x55 bytes  C#
+MyProject.Web.DLL!MyProject.Web.MyProjectControllerFactory.GetControllerInstance(System.Web.Routing.RequestContext requestContext, System.Type controllerType) Line 48 + 0x47 bytes C#
+[External Code] 
+{code}
+
+On github: https://github.com/castleproject/Windsor/issues/17
+
+Have you any ideas why this situation happens?</value>
+    </field>
+    <field name="created">
+      <value>1353911242128</value>
+    </field>
+    <field name="updated">
+      <value>1407822257254</value>
+    </field>
+    <field name="reporterName">
+      <value>Vadim.Abdrashitov</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1356255797226</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

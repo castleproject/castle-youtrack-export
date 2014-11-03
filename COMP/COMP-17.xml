@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>17</value>
+    </field>
+    <field name="summary">
+      <value>Added overloaded constructors supporting RangeValidationType and object type conversion</value>
+    </field>
+    <field name="description">
+      <value>** Adds a new constructor to the RangeValidator: public RangeValidator(RangeValidationType type, object min, object max)
+
+This constructor will permit doing the stuff I outlined. The min and max are converted to the appropriate min/max values for the given type using two new private methods, GetIntValue and GetDateTimeValue (which accept an object, attempt to parse it, and default to a provided default value).
+
+** Adds new constructors for ValidateRangeAttribute that mirror the above, allowing the following:
+[ValidateRange(RangeValidationType.DateTime, "2006-01-01", "2006-12-31")]
+
+** Updates unit tests. Some old code comments were wrong (fixed), and I had the "low and high" validation tests use the new constructors as a way to test the min/max parsing code. </value>
+    </field>
+    <field name="created">
+      <value>1175256044000</value>
+    </field>
+    <field name="updated">
+      <value>1175645562000</value>
+    </field>
+    <field name="reporterName">
+      <value>bdemarzo</value>
+    </field>
+    <field name="updaterName">
+      <value>bdemarzo</value>
+    </field>
+    <field name="resolved">
+      <value>1282137478870</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

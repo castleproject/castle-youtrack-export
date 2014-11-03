@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 3.0 RC</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>297</value>
+    </field>
+    <field name="summary">
+      <value>Remove Session requirements to lazy load BelongsTo associations</value>
+    </field>
+    <field name="description">
+      <value>Attached is a patch to implement a custom ByteCode.
+It will manage the Session when lazy loading BelongsTo associations.  With it, a BelongsTo will not trigger a LazyInitialization Exception, even if it is outside of a SessionScope.
+
+I hope to provide similar functionality for lazy properties and collections in the future.
+
+I discussed this functionality in [a thread|http://groups.google.com/group/castle-project-users/browse_frm/thread/83b1a1d17a46fcec] on the user list.
+I know this is a big addition, please let me know if I can do anything else to help get this included.</value>
+    </field>
+    <field name="created">
+      <value>1298836731006</value>
+    </field>
+    <field name="updated">
+      <value>1407822526753</value>
+    </field>
+    <field name="reporterName">
+      <value>Dan.Jasek</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1300137886879</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="Hi Dan, thanks for the patch. I'll review it, and hopefully, apply it on the next days. The only thing that concerns me right now, is that it'll need some sort of doco, explaining the rationale and the usage. Do you think you can write a article on the wiki explaining how to use it?" created="1298906395444" />
+    <comment author="Dan.Jasek" text="Sure.  I will put something together later this week." created="1298931139828" />
+    <comment author="Dan.Jasek" text="I have written some documentation, but I can't seem to create an account on the wiki.&#xA;You are talking about http://docs.castleproject.org/, right?&#xA;Do you know who I can contact to get help with my account over there?  I couldn't find any contact information on the wiki..." created="1299215485531" />
+    <comment author="Dan.Jasek" text="I figured out my issues on the wiki and posted a page of documentation here:&#xD;&#xA;http://docs.castleproject.org/Active%20Record.The-ByteCode.ashx&#xD;&#xA;&#xD;&#xA;I also updated the &quot;Enable lazy load&quot; page to reference the above page." created="1299366403363" />
+    <comment author="henry" text="Applied with some modifications." created="1300137902692" />
+  </issue>
+</issues>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>TypedFactoryFacility</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>236</value>
+    </field>
+    <field name="summary">
+      <value>Typed Factory Facility causes memory leak because it keeps a reference after releasing object in list 'trackedComponents'</value>
+    </field>
+    <field name="description">
+      <value>When creating an interface based factory with the typed factory facility and resolving/releasing transient objects with it, causes a memory leak because a reference is kept in an internal list (trackedComponents), only when dispose is called on the factory the list is cleared.</value>
+    </field>
+    <field name="created">
+      <value>1287662860071</value>
+    </field>
+    <field name="updated">
+      <value>1407822257327</value>
+    </field>
+    <field name="reporterName">
+      <value>martinkraan</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1288096098025</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Not only. Also when you release the component with the factory or release the factory itself the component is released. This is by design, unless I'm missing your point here." created="1287663749868" />
+    <comment author="martinkraan" text="When you release the component with the factory the GC can't reclaim the memory because the facility still holds a reference in it's trackedComponents list. This list is only cleared when you call dispose on the factory! I think that the factory should remove it from that list when I release the component with the factory." created="1287664631008" />
+    <comment author="xtoff" text="OK, now I see what you mean." created="1287665005321" />
+    <comment author="xtoff" text="I have it semi-fixed now, by removing items from the list once they are released via the factory. The factory still holds reference to components released automatically (like per web request components that get released out of band when the request ends).&#xA;I don't see a way to fix this without introducing breaking changes..." created="1287830674369" />
+  </issue>
+</issues>

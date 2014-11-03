@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Performance Problem</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Debugging support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>310</value>
+    </field>
+    <field name="summary">
+      <value>Add ability to disable performance counters</value>
+    </field>
+    <field name="description">
+      <value>Especially in tests creating container over and over again, and performance counters with it can lead to the following exception:
+
+System.InvalidOperationException : 
+Custom counters file view is out of memory.
+	at System.Diagnostics.SharedPerformanceCounter.CalculateMemory(Int32 oldOffset, Int32 totalSize, Int32&amp; alignmentAdjustment)
+	at System.Diagnostics.SharedPerformanceCounter.CreateInstance(CategoryEntry* categoryPointer, Int32 instanceNameHashCode, String instanceName, PerformanceCounterInstanceLifetime lifetime)
+	at System.Diagnostics.SharedPerformanceCounter.GetCounter(String counterName, String instanceName, Boolean enableReuse, PerformanceCounterInstanceLifetime lifetime)
+	at System.Diagnostics.SharedPerformanceCounter..ctor(String catName, String counterName, String instanceName, PerformanceCounterInstanceLifetime lifetime)
+	at System.Diagnostics.PerformanceCounter.InitializeImpl()
+	at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)</value>
+    </field>
+    <field name="created">
+      <value>1314049909927</value>
+    </field>
+    <field name="updated">
+      <value>1407822257281</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1314880066786</value>
+    </field>
+    <field name="voterName">
+      <value>Rune.Vistnes</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-768[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

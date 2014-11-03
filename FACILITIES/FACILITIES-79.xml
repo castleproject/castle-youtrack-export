@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Remoting</value>
+    </field>
+    <field name="Fix versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Affected versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>79</value>
+    </field>
+    <field name="summary">
+      <value>Append .rem to Remote Component URI's</value>
+    </field>
+    <field name="description">
+      <value>We are using remoting scenario two with our remote objects hosted in IIS.
+When constructing the URI to call on the client, if no uri attribute is specified it uses the baseUri + componentId, if uri is specified it uses the specified uri
+
+The problem is that the convention for remote objects (at least using the http channel) is .rem so IIS can route the request to ASP.NET
+We have to either specify a full uri per component (including hostname) or give our components an id with a suffix ie .rem
+
+Specifying the hostname in every component isn't cool and we use a custom naming system so we can't add '.rem' to the component name in the config.
+I suggest if componentId is used that is concatted with '.rem' or add another attribute to the config that lets us specify the file portion of the uri only.
+
+Attached patch for hardcoding .rem attached</value>
+    </field>
+    <field name="created">
+      <value>1177293690000</value>
+    </field>
+    <field name="updated">
+      <value>1177621758000</value>
+    </field>
+    <field name="reporterName">
+      <value>thejuan</value>
+    </field>
+    <field name="updaterName">
+      <value>thejuan</value>
+    </field>
+    <field name="resolved">
+      <value>1282141180307</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

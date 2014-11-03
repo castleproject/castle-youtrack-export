@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>555</value>
+    </field>
+    <field name="summary">
+      <value>NullReferenceException from PersistFlashItems() on IIS7 without runAllManagedModulesForAllRequests</value>
+    </field>
+    <field name="description">
+      <value>Steps To Reproduce:
+
+1. On IIS7 running in Integrated Mode, create a route similar to the following:
+
+    RoutingModuleEx.Engine.Add(new PatternRoute("customerHome", "/&lt;customer&gt;")
+        .DefaultForArea().IsEmpty
+        .DefaultForController().Is("Home")
+        .DefaultForAction().Is("Index"));
+
+2. Delete the "/configuration/system.webServer/modules/@runAllManagedModulesForAllRequests" attribute or set it to false.
+
+3. Navigate to "http://localhost/customerA".
+
+What happens:
+[NullReferenceException: Object reference not set to an instance of an object.]
+   Castle.MonoRail.Framework.BaseHttpHandler.PersistFlashItems() in c:\TeamCity\buildAgent\work\6f0fcaf6ab53174a\MonoRail\Castle.MonoRail.Framework\BaseHttpHandler.cs:234
+   Castle.MonoRail.Framework.BaseHttpHandler.AfterControllerProcess() in c:\TeamCity\buildAgent\work\6f0fcaf6ab53174a\MonoRail\Castle.MonoRail.Framework\BaseHttpHandler.cs:127
+   Castle.MonoRail.Framework.BaseHttpHandler.Process(HttpContext context) in c:\TeamCity\buildAgent\work\6f0fcaf6ab53174a\MonoRail\Castle.MonoRail.Framework\BaseHttpHandler.cs:116
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +598
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +170
+
+What I expected to happen:
+The exception was thrown because engineContext.Session was null because IIS didn't execute the SessionStateModule.  Monorail expected the Session to be non-null.  
+
+Instead of throwing NullReferenceException, it should throw a different exception that indicates that the Session was not initialized, and preferably with a helpful message telling you to set the "runAllManagedModulesForAllRequests" attribute.</value>
+    </field>
+    <field name="created">
+      <value>1261150894000</value>
+    </field>
+    <field name="updated">
+      <value>1279477523000</value>
+    </field>
+    <field name="reporterName">
+      <value>dschilling</value>
+    </field>
+    <field name="updaterName">
+      <value>dschilling</value>
+    </field>
+    <field name="resolved">
+      <value>1279477500000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="dschilling" text="To fix this issue, I would check the return value of BaseHttpHandler.ResolveSession to make sure that it wasn't null - but I noticed AcquireCustomSession is called at the bottom of BeforeControllerProcess.  Is this correct?  Shouldn't AcquireCustomSession be called from within ResolveSession?&#xA;&#xA;I wouldn't mind fixing this myself - but I don't think I'm building stuff correctly or checking code out correctly.  I figured I should be able to either checkout the entire castle trunk (https://svn.castleproject.org/svn/castle/trunk) or just the monorail trunk (https://svn.castleproject.org/svn/castle/MonoRail/trunk) and build it, but neither builds successfully." created="1261151637000" />
+    <comment author="xtoff" text="Daniel? Which issues you're having with MR trunk?&#xA;I just did a clean check out, and it build successfully here..." created="1262411472000" />
+    <comment author="jsimons" text="I've changed the type from Bug to Inprovement, since this is not a bug.&#xA;Krzysztof, all Daniel is asking is for the exception message text to be descriptive of why it is failing, in this case is because Monorail requires Session to work properly. There is no compilation bug." created="1262446124000" />
+    <comment author="dschilling" text="Hmmm ... I'm not having any problems building now.  Sorry about that.  I'll get started on a patch for this issue." created="1262853100000" />
+    <comment author="xtoff" text="Daniel, did you sort out your build issues? Do you still intend to provide a patch for this?" created="1263379433000" />
+    <comment author="jsimons" text="Please provide a pull request" created="1279477520000" />
+    <comment author="jsimons" text="* '''Type''' changed from ''Bug'' to ''Improvement''.&#xD;&#xA;* '''Importance''' changed from ''High'' to ''Medium''.&#xD;&#xA;* '''Version Affected''' set to ''Future''.&#xD;&#xA;" created="1262445780000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Incomplete''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1279477500000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1279477500000" />
+  </issue>
+</issues>

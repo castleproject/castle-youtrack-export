@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Registration API</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>216</value>
+    </field>
+    <field name="summary">
+      <value>Make it possible to specify service overrides in DependsOn, either via Property, or ServiceOverride entry class</value>
+    </field>
+    <field name="description">
+      <value>so that the following would work
+
+{code}
+DependsOn(
+   Property.ForKey&lt;IFoo&gt;().Is&lt;MyNonDefaultFooServive&gt;(),
+   ServiceOverride.ForKey&lt;IFizBuz&gt;().Is&lt;MyNonDefaultFizBuzServive&gt;(),
+   Property.ForKey&lt;IBar&gt;().Is("bar.component.name"),
+   Property.ForKey("baz").Is("baz.component")
+);
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1283349436119</value>
+    </field>
+    <field name="updated">
+      <value>1407822257339</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1283646103744</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

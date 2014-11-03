@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>453</value>
+    </field>
+    <field name="summary">
+      <value>FormHelper.PasswordNumberField/PasswordField: option to decide whether to fill value attribute</value>
+    </field>
+    <field name="description">
+      <value>Added overloads to FormHelper.PasswordNumberField and FormHelper.PasswordField to let the user decide whether the generated form elements should contain the extracted value of the target or not.
+
+Referring to http://groups.google.com/group/castle-project-devel/browse_thread/thread/60a7afba10b5d7f6/581b711978aa874e
+
+</value>
+    </field>
+    <field name="created">
+      <value>1211348639000</value>
+    </field>
+    <field name="updated">
+      <value>1263050392000</value>
+    </field>
+    <field name="reporterName">
+      <value>aloker</value>
+    </field>
+    <field name="updaterName">
+      <value>aloker</value>
+    </field>
+    <field name="resolved">
+      <value>1263050340000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Fixed in trunk" created="1263050389000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Reopened'' to ''Resolved''.&#xD;&#xA;" created="1263050340000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263050340000" />
+  </issue>
+</issues>

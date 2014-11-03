@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>127</value>
+    </field>
+    <field name="summary">
+      <value>IWindsorContainer.AddComponentInstance&lt;T&gt;(Type t, object component) is not scoped to container.</value>
+    </field>
+    <field name="description">
+      <value>When adding a component instance to child container where the parent container already has an instance registered for the same type, the child container always resolves to the parent container instance.
+
+Hence, scoped overrides fails for registered instances.
+i.e.
+
+Component parentComponent =  new Component();
+Component childComponent = new Component();
+
+parentContainer.AddComponentInstance&lt;T&gt;(typeof(T), parentComponent)
+childContainer.AddComponentInstance&lt;T&gt;(typeof(T), childComponent)
+
+childContainer.Resolve&lt;T&gt;() == parentContainer.Resolve&lt;I&gt;() returns true, when it should return false.
+childContainer.Resolve&lt;T&gt;() == childComponent returns false, when it should return true.</value>
+    </field>
+    <field name="created">
+      <value>1213559382000</value>
+    </field>
+    <field name="updated">
+      <value>1228858976000</value>
+    </field>
+    <field name="reporterName">
+      <value>nimble99</value>
+    </field>
+    <field name="updaterName">
+      <value>nimble99</value>
+    </field>
+    <field name="resolved">
+      <value>1228858920000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="added a passing test" created="1228858976000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228858920000" />
+  </issue>
+</issues>

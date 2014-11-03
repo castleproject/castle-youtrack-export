@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>105</value>
+    </field>
+    <field name="summary">
+      <value>DictionaryAdapter can't handle properties with the 'new' keyword</value>
+    </field>
+    <field name="description">
+      <value>Sometimes you need to change a property in a derived interface, i.e. add write access. For (a very trivial) example:
+public interface IName
+{
+  string Name { get; }
+}
+
+public interface IMutableName : IName
+{
+  new string Name { get; set; }
+}
+
+DictionaryAdapter cannot create and adapter for IMutableName throwing 'An item with the same key has already be added'. DictionaryAdapterFactory.RecursivelyDiscoverProperties iterates over IName properties after processing IMutableName and hence re-adding the 'Name' property.
+I think that if the type was changed from 'string' to something else, then this error is required, but adding a write access modifier should work transparently.</value>
+    </field>
+    <field name="created">
+      <value>1254047994000</value>
+    </field>
+    <field name="updated">
+      <value>1254209421000</value>
+    </field>
+    <field name="reporterName">
+      <value>felixg</value>
+    </field>
+    <field name="updaterName">
+      <value>felixg</value>
+    </field>
+    <field name="resolved">
+      <value>1254209400000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1254207480000" />
+    <comment author="cneuwirt" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1254209400000" />
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1254209400000" />
+  </issue>
+</issues>

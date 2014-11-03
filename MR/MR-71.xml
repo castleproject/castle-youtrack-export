@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>71</value>
+    </field>
+    <field name="summary">
+      <value>HtmlHelper.LinkTo Should support Controller Area</value>
+    </field>
+    <field name="description">
+      <value>The HtmlHelper.LinkTo functions do not support or accept area information for a controller.
+
+Resolution
+Add something like
+
+public String LinkTo(String name, String area, String controller, String action)</value>
+    </field>
+    <field name="created">
+      <value>1133454023000</value>
+    </field>
+    <field name="updated">
+      <value>1162414543000</value>
+    </field>
+    <field name="reporterName">
+      <value>dsellers</value>
+    </field>
+    <field name="updaterName">
+      <value>dsellers</value>
+    </field>
+    <field name="resolved">
+      <value>1282143376745</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

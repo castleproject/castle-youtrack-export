@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle.Tools.CodeGenerator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>120</value>
+    </field>
+    <field name="summary">
+      <value>ControllerActionrrReference sets IUrlBuilder.UseExtensions = true</value>
+    </field>
+    <field name="description">
+      <value>Castle.Tools.CodeGenerator.Model.ControllerActionReference.Url overrides IUrlBuilder.UseExtensions:
+
+IUrlBuilder urlBuilder = this.Services.RailsContext.Services.UrlBuilder;
+urlBuilder.UseExtensions = true;
+
+This overrides the configured behavior as defined in e.g.   &lt;monorail&gt;&lt;url useExtensions="false"/&gt;&lt;/monorail&gt;.
+
+Any reason why it sets the property in the first place?
+
+My current workaround is a custom UrlBuilder that resets UseExtension every time BuildUrl is called:
+
+public class NoExtUrlBuilder : DefaultUrlBuilder {
+    public NoExtUrlBuilder() {
+        UseExtensions = false;
+    }
+
+    public override string BuildUrl(UrlInfo current, UrlBuilderParameters parameters, IDictionary routeParameters) {
+        UseExtensions = false;
+        return base.BuildUrl(current, parameters, routeParameters);
+    }
+}
+</value>
+    </field>
+    <field name="created">
+      <value>1208847171000</value>
+    </field>
+    <field name="updated">
+      <value>1414392337672</value>
+    </field>
+    <field name="reporterName">
+      <value>aloker</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392337664</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

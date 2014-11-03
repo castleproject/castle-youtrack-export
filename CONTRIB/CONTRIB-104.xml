@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngines</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>104</value>
+    </field>
+    <field name="summary">
+      <value>aspview: support for server side comment syntax</value>
+    </field>
+    <field name="description">
+      <value>This patch allows to use the asp.net server side comment syntax (&lt;%-- --%&gt;) to opt-out portions of a view template.
+
+This solution is handier than commenting using server side script.
+
+&lt;%-- &lt;component:wontberendered&gt;&lt;/component:wontberendered&gt; --%&gt;
+
+instead of:
+
+&lt;script runat="server"&gt;
+/* &lt;component:wontberendered&gt;&lt;/component:wontberendered&gt; */
+&lt;/script&gt;
+
+the implementation adds a ServerSideCommentStripperStep as the first precompilation step, this step simply strip matched comments from the RenderBody</value>
+    </field>
+    <field name="created">
+      <value>1201883361000</value>
+    </field>
+    <field name="updated">
+      <value>1202183192000</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>gauthier</value>
+    </field>
+    <field name="resolved">
+      <value>1282140046338</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

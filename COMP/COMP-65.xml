@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>EmailSender</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>65</value>
+    </field>
+    <field name="summary">
+      <value>DeliverEmail throws Exception: An asynchronous call is already in progress. It must be completed or canceled before you can call this method.</value>
+    </field>
+    <field name="description">
+      <value>If two simultaneous requests arrive for DeliverEmail, the following Exception will be thrown.
+
+Stack Trace:
+   at Castle.MonoRail.Framework.Controller.DeliverEmail(Message message)
+   at ... project code ... in ... project code ...
+  Exception: An asynchronous call is already in progress. It must be completed or canceled before you can call this method.
+  Stack Trace:
+     at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at Castle.Components.Common.EmailSender.Smtp.SmtpSender.Send(Message message)
+   at Castle.MonoRail.Framework.Services.MonoRailSmtpSender.Send(Message message)
+   at Castle.MonoRail.Framework.Controller.DeliverEmail(Message message)
+
+This is occurring because SmtpClient is not thread safe for an instance variable and I *believe* the MonoRailSmtpService is used as a static member variable. I'll need the help of someone more familiar with the system to prove / disprove this.
+
+Attached is test action I used to reproduce the issue (dropped inside a controller), patch to resolve the issue, and service I'm using until the next release.
+
+For others finding this issue and want a quickfix, add the attached service to your project and override the default service in your web.config:
+&lt;service id="EmailSender" type="YourAssembly.Namespace.MonoRailSmtpSender, YourAssembly" /&gt;
+</value>
+    </field>
+    <field name="created">
+      <value>1216844446000</value>
+    </field>
+    <field name="updated">
+      <value>1229883996000</value>
+    </field>
+    <field name="reporterName">
+      <value>CraigBarber</value>
+    </field>
+    <field name="updaterName">
+      <value>CraigBarber</value>
+    </field>
+    <field name="resolved">
+      <value>1229883960000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="hammett" text="This was fixed a few months ago." created="1229883996000" />
+    <comment author="CraigBarber" text="* '''Components''' set to ''EmailSender''.&#xD;&#xA;* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;If two simultaneous requests arrive for DeliverEmail, the following Exception will be thrown.&#xD;&#xA;&#xD;&#xA;Stack Trace:&#xD;&#xA;   at Castle.MonoRail.Framework.Controller.DeliverEmail(Message message)&#xD;&#xA;   at ... project code ... in ... project code ...&#xD;&#xA;  Exception: An asynchronous call is already in progress. It must be completed or canceled before you can call this method.&#xD;&#xA;  Stack Trace:&#xD;&#xA;     at System.Net.Mail.SmtpClient.Send(MailMessage message)&#xD;&#xA;   at Castle.Components.Common.EmailSender.Smtp.SmtpSender.Send(Message message)&#xD;&#xA;   at Castle.MonoRail.Framework.Services.MonoRailSmtpSender.Send(Message message)&#xD;&#xA;   at Castle.MonoRail.Framework.Controller.DeliverEmail(Message message)&#xD;&#xA;&#xD;&#xA;This is occurring because SmtpClient is not thread safe for an instance variable and I *believe* the MonoRailSmtpService is used as a static member variable. I'll need the help of someone more familiar with the system to prove / disprove this.&#xD;&#xA;&#xD;&#xA;Attached is test action I used to reproduce the issue (dropped inside a controller), patch to resolve the issue, and service I'm using until the next release.&#xD;&#xA;&#xD;&#xA;For other finding this issue and want a quickfix, add the attached service to your project and override the default service in your web.config:&#xD;&#xA;&lt;service id=&quot;EmailSender&quot; type=&quot;YourAssembly.Namespace.MonoRailSmtpSender, YourAssembly&quot; /&gt;&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;If two simultaneous requests arrive for DeliverEmail, the following Exception will be thrown.&#xD;&#xA;&#xD;&#xA;Stack Trace:&#xD;&#xA;   at Castle.MonoRail.Framework.Controller.DeliverEmail(Message message)&#xD;&#xA;   at ... project code ... in ... project code ...&#xD;&#xA;  Exception: An asynchronous call is already in progress. It must be completed or canceled before you can call this method.&#xD;&#xA;  Stack Trace:&#xD;&#xA;     at System.Net.Mail.SmtpClient.Send(MailMessage message)&#xD;&#xA;   at Castle.Components.Common.EmailSender.Smtp.SmtpSender.Send(Message message)&#xD;&#xA;   at Castle.MonoRail.Framework.Services.MonoRailSmtpSender.Send(Message message)&#xD;&#xA;   at Castle.MonoRail.Framework.Controller.DeliverEmail(Message message)&#xD;&#xA;&#xD;&#xA;This is occurring because SmtpClient is not thread safe for an instance variable and I *believe* the MonoRailSmtpService is used as a static member variable. I'll need the help of someone more familiar with the system to prove / disprove this.&#xD;&#xA;&#xD;&#xA;Attached is test action I used to reproduce the issue (dropped inside a controller), patch to resolve the issue, and service I'm using until the next release.&#xD;&#xA;&#xD;&#xA;For others finding this issue and want a quickfix, add the attached service to your project and override the default service in your web.config:&#xD;&#xA;&lt;service id=&quot;EmailSender&quot; type=&quot;YourAssembly.Namespace.MonoRailSmtpSender, YourAssembly&quot; /&gt;&#xD;&#xA;{quote}&#xD;&#xA;" created="1228310520000" />
+    <comment author="hammett" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1229883960000" />
+  </issue>
+</issues>

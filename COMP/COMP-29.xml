@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>29</value>
+    </field>
+    <field name="summary">
+      <value>Validate ValidateNonEmpty comibined with Select List fails on first element instead of checking for nulls or empty values</value>
+    </field>
+    <field name="description">
+      <value>If you have a select list with ValidateNonEmpty the validate-selection rule is added.   In the prototype validation library this rule just checks the first option is not selected instead of checking for null or empty values.
+
+This isn't a good approach if every option in the list is a valid selection - i.e. there is no "Please Select" as a first option.  In this scenario, the first option should be a valid one.
+
+I've set the priority to minor as it has a very easy work around of adding a first item.</value>
+    </field>
+    <field name="created">
+      <value>1181522097000</value>
+    </field>
+    <field name="updated">
+      <value>1183492750000</value>
+    </field>
+    <field name="reporterName">
+      <value>tim</value>
+    </field>
+    <field name="updaterName">
+      <value>tim</value>
+    </field>
+    <field name="resolved">
+      <value>1282137540385</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>89</value>
+    </field>
+    <field name="summary">
+      <value>TemplateEngine - Replace project dependencies with assembly dependencies</value>
+    </field>
+    <field name="description">
+      <value>This patch is to replace the project dependencies that exist in the TemplateEngine solution with dependencies on the compiled assemblies instead.
+The solution is currently dependent on NVelocity.dll and Castle.Core.dll.</value>
+    </field>
+    <field name="created">
+      <value>1243726695000</value>
+    </field>
+    <field name="updated">
+      <value>1254112541000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1254112500000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="What's the advantage of this patch?" created="1243728700000" />
+    <comment author="jsimons" text="Apart from faster compiles well,&#xA;With projects starting to get released, I want to be in control of what version TemplateEngine is built against, eg: version 2.0 of Core or trunk, or RC3, ....&#xA;Also, why have access to the source of dependent projects from within this solution? If I want to update the Core or NVelocity source than I would open the relevant solutions so that I can run unit test.&#xA;Lastly, I can still step into for debugging purposes if I really want.&#xA;" created="1243729405000" />
+    <comment author="jonorossi" text="Applied in r6004." created="1254112538000" />
+    <comment author="jsimons" text="* '''Attachment''' RemoveProjectDependencies.patch added.&#xD;&#xA;" created="1243726695001" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1254112500000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1254112500000" />
+  </issue>
+</issues>

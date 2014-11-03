@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>44</value>
+    </field>
+    <field name="summary">
+      <value>PropertyBinder attribute for DictionaryAdapterFactory</value>
+    </field>
+    <field name="description">
+      <value>The patch attached adds a new attribute for working with the DictionaryAdapter component. In our current project, there is a requirement to access AppSettings for quite a lot of data of various types: ints, guids, boolean etc. At present the DA requires the interface property type to match that of the type in the dictionary, but this doesn't work for AppSettings as they are always strings. The new attribute allows you to specify, per property, a binder that will perform a conversion for you. I've implemented a simple StringToNullableInt binder, that is used like this:
+
+&lt;appSettings&gt;
+    &lt;add key="interval" value="250" /&gt;
+    &lt;add key="id" value="76b7b6c2-7d7c-11dc-8314-0800200c9a66" /&gt;
+&lt;/appSettings&gt;
+
+interface IAppSettings
+{
+    [DictionaryAdapterPropertyBinder(typeof(DictionaryAdapterStringToNullableIntBinder))]
+    int? Interval { get; set; }
+
+    [DictionaryAdapterPropertyBinder(typeof(DictionaryAdapterStringToNullableGuidBinder))]
+    Guid? Id { get; set; }
+}
+
+IAppSettings appSettings = dictionaryAdapterFactory.Get&lt;IAppSettings&gt;(AppSettings);
+
+// appSettings.Interval == 250
+// appSettings.Id == new Guid("76b7b6c2-7d7c-11dc-8314-0800200c9a66")
+
+I guess this could have been implemented using some of the databinder stuff, but I didn't want to introduce a dependancy on anything else as this is a standalone component as the moment. </value>
+    </field>
+    <field name="created">
+      <value>1192702725000</value>
+    </field>
+    <field name="updated">
+      <value>1194257693000</value>
+    </field>
+    <field name="reporterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="updaterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="resolved">
+      <value>1282137568385</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

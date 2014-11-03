@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>1.1.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>126</value>
+    </field>
+    <field name="summary">
+      <value>"Duplicate type name within an assembly" - in multi-threaded NHibernate-based web app</value>
+    </field>
+    <field name="description">
+      <value>Our enterprise-level web-based application, running on NHibernate 1.2, occasionally receives the following error:
+
+Message: Duplicate type name within an assembly. 
+
+Source: mscorlib 
+
+Method Name: CheckTypeNameConflict 
+
+Declaring Type: System.Reflection.Emit.AssemblyBuilderData 
+
+at System.Reflection.Emit.AssemblyBuilderData.CheckTypeNameConflict(String strTypeName, TypeBuilder enclosingType) 
+at System.Reflection.Emit.TypeBuilder.Init(String fullname, TypeAttributes attr, Type parent, Type[] interfaces, Module module, PackingSize iPackingSize, Int32 iTypeSize, TypeBuilder enclosingType) 
+at System.Reflection.Emit.TypeBuilder..ctor(String name, TypeAttributes attr, Type parent, Type[] interfaces, Module module, PackingSize iPackingSize, TypeBuilder enclosingType) 
+at System.Reflection.Emit.ModuleBuilder.DefineType(String name, TypeAttributes attr, Type parent, Type[] interfaces) 
+at Castle.DynamicProxy.Builder.CodeBuilder.EasyType..ctor(ModuleScope modulescope, String name, Type baseType, Type[] interfaces, Boolean serializable) 
+at Castle.DynamicProxy.Builder.CodeGenerators.BaseCodeGenerator.CreateTypeBuilder(String typeName, Type baseType, Type[] interfaces) 
+at Castle.DynamicProxy.Builder.CodeGenerators.ClassProxyGenerator.GenerateCode(Type baseClass, Type[] interfaces) 
+at Castle.DynamicProxy.Builder.DefaultProxyBuilder.CreateClassProxy(Type theClass, Type[] interfaces) 
+at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type baseClass, Type[] interfaces, IInterceptor interceptor, Boolean checkAbstract, Object[] argumentsForConstructor) 
+at NHibernate.Proxy.CastleProxyFactory.GetProxy(Object id, ISessionImplementor session) 
+
+
+
+I have searched the web for others having the issue, and have found it reported to be a problem with the ClassProxyGenerator.GenerateCode method using an invalid locking scheme, allowing multiple threads to create dynamic types concurrently.  However, everyone seems to feel it was resolved in 1.1.5, the version included with NHibernate 1.2.  In fact, when pointing a .NET Reflector at it, I see the adjusted locking code which appears it should solve the problem.  Yet, the problem persists.  Of course, it is only reproducible under heavy production load or performance testing.
+
+We are assuming the problem goes away with the latest version of Castle (as the locking code as been completely rewritten) - but it will take months to upgrade our enterprise application to the newest version of NHibernate, and are looking for a quicker fix in the meantime.
+
+Can you provide any suggestions or useful information on this issue?
+
+Thanks!</value>
+    </field>
+    <field name="created">
+      <value>1262853991000</value>
+    </field>
+    <field name="updated">
+      <value>1264406550000</value>
+    </field>
+    <field name="reporterName">
+      <value>JavanTennant</value>
+    </field>
+    <field name="updaterName">
+      <value>JavanTennant</value>
+    </field>
+    <field name="resolved">
+      <value>1264406520000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Which version of DynamicProxy are you using?" created="1262855494000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1264406520000" />
+  </issue>
+</issues>

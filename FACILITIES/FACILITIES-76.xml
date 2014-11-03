@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>AutomaticTransactionManagement</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>76</value>
+    </field>
+    <field name="summary">
+      <value>ATM failing to intercept method call</value>
+    </field>
+    <field name="description">
+      <value>I have a service published into the Windsor container that has a signature similar to:
+
+ [Singleton]
+
+[Transactional]
+
+public class TestService&lt;T&gt; {
+   ...
+
+   [Transaction(TransactionMode.RequiresNew)]
+   public virtual void TestMethod(object obj) {
+      ...
+   }
+} 
+
+Using the service:
+
+ TestService&lt;SomeClass&gt; test = Container[typeof(TestService&lt;SomeClass&gt;)] as TestService&lt;SomeClass&gt;;
+Test.TestMethod(var);
+
+ At the time of publishing the service I can see how the Castle.Facilities.AutomaticTransactionManagement.TransactionComponentInspector::ProcessModel()
+processes the TestService&lt;T&gt; service and creates the TransactionMetaInfoStore based on attributes.
+
+ When the TestMethod() is invoked the Castle.Facilities.AutomaticTransactionManagement.TransactionInterceptor intercepts the call and try to get the TransactionMetaInfo associated with invocation:
+
+public void Intercept(IInvocation invocation)
+{
+   MethodInfo methodInfo = invocation.MethodInvocationTarget;
+
+   if (metaInfo == null || !metaInfo.Contains(methodInfo))
+   {
+      ...
+ 
+This condition evaluates to false, so the call is processed ignoring the [Transaction()] attribute. Looking at the implementation of TransactionMetaInfo::Contains() it is using the IDictionary::Contains() to check if it has a TransactionAttribute for the MethodInfo. 
+
+The key stored in the IDictionary is the MethodInfo for TestService&lt;T&gt;::TestMethod() but the MethodInfo intercepted is TestService&lt;SomeClass&gt;::TestMethod().
+
+</value>
+    </field>
+    <field name="created">
+      <value>1173371946000</value>
+    </field>
+    <field name="updated">
+      <value>1173435561000</value>
+    </field>
+    <field name="reporterName">
+      <value>rjb</value>
+    </field>
+    <field name="updaterName">
+      <value>rjb</value>
+    </field>
+    <field name="resolved">
+      <value>1282141174713</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

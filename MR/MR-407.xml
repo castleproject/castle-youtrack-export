@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - WebForms</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>407</value>
+    </field>
+    <field name="summary">
+      <value>IronPython do not working on WebForms</value>
+    </field>
+    <field name="description">
+      <value>Cannot use IronPython (1.1) on web forms. Page fails with exception: 
+
+Description: An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code. 
+
+Exception Details: System.ArgumentNullException: Value cannot be null.
+Parameter name: virtualPaths
+
+Source Error: 
+
+Line 187:            super(type(self), self).FrameworkInitialize()
+Line 188:            self.___BuildControlTree(self)
+Line 189:            self.AddWrappedFileDependencies(ASP.default_aspx.__fileDependencies)
+Line 190:            self.Request.ValidateInput()
+
+Problem: WebFormsViewEngine should not use Activator.CreateInstance(pageType) to create a page instances. 
+Possible resolution: BuildManager.CreateInstanceFromVirtualPath/AssemblyBuilder.GenerateTypeFactory </value>
+    </field>
+    <field name="created">
+      <value>1201443130000</value>
+    </field>
+    <field name="updated">
+      <value>1244676734000</value>
+    </field>
+    <field name="reporterName">
+      <value>timothyk</value>
+    </field>
+    <field name="updaterName">
+      <value>timothyk</value>
+    </field>
+    <field name="resolved">
+      <value>1282145527932</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676720000" />
+  </issue>
+</issues>

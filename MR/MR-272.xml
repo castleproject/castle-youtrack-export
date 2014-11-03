@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveRecord Support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>272</value>
+    </field>
+    <field name="summary">
+      <value>Server-side validation failure causes properties on databound object to be null</value>
+    </field>
+    <field name="description">
+      <value>Given a property Username defined like this:
+
+[Property(Access = PropertyAccess.NosetterCamelcaseUnderscore)]
+[ValidateNonEmpty("No empty usernames")]
+[ValidateIsUnique("Must be unique")]
+public string Username { get { return _username; } set { _username = value; } }
+
+and a controller method signature like this:
+
+public void CreateUser([DataBind("User", Validate=true)] User user, string password, string passwordConfirmation, string returnUrl)
+
+If Validate=true on the DataBind attribute and a duplicate value is entered for Username, the data binder puts a null value in Username since it failed validation, and now an attempted Save operation returns a validation error for the ValidateNonEmpty instead of ValidateIsUnique.
+
+If Validate=false, it populates the username field with the duplicate value calls Validator.IsValid(user) return false due to ValidateIsUnique (as expected), but calls to Save are allowed with no failure.
+
+It seems the Save operation should return a validation exception even when Validate=false due to the duplicate username.  I'm not sure what should happen if Validate=true.  Presumably that means to validate the input before the method runs, but how would you indicate to the method that validation problems occurred and what those problems were?  I suppose setting to null would work, but then you run into problems like above where your validation error message might not match what actually went wrong...
+
+For more information, see this post on the forums:  http://forum.castleproject.org/viewtopic.php?p=8185#8185
+</value>
+    </field>
+    <field name="created">
+      <value>1181852306000</value>
+    </field>
+    <field name="updated">
+      <value>1244676824000</value>
+    </field>
+    <field name="reporterName">
+      <value>jdcrutchley</value>
+    </field>
+    <field name="updaterName">
+      <value>jdcrutchley</value>
+    </field>
+    <field name="resolved">
+      <value>1282143840479</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676780000" />
+  </issue>
+</issues>

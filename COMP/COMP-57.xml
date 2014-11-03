@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>EmailSender</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>57</value>
+    </field>
+    <field name="summary">
+      <value>SmtpSender won't work in medium trusted environment (almost all shared hosts).</value>
+    </field>
+    <field name="description">
+      <value>After calling Send() on SmtpSender, it gives an exception when its private function "ConfigureSender" calls the property "HasCredentials".
+
+To reproduce, send an email using either SmtpSender directly or by using the Monorail email functionality. To set medium trust change this file: 
+
+\WINDOWS\Microsoft.NET\Framework\v2.0.50727\CONFIG\web.config
+
+&lt;location allowOverride="true"&gt;
+        &lt;system.web&gt;
+            &lt;securityPolicy&gt;
+                &lt;trustLevel name="Full" policyFile="internal" /&gt;
+                &lt;trustLevel name="High" policyFile="web_hightrust.config" /&gt;
+                &lt;trustLevel name="Medium" policyFile="web_mediumtrust.config" /&gt;
+                &lt;trustLevel name="Low"  policyFile="web_lowtrust.config" /&gt;
+                &lt;trustLevel name="Minimal" policyFile="web_minimaltrust.config" /&gt;
+            &lt;/securityPolicy&gt;
+            &lt;trust level="Medium" originUrl="" /&gt; &lt;!-- Change this from the default to "Medium" --&gt;
+        &lt;/system.web&gt;
+    &lt;/location&gt;
+
+Detailed error and stacktrace:
+
+Security Exception
+Description: The application attempted to perform an operation not allowed by the security policy.  To grant this application the required permission please contact your system administrator or change the application's trust level in the configuration file.
+
+Exception Details: System.Security.SecurityException: Request for the permission of type 'System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089' failed.
+
+Source Error:
+
+An unhandled exception was generated during the execution of the current web request. Information regarding the origin and location of the exception can be identified using the exception stack trace below.
+
+Stack Trace:
+
+[SecurityException: Request for the permission of type 'System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089' failed.]
+   System.Security.CodeAccessSecurityEngine.Check(Object demand, StackCrawlMark&amp; stackMark, Boolean isPermSet) +0
+   System.Security.CodeAccessPermission.Demand() +59
+   System.Net.NetworkCredential.get_Password() +53
+   Castle.Components.Common.EmailSender.Smtp.SmtpSender.get_HasCredentials() +47
+   Castle.Components.Common.EmailSender.Smtp.SmtpSender.ConfigureSender(Message message) +44
+   Castle.Components.Common.EmailSender.Smtp.SmtpSender.Send(Message message) +133</value>
+    </field>
+    <field name="created">
+      <value>1203368254000</value>
+    </field>
+    <field name="updated">
+      <value>1229883005000</value>
+    </field>
+    <field name="reporterName">
+      <value>arnoud</value>
+    </field>
+    <field name="updaterName">
+      <value>arnoud</value>
+    </field>
+    <field name="resolved">
+      <value>1229883000000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="hammett" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1229881560000" />
+    <comment author="hammett" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1229883000000" />
+  </issue>
+</issues>

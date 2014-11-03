@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>443</value>
+    </field>
+    <field name="summary">
+      <value>Allow Controllers to Instantiate ViewComponents</value>
+    </field>
+    <field name="description">
+      <value>This is a patch to allow ViewComponent objects to be instantiated from within the Controller by passing only the EngineContext from the controller to the constructor.
+
+This allows for higher cohesion of ViewComponent's because they do not have to have supporting methods in Controller classes or static methods that require multiple parameters from the controller. this also supports loose coupling of ViewComponents to Controllers.
+
+The Controller can override this Constructor and provide arguments that initialize the ViewComponents properties.</value>
+    </field>
+    <field name="created">
+      <value>1209739643000</value>
+    </field>
+    <field name="updated">
+      <value>1263055784000</value>
+    </field>
+    <field name="reporterName">
+      <value>gareth@waves.ky</value>
+    </field>
+    <field name="updaterName">
+      <value>gareth@waves.ky</value>
+    </field>
+    <field name="resolved">
+      <value>1282145678385</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055740000" />
+  </issue>
+</issues>

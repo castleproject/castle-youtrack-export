@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Lifestyles</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>342</value>
+    </field>
+    <field name="summary">
+      <value>Should error when trying to use PerWebRequest lifestyle when linked against the client profile.</value>
+    </field>
+    <field name="description">
+      <value>=Problem=
+
+When a component is set to PerWebRequest lifestyle and the client profile DLL has been used by mistake no error is displayed and Castle Windsor appears to fall back to a singleton lifestyle.
+
+=Steps to reproduce=
+# Create a new web project
+# Use the Castle.Windsor 4.0-client DLL
+# Register a component using the PerWebRequest lifecycle
+
+=Expected behaviour=
+
+Some exception to occur alerting the developer to the error.
+
+=Actual behaviour=
+
+Silently falls back to singleton behaviour (as observed using the debugger).
+</value>
+    </field>
+    <field name="created">
+      <value>1340189293179</value>
+    </field>
+    <field name="updated">
+      <value>1407822257274</value>
+    </field>
+    <field name="reporterName">
+      <value>Chris.Chilvers</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1340538411796</value>
+    </field>
+    <field name="voterName">
+      <value>xtoff</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="How do you register that? Via xml, fluent API?" created="1340189524554" />
+    <comment author="Chris.Chilvers" text="I've created a simple project that reproduces this problem here, https://github.com/chilversc/Castle-Windsor-IOC-342" created="1340189733608" />
+    <comment author="Chris.Chilvers" text="Registered using the fluent API" created="1340189754060" />
+    <comment author="xtoff" text="I'm thinking perhaps the fluent API for doing that should be disabled in CP altogether..." created="1340189865762" />
+    <comment author="Chris.Chilvers" text="That would also make sense, though an error would be nice in case someone does still find a way rather than falling back to singleton. Same should happen for any requested lifecycle I think, if the lifecycle is not available." created="1340190608426" />
+    <comment author="xtoff" text="This will no longer compile" created="1340538422853" />
+  </issue>
+</issues>

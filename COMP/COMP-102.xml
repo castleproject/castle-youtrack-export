@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Pagination</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>102</value>
+    </field>
+    <field name="summary">
+      <value>GenericPage doesn't behave gracefully when PageSize = 0</value>
+    </field>
+    <field name="description">
+      <value>A call to the GenericPage constructor with pageSize = 0 throws the following exception: 
+
+System.DivideByZeroException: Attempted to divide by zero.
+
+It should at least throw a custom exception.
+
+A better idea would be that the pageSize parameter is discarded when equal to 0. This would allow to use the GenericPage both when pagination is needed (pageSize &gt; 0) and when it's not (pageSize = 0).
+
+Two quick remarks:
+- the Pagination item is missing in the "Components" list when submitting an issue.
+ - the inline help doesn't indicate whether curPage is 0-based or 1-based. The type could be replaced by a non-ambiguous custom type such as :
+
+struct PageIndex {
+  public int 0based { get; set; }
+  public int 1based { get { return 0based + 1; } set { 0based = value - 1; }
+}
+</value>
+    </field>
+    <field name="created">
+      <value>1250759183000</value>
+    </field>
+    <field name="updated">
+      <value>1259471429000</value>
+    </field>
+    <field name="reporterName">
+      <value>vripoll</value>
+    </field>
+    <field name="updaterName">
+      <value>vripoll</value>
+    </field>
+    <field name="resolved">
+      <value>1259471400000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="gauthier" text="simplest option is to throw ArgumentOutOfRange, and document that in the constructor xml comments.&#xA;&#xA;Discarding page size when 0 would not comply (IMHO) with the principle of least astonishment, and could be done in a applicative specific class if testing outside looks like a burden.&#xA;&#xA;For the PageIndex idea, a look at IPaginatedPage interface documentation states &quot;Indexes are zero based.&quot; and I think it would mess the code while using GenericPage&lt;T&gt; constructor&#xA;&#xA;Aside the curPage constructor's argument is poorly named and should be renamed something like oneBasedPageIndex (or is it zeroBasedPageIndex?)." created="1250863656000" />
+    <comment author="jsimons" text="Gauthier,&#xA;I agree that an ArgumentOutOfRange exception is the best option.&#xA;This should be thrown if the PageSize is set to anything less than 1.&#xA;&#xA;In regards to CurrentPage, if currentPage has the word &quot;Index&quot; eg. CurrentPageIndex than it should be 0 based but if it doesn't eg. CurrentPage than is should be 1 based.&#xA;My reason for this logic is because in c# index based lists/arrays always start at 0 while the other one without &quot;Index&quot; should apply the common rules eg. books do not have a zero page.&#xA;&#xA;&#xA;Vincent,&#xA;&quot;the Pagination item is missing in the &quot;Components&quot; list when submitting an issue.&quot; we know that, and unfortunately the current version of Donjon has a bug that prevents us from adding new Components. We will add it when Donjon bug gets fixed. Thanks&#xA;&#xA;Cheers&#xA;John&#xA;" created="1250869277000" />
+    <comment author="Tigraine" text="Please only apply comp-issue-102.patch. mr-issue-102.patch is lacking the guard functionality for Page." created="1256377885000" />
+    <comment author="jonorossi" text="Applied in r6373.&#xA;&#xA;I also added the exception to the xml documentation of the constructors and converted spaces to tabs." created="1259471426000" />
+    <comment author="jonorossi" text="* '''Components''' set to ''Pagination''.&#xD;&#xA;" created="1259471160000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1259471400000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1259471400000" />
+    <comment author="Tigraine" text="* '''Attachment''' mr-issue-102.patch added.&#xD;&#xA;" created="1256293500000" />
+    <comment author="Tigraine" text="* '''Attachment''' comp-issue-102.patch added.&#xD;&#xA;" created="1256297580000" />
+  </issue>
+</issues>

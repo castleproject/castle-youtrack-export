@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>7</value>
+    </field>
+    <field name="summary">
+      <value>Add support for MySql and Postgre to the Migrator</value>
+    </field>
+    <field name="description">
+      <value>Currently the Migrator is usable by:
+    nant migrate
+but only supports MSDE/SQL Server database
+
+The Migrator code is at https://svn.sourceforge.net/svnroot/nproject/Migrator/trunk/
+
+Please comment here if you plan to work on this, I think that some people have sarted to work on this so we better stay in sync.
+
+I know Kevin is working on the Postgre provider and I plan to work on MySql in a couple of weeks.</value>
+    </field>
+    <field name="created">
+      <value>1155031354000</value>
+    </field>
+    <field name="updated">
+      <value>1158773740000</value>
+    </field>
+    <field name="reporterName">
+      <value>macournoyer</value>
+    </field>
+    <field name="updaterName">
+      <value>macournoyer</value>
+    </field>
+    <field name="resolved">
+      <value>1282138119151</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

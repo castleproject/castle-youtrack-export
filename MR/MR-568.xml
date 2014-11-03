@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>568</value>
+    </field>
+    <field name="summary">
+      <value>Mono - FormHelper.Select throws invalid cast with ActiveRecord</value>
+    </field>
+    <field name="description">
+      <value>When using Mono (version does not matter as far as I can tell), the form helper throws an InvalidCastException when using ActiveRecord.  I've traced the error down to Proxies trying to be cast as the original object (ie ModelProxy cannot be cast to Model) when the NHibernate cache already contains the model.
+
+The AbstractFormRelatedHelper can be modified to not throw errors on casting from proxies by   substituting the original model's property info for the proxy's property info in the ReflectionValueGetter.GetValue method:
+
+{code lang=csharp}
+public override object GetValue(object instance)
+{
+	try
+	{
+		try
+		{
+			return propInfo.GetValue(instance, null);
+		} 
+		catch (InvalidCastException)
+		{
+			propInfo = propInfo.ReflectedType.BaseType.GetProperty(Name);
+			return propInfo.GetValue(instance, null);
+		}
+	}
+	catch (TargetException)
+	{
+		var tempProp = instance.GetType().GetProperty(Name);
+
+		if (tempProp == null)
+		{
+			throw;
+		}
+
+		return tempProp.GetValue(instance, null);
+	}
+}
+{code}
+
+The additional try/catch block gets the base type of the model and tries to get the property's value again.</value>
+    </field>
+    <field name="created">
+      <value>1283981324245</value>
+    </field>
+    <field name="updated">
+      <value>1414999357866</value>
+    </field>
+    <field name="reporterName">
+      <value>Brian.Saville</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999357861</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="MonoRail2 is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/MonoRail/issues" created="1414999357868" />
+  </issue>
+</issues>

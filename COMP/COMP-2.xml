@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>2</value>
+    </field>
+    <field name="summary">
+      <value>Uncool type assumption in Binder's TreeBuilder</value>
+    </field>
+    <field name="description">
+      <value>Some type assumption are made in Binders's TreeBuilder that will throw a cast exception when used with MonoRai TestSupport (but works in the browser, I don't know why ?)
+
+The attached patch add more defensive programming. I was not able to create a TestCase to reproduce the error, 'cause it was working on most of my controllers!
+
+I built and tested localy the changes so I don't think I broke anything.
+
+Here's the stacktrace of the error:
+=========
+Castle.MonoRail.Framework.RailsException: Error building method arguments. Last param analyzed was audit with value '' ---&gt; System.InvalidCastException: Unable to cast object of type 'Castle.Components.Binder.LeafNode' to type 'Castle.Components.Binder.CompositeNode'.
+at Castle.Components.Binder.TreeBuilder.GetOrCreateCompositeNode(CompositeNode parent, String nodeName) in e:\dev\ccnet\server\CastleProject\WorkingDirectory\Components\General\Binder\Castle.Components.Binder\TreeBuilder.cs:line 151
+at Castle.Components.Binder.TreeBuilder.ProcessNode(CompositeNode node, Type type, String name, Object value) in e:\dev\ccnet\server\CastleProject\WorkingDirectory\Components\General\Binder\Castle.Components.Binder\TreeBuilder.cs:line 94
+at Castle.Components.Binder.TreeBuilder.ProcessNode(CompositeNode node, Type type, String name, Object value) in e:\dev\ccnet\server\CastleProject\WorkingDirectory\Components\General\Binder\Castle.Components.Binder\TreeBuilder.cs:line 96
+at Castle.Components.Binder.TreeBuilder.PopulateTree(CompositeNode root, NameValueCollection nameValueCollection) in e:\dev\ccnet\server\CastleProject\WorkingDirectory\Components\General\Binder\Castle.Components.Binder\TreeBuilder.cs:line 49
+at Castle.Components.Binder.TreeBuilder.BuildSourceNode(NameValueCollection nameValueCollection) in e:\dev\ccnet\server\CastleProject\WorkingDirectory\Components\General\Binder\Castle.Components.Binder\TreeBuilder.cs:line 32
+at Castle.MonoRail.Framework.SmartDispatcherController.get_ParamsNode() in e:\dev\ccnet\server\CastleProject\WorkingDirectory\MonoRail\Castle.MonoRail.Framework\SmartDispatcherController.cs:line 357
+at Castle.MonoRail.Framework.SmartDispatcherController.ObtainParamsNode(ParamStore from) in e:\dev\ccnet\server\CastleProject\WorkingDirectory\MonoRail\Castle.MonoRail.Framework\SmartDispatcherController.cs:line 415
+at Castle.MonoRail.ActiveRecordSupport.ARDataBindAttribute.Bind(SmartDispatcherController controller, ParameterInfo parameterInfo) in e:\dev\ccnet\server\CastleProject\WorkingDirectory\MonoRail\Castle.MonoRail.ActiveRecordSup
+port\ARDataBindAttribute.cs:line 118
+at Castle.MonoRail.Framework.SmartDispatcherController.BuildMethodArguments(ParameterInfo[] parameters, IRequest request, Object[] actionArgs) in
+ e:\dev\ccnet\server\CastleProject\WorkingDirectory\MonoRail\Castle.MonoRail.Framework\SmartDispatcherController.cs:line 258
+--- End of inner exception stack trace ---
+at Castle.MonoRail.Framework.SmartDispatcherController.BuildMethodArguments(ParameterInfo[] parameters, IRequest request, Object[] actionArgs) in
+ e:\dev\ccnet\server\CastleProject\WorkingDirectory\MonoRail\Castle.MonoRail.Fra
+mework\SmartDispatcherController.cs:line 299
+at Castle.MonoRail.Framework.SmartDispatcherController.InvokeMethod(MethodInfo method, IRequest request, Object[] actionArgs) in e:\dev\ccnet\ser
+ver\CastleProject\WorkingDirectory\MonoRail\Castle.MonoRail.Framework\SmartDispa
+tcherController.cs:line 71
+at Castle.MonoRail.Framework.Controller.InvokeMethod(MethodInfo method, Object[] methodArgs) in e:\dev\ccnet\server\CastleProject\WorkingDirectory\MonoRail\Castle.MonoRail.Framework\Controller.cs:line 1199
+at Castle.MonoRail.Framework.Controller.InternalSend(String action, Object[] actionArgs) in e:\dev\ccnet\server\CastleProject\WorkingDirectory\MonoRail\Castle.MonoRail.Framework\Controller.cs:line 993 
+=====</value>
+    </field>
+    <field name="created">
+      <value>1158836627000</value>
+    </field>
+    <field name="updated">
+      <value>1159192950000</value>
+    </field>
+    <field name="reporterName">
+      <value>macournoyer</value>
+    </field>
+    <field name="updaterName">
+      <value>macournoyer</value>
+    </field>
+    <field name="resolved">
+      <value>1282137442120</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

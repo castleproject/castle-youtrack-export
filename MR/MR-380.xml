@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>380</value>
+    </field>
+    <field name="summary">
+      <value>Changed public methods to virtual, made some code more readable. (HtmlHelper)</value>
+    </field>
+    <field name="description">
+      <value>HtmlHelper
+
+Changed public methods to virtual so you can extend HtmlHelper and override its methods.
+
+made some code more readable.
+
+Changed String to string to be consistent with the other helpers.</value>
+    </field>
+    <field name="created">
+      <value>1197803936000</value>
+    </field>
+    <field name="updated">
+      <value>1263055889000</value>
+    </field>
+    <field name="reporterName">
+      <value>mike343</value>
+    </field>
+    <field name="updaterName">
+      <value>mike343</value>
+    </field>
+    <field name="resolved">
+      <value>1282145447791</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055860000" />
+  </issue>
+</issues>

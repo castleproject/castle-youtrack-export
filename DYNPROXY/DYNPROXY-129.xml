@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>129</value>
+    </field>
+    <field name="summary">
+      <value>AccessViolationException in AbstractTypeEmitter.BuildType()</value>
+    </field>
+    <field name="description">
+      <value>Recently, our project has been getting this error while executing NUnit tests.
+It doesn't happen all the time and is seemingly random, other than how it seems to only occur on 64-bit machines.
+
+UPDATE: Experimentally, I found that it seems to be when creating very many types. I uploaded an example project that demonstrates this.
+
+UPDATE 2: The .NET 4.0 Beta seems to resolve this.
+
+Exception:
+Unhandled Exception: System.AccessViolationException: Attempted to read or write protected memory. This is often an indication that other memory is corrupt.
+   at System.Reflection.Emit.TypeBuilder._TermCreateClass(Int32 handle, Module module)
+   at System.Reflection.Emit.TypeBuilder.CreateTypeNoLock()
+   at System.Reflection.Emit.TypeBuilder.CreateType()
+   at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()
+   at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()
+   at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode(Type proxyTargetType, Type[] interfaces, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.DefaultProxyBuilder.CreateInterfaceProxyTypeWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyTypeWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, IInterceptor[] interceptors)
+   at Rhino.Mocks.MockRepository.MockInterface(CreateMockState mockStateFactory, Type type, Type[] extras)
+   at Rhino.Mocks.MockRepository.CreateMockObject(Type type, CreateMockState factory, Type[] extras, Object[] argumentsForConstructor)
+   at Rhino.Mocks.MockRepository.StrictMock[T](Object[] argumentsForConstructor)
+   at _10001Dalmatians.Program.Main() in c:\development\personal\10001Dalmatians\10001Dalmatians\Program.cs:line 1028
+
+
+
+
+The fact that this exception is so vague is my main complaint.
+Given the stack trace, I'm guessing that it may actually be a problem with the .NET framework itself?</value>
+    </field>
+    <field name="created">
+      <value>1264972630000</value>
+    </field>
+    <field name="updated">
+      <value>1266633920000</value>
+    </field>
+    <field name="reporterName">
+      <value>MikeF</value>
+    </field>
+    <field name="updaterName">
+      <value>MikeF</value>
+    </field>
+    <field name="resolved">
+      <value>1266633900000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="it might be issue with the 64bit CLR indeed. Does that occur if you force 32bit mode when compiling?" created="1265781951000" />
+    <comment author="xtoff" text="BTW, if you have the .NET 4.0, could you also verify if this issue appears on .NET 4.0 as well? (provided it's one of many bugs in SRE)" created="1265782231000" />
+    <comment author="xtoff" text="Mike,&#xA;&#xA;I was able to reproduce the issue on my x64 Win7 machine. The exception occurs because process runs out of memory. The issue _I think_ is due to fact that RhinoMocks would create a new in-memory Assembly for each interface you mock. So you're effectively loading into memory 10k assemblies. Not something you would usually do.&#xA;&#xA;I would suggest bringing this issue up on RM discussion group." created="1265807323000" />
+    <comment author="MikeF" text="When running in 32-bit mode, I would instead get an OutOfMemoryException when the 32-bit memory limit was reached. But the number of successful mocked interfaces before that point surpassed the number mocked in 64-bit mode. (On my machine, about 2000 instead of about 1000.)&#xA;&#xA;&#xA;I just tried the .NET 4.0 beta and that does indeed seem to resolve the issue; on my 8GB RAM machine, my example program runs through to completion just fine." created="1266230085000" />
+    <comment author="xtoff" text="ok, so I'm gonna close this as invalid, since this is not really issue with DP." created="1266633855000" />
+    <comment author="MikeF" text="* '''Attachment''' AccessViolationException_ExampleProject.zip added.&#xD;&#xA;" created="1265107020000" />
+    <comment author="MikeF" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Recently, our project has been getting this error while executing NUnit tests.&#xD;&#xA;It doesn't happen all the time and is seemingly random, other than how it seems to only occur on 64-bit machines.&#xD;&#xA;&#xD;&#xA;If this isn't a DynamicProxy bug, I would still greatly appreciate ANY relevant information anyone has.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Message:	System.AccessViolationException : Attempted to read or write protected memory. This is often an indication that other memory is corrupt.&#xD;&#xA;&#xD;&#xA;      &#xD;&#xA;at System.Reflection.Emit.TypeBuilder._TermCreateClass(Int32 handle, Module module)&#xD;&#xA;at System.Reflection.Emit.TypeBuilder.CreateTypeNoLock()&#xD;&#xA;at System.Reflection.Emit.TypeBuilder.CreateType()&#xD;&#xA;at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()&#xD;&#xA;at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()&#xD;&#xA;at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode(Type proxyTargetType, Type[] interfaces, ProxyGenerationOptions options)&#xD;&#xA;at Castle.DynamicProxy.DefaultProxyBuilder.CreateInterfaceProxyTypeWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)&#xD;&#xA;at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyTypeWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)&#xD;&#xA;at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, IInterceptor[] interceptors)&#xD;&#xA;at Rhino.Mocks.MockRepository.MockInterface(CreateMockState mockStateFactory, Type type, Type[] extras)&#xD;&#xA;at Rhino.Mocks.MockRepository.CreateMockObject(Type type, CreateMockState factory, Type[] extras, Object[] argumentsForConstructor)&#xD;&#xA;at Rhino.Mocks.MockRepository.StrictMock[T](Object[] argumentsForConstructor)&#xD;&#xA;at [REDACTED (Unit test method)]&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Recently, our project has been getting this error while executing NUnit tests.&#xD;&#xA;It doesn't happen all the time and is seemingly random, other than how it seems to only occur on 64-bit machines.&#xD;&#xA;&#xD;&#xA;UPDATE: Experimentally, I found that it seems to be when creating very many types. I uploaded an example project that demonstrates this.&#xD;&#xA;&#xD;&#xA;Exception:&#xD;&#xA;Unhandled Exception: System.AccessViolationException: Attempted to read or write protected memory. This is often an indication that other memory is corrupt.&#xD;&#xA;   at System.Reflection.Emit.TypeBuilder._TermCreateClass(Int32 handle, Module module)&#xD;&#xA;   at System.Reflection.Emit.TypeBuilder.CreateTypeNoLock()&#xD;&#xA;   at System.Reflection.Emit.TypeBuilder.CreateType()&#xD;&#xA;   at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()&#xD;&#xA;   at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()&#xD;&#xA;   at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode(Type proxyTargetType, Type[] interfaces, ProxyGenerationOptions options)&#xD;&#xA;   at Castle.DynamicProxy.DefaultProxyBuilder.CreateInterfaceProxyTypeWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)&#xD;&#xA;   at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyTypeWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)&#xD;&#xA;   at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, IInterceptor[] interceptors)&#xD;&#xA;   at Rhino.Mocks.MockRepository.MockInterface(CreateMockState mockStateFactory, Type type, Type[] extras)&#xD;&#xA;   at Rhino.Mocks.MockRepository.CreateMockObject(Type type, CreateMockState factory, Type[] extras, Object[] argumentsForConstructor)&#xD;&#xA;   at Rhino.Mocks.MockRepository.StrictMock[T](Object[] argumentsForConstructor)&#xD;&#xA;   at _10001Dalmatians.Program.Main() in c:\development\personal\10001Dalmatians\10001Dalmatians\Program.cs:line 1028&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;The fact that this exception is so vague is my main complaint.&#xD;&#xA;Given the stack trace, I'm guessing that it may actually be a problem with the .NET framework itself?&#xD;&#xA;{quote}&#xD;&#xA;" created="1265107260000" />
+    <comment author="MikeF" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Recently, our project has been getting this error while executing NUnit tests.&#xD;&#xA;It doesn't happen all the time and is seemingly random, other than how it seems to only occur on 64-bit machines.&#xD;&#xA;&#xD;&#xA;UPDATE: Experimentally, I found that it seems to be when creating very many types. I uploaded an example project that demonstrates this.&#xD;&#xA;&#xD;&#xA;Exception:&#xD;&#xA;Unhandled Exception: System.AccessViolationException: Attempted to read or write protected memory. This is often an indication that other memory is corrupt.&#xD;&#xA;   at System.Reflection.Emit.TypeBuilder._TermCreateClass(Int32 handle, Module module)&#xD;&#xA;   at System.Reflection.Emit.TypeBuilder.CreateTypeNoLock()&#xD;&#xA;   at System.Reflection.Emit.TypeBuilder.CreateType()&#xD;&#xA;   at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()&#xD;&#xA;   at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()&#xD;&#xA;   at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode(Type proxyTargetType, Type[] interfaces, ProxyGenerationOptions options)&#xD;&#xA;   at Castle.DynamicProxy.DefaultProxyBuilder.CreateInterfaceProxyTypeWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)&#xD;&#xA;   at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyTypeWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)&#xD;&#xA;   at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, IInterceptor[] interceptors)&#xD;&#xA;   at Rhino.Mocks.MockRepository.MockInterface(CreateMockState mockStateFactory, Type type, Type[] extras)&#xD;&#xA;   at Rhino.Mocks.MockRepository.CreateMockObject(Type type, CreateMockState factory, Type[] extras, Object[] argumentsForConstructor)&#xD;&#xA;   at Rhino.Mocks.MockRepository.StrictMock[T](Object[] argumentsForConstructor)&#xD;&#xA;   at _10001Dalmatians.Program.Main() in c:\development\personal\10001Dalmatians\10001Dalmatians\Program.cs:line 1028&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;The fact that this exception is so vague is my main complaint.&#xD;&#xA;Given the stack trace, I'm guessing that it may actually be a problem with the .NET framework itself?&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Recently, our project has been getting this error while executing NUnit tests.&#xD;&#xA;It doesn't happen all the time and is seemingly random, other than how it seems to only occur on 64-bit machines.&#xD;&#xA;&#xD;&#xA;UPDATE: Experimentally, I found that it seems to be when creating very many types. I uploaded an example project that demonstrates this.&#xD;&#xA;&#xD;&#xA;UPDATE 2: The .NET 4.0 Beta seems to resolve this.&#xD;&#xA;&#xD;&#xA;Exception:&#xD;&#xA;Unhandled Exception: System.AccessViolationException: Attempted to read or write protected memory. This is often an indication that other memory is corrupt.&#xD;&#xA;   at System.Reflection.Emit.TypeBuilder._TermCreateClass(Int32 handle, Module module)&#xD;&#xA;   at System.Reflection.Emit.TypeBuilder.CreateTypeNoLock()&#xD;&#xA;   at System.Reflection.Emit.TypeBuilder.CreateType()&#xD;&#xA;   at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()&#xD;&#xA;   at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()&#xD;&#xA;   at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode(Type proxyTargetType, Type[] interfaces, ProxyGenerationOptions options)&#xD;&#xA;   at Castle.DynamicProxy.DefaultProxyBuilder.CreateInterfaceProxyTypeWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)&#xD;&#xA;   at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyTypeWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)&#xD;&#xA;   at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, IInterceptor[] interceptors)&#xD;&#xA;   at Rhino.Mocks.MockRepository.MockInterface(CreateMockState mockStateFactory, Type type, Type[] extras)&#xD;&#xA;   at Rhino.Mocks.MockRepository.CreateMockObject(Type type, CreateMockState factory, Type[] extras, Object[] argumentsForConstructor)&#xD;&#xA;   at Rhino.Mocks.MockRepository.StrictMock[T](Object[] argumentsForConstructor)&#xD;&#xA;   at _10001Dalmatians.Program.Main() in c:\development\personal\10001Dalmatians\10001Dalmatians\Program.cs:line 1028&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;The fact that this exception is so vague is my main complaint.&#xD;&#xA;Given the stack trace, I'm guessing that it may actually be a problem with the .NET framework itself?&#xD;&#xA;{quote}&#xD;&#xA;" created="1266230100000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1266633900000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1266633900000" />
+  </issue>
+</issues>

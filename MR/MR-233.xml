@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>233</value>
+    </field>
+    <field name="summary">
+      <value>Brail tag in double quotation marks is giving an error</value>
+    </field>
+    <field name="description">
+      <value>This works:
+
+Code:
+
+&lt;body id=&lt;?brail output page_id ?&gt;&gt;
+
+
+this doesn't:
+
+Code:
+
+&lt;body id="&lt;?brail output page_id ?&gt;"&gt;
+
+
+Using the brail tag in double quotation marks gives the following error:
+
+Code:
+
+[RailsException: Error during compile:
+layouts\default.boo(11,18): BCE0044: Boo.Lang.Compiler.CompilerError: 'unexpected char: 0xD'. ---&gt; layouts\default.boo:11:18: unexpected char: 0xD
+   --- Einde van intern uitzonderingsstackpad ---
+   *** Translated: End of internal exception stacktrace ***
+]
+   Castle.MonoRail.Views.Brail.BooViewEngine.CompileScript(String filename, Boolean batch) +685
+   Castle.MonoRail.Views.Brail.BooViewEngine.GetCompiledScriptInstance(String file, TextWriter output, IRailsEngineContext context, Controller controller) +604
+   Castle.MonoRail.Views.Brail.BooViewEngine.GetOutput(TextWriter output, IRailsEngineContext context, Controller controller) +210
+   Castle.MonoRail.Views.Brail.BooViewEngine.Process(TextWriter output, IRailsEngineContext context, Controller controller, String templateName) +192
+   Castle.MonoRail.Views.Brail.BooViewEngine.Process(IRailsEngineContext context, Controller controller, String templateName) +61
+   Castle.MonoRail.Framework.Controller.ProcessView() +59
+   Castle.MonoRail.Framework.Controller.InternalSend(String action, Object[] actionArgs) +1941
+   Castle.MonoRail.Framework.Controller.Process(IRailsEngineContext context, String areaName, String controllerName, String actionName) +384
+   Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext context) +629
+   Castle.MonoRail.Framework.MonoRailHttpHandler.ProcessRequest(HttpContext context) +44
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +317
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +65
+
+- Workaround: use ${page_id}</value>
+    </field>
+    <field name="created">
+      <value>1174642096000</value>
+    </field>
+    <field name="updated">
+      <value>1263055847000</value>
+    </field>
+    <field name="reporterName">
+      <value>weelink</value>
+    </field>
+    <field name="updaterName">
+      <value>weelink</value>
+    </field>
+    <field name="resolved">
+      <value>1282143695416</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055800000" />
+  </issue>
+</issues>

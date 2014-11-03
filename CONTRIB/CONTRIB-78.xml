@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>78</value>
+    </field>
+    <field name="summary">
+      <value>Routing support for codegenerator</value>
+    </field>
+    <field name="description">
+      <value>This patch is a first stab at implementing routing support in the CodeGenerator project. It's pretty basic in it's support at the moment. 
+
+Add the RouteAttribute to an action:
+
+public partial MyController {
+    [Route(10, "Home", "home")]
+    public void MyAction() {
+    }
+}
+
+Site.MyController now offers a Routes property, in addition to the existing Actions and Views. It is still an IControllerActionReference, so offers Redirect and Transfer methods:
+
+Site.MyController.Routes.Home.Redirect();
+
+And you get a MyRoutes property on the controller, as you do with MyActions and MyViews.
+
+Next, if you have a route with parameters:
+
+public partial MyController {
+    [Route(20, "SuperSpecial", "widgetInfo/&lt;widgetArea:string&gt;/&lt;widget:string&gt;")]
+    public void MyAction(string widgetArea, string widget) {
+    }
+
+    public void SomeProcessing() {
+        MyRoutes.MyAction("foo", "bar").Redirect();
+    }
+}
+
+It only supports PatternRules at the moment, and there are probably unsupported scenarios within PatternRules....but it is a start. Unfortunately, work constraints preclude me from working much more on this in the near future so other contributions are welcomed! &gt;:]</value>
+    </field>
+    <field name="created">
+      <value>1193382331000</value>
+    </field>
+    <field name="updated">
+      <value>1193575590000</value>
+    </field>
+    <field name="reporterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="updaterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="resolved">
+      <value>1282138234479</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

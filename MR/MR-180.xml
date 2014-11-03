@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>180</value>
+    </field>
+    <field name="summary">
+      <value>Url Tokenizer Bug at Turkish Culture Info</value>
+    </field>
+    <field name="description">
+      <value>
+Turkish locale is different than the other locale because there are "i" and "i" characters very similar to each other however uppercase of "i" character is "I" and uppercase of "i" character is "I" character. You are using,  String::ToLower() function however it should be String::ToLowerInvariant().
+
+1) When I hit  the url: http://localhost:1741/WebSite2/Home/Index.rails, i got the following error.
+
+Unable to locate action [index] on controller [home].
+
+[ControllerException: Unable to locate action [index] on controller [home].]
+   Castle.MonoRail.Framework.Controller.InternalSend(String action, Object[] actionArgs) +783
+   Castle.MonoRail.Framework.Controller.Process(IRailsEngineContext context, String areaName, String controllerName, String actionName) +373
+   Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext context) +662
+   Castle.MonoRail.Framework.MonoRailHttpHandler.ProcessRequest(HttpContext context) +61
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +401
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +117
+
+ 
+2) If i lower case the url as: http://localhost:1741/website2/home/index.rails, i got the following error. (because view name is home\Index.boo)
+Could not find a view with path home\index.boo 
+
+[RailsException: Could not find a view with path home\index.boo]
+   Castle.MonoRail.Views.Brail.BooViewEngine.GetCompiledScriptInstance(String file, TextWriter output, IRailsEngineContext context, Controller controller) +737
+   Castle.MonoRail.Views.Brail.BooViewEngine.Process(TextWriter output, IRailsEngineContext context, Controller controller, String templateName) +314
+   Castle.MonoRail.Views.Brail.BooViewEngine.Process(IRailsEngineContext context, Controller controller, String templateName) +61
+   Castle.MonoRail.Framework.Controller.ProcessView() +82
+   Castle.MonoRail.Framework.Controller.InternalSend(String action, Object[] actionArgs) +1854
+   Castle.MonoRail.Framework.Controller.Process(IRailsEngineContext context, String areaName, String controllerName, String actionName) +373
+   Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext context) +662
+   Castle.MonoRail.Framework.MonoRailHttpHandler.ProcessRequest(HttpContext context) +61
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +401
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +117
+
+ 
+
+</value>
+    </field>
+    <field name="created">
+      <value>1164931316000</value>
+    </field>
+    <field name="updated">
+      <value>1244676562000</value>
+    </field>
+    <field name="reporterName">
+      <value>akilli</value>
+    </field>
+    <field name="updaterName">
+      <value>akilli</value>
+    </field>
+    <field name="resolved">
+      <value>1282143602635</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676540000" />
+  </issue>
+</issues>

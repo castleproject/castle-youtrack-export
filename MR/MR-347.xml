@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>347</value>
+    </field>
+    <field name="summary">
+      <value>Cannot specify a default value for ViewComponentParameterAttribute</value>
+    </field>
+    <field name="description">
+      <value>When using ViewComponentParameterAttribute there is no way to specify a default value for the parameter.  Normally, this is handled by initializing the property's underlying field.  However, when using the the C# 3.0 property syntax (where the underlying field is unavailable) this is not an option.   Also, this separates the default value from the property itself.
+
+A better way is to have a Default property on the ViewComponentParameterAttribute.  The attached path implements this.  
+
+Note the patch also moves the code to handle SupportsSection into the ViewComponentDetailsAttribute</value>
+    </field>
+    <field name="created">
+      <value>1193218252000</value>
+    </field>
+    <field name="updated">
+      <value>1263055575000</value>
+    </field>
+    <field name="reporterName">
+      <value>jamescurran</value>
+    </field>
+    <field name="updaterName">
+      <value>jamescurran</value>
+    </field>
+    <field name="resolved">
+      <value>1282144047448</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055560000" />
+  </issue>
+</issues>

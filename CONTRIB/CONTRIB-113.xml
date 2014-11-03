@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>113</value>
+    </field>
+    <field name="summary">
+      <value>REST Support should enable custom serialization</value>
+    </field>
+    <field name="description">
+      <value>this patch enable Castle.MonoRail.Rest.Responder to use custom serializer instead of the one used in Serialize(object obj) method.
+
+It works by adding void SerializeWith(Action&lt;System.IO.TextWriter, object&gt; serializationActionAdapter, object objectToSerialize) member method.
+
+it enable things such as:
+
+RespondTo(
+format =&gt; 
+					{
+						format.Html(response =&gt; response.DefaultResponse());
+						format.Json(response =&gt; response.SerializeWith(jsonSerializer.Serialize, collection));
+						format.Xml(response =&gt; response.Serialize(collection)); // method moved as extension method
+					}
+);
+
+I've moved previous Serialize method as an extension method, it should be renamed SerializeAsXml, it should only be used as example since it's not optimized so maybe it could be moved elsewhere?
+
+Also added comments on public members of Responder.</value>
+    </field>
+    <field name="created">
+      <value>1207385400000</value>
+    </field>
+    <field name="updated">
+      <value>1212680596000</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>gauthier</value>
+    </field>
+    <field name="resolved">
+      <value>1282140059026</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

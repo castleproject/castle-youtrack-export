@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>105</value>
+    </field>
+    <field name="summary">
+      <value>Invocation types should be cached and shared among proxy implementations</value>
+    </field>
+    <field name="description">
+      <value>Currently for each proxy type we generate complete set of private invocation types for each proxied method.
+This is wasteful, however, since we often end up generating many virtually identical invocation types, when we generate proxies for similar set of classes/interfaces.
+
+From performance standpoint it would be better to reuse existing invocation types instead of creating new ones.
+
+See the discussion here: http://groups.google.com/group/castle-project-devel/browse_thread/thread/974077f849c7be9a</value>
+    </field>
+    <field name="created">
+      <value>1246861750000</value>
+    </field>
+    <field name="updated">
+      <value>1258274900000</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1258274880000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Fixed in 6332" created="1258274901000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1258262460000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1258274880000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1258274880000" />
+  </issue>
+</issues>

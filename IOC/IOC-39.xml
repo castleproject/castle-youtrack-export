@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>39</value>
+    </field>
+    <field name="summary">
+      <value>Fix for Null Reference when accessing empty BinaryTreeComponentName</value>
+    </field>
+    <field name="description">
+      <value>Index: Castle.MicroKernel.Tests/BinaryTreeComponentNameTestCase.cs
+===================================================================
+--- Castle.MicroKernel.Tests/BinaryTreeComponentNameTestCase.cs	(revision 2976)
++++ Castle.MicroKernel.Tests/BinaryTreeComponentNameTestCase.cs	(working copy)
+@@ -85,5 +85,13 @@
+ 			Assert.AreSame( handler3, handlers[0] );
+ 			Assert.AreSame( handler4, handlers[1] );
+ 		}
++
++        [Test]
++        public void AccessEmptyTree()
++        {
++            BinaryTreeComponentName tree = new BinaryTreeComponentName();
++            Assert.IsFalse(tree.Contains(new ComponentName("Test")));
++        }
++
+ 	}
+ }
+Index: Castle.MicroKernel/SubSystems/Naming/BinaryTreeComponentName.cs
+===================================================================
+--- Castle.MicroKernel/SubSystems/Naming/BinaryTreeComponentName.cs	(revision 2976)
++++ Castle.MicroKernel/SubSystems/Naming/BinaryTreeComponentName.cs	(working copy)
+@@ -154,6 +154,9 @@
+ 
+ 		internal TreeNode FindNode(ComponentName name)
+ 		{
++            if (root == null)
++                return null; 
++		    
+ 			TreeNode current = root;
+ 
+ 			while(true)
+</value>
+    </field>
+    <field name="created">
+      <value>1163985326000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838932</value>
+    </field>
+    <field name="reporterName">
+      <value>thejuan</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282141811385</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

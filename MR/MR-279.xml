@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>279</value>
+    </field>
+    <field name="summary">
+      <value>Make DefaultUrlBuilder.InternalBuildUrl Protected Virtual</value>
+    </field>
+    <field name="description">
+      <value>Make DefaultUrlBuilder.InternalBuildUrl protected virtual so it can be override in a derived class.
+
+@Hammett:  Before you start busting my balls, here is a use case.  http://blogs.meetandplay.com/WPierce/archive/2007/06/21/MonoRail_-_URL_Rewriting_and_Persisting_QueryString_Parameters.aspx</value>
+    </field>
+    <field name="created">
+      <value>1182432565000</value>
+    </field>
+    <field name="updated">
+      <value>1263055622000</value>
+    </field>
+    <field name="reporterName">
+      <value>wcpierce</value>
+    </field>
+    <field name="updaterName">
+      <value>wcpierce</value>
+    </field>
+    <field name="resolved">
+      <value>1282143870135</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055620000" />
+  </issue>
+</issues>

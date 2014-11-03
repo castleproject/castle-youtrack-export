@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>78</value>
+    </field>
+    <field name="summary">
+      <value>Allow users to specify autoImport</value>
+    </field>
+    <field name="description">
+      <value>Quoting from forum post:
+
+Add the mapping information auto-import="false" to the nhibernate node. You can do this, when you change the StartMappingNode() method in XmlGenerationVisitor class like that:
+Code:
+private void StartMappingNode()
+      {
+         Append( "&lt;hibernate-mapping auto-import=\"false\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" " +
+            "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"urn:nhibernate-mapping-2.0\"&gt;" );
+      }
+
+Additionally you must change method calls like Type.Name in ActiveRecordBase class to Type.FullName. Now some tests failed because the length of the mapping-information changed, so you must add auto-import=\"false\" to every mapping comparison test. Be aware that now you must use the full class name in queries.</value>
+    </field>
+    <field name="created">
+      <value>1158221533000</value>
+    </field>
+    <field name="updated">
+      <value>1162409621000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282136187604</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

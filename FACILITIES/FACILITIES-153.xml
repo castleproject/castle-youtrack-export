@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>153</value>
+    </field>
+    <field name="summary">
+      <value>Issue with setting the inital log level for the ConsoleLogger</value>
+    </field>
+    <field name="description">
+      <value>According to the documentation a way to get a logging facility is as follows:
+
+{code:lang=C#}
+container.AddFacility&lt;Castle.Facilities.Logging.LoggingFacility&gt;(
+    f =&gt; f.LogUsing(Castle.Facilities.Logging.LoggerImplementation.Console));
+{code}
+
+If I want to use {monospace}ConsoleLogger{monospace}, how I can set the default log level of the facility to e.g. {monospace}LoggerLevel.Warn{monospace}?</value>
+    </field>
+    <field name="created">
+      <value>1312284217732</value>
+    </field>
+    <field name="updated">
+      <value>1407822308034</value>
+    </field>
+    <field name="reporterName">
+      <value>Jacek.Cała</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1312803909927</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="You can now say:&#xA;&#xA;{{Container.AddFacility&lt;LoggingFacility&gt;(f =&gt; f.LogUsing(LoggerImplementation.Console).WithLevel(LoggerLevel.Fatal));}}" created="1312803969645" />
+  </issue>
+</issues>

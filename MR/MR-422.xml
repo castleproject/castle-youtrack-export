@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>422</value>
+    </field>
+    <field name="summary">
+      <value>Castle.MonoRail.Framework-vs2005.csproj does not include all files</value>
+    </field>
+    <field name="description">
+      <value>The following new files are not included in the Castle.MonoRail.Framework-vs2005.csproj
+Attributes\JSONReturnBinderAttribute.cs
+Descriptors\ReturnBinderDescriptor.cs
+IMonoRailConfigurationEvents.cs
+IMonoRailContainerEvents.cs
+IReturnBinder.cs
+Providers\DefaultReturnBinderDescriptorProvidor.cs
+Providers\IReturnBinderDescriptorProvidor.cs
+
+Attached patch contains updated csproj file with files included.
+</value>
+    </field>
+    <field name="created">
+      <value>1204564620000</value>
+    </field>
+    <field name="updated">
+      <value>1204635370000</value>
+    </field>
+    <field name="reporterName">
+      <value>neal</value>
+    </field>
+    <field name="updaterName">
+      <value>neal</value>
+    </field>
+    <field name="resolved">
+      <value>1282145555479</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

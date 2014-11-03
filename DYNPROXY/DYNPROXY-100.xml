@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>100</value>
+    </field>
+    <field name="summary">
+      <value>Additional interfaces on proxy with target interface can cause stack overflow</value>
+    </field>
+    <field name="description">
+      <value>As seen here http://kozmic.pl/archive/2009/07/01/castle-dynamic-proxy-tutorial-part-xi-when-one-interface-is.aspx
+We may get a stack overflow when we proxy a call to a method on additional interface when using interface proxy without target.
+
+There are three ways of fixing this issue:
+1 - like it is now, pass proxy as invocation target, then in InvokeMethodOnTarget check if target and proxy are the same object, and throw.
+2 - pass null as invocation target, then in InvokeMethodOnTarget check if target is still null, and throw.
+3 - check if proxy target implements the interface and if so pass it as invocation target, or pass null, then in InvokeMethodOnTarget check if target is null, and throw.
+
+I'm currently liking option 3 best as I think this is what most people would expect to happen, and it would be the most compatible option with interface proxy with target.
+Option two is more logical than option one IMHO.</value>
+    </field>
+    <field name="created">
+      <value>1246500380000</value>
+    </field>
+    <field name="updated">
+      <value>1247231574000</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1247231520000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1247231520000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1247231520000" />
+    <comment author="xtoff" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;As seen here http://kozmic.pl/archive/2009/07/01/castle-dynamic-proxy-tutorial-part-xi-when-one-interface-is.aspx&#xD;&#xA;We may get a stack overflow when we proxy a call to a method on additional interface when using interface proxy without target.&#xD;&#xA;&#xD;&#xA;Quick fix would be to add to InvokeMethodOnTarget check if object.ReferenceEquals(target,proxy) and throw when true.&#xD;&#xA;&#xD;&#xA;A add it as a low priority issue since very few people use proxies with target interface anyway so I don't think it is very severe.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;As seen here http://kozmic.pl/archive/2009/07/01/castle-dynamic-proxy-tutorial-part-xi-when-one-interface-is.aspx&#xD;&#xA;We may get a stack overflow when we proxy a call to a method on additional interface when using interface proxy without target.&#xD;&#xA;&#xD;&#xA;There are three ways of fixing this issue:&#xD;&#xA;1 - like it is now, pass proxy as invocation target, then in InvokeMethodOnTarget check if target and proxy are the same object, and throw.&#xD;&#xA;2 - pass null as invocation target, then in InvokeMethodOnTarget check if target is still null, and throw.&#xD;&#xA;3 - check if proxy target implements the interface and if so pass it as invocation target, or pass null, then in InvokeMethodOnTarget check if target is null, and throw.&#xD;&#xA;&#xD;&#xA;I'm currently liking option 3 best as I think this is what most people would expect to happen, and it would be the most compatible option with interface proxy with target.&#xD;&#xA;Option two is more logical than option one IMHO.&#xD;&#xA;{quote}&#xD;&#xA;" created="1247194020000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1247222340000" />
+  </issue>
+</issues>

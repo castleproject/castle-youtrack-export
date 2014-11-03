@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>XML configuration</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>314</value>
+    </field>
+    <field name="summary">
+      <value>Parsing container configuration uses the current culture</value>
+    </field>
+    <field name="description">
+      <value>When parsing the XML configuration, Windsor apparently uses the current culture. For example, on computers where the current culture is Czech, doubles have to be written using comma as a decimal mark (e.g. "0,5"), while on computers that have the English culture set, decimal point has to be used (e.g. "0.5").
+
+What this means is that it's not possible to distribute an application that uses doubles in Windsor XML configuration to computers with unknown culture settings.</value>
+    </field>
+    <field name="created">
+      <value>1314973185708</value>
+    </field>
+    <field name="updated">
+      <value>1315910939755</value>
+    </field>
+    <field name="reporterName">
+      <value>svick</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1315910939755</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="So what are you suggesting? To use Invariant culture for that?" created="1315013758286" />
+    <comment author="svick" text="Yes, I think that would be the best option." created="1315050215364" />
+  </issue>
+</issues>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Setup Dist</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>367</value>
+    </field>
+    <field name="summary">
+      <value>monorail.build  missing if="${common.testrunner.enabled} on Castle.MonoRail.TestSupport.build</value>
+    </field>
+    <field name="description">
+      <value>This line in monorail.build:
+
+ &lt;include name="Castle.MonoRail.TestSupport/Castle.MonoRail.TestSupport.build" /&gt;
+
+should be:
+
+ &lt;include name="Castle.MonoRail.TestSupport/Castle.MonoRail.TestSupport.build" if="${common.testrunner.enabled}"/&gt;
+
+The following error occurs:
+
+[exec] Starting 'C:\Program Files\Microsoft VisualStudio 8\SDK\v2.0\bin/gacutil.exe ( /f /i Castle.MonoRail.TestSupport.dll)' in 'C:\Projects\castle\build\net-2.0\debug'
+[exec] Microsoft (R) .NET Global Assembly Cache Utility.  Version 2.0.50727.42
+[exec] Copyright (c) Microsoft Corporation.  All rights reserved.
+[exec] Failure adding assembly to the cache: Attempt to install an assembly without a strong name
+
+when attempting to build from source using the following command-line:
+
+ nant quick build -D:common.testrunner.enabled=false -D:sign=false -D:assembly.allow-partially-trusted-callers=true</value>
+    </field>
+    <field name="created">
+      <value>1195309499000</value>
+    </field>
+    <field name="updated">
+      <value>1263055813000</value>
+    </field>
+    <field name="reporterName">
+      <value>rgrabowski</value>
+    </field>
+    <field name="updaterName">
+      <value>rgrabowski</value>
+    </field>
+    <field name="resolved">
+      <value>1282145415166</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055800000" />
+  </issue>
+</issues>

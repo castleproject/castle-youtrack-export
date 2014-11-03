@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>139</value>
+    </field>
+    <field name="summary">
+      <value>AspView: Support for generic typed views</value>
+    </field>
+    <field name="description">
+      <value>Currently AspView only supports non-generic classes and classes of the form ViewBaseClass&lt;TypedViewClass&gt; as inherited attribute of the Page directive.
+
+The patch adds support for situations like this:
+
+interface IItemViewData&lt;TItem&gt;{
+  TItem Item [get;set;}
+}
+
+&lt;%@Page ... inherits="MyBaseView&lt;IItemViewData&lt;TItem&gt;&gt;" %&gt;
+
+that is: generic types as typed view. Currently the AspView compiler will not recognize the nested generic type and fall back to MyBaseView only.
+
+ATTENTION: while the patch will let the AspView process base class names as mentioned above, using it at runtime will cause an exception in DictionaryAdapterFactory because as of now the dictionary factory does not support generic interfaces.
+I supplied a patch for the DictionaryAdapter here: http://support.castleproject.org/projects/COMP/issues/view/COMP-ISSUE-64
+The patch attached in this issue will only work at runtime if the patch COMP-ISSUE-64 has been applied (and therefore support for generic interfaces has been added to DictionaryAdapter)
+
+</value>
+    </field>
+    <field name="created">
+      <value>1214577229000</value>
+    </field>
+    <field name="updated">
+      <value>1214874455000</value>
+    </field>
+    <field name="reporterName">
+      <value>a.loker</value>
+    </field>
+    <field name="updaterName">
+      <value>a.loker</value>
+    </field>
+    <field name="resolved">
+      <value>1282140116323</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

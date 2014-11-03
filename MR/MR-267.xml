@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>267</value>
+    </field>
+    <field name="summary">
+      <value>File upload excess max asp.net http size limit results calling wrong action instead of blow exception</value>
+    </field>
+    <field name="description">
+      <value>As title, when I try to upload a big file using ASP.NET Development Server, if the file has gone over the limit of asp.net, for some reason MonoRail unable to identify the appropriate action with the HttpPostedFile parameter (I am using SmartDispatcherController), instead this exception blowed:
+
+An exception of type 'Castle.MonoRail.Framework.RailsException' occurred in Castle.MonoRail.Framework.DLL but was not handled in user code
+
+Additional information: Error building method arguments. Last param analyzed was uploadFile with value ''
+
+Rescue doesn't work either, so I mark it as a Blocker as I have no workaround for the time being.</value>
+    </field>
+    <field name="created">
+      <value>1181567814000</value>
+    </field>
+    <field name="updated">
+      <value>1244675514000</value>
+    </field>
+    <field name="reporterName">
+      <value>goodwill</value>
+    </field>
+    <field name="updaterName">
+      <value>goodwill</value>
+    </field>
+    <field name="resolved">
+      <value>1282143827823</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675460000" />
+  </issue>
+</issues>

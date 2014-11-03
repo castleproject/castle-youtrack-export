@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - NVelocity</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>141</value>
+    </field>
+    <field name="summary">
+      <value>CheckBoxList Problems</value>
+    </field>
+    <field name="description">
+      <value>I have a userpermission system I built that uses bit flags. 
+
+The problem I am having is the permissions checkbox values are never passed to the UpdatePermission, int[] permissions is always empty and returns an object not reference exceptions etc. 
+
+You can see the code below. The UserPermission enum and the EditPermission and UpdatePermission and the .vm file.  As well as the outputed html.
+
+Thanks, Mike.
+
+UserPermission enum.
+
+    [Flags()] 
+    public enum UserPermission : int 
+    { 
+        //NoAccess = 0, 
+        Minimal = 1, 
+        Medium = 2, 
+        Full = 4, 
+        AddUser = 8, 
+        EditUser = 16, 
+        DeleteUser = 32, 
+    } 
+
+EditPermission / UpdatePermission
+
+        public void EditPermission() 
+        { 
+            if (VerifyPermissions(UserPermission.Full | UserPermission.EditUser)) 
+            { 
+                User userToEdit = User.Find(Convert.ToInt32(Request["id"])); 
+
+                Type typePerm = typeof(UserPermission); 
+                
+                string[] names = Enum.GetNames(typePerm); 
+                int[] values = (int[])Enum.GetValues(typePerm); 
+
+                Hashtable namesMap = new Hashtable(names.Length); 
+                ArrayList userPerms = new ArrayList(); 
+
+                for (int i = 0; i &lt; values.Length; i++) 
+                { 
+                    namesMap.Add(values[i], names[i]); 
+
+                    if ((userToEdit.Permission &amp; values[i]) == values[i]) 
+                    { 
+                        userPerms.Add(values[i]); 
+                    } 
+                } 
+
+                PropertyBag.Add("user", userToEdit); 
+                PropertyBag.Add("permissions", userPerms); 
+                PropertyBag.Add("allPerms", values); 
+                PropertyBag.Add("allPermsNames", namesMap); 
+            } 
+
+        } 
+
+        also int[] permissions returns the same result.
+
+        public void UpdatePermission(int id, UserPermission[] permissions) 
+        { 
+            if (VerifyPermissions(UserPermission.Full | UserPermission.EditUser)) 
+            { 
+                User userToEdit = User.Find(id); 
+
+                int permission = 0; 
+
+                foreach (int perm in permissions) 
+                { 
+                    permission |= perm; 
+                } 
+
+                userToEdit.Permission = permission; 
+
+                userToEdit.Save(); 
+            } 
+        }
+
+.vm file
+
+$HtmlHelper.Form("$siteRoot/admin/user/updatepermission.aspx") 
+
+&lt;input type="hidden" name="id" value="$user.UserID" /&gt; 
+
+#set($list = $FormHelper.CreateCheckboxList("permissions", $allPerms) ) 
+#foreach($it in $list) 
+  $list.Item() 
+  $it &lt;br/&gt; 
+#end 
+
+$HtmlHelper.SubmitButton($Text.Submit) 
+$HtmlHelper.EndForm()
+
+HTML Output
+
+&lt;html&gt; 
+&lt;head&gt; 
+&lt;title&gt;Moose&lt;/title&gt; 
+&lt;/head&gt; 
+&lt;body&gt; 
+&lt;form method="post" action="/Website/admin/user/updatepermission.aspx"&gt; 
+
+
+&lt;input type="hidden" name="id" value="2" /&gt; 
+
+  &lt;input type="checkbox" id="permissions_0_" name="permissions[0]" value="Minimal" checked="checked" /&gt; 
+  Minimal &lt;br/&gt; 
+  &lt;input type="checkbox" id="permissions_1_" name="permissions[1]" value="Medium" /&gt; 
+  Medium &lt;br/&gt; 
+  &lt;input type="checkbox" id="permissions_2_" name="permissions[2]" value="Full" /&gt; 
+  Full &lt;br/&gt; 
+  &lt;input type="checkbox" id="permissions_3_" name="permissions[3]" value="AddUser" /&gt; 
+  AddUser &lt;br/&gt; 
+  &lt;input type="checkbox" id="permissions_4_" name="permissions[4]" value="EditUser" /&gt; 
+  EditUser &lt;br/&gt; 
+  &lt;input type="checkbox" id="permissions_5_" name="permissions[5]" value="DeleteUser" /&gt; 
+  DeleteUser &lt;br/&gt; 
+
+&lt;input type="submit" value="Submit"  /&gt; 
+
+&lt;/form&gt; 
+
+
+&lt;/body&gt; 
+&lt;/html&gt;
+
+One more thing, here is the stack trace.
+
+[NullReferenceException: Object reference not set to an instance of an object.]
+   Moose.Rails.Controllers.Admin.UserController.UpdatePermission(Int32 id, UserPermission[] permissions) in E:\Projects\WebSites\Team-TDURacing\trunk\Moose\Rails\Controllers\Admin\UserController.cs:100
+
+[TargetInvocationException: Exception has been thrown by the target of an invocation.]
+   System.RuntimeMethodHandle._InvokeMethodFast(Object target, Object[] arguments, SignatureStruct&amp; sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner) +0
+   System.RuntimeMethodHandle.InvokeMethodFast(Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner) +72
+   System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks) +358
+   System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture) +29
+   Castle.MonoRail.Framework.SmartDispatcherController.InvokeMethod(MethodInfo method, IRequest request) +50
+   Castle.MonoRail.Framework.Controller.InvokeMethod(MethodInfo method, Object[] methodArgs) +33
+   Castle.MonoRail.Framework.Controller.InternalSend(String action, Object[] actionArgs) +625
+
+[RailsException: Unhandled Exception while rendering view]
+   Castle.MonoRail.Framework.Controller.InternalSend(String action, Object[] actionArgs) +912
+   Castle.MonoRail.Framework.Controller.Process(IRailsEngineContext context, String areaName, String controllerName, String actionName) +319
+   Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext context) +114
+   Castle.MonoRail.Framework.MonoRailHttpHandler.ProcessRequest(HttpContext context) +18
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +154
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +64</value>
+    </field>
+    <field name="created">
+      <value>1156855151000</value>
+    </field>
+    <field name="updated">
+      <value>1244676490000</value>
+    </field>
+    <field name="reporterName">
+      <value>mike343</value>
+    </field>
+    <field name="updaterName">
+      <value>mike343</value>
+    </field>
+    <field name="resolved">
+      <value>1282143486479</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676480000" />
+  </issue>
+</issues>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - NVelocity</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 4</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>18</value>
+    </field>
+    <field name="summary">
+      <value>NVelocityVE uses Velocity.Init(ExtendedProperties) for initialization</value>
+    </field>
+    <field name="description">
+      <value>The NVelocity.Init(ExtendedProperties) method has a very strange bug: it converts every configuration value into a string.
+
+You can track this execution following this path:
+
+NVelocity.App.Velocity.Init(ExtendedProperties): line 68
+NVelocity.Runtime.RuntimeSingleton.init(ExtendedProperties): line 204
+NVelocity.Runtime.RuntimeInstance.init(ExtendedProperties): line 381
+Commons.ExtendedProperties.ConvertProperties(ExtendedProperties): line 1452 (the bug is caused here)
+
+It's usually not an Issue, but I need to add an ArrayList to the extended properties, and it's holding me back.
+
+The proper way to use the ExtendedProperties is to call the parameterless Velocity.Init() method, this way:
+
+Velocity.ExtendedProperties = props;
+Velocity.Init();
+
+This way, ExtendedProperties.ConvertProperties() is not called.
+
+I'm sending a patch with this one and several other NVelocityVE improvements.</value>
+    </field>
+    <field name="created">
+      <value>1120756965000</value>
+    </field>
+    <field name="updated">
+      <value>1120888589000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282143252088</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

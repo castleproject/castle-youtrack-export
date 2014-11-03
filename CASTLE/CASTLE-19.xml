@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Website</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>19</value>
+    </field>
+    <field name="summary">
+      <value>Add a custom 404 to the site</value>
+    </field>
+    <field name="description">
+      <value>There has been some moving with the documents on the castle site. The forum and many other sites host links to old pages. Currently you get a nasty "The page cannot be found" message if you follow and old link. 
+
+The best thing would be to redirect the user to the correct page, but I'm not sure is that's easy. So a more user friendly message is also great. 
+</value>
+    </field>
+    <field name="created">
+      <value>1165331558000</value>
+    </field>
+    <field name="updated">
+      <value>1407819113097</value>
+    </field>
+    <field name="reporterName">
+      <value>ernst</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1285402579390</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

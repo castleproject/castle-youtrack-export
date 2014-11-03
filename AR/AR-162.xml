@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>162</value>
+    </field>
+    <field name="summary">
+      <value>Custom type parameters</value>
+    </field>
+    <field name="description">
+      <value>A NHibernate custom type that implements IParameterizedType supports parameters passing in the mapping declaration. For example:
+
+&lt;property name="Geometry" column="the_geom"&gt;
+    &lt;type name="NHibernate.Spatial.Type.GeometryType, NHibernate.Spatial"&gt;
+        &lt;param name="srid"&gt;4326&lt;/param&gt;
+        &lt;param name="subtype"&gt;POLYGON&lt;/param&gt;
+    &lt;/type&gt;
+&lt;/property&gt;
+
+Currently, there is no way to map type parameters in ActiveRecord.</value>
+    </field>
+    <field name="created">
+      <value>1180878951000</value>
+    </field>
+    <field name="updated">
+      <value>1414999693981</value>
+    </field>
+    <field name="reporterName">
+      <value>rstuven</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999693976</value>
+    </field>
+    <field name="voterName">
+      <value>Guillermo.Asernitzky</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-772[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="ActiveRecord is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/ActiveRecord/issues" created="1414999693983" />
+  </issue>
+</issues>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>118</value>
+    </field>
+    <field name="summary">
+      <value>Can't proxy remoting transparent interface proxies</value>
+    </field>
+    <field name="description">
+      <value>When trying to proxy remoting transparent proxy for an interface type we get an exception that target does not implement the interface.
+This can be fixed quite easily for interface proxies with target interface. Interface proxies with target rely on target type so adding support there won't be that easy, and I don't think it's important anyway.</value>
+    </field>
+    <field name="created">
+      <value>1256536752000</value>
+    </field>
+    <field name="updated">
+      <value>1256573061000</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1256573040000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="I added project illustrating the issue." created="1256536808000" />
+    <comment author="xtoff" text="Fixed in 6271" created="1256573054000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1256573040000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1256573040000" />
+    <comment author="xtoff" text="* '''Attachment''' RemotingSample.zip added.&#xD;&#xA;" created="1256536752001" />
+  </issue>
+</issues>

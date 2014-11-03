@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>539</value>
+    </field>
+    <field name="summary">
+      <value>Add custom header to the request with the original URL</value>
+    </field>
+    <field name="description">
+      <value>I created a patch for RoutingModuleEx where it adds a custom-header (X-Original-Url) like the rewrite-module for iis7 does.
+
+This helps when using the OutputCache where you can vary cache depending on this header, since it otherwise would use only the path and optionally the querystring (which would be missing if url was rewrited).
+
+
+
+Index: RoutingModuleEx.cs
+===================================================================
+--- RoutingModuleEx.cs	(revision 5730)
++++ RoutingModuleEx.cs	(working copy)
+@@ -99,6 +99,9 @@
+ 
+ 			string mrPath = CreateMonoRailPath(match);
+ 			string url = request.RawUrl;
++			
++			// Add the original URL as x-original-url header to allow caching-support
++			request.Headers.Add("X-Original-Url", url);
+ 
+ 			string paramsAsQueryString = "";</value>
+    </field>
+    <field name="created">
+      <value>1245741347000</value>
+    </field>
+    <field name="updated">
+      <value>1253856859000</value>
+    </field>
+    <field name="reporterName">
+      <value>jishi</value>
+    </field>
+    <field name="updaterName">
+      <value>jishi</value>
+    </field>
+    <field name="resolved">
+      <value>1253856840000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="This patch may also fix MR-ISSUE-510 :)" created="1245887920000" />
+    <comment author="jishi" text="Yes it will, if you specify  varyByHeaders=&quot;X-Original-Url&quot; for the cache. Thats what I use right now.&#xA;&#xA;A simple work-around before this patch is applied is to manually do this in your HttpApplication by adding a BeginRequest-eventhandler that adds this header, if one don't want to patch monorail manually." created="1245909204000" />
+    <comment author="roelofb" text="r5993" created="1253856856000" />
+    <comment author="jishi" text="* '''Attachment''' AddXOriginalUrlHeader.patch added.&#xD;&#xA;" created="1245741360000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1253856840000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253856840000" />
+  </issue>
+</issues>

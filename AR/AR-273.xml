@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>273</value>
+    </field>
+    <field name="summary">
+      <value>Cannot use PrimaryKey(Generator= PrimaryKeyType.Native) in MSSql CE</value>
+    </field>
+    <field name="description">
+      <value>Hi,
+ I am trying to run a simple project using active record 2.0 with MS
+Sql Server Compact Edition and getting exceptions.
+
+code I am trying to run is attached.
+
+Here is the exception I am getting
+
+Castle.ActiveRecord.Framework.ActiveRecordException was unhandled
+ Message="Could not perform Create for Record"
+ Source="Castle.ActiveRecord"
+ StackTrace:
+      at Castle.ActiveRecord.ActiveRecordBase.InternalCreate(Object
+instance, Boolean flush) in c:\daten\dev\External\Castle
+\AR2.0\ActiveRecord\Castle.ActiveRecord\Framework
+\ActiveRecordBase.cs:line 145
+      at Castle.ActiveRecord.ActiveRecordBase.Create(Object instance)
+in c:\daten\dev\External\Castle\AR2.0\ActiveRecord\Castle.ActiveRecord
+\Framework\ActiveRecordBase.cs:line 100
+      at Castle.ActiveRecord.ActiveRecordBase.Create() in c:\daten\dev
+\External\Castle\AR2.0\ActiveRecord\Castle.ActiveRecord\Framework
+\ActiveRecordBase.cs:line 1474
+      at DatabaseApp.Program.Main(String[] args) in C:\Dev\CSharp
+\DatabaseApp\Program.cs:line 56
+      at System.AppDomain._nExecuteAssembly(Assembly assembly, String
+[] args)
+      at System.AppDomain.ExecuteAssembly(String assemblyFile,
+Evidence assemblySecurity, String[] args)
+      at
+Microsoft.VisualStudio.HostingProcess.HostProc.RunUsersAssembly()
+      at System.Threading.ThreadHelper.ThreadStart_Context(Object
+state)
+      at System.Threading.ExecutionContext.Run(ExecutionContext
+executionContext, ContextCallback callback, Object state)
+      at System.Threading.ThreadHelper.ThreadStart()
+ InnerException: NHibernate.AssertionFailure
+      Message="null identifier"
+      Source="NHibernate"
+      StackTrace:
+           at NHibernate.Engine.EntityKey..ctor(Object identifier,
+String rootEntityName, String entityName, IType identifierType,
+Boolean batchLoadable, ISessionFactoryImplementor factory, EntityMode
+entityMode)
+           at NHibernate.Engine.EntityKey..ctor(Object id,
+IEntityPersister persister, EntityMode entityMode)
+           at
+NHibernate.Event.Default.AbstractSaveEventListener.PerformSaveOrReplicate
+(Object entity, EntityKey key, IEntityPersister persister, Boolean
+useIdentityColumn, Object anything, IEventSource source, Boolean
+requiresImmediateIdAccess)
+           at
+NHibernate.Event.Default.AbstractSaveEventListener.PerformSave(Object
+entity, Object id, IEntityPersister persister, Boolean
+useIdentityColumn, Object anything, IEventSource source, Boolean
+requiresImmediateIdAccess)
+           at
+NHibernate.Event.Default.AbstractSaveEventListener.SaveWithGeneratedId
+(Object entity, String entityName, Object anything, IEventSource
+source, Boolean requiresImmediateIdAccess)
+           at
+NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.SaveWithGeneratedOrRequestedId
+(SaveOrUpdateEvent event)
+           at
+NHibernate.Event.Default.DefaultSaveEventListener.SaveWithGeneratedOrRequestedId
+(SaveOrUpdateEvent event)
+           at
+NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.EntityIsTransient
+(SaveOrUpdateEvent event)
+           at
+NHibernate.Event.Default.DefaultSaveEventListener.PerformSaveOrUpdate
+(SaveOrUpdateEvent event)
+           at
+NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.OnSaveOrUpdate
+(SaveOrUpdateEvent event)
+           at NHibernate.Impl.SessionImpl.FireSave(SaveOrUpdateEvent
+event)
+           at NHibernate.Impl.SessionImpl.Save(Object obj)
+           at Castle.ActiveRecord.ActiveRecordBase.InternalCreate
+(Object instance, Boolean flush) in c:\daten\dev\External\Castle
+\AR2.0\ActiveRecord\Castle.ActiveRecord\Framework
+\ActiveRecordBase.cs:line 127
+      InnerException:
+
+
+Sql getting generated
+
+
+NHibernate: INSERT INTO Record (Name) VALUES (@p0);@p0 = 'test'
+NHibernate: select @@IDENTITY
+
+
+Some more info
+Setting Record.RecID to [PrimaryKey(PrimaryKeyType.Assigned) ] works
+Setting Record.RecID to [PrimaryKey(PrimaryKeyType.Hilo) ] works
+
+adding
+properties.Add("connection.release_mode", "on_close"); 
+fixed this error.
+
+using NHibernate directly without using ActiveRecord also works
+
+Thank you</value>
+    </field>
+    <field name="created">
+      <value>1253109338000</value>
+    </field>
+    <field name="updated">
+      <value>1262942003000</value>
+    </field>
+    <field name="reporterName">
+      <value>mirza2m@gmail.com</value>
+    </field>
+    <field name="updaterName">
+      <value>mirza2m@gmail.com</value>
+    </field>
+    <field name="resolved">
+      <value>1262941980000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Use explicit transaction using (new TransactionScope){save} or set connection.release_mode to on_close.&#xA;&#xA;This is NHibernate's behavior." created="1262941987000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.1''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1262941980000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1262941980000" />
+    <comment author="mirza2m@gmail.com" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Hi,&#xD;&#xA; I am trying to run a simple project using active record 2.0 with MS&#xD;&#xA;Sql Server Compact Edition and getting exceptions.&#xD;&#xA;&#xD;&#xA;Here is the code I am trying to run.&#xD;&#xA;&#xD;&#xA;   class Program&#xD;&#xA;   {&#xD;&#xA;       static void Main(string[] args)&#xD;&#xA;       {&#xD;&#xA;           string dbPath = Environment.GetFolderPath&#xD;&#xA;(Environment.SpecialFolder.ApplicationData) + &quot;\\DatabaseApp&quot;;&#xD;&#xA;&#xD;&#xA;           if(!Directory.Exists(dbPath))&#xD;&#xA;               Directory.CreateDirectory(dbPath);&#xD;&#xA;&#xD;&#xA;           string dbFile =dbPath + &quot;\\Data.sdf&quot;;&#xD;&#xA;&#xD;&#xA;           if (File.Exists(dbFile))&#xD;&#xA;               File.Delete(dbFile);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;          IDictionary&lt;string,string&gt; properties = new&#xD;&#xA;Dictionary&lt;string,string&gt;();&#xD;&#xA;           properties.Add(&quot;connection.driver_class&quot;,&#xD;&#xA;&quot;NHibernate.Driver.SqlServerCeDriver&quot;);&#xD;&#xA;           properties.Add(&quot;dialect&quot;,&#xD;&#xA;&quot;NHibernate.Dialect.MsSqlCeDialect&quot;);&#xD;&#xA;           properties.Add(&quot;connection.provider&quot;,&#xD;&#xA;&quot;NHibernate.Connection.DriverConnectionProvider&quot;);&#xD;&#xA;           properties.Add(&quot;proxyfactory.factory_class&quot;,&#xD;&#xA;&quot;NHibernate.ByteCode.Castle.ProxyFactoryFactory,&#xD;&#xA;NHibernate.ByteCode.Castle&quot;);&#xD;&#xA;           properties.Add(&quot;connection.connection_string&quot;, &quot;Data&#xD;&#xA;Source=&quot;+dbFile + &quot;;&quot;);&#xD;&#xA;           properties.Add(&quot;show_sql&quot;, &quot;true&quot;);&#xD;&#xA;&#xD;&#xA;           InPlaceConfigurationSource  config = new&#xD;&#xA;InPlaceConfigurationSource();&#xD;&#xA;           config.Add(typeof(ActiveRecordBase),properties);&#xD;&#xA;&#xD;&#xA;           SqlCeEngine engine = new SqlCeEngine(&quot;Data Source=&quot; +&#xD;&#xA;dbFile);&#xD;&#xA;&#xD;&#xA;           engine.CreateDatabase();&#xD;&#xA;&#xD;&#xA;           ActiveRecordStarter.Initialize(config,&#xD;&#xA;               new Type[]&#xD;&#xA;               {&#xD;&#xA;                   typeof(Record)&#xD;&#xA;               }&#xD;&#xA;           );&#xD;&#xA;&#xD;&#xA;           ActiveRecordStarter.CreateSchema();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;           Record part = new Record();&#xD;&#xA;           part.Create();&#xD;&#xA;&#xD;&#xA;       }&#xD;&#xA;namespace DatabaseApp.TestStorage&#xD;&#xA;{&#xD;&#xA;   [ActiveRecord]&#xD;&#xA;   public class Record:ActiveRecordBase&lt;Record&gt;&#xD;&#xA;   {&#xD;&#xA;       private Record()&#xD;&#xA;       {&#xD;&#xA;&#xD;&#xA;       }&#xD;&#xA;&#xD;&#xA;       public Record(string name)&#xD;&#xA;       {&#xD;&#xA;           this.Name = name;&#xD;&#xA;       }&#xD;&#xA;&#xD;&#xA;       [PrimaryKey]&#xD;&#xA;       public long RecID&#xD;&#xA;       {&#xD;&#xA;           get;&#xD;&#xA;           private set;&#xD;&#xA;       }&#xD;&#xA;&#xD;&#xA;       [Property(Unique=true) ]&#xD;&#xA;       public string Name&#xD;&#xA;       {&#xD;&#xA;           get;&#xD;&#xA;           private set;&#xD;&#xA;       }&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;   }&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Here is the exception I am getting&#xD;&#xA;&#xD;&#xA;Castle.ActiveRecord.Framework.ActiveRecordException was unhandled&#xD;&#xA; Message=&quot;Could not perform Create for Record&quot;&#xD;&#xA; Source=&quot;Castle.ActiveRecord&quot;&#xD;&#xA; StackTrace:&#xD;&#xA;      at Castle.ActiveRecord.ActiveRecordBase.InternalCreate(Object&#xD;&#xA;instance, Boolean flush) in c:\daten\dev\External\Castle&#xD;&#xA;\AR2.0\ActiveRecord\Castle.ActiveRecord\Framework&#xD;&#xA;\ActiveRecordBase.cs:line 145&#xD;&#xA;      at Castle.ActiveRecord.ActiveRecordBase.Create(Object instance)&#xD;&#xA;in c:\daten\dev\External\Castle\AR2.0\ActiveRecord\Castle.ActiveRecord&#xD;&#xA;\Framework\ActiveRecordBase.cs:line 100&#xD;&#xA;      at Castle.ActiveRecord.ActiveRecordBase.Create() in c:\daten\dev&#xD;&#xA;\External\Castle\AR2.0\ActiveRecord\Castle.ActiveRecord\Framework&#xD;&#xA;\ActiveRecordBase.cs:line 1474&#xD;&#xA;      at DatabaseApp.Program.Main(String[] args) in C:\Dev\CSharp&#xD;&#xA;\DatabaseApp\Program.cs:line 56&#xD;&#xA;      at System.AppDomain._nExecuteAssembly(Assembly assembly, String&#xD;&#xA;[] args)&#xD;&#xA;      at System.AppDomain.ExecuteAssembly(String assemblyFile,&#xD;&#xA;Evidence assemblySecurity, String[] args)&#xD;&#xA;      at&#xD;&#xA;Microsoft.VisualStudio.HostingProcess.HostProc.RunUsersAssembly()&#xD;&#xA;      at System.Threading.ThreadHelper.ThreadStart_Context(Object&#xD;&#xA;state)&#xD;&#xA;      at System.Threading.ExecutionContext.Run(ExecutionContext&#xD;&#xA;executionContext, ContextCallback callback, Object state)&#xD;&#xA;      at System.Threading.ThreadHelper.ThreadStart()&#xD;&#xA; InnerException: NHibernate.AssertionFailure&#xD;&#xA;      Message=&quot;null identifier&quot;&#xD;&#xA;      Source=&quot;NHibernate&quot;&#xD;&#xA;      StackTrace:&#xD;&#xA;           at NHibernate.Engine.EntityKey..ctor(Object identifier,&#xD;&#xA;String rootEntityName, String entityName, IType identifierType,&#xD;&#xA;Boolean batchLoadable, ISessionFactoryImplementor factory, EntityMode&#xD;&#xA;entityMode)&#xD;&#xA;           at NHibernate.Engine.EntityKey..ctor(Object id,&#xD;&#xA;IEntityPersister persister, EntityMode entityMode)&#xD;&#xA;           at&#xD;&#xA;NHibernate.Event.Default.AbstractSaveEventListener.PerformSaveOrReplicate&#xD;&#xA;(Object entity, EntityKey key, IEntityPersister persister, Boolean&#xD;&#xA;useIdentityColumn, Object anything, IEventSource source, Boolean&#xD;&#xA;requiresImmediateIdAccess)&#xD;&#xA;           at&#xD;&#xA;NHibernate.Event.Default.AbstractSaveEventListener.PerformSave(Object&#xD;&#xA;entity, Object id, IEntityPersister persister, Boolean&#xD;&#xA;useIdentityColumn, Object anything, IEventSource source, Boolean&#xD;&#xA;requiresImmediateIdAccess)&#xD;&#xA;           at&#xD;&#xA;NHibernate.Event.Default.AbstractSaveEventListener.SaveWithGeneratedId&#xD;&#xA;(Object entity, String entityName, Object anything, IEventSource&#xD;&#xA;source, Boolean requiresImmediateIdAccess)&#xD;&#xA;           at&#xD;&#xA;NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.SaveWithGeneratedOrRequestedId&#xD;&#xA;(SaveOrUpdateEvent event)&#xD;&#xA;           at&#xD;&#xA;NHibernate.Event.Default.DefaultSaveEventListener.SaveWithGeneratedOrRequestedId&#xD;&#xA;(SaveOrUpdateEvent event)&#xD;&#xA;           at&#xD;&#xA;NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.EntityIsTransient&#xD;&#xA;(SaveOrUpdateEvent event)&#xD;&#xA;           at&#xD;&#xA;NHibernate.Event.Default.DefaultSaveEventListener.PerformSaveOrUpdate&#xD;&#xA;(SaveOrUpdateEvent event)&#xD;&#xA;           at&#xD;&#xA;NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.OnSaveOrUpdate&#xD;&#xA;(SaveOrUpdateEvent event)&#xD;&#xA;           at NHibernate.Impl.SessionImpl.FireSave(SaveOrUpdateEvent&#xD;&#xA;event)&#xD;&#xA;           at NHibernate.Impl.SessionImpl.Save(Object obj)&#xD;&#xA;           at Castle.ActiveRecord.ActiveRecordBase.InternalCreate&#xD;&#xA;(Object instance, Boolean flush) in c:\daten\dev\External\Castle&#xD;&#xA;\AR2.0\ActiveRecord\Castle.ActiveRecord\Framework&#xD;&#xA;\ActiveRecordBase.cs:line 127&#xD;&#xA;      InnerException:&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Sql getting generated&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;NHibernate: INSERT INTO Record (Name) VALUES (@p0);@p0 = 'test'&#xD;&#xA;NHibernate: select @@IDENTITY&#xD;&#xA;&#xD;&#xA;Any idea why I am getting this exception?&#xD;&#xA;&#xD;&#xA;Some more info&#xD;&#xA;Setting Record.RecID to [PrimaryKey(PrimaryKeyType.Assigned) ] works&#xD;&#xA;Setting Record.RecID to [PrimaryKey(PrimaryKeyType.Hilo) ] works&#xD;&#xA;&#xD;&#xA;adding&#xD;&#xA;properties.Add(&quot;connection.release_mode&quot;, &quot;on_close&quot;); &#xD;&#xA;fixed this error.&#xD;&#xA;&#xD;&#xA;using NHibernate directly without using ActiveRecord also works&#xD;&#xA;Thank you&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Hi,&#xD;&#xA; I am trying to run a simple project using active record 2.0 with MS&#xD;&#xA;Sql Server Compact Edition and getting exceptions.&#xD;&#xA;&#xD;&#xA;code I am trying to run is attached.&#xD;&#xA;&#xD;&#xA;Here is the exception I am getting&#xD;&#xA;&#xD;&#xA;Castle.ActiveRecord.Framework.ActiveRecordException was unhandled&#xD;&#xA; Message=&quot;Could not perform Create for Record&quot;&#xD;&#xA; Source=&quot;Castle.ActiveRecord&quot;&#xD;&#xA; StackTrace:&#xD;&#xA;      at Castle.ActiveRecord.ActiveRecordBase.InternalCreate(Object&#xD;&#xA;instance, Boolean flush) in c:\daten\dev\External\Castle&#xD;&#xA;\AR2.0\ActiveRecord\Castle.ActiveRecord\Framework&#xD;&#xA;\ActiveRecordBase.cs:line 145&#xD;&#xA;      at Castle.ActiveRecord.ActiveRecordBase.Create(Object instance)&#xD;&#xA;in c:\daten\dev\External\Castle\AR2.0\ActiveRecord\Castle.ActiveRecord&#xD;&#xA;\Framework\ActiveRecordBase.cs:line 100&#xD;&#xA;      at Castle.ActiveRecord.ActiveRecordBase.Create() in c:\daten\dev&#xD;&#xA;\External\Castle\AR2.0\ActiveRecord\Castle.ActiveRecord\Framework&#xD;&#xA;\ActiveRecordBase.cs:line 1474&#xD;&#xA;      at DatabaseApp.Program.Main(String[] args) in C:\Dev\CSharp&#xD;&#xA;\DatabaseApp\Program.cs:line 56&#xD;&#xA;      at System.AppDomain._nExecuteAssembly(Assembly assembly, String&#xD;&#xA;[] args)&#xD;&#xA;      at System.AppDomain.ExecuteAssembly(String assemblyFile,&#xD;&#xA;Evidence assemblySecurity, String[] args)&#xD;&#xA;      at&#xD;&#xA;Microsoft.VisualStudio.HostingProcess.HostProc.RunUsersAssembly()&#xD;&#xA;      at System.Threading.ThreadHelper.ThreadStart_Context(Object&#xD;&#xA;state)&#xD;&#xA;      at System.Threading.ExecutionContext.Run(ExecutionContext&#xD;&#xA;executionContext, ContextCallback callback, Object state)&#xD;&#xA;      at System.Threading.ThreadHelper.ThreadStart()&#xD;&#xA; InnerException: NHibernate.AssertionFailure&#xD;&#xA;      Message=&quot;null identifier&quot;&#xD;&#xA;      Source=&quot;NHibernate&quot;&#xD;&#xA;      StackTrace:&#xD;&#xA;           at NHibernate.Engine.EntityKey..ctor(Object identifier,&#xD;&#xA;String rootEntityName, String entityName, IType identifierType,&#xD;&#xA;Boolean batchLoadable, ISessionFactoryImplementor factory, EntityMode&#xD;&#xA;entityMode)&#xD;&#xA;           at NHibernate.Engine.EntityKey..ctor(Object id,&#xD;&#xA;IEntityPersister persister, EntityMode entityMode)&#xD;&#xA;           at&#xD;&#xA;NHibernate.Event.Default.AbstractSaveEventListener.PerformSaveOrReplicate&#xD;&#xA;(Object entity, EntityKey key, IEntityPersister persister, Boolean&#xD;&#xA;useIdentityColumn, Object anything, IEventSource source, Boolean&#xD;&#xA;requiresImmediateIdAccess)&#xD;&#xA;           at&#xD;&#xA;NHibernate.Event.Default.AbstractSaveEventListener.PerformSave(Object&#xD;&#xA;entity, Object id, IEntityPersister persister, Boolean&#xD;&#xA;useIdentityColumn, Object anything, IEventSource source, Boolean&#xD;&#xA;requiresImmediateIdAccess)&#xD;&#xA;           at&#xD;&#xA;NHibernate.Event.Default.AbstractSaveEventListener.SaveWithGeneratedId&#xD;&#xA;(Object entity, String entityName, Object anything, IEventSource&#xD;&#xA;source, Boolean requiresImmediateIdAccess)&#xD;&#xA;           at&#xD;&#xA;NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.SaveWithGeneratedOrRequestedId&#xD;&#xA;(SaveOrUpdateEvent event)&#xD;&#xA;           at&#xD;&#xA;NHibernate.Event.Default.DefaultSaveEventListener.SaveWithGeneratedOrRequestedId&#xD;&#xA;(SaveOrUpdateEvent event)&#xD;&#xA;           at&#xD;&#xA;NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.EntityIsTransient&#xD;&#xA;(SaveOrUpdateEvent event)&#xD;&#xA;           at&#xD;&#xA;NHibernate.Event.Default.DefaultSaveEventListener.PerformSaveOrUpdate&#xD;&#xA;(SaveOrUpdateEvent event)&#xD;&#xA;           at&#xD;&#xA;NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.OnSaveOrUpdate&#xD;&#xA;(SaveOrUpdateEvent event)&#xD;&#xA;           at NHibernate.Impl.SessionImpl.FireSave(SaveOrUpdateEvent&#xD;&#xA;event)&#xD;&#xA;           at NHibernate.Impl.SessionImpl.Save(Object obj)&#xD;&#xA;           at Castle.ActiveRecord.ActiveRecordBase.InternalCreate&#xD;&#xA;(Object instance, Boolean flush) in c:\daten\dev\External\Castle&#xD;&#xA;\AR2.0\ActiveRecord\Castle.ActiveRecord\Framework&#xD;&#xA;\ActiveRecordBase.cs:line 127&#xD;&#xA;      InnerException:&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Sql getting generated&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;NHibernate: INSERT INTO Record (Name) VALUES (@p0);@p0 = 'test'&#xD;&#xA;NHibernate: select @@IDENTITY&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Some more info&#xD;&#xA;Setting Record.RecID to [PrimaryKey(PrimaryKeyType.Assigned) ] works&#xD;&#xA;Setting Record.RecID to [PrimaryKey(PrimaryKeyType.Hilo) ] works&#xD;&#xA;&#xD;&#xA;adding&#xD;&#xA;properties.Add(&quot;connection.release_mode&quot;, &quot;on_close&quot;); &#xD;&#xA;fixed this error.&#xD;&#xA;&#xD;&#xA;using NHibernate directly without using ActiveRecord also works&#xD;&#xA;&#xD;&#xA;Thank you&#xD;&#xA;{quote}&#xD;&#xA;" created="1253109960000" />
+    <comment author="mirza2m@gmail.com" text="* '''Attachment''' DatabaseApp.zip added.&#xD;&#xA;" created="1253156100000" />
+  </issue>
+</issues>

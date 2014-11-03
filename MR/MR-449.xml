@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>449</value>
+    </field>
+    <field name="summary">
+      <value>Change ResourceFileHandler to add HTTP cache headers</value>
+    </field>
+    <field name="description">
+      <value>Firefox and IE do not cache the JS files served by ResourceFileHandler.  I confirmed this using Fiddler.  I think this is due to the query string that is passed.
+
+This patch changes ResourceFileHandler to emit caching headers so that the JS files are cached for 1 day.  Perhaps the committer will want to change the caching parameters.</value>
+    </field>
+    <field name="created">
+      <value>1210636200000</value>
+    </field>
+    <field name="updated">
+      <value>1263055778000</value>
+    </field>
+    <field name="reporterName">
+      <value>sradack</value>
+    </field>
+    <field name="updaterName">
+      <value>sradack</value>
+    </field>
+    <field name="resolved">
+      <value>1253889360000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="This was already fixed in r5109" created="1253889406000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055740000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Reopened'' to ''Resolved''.&#xD;&#xA;" created="1253889360000" />
+  </issue>
+</issues>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Attributes</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.1 Beta 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>180</value>
+    </field>
+    <field name="summary">
+      <value>Properties with CompositeUserTypeAttribute applied are not assigned in joined subclasses</value>
+    </field>
+    <field name="description">
+      <value>If you apply CompositeUserTypeAttribute to a joined subclass property, active record engine does not initialize this property. 
+I've added next line into if (model.IsJoinedSubClass) block in the trunk/ActiveRecord/Castle.ActiveRecord/Framework/Internal/Visitors/XmlGenerationVisitor.cs
+
+VisitNodes(model.CompositeUserType);
+
+It seems like this line is needed in the other blocks: "else if (model.IsDiscriminatorSubClass)" and "else if (model.IsNestedType)"
+but I am not sure</value>
+    </field>
+    <field name="created">
+      <value>1189679324000</value>
+    </field>
+    <field name="updated">
+      <value>1263036590000</value>
+    </field>
+    <field name="reporterName">
+      <value>tihobrazov</value>
+    </field>
+    <field name="updaterName">
+      <value>tihobrazov</value>
+    </field>
+    <field name="resolved">
+      <value>1263036540000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="Fixed. Thanks for looking this up." created="1263036590000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1263035820000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.1 Beta 1''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1263036540000" />
+  </issue>
+</issues>

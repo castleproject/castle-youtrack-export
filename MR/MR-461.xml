@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>461</value>
+    </field>
+    <field name="summary">
+      <value>FormHelper error on null properties when ControllerDetails.Stateless is true</value>
+    </field>
+    <field name="description">
+      <value>I create a controller with the Stateless attribute set to true. If I attempt to create a FormHelper element in my view with a target which does not exist in the property bag for the controller, I get the below error. This appears to be happening because, after looking in the PropertyBag and Flash memory, the helper attempts to find the target for the element in Session.
+
+[NullReferenceException: Object reference not set to an instance of an object.]
+   Castle.MonoRail.Framework.Helpers.AbstractFormRelatedHelper.ObtainRootInstance(RequestContext context, String target) in c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework\Helpers\AbstractFormRelatedHelper.cs:362
+   Castle.MonoRail.Framework.Helpers.AbstractFormRelatedHelper.ObtainRootInstance(RequestContext context, String target, String[]&amp; pieces) in c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework\Helpers\AbstractFormRelatedHelper.cs:393
+   Castle.MonoRail.Framework.Helpers.AbstractFormRelatedHelper.ObtainValue(RequestContext context, String target) in c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework\Helpers\AbstractFormRelatedHelper.cs:332
+   Castle.MonoRail.Framework.Helpers.AbstractFormRelatedHelper.ObtainValue(String target) in c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework\Helpers\AbstractFormRelatedHelper.cs:319
+   Castle.MonoRail.Framework.Helpers.AbstractFormRelatedHelper.ObtainValue(String target, IDictionary attributes) in c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework\Helpers\AbstractFormRelatedHelper.cs:299
+   Castle.MonoRail.Framework.Helpers.FormHelper.CheckboxField(String target, IDictionary attributes) in c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework\Helpers\FormHelper.cs:1836
+
+[MethodInvocationException: Invocation of method 'CheckboxField' in  Castle.MonoRail.Framework.Helpers.FormHelper threw exception System.NullReferenceException : Object reference not set to an instance of an object.]
+   NVelocity.Runtime.Parser.Node.ASTMethod.Execute(Object o, IInternalContextAdapter context) in c:\MonorailsSource\Tools\NVelocity\src\NVelocity\Runtime\Parser\Node\ASTMethod.cs:240
+   NVelocity.Runtime.Parser.Node.ASTReference.Execute(Object o, IInternalContextAdapter context) in c:\MonorailsSource\Tools\NVelocity\src\NVelocity\Runtime\Parser\Node\ASTReference.cs:177
+   NVelocity.Runtime.Parser.Node.ASTReference.Render(IInternalContextAdapter context, TextWriter writer) in c:\MonorailsSource\Tools\NVelocity\src\NVelocity\Runtime\Parser\Node\ASTReference.cs:195
+   NVelocity.Runtime.Parser.Node.ASTBlock.Render(IInternalContextAdapter context, TextWriter writer) in c:\MonorailsSource\Tools\NVelocity\src\NVelocity\Runtime\Parser\Node\ASTBlock.cs:30
+   NVelocity.Runtime.Parser.Node.ASTIfStatement.Render(IInternalContextAdapter context, TextWriter writer) in c:\MonorailsSource\Tools\NVelocity\src\NVelocity\Runtime\Parser\Node\ASTIfStatement.cs:46
+   NVelocity.Runtime.Parser.Node.SimpleNode.Render(IInternalContextAdapter context, TextWriter writer) in c:\MonorailsSource\Tools\NVelocity\src\NVelocity\Runtime\Parser\Node\SimpleNode.cs:234
+   NVelocity.Template.Merge(IContext context, TextWriter writer) in c:\MonorailsSource\Tools\NVelocity\src\NVelocity\Template.cs:177
+   Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.Process(String viewName, TextWriter output, IEngineContext context, IController controller, IControllerContext controllerContext) in c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework.Views.NVelocity\NVelocityViewEngine.cs:172
+   Castle.MonoRail.Framework.Services.DefaultViewEngineManager.Process(String templateName, TextWriter output, IEngineContext context, IController controller, IControllerContext controllerContext) in c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework\Services\DefaultViewEngineManager.cs:164
+   Castle.MonoRail.Framework.Controller.ProcessView() in c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework\Controller.cs:1818
+   Castle.MonoRail.Framework.Controller.RunActionAndRenderView() in c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework\Controller.cs:1700
+   Castle.MonoRail.Framework.Controller.Process(IEngineContext engineContext, IControllerContext context) in c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework\Controller.cs:103
+   Castle.MonoRail.Framework.BaseHttpHandler.Process(HttpContext context) in c:\MonorailsSource\MonoRail\Castle.MonoRail.Framework\BaseHttpHandler.cs:94
+</value>
+    </field>
+    <field name="created">
+      <value>1213168693000</value>
+    </field>
+    <field name="updated">
+      <value>1213321058000</value>
+    </field>
+    <field name="reporterName">
+      <value>blossom</value>
+    </field>
+    <field name="updaterName">
+      <value>blossom</value>
+    </field>
+    <field name="resolved">
+      <value>1282145737510</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

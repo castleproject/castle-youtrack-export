@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>203</value>
+    </field>
+    <field name="summary">
+      <value>Define clear scoping rules for parameters in the views</value>
+    </field>
+    <field name="description">
+      <value>Guys,
+We need to have clear definition of parameters and parameters passing between Views and ViewComponents.
+At the moment, a ViewComponent has three dictionaries that it can set.
+
+PropertyBag - Aliased to Context.ComponentVars
+Context.ComponentParams - Parameters that were passed to the component 
+Context.ContextVars - views's parameters
+
+Parameters passing from ViewComponent to View happened more by chance than by decision, as far as I know, but it is a scenario that I is certainly useful.
+
+What is suggest is this:
+The ViewComponent view has access to both ContextContextVars and Context.ComponentParams
+Any change to Context.ContextVars will be reflected on the calling view parameters.
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1167508338000</value>
+    </field>
+    <field name="updated">
+      <value>1414392505630</value>
+    </field>
+    <field name="reporterName">
+      <value>ayenderahien</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392505622</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="How about a patch for Monorail v3 ?" created="1262979284000" />
+  </issue>
+</issues>

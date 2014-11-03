@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>TypedFactoryFacility</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>213</value>
+    </field>
+    <field name="summary">
+      <value>TFF: Exception when using 2 delegate factories where 1 was previously lazy loaded with a component with multiple ctors</value>
+    </field>
+    <field name="description">
+      <value>If you comment out the default ctor in ServiceWithMultipleCtors, the test passes.
+If you take out the SomeService dependency, it also passes.
+But the combination of both, fails the test with a DependencyResolverException.
+
+{code lang=java}
+        public class Service1 { }
+        public class Service2 { }
+        public class ServiceWithMultipleCtors
+        {
+            public ServiceWithMultipleCtors()
+            {
+            }
+            public ServiceWithMultipleCtors(SomeService a, Func&lt;Service1&gt; b, Func&lt;Service2&gt; c)
+            {
+            }
+        }
+
+        public class ServiceRedirect
+        {
+            public ServiceRedirect(ServiceWithMultipleCtors serviceWithMultipleCtors)
+            {
+            }
+        }
+
+        public class ServiceFactory
+        {
+            public Func&lt;ServiceRedirect&gt; Factory { get; set; }
+
+            public ServiceFactory(Func&lt;ServiceRedirect&gt; factory, Func&lt;Service1&gt; factory2)
+            {
+                Factory = factory;
+            }
+        }
+
+        public class SomeService{}
+
+        [Test]
+        public void Resolution_ShouldNotThrow_When_TwoDelegateFactoriesAreResolvedWithOnePreviouslyLazyLoaded_WithMultipleCtors()
+        {
+            WindsorContainer c = new WindsorContainer();
+            c.AddFacility&lt;TypedFactoryFacility&gt;();
+            c.Register(Component.For&lt;Service1&gt;());
+            c.Register(Component.For&lt;SomeService&gt;());
+            c.Register(Component.For&lt;ServiceFactory&gt;());
+            c.Register(Component.For&lt;ServiceRedirect&gt;());
+            c.Register(Component.For&lt;ServiceWithMultipleCtors&gt;());
+            c.Register(Component.For&lt;Service2&gt;());
+            c.Resolve&lt;ServiceFactory&gt;().Factory();
+        }
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1283207450401</value>
+    </field>
+    <field name="updated">
+      <value>1287657161212</value>
+    </field>
+    <field name="reporterName">
+      <value>bling</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1283212729229</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="What's the exception message?" created="1283210583729" />
+    <comment author="bling" text="Castle.MicroKernel.Resolvers.DependencyResolverException : Missing dependency.&#xA;Component ComponentFactoryTests+ServiceWithMultipleCtors has a dependency on System.Func`1[ComponentFactoryTests+Service2], which could not be resolved.&#xA;Make sure the dependency is correctly registered in the container as a service, or provided as inline argument&#xA;  ----&gt; Castle.MicroKernel.Handlers.HandlerException : Handler for System.Func`1[ComponentFactoryTests+Service2] was not found.&#xA;&#xA;at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveServiceDependency(CreationContext context, ComponentModel model, DependencyModel dependency) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\Resolvers\DefaultDependencyResolver.cs: line 393&#xA;at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(CreationContext context, ISubDependencyResolver contextHandlerResolver, ComponentModel model, DependencyModel dependency) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\Resolvers\DefaultDependencyResolver.cs: line 253&#xA;at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArgumentsCore(ConstructorCandidate constructor, Object[] arguments, CreationContext context, Type[] signature) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\ComponentActivator\DefaultComponentActivator.cs: line 337&#xA;at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArguments(ConstructorCandidate constructor, CreationContext context, Type[]&amp; signature) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\ComponentActivator\DefaultComponentActivator.cs: line 318&#xA;at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(CreationContext context) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\ComponentActivator\DefaultComponentActivator.cs: line 103&#xA;at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\ComponentActivator\DefaultComponentActivator.cs: line 81&#xA;at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\ComponentActivator\AbstractComponentActivator.cs: line 75&#xA;at Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(CreationContext context) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\Lifestyle\SingletonLifestyleManager.cs: line 50&#xA;at Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\Handlers\DefaultHandler.cs: line 62&#xA;at Castle.MicroKernel.Handlers.AbstractHandler.Resolve(CreationContext context, Boolean instanceRequired) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\Handlers\AbstractHandler.cs: line 187&#xA;at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveServiceDependency(CreationContext context, ComponentModel model, DependencyModel dependency) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\Resolvers\DefaultDependencyResolver.cs: line 393&#xA;at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(CreationContext context, ISubDependencyResolver contextHandlerResolver, ComponentModel model, DependencyModel dependency) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\Resolvers\DefaultDependencyResolver.cs: line 253&#xA;at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArgumentsCore(ConstructorCandidate constructor, Object[] arguments, CreationContext context, Type[] signature) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\ComponentActivator\DefaultComponentActivator.cs: line 337&#xA;at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArguments(ConstructorCandidate constructor, CreationContext context, Type[]&amp; signature) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\ComponentActivator\DefaultComponentActivator.cs: line 318&#xA;at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(CreationContext context) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\ComponentActivator\DefaultComponentActivator.cs: line 103&#xA;at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\ComponentActivator\DefaultComponentActivator.cs: line 81&#xA;at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\ComponentActivator\AbstractComponentActivator.cs: line 75&#xA;at Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(CreationContext context) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\Lifestyle\SingletonLifestyleManager.cs: line 50&#xA;at Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\Handlers\DefaultHandler.cs: line 62&#xA;at Castle.MicroKernel.Handlers.AbstractHandler.Resolve(CreationContext context, Boolean instanceRequired) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\Handlers\AbstractHandler.cs: line 187&#xA;at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\DefaultKernel.cs: line 956&#xA;at Castle.Facilities.TypedFactory.TypedFactoryComponent.Resolve(IKernel kernel) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\Facilities\TypedFactory\TypedFactoryComponent.cs: line 77&#xA;at Castle.Facilities.TypedFactory.Resolve.Invoke(IInvocation invocation) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\Facilities\TypedFactory\Resolve.cs: line 49&#xA;at Castle.Facilities.TypedFactory.TypedFactoryInterceptor.Intercept(IInvocation invocation) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\Facilities\TypedFactory\TypedFactoryInterceptor.cs: line 117&#xA;at Castle.DynamicProxy.AbstractInvocation.Proceed()&#xA;at Castle.Proxies.Func`1Proxy.Invoke()&#xA;at ComponentFactoryTests.Resolution_ShouldNotThrow_When_TwoDelegateFactoriesAreResolvedWithOnePreviouslyLazyLoaded_WithMultipleCtors() in ComponentFactoryTests.cs: line 181&#xA;--HandlerException&#xA;at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.TryGetHandlerFromKernel(DependencyModel dependency, CreationContext context) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\Resolvers\DefaultDependencyResolver.cs: line 414&#xA;at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveServiceDependency(CreationContext context, ComponentModel model, DependencyModel dependency) in c:\TeamCity\buildAgent\work\1ab5e0b25b145b19\src\Castle.Windsor\MicroKernel\Resolvers\DefaultDependencyResolver.cs: line 362 " created="1283211263354" updated="1283211489119" />
+    <comment author="xtoff" text="This is already fixed by one of previous fixes" created="1283212729229" />
+    <comment author="xtoff" text="This has the same underlying cause, and both issues are fixed by the same fix" created="1283212807869" />
+    <comment author="bling" text="Actually, IOC-209 fixes this for me, which currently happens to be only thing missing from the 3.5 teamcity build :'(" created="1283215209229" />
+    <comment author="xtoff" text="right, I will push a fix for that later today,&#xA;&#xA;cheers" created="1283244220557" />
+  </issue>
+</issues>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>187</value>
+    </field>
+    <field name="summary">
+      <value>Support for generating "friendly URLs"</value>
+    </field>
+    <field name="description">
+      <value>It would be good to be able to generate friendly URLs when performing things like "WizardStep.RedirectToNextStep". It looks a bit out of place when the rest of the site has nicely formed urls ("/users/list/all/") and all of a sudden you start getting ".rails" extensions everywhere. This impacts a lot of areas in MonoRail though, so requires a bit of thought.
+
+My current feeling is that we need to centralize url creation in a UrlBuilder type. </value>
+    </field>
+    <field name="created">
+      <value>1165599164000</value>
+    </field>
+    <field name="updated">
+      <value>1169131733000</value>
+    </field>
+    <field name="reporterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="updaterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="resolved">
+      <value>1282143623338</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

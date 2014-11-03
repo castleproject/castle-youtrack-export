@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>118</value>
+    </field>
+    <field name="summary">
+      <value>Activewriter errors in combination with VisualSVN</value>
+    </field>
+    <field name="description">
+      <value>When trying to generate code files from the Actiw while VisualSVN is installed, an EntryPointNotFoundException will occur. I suspect that it has to do with the current directory at that point, plus the fact that VisualSVN addresses some unmanaged dll's that only reside in %ProgramFiles%\VisualSVN.
+
+Note that someone already mentioned this problem some while ago on altinoren.com (http://altinoren.com/CommentView,guid,7043a882-8325-4e48-b956-54868219297c.aspx) and solved it by removing/disabling VisualSVN, but I don't take that as an option :) I also realize this might be an issue of VisualSVN itself, but I'm not into VisualStudio Interop stuff enough to judge that.
+
+The very least workaround possible, is to catch the error, signal it, but still just proceeding. That would save the ones suffering from this major hassle :)
+
+Anyway, here's the call stack:
+
+Error	107	Running transformation: System.EntryPointNotFoundException: Entry point was not found.
+   at VisualSVN.VS.Interop.NativeExtenderCallback.OnQueryEditFiles(UInt32 rgfQueryEdit, String[] rgpszMkDocuments, UInt32* pfEditVerdict, UInt32* prgfMoreInfo, Boolean* skipOriginal)
+   at VisualSVN.VS.Interop.NativeExtender.OnQueryEditFiles(NativeExtender* , UInt32 rgfQueryEdit, Int32 cFiles, UInt16** rgpszMkDocuments, UInt32* rgrgf, __MIDL___MIDL_itf_ivsqueryeditquerysave2_0000_0001* rgFileInfo, UInt32* pfEditVerdict, UInt32* prgfMoreInfo, Boolean* skipOriginal)
+   at EnvDTE.ProjectItems.AddFromFile(String FileName)
+   at Altinoren.ActiveWriter.CodeGeneration.CodeGenerationHelper.AddToProject(String path, prjBuildAction buildAction)
+   at Altinoren.ActiveWriter.CodeGeneration.CodeGenerationHelper.Generate()
+   at Microsoft.VisualStudio.TextTemplatingD40CDA24B073E171ACBA53DFD98A879B.GeneratedTextTransformation.TransformText() in F:\Development\Projects\Project.actiw:line 32	F:\Development\Project\Project.actiw	1	1	
+</value>
+    </field>
+    <field name="created">
+      <value>1208247825000</value>
+    </field>
+    <field name="updated">
+      <value>1209426402000</value>
+    </field>
+    <field name="reporterName">
+      <value>grimace</value>
+    </field>
+    <field name="updaterName">
+      <value>grimace</value>
+    </field>
+    <field name="resolved">
+      <value>1282140075948</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

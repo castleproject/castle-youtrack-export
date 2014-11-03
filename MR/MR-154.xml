@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Ajax Support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>154</value>
+    </field>
+    <field name="summary">
+      <value>New Prototype library  1.5.0_rc1 causes Ajax Observers to fail</value>
+    </field>
+    <field name="description">
+      <value>The new prototype library 1.5.0_rc1cause Ajax objserver to fail with a javascript exception "element.tagName has no value".
+
+Observer script : &lt;script type="text/javascript"&gt;new Form.Element.Observer('employe.TitreEmploiNonSyndique.id', 2, function(element, value) { new Ajax.Updater('CodePayeCegeModifie', '/Ajax/ObtenirCodeDePayeCege.rails', {asynchronous:true, evalScripts:true, parameters:'titreEmploiNonSyndiqueGuid='+value}) })&lt;/script&gt; 
+
+When I revert back to the old library 1.3.1, the observer then works fine.
+				</value>
+    </field>
+    <field name="created">
+      <value>1159364105000</value>
+    </field>
+    <field name="updated">
+      <value>1162413880000</value>
+    </field>
+    <field name="reporterName">
+      <value>kaju</value>
+    </field>
+    <field name="updaterName">
+      <value>kaju</value>
+    </field>
+    <field name="resolved">
+      <value>1282143497854</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

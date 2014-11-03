@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>135</value>
+    </field>
+    <field name="summary">
+      <value>Missing [Serializable] for ActiveRecordLinqBase</value>
+    </field>
+    <field name="description">
+      <value>ActiveRecordBase declares the Serializable-attribute, whereas the ActiveRecordLinqBase doesn't. As the ActiveRecordLinqBase class doesn't define anything besides a static property, adding the attribute shouldn't have any side-effects. I've added the attribute in a custom build, which solves our issue with serialization.</value>
+    </field>
+    <field name="created">
+      <value>1280106485000</value>
+    </field>
+    <field name="updated">
+      <value>1280108843000</value>
+    </field>
+    <field name="reporterName">
+      <value>troethom</value>
+    </field>
+    <field name="updaterName">
+      <value>troethom</value>
+    </field>
+    <field name="resolved">
+      <value>1280108820000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="ok, thanks Troels.&#xA;&#xA;Why did you fill this into DynamicProxy, not AR issue tracker?&#xA;" created="1280106683000" />
+    <comment author="troethom" text="I don't know why this became a DynamicProxy issue, but as the description suggests, the issue relates to ActiveRecord.&#xA;&#xA;I've created a fix and sent a pull request at GitHub with a reference to this issue." created="1280107726000" />
+    <comment author="xtoff" text="ok, no worries.&#xA;&#xA;Integrated.&#xA;&#xA;Cheers" created="1280108838000" />
+    <comment author="troethom" text="Any idea when there will be a new ActiveRecord release? For now, it is fine to base our own project on the custom build, but I'd rather go back to the official release as soon as possible." created="1280109600000" />
+    <comment author="xtoff" text="I suggest asking these kinds of questions on the user group @ google.&#xA;&#xA;Markus is the leader of the project so he calls the shots on this one. I think a point-zero-one release might be released soon with minor fixes like this one, targetting Windsor 2.5, but it's up to Markus.&#xA;&#xA;Remember that it's a OSS project and community contributions help to drive it and the more of that, the better.&#xA;&#xA;cheers" created="1280110764000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.5''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1280108820000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1280108820000" />
+  </issue>
+</issues>

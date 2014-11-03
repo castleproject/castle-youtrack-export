@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>95</value>
+    </field>
+    <field name="summary">
+      <value>NullReferenceExcpetion regarind adding a facility to a child kernel and adding a component to the root kernel.</value>
+    </field>
+    <field name="description">
+      <value>Best way to explain is with code:
+
+IKernel kernel = new DefaultKernel();
+IKernel childKernel = new DefaultKernel();
+kernel.AddChildKernel(childKernel);
+childKernel.AddFacility("StartableFacility", new StartableFacility());
+ kernel.AddComponent("string", typeof(String));  // exception here
+
+ the exception here is thrown from the StartableFacility.OnComponentModelCreated in the following line:
+
+ bool bootstrapable = (bool)handler.ComponentModel.ExtendedProperties["startable"];
+
+The extended property startable was not initialize since the method OnComponentModelCreated in StartableFacility was never called. 
+
+     </value>
+    </field>
+    <field name="created">
+      <value>1190717860000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838948</value>
+    </field>
+    <field name="reporterName">
+      <value>samuelson</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1228855320000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228855320000" />
+  </issue>
+</issues>

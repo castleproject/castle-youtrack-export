@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>535</value>
+    </field>
+    <field name="summary">
+      <value>UrlHelper.ButtonLink does not JavaScript-escape URLs</value>
+    </field>
+    <field name="description">
+      <value>This results in UrlHelper.ButtonLink outputting invalid JavaScript for URLs containing single quotes.</value>
+    </field>
+    <field name="created">
+      <value>1243334623000</value>
+    </field>
+    <field name="updated">
+      <value>1253852160000</value>
+    </field>
+    <field name="reporterName">
+      <value>danports</value>
+    </field>
+    <field name="updaterName">
+      <value>danports</value>
+    </field>
+    <field name="resolved">
+      <value>1253852100000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="danports" text="Wasn't sure where to add a test for this." created="1243334785000" />
+    <comment author="jsimons" text="Dan,&#xA;&#xA;You can add your tests to Castle.MonoRail.Framework.Tests project.&#xA;I just had a quick look and there doesn't seem to be any tests for UrlHelper so you may have to create a new cs file.&#xA;&#xA;John" created="1243378764000" />
+    <comment author="jsimons" text="Test added" created="1245346812000" />
+    <comment author="roelofb" text="r5990" created="1253852157000" />
+    <comment author="jsimons" text="* '''Attachment''' UrlHelper+Test.patch added.&#xD;&#xA;" created="1245346800000" />
+    <comment author="danports" text="* '''Attachment''' UrlHelper.patch added.&#xD;&#xA;" created="1243334640000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1253852100000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253852160000" />
+  </issue>
+</issues>

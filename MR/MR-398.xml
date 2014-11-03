@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>398</value>
+    </field>
+    <field name="summary">
+      <value>Could not save &lt;model&gt;. Ambiguous match found. (AmbiguousMatchException when using Scaffolding and ActiveRecordValidationBase&lt;T&gt;)</value>
+    </field>
+    <field name="description">
+      <value>When using scaffolding on a controller with a model that inherits from ActiveRecordValidationBase&lt;T&gt;, a System.Reflection.AmbiguousMatchException was thrown. On the webpage you get an message "Could not save &lt;AR model class&gt;. Ambiguous match found."
+
+Cause: in MonoRail/Castle.MonoRail.ActiveRecordSupport/Scaffold/Utils/CommonOperationUtils.cs SaveInstance(...)
+type.GetMethod("IsValid") is called, but there are two ambiguous IsValid methods. Now it is patched to use type.GetMethod("IsValid", System.Type.EmptyTypes).
+
+I think it also applies to these posts:
+http://forum.castleproject.org/viewtopic.php?t=3760&amp;start=0&amp;postdays=0&amp;postorder=asc&amp;highlight=
+http://groups.google.com/group/castle-project-users/browse_thread/thread/d34e0d2349f613c4/1595381e5bcb6443?hl=en&amp;lnk=gst&amp;q=ActiveRecordValidationBase%3C#1595381e5bcb6443
+
+This is my first patch so i hope i did it right...
+Compliments to the castle team for building such a great framework!
+</value>
+    </field>
+    <field name="created">
+      <value>1200820802000</value>
+    </field>
+    <field name="updated">
+      <value>1263055524000</value>
+    </field>
+    <field name="reporterName">
+      <value>alwin</value>
+    </field>
+    <field name="updaterName">
+      <value>alwin</value>
+    </field>
+    <field name="resolved">
+      <value>1282145508901</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055500000" />
+  </issue>
+</issues>

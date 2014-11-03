@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generics</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>299</value>
+    </field>
+    <field name="summary">
+      <value>ResolveAll ignores services for open version of generic service requested</value>
+    </field>
+    <field name="description">
+      <value>If I register:
+
+{code lang=java}
+Container.Register(Component.For&lt;IGeneric&lt;A&gt;&gt;().ImplementedBy&lt;GenericImpl1&lt;A&gt;&gt;(),
+                   Component.For(typeof(IGeneric&lt;&gt;)).ImplementedBy(typeof(GenericImpl2&lt;&gt;));
+{code}
+
+and 
+
+{code lang=java}
+Container.ResoveAll&lt;IGeneric&lt;A&gt;&gt;();
+{code}
+
+I get one object back, which I would expect to get them both.</value>
+    </field>
+    <field name="created">
+      <value>1306321307931</value>
+    </field>
+    <field name="updated">
+      <value>1407822257287</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1306321307931</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

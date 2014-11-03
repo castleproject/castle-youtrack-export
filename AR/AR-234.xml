@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Queries</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>234</value>
+    </field>
+    <field name="summary">
+      <value>Make ProjectionQuery&lt;ARType, TResultItem&gt; able to return simple types</value>
+    </field>
+    <field name="description">
+      <value>In the ProjectionQuery class I'm unable to return arrays of eg. strings.
+
+A features comparable to the following HQL would be very nice:
+
+select distinct u.Name from User u where u.Address in (:addresses)
+
+Apparently a SimpleQuery&lt;string&gt;(typeof(ARType)...) is able to do the trick, but not the ProjectionQuery - I always get an exception telling me that there's no constructor for System.String.</value>
+    </field>
+    <field name="created">
+      <value>1227514089000</value>
+    </field>
+    <field name="updated">
+      <value>1236403833000</value>
+    </field>
+    <field name="reporterName">
+      <value>TigerShark</value>
+    </field>
+    <field name="updaterName">
+      <value>TigerShark</value>
+    </field>
+    <field name="resolved">
+      <value>1236403800000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="This is exactly what SimpleQuery is for. If you need to use a ProjectionQuery, you have to create a class taking a string as constructor argument." created="1235118685000" />
+    <comment author="mzywitza" text="Reinvestigating" created="1235646187000" />
+    <comment author="mzywitza" text="Reinvestigating" created="1235646530000" />
+    <comment author="mzywitza" text="Please try out and tell me whether the patch works. If yes, please create a test case and I'll commit it to the trunk." created="1235646606000" />
+    <comment author="TigerShark" text="I'm not a comitter, so I don't think I can commit anything. I'll try to make a test for it.&#xA;&#xA;Btw, thanks for taking your time to look into it :)" created="1235697078000" />
+    <comment author="mzywitza" text="Solved in r5578" created="1236403835000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1235118660000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Resolved'' to ''Reopened''.&#xD;&#xA;" created="1235646180000" />
+    <comment author="mzywitza" text="* '''Resolution''' changed from ''Won't Fix'' to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Reopened'' to ''Resolved''.&#xD;&#xA;" created="1236403800000" />
+  </issue>
+</issues>

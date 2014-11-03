@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>10</value>
+    </field>
+    <field name="summary">
+      <value>Application built off trunk fails if Castle Beta 2 is GAC'd</value>
+    </field>
+    <field name="description">
+      <value>The assemblies in the trunk and Castle Beta 2 share the same version numbers. When you build an application against the trunk and use functionality only in the trunk, the application will fail when run on a computer with Castle Beta 2 in the GAC. The reason is the CLR loader. If the CLR loader tries to load a private assembly, but finds one with the same strong name in the GAC, it will preferentially load the GAC'd one. The assembly version numbers in trunk should be updated on each build or at least after a major (even beta) release.</value>
+    </field>
+    <field name="created">
+      <value>1188316559000</value>
+    </field>
+    <field name="updated">
+      <value>1253855064000</value>
+    </field>
+    <field name="reporterName">
+      <value>jameskovacs</value>
+    </field>
+    <field name="updaterName">
+      <value>jameskovacs</value>
+    </field>
+    <field name="resolved">
+      <value>1282140367463</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253855040000" />
+  </issue>
+</issues>

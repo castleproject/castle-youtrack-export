@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - AspView</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>496</value>
+    </field>
+    <field name="summary">
+      <value>Add pre/post render hooks</value>
+    </field>
+    <field name="description">
+      <value>The patch allows to execute code before and after rendering. For example to set context for 3rd party code (log4net stacks, Spring.NET expression evaluator, etc...).</value>
+    </field>
+    <field name="created">
+      <value>1223799888000</value>
+    </field>
+    <field name="updated">
+      <value>1278884262000</value>
+    </field>
+    <field name="reporterName">
+      <value>felixg</value>
+    </field>
+    <field name="updaterName">
+      <value>felixg</value>
+    </field>
+    <field name="resolved">
+      <value>1278884220000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="Why not have the controller put the needed stuff in the property bag, and use that from the view (through a &lt;% %&gt; piece?)&#xA;I'd rather avoid adding complexity to the basic view implementation" created="1223804838000" />
+    <comment author="felixg" text="The &lt;% %&gt; will require me to reference log4net/spring in the view. In log4net case I'll need to surround the entire view with using(logger.Thread[&quot;xxx&quot;].Push()). Another case is a custom form helper that is monorail agnostic (generates html in any environment). It needs access to a portion of the property bag. Setting this context in every form will pollute the views." created="1223807749000" />
+    <comment author="mdragon" text="What about a base Controller class that implements the logic and can be called from the individual Controller methods?" created="1226865634000" />
+    <comment author="kenegozi" text="I tried to go down that path and it ended up complicating things.  The base view class must be as simple as possible, and it already is too complicated.&#xA;&#xA;A workaround exists: simply inherit from AspViewBase, add the Pre and Post virtual methods, override Render and call your methods. Then set your view templates to inherit from your new custom view instead of AspViewBase" created="1278884257000" />
+    <comment author="kenegozi" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1278884220000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278884220000" />
+    <comment author="kenegozi" text="* '''Assignees''' set to ''Ken Egozi''.&#xD;&#xA;" created="1223804700000" />
+  </issue>
+</issues>

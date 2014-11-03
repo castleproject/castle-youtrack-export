@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>131</value>
+    </field>
+    <field name="summary">
+      <value>The security context token is expired or is not valid</value>
+    </field>
+    <field name="description">
+      <value>Is any body familiar with this error?
+
+System.ServiceModel.Security.MessageSecurityException: An unsecured or incorrectly secured fault was received from the other party. See the inner FaultException for the fault code and detail. ---&gt; System.ServiceModel.FaultException: The security context token is expired or is not valid. The message was not processed.     --- End of inner exception stack trace ---     at Castle.Facilities.WcfIntegration.Proxy.WcfRemotingInterceptor.&lt;&gt;c__DisplayClass1.&lt;PerformInvocation&gt;b__0()     at Castle.Facilities.WcfIntegration.ChannelReconnectPolicy.Perform(IWcfChannelHolder channelHolder, MethodInfo method, Action action)     at Castle.Facilities.WcfIntegration.Proxy.WcfRemotingInterceptor.ApplyActionPolicy(IWcfChannelHolder channelHolder, IInvocation invocation, Action action)     at Castle.Facilities.WcfIntegration.Proxy.WcfRemotingInterceptor.PerformInvocation(IInvocation invocation, IWcfChannelHolder channelHolder)     at Castle.Facilities.WcfIntegration.Async.WcfRemotingAsyncInterceptor.PerformInvocation(IInvocation invocation, IWcfChannelHolder channelHolder)     at Castle.Facilities.WcfIntegration.Proxy.WcfRemotingInterceptor.Intercept(IInvocation invocation)     at Castle.DynamicProxy.AbstractInvocation.Proceed()     at Castle.Proxies.IWcfChannelHolderProxy7b6c6579f7c04a02842e0dd736ad91d0.IRsvpService.GetUserRoleWithModuleType(Int32 userId, String moduleType)     at Afc.Ffga.Admin403bImport.UI.GlobalApplication.GetRoles(String loginType, String userId, String moduleType) in C:\Development\vs2008web\Admin403b_10202009_t\Afc.Ffga.Admin403bImport.UI\Global.asax.cs:line 145</value>
+    </field>
+    <field name="created">
+      <value>1257416746000</value>
+    </field>
+    <field name="updated">
+      <value>1285404568593</value>
+    </field>
+    <field name="reporterName">
+      <value>Ashfaq</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1285404558953</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="This is an issue tracker. If you have questions please use our users mailing list (http://groups.google.com/group/castle-project-users). Thanks." created="1257432807000" />
+    <comment author="henry" text="This is not a issue report." created="1285404568593" />
+  </issue>
+</issues>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Lifestyles</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>338</value>
+    </field>
+    <field name="summary">
+      <value>SerializationException thrown when using remoting within default lifetime scope (Failed to load expression host assembly. Details: Type 'Castle.MicroKernel.Lifestyle.Scoped.CallContextLifetimeScope' in assembly 'Castle.Windsor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc' is not marked as serializable.)</value>
+    </field>
+    <field name="description">
+      <value>The fix not so straightforward as the exception message would have us believe.
+
+Adding [Serializable] will serialize the scope and make it lose track of the objects it tracks. We need to fix it in a way that doesn't flow outside of the AppDomain but doesn't cause the scenario to fail.
+
+
+I think one possible avenue we might explore would be to put scope-tracked objects in a static dictionary and make the scope just a gateway holding the correct key to the objects tracked by that particular scope.
+
+This should also take parent scopes into consideration.</value>
+    </field>
+    <field name="created">
+      <value>1336966432519</value>
+    </field>
+    <field name="updated">
+      <value>1337392573786</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1337392573786</value>
+    </field>
+    <field name="voterName">
+      <value>inviz</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-892[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

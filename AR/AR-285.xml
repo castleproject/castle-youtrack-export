@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Performance Problem</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Performance</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>285</value>
+    </field>
+    <field name="summary">
+      <value>I want to update without select an object.</value>
+    </field>
+    <field name="description">
+      <value>How can I update and object without selecting a record.
+For example,
+
+[ActiveRecord(Lazy=true)]
+public class AdminUser
+{
+              ...
+}
+
+using (var sess = new Castle.ActiveRecord.SessionScope())
+{
+                var user = Castle.ActiveRecord.ActiveRecordMediator&lt;Domain.AdminUser&gt;.FindByPrimaryKey(11); //not yet select
+                user.Username = "Admin"; //select from database
+                System.Console.WriteLine("SET");
+                System.Console.ReadLine();
+                Castle.ActiveRecord.ActiveRecordMediator&lt;Domain.BaseUser&gt;.Save(user); //update to database
+}
+System.Console.WriteLine("OK");
+System.Console.ReadLine();
+
+I don't want the code to select from database everytime I set value to a property, since it effects the performance of the application, how can I write the code to just update only some property and leave those remaining untouched?</value>
+    </field>
+    <field name="created">
+      <value>1279151164000</value>
+    </field>
+    <field name="updated">
+      <value>1279186230000</value>
+    </field>
+    <field name="reporterName">
+      <value>angos</value>
+    </field>
+    <field name="updaterName">
+      <value>angos</value>
+    </field>
+    <field name="resolved">
+      <value>1279186200000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="Please, use the user mailing list to ask questions." created="1279186231000" />
+    <comment author="henry" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1279186200000" />
+  </issue>
+</issues>

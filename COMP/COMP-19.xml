@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>19</value>
+    </field>
+    <field name="summary">
+      <value>Fixed some validation issues.</value>
+    </field>
+    <field name="description">
+      <value>Allow empty DateTime at server-side validation.
+
+Allow empty value when validating regex at client-side
+
+Client-side email validation was done twice (through SetEmail and SetRegEx).
+Will use only regular expression now (like server-side validation), this will NOT work for fValidate (has no regex validation).
+If this is a problem, we'll have to inherit EmailValidator from AbstractValidator, and duplicate the IsValid method from RegularExpressionValidator.
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1176144193000</value>
+    </field>
+    <field name="updated">
+      <value>1176751972000</value>
+    </field>
+    <field name="reporterName">
+      <value>yuri</value>
+    </field>
+    <field name="updaterName">
+      <value>yuri</value>
+    </field>
+    <field name="resolved">
+      <value>1282137480916</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

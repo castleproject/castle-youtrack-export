@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>115</value>
+    </field>
+    <field name="summary">
+      <value>Cannot resolve a dependency from a parent container under certain circumstances.</value>
+    </field>
+    <field name="description">
+      <value>When resolving a component from a child container that has a dependency on another component in the child container, which in turn has a dependency on a component in the parent container, the operation fails.
+
+The following code reproduces the issue:
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Castle.Windsor;
+
+namespace TestCastle
+{
+	class Program
+	{
+		static void Main( string[] args )
+		{
+			WindsorContainer parent = new WindsorContainer();
+			WindsorContainer child = new WindsorContainer();
+
+			parent.AddComponent( "service", typeof( IParentService ), typeof( ParentService ) );
+			child.AddComponent( "service1", typeof( IChildService1 ), typeof( ChildService1 ) );
+			child.AddComponent( "service2", typeof( IChildService2 ), typeof( ChildService2 ) );
+			
+			parent.AddChildContainer( child );
+			
+			IChildService1 service = child.Resolve&lt;IChildService1&gt;();
+		}
+	}
+
+	public interface IParentService
+	{
+	}
+
+	public class ParentService : IParentService
+	{
+	}
+
+	public interface IChildService1
+	{
+	}
+
+	public class ChildService1 : IChildService1
+	{
+		public ChildService1( IChildService2 xxx )
+		{
+		}
+	}
+
+	public interface IChildService2
+	{
+	}
+
+	public class ChildService2 : IChildService2
+	{
+		public ChildService2( IParentService xxx )
+		{
+		}
+	}
+}</value>
+    </field>
+    <field name="created">
+      <value>1199680531000</value>
+    </field>
+    <field name="updated">
+      <value>1341105310781</value>
+    </field>
+    <field name="reporterName">
+      <value>baggins</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1228860540000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="This works:&#xA;&#xA;        [Test]&#xA;        public void  Cannot_resolve_a_dependency_from_a_parent_container_under_certain_circumstances()&#xA;        {&#xA;            WindsorContainer parent = new WindsorContainer();&#xA;            WindsorContainer child = new WindsorContainer();&#xA;&#xA;            parent.AddChildContainer(child);&#xA;&#xA;            parent.AddComponent(&quot;service&quot;, typeof(IParentService), typeof(ParentService));&#xA;            child.AddComponent(&quot;service1&quot;, typeof(IChildService1), typeof(ChildService1));&#xA;            child.AddComponent(&quot;service2&quot;, typeof(IChildService2), typeof(ChildService2));&#xA;&#xA;&#xA;            child.Resolve&lt;IChildService1&gt;();&#xA;        }" created="1228860574000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228860540000" />
+    <comment author="xtoff" text="Part of this behaviour is being reverted in v3.1 to fix #IOC-345" created="1341105310781" />
+  </issue>
+</issues>

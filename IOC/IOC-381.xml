@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Lifestyles</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>3.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>381</value>
+    </field>
+    <field name="summary">
+      <value>ThreadSafeInit ist not threadsafe</value>
+    </field>
+    <field name="description">
+      <value>Hi,
+
+in our production code we sometimes get the following exception:
+
+'''Component castle.internal-pool-factory could not be registered. There is already a component with that   name. Did you want to modify the existing component instead? If not, make sure you specify a unique name.''' 
+bei Castle.MicroKernel.SubSystems.Naming.DefaultNamingSubSystem.Register(IHandler handler)
+bei Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.RegisterHandler(String name, IHandler handler, Boolean skipRegistration)
+bei Castle.MicroKernel.Handlers.DefaultHandlerFactory.Create(ComponentModel model, Boolean isMetaHandler)
+bei Castle.MicroKernel.DefaultKernel.AddCustomComponent(ComponentModel model, Boolean isMetaHandler)
+bei Castle.MicroKernel.DefaultKernel.AddCustomComponent(ComponentModel model)
+bei Castle.MicroKernel.Registration.ComponentRegistration`1.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+bei Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+bei Castle.MicroKernel.Lifestyle.PoolableLifestyleManager.CreatePool(Int32 initialSize, Int32 maxSize)
+bei Castle.MicroKernel.Lifestyle.PoolableLifestyleManager.get_Pool()
+bei Castle.MicroKernel.Lifestyle.PoolableLifestyleManager.Resolve(CreationContext context, IReleasePolicy releasePolicy)
+bei Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired, Burden&amp;amp; burden)
+bei Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context, Boolean instanceRequired)
+bei Castle.MicroKernel.Handlers.AbstractHandler.Resolve(CreationContext context)
+bei Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments, IReleasePolicy policy)
+bei Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(String key, Type service, IDictionary arguments, IReleasePolicy policy)
+bei Castle.MicroKernel.DefaultKernel.Resolve(String key, Type service, IDictionary arguments)
+bei Castle.Windsor.WindsorContainer.Resolve(String key, Type service, IDictionary arguments)
+
+We think that the code in ThreadSafeInit  is not entirely threadsafe. In EndThreadSafeOnceSection there are write to the non volatile field state. Instead one should use Interlocked.CompareExchange for writing.
+
+{code lang=cs}
+public void EndThreadSafeOnceSection()
+{
+	if (state == Initialized)
+	{
+		return;
+	}
+
+	Interlocked.CompareExchange(ref state, Initialized, Thread.CurrentThread.ManagedThreadId);
+}
+{code}
+
+This code is used when the PoolableLifestyleManager.Pool property is initialized.
+
+{code lang=cs}
+protected IPool Pool
+{
+	get
+	{
+		if (pool != null)
+		{
+			return pool;
+		}
+		var initializing = false;
+		try
+		{
+			initializing = init.ExecuteThreadSafeOnce();
+
+			if (pool == null)
+			{
+				pool = CreatePool(initialSize, maxSize);
+			}
+			return pool;
+		}
+		finally
+		{
+			if (initializing)
+			{
+				init.EndThreadSafeOnceSection();
+			}
+		}
+	}
+}
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1380635692605</value>
+    </field>
+    <field name="updated">
+      <value>1394861125819</value>
+    </field>
+    <field name="reporterName">
+      <value>Antineutrino</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1394861125788</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Have you tried upgrading to v3.2?" created="1381016314307" />
+    <comment author="xtoff" text="Only one thread, the thread that successfully acquired the init lock, can set the state to Initialized. Also, even though it's not a volatile write, the only result of that will be that other threads may spend a little bit longer than necessary spinning, but it will have no negative side-effects, and will not lead to inconsistency.&#xA;&#xA;I was trying to reproduce the behaviour (in Windsor 3.2) but I was unsuccessful. &#xA;&#xA;&#xA;Now, here's the code in the Pool getter.&#xA;{code}&#xA;if (pool != null)&#xA;{&#xA;	return pool;&#xA;}&#xA;var initializing = false;&#xA;try&#xA;{&#xA;	initializing = init.ExecuteThreadSafeOnce();&#xA;&#xA;	if (pool == null)&#xA;	{&#xA;		pool = CreatePool(initialSize, maxSize);&#xA;	}&#xA;	return pool;&#xA;}&#xA;finally&#xA;{&#xA;	if (initializing)&#xA;	{&#xA;		init.EndThreadSafeOnceSection();&#xA;	}&#xA;}&#xA;{code}&#xA;&#xA;Notice how we compare `pool` to `null`, then call `ExecuteThreadSafeOnce ` and then compare `pool` to `null` again. Theoretically, since there's no memory barrier, the second comparison might use stale value, and we'd end up calling `CreatePool` twice, however, even after reproducing this scenario in isolation, and running millions tests with varying number of threads, I wasn't able to observe it, not even once.&#xA;&#xA;If you could reproduce it in isolation in your environment, that would be very helpful in pinning down where the real problem is." created="1381019647377" />
+    <comment author="xtoff" text="Have you been successful reproducing it in v3.2?&#xA;&#xA;I'll close this issue, and if we have a reproduction in v3.2 please open a new one." created="1394861117023" />
+  </issue>
+</issues>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Website</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>56</value>
+    </field>
+    <field name="summary">
+      <value>Deprecation banner on Aspect# pages</value>
+    </field>
+    <field name="description">
+      <value>Put a big "DEPRECATED" banner on every Aspect# page: http://www.castleproject.org/AspectSharp/ . Even though it's not linked from any other page on the website, it's easily reached by googling "aspectsharp"</value>
+    </field>
+    <field name="created">
+      <value>1269853139000</value>
+    </field>
+    <field name="updated">
+      <value>1283165066312</value>
+    </field>
+    <field name="reporterName">
+      <value>mausch</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1283165066312</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Done, got rid of Aspect#" created="1269910139000" />
+    <comment author="jonorossi" text="It seems like all Aspect# pages are now gone." created="1283165066312" />
+  </issue>
+</issues>

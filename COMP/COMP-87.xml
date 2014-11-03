@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions">
+      <value>1.1.0</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>87</value>
+    </field>
+    <field name="summary">
+      <value>exception when trying to validate an inherited base object</value>
+    </field>
+    <field name="description">
+      <value>I get an exception when trying to validate an object that inherits 
+from a base object with attribute validators: 
+
+"No public instance field or property named pass1 for type 
+Implementation.CustomUser " 
+
+
+I'm using vs2008 with .NET FWK 3.5sp1 with Castle.Components.Validator.dll v1.0.3.4333.
+
+How to recreate:
+
+Default.aspx 
+    protected void SaveUserButton_Click(object sender, EventArgs e) 
+    { 
+        var u = new CustomUser() 
+                    { 
+                        pass1 = pass1.Text, 
+                        pass2 = pass2.Text 
+                    }; 
+
+
+        var vr = new ValidatorRunner(new CachedValidationRegistry()); 
+        vr.IsValid(u); 
+    } 
+
+
+CustomUser.cs: 
+    public class CustomUser : BaseUser 
+    { 
+    } 
+
+
+BaseUser.cs 
+    public class BaseUser 
+    { 
+        [ValidateNonEmpty] 
+        public string pass1 { get; set; } 
+
+
+        [ValidateSameAs("pass1")] 
+        public string pass2 { get; set; } 
+    } 
+</value>
+    </field>
+    <field name="created">
+      <value>1238708487000</value>
+    </field>
+    <field name="updated">
+      <value>1254909961000</value>
+    </field>
+    <field name="reporterName">
+      <value>cliffhanger</value>
+    </field>
+    <field name="updaterName">
+      <value>cliffhanger</value>
+    </field>
+    <field name="resolved">
+      <value>1254909960000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="PhallGuy" text="Here's a patch to Components\Validator\Castle.Components.Validator\AccessorUtil.cs to enable matching against properties and fields of a base class." created="1247624704000" />
+    <comment author="rbellamy" text="Could you please test this with trunk? It seems to be working without having to apply the patch." created="1254909963000" />
+    <comment author="PhallGuy" text="* '''Attachment''' AccessorUtil.patch added.&#xD;&#xA;" created="1247624700000" />
+    <comment author="rbellamy" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1254870240000" />
+    <comment author="rbellamy" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Version Fixed''' set to ''1.1.0''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1254909960000" />
+  </issue>
+</issues>

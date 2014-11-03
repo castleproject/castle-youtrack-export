@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generator</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>alpha 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>2</value>
+    </field>
+    <field name="summary">
+      <value>ARGenerator is incorrectly creation private property definitions</value>
+    </field>
+    <field name="description">
+      <value>private int Id
+{
+  ..
+}
+Should be
+
+public int Id
+{
+  ..
+}</value>
+    </field>
+    <field name="created">
+      <value>1118403550000</value>
+    </field>
+    <field name="updated">
+      <value>1136169687000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282135896354</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

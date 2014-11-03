@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generics</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>315</value>
+    </field>
+    <field name="summary">
+      <value>ResolveAll should not ignore generic constraint violations on dependencies of resolved component</value>
+    </field>
+    <field name="description">
+      <value>When doing resolve all and the resolved component's generic constraints are all met but it's violated for some dependency the exception should be rethrown, and not ignored.</value>
+    </field>
+    <field name="created">
+      <value>1315280510145</value>
+    </field>
+    <field name="updated">
+      <value>1407822257279</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1315315116723</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

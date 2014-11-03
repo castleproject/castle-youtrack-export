@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Duplicate</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Javascript Libraries</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>283</value>
+    </field>
+    <field name="summary">
+      <value>Javascript Dependency Manager.</value>
+    </field>
+    <field name="description">
+      <value>This adds support for registering a javascript dependency for a Controller and/or Action, via attributes. A dependency defines it's own javascript files, and any dependencies it has (i.e. Scriptaculous upon Prototype). Redundant dependencies are taken care of (however there is currently no way of tagging an explicitly referenced library as more important, i.e. for scriptaculous). There is also support for bundling _all_ the javascript dependencies together and outputting as a single file. (See JavascriptCacheController and JSDependencyHelper)
+
+This adds core support for 4 javascript libraries: Prototype, Scriptaculous, Event-Selectors &amp; Prototype-windows. Adding a new library involved extending JavascriptDependency and JavascriptDependencyAttribute (i.e. in client code).
+
+I will attach a sample zip file containing the expected directory structure of the javascript files, which need to be placed in
+public/content/javascripts/lib. There is support for putting this in a different location. it needs to be passed to the Attribute.
+
+Extra Features perhaps in the future:
+gzip compression.
+js compression (i.e. dean.edwards .net version of his js packer) as an option for caching. (propably not)
+
+This is not _fully_ tested, and may break for different configurations, I'm really posting it as an RFC.</value>
+    </field>
+    <field name="created">
+      <value>1182922552000</value>
+    </field>
+    <field name="updated">
+      <value>1263055624000</value>
+    </field>
+    <field name="reporterName">
+      <value>nihm</value>
+    </field>
+    <field name="updaterName">
+      <value>nihm</value>
+    </field>
+    <field name="resolved">
+      <value>1262991000000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="This functionality already exists as part of contrib:&#xA;http://using.castleproject.org/display/Contrib/InsertJavascriptComponent&#xA;http://using.castleproject.org/display/Contrib/JavascriptComponent&#xA;And the bundling of js files exists already in Monorail." created="1262991019000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Duplicate''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1262991000000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055620000" />
+  </issue>
+</issues>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - AspView</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>534</value>
+    </field>
+    <field name="summary">
+      <value>viewcomponent section won't be parsed if used in capturefor component</value>
+    </field>
+    <field name="description">
+      <value>this view template:
+&lt;%@Page Language="C#" %&gt;
+&lt;component:capturefor id="anothercapture"&gt;
+&lt;component:ColumnRenderer items="&lt;%=new int[]{1,2,3} %&gt;"&gt;
+&lt;section:firstelement&gt;section1&lt;/section:firstelement&gt;
+&lt;section:item&gt;o&lt;%=Properties["item"]%&gt;o&lt;/section:item&gt;
+&lt;/component:ColumnRenderer&gt;
+&lt;/component:capturefor&gt;
+
+won't render properly because the parsing won't match the sections for "ColumnRenderer" instance but for "capturefor"</value>
+    </field>
+    <field name="created">
+      <value>1243010665000</value>
+    </field>
+    <field name="updated">
+      <value>1278813612000</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>gauthier</value>
+    </field>
+    <field name="resolved">
+      <value>1278813540000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="gauthier" text="debugging further, the problem is the section regex matching (which should not match section in sub components).&#xA;&#xA;any idea how to avoid section match if inside another component tag, is it doable with regex?" created="1243014546000" />
+    <comment author="xtoff" text="Tim Barcz is a regex master, we should ask him..." created="1253852860000" />
+    <comment author="TimBarcz" text="Can you provide the current regex so I can have a look see." created="1253858693000" />
+    <comment author="kenegozi" text="Lets start with a workaround:&#xA;  put the content of the CaptureFor in a separate subview, and call that subview from the CaptureFor's body.&#xA;&#xA;&#xA;Fixing this would be quite complicated, so unless we get a patch that solve this properly it probably won't be fixed. &#xA;&#xA;I also am looking into allowing alternative approach for View Component code, using &lt;% %&gt; blocks and lambdas for bodies and sections. if it would be nice enough I'll advise on deprecating the xml-like syntax since the parsing code is quite hairy. It won't be happening any time soon though&#xA;" created="1278813556000" />
+    <comment author="kenegozi" text="Sorry, you'd have to use a workaround - move the CaptureFor's content to a subview" created="1278813597000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1278813300000" />
+    <comment author="kenegozi" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1278813540000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278813600000" />
+    <comment author="jsimons" text="* '''Version Affected''' set to ''2.0''.&#xD;&#xA;" created="1278808380000" />
+    <comment author="gauthier" text="* '''Attachment''' MR-ISSUE-534-testfixture-for-bug.patch added.&#xD;&#xA;" created="1243010700000" />
+  </issue>
+</issues>

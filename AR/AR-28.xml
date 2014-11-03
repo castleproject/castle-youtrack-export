@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>28</value>
+    </field>
+    <field name="summary">
+      <value>HasMany map and inherite class patch</value>
+    </field>
+    <field name="description">
+      <value>1. two activerecord class like these:
+   
+   class A
+   [ActiveRecord]
+   public class A: ActiveRecordBase
+   {
+       private IList listForB;
+       [HasMany(typeof(B))]
+       public IList ListForB
+       {
+          get {return listForB;}
+          set { listForB = value; }
+       }
+   }
+ 
+   Class B
+   [ActiveRecord]
+   public class B: ActiveRecordBase
+   {
+       private A owner;
+       [Belongs(typeof(A))]
+       public A Owner
+       {
+         get {return owner;}
+         set  {owner = value;}
+        }
+    }
+
+    ActiveRecordStarter.Initialize generate errors randomly.
+
+2. three class like these:
+   [ActiveRecord]
+   public class A: ActiveRecordBase
+   {
+       private int id;
+       [PrimaryKey]
+       public int ID
+       {
+           get {return id;}
+           set { id = value; }
+        }
+   }
+
+   [ActiveRecord]
+   public class B: A
+   {
+    }
+   
+   [ActiveRecord]
+   public class C: B
+   {
+   }
+
+   ActiveRecordStarter.Initialize generate ActiveRecordException with message:
+          A type must declare a primary key. Check type C
+
+   </value>
+    </field>
+    <field name="created">
+      <value>1135391000000</value>
+    </field>
+    <field name="updated">
+      <value>1136169410000</value>
+    </field>
+    <field name="reporterName">
+      <value>midas</value>
+    </field>
+    <field name="updaterName">
+      <value>midas</value>
+    </field>
+    <field name="resolved">
+      <value>1282135923151</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

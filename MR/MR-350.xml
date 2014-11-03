@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Duplicate</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>350</value>
+    </field>
+    <field name="summary">
+      <value>Castle MonoRail Project Wizard</value>
+    </field>
+    <field name="description">
+      <value>Created a project wil Caltle MonoRail Project Wizard - See attached files for project, project wizard information and error printouts..
+</value>
+    </field>
+    <field name="created">
+      <value>1193262130000</value>
+    </field>
+    <field name="updated">
+      <value>1244676906000</value>
+    </field>
+    <field name="reporterName">
+      <value>rwbradley</value>
+    </field>
+    <field name="updaterName">
+      <value>rwbradley</value>
+    </field>
+    <field name="resolved">
+      <value>1282145046260</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676900000" />
+  </issue>
+</issues>

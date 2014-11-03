@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>189</value>
+    </field>
+    <field name="summary">
+      <value>Make helpers access the current context via the controller rather than HttpContext.Current</value>
+    </field>
+    <field name="description">
+      <value>This is related to the other issues I've raised regarding testing controllers via injecting a mocked IRailsEngineContext. Currently, the AbstractHelper class offers a static CurrentContext property which simply returns HttpContext.Current. This is a problem for testing, as the "context injection" style of testing doesn't have an HttpContext. Since the helpers all have access to the current controller, I would like to make them access the IRailsEngineContext on the controller instead.
+
+The specific scenario I'm encountering this problem is testing a controller action which is using the PaginationHelper.CreateCachedPagination method. This in turn attempts to access the CurrentContext.....
+
+The main issue with this is that any helper method using the context can no longer be marked as static. I don't know enough about the effects of this so I'm raising this issue before supplying a patch.</value>
+    </field>
+    <field name="created">
+      <value>1165836691000</value>
+    </field>
+    <field name="updated">
+      <value>1263055653000</value>
+    </field>
+    <field name="reporterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="updaterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="resolved">
+      <value>1282143626479</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055620000" />
+  </issue>
+</issues>

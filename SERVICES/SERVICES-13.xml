@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>13</value>
+    </field>
+    <field name="summary">
+      <value>Transaction stack corruption across threads</value>
+    </field>
+    <field name="description">
+      <value>Because Castle.Services.Transaction.Activity implements ILogicalThreadAffinative, the transaction stack that it encapsulates becomes shared across child threads of any parent thread that first calls CreateTransaction on DefaultTransactionManager.
+
+For example, in a windows app's main thread, if you do something that hits DefaultTransactionManager (such as accessing your DB with automatic transaction management), then queue threads to do other DB work, those threads will end up hitting the same Activity transactionStack asynchronously.
+
+The result is eventually (usually really soon), one of your threads ends up trying to pop its transaction from the middle of the stack. This results in the following type of exception:
+
+2009-07-31 10:35:36,952 ERROR TestApp.TestThread - System.ArgumentException: Tried to dispose a transaction that is not on the current active transaction
+Parameter name: transaction
+   at Castle.Services.Transaction.DefaultTransactionManager.Dispose(ITransaction transaction) in c:\TeamCity\buildAgent\work\7e4107d1782544ec\Services\Transaction\Castle.Services.Transaction\DefaultTransactionManager.cs:line 294
+   at Castle.Facilities.AutomaticTransactionManagement.TransactionInterceptor.Intercept(IInvocation invocation) in c:\TeamCity\buildAgent\work\7e4107d1782544ec\Facilities\AutomaticTransactionManagement\Castle.Facilities.AutomaticTransactionManagement\TransactionInterceptor.cs:line 151
+   at Castle.DynamicProxy.AbstractInvocation.Proceed() in c:\TeamCity\buildAgent\work\7e4107d1782544ec\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\AbstractInvocation.cs:line 199
+   at Castle.Proxies.UsersProxy32f107e71294432984fdb33cc27ede9a.Create(String email, String first, String last, String username, String password, String city, String addrline1, String addrline2, String zipcode, String country, String phone)
+   at CommonTest.BaseBizTests.get_NewUser() in C:\Users\bataras\dev\CommonTest\BaseBizTests.cs:line 76
+   at TestApp.TestThread.Run() in C:\Users\bataras\dev\TestApp\TestAppMain.cs:line 168
+   
+A simple fix is to remove ILogicalThreadAffinative from Activity.
+
+Patch attached to this bug
+</value>
+    </field>
+    <field name="created">
+      <value>1249036754000</value>
+    </field>
+    <field name="updated">
+      <value>1253321110000</value>
+    </field>
+    <field name="reporterName">
+      <value>bataras</value>
+    </field>
+    <field name="updaterName">
+      <value>bataras</value>
+    </field>
+    <field name="resolved">
+      <value>1253321100000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Applied in r5977. Thanks." created="1253321105000" />
+    <comment author="bataras" text="* '''Attachment''' callcontext-childthreadfix.patch added.&#xD;&#xA;" created="1249036754001" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1253321100000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253321100000" />
+  </issue>
+</issues>

@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>157</value>
+    </field>
+    <field name="summary">
+      <value>Whenever I create a relationship between two classes using ActiveWriter and try to generate an hbm.xml file for Nhibernate I get the following error</value>
+    </field>
+    <field name="description">
+      <value>Error   1       Running transformation:
+System.Reflection.TargetInvocationException: Exception has been thrown
+by the target of an invocation. ---&gt;
+System.Reflection.TargetInvocationException: Exception has been thrown
+by the target of an invocation. ---&gt; System.NullReferenceException:
+Object reference not set to an instance of an object.
+   at
+Castle.ActiveRecord.Framework.Internal.XmlGenerationVisitor.WriteCompositeColumns
+(String[]
+columns) in c:\data\trunk\ActiveRecord\Castle.ActiveRecord\Framework
+\Internal\Visitors\XmlGenerationVisitor.cs:line 1178
+   at
+Castle.ActiveRecord.Framework.Internal.XmlGenerationVisitor.VisitBelongsTo
+(BelongsToModel
+model) in c:\data\trunk\ActiveRecord\Castle.ActiveRecord\Framework
+\Internal\Visitors\XmlGenerationVisitor.cs:line 648
+   at
+Castle.ActiveRecord.Framework.Internal.BelongsToModel.Accept(IVisitor
+visitor) in c:\data\trunk\ActiveRecord\Castle.ActiveRecord\Framework
+\Internal\Model\BelongsToModel.cs:line 66
+   at
+Castle.ActiveRecord.Framework.Internal.AbstractDepthFirstVisitor.VisitNode
+(IVisitable
+visitable) in c:\data\trunk\ActiveRecord\Castle.ActiveRecord\Framework
+\Internal\Visitors\AbstractDepthFirstVisitor.cs:line 36
+   at
+Castle.ActiveRecord.Framework.Internal.AbstractDepthFirstVisitor.VisitNodes
+(IEnumerable
+nodes) in c:\data\trunk\ActiveRecord\Castle.ActiveRecord\Framework
+\Internal\Visitors\AbstractDepthFirstVisitor.cs:line 47
+   at
+Castle.ActiveRecord.Framework.Internal.XmlGenerationVisitor.VisitModel
+(ActiveRecordModel
+model) in c:\data\trunk\ActiveRecord\Castle.ActiveRecord\Framework
+\Internal\Visitors\XmlGenerationVisitor.cs:line 218
+   at
+Castle.ActiveRecord.Framework.Internal.XmlGenerationVisitor.CreateXml
+(ActiveRecordModel
+model) in c:\data\trunk\ActiveRecord\Castle.ActiveRecord\Framework
+\Internal\Visitors\XmlGenerationVisitor.cs:line 59
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle._InvokeMethodFast(Object target,
+Object[] arguments, SignatureStruct&amp; sig, MethodAttributes
+methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.RuntimeMethodHandle.InvokeMethodFast(Object target,
+Object[] arguments, Signature sig, MethodAttributes methodAttributes,
+RuntimeTypeHandle typeOwner)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj,
+BindingFlags invokeAttr, Binder binder, Object[] parameters,
+CultureInfo culture, Boolean skipVisibilityChecks)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj,
+BindingFlags invokeAttr, Binder binder, Object[] parameters,
+CultureInfo culture)
+   at System.RuntimeType.InvokeMember(String name, BindingFlags
+bindingFlags, Binder binder, Object target, Object[] providedArgs,
+ParameterModifier[] modifiers, CultureInfo culture, String[]
+namedParams)
+   at System.Type.InvokeMember(String name, BindingFlags invokeAttr,
+Binder binder, Object target, Object[] args)
+   at
+Altinoren.ActiveWriter.CodeGeneration.CodeGenerationHelper.OnARModelCreated
+(Object
+models, Object source)
+   at
+Castle.ActiveRecord.ModelsDelegate.Invoke(ActiveRecordModelCollection
+models, IConfigurationSource source)
+   at
+Castle.ActiveRecord.ActiveRecordStarter.RegisterTypes
+(ISessionFactoryHolder
+holder, IConfigurationSource source, IEnumerable`1 types, Boolean
+ignoreProblematicTypes) in c:\data\trunk\ActiveRecord
+\Castle.ActiveRecord\Framework\ActiveRecordStarter.cs:line 869
+   at
+Castle.ActiveRecord.ActiveRecordStarter.Initialize
+(IConfigurationSource
+source, Type[] types) in c:\data\trunk\ActiveRecord
+\Castle.ActiveRecord
+\Framework\ActiveRecordStarter.cs:line 175
+   at Castle.ActiveRecord.ActiveRecordStarter.Initialize(Assembly
+assembly, IConfigurationSource source) in c:\data\trunk\ActiveRecord
+\Castle.ActiveRecord\Framework\ActiveRecordStarter.cs:line 191
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle._InvokeMethodFast(Object target,
+Object[] arguments, SignatureStruct&amp; sig, MethodAttributes
+methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.RuntimeMethodHandle.InvokeMethodFast(Object target,
+Object[] arguments, Signature sig, MethodAttributes methodAttributes,
+RuntimeTypeHandle typeOwner)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj,
+BindingFlags invokeAttr, Binder binder, Object[] parameters,
+CultureInfo culture, Boolean skipVisibilityChecks)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj,
+BindingFlags invokeAttr, Binder binder, Object[] parameters,
+CultureInfo culture)
+   at System.RuntimeType.InvokeMember(String name, BindingFlags
+bindingFlags, Binder binder, Object target, Object[] providedArgs,
+ParameterModifier[] modifiers, CultureInfo culture, String[]
+namedParams)
+   at System.Type.InvokeMember(String name, BindingFlags invokeAttr,
+Binder binder, Object target, Object[] args)
+   at
+Altinoren.ActiveWriter.CodeGeneration.CodeGenerationHelper.Generate()
+   at
+Microsoft.VisualStudio.TextTemplatingEFE390247E56B4CED49322E3754C51FF.GeneratedTextTransformation.TransformText
+()
+in c:\Project1\Project1\ActiveWriter1.actiw:line 32     C:
+\Project1\Project1\ActiveWriter1.actiw  1       1
+
+If I remove the relationship then the hbm.xml file is created as
+expected.  Does anyone know what might be wrong?</value>
+    </field>
+    <field name="created">
+      <value>1255613692000</value>
+    </field>
+    <field name="updated">
+      <value>1407822033455</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1407822033439</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Bug submitted for Selcuk OZDOGAN &lt;selcuk.ozdogan@gmail.com&gt;" created="1255613773000" />
+  </issue>
+</issues>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>72</value>
+    </field>
+    <field name="summary">
+      <value>Proxied components cannot be cast to MarshalByRefObject</value>
+    </field>
+    <field name="description">
+      <value>You cannot cast a proxy returned by the kernel to MarshalByRefObject. This used to work in earlier versions of Castle.
+
+If I do the following:
+
+public interface IService2
+   {
+      void DoOperation2();
+   }
+
+public class Service2 : MarshalByRefObject, IService2
+   {
+      public void DoOperation2()
+      {
+         Console.WriteLine("Done2");
+      }
+   }
+
+
+container.AddComponent("service2", typeof(IService2), typeof(Service2));
+MarshalByRefObject serv2 = (MarshalByRefObject) container.Resolve&lt;IService2&gt;(); 
+
+It fails on the last line with an InvalidCastException "Unable to cast object of type 'IService2Proxyf8cbe053dfd44fa19df23a4263e71060' to type 'System.MarshalByRefObject'." 
+
+I would be really greatful for a fix or a workaround.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1174997619000</value>
+    </field>
+    <field name="updated">
+      <value>1304745949636</value>
+    </field>
+    <field name="reporterName">
+      <value>jpersson</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142015041</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="hi, you have to explicitly specify that proxy should inherit MBRO. By default it won't" created="1304745949636" />
+  </issue>
+</issues>

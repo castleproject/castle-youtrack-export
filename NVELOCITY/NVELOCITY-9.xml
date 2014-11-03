@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>9</value>
+    </field>
+    <field name="summary">
+      <value>A comment on the last line of the file causes a parser error</value>
+    </field>
+    <field name="description">
+      <value>If the last last line of the NVelocity view file is a comment then the parser will throw an exception. To reproduce this make sure there isn't a empty line after your comment.
+
+Exception Details: NVelocity.Runtime.Parser.ParseException: Lexical error: NVelocity.Runtime.Parser.TokenMgrError: Lexical error at line 113, column 48.  Encountered: &lt;EOF&gt; after : ""
+  at NVelocity.Runtime.Parser.ParserTokenManager.get_NextToken()
+  at NVelocity.Runtime.Parser.Parser.jj_ntk()
+  at NVelocity.Runtime.Parser.Parser.Process()
+  at NVelocity.Runtime.Parser.Parser.Parse(TextReader reader, String templateName)</value>
+    </field>
+    <field name="created">
+      <value>1167877408000</value>
+    </field>
+    <field name="updated">
+      <value>1407823014078</value>
+    </field>
+    <field name="reporterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1282591529453</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

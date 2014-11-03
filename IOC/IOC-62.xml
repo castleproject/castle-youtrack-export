@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>62</value>
+    </field>
+    <field name="summary">
+      <value>Interceptors don't work properly on generic components</value>
+    </field>
+    <field name="description">
+      <value>If an interceptor is configured for a component defined as a non-specific generic type it is not proxied. If a specific implementation is used for the component the interceptor proxy works fine.
+
+I have attached test cases to show the problem.</value>
+    </field>
+    <field name="created">
+      <value>1170668662000</value>
+    </field>
+    <field name="updated">
+      <value>1283220859807</value>
+    </field>
+    <field name="reporterName">
+      <value>daveg</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282141998245</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

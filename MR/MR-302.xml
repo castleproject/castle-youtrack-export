@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>302</value>
+    </field>
+    <field name="summary">
+      <value>Move assertions about view sources from the DefaultViewEngineManager, to the ViewEngines themselves</value>
+    </field>
+    <field name="description">
+      <value>Currently the DefaultViewEngineManager is making assertions about finding view sources, both for the sake of assertion, and also to search for the desired ViewEngine for a given template without file extension.
+
+That good if only for SoC.
+
+But, this is also limiting featues in AspView (and also in other engines), Since the engine might not even need sources in order to process a template (in case of precompiled views assembly).
+
+If we apply this patch, then AspView will be able to support "no view sources in deployment" and also "use precompiled views from another web project"</value>
+    </field>
+    <field name="created">
+      <value>1184328272000</value>
+    </field>
+    <field name="updated">
+      <value>1244676643000</value>
+    </field>
+    <field name="reporterName">
+      <value>kenegozi</value>
+    </field>
+    <field name="updaterName">
+      <value>kenegozi</value>
+    </field>
+    <field name="resolved">
+      <value>1282143909276</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676600000" />
+  </issue>
+</issues>

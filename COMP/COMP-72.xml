@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>72</value>
+    </field>
+    <field name="summary">
+      <value>IsGreaterValidator and IsLesserValidator don't handle nulls correctly</value>
+    </field>
+    <field name="description">
+      <value>When either the field being validated or the reference field is null the IsGreaterValidator will throw an exception - IsLesserValidator does not, but will only return "valid" when both the field and reference field values are null or an empty string - I believe this should return true when either field is null/empty, and should obviously be consistent across both the IsGreater and IsLesser validators.
+
+Patch supplied.</value>
+    </field>
+    <field name="created">
+      <value>1221660095000</value>
+    </field>
+    <field name="updated">
+      <value>1229884152000</value>
+    </field>
+    <field name="reporterName">
+      <value>bittercoder</value>
+    </field>
+    <field name="updaterName">
+      <value>bittercoder</value>
+    </field>
+    <field name="resolved">
+      <value>1229884140000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="bittercoder" text="I have attached  patch which (GreaterandLessPatch.patch) that:&#xA;&#xA;* Corrects the behavior of the IsGreaterValidator / IsLesserValidator so they are consistent/correct.&#xA;* Adds a test fixture for the IsLesserValidator which was missing." created="1221660183000" />
+    <comment author="hammett" text="Applied, thanks" created="1229884152000" />
+    <comment author="hammett" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1229884020000" />
+    <comment author="hammett" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1229884140000" />
+    <comment author="bittercoder" text="* '''Type''' changed from ''Bug'' to ''Patch''.&#xD;&#xA;* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;When either the field being validated or the reference field is null the IsGreaterValidator will throw an exception - IsLesserValidator does not, but will only return &quot;valid&quot; when both the field and reference field values are null or an empty string - I believe this should return true when either field is null/empty, and should obviously be consistent across both the IsGreater and IsLesser validators.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;When either the field being validated or the reference field is null the IsGreaterValidator will throw an exception - IsLesserValidator does not, but will only return &quot;valid&quot; when both the field and reference field values are null or an empty string - I believe this should return true when either field is null/empty, and should obviously be consistent across both the IsGreater and IsLesser validators.&#xD;&#xA;&#xD;&#xA;Patch supplied.&#xD;&#xA;{quote}&#xD;&#xA;" created="1221677700000" />
+  </issue>
+</issues>

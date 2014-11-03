@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.0 Beta 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>70</value>
+    </field>
+    <field name="summary">
+      <value>DynamicProxy 2 : Unable to alter assembly information.</value>
+    </field>
+    <field name="description">
+      <value>Hello, 
+If I try to create a second Proxy with the same ProxyGenerator instance, I always get the following error "Unable to alter assembly information".
+Is it normal. Do I have to use a new ProxyGenerator instance each time (like in the unit tests) ?
+
+Is it possible to save many proxies in the generated assembly, and to reload the assembly in order to do not have to create the proxies each time the application starts ? (for performance reasons)
+
+Thanks a lot for your help.
+
+PS : I'm using Nhibernate, and I'm having perforance issues due to proxy generation.</value>
+    </field>
+    <field name="created">
+      <value>1191305300000</value>
+    </field>
+    <field name="updated">
+      <value>1191388747000</value>
+    </field>
+    <field name="reporterName">
+      <value>gherold</value>
+    </field>
+    <field name="updaterName">
+      <value>gherold</value>
+    </field>
+    <field name="resolved">
+      <value>1282140711760</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

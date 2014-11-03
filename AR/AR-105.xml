@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>105</value>
+    </field>
+    <field name="summary">
+      <value>Improved Exists/Count methods, Documentation fixes</value>
+    </field>
+    <field name="description">
+      <value>The attached patch includes the following:
+
+- Renames ActiveRecordBase.CountAll to ActiveRecordBase.Count as several overloads are by criteria and IMHO Count is a better, more general name.
+- Adds an overload of Count that accepts an ICriterion[] - Modified CountQuery to use NHibernate 1.2 Projections
+- Reimplements (http://support.castleproject.org//browse/AR-100) so that it uses the new Count overload instead of FindAll.
+- FIlled in as many missing doc comments as I could before my eyes hurt :-)
+- Renamed "criterias" to "criteria" in method signatures - "criterias" is not a word.
+- Reformatted code.
+
+Cheers,
+
+Andrew.</value>
+    </field>
+    <field name="created">
+      <value>1165993790000</value>
+    </field>
+    <field name="updated">
+      <value>1168000215000</value>
+    </field>
+    <field name="reporterName">
+      <value>andrew</value>
+    </field>
+    <field name="updaterName">
+      <value>andrew</value>
+    </field>
+    <field name="resolved">
+      <value>1282136237229</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

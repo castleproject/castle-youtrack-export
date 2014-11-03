@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>495</value>
+    </field>
+    <field name="summary">
+      <value>Wizard Crashes When Creating A New MonoRail Project</value>
+    </field>
+    <field name="description">
+      <value>When creating a new MonoRail project using the Visual Studio wizard (vs2005), I selected Brail, Routing Support, and TDD support and at the end, I got the following exception:
+
+ArgumentException
+The reference node is no a child of this node.
+at System.Xml.XmlNode.InsertBefore
+at Castle.VSNetIntegration.CastleWizards.MonoRailProjectWizard.AddRoutingConfiguration
+at Castle.VSNetIntegration.CastleWizards.MonoRailProjectWizard.ProcessWebConfig</value>
+    </field>
+    <field name="created">
+      <value>1223422308000</value>
+    </field>
+    <field name="updated">
+      <value>1263055727000</value>
+    </field>
+    <field name="reporterName">
+      <value>jasonn</value>
+    </field>
+    <field name="updaterName">
+      <value>jasonn</value>
+    </field>
+    <field name="resolved">
+      <value>1262664360000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Not able to reproduce" created="1262664414000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Version Fixed''' set to ''Release Candidate 3''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1262664360000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055680000" />
+  </issue>
+</issues>

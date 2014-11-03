@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Build Scripts</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>21</value>
+    </field>
+    <field name="summary">
+      <value>Introduce a switch to disable all tests</value>
+    </field>
+    <field name="description">
+      <value>Sometimes, we need a quick castle build. The current build script is large, and the unit tests are pretty expensive.
+
+A global switch to disable all tests would definitively help.</value>
+    </field>
+    <field name="created">
+      <value>1165955501000</value>
+    </field>
+    <field name="updated">
+      <value>1166021429000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282137249666</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

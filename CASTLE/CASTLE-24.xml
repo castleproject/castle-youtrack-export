@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Update third party dependencies</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>24</value>
+    </field>
+    <field name="summary">
+      <value>NLog update from 1.0.0 to the official released 1.0.xxxx version</value>
+    </field>
+    <field name="description">
+      <value>I updated the shared libs folder to allow for defining targets with layouts for nlog
+
+The reason for using nlog over log4net is that nlog works and log4net doesn't .
+At least not when i try it.. on vista. :)
+
+</value>
+    </field>
+    <field name="created">
+      <value>1166502773000</value>
+    </field>
+    <field name="updated">
+      <value>1166527781000</value>
+    </field>
+    <field name="reporterName">
+      <value>casualjim</value>
+    </field>
+    <field name="updaterName">
+      <value>casualjim</value>
+    </field>
+    <field name="resolved">
+      <value>1282137253151</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

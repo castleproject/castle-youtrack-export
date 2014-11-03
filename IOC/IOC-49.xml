@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>49</value>
+    </field>
+    <field name="summary">
+      <value>Create scope concept for the container</value>
+    </field>
+    <field name="description">
+      <value>The project I'm working on has the need for scoped services, where the scope is defined by the hub. An initial scope implementation for web applications would create containers for session and request, and use a specific configuration file each of them. 
+
+A http module should be added to the Windsor Container project that provides this behavior, at first as as a proof-of-concept.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1167251071000</value>
+    </field>
+    <field name="updated">
+      <value>1228854920000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1228854900000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="We can implement this as either sub containers or component selectors." created="1228854920000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228854900000" />
+  </issue>
+</issues>

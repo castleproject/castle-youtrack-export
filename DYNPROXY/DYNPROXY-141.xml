@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>141</value>
+    </field>
+    <field name="summary">
+      <value>Overloaded method signatures create ambiguous invocation compiler errors</value>
+    </field>
+    <field name="description">
+      <value>Here is some code for NMock3.  I am getting compiler errors on the 2 "return" lines.  The type CompositeType defines an AdditionalInterfaceTypes property that is of type Type[].  The compiler can't resolve the overload because some signatures have "object" in them.
+
+
+public object CreateMock(Mockery mockery, CompositeType typesToMock, string name, MockStyle mockStyle, object[] constructorArgs)
+{
+	Type primaryType = typesToMock.PrimaryType;
+	IInterceptor mockInterceptor = new MockObjectInterceptor(mockery, typesToMock, name, mockStyle);
+
+
+	if (primaryType.IsInterface)
+	{
+		return generator.CreateInterfaceProxyWithTarget(primaryType, typesToMock.AdditionalInterfaceTypes, ProxyGenerationOptions.Default, mockInterceptor);
+	}
+	else
+	{
+		return generator.CreateClassProxyWithTarget(primaryType, typesToMock.AdditionalInterfaceTypes, ProxyGenerationOptions.Default, mockInterceptor);
+	}
+}</value>
+    </field>
+    <field name="created">
+      <value>1282854516517</value>
+    </field>
+    <field name="updated">
+      <value>1282863837564</value>
+    </field>
+    <field name="reporterName">
+      <value>p.w</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282863837564</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="p.w" text="Please disregard and close this issue.  I got a little out of sync with myself. :-)" created="1282855233080" updated="1282855251424" />
+    <comment author="xtoff" text="ok. Make sure you're not reporting issues that have already been fixed and verify on the latest version first.&#xA;thanks." created="1282863817799" />
+  </issue>
+</issues>

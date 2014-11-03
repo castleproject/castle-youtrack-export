@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>156</value>
+    </field>
+    <field name="summary">
+      <value>Add support for IInterceptorSelector</value>
+    </field>
+    <field name="description">
+      <value>Expose DynamicProxies IInterceptorSelector to MicroKernel/Windsor</value>
+    </field>
+    <field name="created">
+      <value>1244789588000</value>
+    </field>
+    <field name="updated">
+      <value>1246168138000</value>
+    </field>
+    <field name="reporterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="updaterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="resolved">
+      <value>1246168080000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="cneuwirt" text="Plan on moving IInterceptorSelector from DynamicProxy to Core" created="1246109745000" />
+    <comment author="cneuwirt" text="* '''Type''' changed from ''Bug'' to ''New Feature''.&#xD;&#xA;* '''Importance''' changed from ''High'' to ''Medium''.&#xD;&#xA;" created="1244789880000" />
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1246108800000" />
+    <comment author="cneuwirt" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1246168080000" />
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1246168080000" />
+  </issue>
+</issues>

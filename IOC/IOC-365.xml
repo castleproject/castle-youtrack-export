@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Registration API</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>365</value>
+    </field>
+    <field name="summary">
+      <value>Provide convenience methods in the registration API to bind to nearest subgraph (in addition to existing - widest)</value>
+    </field>
+    <field name="description">
+      <value>in cases like the following:
+
+ViewModel1
+   -Foo
+   -ViewModel2
+      -Foo
+      -Bar
+         -Foo
+
+If Foo is bound to ViewModels all three references will get the same instance
+
+It should be possible to bind to inner most one, so that VIewModel2 and its subgraph get its own instance which will be different from the one VIewModel1 gets</value>
+    </field>
+    <field name="created">
+      <value>1351938796395</value>
+    </field>
+    <field name="updated">
+      <value>1407822257261</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1351938796411</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

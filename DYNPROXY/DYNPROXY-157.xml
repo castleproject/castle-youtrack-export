@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>157</value>
+    </field>
+    <field name="summary">
+      <value>Web site tutorial link is broken</value>
+    </field>
+    <field name="description">
+      <value>The tutorial link at http://www.castleproject.org/dynamicproxy/index.html is broken. We therefore still need a tutorial for this component.</value>
+    </field>
+    <field name="created">
+      <value>1300863639597</value>
+    </field>
+    <field name="updated">
+      <value>1407822235381</value>
+    </field>
+    <field name="reporterName">
+      <value>stimpy77</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1304825953542</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

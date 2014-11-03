@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>4</value>
+    </field>
+    <field name="summary">
+      <value>NullLogFactory should return NullLogger.Instance instead of new NullLogger.</value>
+    </field>
+    <field name="description">
+      <value>Very minor change, but the Create methods of NullLogFactory might want to use NullLogger.Instance instead of creating a new object each time Create is called.</value>
+    </field>
+    <field name="created">
+      <value>1155837708000</value>
+    </field>
+    <field name="updated">
+      <value>1157012704000</value>
+    </field>
+    <field name="reporterName">
+      <value>rgrabowski</value>
+    </field>
+    <field name="updaterName">
+      <value>rgrabowski</value>
+    </field>
+    <field name="resolved">
+      <value>1282143006057</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

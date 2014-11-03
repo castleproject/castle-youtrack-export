@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>90</value>
+    </field>
+    <field name="summary">
+      <value>Add scope support</value>
+    </field>
+    <field name="description">
+      <value>The idea of scopes if to inherit criterias for queries (including updates, insertions and deletions). It looks easy to make it work with ICriterias query, but only those. 
+
+using(Customer.WithScope( "company.id = 1" ))
+{
+
+  // all operations here will use the company.id = 1
+
+}</value>
+    </field>
+    <field name="created">
+      <value>1163615511000</value>
+    </field>
+    <field name="updated">
+      <value>1414999778035</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999778031</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="ActiveRecord is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/ActiveRecord/issues" created="1414999778037" />
+  </issue>
+</issues>

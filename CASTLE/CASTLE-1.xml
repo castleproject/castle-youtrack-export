@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>1</value>
+    </field>
+    <field name="summary">
+      <value>Error recovering wiki password</value>
+    </field>
+    <field name="description">
+      <value>I know, I shouldn't ever forget my password.
+
+So, when I press "Mail me a new password" on the login page, I get this error:
+
+Fatal error: Call to undefined function mail() in /var/www/docs/castlewiki/includes/UserMailer.php on line 66
+
+If I use a bogus username (I used "SantaClaus") it handles it gracefully.</value>
+    </field>
+    <field name="created">
+      <value>1121212085000</value>
+    </field>
+    <field name="updated">
+      <value>1121233071000</value>
+    </field>
+    <field name="reporterName">
+      <value>rhoegg</value>
+    </field>
+    <field name="updaterName">
+      <value>rhoegg</value>
+    </field>
+    <field name="resolved">
+      <value>1282137226620</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

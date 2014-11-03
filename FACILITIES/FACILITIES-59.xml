@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>AutomaticTransactionManagement</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>59</value>
+    </field>
+    <field name="summary">
+      <value>Dependency cycle</value>
+    </field>
+    <field name="description">
+      <value>It is happening from time to time, mainly after a long, constant usage of the web application.
+
+Castle.MicroKernel.ComponentActivator.ComponentActivatorException: ComponentActivator: could not proxy Xxx.Yyy.Zzz ---&gt; Castle.MicroKernel.Exceptions.CircularDependecyException: A cycle was detected when trying to resolve a dependency. The dependency graph that resulted in a cycle is:
+ + Service dependency 'infoStore' type 'Castle.Facilities.AutomaticTransactionManagement.TransactionMetaInfoStore' for Void .ctor(Castle.MicroKernel.IKernel, Castle.Facilities.AutomaticTransactionManagement.TransactionMetaInfoStore) in Castle.Facilities.AutomaticTransactionManagement.TransactionInterceptor
+
+I'm not sure if the problem lies on MicroKernel or the ATM Facility.</value>
+    </field>
+    <field name="created">
+      <value>1165085234000</value>
+    </field>
+    <field name="updated">
+      <value>1165212136000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282141050541</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

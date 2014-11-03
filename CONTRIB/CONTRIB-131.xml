@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>131</value>
+    </field>
+    <field name="summary">
+      <value>CollapsiblePanelComponent: generated JS depends on culture.</value>
+    </field>
+    <field name="description">
+      <value>ToggleJsFunction in CollapsiblePanelComponent uses String.Format to build the JavaScript for the collapsible panel. The effectDuration paramter is a floating point value. Decimal characters for floats may vary from culture to culture. E.g., German culture uses comma instead of dot. This causes invalid JS to be generated as the browsers expect dots as decimal characters. 
+
+The proposed solution is to use InvariantCulture when formatting the java script.
+
+
+Considered Major as it simply breaks the component when run under certain cultures.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1210899689000</value>
+    </field>
+    <field name="updated">
+      <value>1210903023000</value>
+    </field>
+    <field name="reporterName">
+      <value>aloker</value>
+    </field>
+    <field name="updaterName">
+      <value>aloker</value>
+    </field>
+    <field name="resolved">
+      <value>1282140101573</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

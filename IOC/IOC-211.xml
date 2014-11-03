@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Usability Problem</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>211</value>
+    </field>
+    <field name="summary">
+      <value>Resolve doesn't work with constructor's ref argument</value>
+    </field>
+    <field name="description">
+      <value>We made a mistake in our code and by accident, one of our constructor's parameter was set as ''ref''.
+
+With Castle 2.1, the container didn't have any problem resolving an instance of this class using an argument for this parameter.
+
+But, Castle 2.5 (maybe because .Net 4.0) could not resolve without raising this exception
+
+{quote}
+Test 'Castle.Windsor.Tests.WindsorDotNet2Tests.ResolveWithConstructorRefParameter' failed: Castle.MicroKernel.Resolvers.DependencyResolverException : Missing dependency.
+Component Castle.Windsor.Tests.SimpleClass has a dependency on Castle.Windsor.Tests.Components.IEmployee&amp;, which could not be resolved.
+Make sure the dependency is correctly registered in the container as a service, or provided as inline argument
+  ----&gt; Castle.MicroKernel.Handlers.HandlerException : Handler for Castle.Windsor.Tests.Components.IEmployee&amp; was not found.
+	MicroKernel\Resolvers\DefaultDependencyResolver.cs(366,0): at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveServiceDependency(CreationContext context, ComponentModel model, DependencyModel dependency)
+	MicroKernel\Resolvers\DefaultDependencyResolver.cs(253,0): at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(CreationContext context, ISubDependencyResolver contextHandlerResolver, ComponentModel model, DependencyModel dependency)
+	MicroKernel\ComponentActivator\DefaultComponentActivator.cs(367,0): at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArgumentsCore(ConstructorCandidate constructor, Object[] arguments, CreationContext context, Type[] signature)
+	MicroKernel\ComponentActivator\DefaultComponentActivator.cs(352,0): at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateConstructorArguments(ConstructorCandidate constructor, CreationContext context, Type[]&amp; signature)
+	MicroKernel\ComponentActivator\DefaultComponentActivator.cs(107,0): at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(CreationContext context)
+	MicroKernel\ComponentActivator\DefaultComponentActivator.cs(85,0): at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context)
+	MicroKernel\ComponentActivator\AbstractComponentActivator.cs(75,0): at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context)
+	MicroKernel\Lifestyle\AbstractLifestyleManager.cs(42,0): at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context)
+	MicroKernel\Lifestyle\SingletonLifestyleManager.cs(50,0): at Castle.MicroKernel.Lifestyle.SingletonLifestyleManager.Resolve(CreationContext context)
+	MicroKernel\Handlers\DefaultHandler.cs(62,0): at Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired)
+	MicroKernel\Handlers\AbstractHandler.cs(187,0): at Castle.MicroKernel.Handlers.AbstractHandler.Resolve(CreationContext context, Boolean instanceRequired)
+	MicroKernel\Handlers\AbstractHandler.cs(175,0): at Castle.MicroKernel.Handlers.AbstractHandler.Resolve(CreationContext context)
+	MicroKernel\DefaultKernel.cs(956,0): at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments)
+	MicroKernel\DefaultKernel_Resolve.cs(202,0): at Castle.MicroKernel.DefaultKernel.Resolve(Type service, IDictionary arguments)
+	Windsor\WindsorContainer.cs(688,0): at Castle.Windsor.WindsorContainer.Resolve(Type service, IDictionary arguments)
+	Windsor\WindsorContainer.cs(849,0): at Castle.Windsor.WindsorContainer.Resolve[T](IDictionary arguments)
+	WindsorDotNet2Tests.cs(382,0): at Castle.Windsor.Tests.WindsorDotNet2Tests.ResolveWithConstructorRefParameter()
+	--HandlerException
+	MicroKernel\Resolvers\DefaultDependencyResolver.cs(403,0): at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.TryGetHandlerFromKernel(DependencyModel dependency, CreationContext context)
+	MicroKernel\Resolvers\DefaultDependencyResolver.cs(362,0): at Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveServiceDependency(CreationContext context, ComponentModel model, DependencyModel dependency)
+
+{quote}
+
+This is a unit test (added to already existing WindsorDotNet2Tests test class) to reproduce the problem
+{code lang=java}
+
+	[TestFixture]
+	public class WindsorDotNet2Tests
+	{
+        //...Previous unit tests...
+
+        [Test]
+        public void ResolveWithConstructorRefParameter()
+        {
+            var container = new WindsorContainer();
+            container.Register(Component.For(typeof(ISimpleClass)).ImplementedBy(typeof(SimpleClass)));
+
+            var args = new Arguments(new {employee = new Employee()});
+            Assert.IsNotNull(container.Resolve&lt;ISimpleClass&gt;(args));
+        }
+    }
+
+    public interface ISimpleClass
+    {
+    }
+
+    public class SimpleClass : ISimpleClass
+    {
+        public SimpleClass(ref IEmployee employee)
+        { }
+    }
+{code}
+
+The problem seems to be because when a parameter is set as by reference, the ParameterInfo returns a parameter type different from the ''original'' one.
+
+I don't know if that .net behavior is normal and what should do Windsor in that case, but i guess it is good to know at least...
+
+Thank you very much
+Phil</value>
+    </field>
+    <field name="created">
+      <value>1282845581861</value>
+    </field>
+    <field name="updated">
+      <value>1282975975750</value>
+    </field>
+    <field name="reporterName">
+      <value>Phil</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282955446625</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="Phil" text="We made a mistake about the step to reproduce our problem.  Please ignore this tickets.  We will come back later with good information this time....sorry." created="1282852796049" />
+    <comment author="xtoff" text="ok, cheers" created="1282865046408" />
+    <comment author="Phil" text="''' UPDATE: Finally resolve the problem, see the issue description for details '''&#xD;&#xA;&#xD;&#xA;Our problem seems to be because the type of our argument&#xD;&#xA;&#xD;&#xA;The following code is from the ''Castle.MicroKernel.Context.CreationContext.CanResolve'' method&#xD;&#xA;{code lang=java}&#xD;&#xA;return dependency.TargetType.IsInstanceOfType(inlineArgument) ||&#xD;&#xA;			       (converter != null &amp;&amp;&#xD;&#xA;			        dependency.DependencyType == DependencyType.Parameter &amp;&amp;&#xD;&#xA;			        converter.CanHandleType(dependency.TargetType));&#xD;&#xA;{code}&#xD;&#xA;The condition '''dependency.TargetType.IsInstanceOfType(inlineArgument)''' returns false.&#xD;&#xA;But both the argument type and constructor's dependency type are the same type.&#xD;&#xA;&#xD;&#xA;Something seems weird about the dependency.TargetType.  It has no Guid and an ampersand as suffix's type name.&#xD;&#xA;Does someone has an idea why this condition is false and those types are considered as different?&#xD;&#xA;&#xD;&#xA;This is the debug info of dependency.TargetType&#xD;&#xA;{quote}&#xD;&#xA;+		[System.RuntimeType]	{Name = &quot;ISession'''&amp;'''&quot; FullName = &quot;MyCompany.ISession'''&amp;'''&quot;}	System.RuntimeType&#xD;&#xA;+		base	{Name = &quot;ISession'''&amp;'''&quot; FullName = &quot;MyCompany.ISession'''&amp;'''&quot;}	System.Reflection.MemberInfo {System.RuntimeType}&#xD;&#xA;+		Assembly	{MyCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4d93b613b8e44e83}	System.Reflection.Assembly {System.Reflection.RuntimeAssembly}&#xD;&#xA;		AssemblyQualifiedName	&quot;MyCompany.ISession'''&amp;''', MyCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4d93b613b8e44e83&quot;	string&#xD;&#xA;		Attributes	AnsiClass	System.Reflection.TypeAttributes&#xD;&#xA;+		BaseType	null	System.Type&#xD;&#xA;		ContainsGenericParameters	false	bool&#xD;&#xA;+		DeclaringType	null	System.Type&#xD;&#xA;		FullName	&quot;MyCompany.ISession'''&amp;'''&quot;	string&#xD;&#xA;+		GUID	{'''00000000-0000-0000-0000-000000000000'''}	System.Guid&#xD;&#xA;{quote}&#xD;&#xA;&#xD;&#xA;and this is the inlineArgument (rhino mock's stub) debug info:&#xD;&#xA;{quote}&#xD;&#xA;-		inlineArgument	{ISessionProxyfb73085daf6746199fa40568855df1b1}	object {ISessionProxyfb73085daf6746199fa40568855df1b1}&#xD;&#xA;+		__interceptors	{Castle.Core.Interceptor.IInterceptor[1]}	Castle.Core.Interceptor.IInterceptor[]&#xD;&#xA;		__target	{object}	object&#xD;&#xA;+		DependentMocks	Count = 1	System.Collections.Generic.IList&lt;Rhino.Mocks.Interfaces.IMockedObject&gt; {System.Collections.Generic.List&lt;Rhino.Mocks.Interfaces.IMockedObject&gt;}&#xD;&#xA;		Id	null	string&#xD;&#xA;-		'''ImplementedTypes'''	{System.Type[1]}	System.Type[]&#xD;&#xA;-		[0]	{Name = &quot;'''ISession'''&quot; FullName = &quot;'''MyCompany.ISession'''&quot;}	System.Type {System.RuntimeType}&#xD;&#xA;+		[System.RuntimeType]	{Name = &quot;ISession&quot; FullName = &quot;MyCompany.ISession&quot;}	System.RuntimeType&#xD;&#xA;+		base	{Name = &quot;ISession&quot; FullName = &quot;MyCompany.ISession&quot;}	System.Reflection.MemberInfo {System.RuntimeType}&#xD;&#xA;+		Assembly	{MyCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4d93b613b8e44e83}	System.Reflection.Assembly {System.Reflection.RuntimeAssembly}&#xD;&#xA;		AssemblyQualifiedName	&quot;MyCompany.ISession, MyCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4d93b613b8e44e83&quot;	string&#xD;&#xA;		Attributes	Public | ClassSemanticsMask | Abstract	System.Reflection.TypeAttributes&#xD;&#xA;+		BaseType	null	System.Type&#xD;&#xA;		ContainsGenericParameters	false	bool&#xD;&#xA;+		DeclaringType	null	System.Type&#xD;&#xA;		FullName	&quot;MyCompany.ISession&quot;	string&#xD;&#xA;+		GUID	{'''763b0a28-4bec-3813-866d-6c04ffbeb903'''}	System.Guid&#xD;&#xA;&#xD;&#xA;{quote}" created="1282919250046" updated="1282921165703" />
+  </issue>
+</issues>

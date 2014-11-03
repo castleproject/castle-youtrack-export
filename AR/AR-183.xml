@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>183</value>
+    </field>
+    <field name="summary">
+      <value>ActiveRecordStarter.Initialize() loads wrong assembly    </value>
+    </field>
+    <field name="description">
+      <value>To reproduce: 
+
+1. Create assembly ModelEntity.dll 
+2. Put this assembly to c:\temp and application startup directory 
+3. Run the code from VS 2005 : 
+
+... 
+Assembly activeRecordAssembly = Assembly.LoadFrom(@"c:\temp\ModelEntity.dll"); 
+
+ActiveRecordStarter.Initialize(activeRecordAssembly, source); 
+
+4. Open Debug / Windows / Output 
+
+Observed: 
+
+1. Output window indicates that wrong assembly is re-loaded (and initialized by activerecord): 
+
+Loaded 'C:\mydir\myapp\bin\Debug\ModelEntity.dll', No symbols loaded. 
+
+This causes any attemp to use ActiveRecord to fail. 
+
+PSteele comments:
+
+ActiveRecord dynamically builds an NHibernate mapping definition.
+Üart of that NHibernate mapping is the type information. It's expressed in the usual .NET manner: 
+
+fully.qualified.typename, assemblyname 
+
+What's happening is that ActiveRecord is building up a mapping for one of types inside ModelEntity.DLL and defining it like this: 
+
+"Namespace.ModelEntity.ClassName, ModelEntity" 
+
+(this is assuming "ModelEntity" is the name of the assembly). As you can see, there's no path information in there (by definition) so I'm guessing when this information is passed to NHibernate, it loads some information using the fully qualified type information above and then normal .NET rules for locating assemblies happens (current directory, then probing paths). </value>
+    </field>
+    <field name="created">
+      <value>1192442351000</value>
+    </field>
+    <field name="updated">
+      <value>1192453932000</value>
+    </field>
+    <field name="reporterName">
+      <value>kobruleht</value>
+    </field>
+    <field name="updaterName">
+      <value>kobruleht</value>
+    </field>
+    <field name="resolved">
+      <value>1282136515229</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

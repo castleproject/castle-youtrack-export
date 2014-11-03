@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>211</value>
+    </field>
+    <field name="summary">
+      <value>Allow IParameterBinder to be called after the action is finished</value>
+    </field>
+    <field name="description">
+      <value>So IParameterBinder implementations can perform additional finalization logic on the bound values, such as disposing IDisposable's.</value>
+    </field>
+    <field name="created">
+      <value>1168973322000</value>
+    </field>
+    <field name="updated">
+      <value>1279001991000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1279001940000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Couldn't this be done automatically by checking if the bound values implement IDisposable?&#xA;Or is there another case for it?" created="1262979534000" />
+    <comment author="jsimons" text="If you want it, send us a patch." created="1279001988000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Version Fixed''' changed from ''Future'' to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1279001940000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1279001940000" />
+  </issue>
+</issues>

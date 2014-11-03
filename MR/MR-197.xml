@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>197</value>
+    </field>
+    <field name="summary">
+      <value>Exception thrown by AccessibleThrough are not caught by rescues</value>
+    </field>
+    <field name="description">
+      <value>Even if I have [Rescue("General")] on my controller, if I use [AccessibleThrough(Verb.Post)] on a method when an error occures, the recue is not used.
+
+I get this exception:
+[ControllerException: Access to the action [create] on controller [mycontroller] is not allowed by the http verb [GET].]
+   Castle.MonoRail.Framework.Controller.InternalSend(String action, Object[] actionArgs) in e:\dev\castle\trunk\MonoRail\Castle.MonoRail.Framework\Controller.cs:974
+   Castle.MonoRail.Framework.Controller.Process(IRailsEngineContext context, String areaName, String controllerName, String actionName) in e:\dev\castle\trunk\MonoRail\Castle.MonoRail.Framework\Controller.cs:862
+   Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext context) in e:\dev\castle\trunk\MonoRail\Castle.MonoRail.Framework\MonoRailHttpHandler.cs:100
+   Castle.MonoRail.Framework.MonoRailHttpHandler.ProcessRequest(HttpContext context) in e:\dev\castle\trunk\MonoRail\Castle.MonoRail.Framework\MonoRailHttpHandler.cs:52
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +154
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +64</value>
+    </field>
+    <field name="created">
+      <value>1166702565000</value>
+    </field>
+    <field name="updated">
+      <value>1244676578000</value>
+    </field>
+    <field name="reporterName">
+      <value>macournoyer</value>
+    </field>
+    <field name="updaterName">
+      <value>macournoyer</value>
+    </field>
+    <field name="resolved">
+      <value>1282143640963</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676540000" />
+  </issue>
+</issues>

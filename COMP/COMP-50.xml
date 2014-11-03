@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>EmailSender</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>50</value>
+    </field>
+    <field name="summary">
+      <value>Change SmtpSender to use smtp settings from the mailSettings element of .Net 2.0 configuration</value>
+    </field>
+    <field name="description">
+      <value>The SmtpSender creates an SmtpClient and allows all credentials to be set via exposed properties.  When using this with Monorail, this means that the email system never uses any information from the mailSettings element of web.config.  It instead uses the smtpHost attribute of the monorail element in web.config.
+
+It is hard to replace the smtp attributes of the monorail element in web.config via a build script - it would be much better to have the EmailSender component (and hence the monorail email system) use the mailSettings element of web/app.config.  This allows:
+
+1. The smtp settings to be standardized across the entire application whether you use the EmailSender component or the SmtpClient directly from the System.Net.Mail namespace.
+
+2. The monorail email system will use the mailSettings element of web.config which is much more intuitive then looking for an smtpHost attribute on the monorail element of the configuration file.</value>
+    </field>
+    <field name="created">
+      <value>1198764763000</value>
+    </field>
+    <field name="updated">
+      <value>1198787096000</value>
+    </field>
+    <field name="reporterName">
+      <value>chadly69</value>
+    </field>
+    <field name="updaterName">
+      <value>chadly69</value>
+    </field>
+    <field name="resolved">
+      <value>1282137584838</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

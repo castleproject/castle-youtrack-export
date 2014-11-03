@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>243</value>
+    </field>
+    <field name="summary">
+      <value>Request the Ability to override the page's MIME type</value>
+    </field>
+    <field name="description">
+      <value>To enable MonoRail to be used in a mobile wap application the Pages mime type needs to be overriden so that it is "text/vnd.wap.wml"
+
+This is can be done with a normal page declaration of contenttype in a standard asp.net webform.</value>
+    </field>
+    <field name="created">
+      <value>1176188470000</value>
+    </field>
+    <field name="updated">
+      <value>1244676802000</value>
+    </field>
+    <field name="reporterName">
+      <value>darkin100</value>
+    </field>
+    <field name="updaterName">
+      <value>darkin100</value>
+    </field>
+    <field name="resolved">
+      <value>1282143712010</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676780000" />
+  </issue>
+</issues>

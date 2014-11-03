@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>471</value>
+    </field>
+    <field name="summary">
+      <value>Disabling web.config inheritance breaks monorail</value>
+    </field>
+    <field name="description">
+      <value>I'm using Castle version 1.0.3.0. 
+
+This scenario involves nested applications. Settings from the root web.config are inherited in any sub applications, which is normal. In .NET 2.0 (and 3.5 I suppose) you can disable this inheritance by wrapping the &lt;system.web&gt; element of the root web config with a &lt;location&gt; element. Specifically, &lt;location path="." inheritInChildApplications="false"&gt;&lt;/location&gt;. 
+
+So now your root web.config appears as: 
+&lt;location path="." inheritInChildApplications="false"&gt; 
+&lt;system.web&gt; 
+..... 
+&lt;/system.web&gt; 
+&lt;/location&gt; 
+
+This works for .NET applications not using the monorail framework. If used on a monorail application, whether it's the root application or not, throws a null reference exception. If you refresh the page once you've gotten the null reference exception, you receive a different exception stating "IRailsEngineContext is null. Looks like the EngineContextModule has not run for this request.". The "IRailsEngineContext is null" exception is something you normally see if the monorail HTTP handler is not configured properly (e.g. you configure the handler to use *.rails and you attempt to execute an action using the extension *.html). You will also receive the "IRailsEngineContext is null" if you are using the castle routing module and it does not execute before the monorail engine context module.</value>
+    </field>
+    <field name="created">
+      <value>1218093724000</value>
+    </field>
+    <field name="updated">
+      <value>1263055480000</value>
+    </field>
+    <field name="reporterName">
+      <value>benster</value>
+    </field>
+    <field name="updaterName">
+      <value>benster</value>
+    </field>
+    <field name="resolved">
+      <value>1253866800000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Cannot reproduce on trunk. Will not fix on RC3." created="1253866840000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055440000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1253866800000" />
+  </issue>
+</issues>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Wcf</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>134</value>
+    </field>
+    <field name="summary">
+      <value>It would be nice to be able to set the MaxClockSkew property easily on an endpoint through the WCF Integration Facility</value>
+    </field>
+    <field name="description">
+      <value>I'm attaching a code snippet that demonstrates how to modify the MaxClockSkew settings(s) on an endpoint through a behavior. It would be nice to find an elegant way to do this courtesy of the Wcf Integration Facility.</value>
+    </field>
+    <field name="created">
+      <value>1263453345000</value>
+    </field>
+    <field name="updated">
+      <value>1396694819527</value>
+    </field>
+    <field name="reporterName">
+      <value>urig</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396694819512</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Uri, can you provide some tests for that?" created="1263453861000" />
+    <comment author="urig" text="Err, not at this time. :) &#xA;What about a relevant snippet from a configuration file? Would that help?&#xA;BTW - What's the plan for integrating this into the facility (if at all?)&#xA;Tx, Uri" created="1264513989000" />
+    <comment author="xtoff" text="we hope to integrate in once it's tested and proven to work :)" created="1264522457000" />
+    <comment author="urig" text="* '''Attachment''' MaxClockSkewBehavior.cs added.&#xD;&#xA;" created="1263453600000" />
+    <comment author="urig" text="* '''Attachment''' MaxClockSkewBehaviorElement.cs added.&#xD;&#xA;" created="1263453600000" />
+    <comment author="urig" text="* '''Components''' set to ''Wcf''.&#xD;&#xA;" created="1264514040000" />
+  </issue>
+</issues>

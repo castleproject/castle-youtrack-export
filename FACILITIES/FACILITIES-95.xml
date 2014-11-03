@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveRecordIntegration</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>95</value>
+    </field>
+    <field name="summary">
+      <value>Added PluralizeTableNames to ActiveRecordFacility configuration</value>
+    </field>
+    <field name="description">
+      <value>PluralizeTableNames was missing from the available configuration options of the ActiveRecordFacility. I'm not sure if this was intentional or otherwise. I have created a patch so that this option can be configured on the facility.
+
+I also noticed that the default for this setting in ActiveRecordModel object is false. In the spirit of convention over configuration ala Rails shouldn't this be set to true?
+
+I've tested this as best as I could. I wasn't really sure of the best way to write an automated unit test for it. I eventually decided to supply an ILoggerFactory instance and check that the pluralizetablenames property of the ConfigurationSourceAdapter instance was set properly (by checking the debug messages) before it is passed into the ActiveRecordStarted initialize method. Not exactly great but I wasn't really sure how to best go about checking more thoroughly. I suppose I could have queried the database for the expected table name after the CreateSchema method was called - I wasn't sure how far to take testing in this case as none of the other configuration items are tested specifically.
+
+Hope the patch is ok.</value>
+    </field>
+    <field name="created">
+      <value>1192561051000</value>
+    </field>
+    <field name="updated">
+      <value>1285403702078</value>
+    </field>
+    <field name="reporterName">
+      <value>waynequinliva</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1285403702078</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="set pluralizeTableNames=&quot;true&quot;" created="1285403702078" />
+  </issue>
+</issues>

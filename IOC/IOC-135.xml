@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>135</value>
+    </field>
+    <field name="summary">
+      <value>Cascading interceptors</value>
+    </field>
+    <field name="description">
+      <value>It would be useful to support attaching an interceptor to a component and have it automatically 'cascade' and attach itself to all of its dependencies (which could be controlled both in code as well as an attribute in the XML on the &lt;interceptor&gt; tag).
+
+This would certainly make it a more compelling feature for logging and tracing bugs when it isn't necessarily clear which class a dependency has resolved to.
+</value>
+    </field>
+    <field name="created">
+      <value>1227583799000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853104</value>
+    </field>
+    <field name="reporterName">
+      <value>gplumb</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1227584160000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="This is not something that we can support for the general case.&#xA;The main problem is that this request assumes that all the dependencies are of the same lifetime, or that the root dependency has a higher lifetime than the rest.&#xA;In practice, it is very common for a trasient component to depend on a singleton component, which would defeat this purpose.&#xA;&#xA;However, it is possible to create this behavior right now, using a IProxyInterceptorSelector, without having to make modifications to the kernel." created="1227584160000" />
+    <comment author="ayende" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1241743560000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1227584160000" />
+  </issue>
+</issues>

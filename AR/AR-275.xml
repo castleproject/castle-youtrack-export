@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validators</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>275</value>
+    </field>
+    <field name="summary">
+      <value>AR Validators link leads to 404</value>
+    </field>
+    <field name="description">
+      <value>The link Castle.Components.Validator on the Validators site (http://www.castleproject.org/ActiveRecord/documentation/trunk/manual/validators.html) leads to a 404 page.</value>
+    </field>
+    <field name="created">
+      <value>1254461774000</value>
+    </field>
+    <field name="updated">
+      <value>1263467084000</value>
+    </field>
+    <field name="reporterName">
+      <value>Tigraine</value>
+    </field>
+    <field name="updaterName">
+      <value>Tigraine</value>
+    </field>
+    <field name="resolved">
+      <value>1254729180000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mausch" text="Applied in r6051. Thanks!" created="1254542606000" />
+    <comment author="xtoff" text="Mauricio Scheffer applied it in r6051&#xA;" created="1263467085000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263467040000" />
+    <comment author="Tigraine" text="* '''Attachment''' validator-urlfix.patch added.&#xD;&#xA;" created="1254461774001" />
+    <comment author="mausch" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1254729180000" />
+  </issue>
+</issues>

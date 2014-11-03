@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>62</value>
+    </field>
+    <field name="summary">
+      <value>Windsor interfers with SmartDispatcherController</value>
+    </field>
+    <field name="description">
+      <value>When using AutomaticTransactionManagement facility and MonoRail together, it goes crazy on selecting which method is the "best candidate":
+
+[Transactional]
+public class SampleController : SmartDispatcherController {
+
+  public void SampleAction(int id) { RenderView("default"); }
+
+  [Transaction(TransactionMode.Requires)]
+  public void SampleAction(int id, string data) { RenderView("other"); }
+}
+
+The two urls below render the "other" view:
+
+http://localhost/monorail/sample/sampleaction.rails?id=10
+http://localhost/monorail/sample/sampleaction.rails?id=10&amp;data=sample</value>
+    </field>
+    <field name="created">
+      <value>1130001099000</value>
+    </field>
+    <field name="updated">
+      <value>1136170059000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282143366557</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

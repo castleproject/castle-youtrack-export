@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>570</value>
+    </field>
+    <field name="summary">
+      <value>Services initialisation order</value>
+    </field>
+    <field name="description">
+      <value>See this castle-project-users thread:
+http://groups.google.com/group/castle-project-users/browse_thread/thread/f2de6973165ee4d8
+
+I've been trying to make a custom ControllerFactory and had issues 
+with finding an initialised IControllerTree to add controllers to. 
+
+I decided to copy the complete DefaultControllerFactory.cs into my 
+assembly and debug how it all worked. I was surprised to find that 
+DefaultControllerFactory doesn't work if its selected form the 
+web.config. When it starts to initialise, it can't find an 
+initialised IControllerTree. </value>
+    </field>
+    <field name="created">
+      <value>1285425559828</value>
+    </field>
+    <field name="updated">
+      <value>1414999390866</value>
+    </field>
+    <field name="reporterName">
+      <value>Tim.Fish</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999390862</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="MonoRail2 is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/MonoRail/issues" created="1414999390868" />
+  </issue>
+</issues>

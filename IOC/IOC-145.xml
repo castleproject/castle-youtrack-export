@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>145</value>
+    </field>
+    <field name="summary">
+      <value>CreationContent.Resolve tries to convert dictionary</value>
+    </field>
+    <field name="description">
+      <value>In build 1037, CreationContext.cs whe have:
+
+public virtual object Resolve(CreationContext context, ISubDependencyResolver contextHandlerResolver,ComponentModel model, DependencyModel dependency)
+{
+   if (additionalArguments != null)
+   {
+	var inlineArgument = additionalArguments[dependency.DependencyKey];
+	if (inlineArgument != null &amp;&amp; converter != null &amp;&amp; 
+	dependency.DependencyType == DependencyType.Parameter)
+	{
+	return converter.PerformConversion(inlineArgument.ToString(),         dependency.TargetType);
+	}
+	return inlineArgument;
+   }
+
+   return null;
+}
+
+This is different from last public release which has:
+
+public object Resolve(CreationContext context, ISubDependencyResolver parentResolver, ComponentModel model, DependencyModel dependency)
+{
+    if (this.additionalArguments != null)
+    {
+        return this.additionalArguments[dependency.DependencyKey];
+    }
+    return null;
+}
+
+The new code has now introduced a bug whereby when the argument is a Dictionary type if will call the convert.PerformConversion line whoch in turn calls DictionaryConverter and hits code raising a NotImplemenetedException.
+
+Returning inlineArgument as it is is all that is required I believe.
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1234122749000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838901</value>
+    </field>
+    <field name="reporterName">
+      <value>nzdunic</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1241441700000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="nzdunic" text="Guys,&#xA;&#xA;Any news on this.  I have a fix, should I just submit that?" created="1235932261000" />
+    <comment author="davidj" text="This looks like it arose from IOC-ISSUE-123. The patch attached to that issue only tried to PerformConversion when 'additionalArguments[dependency.DependencyKey] is string', but the change committed in r5488 tries to PerformConversion when 'additionalArguments[dependency.DependencyKey] != null'.&#xA;&#xA;I think if the argument is already of the target type then there's no need to perform a conversion. I've attached a patch to this effect. What do you think?" created="1238451524000" />
+    <comment author="ayenderahien" text="thanks for the patch" created="1241441745000" />
+    <comment author="nzdunic" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;In build 1037, CreationContext.cs whe have:&#xD;&#xA;&#xD;&#xA;public virtual object Resolve(CreationContext context, ISubDependencyResolver contextHandlerResolver,ComponentModel model, DependencyModel dependency)&#xD;&#xA;{&#xD;&#xA;   if (additionalArguments != null)&#xD;&#xA;   {&#xD;&#xA;	var inlineArgument = additionalArguments[dependency.DependencyKey];&#xD;&#xA;	if (inlineArgument != null &amp;&amp; converter != null &amp;&amp; &#xD;&#xA;	dependency.DependencyType == DependencyType.Parameter)&#xD;&#xA;	{&#xD;&#xA;	return converter.PerformConversion(inlineArgument.ToString(),         dependency.TargetType);&#xD;&#xA;	}&#xD;&#xA;	return inlineArgument;&#xD;&#xA;   }&#xD;&#xA;&#xD;&#xA;   return null;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;This is diffrent from lats public release which has:&#xD;&#xA;&#xD;&#xA;public object Resolve(CreationContext context, ISubDependencyResolver parentResolver, ComponentModel model, DependencyModel dependency)&#xD;&#xA;{&#xD;&#xA;    if (this.additionalArguments != null)&#xD;&#xA;    {&#xD;&#xA;        return this.additionalArguments[dependency.DependencyKey];&#xD;&#xA;    }&#xD;&#xA;    return null;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;The new code has now introduced a bug whereby when the argument is a Dictionary type if will call the convert.PerformConversion line whoch in turn calls DictionaryConverter and hits code raising a NotImplemenetedException.&#xD;&#xA;&#xD;&#xA;Returning inlineArgument as it is is all that is required I believe.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;In build 1037, CreationContext.cs whe have:&#xD;&#xA;&#xD;&#xA;public virtual object Resolve(CreationContext context, ISubDependencyResolver contextHandlerResolver,ComponentModel model, DependencyModel dependency)&#xD;&#xA;{&#xD;&#xA;   if (additionalArguments != null)&#xD;&#xA;   {&#xD;&#xA;	var inlineArgument = additionalArguments[dependency.DependencyKey];&#xD;&#xA;	if (inlineArgument != null &amp;&amp; converter != null &amp;&amp; &#xD;&#xA;	dependency.DependencyType == DependencyType.Parameter)&#xD;&#xA;	{&#xD;&#xA;	return converter.PerformConversion(inlineArgument.ToString(),         dependency.TargetType);&#xD;&#xA;	}&#xD;&#xA;	return inlineArgument;&#xD;&#xA;   }&#xD;&#xA;&#xD;&#xA;   return null;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;This is different from last public release which has:&#xD;&#xA;&#xD;&#xA;public object Resolve(CreationContext context, ISubDependencyResolver parentResolver, ComponentModel model, DependencyModel dependency)&#xD;&#xA;{&#xD;&#xA;    if (this.additionalArguments != null)&#xD;&#xA;    {&#xD;&#xA;        return this.additionalArguments[dependency.DependencyKey];&#xD;&#xA;    }&#xD;&#xA;    return null;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;The new code has now introduced a bug whereby when the argument is a Dictionary type if will call the convert.PerformConversion line whoch in turn calls DictionaryConverter and hits code raising a NotImplemenetedException.&#xD;&#xA;&#xD;&#xA;Returning inlineArgument as it is is all that is required I believe.&#xD;&#xA;{quote}&#xD;&#xA;" created="1234125300000" />
+    <comment author="davidj" text="* '''Attachment''' IOC-ISSUE-145_davidj.patch added.&#xD;&#xA;" created="1238451480000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1241441700000" />
+    <comment author="ayenderahien" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1241441760000" />
+  </issue>
+</issues>

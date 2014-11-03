@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle Visual Studio Integration</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>58</value>
+    </field>
+    <field name="summary">
+      <value>The coloriser doesn't treat a newline as the end of an identifier</value>
+    </field>
+    <field name="description">
+      <value>I am ending a line in $comment.Subject with no space after it.  The plain text on the start of the next line is coloured the same colour as the NV variable.  If I put a space after $comment.Subject  but before the newline, the the plain text on the next line gets coloured correctly.
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1190763811000</value>
+    </field>
+    <field name="updated">
+      <value>1200213948000</value>
+    </field>
+    <field name="reporterName">
+      <value>tim</value>
+    </field>
+    <field name="updaterName">
+      <value>tim</value>
+    </field>
+    <field name="resolved">
+      <value>1282138211651</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

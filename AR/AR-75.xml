@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>75</value>
+    </field>
+    <field name="summary">
+      <value>SemanticVerifierVisitor causing fauly xml when using composit key</value>
+    </field>
+    <field name="description">
+      <value>When SemanticVerefierVisitor is applying a column prefix it does so indicriminently so when processing a CompositKey belongToAttribute it changes the Cloumn property from null to empty string and thus foils the XmlGeneratorVisitor when it selects between normal column or composit key types ( which expects column == null).  Note that the patch included may break the prefix functionality for composit keys.  I have no working understanding who to use the prefix or when it applies.  I guess that it should travers through the column array and apply prefix to them all but I'll leave it to the experts to resolve the right course of action.  This at least cures the common case with no prefix.
+
+patch included</value>
+    </field>
+    <field name="created">
+      <value>1157970429000</value>
+    </field>
+    <field name="updated">
+      <value>1162409782000</value>
+    </field>
+    <field name="reporterName">
+      <value>freyzor</value>
+    </field>
+    <field name="updaterName">
+      <value>freyzor</value>
+    </field>
+    <field name="resolved">
+      <value>1282136182620</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

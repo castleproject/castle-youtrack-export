@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>AutomaticTransactionManagement</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>45</value>
+    </field>
+    <field name="summary">
+      <value>Automatic transaction problem</value>
+    </field>
+    <field name="description">
+      <value>- Transaction interceptor does not rollback transaction.
+- session had pending transaction.
+
+See http://forum.castleproject.org/viewtopic.php?t=625&amp;sid=00cf5e30452e0e9c7c0acc0441f9c7ff
+
+I've added new data object , new method in test case and dao.
+
+This is my test code in TransactionsTestCase.cs .
+[Test]
+public void TestTransaction()
+{
+	ISessionManager sessionManager = (ISessionManager) 
+		container[ typeof(ISessionManager) ];
+	using(ISession session = sessionManager.OpenSession())
+	{
+		FirstDao service = (FirstDao) container["myfirstdao"];
+		
+		Blog blog = service.Create("Blog1");
+		try
+		{
+			BlogRef blogRef = new BlogRef();
+			blogRef.ParentBlog = blog;
+			blogRef.Title = "title";
+			service.AddBlogRef(blogRef);
+			
+			//constraint exception
+			service.Delete("Blog1");
+		}
+		catch (Exception e)
+		{
+			//transaction exception
+			Console.Write(e);
+			session.Clear();
+		}
+		
+		//Assert.IsTrue(session.Transaction.WasRolledBack);
+		
+		//parallel transaction exception
+		service.Create();
+	}
+}</value>
+    </field>
+    <field name="created">
+      <value>1152835662000</value>
+    </field>
+    <field name="updated">
+      <value>1162411696000</value>
+    </field>
+    <field name="reporterName">
+      <value>atipon_p</value>
+    </field>
+    <field name="updaterName">
+      <value>atipon_p</value>
+    </field>
+    <field name="resolved">
+      <value>1282141019510</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

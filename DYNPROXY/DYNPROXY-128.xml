@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>.NET 2.0 Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>128</value>
+    </field>
+    <field name="summary">
+      <value>Proxy without target passes wrong MethodInfo to interceptor</value>
+    </field>
+    <field name="description">
+      <value>I have a set of interfaces defined along the lines of the following:
+
+public interface RootInterface
+{
+    string RootMethod();
+}
+
+public interface InterfaceA : RootInterface
+{
+    string CommonMethod();
+}
+
+public interface InterfaceB : RootInterface
+{
+    string CommonMethod();
+}
+
+The proxy is then created using:
+
+var gen = new ProxyGenerator();
+var proxy = (RootInterface)gen.CreateInterfaceProxyWithoutTarget(typeof(RootInterface), new[] { typeof(InterfaceA), typeof(InterfaceB) }, new MyInterceptor());
+
+The MyInterceptor lazily instantiates an object that implements either InterfaceA or InterfaceB (but not both) based on data known only at runtime. It then invokes the intercepted method directly against this target using:
+
+public void Intercept(IInvocation invocation)
+{
+    invocation.ReturnValue = invocation.Method.Invoke(GetTarget(), invocation.Arguments);
+    Console.WriteLine("Intercepted");
+}
+
+If the target object is (only) an InterfaceB, and I call the following:
+
+((InterfaceB)proxy).CommonMethod()
+
+This throws a TargetException on the method invocation, as invocation.Method is *always* the method as defined (invocation.Method.DeclaringType) on InterfaceA even when called through a reference to InterfaceB as above.
+
+Properties are affected in the same way.
+
+It is possible for the proxy to determine through which particular interface a method is called in a setup as above by implementing the additional interfaces as explicit interface implementations and then to pass the correct MethodInfo to the interceptor, but DynamicProxy does not appear to do this.</value>
+    </field>
+    <field name="created">
+      <value>1264391315000</value>
+    </field>
+    <field name="updated">
+      <value>1288167672884</value>
+    </field>
+    <field name="reporterName">
+      <value>cosborne</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1265781960000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="I'm not sure which version you're using but I just tested it on v2.2 and works as expected. Moreover it looks like in your scenario you should be using InterfaceProxyWithTargetInterface rather than proxy without target." created="1264392298000" />
+    <comment author="xtoff" text="ah, ok, I see. You're using v2.1. Upgrade to v2.2 and you should be fine :)" created="1264392350000" />
+    <comment author="xtoff" text="Already fixed in v2.2" created="1265782015000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1265781960000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1265782020000" />
+  </issue>
+</issues>

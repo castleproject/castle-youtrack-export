@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>152</value>
+    </field>
+    <field name="summary">
+      <value>Incorporation of subselect fetch strategy</value>
+    </field>
+    <field name="description">
+      <value>Patch to allow NHibernate (1.2's) subselect fetch strategy to be applied to relations via an additional FetchEnum val
+
+Originally posted in forums:
+http://forum.castleproject.org/viewtopic.php?p=7081</value>
+    </field>
+    <field name="created">
+      <value>1178110871000</value>
+    </field>
+    <field name="updated">
+      <value>1178488467000</value>
+    </field>
+    <field name="reporterName">
+      <value>mattyr</value>
+    </field>
+    <field name="updaterName">
+      <value>mattyr</value>
+    </field>
+    <field name="resolved">
+      <value>1282136342995</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

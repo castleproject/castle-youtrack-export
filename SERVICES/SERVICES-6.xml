@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Transaction</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>6</value>
+    </field>
+    <field name="summary">
+      <value>StaleObjectException is never thrown when using transactions</value>
+    </field>
+    <field name="description">
+      <value>When using versioning as outlined in http://www.castleproject.org/activerecord/documentation/trunk/advanced/versionts.html combined with transactions, the current codebase throws a TransactionException for the offending call to catch, but if the method are called without explicit transactions or the ATM facility, a StaleObjectException are instead thrown (which is the documented behavior).
+
+I suspect that the reason for this is the following lines in AbstractTransaction.Commit, where all exceptions are changed into TransactionExceptions:
+
+if (error != null)
+{
+    throw new TransactionException("Could not commit transaction, one of the resources failed", error);
+}
+</value>
+    </field>
+    <field name="created">
+      <value>1168443014000</value>
+    </field>
+    <field name="updated">
+      <value>1170590386000</value>
+    </field>
+    <field name="reporterName">
+      <value>jpersson</value>
+    </field>
+    <field name="updaterName">
+      <value>jpersson</value>
+    </field>
+    <field name="resolved">
+      <value>1282143009573</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

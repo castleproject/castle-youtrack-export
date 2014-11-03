@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>170</value>
+    </field>
+    <field name="summary">
+      <value>PropertyBag and ContextVars elements aren't available inside the views of the components</value>
+    </field>
+    <field name="description">
+      <value>The PropertyBag (and the ContextVars) are working and providing their elements to the view of the action calling the component, but not to the view of the component.
+To test that I used 4 units of code: the action of the calling controller, the component, the view of the action and the view of the component.
+I made some test, and it seems that the elements inserted on the PropertyBag (or in the ContextVars) are available in the view of the action (and I wouldn't like to go this way because I feel that is not good for encapsulation purposes), but they seem not to be available on the view of the component!
+
+Here is an example:
+action (ComponentTest.cs)
+Code:
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Castle.MonoRail.Framework;
+
+namespace Intranet.Controllers
+{
+    [ ControllerDetails( Area = "Test") ]
+    public class ComponentTest : Controller
+    {
+        public void Index()
+        {
+        }
+    }
+}
+
+view of the action (/test/componenttest/index.boo)
+
+Code:
+
+This is the view of the action&lt;br/&gt;
+&lt;%
+    component MyComponent
+%&gt;
+&lt;%
+    output messagePB + '&lt;br/&gt;' #works
+    output messageCV #works   
+%&gt;
+
+component (myComponent.cs)
+Code:
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Castle.MonoRail.Framework;
+
+namespace Intranet.Components
+{
+    public class MyComponent : ViewComponent
+    {
+        public override void Render()
+        {
+            PropertyBag[ "messagePB" ] = "Hello Property Bag";
+            Context.ContextVars[ "messageCV" ] = "Hello ContextVars";
+            ComponentParams[ "messageCP" ] = "Hello ComponentParams"; //doesn't work in either cases
+            RenderView( "default" );
+        }
+    }
+}
+
+view of the component (components/mycomponent/default.boo)
+Code:
+
+This is default&lt;br /&gt;
+&lt;%
+    # output messagePB + '&lt;br/&gt;' #doesn't work
+    # output messageCV + '&lt;br/&gt;' #doesn't work
+%&gt;
+
+I do personally think this is a major issue. We should be able to pass data to the view of the component, without this feature encapsulation is not possible, and the components in brail are more or less useless.
+I tested it with the 1.0.x branch</value>
+    </field>
+    <field name="created">
+      <value>1163399725000</value>
+    </field>
+    <field name="updated">
+      <value>1244675463000</value>
+    </field>
+    <field name="reporterName">
+      <value>aledeniz</value>
+    </field>
+    <field name="updaterName">
+      <value>aledeniz</value>
+    </field>
+    <field name="resolved">
+      <value>1282143589776</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675460000" />
+  </issue>
+</issues>

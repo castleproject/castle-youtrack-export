@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>71</value>
+    </field>
+    <field name="summary">
+      <value>Add support for integer-based sets</value>
+    </field>
+    <field name="description">
+      <value>The SetValidator can work with integer-based sets, but the ValidateSetAttribute only accepts string[] sets. 
+
+I have a patch that will:
+
+1) Allow specifying integer based sets via the new constructors, ValidateSetAttribute(params int[] set) and ValidateSetAttribute(string errorMessage, params int[] set).
+
+2) In SetValidator, transform int[] sets to string[] sets, so internal behavior does not change.
+
+3) Add test cases to test int[] sets.
+
+These changes are mostly for easy coding, and will allow you to do this:
+
+[ValidateSet(0,1,17)]
+
+Without this patch, you must do this:
+
+[ValidateSet("0","1","17")]
+
+Functionally they are the same, but the former (support of which is added with this patch) is cleaner and easier to read.
+
+(Patch coming once I figure out how to attach files to donjon issues!)</value>
+    </field>
+    <field name="created">
+      <value>1219993357000</value>
+    </field>
+    <field name="updated">
+      <value>1229885193000</value>
+    </field>
+    <field name="reporterName">
+      <value>brian</value>
+    </field>
+    <field name="updaterName">
+      <value>brian</value>
+    </field>
+    <field name="resolved">
+      <value>1229885160000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="hammett" text="Applied, thx" created="1229885193000" />
+    <comment author="hammett" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1229885160000" />
+  </issue>
+</issues>

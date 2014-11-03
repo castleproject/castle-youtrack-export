@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.0 beta 1</value>
+      <value>2.5.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>322</value>
+    </field>
+    <field name="summary">
+      <value>Constructor accepting generic dependency (implemented by non generic class) not chosen even though the dependency is resolvable</value>
+    </field>
+    <field name="description">
+      <value>This issue is extremely convoluted -- it is best described by example.  I've tried my best to explain it in the comment at the top of my reproducing test case below.  The issue arises when you have a chain of four dependencies where you alternate between open generic and closed generic implementations, and the first link in the chain is an optional dependency.
+
+I have confirmed the behavior of these tests (all tests pass, the first *should* not, as it demonstrates the bug) in Windsor 2.5.3 and 3.0.0 RC 1.
+
+
+{code:lang=cs}
+
+using Castle.MicroKernel.Registration;
+using Castle.Windsor;
+using NUnit.Framework;
+
+namespace Windsor.UnitTests
+{
+    public class GenericRegistrationWeirdness
+    {
+        /*
+         * I make extensive use of both open generic registrations and non-generic classes that implement
+         * closed generic interfaces, and I've run into a very odd issue, which I've encapsulated
+         * in the below example.
+         * 
+         * I have an open generic implementation (Foo&lt;&gt; : IFoo&lt;&gt;) that depends on a closed generic 
+         * implementation (DataBar : IBar&lt;Data&gt;) that depends on an open generic implementation 
+         * (Baz&lt;&gt; : IBaz&lt;&gt;) that depends on a closed generic implementation (OtherDataQux : 
+         * IQux&lt;OtherData&gt;).
+         * 
+         * Foo has two constructors, one that takes IBar&lt;&gt;, and one that does not.  This is intended
+         * to make the IBar&lt;&gt; dependency optionall and user-provided (Foo&lt;&gt; is registered in an 
+         * infrastructure installer, specific IBar&lt;&gt; implementations are to be registered by clients,
+         * if they so choose).
+         * 
+         * When I resolve IFoo&lt;Data&gt;, IBar&lt;Data&gt; (implemented by DataBar) is NOT set (the empty 
+         * constructor is called).  However, IBar&lt;Data&gt; can be resolved from the container independently.
+         * 
+         * There are several slight tweaks that fix/avoid the issue (demonstrated in the additional tests):
+         * When the IBaz&lt;&gt; implementation has no dependencies
+         * When an open generic implementation of IQux&lt;&gt; is used
+         * When Foo&lt;&gt; does not have the default constructor
+         * When the required closed generic implementation of IBaz&lt;&gt; are registered (Baz&lt;OtherData&gt; : IBaz&lt;OtherData&gt;)
+         * 
+         * Thanks for your help.
+         * 
+         */
+
+
+        [Test]
+        public void DoesNotWorkWhenQuxIsClosedGeneric()
+        {
+            using (var container = new WindsorContainer())
+            {
+                container.Register(
+                    Component.For(typeof (IFoo&lt;&gt;)).ImplementedBy(typeof (Foo&lt;&gt;)),
+                    Component.For(typeof (IBar&lt;Data&gt;)).ImplementedBy(typeof (DataBar)),
+                    Component.For(typeof (IBaz&lt;&gt;)).ImplementedBy(typeof (Baz&lt;&gt;)),
+                    Component.For(typeof (IQux&lt;OtherData&gt;)).ImplementedBy(typeof (OtherDataQux))
+                    );
+                var dataFoo = container.Resolve&lt;IFoo&lt;Data&gt;&gt;();
+
+                // actual
+                Assert.IsNull(dataFoo.Bar);
+
+                // expected
+                //Assert.IsNotNull(dataFoo.Bar);
+
+                // I expect this not to throw, but this is odd given the above behavior
+                // windsor clearly CAN instantiate this thing, so why didn't it inject it into Foo?
+                container.Resolve&lt;IBar&lt;Data&gt;&gt;();
+            }
+        }
+
+        [Test]
+        public void WorksAsExpectedWhenBazHasNoDependencies()
+        {
+            using (var container = new WindsorContainer())
+            {
+                container.Register(
+                    Component.For(typeof (IFoo&lt;&gt;)).ImplementedBy(typeof (Foo&lt;&gt;)),
+                    Component.For(typeof (IBar&lt;Data&gt;)).ImplementedBy(typeof (DataBar)),
+                    Component.For(typeof (IBaz&lt;&gt;)).ImplementedBy(typeof (BazWithoutDependency&lt;&gt;))
+                    );
+                var dataFoo = container.Resolve&lt;IFoo&lt;Data&gt;&gt;();
+                Assert.IsNotNull(dataFoo.Bar);
+            }
+        }
+
+        [Test]
+        public void WorksAsExpectedWhenQuxIsOpenGeneric()
+        {
+            using (var container = new WindsorContainer())
+            {
+                container.Register(
+                    Component.For(typeof (IFoo&lt;&gt;)).ImplementedBy(typeof (Foo&lt;&gt;)),
+                    Component.For(typeof (IBar&lt;Data&gt;)).ImplementedBy(typeof (DataBar)),
+                    Component.For(typeof (IBaz&lt;&gt;)).ImplementedBy(typeof (Baz&lt;&gt;)),
+                    Component.For(typeof (IQux&lt;&gt;)).ImplementedBy(typeof (Qux&lt;&gt;))
+                    );
+                var dataFoo = container.Resolve&lt;IFoo&lt;Data&gt;&gt;();
+                Assert.IsNotNull(dataFoo.Bar);
+            }
+        }
+
+        [Test]
+        public void WorksAsExpectedWhenFooHasOneConstructor()
+        {
+            using (var container = new WindsorContainer())
+            {
+                container.Register(
+                    Component.For(typeof (IFoo&lt;&gt;)).ImplementedBy(typeof (FooWithSingleConstructor&lt;&gt;)),
+                    Component.For(typeof (IBar&lt;Data&gt;)).ImplementedBy(typeof (DataBar)),
+                    Component.For(typeof (IBaz&lt;&gt;)).ImplementedBy(typeof (Baz&lt;&gt;)),
+                    Component.For(typeof (IQux&lt;OtherData&gt;)).ImplementedBy(typeof (OtherDataQux))
+                    );
+                var dataFoo = container.Resolve&lt;IFoo&lt;Data&gt;&gt;();
+                Assert.IsNotNull(dataFoo.Bar);
+            }
+        }
+
+
+        [Test]
+        public void WorksAsExpectedWhenBazIsRegisteredExplicitly()
+        {
+            using (var container = new WindsorContainer())
+            {
+                container.Register(
+                    Component.For(typeof(IFoo&lt;&gt;)).ImplementedBy(typeof(Foo&lt;&gt;)),
+                    Component.For(typeof(IBar&lt;Data&gt;)).ImplementedBy(typeof(DataBar)),
+                    Component.For(typeof(IBaz&lt;OtherData&gt;)).ImplementedBy(typeof(Baz&lt;OtherData&gt;)),
+                    Component.For(typeof(IQux&lt;OtherData&gt;)).ImplementedBy(typeof(OtherDataQux))
+                    );
+                var dataFoo = container.Resolve&lt;IFoo&lt;Data&gt;&gt;();
+                Assert.IsNotNull(dataFoo.Bar);
+            }
+        }
+
+        private class Data
+        {
+        }
+
+        private class OtherData
+        {
+        }
+
+        private interface IFoo&lt;T&gt;
+        {
+            IBar&lt;T&gt; Bar { get; }
+        }
+
+        private class Foo&lt;T&gt; : IFoo&lt;T&gt;
+        {
+            private readonly IBar&lt;T&gt; _bar;
+
+            public IBar&lt;T&gt; Bar
+            {
+                get { return _bar; }
+            }
+
+            public Foo(IBar&lt;T&gt; bar)
+            {
+                _bar = bar;
+            }
+
+            public Foo()
+            {
+            }
+        }
+
+
+        private class FooWithSingleConstructor&lt;T&gt; : IFoo&lt;T&gt;
+        {
+            private readonly IBar&lt;T&gt; _bar;
+
+            public IBar&lt;T&gt; Bar
+            {
+                get { return _bar; }
+            }
+
+            public FooWithSingleConstructor(IBar&lt;T&gt; bar)
+            {
+                _bar = bar;
+            }
+        }
+
+        private interface IBar&lt;T&gt;
+        {
+        }
+
+        private class DataBar : IBar&lt;Data&gt;
+        {
+            public DataBar(IBaz&lt;OtherData&gt; data)
+            {
+            }
+        }
+
+        private interface IBaz&lt;T&gt;
+        {
+        }
+
+        private class Baz&lt;T&gt; : IBaz&lt;T&gt;
+        {
+            public Baz(IQux&lt;T&gt; qux)
+            {
+            }
+        }
+
+        private class BazWithoutDependency&lt;T&gt; : IBaz&lt;T&gt;
+        {
+        }
+
+        private interface IQux&lt;T&gt;
+        {
+        }
+
+        private class OtherDataQux : IQux&lt;OtherData&gt;
+        {
+        }
+
+        private class Qux&lt;T&gt; : IQux&lt;T&gt;
+        {
+        }
+    }
+}
+
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1323127645118</value>
+    </field>
+    <field name="updated">
+      <value>1414998001395</value>
+    </field>
+    <field name="reporterName">
+      <value>slange</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414998001389</value>
+    </field>
+    <field name="voterName">
+      <value>xtoff</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="I'm afraid that's quite inherent to how certain aspects of Windsor's pipeline work (figuring out what can be resolved vs. actually resolving it) with relation to generics. That might not be possible to fix without some serious changes" created="1323244295508" />
+    <comment author="slange" text="Oh well.  Thanks for having a look.  There are workarounds for this -- I'll try to remove that need for the optional dependency." created="1323354409928" />
+    <comment author="jonorossi" text="Closing as won't fix as there has been no progress on this. Feel free to relog it on GitHub if you want to continue the discussion.&#xA;&#xA;https://github.com/castleproject/Windsor/issues" created="1414998001397" />
+  </issue>
+</issues>

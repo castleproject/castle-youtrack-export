@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>78</value>
+    </field>
+    <field name="summary">
+      <value>Race condition in the SynchronizeFacilityTest.ExecuteInThread</value>
+    </field>
+    <field name="description">
+      <value>Consider to start Thread from the Application.Idle</value>
+    </field>
+    <field name="created">
+      <value>1177082433000</value>
+    </field>
+    <field name="updated">
+      <value>1177324513000</value>
+    </field>
+    <field name="reporterName">
+      <value>timothyk</value>
+    </field>
+    <field name="updaterName">
+      <value>timothyk</value>
+    </field>
+    <field name="resolved">
+      <value>1282141178916</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

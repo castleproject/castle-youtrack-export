@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Website</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>55</value>
+    </field>
+    <field name="summary">
+      <value>Added advance usage for Monorail rescues</value>
+    </field>
+    <field name="description">
+      <value>A new section to the rescues page of Monorail documentation that describes advance usage of rescues.
+Documentation created by Daniel Hölbling and review by John Simons.	
+</value>
+    </field>
+    <field name="created">
+      <value>1250292143000</value>
+    </field>
+    <field name="updated">
+      <value>1250478478000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1250478420000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Applied in r5935" created="1250478474000" />
+    <comment author="jsimons" text="* '''Attachment''' rescues.patch added.&#xD;&#xA;" created="1250292143001" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1250478420000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1250478420000" />
+  </issue>
+</issues>

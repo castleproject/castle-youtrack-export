@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>VS.Net Wizards</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>33</value>
+    </field>
+    <field name="summary">
+      <value>MonoRail VS.NET Wizard enhancements</value>
+    </field>
+    <field name="description">
+      <value>Attached is a patch for MonoRail VS.NET Wizard with the following improvements:
+
+* General: more examples, more test cases, small fixes
+* New LoginController and ContactController
+* Test cases for the new controllers, using the approach described at http://using.castleproject.org/display/MR/TDDingControllers
+* Using the "new" sintaxt for ViewEngines configuration in web.config
+* Removed VS7 directory
+* New templates showing some examples of FormHelper, UrlHelper, SmartDispatcherController and etc...
+* Some directory cleanup / organization</value>
+    </field>
+    <field name="created">
+      <value>1182265422000</value>
+    </field>
+    <field name="updated">
+      <value>1183484111000</value>
+    </field>
+    <field name="reporterName">
+      <value>rafaelsteil</value>
+    </field>
+    <field name="updaterName">
+      <value>rafaelsteil</value>
+    </field>
+    <field name="resolved">
+      <value>1282137340151</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

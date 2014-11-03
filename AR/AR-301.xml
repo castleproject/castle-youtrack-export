@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>301</value>
+    </field>
+    <field name="summary">
+      <value>No FK created on SQLIte after calling CreateSchema</value>
+    </field>
+    <field name="description">
+      <value>Hello,
+Today I create a demo with SQLite, and after calling the functionality CreateSchema(), I see there is no FK created. If I did with SqlServer Express 2k5, I see some FKs. I'm not debug it, so I guess may be this issue belongs to SQLite for .NET library. Do you think the error can cause from CastleActiveRecord? </value>
+    </field>
+    <field name="created">
+      <value>1302515198990</value>
+    </field>
+    <field name="updated">
+      <value>1409040152257</value>
+    </field>
+    <field name="reporterName">
+      <value>Huan.Hoang</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1409040152253</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="The NHibernate guys fixed this in 3.2.&#xA;&#xA;http://stackoverflow.com/questions/5479901/does-sqlite-coupled-with-nhibernate-support-referential-integrity-foreign-keys" created="1409040152259" />
+  </issue>
+</issues>

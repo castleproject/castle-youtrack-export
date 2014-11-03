@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>156</value>
+    </field>
+    <field name="summary">
+      <value>Allow to create just a BelongsTo relation</value>
+    </field>
+    <field name="description">
+      <value>Hi, i've submitted it as a bug, but i was using a OneToOne relation incorrectly.
+
+Here is the situation: I've two classes, Album and Photo. On the Album, i have a cover photo, that i've mapped as a BelongsTo attribute and i also have a list of photos, that i've mapped as a OneToMany relation.
+
+What happens is that the only option is to add 2 ManyToOne relations, in oposite directions. So, i can get my CoverAlbum property, but i get an IList&lt;Albums&gt; on my Photo. The Photo only have one Album, witch is mapped as a property Album by the first ManyToOne relation.
+
+As a workaround, i've mapped the BelongsTo property on a partial file...
+
+Regards,
+Leonardo Puglia.</value>
+    </field>
+    <field name="created">
+      <value>1254485738000</value>
+    </field>
+    <field name="updated">
+      <value>1255518225000</value>
+    </field>
+    <field name="reporterName">
+      <value>leopuglia</value>
+    </field>
+    <field name="updaterName">
+      <value>leopuglia</value>
+    </field>
+    <field name="resolved">
+      <value>1255518180000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="patearl" text="There are now flags that allow you to turn off the generation of the properties on either side of the relationship." created="1255518227000" />
+    <comment author="leopuglia" text="Where can i get it? Is it on the svn trunk? Couldn't see it..." created="1255950931000" />
+    <comment author="leopuglia" text="* '''Summary''' changed from ''Error when adding 2 relations between 2 entities'' to ''Allow to create just a BelongsTo relation''.&#xD;&#xA;* '''Type''' changed from ''Bug'' to ''New Feature''.&#xD;&#xA;* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Hi, I've two classes, Album and Photo. On the Album, i have a cover photo, that i've mapped as a OneToOne relation and i also have a list of photos, that i've mapped as a OneToMany relation.&#xD;&#xA;&#xD;&#xA;What happens is that 2 Photo items are added to the Album, both with the same name...&#xD;&#xA;&#xD;&#xA;In the OneToOne relation i can't rename the BelongsTo property, neither define the database field associated to it. (This is one bug and an improvement)&#xD;&#xA;&#xD;&#xA;As a workaround, i've renamed the property on the ManyToOne relation to Album1...&#xD;&#xA;&#xD;&#xA;Regards,&#xD;&#xA;Leonardo Puglia.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Hi, i've submitted it as a bug, but i was using a OneToOne relation incorrectly.&#xD;&#xA;&#xD;&#xA;Here is the situation: I've two classes, Album and Photo. On the Album, i have a cover photo, that i've mapped as a BelongsTo attribute and i also have a list of photos, that i've mapped as a OneToMany relation.&#xD;&#xA;&#xD;&#xA;What happens is that the only option is to add 2 ManyToOne relations, in oposite directions. So, i can get my CoverAlbum property, but i get an IList&lt;Albums&gt; on my Photo. The Photo only have one Album, witch is mapped as a property Album by the first ManyToOne relation.&#xD;&#xA;&#xD;&#xA;As a workaround, i've mapped the BelongsTo property on a partial file...&#xD;&#xA;&#xD;&#xA;Regards,&#xD;&#xA;Leonardo Puglia.&#xD;&#xA;{quote}&#xD;&#xA;" created="1254492780000" />
+    <comment author="patearl" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1255518180000" />
+  </issue>
+</issues>

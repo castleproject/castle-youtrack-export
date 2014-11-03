@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>102</value>
+    </field>
+    <field name="summary">
+      <value>CLONE IOC-90.</value>
+    </field>
+    <field name="description">
+      <value>Hi, 
+
+I have discovered a little issue with the Micro Kernel. If I have more than one implementation of an interface the default implementation choice that dependency resolver makes when configuring a component's dependency is different than the default implementation choice when asking the kernel directly.
+
+Example:
+
+public class AlphaReader : IReader
+{
+	public string Read()
+	{
+		return "Alpha";
+	}
+}
+
+public class BetaReader : IReader
+{
+	public string Read()
+	{
+		return "Beta";
+	}
+}
+
+public class Consumer
+{
+	public IReader Reader;
+
+	public Consumer(IReader reader)
+	{
+		this.Reader = reader;	
+	}
+}
+
+class Program
+{
+	static void Main(string[] args)
+	{
+		WindsorContainer container = new WindsorContainer(new XmlInterpreter());
+
+		Consumer consumer = container.Resolve&lt;Consumer&gt;();
+		IReader reader2 = container.Resolve&lt;IReader&gt;();
+		Console.WriteLine(consumer.Reader.Read());
+		Console.WriteLine(reader2.Read());
+		Console.Read();
+	}
+}
+
+If the components are registered in the order of AlphaReader, BetaReader, Consumer then the Consumer will get a BetaReader and the reader2 in the Main function will be a Alpha reader. The IReader in the consumer should also get a AlphaReader since that was registered first. 
+
+I did some debugging and the reason for this behavior is that the default fall back in the DefaultDependencyResolver uses the GetHandlers method (on the DefaultNamingSubSystem). This method returns all handlers for the specific service type in the order in which they are in the key2Handler hashtable, and that order cannot be counted upon. 
+
+I think that the call to GetHandlers in the ResolveServiceDependency method could be replaced with a call to GetHandler which returns the correct default component (by using the service2handler hashtable). I have attached a patch that does this and all MicroKernel tests pass.</value>
+    </field>
+    <field name="created">
+      <value>1194268429000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838916</value>
+    </field>
+    <field name="reporterName">
+      <value>torkelo</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1228855860000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="added passing test" created="1228855864000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228855860000" />
+  </issue>
+</issues>

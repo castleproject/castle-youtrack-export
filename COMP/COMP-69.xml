@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>69</value>
+    </field>
+    <field name="summary">
+      <value>new Validation contributor: ValidatorContainerInterfaceValidationContributor</value>
+    </field>
+    <field name="description">
+      <value>Here is a validation contributor that allow declaring validators on properties for separated interfaces.
+
+this is a partial implementation (to be extended) of
+http://support.castleproject.org/projects/COMP/issues/view/COMP-ISSUE-52</value>
+    </field>
+    <field name="created">
+      <value>1219818007000</value>
+    </field>
+    <field name="updated">
+      <value>1220273314000</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>gauthier</value>
+    </field>
+    <field name="resolved">
+      <value>1220273280000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="gauthier" text="summary of changes for ValidatorContainerInterfaceValidationContributor.patch&#xA;=============================================================================&#xA;&#xA;design changes:&#xA;- changed signature of IValidatorRegistry, IValidatorBuilder, AbstractValidationAttribute and CachedValidationRegistry : use IValidatorRunner instead of ValidatorRunner&#xA;- moved public declaration of IDictionary ExtendedProperties { get ; } to IValidatorRunner&#xA;- extracted most of validation logic into DefaultValidationPerformer which implement a new interface: IValidationPerformer (Law of Demeter friendly and will be used by not only validationrunner)&#xA;- externalized PerformValidation and ExecuteContributors (if removed PerformValidation is a breaking change for anyone, we could provide accessor to IValidationPerformer instance) to IValidationPerformer&#xA;- added dependency scheme to contributors : IHasValidationPerformerDependency, IHasValidatorRegistryDependency and IHasValidatorRunnerDependency&#xA;- instanciation of default IValidationPerformer (not overridable at this time) in ValidatorRunner&#xA;&#xA;fixes:&#xA;- fixed issue in AbstractValidationContributor when using multiple contributors: the class did have a static list of initialized type which was shared for all inheritors&#xA;- modified AccessorUtil to bypass IL emission if property belongs to an interface (can Craig Neuwirt help for a fix?)&#xA;- refactored nested constructor calls in ValidatorRunner&#xA;&#xA;features:&#xA;- created ValidatorContainerInterfaceValidationContributor performing validation on IValidatorContainerInterface&#xA;- added what allow implementation of COMP-ISSUE-52 (IFacetedValidationRunner will follow to bring the partial/usecase validation features)&#xA;" created="1219818037000" />
+    <comment author="gauthier" text="separated into &#xA;- a monorail patch&#xA;- a separated pagination component archive" created="1220273059000" />
+    <comment author="roelofb" text="Applied (with changes) in r5305. Changes include: VS2005 support, removed var declaration, spelling." created="1220273314000" />
+    <comment author="roelofb" text="Correction, applied in r5303." created="1220273460000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1220273280000" />
+  </issue>
+</issues>

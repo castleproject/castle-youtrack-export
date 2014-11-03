@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>242</value>
+    </field>
+    <field name="summary">
+      <value>AbstractScope.PerformDisposal does not call session.Dispose</value>
+    </field>
+    <field name="description">
+      <value>Currently, the AbstractScope class calls session.Close() instead of session.Dispose() when it itself is disposed of.  With Ayende's changes to the NHibernate SessionImpl class to support System.Transactions making the distinction between Dispose and Close is very important.</value>
+    </field>
+    <field name="created">
+      <value>1234776657000</value>
+    </field>
+    <field name="updated">
+      <value>1234908818000</value>
+    </field>
+    <field name="reporterName">
+      <value>tylerburd</value>
+    </field>
+    <field name="updaterName">
+      <value>tylerburd</value>
+    </field>
+    <field name="resolved">
+      <value>1234908780000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="tylerburd" text="The attached patch changes the call to session.Close() to session.Dispose() in AbstractScope.PerformDisposal()." created="1234776698000" />
+    <comment author="mzywitza" text="Applied, thanks" created="1234908828000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1234883400000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1234908780000" />
+  </issue>
+</issues>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>416</value>
+    </field>
+    <field name="summary">
+      <value>Path to allow specify currentUrl for MockResponse</value>
+    </field>
+    <field name="description">
+      <value>Currently following test fails:
+PrepareController(controller);
+controller.RedirectToSiteRoot();
+MockResponse response = (MockResponse) controller.Response;
+Assert.AreEqual(controller.Context.ApplicationPath + "/", response.RedirectedTo);
+
+That's because response.RedirectedTo == "//" (double back slash). while controller.Context.ApplicationPath + "/" == "/" (single). Root of the issue is that Monorail TestSuport does not pass current url set in PrepareController to MockResponse  when constructs it. In fact, there is no suitable ctor for that.
+
+This patch adds one more ctor to MockResponse  which accepts current url for TestSupport to use.
+Also, patch changes urlinfo extension from "rails" to ".castle" in TestSupport. This is to preserve old behavior where MockResponse  set current url extension to ".castle";</value>
+    </field>
+    <field name="created">
+      <value>1203266408000</value>
+    </field>
+    <field name="updated">
+      <value>1203471565000</value>
+    </field>
+    <field name="reporterName">
+      <value>weex</value>
+    </field>
+    <field name="updaterName">
+      <value>weex</value>
+    </field>
+    <field name="resolved">
+      <value>1282145543026</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

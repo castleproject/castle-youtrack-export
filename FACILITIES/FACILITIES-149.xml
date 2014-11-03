@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Wcf</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>149</value>
+    </field>
+    <field name="summary">
+      <value>WCF Integration Facility Channel Renewal After Security Context Token Expiration</value>
+    </field>
+    <field name="description">
+      <value>According to [Castle Project documentation|http://docs.castleproject.org/(S(bcwix455ivqyod45twfzyj45))/Windsor.WCF-Integration-Facility.ashx], the WCF Integration Facility offers the ability to
+
+{quote}
+Transparently recycle the channel when it gets closed/faulted
+{quote}
+
+However, the channel does not seem to be renewing when it encounters the following error:
+
+{quote}
+The security context token is expired or is not valid. The message was not processed.
+{quote}
+
+The web service is a singleton instance that services multiple concurrent requests while the client application is hosted on IIS with a singleton channel component (in effort to reuse the same channel for all web requests to the client application to reduce connectivity waiting). The WCF binding uses wsHttpBinding.
+
+Version Info: Assembly v2.5.0.0 - File v2.5.0.82 - Product v2.5.0.82</value>
+    </field>
+    <field name="created">
+      <value>1305571503956</value>
+    </field>
+    <field name="updated">
+      <value>1407823118482</value>
+    </field>
+    <field name="reporterName">
+      <value>bitxwise</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1396694951716</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-725[up-to-date]</value>
+      <value>User: id = 20-88[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Not sure if that's still an issue. We need to validate it and either fix or close the issue" created="1338174074502" />
+    <comment author="cneuwirt" text="Without a reproducible scenario, its tough to know if it has been resolved.  That error generally comes in a MessageSecurityException which can have many causes.  We could always add that exception to the repair policy and it would reconnect?  " created="1338292897118" />
+  </issue>
+</issues>

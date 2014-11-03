@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Transaction</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>5</value>
+    </field>
+    <field name="summary">
+      <value>TransactionInterceptor swallows exceptions thrown</value>
+    </field>
+    <field name="description">
+      <value>I've noticed that TransactionInterceptor sometimes swallows exceptions thrown, losing the stack trace.
+
+Suggestion: add some internal logging to this very important service.</value>
+    </field>
+    <field name="created">
+      <value>1160055597000</value>
+    </field>
+    <field name="updated">
+      <value>1160056247000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282143007401</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

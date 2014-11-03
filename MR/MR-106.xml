@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>106</value>
+    </field>
+    <field name="summary">
+      <value>Apply Sean's suggestions</value>
+    </field>
+    <field name="description">
+      <value>Quoting his post:
+
+"Hi, I've just started to use all this new ViewComponent stuff, and I have a few thoughts I'd like to run by you all...
+
+I think it'd be quite useful to have, for blockcomponents, the $childContent variable available to the component view file, eg:
+
+Say, test.vm contains:
+
+#blockcomponent(SideBar with "title=Information")
+This is some text inside the side bar, hurray!
+#end
+
+
+And under components, sidebar.vm contains:
+
+&lt;div class="sidebar"&gt;
+&lt;h1&gt;$title&lt;/h1&gt;
+$childContent
+&lt;/div&gt;
+
+I've attached a diff for this which adds ChildContentComponent to Castle.MonoRail.Framework.ViewComponents for your perusal, but it might be better off in ViewComponent so it can be used with CaptureFor...
+
+Extending upon this idea, I also thought perhaps this would be good for sections too, either having a different file view file for each section, or rendering each section into a ContextVar named after the section:
+
+#blockcomponent(SideBar with "title=Information")
+
+#links
+&lt;a href="blah.rails"&gt;Blah!&lt;/a&gt;
+#end
+
+#contents
+This is some information, etc.
+#end
+
+#end
+
+And have 3 files within the SideBar component directory:
+
+** SideBar.vm:
+&lt;div class="sidebar"&gt;
+&lt;h1&gt;$title&lt;/h1&gt;
+$childContent
+&lt;/div&gt;
+
+** links.vm:
+&lt;div class="links"&gt;
+$childContent
+&lt;/div&gt;
+
+** contents.vm
+&lt;div class="contents"&gt;
+$childContent
+&lt;/div&gt;
+
+Or using one file:
+
+** Sidebar.vm
+
+&lt;div class="sidebar"&gt;
+&lt;h1&gt;$title&lt;/h1&gt;
+&lt;div class="contents"&gt;$contents&lt;/div&gt;
+#if ($links) &lt;div class="links"&gt;$links&lt;/div&gt; #end
+&lt;/div&gt;
+
+
+I'd like to do this one too. The second way seems easier, but it would require some changes to how IViewComponentContext defines RenderSection, i.e. It cant render to a StringWriter."</value>
+    </field>
+    <field name="created">
+      <value>1143546838000</value>
+    </field>
+    <field name="updated">
+      <value>1162413449000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282143403963</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

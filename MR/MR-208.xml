@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>208</value>
+    </field>
+    <field name="summary">
+      <value>Using a lazy loaded nested object, "Ambiguous match found" exception occures when trying to use FormHelper to render control for the nested objects property.</value>
+    </field>
+    <field name="description">
+      <value>When using a lazy loaded nested object, "Ambiguous match found" exception occures when trying to use FormHelper to render control for the nested objects property.
+
+It seems, that this bug is connected with DynamicProxy, as described in this post: http://forum.castleproject.org/viewtopic.php?t=1808
+
+To reproduce, use the following with MonoRail RC2
+
+in view:
+Code:
+
+$FormHelper.TextField("org.OrganizationType.Name")
+
+
+in controller:
+
+Code:
+public void Index(){
+            Organization org = Organization.Find(2);
+            PropertyBag["org"] = org;
+      }
+
+
+models:
+
+Code:
+[ActiveRecord("Organization", "Adm")]
+    public class Organization : ActiveRecordBase&lt;Organization&gt; {
+        private int _id;
+        private OrganizationType _organizationType;
+
+        [PrimaryKey]
+        public int Id {
+            get { return _id; }
+            set { _id = value; }
+        }
+
+        [BelongsTo("EntTypeID")]
+        public OrganizationType OrganizationType {
+            get { return _organizationType; }
+            set { _organizationType = value; }
+        }
+    }
+
+[ActiveRecord("[OrganizationType]","Adm",Lazy=true)]
+    public class OrganizationType : ActiveRecordBase&lt;OrganizationType&gt; {
+        private int _id;
+        private string _name;
+
+        [PrimaryKey]
+        public virtual int Id {
+            get { return _id; }
+            set { _id = value; }
+        }
+
+        [Property]
+        public virtual string Name {
+            get { return _name; }
+            set { _name = value; }
+        }
+    }
+
+
+
+Exception received:
+Quote:
+
+[AmbiguousMatchException: Ambiguous match found.]
+System.RuntimeType.GetPropertyImpl(String name, BindingFlags bindingAttr, Binder binder, Type returnType, Type[] types, ParameterModifier[] modifiers) +185
+System.Type.GetProperty(String name, BindingFlags bindingAttr) +29
+Castle.MonoRail.Framework.Helpers.FormHelper.QueryPropertyRecursive(Object rootInstance, String[] propertyPath, Int32 piece) +162
+Castle.MonoRail.Framework.Helpers.FormHelper.QueryPropertyRecursive(Object rootInstance, String[] propertyPath, Int32 piece) +1082
+Castle.MonoRail.Framework.Helpers.FormHelper.ObtainValue(RequestContext context, String target) +349
+Castle.MonoRail.Framework.Helpers.FormHelper.ObtainValue(String target) +52
+Castle.MonoRail.Framework.Helpers.FormHelper.TextField(String target, IDictionary attributes) +56
+Castle.MonoRail.Framework.Helpers.FormHelper.TextField(String target) +53
+
+[MethodInvocationException: Invocation of method 'TextField' in Castle.MonoRail.Framework.Helpers.FormHelper threw exception System.Reflection.AmbiguousMatchException : Ambiguous match found.]
+NVelocity.Runtime.Parser.Node.ASTMethod.Execute(Object o, IInternalContextAdapter context) +2095
+NVelocity.Runtime.Parser.Node.ASTReference.Execute(Object o, IInternalContextAdapter context) +859
+NVelocity.Runtime.Parser.Node.ASTReference.Render(IInternalContextAdapter context, TextWriter writer) +155
+NVelocity.Runtime.Parser.Node.SimpleNode.Render(IInternalContextAdapter context, TextWriter writer) +101
+NVelocity.Template.Merge(IContext context, TextWriter writer) +230
+Castle.MonoRail.Framework.Views.NVelocity.NVelocityViewEngine.Process(IRailsEngineContext context, Controller controller, String viewName) +368
+Castle.MonoRail.Framework.Controller.ProcessView() +82
+Castle.MonoRail.Framework.Controller.InternalSend(String action, Object[] actionArgs) +1854
+Castle.MonoRail.Framework.Controller.Process(IRailsEngineContext context, String areaName, String controllerName, String actionName) +373
+Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext context) +662
+Castle.MonoRail.Framework.MonoRailHttpHandler.ProcessRequest(HttpContext context) +61
+System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +401
+System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +117 </value>
+    </field>
+    <field name="created">
+      <value>1168243535000</value>
+    </field>
+    <field name="updated">
+      <value>1244675844000</value>
+    </field>
+    <field name="reporterName">
+      <value>desierk</value>
+    </field>
+    <field name="updaterName">
+      <value>desierk</value>
+    </field>
+    <field name="resolved">
+      <value>1282143655041</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675820000" />
+  </issue>
+</issues>

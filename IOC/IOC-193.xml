@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Documentation</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>193</value>
+    </field>
+    <field name="summary">
+      <value>Broken link: http://www.castleproject.org/container/documentation/v21/concepts/.ts/choosing.html</value>
+    </field>
+    <field name="description">
+      <value>broken link
+http://www.castleproject.org/container/documentation/v21/concepts/.ts/choosing.html 
+</value>
+    </field>
+    <field name="created">
+      <value>1264679273000</value>
+    </field>
+    <field name="updated">
+      <value>1266481497000</value>
+    </field>
+    <field name="reporterName">
+      <value>micdev42</value>
+    </field>
+    <field name="updaterName">
+      <value>micdev42</value>
+    </field>
+    <field name="resolved">
+      <value>1266481440000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1266422040000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1266481440000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1266481440000" />
+  </issue>
+</issues>

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - New Engine Ideas</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>515</value>
+    </field>
+    <field name="summary">
+      <value>Priorize view engines</value>
+    </field>
+    <field name="description">
+      <value>I need a feature to be able to prioritize registered view engines of the
+same type. More concrete.
+
+In DefaultViewEngineManager.ResolveEngine(String templateName, bool
+throwIfNotFound) it should pick the view engine with highest priority. So
+more than one can have this template registered. Below code in ResolveEngine
+does not guarantee a specific order:
+
+foreach(IViewEngine engine in viewEnginesFastLookup.Keys)
+{
+    if (engine.HasTemplate(templateName)) return engine;
+
+}
+
+Note: all of the engines is of the same type (Brail in my case) but one
+store the templates in files system (default), one is storing in database,
+one in memory (for preview).
+The story behind this is that it should be possible to design the site in
+VS, then add those to the database so the user can change the site from
+admin application.
+
+So what I want is to add a property on the IViewEngine called something like
+Priority and then use that when resolving.
+
+* But this will break the interface thou and is that ok? *
+
+The logic for old systems will not be changed thou because they will get
+priority 0 default and then that engine is used. But I can change the
+priority in my config.</value>
+    </field>
+    <field name="created">
+      <value>1232510347000</value>
+    </field>
+    <field name="updated">
+      <value>1242049488000</value>
+    </field>
+    <field name="reporterName">
+      <value>di97mni</value>
+    </field>
+    <field name="updaterName">
+      <value>di97mni</value>
+    </field>
+    <field name="resolved">
+      <value>1242049440000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="nice work.&#xA;&#xA;However, in the spirit of &quot;convention over configuration&quot; I'd rather keep the Priority attribute out, and have MR base the decision on the order of engine registrations.&#xA;this could be acheived simply by changing viewEnginesFastLookup from Dictionary to List." created="1235301841000" />
+    <comment author="di97mni" text="Implemented Kens comment in view_engine_priority_v2.patch&#xA;&#xA;view_engine_priority.patch is now deprecated" created="1241571456000" />
+    <comment author="roelofb" text="Applied in r5676" created="1242049485000" />
+    <comment author="di97mni" text="* '''Attachment''' view_engine_priority_v2.patch added.&#xD;&#xA;" created="1241571360000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1242049440000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1242049440000" />
+  </issue>
+</issues>

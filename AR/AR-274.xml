@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.1 Alpha 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>AR 2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>274</value>
+    </field>
+    <field name="summary">
+      <value>Joined classes not handled properly with intermediate, unmapped, abstract generic classes</value>
+    </field>
+    <field name="description">
+      <value>When a the direct base class of an ActiveRecord joined concrete class is an abstract generic class which is not the JoinedBase class and does not have the ActiveRecord attribute, the Method Castle.ActiveRecord.Framework.Internal.SemanticVerifierVisitor.AssertHasValidKey
+throws ActiveRecordException - A type must declare a primary key. Check type..."
+
+
+Method: 
+A suggested fix is 
+Method: Castle.ActiveRecord.Framework.Internal.IsChildClass
+
+// generic check
+if (child.Type.BaseType.IsGenericType)
+{
+    // changed ActiveRecordModelBuilder.IsRootType protection to internal - although the name IsRootType seems opposite of what it does
+    for (Type aBaseType = child.Type.BaseType; ActiveRecordModelBuilder.IsRootType(aBaseType);
+        aBaseType = aBaseType.BaseType)
+    {
+        if (aBaseType.GetGenericTypeDefinition() == model.Type)
+            return true;
+    }
+}
+
+</value>
+    </field>
+    <field name="created">
+      <value>1253286654000</value>
+    </field>
+    <field name="updated">
+      <value>1263467131000</value>
+    </field>
+    <field name="reporterName">
+      <value>ewrayjohnson</value>
+    </field>
+    <field name="updaterName">
+      <value>ewrayjohnson</value>
+    </field>
+    <field name="resolved">
+      <value>1262595120000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="Resolved in r6562" created="1262595172000" />
+    <comment author="xtoff" text="Markus Zywitza resolved it in r6562.&#xA;" created="1263467131000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.1 Alpha 1''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1262595120000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263467100000" />
+  </issue>
+</issues>

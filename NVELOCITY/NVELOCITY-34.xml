@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>34</value>
+    </field>
+    <field name="summary">
+      <value>Error in ResourceLocator</value>
+    </field>
+    <field name="description">
+      <value>.ctor = public ResourceLocator(String path, String filename)
+
+In loop:
+foreach (Assembly a in assemblies)
+{
+      String prefix = a.FullName.Substring(0, a.FullName.IndexOf(",")).ToLower();
+
+      /// exception, when assemblies contains dynamic assembly
+      String[] names = a.GetManifestResourceNames();
+
+      foreach (String s in names)
+      {
+         if (s.ToLower().Equals(fn) || s.ToLower().Equals(prefix + "." + fn))
+         {
+             this.filename = s;
+             assembly = a;
+             isResource = true;
+         }
+      }
+}</value>
+    </field>
+    <field name="created">
+      <value>1242896651000</value>
+    </field>
+    <field name="updated">
+      <value>1254103815000</value>
+    </field>
+    <field name="reporterName">
+      <value>spassm</value>
+    </field>
+    <field name="updaterName">
+      <value>spassm</value>
+    </field>
+    <field name="resolved">
+      <value>1254103800000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="NVelocity hasn't had a ResourceLocator class for quite a long time. Please reopen this issue if it still occurs with the trunk." created="1254103803000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1254103800000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1254103800000" />
+  </issue>
+</issues>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngines</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>116</value>
+    </field>
+    <field name="summary">
+      <value>[ASPVIEW] support .master extension for layout templates, support asp:content and asp:contentplaceholder as capturefor substitute, and allow view templates to fake design time support for (nested) layouts</value>
+    </field>
+    <field name="description">
+      <value>This proposed patch allow the use of .master files in the layouts viewtemplate's folder.
+
+It also support the use of asp:content and asp:contentplaceholder tag that will be substituted in new precompilation steps for their capturefor viewcomponent (for asp:content) and raw property output (for asp:contentplaceholder).
+
+This enables the use of design time support in visual studio for nested layout templates (albeit, it need theses need to be declared in the masterpagefile attribute of @master and/or @page directives located at the top of view templates).
+
+Patch description:
+- @page and @master directives are parsed in the same precompiler step, @master takes precedence if both are found in the same template (this is not valid in visual studio)
+- The proposed patch is also full backward compatible, and 
+- .master templates will be parsed/compiled only if found in the layouts subfolder
+- LayoutContentPlaceHolderSubstitutionStep will substitute &lt;asp:contentplaceholder runat="server"/&gt; tags with raw property output ( &lt;%=placeholderid%&gt; ) and register property if needed (will throw if property is declared but has another type than string)
+- ContentSubstitutionStep will substitute &lt;asp:content runat="server"/&gt; tags with &lt;component:capturefor/&gt; tags, will throw if no contentplaceholderid (supporting intellisense for) is passed
+- side case handling for ViewContents in both steps (full backward compatibility with previous version, also mix/match allowing raw content to be placed outside of any asp:content tags in your templates)
+- both steps compose FakeMasterPageDesignSupportStep 
+- some harmless refactoring in GetAttributesStringFrom avoiding code duplication
+- full test coverage for the new precompilation steps
+
+the patch also include some modifications of the test site for demonstration and manual integration test purposes.
+
+I'm unsure, but the regex may require some tweak from more experienced people, I'm also open for feedback/enhancement suggestions.</value>
+    </field>
+    <field name="created">
+      <value>1208177515000</value>
+    </field>
+    <field name="updated">
+      <value>1407823319035</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1407823319032</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>320</value>
+    </field>
+    <field name="summary">
+      <value>System.ArgumentNullException at Castle.MicroKernel.Burden.Release(IReleasePolicy policy) </value>
+    </field>
+    <field name="description">
+      <value>Heyhoi,
+
+I suddenly have issues on my development and test server after a new deployment of the current application.
+Those exceptions do not happen locally ofcourse :s.
+
+Current project is the following:
+
+I have normal layered projects (Domain, Persistence, Business, Presentation) and a WebProject. I use a MVP pattern to splitt of my GUI logic into the Presenters, so that those layers can be re-used within SharePoint later.
+
+I have 10 presenters all following the same principle and one of them suddenly doesn't work anymore.
+
+I use Castle.Windsor for my IOC and each layer had it's installer. I've extracted out the httpcontext using the context wrappers, so I can use them within my tests. My presentation layer has lifestyle.PerWebRequest.
+
+{code lang=cs}
+// Register the Presentation classes
+
+if (_useInterceptors)
+{
+    container.Register(AllTypes.FromThisAssembly()
+                            .BasedOn&lt;object&gt;()
+                            .WithService.FirstInterface()
+                            .Configure(conf =&gt; conf.LifeStyle.PerWebRequest)
+                            .Configure(x =&gt; x.Interceptors(new InterceptorReference(typeof(ExceptionAspect))).Anywhere));
+}
+else
+{
+    container.Register(AllTypes.FromThisAssembly()
+                            .BasedOn&lt;object&gt;()
+                            .WithService.FirstInterface()
+                            .Configure(conf =&gt; conf.LifeStyle.PerWebRequest));
+}
+
+if (null != HttpContext.Current)
+{
+    // Register a Http Context
+    container.Register(Component.For&lt;HttpContextBase&gt;()
+                                    .LifeStyle.PerWebRequest
+                                    .UsingFactoryMethod(() =&gt; new HttpContextWrapper(HttpContext.Current))
+                                    .Unless(Component.ServiceAlreadyRegistered));
+
+    container.Register(Component.For&lt;HttpRequestBase&gt;()
+                                    .LifeStyle.PerWebRequest
+                                    .UsingFactoryMethod(() =&gt; new HttpRequestWrapper(HttpContext.Current.Request))
+                                    .Unless(Component.ServiceAlreadyRegistered));
+}
+{code}
+I'm using Castle.Windsor 2.5.4 taken from NuGet.
+
+When the request is over (my code runs perfectly) the httpModule disposes my objects and here I have an issue
+
+System.ArgumentNullException: Value cannot be null.
+Parameter name: instance
+   at Castle.MicroKernel.Releasers.AllComponentsReleasePolicy.Release(Object instance) in c:\TeamCity\buildAgent\work\83ad55e3df18b1a8\src\Castle.Windsor\MicroKernel\Releasers\AllComponentsReleasePolicy.cs:line 53
+   at Castle.MicroKernel.Burden.Release(IReleasePolicy policy) in c:\TeamCity\buildAgent\work\83ad55e3df18b1a8\src\Castle.Windsor\MicroKernel\Burden.cs:line 80
+   at Castle.MicroKernel.Releasers.AllComponentsReleasePolicy.Release(Object instance) in c:\TeamCity\buildAgent\work\83ad55e3df18b1a8\src\Castle.Windsor\MicroKernel\Releasers\AllComponentsReleasePolicy.cs:line 67
+   at Castle.MicroKernel.DefaultKernel.ReleaseComponent(Object instance) in c:\TeamCity\buildAgent\work\83ad55e3df18b1a8\src\Castle.Windsor\MicroKernel\DefaultKernel.cs:line 670
+   at Castle.MicroKernel.Lifestyle.PerWebRequestLifestyleModule.Application_EndRequest(Object sender, EventArgs e) in c:\TeamCity\buildAgent\work\83ad55e3df18b1a8\src\Castle.Windsor\MicroKernel\Lifestyle\PerWebRequestLifestyleManager.cs:line 166
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)
+
+Deployed version of assembly is the following 2.5.4.32. See attachment		
+
+I hope someone can help me with this</value>
+    </field>
+    <field name="created">
+      <value>1321619524525</value>
+    </field>
+    <field name="updated">
+      <value>1321865233448</value>
+    </field>
+    <field name="reporterName">
+      <value>Pascal.Van.Vlaenderen</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1321704329831</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="Pascal.Van.Vlaenderen" text="My current work around is leaving my presentor layer in Transient instead of PerWebRequest&#xD;&#xA;" created="1321628939532" />
+    <comment author="xtoff" text="Can you provide a minimalistic reproduction? I was trying to reproduce it myself, without success." created="1321657288838" />
+    <comment author="xtoff" text="Ok, I know what the problem is.&#xA;&#xA;Windsor is trying to resolve one of your per-web-request components as part of a collection, fails to do so, and ignores it (See this SO question http://stackoverflow.com/questions/8188567/how-do-you-configure-castle-windsor-error-handling-during-the-creation-of-compon)&#xA;&#xA;The instance is not created, but Burden is, and is carried through until the end where Windsor tried to dispose of it, expecting the instance to be there, which causes the exception you're seeing.&#xA;&#xA;So, the workaround for that would be to make sure your components are properly configured and Windsor is able to resolve them just fine where it needs to.&#xA;" created="1321691508761" />
+    <comment author="Pascal.Van.Vlaenderen" text="I'll check all dependencies for this presenter and see if everything is configured accordingly.&#xA;&#xA;Thanks for the time invested !" created="1321782488999" />
+    <comment author="Pascal.Van.Vlaenderen" text="hmm, everything could be resolved and I didn't have any potential mismatched mappings, I'm not using any collections within constructors, I use property injection for most of my classes.&#xD;&#xA;&#xD;&#xA;My views though aren't set by the IOC, I still rely on my base Page to register those views within the presenter.&#xD;&#xA;" created="1321863778792" />
+    <comment author="xtoff" text="Right. As far as I can see the only case where that issue could occur is when Windsor started creation process of a component instances, created Burden for it, the actual instantiation failed, Windsor ignored it (since the dependency was not essential) but Windsor didn't discard the Burden and later on tried to release it (with null instance).&#xA;&#xA;Perhaps if you can catch the exception and look at ComponentModel if the Burden that throws the exception, you will see which component is at fault, this may give you better idea of the source of the problem." created="1321865233448" />
+  </issue>
+</issues>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>By design</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>173</value>
+    </field>
+    <field name="summary">
+      <value>Interceptor calling AbstractInvocation.Proceed() in new thread can cause never-ending loop</value>
+    </field>
+    <field name="description">
+      <value>AbstractInvocation.Proceed() is now decrementing currentInterceptorIndex in finally section (added
+in https://github.com/castleproject/Core/commit/ea8fa09)
+
+this breaks TransactionInterceptor from Castle.Transactions when handling Transaction(Fork = true)
+TransactionInterceptor is calling IInvocation.Proceed() in new thread, so if Invocation finally is executed before
+Proceed() in that new thread, then we invoke TransactionInterceptor again and end in never-ending loop.
+
+There are 3 ways to fix this IMHO:
+1) remove finally
+   not good, breaks InterceptionRetryTestCase.Interceptor_can_proceed_multiple_times
+2) add IInvocation.InvokeMethodOnTarget() so that TransactionInterceptor can call that in new thread directly
+   not good, bypasses other Interceptors if we have more then one
+3) add ICloneable interface to IInvocation so that TransactionInterceptor can pass clone of IInvocation to new thread
+   probably best option (main thread calls only interceptors before TransactionInterceptor, then new thread is created and rest of interceptors is handled in new that)
+
+What do you think?
+
+I'll attach now failing test case for Castle.Core.Tests and will try to implement option 3) unless someone else beats me to it..</value>
+    </field>
+    <field name="created">
+      <value>1341308829448</value>
+    </field>
+    <field name="updated">
+      <value>1358342165769</value>
+    </field>
+    <field name="reporterName">
+      <value>jama</value>
+    </field>
+    <field name="updaterName">
+      <value>Per.Lundberg</value>
+    </field>
+    <field name="resolved">
+      <value>1349762575168</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-596[up-to-date]</value>
+      <value>User: id = 20-899[up-to-date]</value>
+      <value>User: id = 20-902[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jama" text="TestCase added https://github.com/jansa/Core/tree/DYNPROXY-173" created="1341309122745" />
+    <comment author="jama" text="And possible fix added to that branch, it's variant of 3), because AFAIK we don't need deep copy of ICloneable, so I've added shallowCopy to IInvocation which can be used from TransactionInterceptor." created="1341317482066" />
+    <comment author="xtoff" text="I think the scenario is invalid and the bug is in the interceptor that tries to do that rather than DynamicProxy" created="1341389214711" />
+    <comment author="jama" text="Henrik: can you please comment on this?" created="1341389745533" />
+    <comment author="xtoff" text="Any update on this?" created="1344135919588" />
+    <comment author="jama" text="I was expecting Henrik as Castle.Transactions maintainer and author of current Fork implementation to comment on this, but maybe he lost interest in Castle.Transactions/Castle.Facilities.NHibernate (pending pull requests to fix last release for 2 months). &#xA;&#xA;I'm not using Fork feature of Castle.Transaction so this is not blocking issue for me, but if someone else was using it with older release then neverending loop is pretty bad behavior..." created="1345106425394" />
+    <comment author="Per.Lundberg" text="Hi Martin and Kzysztof,&#xA;&#xA;It's funny that this issue exists... It just hit us. :)&#xA;&#xA;What we are doing is applying some AOP weaving using a [RunInBackground] attribute. This is achieved by means of an interceptor that calls (surprise!) IInvocation.Proceed on a background thread. And, we are getting this kind of looping indeed, but only in &quot;some&quot; scenarios which indicate that this is a race condition depending on how quick/slow our background thread is in its processing.&#xA;&#xA;I think implementing ICloneable in IInvocation would be useful. If you do *not* want to do that, I think we should lock the IInvocation to the current thread only, so that Castle Core throws an exception when it encounters this (unsupported) scenario." created="1354140436997" />
+    <comment author="xtoff" text="Per,&#xA;so what's your actual scenario?" created="1354145088457" />
+    <comment author="Per.Lundberg" text="Hi Krzysztof,&#xA;&#xA;Let me explain it further: We have this code in the class being intercepted:&#xA;&#xA;{code:lang=cs}&#xA;        [RunInBackground(BusyMessage = &quot;Running from DataModuleInitializer&quot;)]&#xA;        public virtual void DoBackgroundStuff()&#xA;        {&#xA;            Debug.WriteLine(&quot;I am running!&quot;);&#xA;        }&#xA;{code}&#xA;&#xA;The interceptor then does something like this, instead of just calling Invocation.Proceed(), very simplified example:&#xA;&#xA;{code:lang=cs}&#xA;        void IInterceptor.Intercept(IInvocation invocation)&#xA;        {&#xA;            var backgroundAttributes = invocation.Method.GetCustomAttributes&lt;RunInBackgroundAttribute&gt;(inherit: true);&#xA;&#xA;            if (backgroundAttributes.Any())&#xA;            {&#xA;                Threading.BackgroundThreadRun(invocation.Proceed);&#xA;            }&#xA;            else&#xA;            {&#xA;                // nothing to do&#xA;                invocation.Proceed();&#xA;            }&#xA;        }&#xA;{code}&#xA;&#xA;The problem with this is that we get into race conditions. Because of the &quot;finally { currentInterceptorIndex--; }&quot; code in the AbstractInvocation, there are cases where the interceptor will get incorrectly called over and over.&#xA;&#xA;I looked at Martin's fix and it would work for us. Can you consider pulling it into Castle Core?&#xA;&#xA;If you want to make it even better, to avoid people like us shooting ourselves in the foot (...), you could add checks in the AbstractInvocation to ensure that all interceptors + the InvokeMethodOnTarget() are all being called on the same thread. This requires a bit more work though, so for the time being my vote goes for just including Martin's fix as a &quot;quick fix&quot;.&#xA;&#xA;Many thanks in advance.&#xA;&#xA;Best regards,&#xA;Per" created="1354175946949" />
+    <comment author="xtoff" text="The problem is not with invocation pipeline being forced to run all on a single thread. In fact SynchroniseFacility is dedicated to just the opposite - transparent marshalling calls to dispatcher thread.&#xA;&#xA;The issue here is that an invariant is broken: Proceed() must finish before Invoke() finishes.&#xA;&#xA;Martin's patch hacks around immediate ramifications of breaking this invariant in this particular scenario but by allowing you to break the invariant you're still exposed to plenty potential bugs and race conditions in the outer interceptors. For example you can no longer guarantee that after calling invocation.Proceed() you can safely access invocation.ReturnValue in the following line, since the value may not have been set by then.&#xA;&#xA;So while it is fine to call proceed on another thread, you must ensure that the call has returned before you return. If you can't ensure that, perhaps DynamicProxy is not the right tool for the job and you're better off being explicit here?" created="1354226178694" />
+    <comment author="Per.Lundberg" text="Thanks. I see your points.&#xA;&#xA;The reason we are using (and have been for almost a year actually, until we found out this bug...) DynamicProxy for this is that it gives us the beauty of AOP, declarative stuff rather than imperative.&#xA;&#xA;Of course we can do it imperatively, that's not the point. We just find ut more beautiful to be able to do like this. :-)&#xA;&#xA;Obviously, one way that would simplify this kind of thing is if we could control how the interceptor actually Invokes() the target method. That's what we've been trying to achieve. However, I think the actual Invoke() method is being generated by DynamicProxy so it's not entirely obvious how we would override/tweak that part. And, we definitely want to play nice and do stuff that works with the stock Castle Core/Windsor stuff...&#xA;&#xA;Any suggestions, what so ever? (except for the obvious &quot;accept the limitations of the framework&quot; expected rant :-)" created="1354228442836" />
+    <comment author="xtoff" text="So what about waiting for the proceed to return option?" created="1354229190779" />
+    <comment author="Per.Lundberg" text="We could do it like that, but it destroys user code pattern like this:&#xA;&#xA;{code:lang=cs}&#xA;&#xA;        public LoadStuff()&#xA;        {&#xA;                FetchUser();&#xA;                FetchFacilities();&#xA;                FetchCustomers();&#xA;        }&#xA;&#xA;        [RunInBackground(BusyMessage = &quot;Please wait, loading...&quot;)]&#xA;        public virtual void FetchUser()&#xA;        {&#xA;            User = FetchRestData(&quot;/user/current&quot;);&#xA;        }&#xA;&#xA;        [RunInBackground(BusyMessage = &quot;Please wait, loading...&quot;)]&#xA;        public virtual void FetchFacilities()&#xA;        {&#xA;            User = FetchRestData(&quot;/facilities&quot;);&#xA;        }&#xA;&#xA;        [RunInBackground(BusyMessage = &quot;Please wait, loading...&quot;)]&#xA;        public virtual void FetchCustomers()&#xA;        {&#xA;            User = FetchRestData(&quot;/customers&quot;);&#xA;        }&#xA;&#xA;{code}&#xA;&#xA;...which is a bit bad, since this is kind of the point of the [RunInBackground] metaphor in the first place. :)&#xA;If all of these operations get serialized, we loose much of the benefits of the background threading." created="1354518249786" />
+    <comment author="Per.Lundberg" text="Krzysztof, do you have any suggestions except than &quot;live with it&quot;?" created="1355519201587" />
+    <comment author="jcviau" text="We had the same issue when updating to latest castle version. &#xA;&#xA;Our use-case is similar. Instead of having an attribute (e.g. RunInBackground), some of our call are always executed asynchronously. The queuing was done in an interceptor and it was called back for the execution (proceed). This does not works with latest version for the reason explained in this thread.&#xA;&#xA;After finding the issue, we did understand the changes of behavior and accepted it. What we need is a way to call the generated method (invocation) without the interceptor that have already been processed. We could not find a way to do this with the actual version. We would like a clone (with selected interceptors) or public method to call that would proceed without interceptors or with selected interceptors.&#xA;&#xA;What we finally did for now is something similar to a clone : create a new invocation without the interceptor that were already called (in our case we had only 1) with reflection. Then, we called Proceed." created="1356108817804" updated="1356109084408" />
+    <comment author="Per.Lundberg" text="Jean-Claude,&#xA;&#xA;Thanks for your feedback. Would you care to share some sample code for this? Since it seems like a &quot;real&quot; fix from upstream will take some time to get, an app-level workaround would be quite nice. Thanks in advance." created="1356602211794" />
+    <comment author="jcviau" text="I dont have the code in front of me but it looked like this :&#xA;&#xA;var invocationWithoutInterceptors = (IInvocation)Activator.CreateInstance(invocation.GetType(), new object[] { ... }&#xA;invocationWithoutInterceptors.Proceed();&#xA;&#xA;... : all params retrieved form invocation instance and we were passing null for the interceptors parameter (wont work if you have some interceptor that still need to be processed).&#xA;&#xA;Good luck.&#xA;" created="1357529016371" />
+    <comment author="Per.Lundberg" text="FWIW, here is my workaround, based on Jean-Claude's suggestion. The FIXME (which is realy more of a 'gotcha') is quite important. You can ONLY use this if you know with 100% certainty that the method in question only needs to be intercepted by this sole interceptor. Period. That said, it is quite useful in such scenarios anyway. :-)&#xA;&#xA;{code:lang=cs}&#xA;        private static IInvocation CloneInvocationWithoutInterceptor(IInvocation invocation)&#xA;        {&#xA;            // FIXME: If the method in question is intercepted by more than this single interceptor, this will not work since&#xA;            // all remaining interceptors (after this one) will not be called. Cannot really make it more foolproof than this,&#xA;            // since InheritanceInvocation.interceptors is private and reflecting on private fields doesn't seem so smart.&#xA;            var result = (IInvocation) Activator.CreateInstance(invocation.GetType(), new[] &#xA;            {&#xA;                // Taken from InheritanceInvocation in the Castle.Core source code:&#xA;                // Type targetType&#xA;                invocation.TargetType,&#xA;&#xA;                // object proxy&#xA;                invocation.Proxy,&#xA;&#xA;                // IInterceptor[] interceptors&#xA;                null,&#xA;&#xA;                // MethodInfo proxiedMethod&#xA;                invocation.Method,&#xA;&#xA;                // object[] arguments&#xA;                invocation.Arguments&#xA;            });&#xA;&#xA;            return result;&#xA;        }&#xA;{code}" created="1358342165753" />
+  </issue>
+</issues>

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Wcf</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>148</value>
+    </field>
+    <field name="summary">
+      <value>WCF Integration Facility Channel Closing</value>
+    </field>
+    <field name="description">
+      <value>Releasing WCF connection component from the container does not close/abort the connection. Evidence includes the ability to still run operations against the web service as well as time outs resulting from web service connections reaching maximum allowance (for singleton instance web services supporting multiple concurrent operations).
+
+Consider the following installer code:
+
+{code lang=java}
+// In some installer class (WindsorInstaller.cs)
+public void Install(IWindsorContainer container, IConfigurationStore store) {
+    container.Register(
+        Component.For&lt;IMyService&gt;()
+            .Forward&lt;IMyOtherService&gt;()
+            .AsWcfClient(WcfEndpoint.FromConfiguration("WSHttpBinding_IMyService"))
+            .LifeStyle.Transient
+    );
+} 
+{code}
+
+and component resolution / release code:
+
+{code lang=java}
+void StraightResolve() {
+    IWindsorContainer kernal = new WindsorContainer();
+    kernal.AddFacility&lt;WcfFacility&gt;();
+    kernal.Install(new WindsorInstaller());
+    
+    var service = kernal.Resolve&lt;IMyService&gt;();
+    if (service != null) {
+        var foo = service.GetComponent("AE8CAE59-CC90-4250-A70A-67A9D4EBA33A");
+        kernal.Release(service);
+        
+        // Would expect this to fail due to closed channel - perhaps the connection
+        // has renewed, given that the facility detected a "fault"/"exception"?
+        var bar = service.GetComponent("AE8CAE59-CC90-4250-A70A-67A9D4EBA33A");
+        
+        var blah = bar;
+    }
+}
+{code}
+
+Even if I cast the resolved connection component to a System.ServiceModel.Channels.IChannel and call Close() or Abort(), before and after the component's release, the connection appears to still be alive/opened.
+
+Casting the resolved connection component to a System.Runtime.Remoting.Channels.IChannel doesn't seem to be very helpful either.
+
+I've also attempted using a typed factory as demonstrated below with identical results:
+
+{code lang=java}
+void FactoryResolve() {
+    IWindsorContainer kernal = new WindsorContainer();
+    kernal.AddFacility&lt;TypedFactoryFacility&gt;();
+    kernal.AddFacility&lt;FactorySupportFacility&gt;();
+    kernal.AddFacility&lt;WcfFacility&gt;();
+    kernal.Install(new WindsorInstaller());
+
+    var serviceFactory = kernal.Resolve&lt;IFactory&lt;IMyService&gt;&gt;();
+    var service = serviceFactory.Create();
+
+    if (serviceFactory != null) {
+        if (service != null) {
+            var foo = service.GetComponent("AE8CAE59-CC90-4250-A70A-67A9D4EBA33A");
+            serviceFactory.Destroy(service);
+            var bar = service.GetComponent("AE8CAE59-CC90-4250-A70A-67A9D4EBA33A");
+            var blah = bar;
+        }
+
+        kernal.Release(serviceFactory);
+    }
+}
+{code}
+
+The WindsorInstaller file would have been updated as follows:
+
+{code lang=java}
+public void Install(IWindsorContainer container, Castle.MicroKernel.SubSystems.Configuration.IConfigurationStore store) {
+    container.Register(
+        Component.For&lt;IMyService&gt;()
+            .Forward&lt;IUserService&gt;()
+            .AsWcfClient(WcfEndpoint.FromConfiguration("WSHttpBinding_IMyService"))
+            .LifeStyle.Transient,
+
+        Component.For&lt;IFactory&lt;IMyService&gt;&gt;()
+            .AsFactory()
+    );
+}
+{code}
+
+Version Info: Assembly v2.5.0.0 - File v2.5.0.82 - Product v2.5.0.82</value>
+    </field>
+    <field name="created">
+      <value>1305562235191</value>
+    </field>
+    <field name="updated">
+      <value>1407822842874</value>
+    </field>
+    <field name="reporterName">
+      <value>bitxwise</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1323267460270</value>
+    </field>
+    <field name="voterName">
+      <value>fedehf</value>
+      <value>korneliuk</value>
+      <value>mark.dixon909</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-725[up-to-date]</value>
+      <value>User: id = 20-739[up-to-date]</value>
+      <value>User: id = 20-744[up-to-date]</value>
+      <value>User: id = 20-821[up-to-date]</value>
+      <value>User: id = 20-88[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="fedehf" text="Any updates on this one? Thanks." created="1307651181606" />
+    <comment author="xtoff" text="No fix as of yet. But probably will make it into the release." created="1310169623348" />
+    <comment author="mark.dixon909" text="We're seeing a large memory leak with thousands of instances of WCF channel objects. Do you think this could be related to this issue? We're using PerWebRequest lifestyle so I'd be expecting these connection objects to be cleaned up. " created="1323178697409" />
+    <comment author="cneuwirt" text="Although everything functions as expected, your observation is correct.  The Channel Repair mechanism renews the channel. This policy applies on every interaction with the Channnel (including getting its State).  However, this probably doesn't make sense when you release the component so I added a check to not refresh the channel if the correspoonding component has been disposed." created="1323267393533" />
+  </issue>
+</issues>

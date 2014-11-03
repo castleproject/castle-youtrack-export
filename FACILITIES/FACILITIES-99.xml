@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>NHibernate</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>99</value>
+    </field>
+    <field name="summary">
+      <value>NHibernate Facility Event Listeners Configuration</value>
+    </field>
+    <field name="description">
+      <value>This patch is to allow for the configuration of Event Listeners within the NHibernate Facility.
+Within your factory just put:
+                    &lt;listeners&gt;
+                        &lt;listener class="MySaveListener,MyAssembly" type="SaveUpdate"/&gt;
+                        &lt;listener class="MyDeleteListener,MyAssembly" type="Delete"/&gt;
+                    &lt;/listeners&gt;
+
+Class is the fully qualified name of your listener class. Type is the ListenerType enumeration (defined within NHibernate).
+
+Also I have changed the way that the Configuration object is created.
+The facility now has a dependency on IConfigurationBuilder (a default is provided).
+The reasoning behind this is two fold.
+It should now be clearer as to how the Facility is configured.
+By implementing IConfigurationBuilder you can easily change the configuration schema.</value>
+    </field>
+    <field name="created">
+      <value>1209444012000</value>
+    </field>
+    <field name="updated">
+      <value>1303210992243</value>
+    </field>
+    <field name="reporterName">
+      <value>derek</value>
+    </field>
+    <field name="updaterName">
+      <value>Chris.Canal</value>
+    </field>
+    <field name="resolved">
+      <value>1282141229651</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-675[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="tehlike" text="Fixed in rev 5070 by Derek Ekins" created="1231910906000" />
+    <comment author="tehlike" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1231910880000" />
+    <comment author="xtoff" text="Shouldn't we be able to do it via code too? Facility whould pull all components for any listener type and set that" created="1303097222587" />
+    <comment author="henry" text="It should, but the facility doesn't exposes a good config interface." created="1303136833290" />
+    <comment author="xtoff" text="{{container.Register()}} is the only API you'd need. I think if I register something as listener in the container you can pretty safely assume I want to use it." created="1303161906368" />
+    <comment author="henry" text="This would be the simplest use case, but you can have multiple Session Factories, for example. " created="1303162476899" />
+    <comment author="xtoff" text="correct. Would you not want to use your filters for all the session factories though? I would assume you do and give a opt out mechanism (user service overrides for example)." created="1303162833227" />
+    <comment author="henry" text="Not sure if I want to list for events all the sessions. Maybe this is a requierment for one set of data/entities/db, and not the another. But I'm fine to this limitation. The opt out mechanism is the thing that we need to think a little better." created="1303163579024" />
+    <comment author="Chris.Canal" text="Hi guys,&#xA;&#xA;We have something in work for container supported listeners I can port across, how would the following look? &#xA;&#xA;container.Register(Component.For&lt;SameSaveListener&gt;().AsNHibernateListener(ListenerType.SaveUpdate).For(&quot;factory name&quot;))&#xA;&#xA;or&#xA;&#xA;container.Register(NHibernateListener.Of&lt;SameSaveListener&gt;(ListenerType.SaveUpdate).For(&quot;factory name&quot;))&#xA;&#xA;.For is optional, if it's supplied, it will be applied to that factory, if not, it is applied to all.  Listeners will be registered as singletons (?) as they will only be resolved once.&#xA;&#xA;There is not OOD way to associate the Enum type with the interface type, to do so, we would need to create our own map.  The advantage of this is less registration boilerplate code, and disadvantage is that now need to keep that maintained, something like:&#xA;&#xA;RegisterListenerType&lt;ISaveOrUpdateEventListener&gt;(ListenerType.SaveUpdate);&#xA;RegisterListenerType&lt;ISaveOrUpdateEventListener&gt;(ListenerType.Save);&#xA;RegisterListenerType&lt;IPostInsertEventListener&gt;(ListenerType.PostInsert);&#xA;RegisterListenerType&lt;IPostUpdateEventListener&gt;(ListenerType.PostUpdate);&#xA;&#xA;Unless there is a map in NHibernate...&#xA;&#xA;One dangerous thing about resolving listeners through the container is some people might try and take a dependency that relies on the session.  I have seen people in here try it and come to be very confused :)&#xA;&#xA;&#xA;" created="1303210992243" />
+  </issue>
+</issues>

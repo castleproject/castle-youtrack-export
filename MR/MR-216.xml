@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>216</value>
+    </field>
+    <field name="summary">
+      <value>can't handle a root controller with virtual directory of empty string</value>
+    </field>
+    <field name="description">
+      <value>Basically, when there is a default (i.e., unnamed) top-level controller (called just Controller) and the name of the virtual directory is the empty string, MonoRail was incorrectly declaring the URL invalid.
+
+The Fix
+
+In UrlTokenizer, line 53 where it says if (parts.Length &lt; 2), check for empty string virtual directory
+
+if ( parts.Length &lt; 2 )
+{
+                if ("".Equals(virtualDirectory))
+                {
+                    // Special case for unnamed controller with no virtual directory
+                    parts = new String[] { "", parts[0] };
+                }
+                else
+                {
+                    throw new UrlTokenizerException("Invalid url");
+                }
+}
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1169154178000</value>
+    </field>
+    <field name="updated">
+      <value>1244675861000</value>
+    </field>
+    <field name="reporterName">
+      <value>dfields</value>
+    </field>
+    <field name="updaterName">
+      <value>dfields</value>
+    </field>
+    <field name="resolved">
+      <value>1282143666432</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675820000" />
+  </issue>
+</issues>

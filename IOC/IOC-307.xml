@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Cosmetics</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Registration API</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>307</value>
+    </field>
+    <field name="summary">
+      <value>Clean up Lifestyle registration API</value>
+    </field>
+    <field name="description">
+      <value>The registration API for lifestyles is highly inconsistent and provides too many ways to achieve the same thing.  The current git sources let you do this, and they're all equivalent:
+
+c.Register(Component.For&lt;IFoo&gt;().LifeStyle.Singleton);
+c.Register(Component.For&lt;IFoo&gt;().LifeStyle.Is(LifestyleType.Singleton))
+c.Register(Component.For&lt;IFoo&gt;().LifeStyle.Custom&lt;SingletonLifestyleManager&gt;())
+c.Register(Component.For&lt;IFoo&gt;().LifestyleSingleton());
+c.Register(Component.For&lt;IFoo&gt;().LifestyleCustom&lt;SingletonLifestyleManager&gt;())
+
+I think it'd be easier to maintain in the long run to have a single and consistent way to do registrations, perhaps even with extension methods so if people implement their own lifestyles the code will still look the same, without having to do .Custom&lt;&gt;.</value>
+    </field>
+    <field name="created">
+      <value>1313077081973</value>
+    </field>
+    <field name="updated">
+      <value>1314883879458</value>
+    </field>
+    <field name="reporterName">
+      <value>bling</value>
+    </field>
+    <field name="updaterName">
+      <value>bling</value>
+    </field>
+    <field name="resolved">
+      <value>1314874427442</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Bailey,&#xA;&#xA;{code}&#xA;c.Register(Component.For&lt;IFoo&gt;().LifeStyle.Singleton); // this will go away at some point but is very popular right now&#xA;c.Register(Component.For&lt;IFoo&gt;().LifeStyle.Is(LifestyleType.Singleton)) // this is used in different contexts, mostly for external frameworks&#xA;c.Register(Component.For&lt;IFoo&gt;().LifeStyle.Custom&lt;SingletonLifestyleManager&gt;()) // I hope nobody does that for standard lifestyles but it will go away eventually&#xA;c.Register(Component.For&lt;IFoo&gt;().LifestyleSingleton()); // this is going to be the default and recommended way in most cases&#xA;c.Register(Component.For&lt;IFoo&gt;().LifestyleCustom&lt;SingletonLifestyleManager&gt;()) // I hope nobody does that for standard lifestyles&#xA;&#xA;{code}&#xA;&#xA;So to sum it up - the {{.Lifestyle.}} property will be phased out but it will take some time - it's not going to be deprecated just yet.&#xA;LifestyleSomething() methods are the recommended ways from now on, mostly because they are faster to type (one less dot)&#xA;Lifestyle.Is and LifestyleCustom have their place and there are cases where they are very useful and I don't think anyone will be confused about those... At best an xml comment should suffice (assuming anyone reads them).&#xA;&#xA;In other words I don't think that's a big issue - it's just a transition period before we can obsolete the properties (probably Windsor 4) and remove them (probably Windsor 5) that that might be confusing, but I'm not too worried about that." created="1313140327927" />
+    <comment author="xtoff" text="As discussed above, this is not really trivial to address and there are legitimate reasons for all those overloads to exist. Let me know if you still think there's a better way to solve this issue.&#xA;&#xA;cheers,&#xA;Krzysztof" created="1314880046927" />
+    <comment author="bling" text="For sure it's not a big deal as it really is just cosmetics.  If obsoleting the LifeStyle property is on the road map (from the sounds of it in v4), then that's good news.&#xA;&#xA;Thanks,&#xA;Bailey" created="1314883879458" />
+  </issue>
+</issues>

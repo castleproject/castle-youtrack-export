@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>19</value>
+    </field>
+    <field name="summary">
+      <value>Support for PI in the configuration file</value>
+    </field>
+    <field name="description">
+      <value>Complex applications in complex scenarios usually requires conditional evaluation on the configuration tree. A small subset of language can achieve this using Xml PI:
+
+&lt;? define DEBUG ?&gt;
+
+&lt;components&gt;
+
+  &lt;? ifdef DEBUG ?&gt;
+  &lt;component id="a" type="x" /&gt;
+  &lt;? else ?&gt;
+  &lt;component id="a" type="y" /&gt;
+  &lt;? end ?&gt;
+
+&lt;/components&gt;
+
+What could be initially supported:
+
+define
+undefine
+if/elif/else/end
+
+No idea of the effort to create such support, but it's a must.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1134498071000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853104</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282141651885</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

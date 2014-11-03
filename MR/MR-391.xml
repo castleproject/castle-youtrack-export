@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>391</value>
+    </field>
+    <field name="summary">
+      <value>ViewComponentDetailsAttribute use could lead to duplicate names.</value>
+    </field>
+    <field name="description">
+      <value>If a ViewComponent which does not use ViewComponentDetailsAttribute, is derived from another ViewComponent which DOES use ViewComponentDetailsAttribute, DefaultViewComponentRegistry will search up the inheritance tree, find the parent's ViewComponentDetailsAttribute, and register both components with the same name (causing an exception).
+
+The fix would be to limit search for the attribute to just the specific class, when determining the name to register.  (Searching the for attribute to retrieve the Sections list is done separately, and still continues up the inheritance tree)</value>
+    </field>
+    <field name="created">
+      <value>1199670072000</value>
+    </field>
+    <field name="updated">
+      <value>1244676975000</value>
+    </field>
+    <field name="reporterName">
+      <value>jamescurran</value>
+    </field>
+    <field name="updaterName">
+      <value>jamescurran</value>
+    </field>
+    <field name="resolved">
+      <value>1282145480932</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676960000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Closed'' to ''Closed''.&#xD;&#xA;" created="1244676960000" />
+  </issue>
+</issues>

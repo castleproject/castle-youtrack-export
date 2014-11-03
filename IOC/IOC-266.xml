@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.3</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>266</value>
+    </field>
+    <field name="summary">
+      <value>Dependency of a generic service is not disposed in Windsor 2.5.x</value>
+    </field>
+    <field name="description">
+      <value>This is related to IOC-250 and IOC-253.  In the latest 2.5.x build, I have found that the fix has only been partially implemented.  Consider a scenario where we have a generic service X with a non-generic dependency Y.  Both are singleton components.  Upon disposal of the container, the behavior is as follows:
+
+* In Windsor &lt;= 2.5.2, neither X nor Y are disposed
+* In Windsor 2.5.x build #28, X is disposed and Y is not disposed
+* In Windsor Master build #2204, both X and Y are disposed
+
+The behavior in the trunk is correct, and ideally would be ported back to the 2.5.x series.
+
+Please see the following unit test to demonstrate (fails in 2.5.x, passes in trunk):
+
+{code}
+using System;
+using Castle.MicroKernel.Registration;
+using Castle.Windsor;
+using NUnit.Framework;
+
+namespace Windsor.UnitTests
+{
+    [TestFixture]
+    public class DisposeWhenGenericComponentsPresent
+    {
+        [Test]
+        public void Test()
+        {
+            using (var container = new WindsorContainer())
+            {
+                container.Register(
+                    Component.For&lt;IDependencyOfGenericService&gt;().ImplementedBy&lt;DependencyOfGenericService&gt;(),
+                    Component.For(typeof(IGenericService&lt;&gt;)).ImplementedBy(typeof(GenericService&lt;&gt;))
+                    );
+
+                var dependency = container.Resolve&lt;IDependencyOfGenericService&gt;();
+                var service = container.Resolve&lt;IGenericService&lt;int&gt;&gt;();
+
+                Assert.IsFalse(dependency.IsDisposed);
+                Assert.IsFalse(service.IsDisposed);
+                container.Dispose();
+
+                // Behavior in Windsor 2.5.2
+                //Assert.IsFalse(service.IsDisposed);
+                //Assert.IsFalse(dependency.IsDisposed);
+
+                // Behavior in Windsor 2.5 build #28
+                //Assert.IsTrue(service.IsDisposed);
+                //Assert.IsFalse(dependency.IsDisposed);
+
+                // Behavior in Windsor Master build #2204 (current trunk)
+                // THIS IS THE EXPECTED BEHAVIOR
+                Assert.IsTrue(service.IsDisposed);
+                Assert.IsTrue(dependency.IsDisposed);
+            }
+        }
+
+        public interface IGenericService&lt;T&gt; : IDisposable
+        {
+            bool IsDisposed { get; }
+        }
+
+        public class GenericService&lt;T&gt; : IGenericService&lt;T&gt;
+        {
+            public GenericService(IDependencyOfGenericService factory)
+            {
+            }
+
+            public void Dispose()
+            {
+                IsDisposed = true;
+            }
+
+            public bool IsDisposed { get; private set; }
+        }
+
+        public interface IDependencyOfGenericService : IDisposable
+        {
+            bool IsDisposed { get; }
+        }
+
+        public class DependencyOfGenericService : IDependencyOfGenericService
+        {
+            public void Dispose()
+            {
+                IsDisposed = true;
+            }
+
+            public bool IsDisposed { get; private set; }
+        }
+    }
+}
+
+
+{code}
+</value>
+    </field>
+    <field name="created">
+      <value>1295469098296</value>
+    </field>
+    <field name="updated">
+      <value>1407822257307</value>
+    </field>
+    <field name="reporterName">
+      <value>slange</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1296614267626</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="slange" text="I can confirm that this is working in 2.5.x build 30 -- thanks so much!  Looking forward to the official 2.5.3 release." created="1296658945454" />
+    <comment author="xtoff" text="it was released yesterday&#xA;" created="1296696572283" />
+    <comment author="slange" text="I think I got skunked by my browser cache on castleproject.org -- missed your announcement -- sorry.  Got it and put it in our trunk -- works like a charm.  Thanks very much!" created="1296706688564" />
+  </issue>
+</issues>

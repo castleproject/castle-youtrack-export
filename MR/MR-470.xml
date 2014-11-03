@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>470</value>
+    </field>
+    <field name="summary">
+      <value>Flash adds multiple keep entries for same key, and does not Discard(key) correctly (leaves stragglers)</value>
+    </field>
+    <field name="description">
+      <value>
+Flash uses an ArrayList (keep) to keep track of which keys to keep when persisted. The InternalAdd method adds entries to keep:
+
+                private void InternalAdd(object key, object value)
+                {
+                        keep.Add(key);
+                        base[key] = value;
+                }
+
+If the same key is added more than once, keep contains duplicated keys. The Discard(key) method does not account for this. Here is a (one-liner) patch that solves the issue:
+
+....MonoRail/Castle.MonoRail.Framework
+$ svn diff Flash.cs 
+Index: Flash.cs
+===================================================================
+--- Flash.cs    (revision 5246)
++++ Flash.cs    (working copy)
+@@ -148,7 +148,8 @@
+                /// &lt;/summary&gt;
+                public void Discard(object key)
+                {
+-                       keep.Remove(key);
++            while (keep.Contains(key))
++                           keep.Remove(key);
+                }
+ 
+                /// &lt;summary&gt;
+</value>
+    </field>
+    <field name="created">
+      <value>1218006089000</value>
+    </field>
+    <field name="updated">
+      <value>1263055477000</value>
+    </field>
+    <field name="reporterName">
+      <value>tedfordgif</value>
+    </field>
+    <field name="updaterName">
+      <value>tedfordgif</value>
+    </field>
+    <field name="resolved">
+      <value>1253867400000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="A matching test please ..." created="1221485479000" />
+    <comment author="tedfordgif" text="I added to the existing FlashDiscard test. See attached FlashDiscard.patch, which also contains the original patch." created="1221805892000" />
+    <comment author="jsimons" text="Why not patch the InternalAdd method instead?&#xA;So that InternalAdd checks if keep already contains key:&#xA;	private void InternalAdd(object key, object value)&#xA;	{&#xA;		Keep(key); //This method already does the check&#xA;		base[key] = value;&#xA;	}&#xA;" created="1221866944000" />
+    <comment author="roelofb" text="r5997" created="1253867433000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055440000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1221485460000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1253867400000" />
+  </issue>
+</issues>

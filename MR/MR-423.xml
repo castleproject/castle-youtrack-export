@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Duplicate</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>423</value>
+    </field>
+    <field name="summary">
+      <value>MonoRailHttpHandlerFactory.CurrentEngineContext is not initialised before processing is handed off to NotFoundHandler.  DefaultViewEngineManager.ContextualizeViewEngine requires CurrentEngineContext to be initialised</value>
+    </field>
+    <field name="description">
+      <value>When a controller cannot be found to handle the current request, a NotFoundHandler is created to process the request and return the appropriate 404 page.  
+The NotFoundHandler delegates to the current view engine manager if a custom 404 page is present (rescues/404).  
+If the DefaultViewEngineManager is used, it adds the resolved view engine to the services associated with the current engine context via MonoRailHttpHandlerFactory.CurrentEngineContext.AddService(typeof(IViewEngine), engine);  this requires the CurrentEngineContext to be initialised prior to this call.
+Currently context.Items[CurrentEngineContextKey] = engineContext; is executed after trying to resolve the controller and (on failing) handing off to the NotFoundHandler, resulting in a NullReferenceException.
+
+Attached patch simply moves the context.Items[CurrentEngineContextKey] = engineContext; line to directly after the engine context is created (immediately prior to controller resolution).  There is no tests associated with this patch as I am unsure how to test the handler factory to prove this scenario.</value>
+    </field>
+    <field name="created">
+      <value>1204565482000</value>
+    </field>
+    <field name="updated">
+      <value>1244676985000</value>
+    </field>
+    <field name="reporterName">
+      <value>neal</value>
+    </field>
+    <field name="updaterName">
+      <value>neal</value>
+    </field>
+    <field name="resolved">
+      <value>1282145556979</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676960000" />
+  </issue>
+</issues>

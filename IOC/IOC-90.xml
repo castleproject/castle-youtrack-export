@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>90</value>
+    </field>
+    <field name="summary">
+      <value>Component priority is messed up if component id is longer that 8 characters</value>
+    </field>
+    <field name="description">
+      <value>I have a component with a compulsory dependency on a service implemented by two components. If not explicitly set, the container should resolve the dependency with the first component registered in the configuration file, but this is working as expected only as far as the component ids are shorter than 8 characters, otherwise it looks like it has an unpredictable behavior.
+
+      &lt;component id="HttpFileDownloader"
+                 service="WindsorSample.IFileDownloader, WindsorSample"
+                 type="WindsorSample.HttpFileDownloader, WindsorSample"&gt;
+      &lt;/component&gt;
+      &lt;component id="FtpFileDownloader"
+                service="WindsorSample.IFileDownloader, WindsorSample"
+                type="WindsorSample.FtpFileDownloader, WindsorSample"&gt;
+      &lt;/component&gt;  
+
+With these ids, the FtpFileDownloader is always chosen by the container, be it registered above or below the HttpFileDownloader component. If I make the ids short, below 8 chars, the behavior is the expected one.</value>
+    </field>
+    <field name="created">
+      <value>1184961850000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853166</value>
+    </field>
+    <field name="reporterName">
+      <value>simone_b</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1241442660000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="Attach unit tests works" created="1241442665000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Reopened'' to ''Resolved''.&#xD;&#xA;" created="1241442660000" />
+  </issue>
+</issues>

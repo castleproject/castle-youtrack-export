@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>27</value>
+    </field>
+    <field name="summary">
+      <value>Validators in a Chain - ValidateNonEmpty fails with BelongsTo</value>
+    </field>
+    <field name="description">
+      <value>I have a journal that has an EntryType property:
+
+        [BelongsTo("EntryTypeID"), ValidateNonEmpty("Entry Type is required")]
+        public ListItem EntryType
+        {
+            get { return entryType; }
+            set { entryType = value; }
+        }
+
+On the Add form I'm using the Select Helper like so:
+       $Form.Select("journal.entryType.id", $EntryTypes, "%{value='Id', text='Description', firstoption='Please Select', firstoptionvalue=''}")
+
+And a journal controller that has a save action using ARDataBind:
+
+        public void Save([ARDataBind("journal", Validate = true, AutoLoad = AutoLoadBehavior.NewRootInstanceIfInvalidKey )] Journal journal)
+
+
+With that ValidateNonEmpty attribute in place on the EntryType, the databinding isn't working correctly.  Regardless of what I set the value to in the form, It's always leaving the property as null.  If I remove the ValidateNonEmpty attribute, then the property gets set correctly, and the journal is saved.
+
+I had a peek around in the DataBinder source, and I think I observed the problem occuring in the InternalRecursiveBindObjectInstance method.  Line 308 seems to be the problem - funny, as there are vague comments on lines 306 and 307 that say "There are some caveats by running the validators here. We should follow the validator's execution order..."
+
+Line 308 (IMHU) seems to be checking the validation rules before binding has had a chance to take place.  Because the property hasn't been bound yet, it's empty.  Because my validator is ValidateNonEmpty, validation is failing.  This means the property binding is aborted, and the binder moves on to the next property. </value>
+    </field>
+    <field name="created">
+      <value>1180250215000</value>
+    </field>
+    <field name="updated">
+      <value>1186442030000</value>
+    </field>
+    <field name="reporterName">
+      <value>tim</value>
+    </field>
+    <field name="updaterName">
+      <value>tim</value>
+    </field>
+    <field name="resolved">
+      <value>1282137501651</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

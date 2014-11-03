@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>AR 2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>277</value>
+    </field>
+    <field name="summary">
+      <value>When setting UseAutoImport=false DeleteAll cannot be performed</value>
+    </field>
+    <field name="description">
+      <value>When class is decorated with ActiveRecordAttribute with UseAutoImport set to false, DeleteAll cannot be performed with the following stact trace:
+
+Castle.ActiveRecord.ActiveRecordBase.DeleteAll (System.Type type) [0x00000]
+ at Castle.ActiveRecord.ActiveRecordMediator.DeleteAll (System.Type type) [0x00000]
+ at Castle.ActiveRecord.ActiveRecordMediator`1[SecPL.aircraftlogger.Data.Beans.AircraftObject].DeleteAll () [0x00000]
+ at SecPL.Return.Core.Database.DatabaseManager.DeleteAll[AircraftObject] () [0x00000]
+2009-11-19 09:14:18.0131 | ERROR : aircraftlogger - Castle.ActiveRecord.Framework.ActiveRecordException: Could not perform DeleteAll for AircraftObject ---&gt; NHibernate.Hql.Ast.ANTLR.QuerySyntaxException: AircraftObject is not mapped [from AircraftObject]
+ at NHibernate.Hql.Ast.ANTLR.SessionFactoryHelperExtensions.RequireClassPersister (System.String name) [0x00000]
+ at NHibernate.Hql.Ast.ANTLR.Tree.FromElementFactory.AddFromElement () [0x00000]
+ at NHibernate.Hql.Ast.ANTLR.Tree.FromClause.AddFromElement (System.String path, IASTNode alias) [0x00000]
+ at NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.CreateFromElement (System.String path, IASTNode pathNode, IASTNode alias, IASTNode propertyFetch) [0x00000]
+ at NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.fromElement () [0x00000]
+ at NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.fromElementList () [0x00000]
+ at NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.fromClause () [0x00000]
+ at NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.unionedQuery () [0x00000]
+ at NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.query () [0x00000]
+ at NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.selectStatement () [0x00000]
+ at NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.statement () [0x00000]
+ at NHibernate.Hql.Ast.ANTLR.HqlSqlTranslator.Translate () [0x00000]
+ at NHibernate.Hql.Ast.ANTLR.QueryTranslatorImpl.Analyze (NHibernate.Hql.Ast.ANTLR.HqlParseEngine parser, System.String collectionRole) [0x00000]
+ at NHibernate.Hql.Ast.ANTLR.QueryTranslatorImpl.DoCompile (IDictionary`2 replacements, Boolean shallow, System.String collectionRole) [0x00000]
+ --- End of inner exception stack trace ---
+ at Castle.ActiveRecord.ActiveRecordBase.DeleteAll (System.Type type) [0x00000]
+ at Castle.ActiveRecord.ActiveRecordMediator.DeleteAll (System.Type type) [0x00000]
+ at Castle.ActiveRecord.ActiveRecordMediator`
+
+When browsing the code of DeleteAll it appears that it actually is calling 
+session.Delete(String.Format("from {0}", type.Name));
+when it should check for the attribute value and, in case of UseAutoImport = false, call
+session.Delete(String.Format("from {0}", type.FullName));</value>
+    </field>
+    <field name="created">
+      <value>1258594689000</value>
+    </field>
+    <field name="updated">
+      <value>1260071392000</value>
+    </field>
+    <field name="reporterName">
+      <value>paszczi</value>
+    </field>
+    <field name="updaterName">
+      <value>paszczi</value>
+    </field>
+    <field name="resolved">
+      <value>1260071340000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="paszczi" text="Attached patch that fixes the issue." created="1258604479000" />
+    <comment author="mzywitza" text="Applied in r6395" created="1260071372000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1260071340000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1260071340000" />
+    <comment author="paszczi" text="* '''Attachment''' ar277-patch.patch added.&#xD;&#xA;" created="1258604400000" />
+  </issue>
+</issues>

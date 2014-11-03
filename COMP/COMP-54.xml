@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>54</value>
+    </field>
+    <field name="summary">
+      <value>EmailValidator validation does not accept apostrophes in the email address</value>
+    </field>
+    <field name="description">
+      <value>The regular expression to validate email addresses does not accept an apostrophe in the first half of the email address as valid. According to RFC2822, this is a valid character. Have attached a patch of the code changes
+
+
+Index: EmailValidator.cs
+===================================================================
+--- EmailValidator.cs	(revision 4742)
++++ EmailValidator.cs	(working copy)
+@@ -26,7 +26,7 @@
+ 		/// &lt;summary&gt;
+ 		/// From http://www.codeproject.com/aspnet/Valid_Email_Addresses.asp
+ 		/// &lt;/summary&gt;
+-		private static readonly String emailRule = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
++		private static readonly String emailRule = @"^([a-zA-Z0-9_\-\.\']+)@((\[[0-9]{1,3}" +
+ 		                                           @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+ 		                                           @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";</value>
+    </field>
+    <field name="created">
+      <value>1201754020000</value>
+    </field>
+    <field name="updated">
+      <value>1209370261000</value>
+    </field>
+    <field name="reporterName">
+      <value>oppoll</value>
+    </field>
+    <field name="updaterName">
+      <value>oppoll</value>
+    </field>
+    <field name="resolved">
+      <value>1282137610745</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

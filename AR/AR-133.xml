@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>133</value>
+    </field>
+    <field name="summary">
+      <value>Support DetachedCriteria for all Count operations</value>
+    </field>
+    <field name="description">
+      <value>I'm a newbie in AR area.
+
+AFAIK, I don't see that Count operations (whether in ActiveRecordBase/Generic or ActiveRecordMediator/Generic) support DetachedCriteria.
+
+I think it would be great if AR could support it.
+
+Thanks!</value>
+    </field>
+    <field name="created">
+      <value>1172258425000</value>
+    </field>
+    <field name="updated">
+      <value>1173726214000</value>
+    </field>
+    <field name="reporterName">
+      <value>mahara</value>
+    </field>
+    <field name="updaterName">
+      <value>mahara</value>
+    </field>
+    <field name="resolved">
+      <value>1282136291276</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-67[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Interface proxies with target (class)</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>153</value>
+    </field>
+    <field name="summary">
+      <value>When proxying a generic interface which has an interface as GenericType . No proxy can be created.</value>
+    </field>
+    <field name="description">
+      <value>Environment in which this occurs is Silverlight 4.
+
+I get this issue using Rhino Mocks, if I want to proxy an interface defined as follows
+
+{code lang=cs}
+public interface IGenericInterface&lt;TGenericType&gt;
+    where TGenericType : IClassStub
+{
+    void Method&lt;TGenericSubType&gt;() where TGenericSubType : TGenericType;
+}
+
+public interface IClassStub {}
+{code}
+
+If you try to mock this using the interface as the generic type
+aka
+
+{code lang=cs}
+IGenericInterface&lt;IClassStub&gt;
+
+in Rhino Mocks : 
+var Mocks = new MockRepository();
+Mocks.DynamicMock&lt;IGenericInterface&lt;IClassStub&gt;&gt;();
+{code}
+
+It fails with the following error: (silverlight 4, so no lines I'm afraid)
+ArgumentException: Cannot set parent to an interface.
+at System.Reflection.Emit.TypeBuilder.SetParent(Type parent)
+at System.Reflection.Emit.GenericTypeParameterBuilder.SetBaseTypeConstraint(Type baseTypeConstraint)
+at Castle.DynamicProxy.Generators.Emitters.GenericUtil.CopyGenericArguments(MethodInfo methodToCopyGenericsFrom, Dictionary`2 name2GenericType, ApplyGenArgs genericParameterGenerator)
+at Castle.DynamicProxy.Generators.Emitters.GenericUtil.CopyGenericArguments(MethodInfo methodToCopyGenericsFrom, TypeBuilder builder, Dictionary`2 name2GenericType)
+at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.CopyGenericParametersFromMethod(MethodInfo methodToCopyGenericsFrom)
+at Castle.DynamicProxy.Generators.InvocationTypeGenerator.Generate(ClassEmitter class, ProxyGenerationOptions options, INamingScope namingScope)
+at Castle.DynamicProxy.Contributors.InterfaceProxyWithoutTargetContributor.GetInvocationType(MetaMethod method, ClassEmitter emitter, ProxyGenerationOptions options)
+at Castle.DynamicProxy.Contributors.InterfaceProxyWithoutTargetContributor.GetMethodGenerator(MetaMethod method, ClassEmitter class, ProxyGenerationOptions options, OverrideMethodDelegate overrideMethod)
+at Castle.DynamicProxy.Contributors.CompositeTypeContributor.ImplementMethod(MetaMethod method, ClassEmitter class, ProxyGenerationOptions options, OverrideMethodDelegate overrideMethod)
+at Castle.DynamicProxy.Contributors.CompositeTypeContributor.Generate(ClassEmitter class, ProxyGenerationOptions options)
+at Castle.DynamicProxy.Generators.InterfaceProxyWithoutTargetGenerator.GenerateType(String typeName, Type proxyTargetType, Type[] interfaces, INamingScope namingScope)
+at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.&lt;&gt;c__DisplayClass1.&lt;GenerateCode&gt;b__0(String n, INamingScope s)
+at Castle.DynamicProxy.Generators.BaseProxyGenerator.ObtainProxyType(CacheKey cacheKey, Func`3 factory)
+at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode(Type proxyTargetType, Type[] interfaces, ProxyGenerationOptions options)
+at Castle.DynamicProxy.DefaultProxyBuilder.CreateInterfaceProxyTypeWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, IInterceptor[] interceptors)
+at Rhino.Mocks.MockRepository.MockInterface(CreateMockState mockStateFactory, Type type, Type[] extras)
+at Rhino.Mocks.MockRepository.CreateMockObject(Type type, CreateMockState factory, Type[] extras, Object[] argumentsForConstructor)
+at Rhino.Mocks.MockRepository.DynamicMock(Object[] argumentsForConstructor)
+
+
+Rhino Mocks uses the following code to generate it's proxies, there didn't really seem to be any other simple way to fix this.
+
+{code lang=cs}
+new ProxyGenerator().CreateInterfaceProxyWithoutTarget(type, types.ToArray(), proxyGenerationOptions, interceptor)
+{code}
+
+First I used castle 2.5.2 with a company hack for Rhino.Mocks 3.4 to Silverlight 3 which did not resolve the issue.
+I used the latest build from the castle core library (being build 2160 for Silverlight 4) and the latest Rhino.Mocks build, being da77754. I converted Rhino.Mocks for Silverlight 4 in a way which works as before for the other tests.
+</value>
+    </field>
+    <field name="created">
+      <value>1294223999647</value>
+    </field>
+    <field name="updated">
+      <value>1407822235380</value>
+    </field>
+    <field name="reporterName">
+      <value>jgo</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1304824108620</value>
+    </field>
+    <field name="voterName">
+      <value>damianh</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="p.w" text="I am getting the same thing in NMock3 on .NET 4.  Here is the stack and line numbers.&#xA;&#xA;{code}&#xA;MockFactory factory = new MockFactory();&#xA;var mock = factory.CreateMock&lt;IGenericInterface&lt;IClassStub&gt;&gt;();&#xA;{code}&#xA;&#xA;{code}&#xA;System.ArgumentException : Cannot set parent to an interface.&#xA;at System.Reflection.Emit.TypeBuilder.SetParent(Type parent)&#xA;at Castle.DynamicProxy.Generators.Emitters.GenericUtil.CopyGenericArguments(MethodInfo methodToCopyGenericsFrom, Dictionary`2 name2GenericType, ApplyGenArgs genericParameterGenerator) in e:\OSS.Code\Castle.Core\src\Castle.Core\DynamicProxy\Generators\Emitters\GenericUtil.cs: line 115&#xA;at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.CopyGenericParametersFromMethod(MethodInfo methodToCopyGenericsFrom) in e:\OSS.Code\Castle.Core\src\Castle.Core\DynamicProxy\Generators\Emitters\AbstractTypeEmitter.cs: line 279&#xA;at Castle.DynamicProxy.Generators.InvocationTypeGenerator.Generate(ClassEmitter class, ProxyGenerationOptions options, INamingScope namingScope) in e:\OSS.Code\Castle.Core\src\Castle.Core\DynamicProxy\Generators\InvocationTypeGenerator.cs: line 59&#xA;at Castle.DynamicProxy.Contributors.InterfaceProxyWithoutTargetContributor.GetMethodGenerator(MetaMethod method, ClassEmitter class, ProxyGenerationOptions options, OverrideMethodDelegate overrideMethod) in e:\OSS.Code\Castle.Core\src\Castle.Core\DynamicProxy\Contributors\InterfaceProxyWithoutTargetContributor.cs: line 52&#xA;at Castle.DynamicProxy.Contributors.CompositeTypeContributor.ImplementMethod(MetaMethod method, ClassEmitter class, ProxyGenerationOptions options, OverrideMethodDelegate overrideMethod) in CompositeTypeContributor.cs: line 141&#xA;at Castle.DynamicProxy.Contributors.CompositeTypeContributor.Generate(ClassEmitter class, ProxyGenerationOptions options) in CompositeTypeContributor.cs: line 83&#xA;at Castle.DynamicProxy.Generators.InterfaceProxyWithoutTargetGenerator.GenerateType(String typeName, Type proxyTargetType, Type[] interfaces, INamingScope namingScope) in e:\OSS.Code\Castle.Core\src\Castle.Core\DynamicProxy\Generators\InterfaceProxyWithoutTargetGenerator.cs: line 72&#xA;at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.&lt;&gt;c__DisplayClass1.&lt;GenerateCode&gt;b__0(String n, INamingScope s) in e:\OSS.Code\Castle.Core\src\Castle.Core\DynamicProxy\Generators\InterfaceProxyWithTargetGenerator.cs: line 52&#xA;at Castle.DynamicProxy.Generators.BaseProxyGenerator.ObtainProxyType(CacheKey cacheKey, Func`3 factory) in e:\OSS.Code\Castle.Core\src\Castle.Core\DynamicProxy\Generators\BaseProxyGenerator.cs: line 395&#xA;at Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget(Type interfaceToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, IInterceptor[] interceptors) in e:\OSS.Code\Castle.Core\src\Castle.Core\DynamicProxy\ProxyGenerator.cs: line 812&#xA;at NMock.Proxy.Castle.DynamicProxyMockObjectFactory.CreateMock(MockFactory mockFactory, CompositeType typesToMock, String name, MockStyle mockStyle, Object[] constructorArgs) in DynamicProxyMockObjectFactory.cs: line 37&#xA;at NMock.Internal.MockBuilder.Create(Type primaryType, MockFactory mockFactory, IMockObjectFactory mockObjectFactory) in MockBuilder.cs: line 169&#xA;at NMock.MockFactory.CreateMock(IMockDefinition mockDefinition) in MockFactory.cs: line 139&#xA;at NMock.MockFactory.CreateMock() in MockFactory.cs: line 53&#xA;at NMockTests._MockFactory.CreateMock.CreateGenericInterface() in CreateMock.cs: line 35 &#xA;{code}" created="1294341291428" />
+    <comment author="xtoff" text="OK, looks like it's nothing Silverlight specific as I just reproduced it in .NET 4 as well." created="1304752087199" />
+    <comment author="damianh" text="Looks like Moq users are experiencing this also http://code.google.com/p/moq/issues/detail?id=259" created="1304809230449" />
+  </issue>
+</issues>

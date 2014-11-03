@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>59</value>
+    </field>
+    <field name="summary">
+      <value>Child component unable to correctly resolve parent service added after the component</value>
+    </field>
+    <field name="description">
+      <value>basically, in a parent-child kernel situation. a component in the child kernel is relying on a service in the parent kernel. if that service is registered after the component. microkernel is unable to resolve the component because the component handler is stuck in WaitingDependency state. It will in fact see the service, but claims that it's still waiting for dependency. attached is a sample that demonstrates the problem.</value>
+    </field>
+    <field name="created">
+      <value>1168528088000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838932</value>
+    </field>
+    <field name="reporterName">
+      <value>shinakuma</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282141992088</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

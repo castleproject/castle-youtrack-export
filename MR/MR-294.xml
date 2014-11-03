@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>294</value>
+    </field>
+    <field name="summary">
+      <value>Capturefor inside a brail subview wont populate on containing view/layout</value>
+    </field>
+    <field name="description">
+      <value>As title, in NVelocity I could use #capturefor inside a subview via #parse and the value is still captured properly towards the layout. Brail doesn't support such feature.</value>
+    </field>
+    <field name="created">
+      <value>1183685853000</value>
+    </field>
+    <field name="updated">
+      <value>1244676637000</value>
+    </field>
+    <field name="reporterName">
+      <value>goodwill</value>
+    </field>
+    <field name="updaterName">
+      <value>goodwill</value>
+    </field>
+    <field name="resolved">
+      <value>1282143897713</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676600000" />
+  </issue>
+</issues>

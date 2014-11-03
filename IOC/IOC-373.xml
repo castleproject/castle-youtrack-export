@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generics</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>373</value>
+    </field>
+    <field name="summary">
+      <value>Open Generics won't resolve with LateBoundComponent Implementation</value>
+    </field>
+    <field name="description">
+      <value>UsingFactoryMethod can never be called for an open generic service.  There is a TODO in DefaultGenericHandler.cs refering to this. 
+
+Exception thrown when UsingFactoryMethod with Open Generic Type is: 
+
+An unhandled exception of type 'System.InvalidOperationException' occurred in mscorlib.dll
+
+Additional information: Castle.Core.Internal.LateBoundComponent is not a GenericTypeDefinition. MakeGenericType may only be called on a type for which Type.IsGenericTypeDefinition is true.
+
+Fix and Test here: https://github.com/rdrawsky/Windsor/commit/063db4b78a289ff4983c77dcd22cb6500ab38503</value>
+    </field>
+    <field name="created">
+      <value>1354867533466</value>
+    </field>
+    <field name="updated">
+      <value>1356038442748</value>
+    </field>
+    <field name="reporterName">
+      <value>rdrawsky</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1356038442748</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

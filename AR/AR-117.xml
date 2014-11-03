@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>117</value>
+    </field>
+    <field name="summary">
+      <value>ActiveRecordBase CRUD Methods Ignore SessionScope FlushMode</value>
+    </field>
+    <field name="description">
+      <value>If I wrap my persistent object calls in a SessionScope with a FlushMode of Never, calling the persistent object Create, Update, Delete, or Save methods ignore that setting and flush the operation once complete.  For example:
+
+using (new SessionScope(FlushMode.Never))
+{
+  Blog b = Blog.FindFirst();
+
+  b.Author = "New Author";
+  b.Save();     // Flushes changes to the database even though I haven't explicitly called SessionScope.Current.Flush()
+}
+
+I purpose changing the ActiveRecordBase such that the session is only flushed if the ISession does not have a FlushMode of Never.
+
+Ex:
+using (new SessionScope(FlushMode.Never))
+{
+  Blog b = Blog.FindFirst();
+
+  b.Author = "New Author";
+  b.Save();   //Change doesn't get persisted to the database
+
+  b.Name = "New Name";
+  
+  SessionScope.Current.Flush(); //Both Author and Name changes get persisted to the database.
+}
+
+I implemented this on my local copy of the current svn trunk and was able to run all the unit tests successfully (including my own tests to confirm that the implementation works as expected).  
+
+If this change were made I'd also add &lt;Method&gt;Now methods (ie, UpdateNow, DeleteNow, etc) to the ActiveRecordBase which would ignore the FlushMode and persist the operation immediately.  You may also want to add another .ctor to the TransactionScope to allow the user to specify a different FlushMode.
+
+I can create a patch with the applicable changes if needed; I'm not sure what your policy for community changes is.
+
+Thanks,
+Wes
+</value>
+    </field>
+    <field name="created">
+      <value>1167840601000</value>
+    </field>
+    <field name="updated">
+      <value>1168352554000</value>
+    </field>
+    <field name="reporterName">
+      <value>akmad</value>
+    </field>
+    <field name="updaterName">
+      <value>akmad</value>
+    </field>
+    <field name="resolved">
+      <value>1282136259198</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

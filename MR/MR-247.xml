@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>247</value>
+    </field>
+    <field name="summary">
+      <value>Using controller and views from secondary project via additionalSources does not work correctly</value>
+    </field>
+    <field name="description">
+      <value>An exception is thrown and the view cannot be processed when using a controller via additionalSources from a different project. The problem lies in the fact that in BooViewEngine, views are grabbed from the hashtable with filename as key, while inserted in the hashtable with input.Name as key. When the input in question is a resource from an assembly, input.Name is "dirname.filename.brail" instead of "dirname\filename.brail". The compiled script can therefore never be found in the cache.
+
+A simpel solution (although probably not the best) would be to change in the method CompileScript in BooViewEngine the lines:
+
+Log("Adding {0} to the cache", type.FullName);
+compilations[input.Name] = type;
+
+into:
+
+Log("Adding {0} to the cache", type.FullName);
+compilations[filename] = type;
+
+I'm still thinking about a better naming scheme for keys in the compilation hashtable to avoid possible (file)name clashes.</value>
+    </field>
+    <field name="created">
+      <value>1176547096000</value>
+    </field>
+    <field name="updated">
+      <value>1263055932000</value>
+    </field>
+    <field name="reporterName">
+      <value>tails</value>
+    </field>
+    <field name="updaterName">
+      <value>tails</value>
+    </field>
+    <field name="resolved">
+      <value>1282143795682</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055920000" />
+  </issue>
+</issues>

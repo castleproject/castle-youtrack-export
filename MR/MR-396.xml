@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>396</value>
+    </field>
+    <field name="summary">
+      <value>WindsorDynamicActionProviderFactory and Friends - Get WindsorIntegration on DynamicActionProviders now</value>
+    </field>
+    <field name="description">
+      <value>This patch enables IDynamicActionProvider implementations to be included in WIndsorIntegration wiring for Controller consumption.
+Basically, I followed the same semantics as IFilter throughout (with all the various factories for descriptors, providers, and so on).
+I updated tests to include the new service as well.
+
+All tests are passing after this update. I think this opens a whole new way of working for me....
+</value>
+    </field>
+    <field name="created">
+      <value>1200117430000</value>
+    </field>
+    <field name="updated">
+      <value>1253853697000</value>
+    </field>
+    <field name="reporterName">
+      <value>mnichols</value>
+    </field>
+    <field name="updaterName">
+      <value>mnichols</value>
+    </field>
+    <field name="resolved">
+      <value>1253853660000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="r5053" created="1253853694000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1253853660000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253853660000" />
+  </issue>
+</issues>

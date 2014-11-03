@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>New component ideas</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>39</value>
+    </field>
+    <field name="summary">
+      <value>DictionaryAdapterFactory key prefix behaviour improvements</value>
+    </field>
+    <field name="description">
+      <value>The current behaviour for generation dictionary keys using the prefix attribute is, in my opinion, flawed. A prefix at any level of inheritence between interfaces "overrides" any other prefixes set up at alternative levels in the interface hierarchy. This is causing problems for me at the moment where I am using the prefixes to act as namespaces for my session variables. This patch changes the behaviour:
+
+interface A { Prop1 { get; set; }}
+
+interface B { Prop2 { get; set; }}
+
+[DictionaryAdapterKeyPrefix("C")]
+interface C { Prop3 { get; set; }}
+
+[DictionaryAdapterKeyPrefix("D")]
+interface D { Prop4 { get; set; }}
+
+interface E { Prop5 { get; set; }}
+
+Keys generated:
+
+Prop1
+Prop2
+C.Prop3
+D.Prop4
+D.Prop5</value>
+    </field>
+    <field name="created">
+      <value>1187356583000</value>
+    </field>
+    <field name="updated">
+      <value>1192629486000</value>
+    </field>
+    <field name="reporterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="updaterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="resolved">
+      <value>1282137557776</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>AR 2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>247</value>
+    </field>
+    <field name="summary">
+      <value>Related types have to be registered in one ActiveRecordStarter.RegisterTypes() call</value>
+    </field>
+    <field name="description">
+      <value>When trying to register entity and entity that inherits from it (class table inheritance), both types have to be specified in single ActiveRecordStarter.RegisterTypes(), otherwise AR will complain that the second entity does not define PrimaryKey.</value>
+    </field>
+    <field name="created">
+      <value>1237164225000</value>
+    </field>
+    <field name="updated">
+      <value>1243589690000</value>
+    </field>
+    <field name="reporterName">
+      <value>paszczi</value>
+    </field>
+    <field name="updaterName">
+      <value>paszczi</value>
+    </field>
+    <field name="resolved">
+      <value>1243589640000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="I tried for some days tro fix it, but any fix would rip apart the whole NH xml generation, which I consider to risky in an alpha release state.&#xA;I added a test to show the current (incomplete) behaviour, so we can solve when refactoring this for AR3." created="1243589691000" />
+    <comment author="paszczi" text="* '''Attachment''' NHibTest.rar added.&#xD;&#xA;" created="1237165380000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1242940740000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1243589640000" />
+  </issue>
+</issues>

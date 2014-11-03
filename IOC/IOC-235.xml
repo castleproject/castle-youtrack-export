@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>TypedFactoryFacility</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>235</value>
+    </field>
+    <field name="summary">
+      <value>TypedFactoryFacility with inherited interfaces throws an exception</value>
+    </field>
+    <field name="description">
+      <value>When we have a hierarchy of interfaces, like the following:
+
+{code lang=java}
+public IInterface1
+{
+   public void Method1();
+}
+
+public IInterface2 : IInterface1
+{
+   public void Method2();
+}
+
+public IInterface3: IInterface2
+{
+   public void Method3();
+}
+{code}
+
+The TypedFactoryFacility throws an exception because it's adding the same method twice in the dictionary. This is because the implemented interfaces obtained by reflection of IInterface3 are IInterface2 and IInterface1, and the TypedFactoryFacility code implements methods by going through the hierarchy of interfaces, which means the following happens:
+
+1. Implementation of methods in IInterface3
+2. Implementation of methods in IInterface2
+3. Implementation of methods in IInterface1 (from IInterface2)
+4. Implementation of methods in IInterface1 (from IInterface3)
+
+I'm not sure I'm explaining this correctly, but I have a failing test and the code to fix this bug, but I'm not really sure how should I upload it.
+
+Edit:
+
+Maybe I over simplified the problem, here i'll put my code and my failing test:
+
+{code lang=java}
+namespace WindsorTypedFactoryFacilityTest
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Reflection;
+    using System.Windows.Media.Imaging;
+    
+    using Castle.Core;
+    using Castle.Core.Interceptor;
+    using Castle.DynamicProxy;
+    using Castle.Facilities.TypedFactory;
+    using Castle.MicroKernel;
+    using Castle.MicroKernel.Registration;
+    using Castle.Windsor;
+    
+    using Xunit;
+    using Castle.Facilities.TypedFactory.Internal;
+    
+    public class ViewModelBase { }
+    public class EmployeeListViewModel : ViewModelBase { }
+    public class EmployeePictureViewModel : ViewModelBase { }
+    public class EmployeeFingerprintViewModel : ViewModelBase { }
+    public class EmployeePictureAndFingerprintViewModel : ViewModelBase { }
+
+    public class EmployeeListItem { }
+
+    public interface IViewModelFactory
+    {
+
+        EmployeeListViewModel CreateEmployeeListViewModel(
+            IList&lt;EmployeeListItem&gt; staff);
+
+        EmployeePictureViewModel CreateEmployeePictureViewModel(
+            string picturePath, string numberAndName);
+
+        EmployeeFingerprintViewModel CreateEmployeeFingerprintViewModel(
+            BitmapImage fingerprint);
+
+        EmployeePictureAndFingerprintViewModel
+            CreateEmployeePictureAndFingerprintViewModel(
+                EmployeePictureViewModel picture,
+                EmployeeFingerprintViewModel fingerprint);
+
+    }
+
+    public class Employee { }
+    public interface IEditViewModel { }
+
+    public class EmployeeGeneralViewModel : ViewModelBase { }
+
+    public interface IViewModelFactory2 : IViewModelFactory
+    {
+
+        EmployeeGeneralViewModel CreateEmployeeGeneralViewModel(
+            Employee executer,
+            IEditViewModel editViewModel,
+            IViewModelFactory2 viewModelFactory);
+
+    }
+
+    public class MainViewModel : ViewModelBase { }
+
+    public interface IViewModelFactory3 : IViewModelFactory2
+    {
+
+        MainViewModel CreateMainViewModel(Employee employee);
+
+    }
+
+    public class TypedFactoryFacilityTest
+    {
+
+        [Fact]
+        public void Cant_add_several_interfaces()
+        {
+
+            var container = new WindsorContainer();
+
+            container.AddFacility&lt;TypedFactoryFacility&gt;();
+            container.Register(
+                Component.For&lt;IViewModelFactory3&gt;().AsFactory());
+
+            var factory = container.Resolve&lt;IViewModelFactory3&gt;();
+
+            Assert.NotNull(factory);
+
+        }
+
+    }
+}
+
+{code}
+
+Forgive my test naming since it isn't so good, but this one fails with the following exception: System.ArgumentException 'An item with the same key has already been added.'. I just checked that against trunk for .NET 3.5.
+</value>
+    </field>
+    <field name="created">
+      <value>1287560844055</value>
+    </field>
+    <field name="updated">
+      <value>1287657627493</value>
+    </field>
+    <field name="reporterName">
+      <value>Jorge.Vargas</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1287657627493</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="have a look at http://stw.castleproject.org/How-to-submit-a-fix-to-any-Castle-Project.ashx WRT how to submit a patch.&#xA;Make sure you check that your code complies with Castle coding standards: http://stw.castleproject.org/Castle-Coding-Standards.ashx&#xA;cheers" created="1287562020352" />
+    <comment author="xtoff" text="Please update the question with effected version number. I tried to reproduce the issues but my test is passing." created="1287565868430" />
+    <comment author="Jorge.Vargas" text="Hi Krzysztof, I updated the issue with version number and included different code containing my failing test. I'll follow the steps in those links later in the day. Thanks for your help.&#xA;" created="1287590373243" />
+    <comment author="xtoff" text="Just as a sidenote - the reason why I wasn't able to reproduce that is that you need at least a 3 level hierarchy to reproduce that issue." created="1287656167993" />
+  </issue>
+</issues>

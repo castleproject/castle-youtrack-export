@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>90</value>
+    </field>
+    <field name="summary">
+      <value>Replace EmailSender classes with .Net CLR equivalent ones</value>
+    </field>
+    <field name="description">
+      <value>Removing Message, MessageAttachment and MessageAttachmentCollection classes from EmailSender project and replace them with MailMessage, Attachment and AttachmentCollection (the .net clr equivalent).
+See http://groups.google.com/group/castle-project-devel/browse_thread/thread/ccfe27022545dca for more info.</value>
+    </field>
+    <field name="created">
+      <value>1244418251000</value>
+    </field>
+    <field name="updated">
+      <value>1249325247000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1249325220000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="I've submitted 3 patch files that need to be applied.&#xA;- EmailSender.patch is for the EmailSender project&#xA;- Monorail.patch is to update the monorail project to use the new api&#xA;- Samples.patch updates the samples" created="1244418418000" />
+    <comment author="josh_robb" text="As agreed on mailing list - this is an unnecessary breaking change for users. &#xA;&#xA;" created="1249325238000" />
+    <comment author="josh_robb" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1249325220000" />
+    <comment author="josh_robb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1249325220000" />
+    <comment author="jsimons" text="* '''Attachment''' EmailSender.patch added.&#xD;&#xA;" created="1244418300000" />
+    <comment author="jsimons" text="* '''Attachment''' Monorail.patch added.&#xD;&#xA;" created="1244418300000" />
+    <comment author="jsimons" text="* '''Attachment''' Samples.patch added.&#xD;&#xA;" created="1244418300000" />
+  </issue>
+</issues>

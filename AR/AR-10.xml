@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>alpha 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>10</value>
+    </field>
+    <field name="summary">
+      <value>Use the ARModel to hold validation information</value>
+    </field>
+    <field name="description">
+      <value>This is a performance improvement and also benefits the MonoRail scaffolding support.</value>
+    </field>
+    <field name="created">
+      <value>1119657340000</value>
+    </field>
+    <field name="updated">
+      <value>1136169619000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282135903995</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

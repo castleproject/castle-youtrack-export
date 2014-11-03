@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>beta 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>57</value>
+    </field>
+    <field name="summary">
+      <value>Wrong urls is crashing UrlTokenizer</value>
+    </field>
+    <field name="description">
+      <value>As described here:
+http://forum.castleproject.org/posts/list/223.page
+
+http://localhost:8082/index.rails
+
+[IndexOutOfRangeException: Der Index war außerhalb des Arraybereichs.]
+Castle.MonoRail.Framework.Internal.UrlTokenizer.ExtractInfo(String url, String virtualDirectory) +776
+Castle.MonoRail.Engine.ProcessEngine.ExtractUrlInfo(IRailsEngineContext context) +47
+Castle.MonoRail.Engine.ProcessEngine.Process(IRailsEngineContext context) +123
+Castle.MonoRail.Engine.MonoRailHttpHandler.ProcessRequest(HttpContext context) +40
+System.Web.CallHandlerExecutionStep.System.Web.HttpApplication+IExecutionStep.Execute() +179
+System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +87 </value>
+    </field>
+    <field name="created">
+      <value>1129550788000</value>
+    </field>
+    <field name="updated">
+      <value>1136170086000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282143362479</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

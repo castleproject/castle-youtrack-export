@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>303</value>
+    </field>
+    <field name="summary">
+      <value>Support proxying for components registered using factory method</value>
+    </field>
+    <field name="description">
+      <value>Given:
+
+{code}
+public class IFoo { }
+
+public class IBar { }
+
+public class FooImpl : IFoo { }
+{code}
+
+Registrations that UseFactoryMethod() doesn't work with the proxy, for example:
+
+{code}
+container.Register(
+    Component.For&lt;IFoo&gt;()
+             .UsingFactoryMethod(kernal =&gt; new FooImpl())
+             .Proxy.AddAdditionalInterfaces(typeof(IBar))
+);
+{code}
+
+This however, works just fine:
+
+{code}
+container.Register(
+    Component.For&lt;IFoo&gt;()
+             .ImplementedBy&lt;FooImpl&gt;()
+             .Proxy.AddAdditionalInterfaces(typeof(IBar))
+);
+{code}
+</value>
+    </field>
+    <field name="created">
+      <value>1311914992623</value>
+    </field>
+    <field name="updated">
+      <value>1312804198677</value>
+    </field>
+    <field name="reporterName">
+      <value>thilak.nathen</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1312804198677</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

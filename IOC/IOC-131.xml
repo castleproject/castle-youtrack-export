@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>131</value>
+    </field>
+    <field name="summary">
+      <value>castle config include uri no longer supports http paths.</value>
+    </field>
+    <field name="description">
+      <value>we recently upgraded to RC3.  Previously, we had include uri's in our config section that pointed to an http path.  Since upgrading to RC3, the http paths do not work anymore.  When we include these paths, castle throws an exception.  
+
+Here is the config that was working before:
+
+***************************************************
+  &lt;castle&gt;
+    &lt;!-- Use the application server to hold the connection string, the reason we have a .. here is because the 
+         @APPSERVERURL@ is replaced with the .asmx of the appserver, we need to get to the castle file in that
+         same directory. Is it ugly? yes. Does it work? yes--&gt;
+    &lt;include uri="@APPSERVERURL@/../connstr.castle.config.xml"/&gt;
+***************************************************
+
+at runtime, this would look like:
+***************************************************
+&lt;include uri="http://myserver/MyApplicationServer/appserver.asmx/../connstr.castle.config.xml"/&gt;
+***************************************************
+
+we have tested the uri, and it is valid, however, Castle RC3 does not seem to like this path.  Nothing else has changed, except for the upgrade to RC3
+</value>
+    </field>
+    <field name="created">
+      <value>1223020731000</value>
+    </field>
+    <field name="updated">
+      <value>1228858738000</value>
+    </field>
+    <field name="reporterName">
+      <value>scott</value>
+    </field>
+    <field name="updaterName">
+      <value>scott</value>
+    </field>
+    <field name="resolved">
+      <value>1228858680000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="scott" text="We have other includes in addition to this one that have assembly references:&#xA;&#xA;&lt;include uri=&quot;assembly://[...]/castle.config.xml&quot;/&gt;&#xA;&#xA;All of these includes work properly.  It is just the http reference that does not work." created="1223021215000" />
+    <comment author="ayenderahien" text="I can't find a previous implementation that would make this scenario work.&#xA;It is something that can be added by extending IResource.&#xA;" created="1228858738000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228858680000" />
+  </issue>
+</issues>

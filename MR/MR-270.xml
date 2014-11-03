@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - NVelocity</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>270</value>
+    </field>
+    <field name="summary">
+      <value>Improve exception behaviour for NVelocity</value>
+    </field>
+    <field name="description">
+      <value>Sometimes it is hard to find the culprit resource (view file), for some NVelocity parsing/processing error. I've wrapped it in the CustomResourceManager, to inform the resource name with the exception.
+
+The patch is against a copy of Castle so it doesn't apply as is (also I can revise it to add and use an specific exception class). Comments?
+
+Index: C:/dev/Visient/vendors/src/castle/MonoRail/Castle.MonoRail.Framework.Views.NVelocity/CustomResourceManager.cs
+===================================================================
+--- C:/dev/Visient/vendors/src/castle/MonoRail/Castle.MonoRail.Framework.Views.NVelocity/CustomResourceManager.cs	(revision 1365)
++++ C:/dev/Visient/vendors/src/castle/MonoRail/Castle.MonoRail.Framework.Views.NVelocity/CustomResourceManager.cs	(revision 1366)
+@@ -15,6 +15,7 @@
+ using IRuntimeServices = NVelocity.Runtime.IRuntimeServices;
+ using NVelocity.Runtime.Resource;
+ using ResourceNotFoundException = NVelocity.Exception.ResourceNotFoundException;
++using ResourceProcessingException = NVelocity.Exception.VelocityException;
+ 
+ namespace Castle.MonoRail.Framework.Views.NVelocity
+ {
+@@ -63,7 +64,7 @@
+ 
+ 				resource.ResourceLoader = resourceLoaderAdapter;
+ 
+-				resource.Process();
++				ProcessResourceWithSensibleExceptionWrapping(resourceName, resource);
+ 
+ 				if (resource.Data == null)
+ 				{
+@@ -83,13 +84,23 @@
+ 			{
+ 				if (resource.IsSourceModified())
+ 				{
+-					resource.Process();
++					ProcessResourceWithSensibleExceptionWrapping(resourceName, resource);
+ 				}
+ 			}
+ 
+ 			return resource;
+ 		}
+ 
++		private void ProcessResourceWithSensibleExceptionWrapping(string resourceName, Resource resource)
++		{
++			try {
++				resource.Process();
++			}
++			catch (Exception e) {
++				throw new ResourceProcessingException("Error processing resource '" + resourceName + "': " + e.Message, e);
++			}
++		}
++
+ 		public string GetLoaderNameForResource(string resourceName)
+ 		{
+ 			return "default";</value>
+    </field>
+    <field name="created">
+      <value>1181781541000</value>
+    </field>
+    <field name="updated">
+      <value>1181848413000</value>
+    </field>
+    <field name="reporterName">
+      <value>monoman</value>
+    </field>
+    <field name="updaterName">
+      <value>monoman</value>
+    </field>
+    <field name="resolved">
+      <value>1282143835682</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

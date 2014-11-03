@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>157</value>
+    </field>
+    <field name="summary">
+      <value>add fromNameValueCollection method for creating IDictionary instances from (i.e.) Context.Params, or Request.QueryString</value>
+    </field>
+    <field name="description">
+      <value>This patch adds a fromNameValueCollection, which alot of asp.net's querystring, params etc. are types of.
+
+Not sure if this is the best (any other methods?), but it helps for i.e. PaginationHelper &amp; persisting querystring variables from within velocity templates.</value>
+    </field>
+    <field name="created">
+      <value>1159920101000</value>
+    </field>
+    <field name="updated">
+      <value>1188349500000</value>
+    </field>
+    <field name="reporterName">
+      <value>nihm</value>
+    </field>
+    <field name="updaterName">
+      <value>nihm</value>
+    </field>
+    <field name="resolved">
+      <value>1282143503604</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

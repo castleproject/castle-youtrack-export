@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Interface proxies with target interface</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.1</value>
+      <value>3.2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>186</value>
+    </field>
+    <field name="summary">
+      <value>.Net remoting (transparent proxy) cannot be proxied </value>
+    </field>
+    <field name="description">
+      <value>When trying to proxy remoting transparent proxy for an interface type we get an exception (MissingMethodException) when creating the proxy. Was working in version 2.5 but was broked by a change in CreateInterfaceProxyWithTargetInterface method in ProxyGenerator class. Reproduced with version 3.1 and 3.2, was introduced in 3.1.0 RC (2012-07-08).
+
+Working line (version 2.5):
+{code}if (target != null &amp;&amp; interfaceToProxy.IsAssignableFrom(target.GetType()) == false)
+{
+  //check if we have remoting proxy at hand...
+  if (RemotingServices.IsTransparentProxy(target))
+...{code}
+
+Broken line ('''IsInstanceOfType return true for transparent proxy''', so the code for .net remoting isnt executed):
+{code}if (target != null &amp;&amp; interfaceToProxy.IsInstanceOfType(target) == false)
+{
+  //check if we have remoting proxy at hand...
+    if (RemotingServices.IsTransparentProxy(target)) (
+...{code}
+
+This cause a crash because it doesnt use the .net remoting code written in this method (using Type.GetConstructors() instead of Activator.CreateInstance that fail with remoting proxy).
+
+See attachment (modified an attachment taken from another issue DYNPROXY-118).
+</value>
+    </field>
+    <field name="created">
+      <value>1363831405936</value>
+    </field>
+    <field name="updated">
+      <value>1379119665517</value>
+    </field>
+    <field name="reporterName">
+      <value>jcviau</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1371793385010</value>
+    </field>
+    <field name="voterName">
+      <value>Vinay.Mandy</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-937[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jcviau" text="Found the commit who broke the .net remoting support : https://github.com/castleproject/Core/commit/5aea509b80d87543a0ada001560db80b78b99b0a&#xA;&#xA;fixed DYNPROXY-169&#xA;Support IChangeProxyTarget on additional interfaces and mixins when using CreateInterfaceProxyWithTargetInterface" created="1364500985506" />
+    <comment author="jcviau" text="Pull request : https://github.com/castleproject/Core/pull/25&#xA;&#xA;Tested with the same application as the one attached in this defect (with a patched Castle.Core)&#xA;&#xA;We will build our own version of 3.2 with this fix since we were stuck with 2.5 and we wanted to upgrade for multiple fix (leak, proxy caching). Also, we are stuck with .Net 3.5 since the platform where our application run does not support .Net 4.0+ and we have no idea if there will be a 3.3 release that still support .net 3.5 (from my understanding, .net 3.5 wont be supported in next release 4.0)." created="1366316929009" updated="1367268028528" />
+  </issue>
+</issues>

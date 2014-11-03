@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Binder</value>
+    </field>
+    <field name="Fix versions">
+      <value>1.1.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>109</value>
+    </field>
+    <field name="summary">
+      <value>New build scripts to release Binder</value>
+    </field>
+    <field name="description">
+      <value>These are the new script required to release the Binder Component.</value>
+    </field>
+    <field name="created">
+      <value>1254277779000</value>
+    </field>
+    <field name="updated">
+      <value>1254759716000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1254759660000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="rbellamy" text="Is there a particular reason why you added the castle-project-binder project to the top of the main default.build?" created="1254583365000" />
+    <comment author="rbellamy" text="And wouldn't this mean that the \buildscripts directory should be added to the trunk as an svn:external?" created="1254588844000" />
+    <comment author="jsimons" text="Richard,&#xA;&#xA;As part of releasing projects, we are now moving them to the root of the svn tree to separate them and make it easier for future releases.&#xA;You can catch up on that discussion here: http://groups.google.com/group/castle-project-devel/browse_thread/thread/a4fb49a463ff3d33&#xA;If you need more info send me or Jonathon Rossi a pvt message." created="1254591714000" />
+    <comment author="rbellamy" text="Never mind... I see that your patches are predicated on the idea that I will split the Binder component into its own separate branches/tags/trunk within SVN." created="1254594450000" />
+    <comment author="rbellamy" text="Applied." created="1254759709000" />
+    <comment author="rbellamy" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''1.1.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1254759660000" />
+    <comment author="rbellamy" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1254759660000" />
+    <comment author="jsimons" text="* '''Attachment''' newscripts.patch added.&#xD;&#xA;" created="1254277779001" />
+  </issue>
+</issues>

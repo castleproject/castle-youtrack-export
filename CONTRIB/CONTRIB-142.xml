@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Facilities</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>142</value>
+    </field>
+    <field name="summary">
+      <value>Castle.Facilities.MethodValidatorFacility</value>
+    </field>
+    <field name="description">
+      <value>Facility to validate method invocation using interception.
+
+This contribution depends on the patch at http://support.castleproject.org/projects/COMP/issues/view/COMP-ISSUE-70 to be applied.
+
+The solution references are current pointing at a "libs" directory which is not included in the patch.  That directory can be change to the normal build directory once the above patch has been applied and the Castle.Components.Validator.dll is updated with the needed changes.</value>
+    </field>
+    <field name="created">
+      <value>1219867171000</value>
+    </field>
+    <field name="updated">
+      <value>1414392302269</value>
+    </field>
+    <field name="reporterName">
+      <value>ewhauser</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392302262</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ewhauser" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Facility to validate method invocation using interception.&#xD;&#xA;&#xD;&#xA;This contribution depends on the patch at http://support.castleproject.org/projects/COMP/issues/view/COMP-ISSUE-70 to be applied.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Facility to validate method invocation using interception.&#xD;&#xA;&#xD;&#xA;This contribution depends on the patch at http://support.castleproject.org/projects/COMP/issues/view/COMP-ISSUE-70 to be applied.&#xD;&#xA;&#xD;&#xA;The solution references are current pointing at a &quot;libs&quot; directory which is not included in the patch.  That directory can be change to the normal build directory once the above patch has been applied and the Castle.Components.Validator.dll is updated with the needed changes.&#xD;&#xA;{quote}&#xD;&#xA;" created="1219867560000" />
+  </issue>
+</issues>

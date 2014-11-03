@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>71</value>
+    </field>
+    <field name="summary">
+      <value>Provide access to ModuleScope used by ProxyObjectReference</value>
+    </field>
+    <field name="description">
+      <value>From: Rogelio Baucells
+Via: http://groups.google.com/group/castle-project-devel/msg/d11e615325d85a78
+
+Hi,
+
+ 
+
+While using DynamicProxy2 serialization feature I noticed two different proxy classes where created for a given class, one created at the time of proxy creation and the other at the time of de-serialization. The following code shows that the de-serialized instance type if different than the one originally created. Looking at the DynamicProxy2 code I noticed that the problem relies on having two different ModuleScope instances, one in the DefaultProxyBuilder used in ProxyGenerator and the other in the ProxyObjectReference used at the time of de-serialization. Since you can have multiple ModuleScope instances (when using multiple ProxyGenerators) there is no way for the ProxyObjectReference to use an existing ModuleScope so it creates a new one (static). But we should have the option to use the ModuleScope created by the ProxyObjectReference in manually created ProxyGenerators (by passing an IProxyBuilder instance that reuses the ModuleScope), but the ProxyObjectReference does not have a Getter for the ModuleScope instance.
+
+ 
+
+static void Main(string[] args) {
+
+   // create proxy generator
+
+   ProxyGenerator proxyGenerator = new ProxyGenerator();
+
+   // create Class1 proxy 
+
+   Class1 first = proxyGenerator.CreateClassProxy&lt;Class1&gt;(new MyInterceptor());
+
+   // print proxy type
+
+   Console.WriteLine(first.GetType());
+
+   using (MemoryStream stream = new MemoryStream()) {
+
+      // create binary formatter
+
+      BinaryFormatter formatter = new BinaryFormatter();
+
+      // serialize Class1 instance
+
+      formatter.Serialize(stream, first);
+
+      // rewind stream
+
+      stream.Seek(0, SeekOrigin.Begin);
+
+      // deserialize
+
+      Class1 second = (Class1)formatter.Deserialize(stream);
+
+      // print de-serialized object type
+
+      Console.WriteLine(second.GetType());
+
+      // compare original &amp; de-serialized type
+
+      Console.WriteLine(second.GetType().Equals(first.GetType()));
+
+   }
+
+   Console.ReadLine();
+
+}
+
+ 
+
+If ProxyObjectReference provides such a getter the following statement resolves the problem.
+
+ 
+
+   ProxyGenerator proxyGenerator = new ProxyGenerator(new DefaultProxyBuilder(ProxyObjectReference.ModuleScope));
+
+ 
+
+Can DynamicProxy2 provide something similar to avoid having two proxy types for each class been serialized?
+
+ 
+
+Thanks,
+
+ 
+
+RJB
+
+</value>
+    </field>
+    <field name="created">
+      <value>1194324684000</value>
+    </field>
+    <field name="updated">
+      <value>1194335210000</value>
+    </field>
+    <field name="reporterName">
+      <value>fcs</value>
+    </field>
+    <field name="updaterName">
+      <value>fcs</value>
+    </field>
+    <field name="resolved">
+      <value>1282140712713</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

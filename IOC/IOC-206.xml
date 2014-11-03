@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>206</value>
+    </field>
+    <field name="summary">
+      <value>ContainerWrapper believes it is an IWindsorContainer, though it is not declared as such.</value>
+    </field>
+    <field name="description">
+      <value>The Castle.Windsor.Adapters.ComponentModel.ContainerWrapper returns a reference to itself when it is asked 'GetService' for the type 'IWindsorContainer', yet the ContainerWrapper does NOT implement IWindsorContainer, meaning that the caller will experience a class cast exception (or null result, when safe-casting).
+
+Regardless, the return value is useless.</value>
+    </field>
+    <field name="created">
+      <value>1277233402000</value>
+    </field>
+    <field name="updated">
+      <value>1287656908337</value>
+    </field>
+    <field name="reporterName">
+      <value>nimble99</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1277259900000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1277258400000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1277259900000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1277259900000" />
+  </issue>
+</issues>

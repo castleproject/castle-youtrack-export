@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Performance</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>59</value>
+    </field>
+    <field name="summary">
+      <value>Batch fecthing in lazy loading</value>
+    </field>
+    <field name="description">
+      <value>see http://forum.castleproject.org/viewtopic.php?t=194&amp;sid=391ed6155a2e73903826a10886d1ca19</value>
+    </field>
+    <field name="created">
+      <value>1149747434000</value>
+    </field>
+    <field name="updated">
+      <value>1162410485000</value>
+    </field>
+    <field name="reporterName">
+      <value>jawc</value>
+    </field>
+    <field name="updaterName">
+      <value>jawc</value>
+    </field>
+    <field name="resolved">
+      <value>1282135957229</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

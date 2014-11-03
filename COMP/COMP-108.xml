@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Binder</value>
+    </field>
+    <field name="Fix versions">
+      <value>1.1.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>108</value>
+    </field>
+    <field name="summary">
+      <value>Remove Binder Component website page</value>
+    </field>
+    <field name="description">
+      <value>The Binder Component is only used to support other components (Monorail DataBind) and it doesn't seem to be used on its own.
+Therefore it doesn't require to have a web site page.
+The page that is being removed is http://www.castleproject.org/components/binder/index.html, and it currently doesn't serve any purpose.
+A lot of the doco for this component is documented as part of Monorail.
+</value>
+    </field>
+    <field name="created">
+      <value>1254276061000</value>
+    </field>
+    <field name="updated">
+      <value>1256219467000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1256219460000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="rbellamy" text="I think, rather than completely removing the page, we might want to point to the DataBind and ARDataBind documentation. What do you think?" created="1254791409000" />
+    <comment author="jsimons" text="You mean have a page with links to other pages?" created="1254791826000" />
+    <comment author="rbellamy" text="Yep." created="1254791916000" />
+    <comment author="jsimons" text="Up to you, but I don't see the point. That is the reason why I completely removed the page." created="1254792382000" />
+    <comment author="rbellamy" text="Applied." created="1256219464000" />
+    <comment author="rbellamy" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''1.1.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1256219460000" />
+    <comment author="rbellamy" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1256219460000" />
+    <comment author="jsimons" text="* '''Attachment''' web.patch added.&#xD;&#xA;" created="1254276120000" />
+  </issue>
+</issues>

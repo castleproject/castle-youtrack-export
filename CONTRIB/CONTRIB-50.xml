@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>50</value>
+    </field>
+    <field name="summary">
+      <value>Allow use of C5 collections in place of Systems.Collection</value>
+    </field>
+    <field name="description">
+      <value>If you are using the C5 collections collection you have to manually replace the "using System.Collections.Generic;" line with "using C5".
+
+Add another actiw field Collection Assembly (default it to System.Collections.Generic) that can then be changed as required.
+
+For quick overview of C5 if aren't familiar with it.
+
+http://tinyurl.com/2w6fno</value>
+    </field>
+    <field name="created">
+      <value>1185796075000</value>
+    </field>
+    <field name="updated">
+      <value>1189239156000</value>
+    </field>
+    <field name="reporterName">
+      <value>mhawksworth</value>
+    </field>
+    <field name="updaterName">
+      <value>mhawksworth</value>
+    </field>
+    <field name="resolved">
+      <value>1282138201651</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

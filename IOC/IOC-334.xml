@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>334</value>
+    </field>
+    <field name="summary">
+      <value>FacilityConfig is null in facility Init()</value>
+    </field>
+    <field name="description">
+      <value>Setting a facility config via ConfigurationStore.AddFacilityConfiguration seems to have broken in Windsor 3, used to work in Windsor 2.5
+
+FacilityConfig is now null in Init()</value>
+    </field>
+    <field name="created">
+      <value>1332609329089</value>
+    </field>
+    <field name="updated">
+      <value>1349416955107</value>
+    </field>
+    <field name="reporterName">
+      <value>mausch</value>
+    </field>
+    <field name="updaterName">
+      <value>Dmitry.Karpenkov</value>
+    </field>
+    <field name="resolved">
+      <value>1349251722576</value>
+    </field>
+    <field name="voterName">
+      <value>Dmitry.Karpenkov</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-151[up-to-date]</value>
+      <value>User: id = 20-897[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mausch" text="Failing test: https://github.com/mausch/Windsor/commit/e7489fdf1eb6896b00e0a5e6e5cc687adb791d00" created="1332609590061" />
+    <comment author="xtoff" text="Can you pull request it?" created="1337382894698" />
+    <comment author="mausch" text="Bummer, I never got that message about the pull request. Anyway, here it is, I rebased to 3.1.0 and it still fails: https://github.com/castleproject/Windsor/pull/7" created="1345172499903" />
+    <comment author="Dmitry.Karpenkov" text="Hi there, any date in mind on when this could be fixed? Please advise." created="1346825616539" />
+    <comment author="mausch" text="@Dmitry if this is an blocking issue for you I recommend you to take a shot at fixing it." created="1346850929128" />
+    <comment author="Dmitry.Karpenkov" text="The issue seems to have been fixed. When do you think we can expect a new version of Windsor released?" created="1349332825737" />
+    <comment author="mausch" text="@Krzysztof : Thanks mate!&#xA;&#xA;@Dmitry is this is a blocking issue for you, you could use a nightly build. No need to wait for a release." created="1349388326416" />
+    <comment author="xtoff" text="@Dmitry Karpenkov&#xA;&#xA;how is that a blocking issue?" created="1349388644158" />
+    <comment author="Dmitry.Karpenkov" text="No, this is not a blocking issue for us and we're fine with waiting for the next release. Just wanted to know how soon we can expect it. Thank you." created="1349416955092" />
+  </issue>
+</issues>

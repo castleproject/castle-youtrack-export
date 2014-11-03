@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>186</value>
+    </field>
+    <field name="summary">
+      <value>RedirectToNextStep failing for WizardSteps inside an Area.</value>
+    </field>
+    <field name="description">
+      <value>I've got the following wizard steps in my website:
+
+/views/account/changePassword/getNewPasswordStep.boo
+/views/account/changePassword/displayResultsStep.boo
+/views/register/getAccountDetailsStep.boo
+/views/register/displayResultsStep.boo
+
+Calling RedirectToNextStep from an action in my GetAccountDetailsStep WizardStepPage works as expected, by redirecting to /register/displayResultsStep.rails. If I call RedirectToNextStep from an action in my GetNewPasswordStep WizardStepPage, I get a controller not found exception because the Area ("Account") is not taken into consideration. I have marked up my "wizard controller" ChangePasswordController with the ControllerDetails attribute to specify the area.
+
+Perhaps I am not configuring my controllers/wizardsteppages correctly to work with areas? I couldn't find any documentation on the site for that aspect of wizards. 
+
+I've temporarily patched the problem on my working copy by changing InternalRedirectToStep:
+
+private void InternalRedirectToStep(int stepIndex, String step, IDictionary queryStringParameters)
+{
+	WizardUtils.RegisterCurrentStepInfo(_wizardcontroller, stepIndex, step);
+	
+	if (queryStringParameters != null &amp;&amp; queryStringParameters.Count != 0)
+	{
+		if (string.IsNullOrEmpty(_wizardcontroller.AreaName))
+			Redirect(_wizardcontroller.Name, step, queryStringParameters);
+		else
+			Redirect(_wizardcontroller.AreaName, _wizardcontroller.Name, step, queryStringParameters);
+	}
+	else if (Context.Request.QueryString.HasKeys())
+	{
+		// We need to preserve any attribute from the QueryString
+		// for example in case the url has an Id
+
+		String url = (string.IsNullOrEmpty(_wizardcontroller.AreaName))
+						? UrlInfo.CreateAbsoluteRailsUrl(Context.ApplicationPath,
+							_wizardcontroller.Name, step, Context.UrlInfo.Extension) + Context.Request.Uri.Query
+						: UrlInfo.CreateAbsoluteRailsUrl(Context.ApplicationPath,
+							_wizardcontroller.AreaName, _wizardcontroller.Name, step, Context.UrlInfo.Extension) 
+							+ Context.Request.Uri.Query;
+		
+		Context.Response.Redirect(url);
+	}
+	else
+	{
+		if (string.IsNullOrEmpty(_wizardcontroller.AreaName))
+			Context.Response.Redirect(_wizardcontroller.Name, step);
+		else
+			Context.Response.Redirect(_wizardcontroller.AreaName, _wizardcontroller.Name, step);
+	}
+}
+
+But obviously this is not ideal. Maybe always call redirect specifying the full parameter list, but then redirecting (!) to the shorter Redirect overload when Area IsNullOrEmpty?</value>
+    </field>
+    <field name="created">
+      <value>1165598744000</value>
+    </field>
+    <field name="updated">
+      <value>1169131796000</value>
+    </field>
+    <field name="reporterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="updaterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="resolved">
+      <value>1282143622651</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

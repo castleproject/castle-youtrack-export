@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle.Tools.CodeGenerator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>133</value>
+    </field>
+    <field name="summary">
+      <value>CodeGenerator: check all output paths for newest version of referenced projects</value>
+    </field>
+    <field name="description">
+      <value>When resolving references to referenced projects code generator only checks the first OutputPath that it finds in the csproj file, which is normally the OutputPath of the Debug configuration. When the output assemblies of referenced projects are outdated for that configuration code generation can possibly fail.
+
+The provided patch improves this situation. For referenced projects code generator will search in ALL output directories and selected the newest version of each referenced assembly. File.GetLastWriteTime() is used as the comparison criterion.</value>
+    </field>
+    <field name="created">
+      <value>1211946779000</value>
+    </field>
+    <field name="updated">
+      <value>1211952061000</value>
+    </field>
+    <field name="reporterName">
+      <value>aloker</value>
+    </field>
+    <field name="updaterName">
+      <value>aloker</value>
+    </field>
+    <field name="resolved">
+      <value>1282140105323</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

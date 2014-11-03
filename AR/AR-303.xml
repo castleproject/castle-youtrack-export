@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Documentation</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>303</value>
+    </field>
+    <field name="summary">
+      <value>Documentation in configuration for PostgreSQL is wrong</value>
+    </field>
+    <field name="description">
+      <value>Hello guys,
+
+There is a problem in the configuration in the webpage.
+
+It states that it should be:
+
+&lt;add key="connection.connection_string" value="server=localhost;port=5432;initial catalog=mydb;user id=postgres;Password=pass;" /&gt;
+
+But it should be:
+
+&lt;add key="connection.connection_string" value="server=localhost;port=5432;DATABASE=citizen;user id=postgres;Password=pass;" /&gt;
+</value>
+    </field>
+    <field name="created">
+      <value>1308365367177</value>
+    </field>
+    <field name="updated">
+      <value>1314836641520</value>
+    </field>
+    <field name="reporterName">
+      <value>George.Silva</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1314836635567</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="George.Silva" text="Oh, I'm sorry. The problem is in PostgreSQL configuration." created="1308365652990" />
+    <comment author="henry" text="Invalid." created="1314836641505" />
+  </issue>
+</issues>

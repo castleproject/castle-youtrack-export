@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>469</value>
+    </field>
+    <field name="summary">
+      <value>Async actions cause helpers to be registered twice, causing error.</value>
+    </field>
+    <field name="description">
+      <value>(Build 915)
+
+This is the full exception:
+
+Server Error in '/' Application.
+Found a duplicate helper attribute named 'ActionableHelper' on controller 'act'
+Description: An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code.
+
+Exception Details: Castle.MonoRail.Framework.ControllerException: Found a duplicate helper attribute named 'ActionableHelper' on controller 'act'
+
+Source Error:
+
+An unhandled exception was generated during the execution of the current web request. Information regarding the origin and location of the exception can be identified using the exception stack trace below.
+
+Stack Trace:
+
+[ControllerException: Found a duplicate helper attribute named 'ActionableHelper' on controller 'act']
+   Castle.MonoRail.Framework.Controller.CreateAndInitializeHelpers() +361
+   Castle.MonoRail.Framework.Controller.PrepareToExecuteAction(IEngineContext engineContext, IControllerContext context) +70
+   Castle.MonoRail.Framework.Controller.EndProcess() +106
+   Castle.MonoRail.Framework.BaseAsyncHttpHandler.EndProcessRequest(IAsyncResult result) +131
+
+[MonoRailException: Error processing MonoRail request. Action uploadcompaniesasync on asyncController act]
+   Castle.MonoRail.Framework.BaseAsyncHttpHandler.EndProcessRequest(IAsyncResult result) +428
+   System.Web.CallHandlerExecutionStep.OnAsyncHandlerCompletion(IAsyncResult ar) +57
+</value>
+    </field>
+    <field name="created">
+      <value>1217992669000</value>
+    </field>
+    <field name="updated">
+      <value>1278726285000</value>
+    </field>
+    <field name="reporterName">
+      <value>adam_b</value>
+    </field>
+    <field name="updaterName">
+      <value>adam_b</value>
+    </field>
+    <field name="resolved">
+      <value>1278726240000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Not reproducible in 2.0" created="1278726277000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1278724260000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1278726240000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278726240000" />
+  </issue>
+</issues>

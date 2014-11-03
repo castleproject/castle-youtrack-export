@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>69</value>
+    </field>
+    <field name="summary">
+      <value>Allow [Import] attribute on the classes which will be imported</value>
+    </field>
+    <field name="description">
+      <value>The current solution for importing classes is somewhat ugly:
+
+[ActiveRecord]
+[Import(typeof(ImportClass), "ImportClass")]
+public class MyActiveRecord : ActiveRecordBase ...
+
+public class ImportClass
+
+
+It would be more interesting if we change the location of the attribute:
+
+[ActiveRecord]
+public class MyActiveRecord : ActiveRecordBase ...
+
+[Import(typeof(MyActiveRecord), "ImportClass")]
+public class ImportClass
+</value>
+    </field>
+    <field name="created">
+      <value>1154905378000</value>
+    </field>
+    <field name="updated">
+      <value>1263106273000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1263106260000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="1. The change assumes we won the imported type, which is not always a case.&#xA;2. With criteria and linq being the preferred approach now, I don't really think this is worthwhile." created="1263038347000" />
+    <comment author="mzywitza" text="This would change the semantics of the current solution, breaking existing code.&#xD;&#xA;The issue is not important enough for it." created="1263106265000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' changed from ''Future'' to ''&lt;empty&gt;''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1263106260000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263106260000" />
+  </issue>
+</issues>

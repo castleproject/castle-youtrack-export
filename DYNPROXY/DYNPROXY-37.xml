@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0 Alpha</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>37</value>
+    </field>
+    <field name="summary">
+      <value>Add IInteceptorSelector support</value>
+    </field>
+    <field name="description">
+      <value>The selector allows one to customize the interceptors used by a method. This is an idea mostly, it will introduce some overhead. 
+
+The changes required:
+- Another constructor parameters to proxy types (IInterceptorSelector)
+- Each proxied method would have to call the selector, build an array based on the indexes returned and delegate to the invocation.
+- It also must check if the selector returned null
+</value>
+    </field>
+    <field name="created">
+      <value>1164838219000</value>
+    </field>
+    <field name="updated">
+      <value>1232282819000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1232282760000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="I created partial implementation of this:&#xA;+ Currently it does work for class proxies. I tested it for methods and properties on both target object and mixins.&#xA;- It does not yet check if null was returned&#xA;- It probably will crash on interface proxy without target&#xA;- it does not yet touch on issues like serialization etc.&#xA;Since I am not a commiter I upload this milestone as a patch here. Feel free to check it out and comment on, what you like and what you don't like about it.&#xA;&#xA;Few important things about this implementation:&#xA;- it caches the selection on per instance basis, so the selector is called only the first time a method is invoked on a particular instance&#xA;- when empty array is returned it calls target method directly (that's why interface proxy without target will break)&#xA;- it does not honor the UseSelector property. It assumes that when Selector!=null, it should use it" created="1228232320000" />
+    <comment author="xtoff" text="Added few more things:&#xA;+ null check on value returned from interceptor selector&#xA;+ leaking this check if needed&#xA;+ support for proxies without target&#xA;- removed the UseSelector property&#xA;# serialization support is still missing" created="1228406599000" />
+    <comment author="xtoff" text="+ added serialization support" created="1228487910000" />
+    <comment author="xtoff" text="Redid implementation to use Selector property of ProxyGenerationOptions instead of its own instance field" created="1229430267000" />
+    <comment author="jonorossi" text="Applied in r5522." created="1232282819000" />
+    <comment author="jonorossi" text="* '''Type''' changed from ''Task'' to ''Patch''.&#xD;&#xA;* '''Assignees''' changed from ''hamilton verissimo'' to ''Jonathon Rossi''.&#xD;&#xA;" created="1232282760000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' changed from ''2.0 Beta 1'' to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1232282760000" />
+  </issue>
+</issues>

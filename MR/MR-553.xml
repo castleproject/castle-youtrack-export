@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>553</value>
+    </field>
+    <field name="summary">
+      <value>IRoutingEngine service when present in parent container is not used by DefaultMonoRailContainer</value>
+    </field>
+    <field name="description">
+      <value>After upgrading to trunk from a previous version we started observing some strange behaviour with our routes not working in some cases.
+
+For our project we have a customised routing engine - which is registered in the windsor container, and in previous releases the DefaultMonoRailContainer would use the routing engine registered in the parent container.
+
+After upgrading to trunk (r6376) we found that during initialization some services would use the routing engine registered in Windsor, and then the CreateDefaultMonoRailContainer method in MonoRailHttpHandlerFactory would add it's own instance of the routing engine (hiding the instance in the parent container) as per this code:
+
+if (!container.HasService&lt;IRoutingEngine&gt;())
+{
+    container.AddService&lt;IRoutingEngine&gt;(RoutingModuleEx.Engine);
+}
+
+I've supplied a patch which adds supporting for IRoutingEngine to the UseServicesFromParent() method of the DefaultMonoRailContainer, to avoid this issue.</value>
+    </field>
+    <field name="created">
+      <value>1259903348000</value>
+    </field>
+    <field name="updated">
+      <value>1260661502000</value>
+    </field>
+    <field name="reporterName">
+      <value>bittercoder</value>
+    </field>
+    <field name="updaterName">
+      <value>bittercoder</value>
+    </field>
+    <field name="resolved">
+      <value>1260661440000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Applied in r6409" created="1260653679000" />
+    <comment author="bittercoder" text="* '''Attachment''' UseServicesFromParent_FixForRoutingEngineService.patch added.&#xD;&#xA;" created="1259903348001" />
+    <comment author="kenegozi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1260661440000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1260661500000" />
+  </issue>
+</issues>

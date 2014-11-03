@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>170</value>
+    </field>
+    <field name="summary">
+      <value>Calls to properties inside non-intercepted methods are not forwarded to target object</value>
+    </field>
+    <field name="description">
+      <value>I have a change tracking framework that tracks changed made to domain objects on the client. It uses Castle.Windsor as the tool for creating proxy objects. After I changed Castle to version 3.0 calls of properties inside methods that are not intercepted are not forwarded to the target object anymore.
+
+See also my question at Stackoverflow: http://stackoverflow.com/questions/9787257/calls-to-properties-inside-non-intercepted-methods-are-not-forwarded-to-target-o</value>
+    </field>
+    <field name="created">
+      <value>1332408074573</value>
+    </field>
+    <field name="updated">
+      <value>1352152096673</value>
+    </field>
+    <field name="reporterName">
+      <value>Antineutrino</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1341017529592</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Can you provide a failing test for that?" created="1338173463246" />
+    <comment author="Antineutrino" text="https://github.com/castleproject/Core/pull/11&#xD;&#xA;&#xD;&#xA;The problem seems to be that protected properties aren't intercepted anymore." created="1338375683718" updated="1338376370587" />
+    <comment author="xtoff" text="That's fixed now. Turns out a piece of code that was supposed to only run on Silverlight wasn't conditionally excluded properly" created="1341017524615" />
+  </issue>
+</issues>

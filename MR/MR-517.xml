@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>517</value>
+    </field>
+    <field name="summary">
+      <value>DefaultViewComponentDescriptorProvider::Collect Threading Problem</value>
+    </field>
+    <field name="description">
+      <value>Private member type2Desc(generic dictionary) is not locked when calling 
+  type2Desc[viewComponentType] = descriptor
+
+This could cause NullReferenceException(easy to reproduce by issuing several concurrent http requests when the app is starting up) and IndexOutOfRangeException(hard to reproduce, more random, but it happened once, and corrupted the application entirely). 
+
+The patch I use:
+
+		public ViewComponentDescriptor Collect(Type viewComponentType)
+		{
+			if (viewComponentType == null) throw new ArgumentNullException("viewComponentType");
+
+			if (type2Desc.ContainsKey(viewComponentType))
+			{
+				return type2Desc[viewComponentType];
+			}
+
+            lock (type2Desc)
+            {
+                if (type2Desc.ContainsKey(viewComponentType))
+                {
+                    return type2Desc[viewComponentType];
+                }
+
+                object[] attrs = viewComponentType.GetCustomAttributes(typeof(ViewComponentDetailsAttribute), true);
+
+                ViewComponentDescriptor descriptor;
+
+                if (attrs.Length == 0)
+                {
+                    descriptor = ViewComponentDescriptor.Empty;
+                }
+                else
+                {
+                    ViewComponentDetailsAttribute details = (ViewComponentDetailsAttribute)attrs[0];
+
+                    IViewComponentCacheKeyGenerator generator = null;
+
+                    if (details.Cache == ViewComponentCache.Always)
+                    {
+                        generator = new AlwaysCacheKeyGenerator();
+                    }
+                    else if (details.CacheKeyFactory != null)
+                    {
+                        try
+                        {
+                            generator = (IViewComponentCacheKeyGenerator)
+                                        Activator.CreateInstance(details.CacheKeyFactory);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new MonoRailException(
+                                "Could not instantiate IViewComponentCacheKeyGenerator implementation or " +
+                                "it does not implement this interface. Type: " + details.CacheKeyFactory.FullName, ex);
+                        }
+                    }
+
+                    descriptor = new ViewComponentDescriptor(details.Cache != ViewComponentCache.Disabled, details.Cache, generator);
+                }
+
+                type2Desc[viewComponentType] = descriptor;
+
+                return descriptor;
+            }
+		}</value>
+    </field>
+    <field name="created">
+      <value>1234168629000</value>
+    </field>
+    <field name="updated">
+      <value>1263055446000</value>
+    </field>
+    <field name="reporterName">
+      <value>jing</value>
+    </field>
+    <field name="updaterName">
+      <value>jing</value>
+    </field>
+    <field name="resolved">
+      <value>1242048600000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="rbellamy" text="Thanks for attaching the patch for me Henry.&#xA;&#xA;The new patch includes locking using a ReaderWriterLocker, as opposed to the standard 'lock(type2Desc)'." created="1234274207000" />
+    <comment author="kenegozi" text="Nice catch Jing.&#xA;&#xA;three pointers:&#xA;A. Castle coding standards dictates using tabs for indentation&#xA;B. A ReadWriteLock might be better than a lock. &#xA;C. Could you please turn this into an actual patch?&#xA;" created="1234315032000" />
+    <comment author="rbellamy" text="Ken,&#xA;&#xA;Did you notice that I attached a patch with all those points corrected?" created="1234355298000" />
+    <comment author="rbellamy" text="p.s. That wasn't to take anything away from Jing... just me practicing with the Framework again.&#xA;&#xA;If what I did looks right, and it makes sense, use it and attribute it to Jing." created="1234355573000" />
+    <comment author="jing" text="Thank you guys for fixing this! Btw, can anybody tell me how can I get notice on new comments? I thought if anyone comments on my post, I should get an email. But i got nothing" created="1234688176000" />
+    <comment author="roelofb" text="Applied in r5675" created="1242048644000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055440000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1242048600000" />
+  </issue>
+</issues>

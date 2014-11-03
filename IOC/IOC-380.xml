@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Resolvers</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.2</value>
+      <value>3.2.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>380</value>
+    </field>
+    <field name="summary">
+      <value>CollectionResolver should support IReadOnlyCollection/List in .NET 4.5+</value>
+    </field>
+    <field name="description">
+      <value>Those are two new types added in .NET 4.5, and array types implement those interfaces too.
+
+So resolving through CollectionResolver should support that too</value>
+    </field>
+    <field name="created">
+      <value>1379337217128</value>
+    </field>
+    <field name="updated">
+      <value>1379337273325</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1379337239413</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

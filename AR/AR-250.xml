@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Documentation</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>250</value>
+    </field>
+    <field name="summary">
+      <value>More on the TransactionScope?</value>
+    </field>
+    <field name="description">
+      <value>The page http://www.castleproject.org/activerecord/documentation/trunk/usersguide/scopes.html says that you can find more on TransactionScope at http://www.castleproject.org/activerecord/documentation/trunk/manual/scopes.html . 
+
+All there is mentioned about it is "TransactionMode: Defines the scope of a transaction. Can be nested within a SessionScope and even between multiple transactions."
+
+Should we really link to this page?
+
+The reason for my question is that I just wanted to add the information, that a TransactionScope decides on Dispose whether it should commit or rollback based on the votes and the OnDispose mode. I only found this information in the sources, so I thought it should be added somewhere. Where?
+
+Thanks,
+
+Flo</value>
+    </field>
+    <field name="created">
+      <value>1239847713000</value>
+    </field>
+    <field name="updated">
+      <value>1414394666762</value>
+    </field>
+    <field name="reporterName">
+      <value>Flominator</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414394666758</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="Flominator" text="We could link to http://mortslikeus.blogspot.com/2009/04/understanding-activerecord-sessions-2.html instead ..." created="1246940979000" />
+    <comment author="xtoff" text="Florian, you can create a patch for documentation that adds a new page about scopes with all the information you wanted to add." created="1262958312000" />
+    <comment author="xtoff" text="* '''Components''' changed from ''Framework'' to ''Documentation''.&#xD;&#xA;" created="1262958300000" />
+  </issue>
+</issues>

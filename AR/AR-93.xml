@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>93</value>
+    </field>
+    <field name="summary">
+      <value>Scaffolding / ARdatabind crash when Typeof is not supplied in the HasMany attribute.</value>
+    </field>
+    <field name="description">
+      <value>The model is being resolved by the MapType property. If this is null, this app crashes.
+This can be fixed by checking for the type in the visitors. Not sure if this is the
+right place to do it, since these methodes are virtual an I'm not a big AR framework guru.
+
+How to reproduce;
+
+    [ActiveRecord]
+    public class Site : DomainBase&lt;Site&gt;
+    {
+        private IList&lt;Page&gt; pages = new List&lt;Page&gt;();
+
+        [HasMany]
+        public virtual IList&lt;Page&gt; Pages
+        {
+            get { return pages; }
+            set { pages = value; }
+        }
+    }
+
+    [ActiveRecord]
+    public class Page : DomainBase&lt;Page&gt;
+    {
+        private string title = string.Empty;
+        private Site site = null;
+
+        [Property]
+        public string Title
+        {
+            get { return title; }
+            set { title = value; }
+        }
+
+        [BelongsTo]
+        public Site Site
+        {
+            get { return site; }
+            set { site = value; }
+        }
+  }
+
+    [CastleComponent("site.controller")]
+    [Scaffolding(typeof(Site))]
+    public class SiteController : SmartDispatcherController
+    {
+    }
+
+   now call; site/new.rails
+   
+</value>
+    </field>
+    <field name="created">
+      <value>1164741961000</value>
+    </field>
+    <field name="updated">
+      <value>1165187356000</value>
+    </field>
+    <field name="reporterName">
+      <value>ernst</value>
+    </field>
+    <field name="updaterName">
+      <value>ernst</value>
+    </field>
+    <field name="resolved">
+      <value>1282136211463</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>53</value>
+    </field>
+    <field name="summary">
+      <value>Add Attribute to set type converter for custom complex parameter types</value>
+    </field>
+    <field name="description">
+      <value>
+The code provides an easy way to handle complex configuration parameters without the need to register several
+ITypeConverters with the ConversionManager. 
+
+Additionally, a default TypeConverter is supplied, so you can configure complex types like this:
+
+Type to be configured:
+
+[Convertible]
+class Address {
+    string Name { get{..}; set {...}}
+    string Street { get{..}; set {...}}
+    string City  { get{..}; set {...}}
+}
+
+corresponding configuration element:
+
+&lt;address&gt;
+    &lt;name&gt;Ponder Stibbons&lt;/name&gt;
+    &lt;street&gt;Useen Alley&lt;/street&gt;
+    &lt;city&gt;Ankh Morpork&lt;/city&gt;
+&lt;/address&gt;
+
+Optionally, the ConvertibleAttribute allows to specifiy the TypeConverter to use. By default, the DefaultComplexConverter is used.
+
+A small unit test is added - I will provide docs if the patch gets applied...
+
+The is my very first patch I submit, ever. If I can do anything to improve your "patching experience", please let me know.
+
+Cheers,
+Norbert
+</value>
+    </field>
+    <field name="created">
+      <value>1167474315000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838869</value>
+    </field>
+    <field name="reporterName">
+      <value>nova</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1232446440000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="The patch is no longer valid.&#xA;I am closing as won't fix because I don't" created="1232179752000" />
+    <comment author="ayenderahien" text="This seems to already be applied" created="1232446491000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1232446440000" />
+  </issue>
+</issues>

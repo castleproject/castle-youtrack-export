@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>12</value>
+    </field>
+    <field name="summary">
+      <value>Build 1.0.x branch on builds.castleproject.org</value>
+    </field>
+    <field name="description">
+      <value>When doing this the name of the output file should also be changed to prevent confusion with builds from the trunk, propably appending the major and minor version like this in cruise.build:
+&lt;property name="build.zip.file" value="castleproject-build_${CCNetLabel}-${framework::get-target-framework()}-${project.config}.zip" dynamic="true" /&gt;
+becomes
+&lt;property name="build.zip.file" value="castleproject-${project.major}.${project.minor}-build_${CCNetLabel}-${framework::get-target-framework()}-${project.config}.zip" dynamic="true" /&gt;</value>
+    </field>
+    <field name="created">
+      <value>1160152302000</value>
+    </field>
+    <field name="updated">
+      <value>1170536944000</value>
+    </field>
+    <field name="reporterName">
+      <value>roelofb</value>
+    </field>
+    <field name="updaterName">
+      <value>roelofb</value>
+    </field>
+    <field name="resolved">
+      <value>1282137240120</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Attributes</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>131</value>
+    </field>
+    <field name="summary">
+      <value>Active record doesn't allow you to set  the NHibernate "fetch" attribute on HasMany associations</value>
+    </field>
+    <field name="description">
+      <value>NHibernate allows you to set the fetch strategy on various relationships. Active record currently only supports this for OneToOne and BelongsTo. I have attached a patch that adds a fetch attribute for HasMany and HasAndBelongsToMany.
+
+The existing BelongsTo attribute uses the now deprecated "outer-join" whereas the OneToOne was changed a while ago to the preferred "fetch". The attributes I have added use "fetch". This means that BelongsTo is now inconsistent with the others. I think that It should be changed to the new value. As this would be a breaking change for anyone using the old attribute I haven't included it in the patch.
+
+Would you like me to send a new patch that changes BelongsTo to be consistent?
+
+Dave.</value>
+    </field>
+    <field name="created">
+      <value>1172228264000</value>
+    </field>
+    <field name="updated">
+      <value>1173516038000</value>
+    </field>
+    <field name="reporterName">
+      <value>daveg</value>
+    </field>
+    <field name="updaterName">
+      <value>daveg</value>
+    </field>
+    <field name="resolved">
+      <value>1282136286057</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

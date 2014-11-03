@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>93</value>
+    </field>
+    <field name="summary">
+      <value>TemplateEngine web site doco update</value>
+    </field>
+    <field name="description">
+      <value>Updated the template engine site doco and also included an example</value>
+    </field>
+    <field name="created">
+      <value>1245646047000</value>
+    </field>
+    <field name="updated">
+      <value>1254119895000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1254119880000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="gauthier" text="there is a case typo @88: FirstName should be Firstname&#xA;&#xA;also @75 you could add a &quot;Console.WriteLine(emailBody);&quot; to make the sample 100% MSDN doc compliant&#xA;&#xA;Thanks you for adding to the documentation :)" created="1245775759000" />
+    <comment author="jsimons" text="Patch update as per Gauthier comment.&#xA;&#xA;Cheers&#xA;John" created="1253407435000" />
+    <comment author="jonorossi" text="John, did you miss Gauthier's second comment, or was that deliberate?" created="1254113004000" />
+    <comment author="jsimons" text="I'm not too sure what he means by the second comment. Do you get it?&#xA;The sample is now, as far as I can, good." created="1254117622000" />
+    <comment author="jonorossi" text="I think Gauthier is saying to write out the email body to the console because it is a console app, and the whole point of the sample is to see the email body being processed." created="1254117874000" />
+    <comment author="jsimons" text="I haven't got the time to submit another patch right now, could you please change it so it writes out.&#xA;Thanks" created="1254118504000" />
+    <comment author="jonorossi" text="No problem.&#xA;&#xA;Applied in r6014." created="1254119893000" />
+    <comment author="jsimons" text="Thanks Jonathon" created="1254120012000" />
+    <comment author="jsimons" text="* '''Attachment''' TemplateEngine.patch added.&#xD;&#xA;" created="1245646047001" />
+    <comment author="jsimons" text="* '''Attachment''' TemplateEngine2.patch added.&#xD;&#xA;" created="1253407140000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1254119880000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1254119880000" />
+  </issue>
+</issues>

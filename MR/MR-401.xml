@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>401</value>
+    </field>
+    <field name="summary">
+      <value>DictHelper syntax a bit unweldy and slow.</value>
+    </field>
+    <field name="description">
+      <value>The DictHelper object requires a rather awkward syntax which has led to such code as:
+
+IDictionary dict = DictHelper.Create("linkType=Search",  string.Format("itemsPerPage={0}", numItems), "Term="+searchTerm);
+
+I've created an alternate syntax, which is a bit more direct.
+
+IDictionary dict = DictHelper.CreateN("linkType","Search").N("itemsPerPage", numItems).N("Term", searchTerm);
+
+Two syntaxes are available and can even be mixed:
+
+IDictionary dict = DictHelper.Create("linkType=Search").N("itemsPerPage", numItems).N("Term", searchTerm);
+
+Patch file also includes a number of addition text cases for DictHelper.
+</value>
+    </field>
+    <field name="created">
+      <value>1200943007000</value>
+    </field>
+    <field name="updated">
+      <value>1263055529000</value>
+    </field>
+    <field name="reporterName">
+      <value>jamescurran</value>
+    </field>
+    <field name="updaterName">
+      <value>jamescurran</value>
+    </field>
+    <field name="resolved">
+      <value>1282145513885</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055500000" />
+  </issue>
+</issues>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>432</value>
+    </field>
+    <field name="summary">
+      <value>GetDataBindErrors parent ( or prefix ) key not propagated to nested objects</value>
+    </field>
+    <field name="description">
+      <value>The ARDataBinder prefix attribute is not propagated for nested elements inside the GetDataBindErrors(instance)[].Parent key.
+
+Example:
+
+Controller action:
+[ARDataBind("customer")] Customer customer
+
+HTML:
+&lt;input name="customer.name" value=""/&gt;
+&lt;input name="customer.Billing.address" value=""/&gt;
+
+Now if we get the errors for the customer object instance as such : GetDataBindErrors(customer)
+The error for name will have the following attribute:
+Key: customer.name
+Parent: customer
+
+BUT the error for the billing address has the following key :
+Key: address
+Parent: Billing
+
+Shouldn't the prefix "customer" be propagated to nested elements ? As in the parent for the Billing address should be customer.Billing ?
+
+Please, this is my first JIRA post ever, so dont be too rough if i left things out!!  :P
+
+Oh and thanks for the wonderful project.
+</value>
+    </field>
+    <field name="created">
+      <value>1207923157000</value>
+    </field>
+    <field name="updated">
+      <value>1269565658000</value>
+    </field>
+    <field name="reporterName">
+      <value>patate</value>
+    </field>
+    <field name="updaterName">
+      <value>patate</value>
+    </field>
+    <field name="resolved">
+      <value>1269565620000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Can we please ge a patch for this?" created="1263049344000" />
+    <comment author="jsimons" text="Won't fix" created="1269565638000" />
+    <comment author="jsimons" text="By design" created="1269565658000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1269565620000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1269565620000" />
+  </issue>
+</issues>

@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>147</value>
+    </field>
+    <field name="summary">
+      <value>DataBinder seems to ignore 'Value' property</value>
+    </field>
+    <field name="description">
+      <value>View:
+
+&lt;div class="box"&gt;&lt;div class="header"&gt;Form Entry : Country&lt;/div&gt;&lt;div class="content"&gt;
+&lt;form action="UpdateInstance.rails" method="post" &gt;
+
+&lt;input type="hidden" id="FormInstance_Id" name="FormInstance.Id" value="11" /&gt;
+
+    Name:
+
+    &lt;input type="hidden" name="FormInstance.FieldInstances[0].Id" id="FormInstance.FieldInstances[0].Id" value="3" /&gt;
+
+        &lt;input type="text" name="FormInstance.FieldInstances[0].Value"&gt;&lt;br/&gt;
+        Friend:
+
+    &lt;input type="hidden" name="FormInstance.FieldInstances[1].Id" id="FormInstance.FieldInstances[1].Id" value="4" /&gt;
+
+        &lt;select name="FormInstance.FieldInstances[1].Value"&gt;
+
+    &lt;option value=""&gt;&lt;/option&gt;
+    
+    &lt;/select&gt;&lt;br/&gt;
+    &lt;input type="submit" value="Save"  /&gt;
+
+&lt;/form&gt;
+&lt;/div&gt;&lt;/div&gt;
+
+
+Controller: 
+        public void UpdateInstance([ARDataBind("FormInstance", AutoLoadBehavior.Always)] FormInstance formInstance)
+        {
+
+Model 
+
+    [ActiveRecord]
+    public class FieldInstance : Base&lt;FieldInstance&gt;
+    {
+        private int _id;
+        private EntityRef&lt;FormInstance&gt; _formInstance;
+        private EntityRef&lt;Field&gt; _field;
+        private string _value;
+
+        public FieldInstance()
+        {
+            _formInstance = new EntityRef&lt;FormInstance&gt;(
+                delegate(FormInstance fi) { fi.FieldInstances.Add(this); },
+                delegate(FormInstance fi) { fi.FieldInstances.Remove(this); }
+                );
+            _field = new EntityRef&lt;Field&gt;();
+        }
+
+        [PrimaryKey]
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+
+        [BelongsTo("FormInstanceId")]
+        public FormInstance FormInstance
+        {
+            get { return _formInstance.Value; }
+            set { _formInstance.Value = value; }
+        }
+
+        [BelongsTo("FieldId")]
+        public Field Field
+        {
+            get { return _field.Value; }
+            set { _field.Value = value; }
+        }
+
+        [Property]
+        public string Value
+        {
+            get { return _value; }
+            set { _value = value; }
+        }
+
+    }
+
+FormInstance.FieldInstances[n].Id gets set for both, but FormInstance.FieldInstances[n].Value does not.</value>
+    </field>
+    <field name="created">
+      <value>1157718766000</value>
+    </field>
+    <field name="updated">
+      <value>1162413918000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282143490620</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

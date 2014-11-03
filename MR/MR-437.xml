@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>437</value>
+    </field>
+    <field name="summary">
+      <value>AbstractHelper.RenderScriptBlockToSource does not handle URLs without extension correctly</value>
+    </field>
+    <field name="description">
+      <value>The current implementations of Castle.MonoRail.Framework.Helpers.AbstractHelper.RenderScriptBlockToSource  make the assumption that the current URL has an extension, e.g. the simpler of the two overloads:
+
+		protected string RenderScriptBlockToSource(string url)
+		{
+			return string.Format("&lt;script type=\"text/javascript\" src=\"{0}.{1}?" + MonoRailVersion + "\"&gt;&lt;/script&gt;",
+				context.ApplicationPath + url, context.UrlInfo.Extension);
+
+		}
+[see dot between {0} and {1}]
+
+I am using MonoRail with extension-less URLs (like "http://localhost/MyProject/Home/Index"). When I e.g. use FormsHelper.InstallScripts, the generated URL contains a dot, like:
+&lt;script type="text/javascript" src="/MonoRail/Files/FormHelperScript.?RC3_0006"&gt;&lt;/script&gt; [see dot before ?]
+
+I attached a patch for the problem (no unit test for it, though).</value>
+    </field>
+    <field name="created">
+      <value>1209106438000</value>
+    </field>
+    <field name="updated">
+      <value>1244677006000</value>
+    </field>
+    <field name="reporterName">
+      <value>aloker</value>
+    </field>
+    <field name="updaterName">
+      <value>aloker</value>
+    </field>
+    <field name="resolved">
+      <value>1282145655791</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676960000" />
+  </issue>
+</issues>

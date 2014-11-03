@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Debugging support</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>362</value>
+    </field>
+    <field name="summary">
+      <value>New container diagnostic - duplicated dependencies</value>
+    </field>
+    <field name="description">
+      <value>That's an idea for a new diagnostic that would cater for scenarios like the following:
+{code}
+public class Foo: IFoo
+{
+   public Foo(IBar bar)
+   {
+      this.Bar = bar;
+   }
+
+   public IBar Bar { get; set; }
+}
+{code}
+
+By default Windsor will try to satisfy the {{IBar}} dependency twice, first via constructor and second via property. Since the constructor and property both really are the same dependency this is superfluous.
+
+The diagnostic should simply scan exposed constructor dependencies and property dependencies on all components and find those where they match, suggesting they really are a single dependency exposed twice.
+
+The benefit of that would be that eradicating those cases will (slightly) improve the performance of the container, and potentially help avoid some subtle issues.</value>
+    </field>
+    <field name="created">
+      <value>1350776345299</value>
+    </field>
+    <field name="updated">
+      <value>1407822257264</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1351856580132</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

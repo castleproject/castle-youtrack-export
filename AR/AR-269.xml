@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Documentation</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>269</value>
+    </field>
+    <field name="summary">
+      <value>replaced public by private ids</value>
+    </field>
+    <field name="description">
+      <value>Hi there,
+
+concerning http://groups.google.com/group/castle-project-users/browse_thread/thread/d0944eda5465dfad
+
+I just ran a string replacement query over my updated working copy and created a patch from it. 
+
+Regards,
+
+Flo</value>
+    </field>
+    <field name="created">
+      <value>1249090631000</value>
+    </field>
+    <field name="updated">
+      <value>1262877880000</value>
+    </field>
+    <field name="reporterName">
+      <value>Flominator</value>
+    </field>
+    <field name="updaterName">
+      <value>Flominator</value>
+    </field>
+    <field name="resolved">
+      <value>1262877840000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="fixed in r6597" created="1262877880000" />
+    <comment author="Flominator" text="* '''Attachment''' private_ids.patch added.&#xD;&#xA;" created="1249090860000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1262877720000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.1''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1262877840000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1262877840000" />
+  </issue>
+</issues>

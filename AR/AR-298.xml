@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 3.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>AR 3.0 RC</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>298</value>
+    </field>
+    <field name="summary">
+      <value>IsProxy method will match any Dynamic Proxy</value>
+    </field>
+    <field name="description">
+      <value>The current implementation of IsProxy on ProxyFactoryFactory will match any Dynamic Proxy object.  This function is intended to match only for an INHibernateProxy.  The attached patch changes it to use the same method as NHibernate's Castle ByteCode.</value>
+    </field>
+    <field name="created">
+      <value>1300580001097</value>
+    </field>
+    <field name="updated">
+      <value>1407822526754</value>
+    </field>
+    <field name="reporterName">
+      <value>Dan.Jasek</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1300719115159</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="Applied. Tks." created="1300719120644" />
+  </issue>
+</issues>

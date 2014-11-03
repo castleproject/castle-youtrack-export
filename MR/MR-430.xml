@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>430</value>
+    </field>
+    <field name="summary">
+      <value>Patch BaseControllerTest to add default email template service and mock smtp sender as well as setting the request url of the mock request based on the area / controller / action specified when PrepareController is called</value>
+    </field>
+    <field name="description">
+      <value>All changes are made to BaseControllerTest:
+ - Alters BuildEngineContext to copy the raw url from the constructed UrlInfo into the request (simplest solution to gettting the request url into the MockRequest - not necessarily the most elegant).  Ensures that the request url matches the url expected if you call PrepareController passing an area / controller / action.
+
+ - Adds a virtual method to add the email template service and mock smtp sender to the context and calls the method from BuildEngineContext.  Ensures that email mock email services are setup to enable testing of email rendering and delivery.</value>
+    </field>
+    <field name="created">
+      <value>1206886367000</value>
+    </field>
+    <field name="updated">
+      <value>1263055865000</value>
+    </field>
+    <field name="reporterName">
+      <value>neal</value>
+    </field>
+    <field name="updaterName">
+      <value>neal</value>
+    </field>
+    <field name="resolved">
+      <value>1282145626026</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055860000" />
+  </issue>
+</issues>

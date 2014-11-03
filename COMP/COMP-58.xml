@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>58</value>
+    </field>
+    <field name="summary">
+      <value>[Castle.Components.Validator] resource message fallback flawed in CachedValidationRegistry?</value>
+    </field>
+    <field name="description">
+      <value>On my environment, ValidatorRunnerTestCase choke on InheritanceTest:
+
+------ Test started: Assembly: Castle.Components.Validator.Tests.dll ------
+
+TestCase 'Castle.Components.Validator.Tests.ValidatorRunnerTestCase.InheritanceTest'
+failed: System.NullReferenceException : Object reference not set to an instance of an object.
+	C:\home\dev\src\dotnet\libs\castle\Components\Validator\Castle.Components.Validator\Validators\GroupNotEmptyValidator.cs(117,0): at Castle.Components.Validator.GroupNotEmptyValidator.BuildErrorMessage()
+	C:\home\dev\src\dotnet\libs\castle\Components\Validator\Castle.Components.Validator\Validators\GroupNotEmptyValidator.cs(95,0): at Castle.Components.Validator.GroupNotEmptyValidator.get_ErrorMessage()
+	C:\home\dev\src\dotnet\libs\castle\Components\Validator\Castle.Components.Validator\ValidatorRunner.cs(223,0): at Castle.Components.Validator.ValidatorRunner.PerformValidation(Object objectInstance, IEnumerable`1 validators, ErrorSummary summaryToPopulate)
+	C:\home\dev\src\dotnet\libs\castle\Components\Validator\Castle.Components.Validator\ValidatorRunner.cs(128,0): at Castle.Components.Validator.ValidatorRunner.IsValid(Object objectInstance, RunWhen runWhen)
+	C:\home\dev\src\dotnet\libs\castle\Components\Validator\Castle.Components.Validator\ValidatorRunner.cs(104,0): at Castle.Components.Validator.ValidatorRunner.IsValid(Object objectInstance)
+	C:\home\dev\src\dotnet\libs\castle\Components\Validator\Castle.Components.Validator.Tests\ValidatorRunnerTestCase.cs(66,0): at Castle.Components.Validator.Tests.ValidatorRunnerTestCase.InheritanceTest()
+
+
+0 passed, 1 failed, 0 skipped, took 0,98 seconds.
+------
+
+Looking further, it seems that the fallback for invariant culture does not work if message is not found in current culture and the culture is available, the culprit seems to be CachedValidationRegistry.GetStringFromResource method which should use
+
+System.Globalization.CultureInfo.InvariantCulture instead of Thread.CurrentThread.CurrentCulture at line 147.
+
+Also, I think the WillFallbackToDefaultResourceIfNotFoundOnCustomOne test in CachedValidationRegistryTestCase is flawed since it switch to invariant culture instead of switching to a culture that doesn't exists or a culture where the message doesn't exists.
+
+It could be fixed by switching to a culture for which messages ressource is not provided, I've tried successfully with CultureInfo.CreateSpecificCulture("mk-MK").</value>
+    </field>
+    <field name="created">
+      <value>1206801876000</value>
+    </field>
+    <field name="updated">
+      <value>1229883833000</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>gauthier</value>
+    </field>
+    <field name="resolved">
+      <value>1229883780000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="hammett" text="Thanks for spotting this one." created="1229883833000" />
+    <comment author="hammett" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1229883480000" />
+    <comment author="hammett" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1229883780000" />
+  </issue>
+</issues>

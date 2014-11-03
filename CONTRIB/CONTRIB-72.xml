@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>72</value>
+    </field>
+    <field name="summary">
+      <value>Option to remove prefix from generated property names</value>
+    </field>
+    <field name="description">
+      <value>It would be nice to have an option that removes a prefix, or all text preceding a specified character (eg. underscore) before generating the property names.
+
+eg. Given the convention for a database table named "MY_IMPORTANT_THINGS" and columns
+MIT_ID
+MIT_NAME
+MIT_UPDATED
+
+it would be really nice to trim the "MIT_" bit off the front so you end up with nicer properties like:
+
+Id
+Name
+Updated
+
+
+I'm not sure whether this would be a model-wide setting, or done for each class. Model-wide would be better for me.</value>
+    </field>
+    <field name="created">
+      <value>1192488345000</value>
+    </field>
+    <field name="updated">
+      <value>1192871723000</value>
+    </field>
+    <field name="reporterName">
+      <value>flcdrg</value>
+    </field>
+    <field name="updaterName">
+      <value>flcdrg</value>
+    </field>
+    <field name="resolved">
+      <value>1282138228682</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

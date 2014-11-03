@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle.Tools.CodeGenerator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>135</value>
+    </field>
+    <field name="summary">
+      <value>Castle.Tools.CodeGenerator.CmdLine AdditionalReferencePath argument</value>
+    </field>
+    <field name="description">
+      <value>It would be helpful if Castle.Tools.CodeGenerator.CmdLine supported an AdditionalReferencePath argument, which would make the tool work when running msbuild from the command line like so:
+
+msbuild /p:OutputPath=${build.dir} solution.sln
+
+Right now, the generator only checks the output paths of the csproj, which fails when running msbuild like above. Supporting 'Castle.Tools.CodeGenerator.CmdLine /AdditionalReferencePath:${build.dir}' fixes this.
+</value>
+    </field>
+    <field name="created">
+      <value>1211951765000</value>
+    </field>
+    <field name="updated">
+      <value>1414392423551</value>
+    </field>
+    <field name="reporterName">
+      <value>roelofb</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392423543</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

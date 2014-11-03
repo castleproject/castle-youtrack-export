@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Resolvers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>3.2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>379</value>
+    </field>
+    <field name="summary">
+      <value>Named instance resolution broken in Castle.Windsor 3.2</value>
+    </field>
+    <field name="description">
+      <value>ShouldResolveNamedInstances() test fails.
+
+{code lang=csharp}
+    [TestFixture]
+    public class CastleWindsorTests
+    {
+        private WindsorContainer _container;
+        private MyService _instance1;
+        private MyService _instance2;
+
+        private interface IService
+        {
+            void DoSomething(string arg);
+        }
+
+        private class MyService : IService
+        {
+            public void DoSomething(string arg) {}
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            _container = new WindsorContainer();
+            _instance1 = new MyService();
+            _instance2 = new MyService();
+
+            _container.Register(Component.For&lt;IService&gt;().Instance(_instance1).Named("service1"));
+            _container.Register(Component.For&lt;IService&gt;().Instance(_instance2).Named("service2"));
+        }
+
+        [Test]
+        public void ShouldResolveNamedInstances()
+        {
+            Assert.AreSame(_instance1, _container.Resolve(typeof(IService), "service1"), "service1");
+            Assert.AreSame(_instance2, _container.Resolve(typeof(IService), "service2"), "service2"); // this will fail
+        }
+
+        [Test]
+        public void ShouldResolveNamedInstancesUsingGenerics()
+        {
+            Assert.AreSame(_instance1, _container.Resolve&lt;IService&gt;("service1"), "service1");
+            Assert.AreSame(_instance2, _container.Resolve&lt;IService&gt;("service2"), "service2");
+        }
+    }
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1369735137319</value>
+    </field>
+    <field name="updated">
+      <value>1407823055547</value>
+    </field>
+    <field name="reporterName">
+      <value>shatl</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1396695124080</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-945[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="@Vitaliy &#xA;&#xA;Windsor is behaving as expected. Notice that the non-generic overload you're using is wrong: The second argument is interpreted not as a name of the component to be resolved, but as inline arguments for the resolution.&#xA;&#xA;There's another overload to Resolve that has string as its first and Type as its second parameter, which is the non-generic version of the generic method you're using in the other test.&#xA;&#xA;&#xA;I can see four ways to move forward with this:&#xA;# Close this issue as By Design&#xA;# *Throw when a string is detected (after all, the method says it expects an anonymous type&#xA;# *Do not throw when a string is detected, but instead assume that what the user really wanted is to use the string/Type overload rather than Type/anonymousObject overload and just redirect the call to the other method.&#xA;# Log a warning when a string is detected into Windsor's internal logger, but keep the current behaviour.&#xA;&#xA;Option 2 and 3 are breaking changes. I think the one I like most is option 4." created="1371370301964" updated="1371371071649" />
+    <comment author="shatl" text="Thanks a lot for explanations, Krzysztof. I'm agree #4 is the best option." created="1371472991804" />
+    <comment author="xtoff" text="Do you want to pull request it? @vitaliy?" created="1381019800185" />
+  </issue>
+</issues>

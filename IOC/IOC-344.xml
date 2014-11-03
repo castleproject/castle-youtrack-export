@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>By design</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>344</value>
+    </field>
+    <field name="summary">
+      <value>Cannot Resolve a dependency from a component only registered in a child container but not registered in a parent</value>
+    </field>
+    <field name="description">
+      <value>If a dependency is registered in a child container, but not registered in the parent container the dependency will not be resolved.
+
+The following code is simplified from what I'm doing. I have the parent container register specific items and the child register items that will be required by the class created. Not sure if there is a better way to make this work.
+
+IE:
+{code:lang=C#|title=Code}
+public interface ITest
+{
+}
+
+public interface ITester
+{
+}
+
+public class Test : ITest
+{
+	//Implemnt Stuff
+}
+
+public class Tester : ITester
+{
+	ITest = _testObject;
+    public Tester(ITest testObject)
+	{
+		_testObjec = testObject
+	}
+	
+	//Implement Stuff
+}
+
+public class Main()
+{
+    public void Main()
+    {
+		IWindsorContainer parent = new WindsorContainer();
+		//Register other parent classes that are not ITest and ITester
+		IWindsorContainer child = new WindsorContainer();
+		child.Register(Component.For&lt;ITest&gt;().ImplementedBy&lt;Test&gt;());
+		child.Register(Component.For&lt;ITester.ImplementedBy&lt;Tester&gt;());
+		parent.AddChildContainer(child);
+		
+		//Exception Thrown
+		TestFunctionBroken(child);
+		//Works as expected
+		TestFunctionWorks(child);
+	}
+	
+	public void TestFunctionBroken(IWindsorContainer container)
+	{
+		//This throws an exception since the parent 
+		//does not have a definition for ITest,
+		//So it cannot resolve that dependency
+		//in ITester constructor even 
+		ITester t = container.Resolve&lt;ITester&gt;();
+	}
+	
+	public void TestFunctionWorks(IWindsorContainer container)
+	{
+		//This works.
+		//I can resolve ITest independently from the child container
+		//And if I pass in that resolved ITest into the constructor
+		//Paramenters of ITester it also resloves Correctly
+		ITest test = container.Resolve&lt;ITest&gt;();
+		ITester t = container.Resolve&lt;ITester&gt;(new { testObject = test });
+	}
+}
+
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1340827126809</value>
+    </field>
+    <field name="updated">
+      <value>1344135840028</value>
+    </field>
+    <field name="reporterName">
+      <value>pwojtowicz</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1344135840028</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="@Przemyslaw Wojtowicz Which version were you using to reproduce this issue?&#xA;&#xA;The tests does pass on trunk." created="1341021721344" />
+    <comment author="pwojtowicz" text="Sorry, I put the test together a bit wrong. See attached project for the failure.  If I have the parent register the main component that needs to be resolved and have the child register the required dependency, it doesn't work unless I also register the main component in the child container.&#xA;&#xA;I am passing the child container to a class with dependencies that are specific for that class. I'm not sure why it can't resolve the dependency, but I can resolve the object on it's own." created="1341246846641" />
+    <comment author="xtoff" text="ah Ok, I can see it now.&#xA;&#xA;This is by design. Dependencies can only go up the chain, so a component from child container can depend on a component form parent, but not the other way around.&#xA;&#xA;So Windsor is correct to throw in this case. Does that make sense? If so, I will close the issue as By design." created="1341396558922" />
+  </issue>
+</issues>

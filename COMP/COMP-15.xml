@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>15</value>
+    </field>
+    <field name="summary">
+      <value>New validator: RangeValidator</value>
+    </field>
+    <field name="description">
+      <value>Added support for integer and DateTime range validation.
+
+The RangeValidator handles both integer and date/time validation, based on the parameters passed on construction. Supports date/time fields in HTML text fields and supports the handling of enums as integers.
+
+An explanation of each patch file follows.
+
+ValidateRangeAttribute.cs allows setting validation properties. For integer range validation, pass two ints (min/max). For DateTime validation, pass either two DateTime objects or two strings. Note that support for strings (which are automatically parsed to DateTime objects) was done to get around the limitation of constant values in attributes.
+
+RangeValidator.cs does the validation. In all cases, specifying &lt;type&gt;.MinValue or &lt;type&gt;.MaxValue ignores the min/max range checking. To handle both int and DateTime validation, various casts are attempted to handle different situations. (The min/max properties are object types, not int or DateTime.) No web validation.
+
+RangeValidatorTestCase.cs provides unit tests (all pass). The code was also tested successfully on a web project with databinding.
+
+MessageConstants.cs and Messages.resx are updated to support relevant resource strings.
+
+POSSIBLE IMPROVEMENTS:
+* More fail-safe code is needed. It is possible to do strange object manipulation and break the validator, such as by initially passing a DateTime value then changing to an int, though it is unlikely this would happen in real-world situations. Still, a "smarter" RangeValidator can be made, extending from this.
+* Using strings for DateTime attributes could impact the future use of string range validation (i.e. "aaa" &lt;= x &lt;= "zzz"), though it's unlikely a string that parses to a DateTime would also be used for string validation. Still, an easy solution is to implement the RangeValidationType enum (already provided), which could be passed as part of the constructors to seed the validator's "type". This would also help address the above issue.
+* Add web validation.
+* Add more range validator types.</value>
+    </field>
+    <field name="created">
+      <value>1174408659000</value>
+    </field>
+    <field name="updated">
+      <value>1174425935000</value>
+    </field>
+    <field name="reporterName">
+      <value>bdemarzo</value>
+    </field>
+    <field name="updaterName">
+      <value>bdemarzo</value>
+    </field>
+    <field name="resolved">
+      <value>1282137470260</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>FactorySupport</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>81</value>
+    </field>
+    <field name="summary">
+      <value>values initialized by factory facility are overwritten by kernel</value>
+    </field>
+    <field name="description">
+      <value>if component has a property A and factory.Create( int a ) method takes in a parameter with the same name, after factory initializes component.A with custom value kernel overwrites it with the value from configuration file (that was supposed to be consumed only by the factory?)
+
+&lt;component factoryId="aFactory"&gt;
+&lt;parameters&gt;
+&lt;a&gt;5&lt;/a&gt;
+&lt;/parameters&gt;
+&lt;/component&gt;
+
+&lt;a&gt; parameter should be consumed only by the factory. should never reach component. or if this is the design it needs to be documented in th factory documentation.</value>
+    </field>
+    <field name="created">
+      <value>1180024059000</value>
+    </field>
+    <field name="updated">
+      <value>1183401292000</value>
+    </field>
+    <field name="reporterName">
+      <value>ornus</value>
+    </field>
+    <field name="updaterName">
+      <value>ornus</value>
+    </field>
+    <field name="resolved">
+      <value>1282141184541</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

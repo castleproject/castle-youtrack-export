@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>FactorySupport</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>109</value>
+    </field>
+    <field name="summary">
+      <value>Windsor Interceptor does not work on RC3 (Part 2)</value>
+    </field>
+    <field name="description">
+      <value>
+I attached the source code to demonstrate the previous incarnation of this logged issue - but didn't get a response as the issue was flagged as resolved.
+
+Please find the attached code to verify this bug (the bindings will of course need fixing your end).
+
+As it stands, this code does not work - either through user error or a bug!
+
+Thanks
+Gee
+</value>
+    </field>
+    <field name="created">
+      <value>1227510757000</value>
+    </field>
+    <field name="updated">
+      <value>1227542806000</value>
+    </field>
+    <field name="reporterName">
+      <value>gplumb</value>
+    </field>
+    <field name="updaterName">
+      <value>gplumb</value>
+    </field>
+    <field name="resolved">
+      <value>1227542760000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="hammett" text="Your config is wrong. The &lt;interceptors&gt; node needs to be on the component to be intercepted." created="1227542806000" />
+    <comment author="gplumb" text="Ahh - I was under the impression that if I was to attach an interceptor against a top-level object, that its dependencies would also be intercepted!&#xA;&#xA;Problem solved - Thank you!&#xA;G&#xA;" created="1227581466000" />
+    <comment author="hammett" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1227542760000" />
+  </issue>
+</issues>

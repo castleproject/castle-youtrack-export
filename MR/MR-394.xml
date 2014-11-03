@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>394</value>
+    </field>
+    <field name="summary">
+      <value>PatternRoute should support url part with dot in it</value>
+    </field>
+    <field name="description">
+      <value>by default a pattern such as PatternRoute route = new PatternRoute("/&lt;controller&gt;/&lt;id&gt;/&lt;action&gt;").Restrict("action").AnyOf("index");
+			
+will match "/some/123/index" but not "/some/a.b.c/index" after investigation this is due to two things:
+- the url is splitted with both '/' and '.' characters, each split is evaluated against a DefaultNode in a foreach loop
+- the regular expression used in DefaultNode doesn't comply to match strings with dot
+
+I propose to add WithDot and WithoutDot methods to the RestrictionConfigurer inner class to allow specifying if a given node can match strings and rewrite the first loop of PatternRoute.Matches method
+
+attached patch does:
+- add WithDot and WithoutDot methods to PatternRoute.RestrictionConfigurer
+- add acceptsDot member + AcceptsDot property in DefaultNode
+- rewrite firstloop of PatternRoute.Matches method (code quality is not top notch BTW)
+- added test case for new methods of RestrictionConfigurer are ok
+
+Does the patch/feature could be accepted? let me know if something is not ok.
+
+Thanks.</value>
+    </field>
+    <field name="created">
+      <value>1200061789000</value>
+    </field>
+    <field name="updated">
+      <value>1263055511000</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>gauthier</value>
+    </field>
+    <field name="resolved">
+      <value>1282145490416</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="gauthier" text="could patternroute_make_urlparts_creation_virtualmethod(r5288).patch be applied?" created="1220106048000" />
+    <comment author="roelofb" text="Applied patternroute_make_urlparts_creation_virtualmethod(r5288).patch in r5300" created="1220189189000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055500000" />
+  </issue>
+</issues>

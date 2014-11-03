@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveRecord Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>112</value>
+    </field>
+    <field name="summary">
+      <value>support  databinding with Guid primary Key </value>
+    </field>
+    <field name="description">
+      <value>1. modify method IsValidKey support Guid primary Key 
+2.modify ObtainPKValue method support these inherited object
+
+[ActiveRecord(DiscriminatorColumn="type", DiscriminatorType="String", DiscriminatorValue="Person")]
+public Person: ActiveRecordBase
+{
+......
+}
+
+[ActiveRecord(DiscriminatorValue="Wife")]
+Person Wife: Person
+{
+...
+}</value>
+    </field>
+    <field name="created">
+      <value>1145914432000</value>
+    </field>
+    <field name="updated">
+      <value>1162413368000</value>
+    </field>
+    <field name="reporterName">
+      <value>midas</value>
+    </field>
+    <field name="updaterName">
+      <value>midas</value>
+    </field>
+    <field name="resolved">
+      <value>1282143445198</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

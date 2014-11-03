@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>188</value>
+    </field>
+    <field name="summary">
+      <value>TableGenerator - Setting ColumnType to StringClob doesn't make the field a Blob sub_type 1 in Firebird</value>
+    </field>
+    <field name="description">
+      <value>If I declare a property like: [Property(ColumnType = "StringClob")]
+
+It's supposed to get the type "Blob sub_type 1" in Firebird, but it results in a field of the the type VarChar(255) instead.
+
+If I declare it like this :  [Property(Length = 100000)]
+it works and is indeed a "Blob sub_type 1"
+
+This is probably a NHibernate issue, but just to be sure I'm reporting it anyway.</value>
+    </field>
+    <field name="created">
+      <value>1194610393000</value>
+    </field>
+    <field name="updated">
+      <value>1263035318000</value>
+    </field>
+    <field name="reporterName">
+      <value>jpersson</value>
+    </field>
+    <field name="updaterName">
+      <value>jpersson</value>
+    </field>
+    <field name="resolved">
+      <value>1263035280000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="setting length to 10000 is the suggested solution." created="1263035315000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1263035280000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263035280000" />
+  </issue>
+</issues>

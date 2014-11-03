@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>FactorySupport</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>84</value>
+    </field>
+    <field name="summary">
+      <value>FactorySupport - Allow parameters to factory method to be set at resolvetime</value>
+    </field>
+    <field name="description">
+      <value>Factory methods can have parameters whose values can be set at configuration time, see example A for XML. In code you add parameters to the componentmodel of the component that is resolved using the factory method.
+
+At resolvetime, you can supply parameters to the microkernel resolve methods, but they are not used by the FactoryActivator of the FactorySupport facility. I propose the attached patch to the FactoryActivator that will use the context with the parameter values supplied to the resolve method.
+
+Short tests, use a programmatic method to add factory (see patch supplied with FACILITIES-82) follow.
+
+Works today (configurationtime parameters):
+		[Test]
+		public void FactoryWithParams_ConfigurationTime()
+		{
+			string serviceKey = "someService";
+			string paramValue = "someParamValue";
+			_container.AddFactory&lt;ISomeService, ServiceFactory&gt;(serviceKey, "CreateWithParams")
+				.Parameters.Add("someParam", paramValue);	
+			
+			ISomeService service = _container.Inner.Resolve(serviceKey) as ISomeService;
+
+			Assert.That(ServiceFactory.CreateWasCalled, Is.True);
+			Assert.That(ServiceFactory.SomeParamValue, Is.EqualTo(paramValue));
+			
+			Assert.That(service, Is.TypeOf(typeof(ServiceImplementation)));
+		}
+
+Works with supplied patch, resolve time parameters:
+
+		[Test]
+		public void FactoryWithParams_ResolveTime()
+		{
+			string serviceKey = "someService";
+			_container.AddFactory&lt;ISomeService, ServiceFactory&gt;(serviceKey, "CreateWithParams");
+			
+			Dictionary&lt;string, object&gt; pDict = new Dictionary&lt;string, object&gt;();
+			string paramValue = "paramvalue";
+			pDict.Add("someParam", paramValue);
+			ISomeService service = _container.Inner.Resolve(serviceKey, pDict) as ISomeService;
+
+			Assert.That(ServiceFactory.CreateWasCalled, Is.True);
+			Assert.That(ServiceFactory.SomeParamValue, Is.EqualTo(paramValue));
+			
+			Assert.That(service, Is.TypeOf(typeof(ServiceImplementation)));
+		}
+
+
+//mawi
+
+
+ * Example A, XML params (from documentation):
+&lt;components&gt;
+
+    &lt;component id="mycompfactory" 
+      type="Company.Components.MyCompFactory, Company.Components"/&gt;
+
+    &lt;component id="mycomp" 
+      type="Company.Components.MyComp, Company.Components"
+      factoryId="mycompfactory" factoryCreate="Create"&gt;
+
+      &lt;parameters&gt;
+        &lt;storeName&gt;MyStore&lt;/storeName&gt;
+        &lt;props&gt;
+          &lt;dictionary&gt;
+            &lt;entry key="key1"&gt;item1&lt;/entry&gt;
+            &lt;entry key="key2"&gt;item2&lt;/entry&gt;
+          &lt;/dictionary&gt;
+        &lt;/props&gt;
+      &lt;/parameters&gt;
+
+    &lt;/component&gt;
+&lt;/components&gt;</value>
+    </field>
+    <field name="created">
+      <value>1180852822000</value>
+    </field>
+    <field name="updated">
+      <value>1181416930000</value>
+    </field>
+    <field name="reporterName">
+      <value>mawi</value>
+    </field>
+    <field name="updaterName">
+      <value>mawi</value>
+    </field>
+    <field name="resolved">
+      <value>1282141191151</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

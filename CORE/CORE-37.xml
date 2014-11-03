@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>None</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>37</value>
+    </field>
+    <field name="summary">
+      <value>TAB characters in the XML Configuration of a component parameter is read as String.Empty</value>
+    </field>
+    <field name="description">
+      <value>When using XML Configuration for a component, a tab character (&amp;#x9;) as a value in a parameter is converted to an empty string.</value>
+    </field>
+    <field name="created">
+      <value>1303975748766</value>
+    </field>
+    <field name="updated">
+      <value>1407822282814</value>
+    </field>
+    <field name="reporterName">
+      <value>rik.bosch</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1304748274949</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Please provide a failing test case" created="1303979285891" />
+    <comment author="rik.bosch" text="Hi,&#xA;&#xA;I believe the problem lies within the Castle.Core.Configuration.Xml.XmlConfigurationDeserializer&#xA;&#xA;this test fails:&#xA;&#xA;{code lang=csharp}&#xA;[Test]&#xA;public void CanSetTabCharacterInXMLParameterConfig()&#xA;{&#xA;      string result = Castle.Core.Configuration.Xml.XmlConfigurationDeserializer.GetConfigValue(&quot;\t&quot;);&#xA;      Assert.AreEqual(&quot;\t&quot;,result);&#xA;}&#xA;{code}&#xA;&#xA;When I look at the method in the Castle Source, i see the cause:&#xA;&#xA;{code}&#xA;public static string GetConfigValue(string value)&#xA;{&#xA;	return string.IsNullOrEmpty(value) ? null : value.Trim();&#xA;}&#xA;{code}&#xA;Why is the value trimmed?" created="1303990457641" updated="1303990883360" />
+    <comment author="xtoff" text="I suppose the trimming is there to support cases like:&#xA;{code}&#xA;&lt;something&gt;&#xA;&#xA;          there's lot's of whitespaces around, but we want just the text here&#xA;&#xA;&lt;/something&gt;&#xA;{code}&#xA;&#xA;Where formatting of the XML changes what's considered to be the value of the XML node. But that's just my guess." created="1303991857344" />
+    <comment author="rik.bosch" text="Shouldn't the xml parser be responsible for that? By using  xml:space=&quot;preserve&quot; in an element for example? ( http://www.w3.org/TR/2004/REC-xml11-20040204/#sec-white-space )&#xA;&#xA;I find this weird behavior, since all empty strings get converted to null and whitespace only strings to an empty string?!" created="1303993189610" updated="1303993420579" />
+    <comment author="xtoff" text="Yeah you're right" created="1303997142250" />
+    <comment author="xtoff" text="Moved the issue to Core section since that's where the underlying cause lies. This is now implemented." created="1304747132495" />
+    <comment author="xtoff" text="ok it's not really fixed after all. XML serializer correctly recognized the node as whitespace. the XmlConfigurationDeserializer then ignores it. As such the only way to really have a valid whitespace character is to have it within a CDATA. CData however means that it won't be processed so &amp;#x9; won't be turned into \t. You'd have to do that yourself or modify the xml accordingly.&#xA;&#xA;hope that helps" created="1304748246792" />
+  </issue>
+</issues>

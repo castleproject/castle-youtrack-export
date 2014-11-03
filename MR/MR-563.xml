@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>563</value>
+    </field>
+    <field name="summary">
+      <value>Too many error messages shown when using validation with useTitles=true</value>
+    </field>
+    <field name="description">
+      <value>For example, when creating a simple form like shown below:
+
+$Form.UsePrototypeValidation()
+$Form.FormTag("%{action='DoTest', id='form', useTitles='false'}")
+	$Form.LabelFor("testInfo.Text", "Integer input:")
+	$Form.TextField("testInfo.Text")
+	&lt;br/&gt;
+	$Form.Submit("Send")
+$Form.EndFormTag()
+
+and databinding with model:
+
+public class TestInfo
+{
+   [ValidateNonEmpty("Required field!")] 
+   [ValidateInteger("Integer required!")]
+   public string Text{ get; set;}
+}
+
+Validation shows too many messages ie. after trying to submit an empty field "Integer required!. Required field!." message would show for required validation and after typing an invalid text into the field and trying to submit again, the same message appears for a second time like shown below:
+
+Integer required!. Required field!.
+Integer required!. Required field!.</value>
+    </field>
+    <field name="created">
+      <value>1274415527000</value>
+    </field>
+    <field name="updated">
+      <value>1279477650000</value>
+    </field>
+    <field name="reporterName">
+      <value>ploosqva</value>
+    </field>
+    <field name="updaterName">
+      <value>ploosqva</value>
+    </field>
+    <field name="resolved">
+      <value>1279477620000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Send us a pull request with a fix or use jQuery instead." created="1279477647000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1279477620000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1279477620000" />
+  </issue>
+</issues>

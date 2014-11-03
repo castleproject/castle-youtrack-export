@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Wcf</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>155</value>
+    </field>
+    <field name="summary">
+      <value>PerWcfSession throws NullReferenceException when not in a session</value>
+    </field>
+    <field name="description">
+      <value>When a WCF service does not have session behavior enabled, the PerWcfSession lifestyle of the WCF Facility throws a NullReferenceException. A more useful error message should be thrown, e.g. "The current operation is not executing in the context of a WCF session."</value>
+    </field>
+    <field name="created">
+      <value>1315584832505</value>
+    </field>
+    <field name="updated">
+      <value>1407822308035</value>
+    </field>
+    <field name="reporterName">
+      <value>Nelson</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1341031410334</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Is it beta 1 or some older version?" created="1315908956848" />
+    <comment author="Nelson" text="Beta 1 (3.0.0.2001 as installed from Nuget)" created="1315923257052" />
+    <comment author="xtoff" text="Since there is no test case attached to reproduce exactly the problem you've had I'm not sure if I'm hitting the same case you're describing.&#xA;&#xA;&#xA;Currently if you try to resolve a component that's scoped (like with session) outside of the scope, you'll get the following exception:&#xA;&#xA;{{Castle.MicroKernel.ComponentResolutionException : Could not obtain scope for component Castle.Facilities.WcfIntegration.Tests.Components.One. This is most likely either a bug in custom IScopeAccessor or you're trying to access scoped component outside of the scope (like a per-web-request component outside of web request etc)}}&#xA;&#xA;I think that's good enough, so I'm going to close this issue." created="1341031404140" />
+  </issue>
+</issues>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>255</value>
+    </field>
+    <field name="summary">
+      <value>Provide a GetWarningSummary() for MonoRail controller too</value>
+    </field>
+    <field name="description">
+      <value>Currently, when using DataBinding, the developer doesn't have any way to know if some of his entity properties weren't set by any given reason. This can lead to ungrateful debug sessions. 
+
+For example, if the property "Name" is not writable and it is passed to the action, MonoRail will silently ignore it, like:
+
+...
+class Person {
+    ...
+
+    string _name;
+    string Name {
+        get { return _name; } // only get
+    }
+
+    ...
+}
+...
+
+PersonController  {
+    void Save([DataBind("person")] Person person) {
+        // ...
+    }
+}
+
+...
+
+person/save.rails?person.Age=10&amp;person.Name=Someone
+
+In this situation, we're passing "person.Name", which will be ignored, as it does not have a writable probpery. 
+
+Sure, one can say "...this is expected, as it is not allowed to change the Name after the Person instance is created". But consider the situations where this is not exactly the desired behaviour, thus resulting in long(?) debugging tasks until you realise that the property doesn't have a setter. 
+
+With that in mind, it can be interesting to register such situations in some kind of "Warning" list, like the already existing "GetErrorSummary()" method. </value>
+    </field>
+    <field name="created">
+      <value>1178304922000</value>
+    </field>
+    <field name="updated">
+      <value>1263055925000</value>
+    </field>
+    <field name="reporterName">
+      <value>rafaelsteil</value>
+    </field>
+    <field name="updaterName">
+      <value>rafaelsteil</value>
+    </field>
+    <field name="resolved">
+      <value>1262980440000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="If we were to implement such a thing we probably would do it as a warning on the default logger." created="1262980484000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1262980440000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055920000" />
+  </issue>
+</issues>

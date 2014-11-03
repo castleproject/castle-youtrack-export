@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>FactorySupport</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>85</value>
+    </field>
+    <field name="summary">
+      <value>Changing the lifestyleType of a component in a facility, does not change the lifestylemanager</value>
+    </field>
+    <field name="description">
+      <value>When creating your own Facility, handling the Kernel.ComponentCreated event and changing the lifestyletype of an object. The objects associated IHandler objects' LifestyleManager does not change. 
+
+It's exactly like the Starter facility example if we would also add a line of code that would change the lifestyletype in the OnComponentCreated, the lifestylemanager under water is not changed.</value>
+    </field>
+    <field name="created">
+      <value>1180957710000</value>
+    </field>
+    <field name="updated">
+      <value>1181854997000</value>
+    </field>
+    <field name="reporterName">
+      <value>jonne</value>
+    </field>
+    <field name="updaterName">
+      <value>jonne</value>
+    </field>
+    <field name="resolved">
+      <value>1282141193729</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

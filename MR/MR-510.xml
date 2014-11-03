@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Duplicate</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>510</value>
+    </field>
+    <field name="summary">
+      <value>Routing with caching</value>
+    </field>
+    <field name="description">
+      <value>My patterroute is: /&lt;controller&gt;/&lt;action&gt;/&lt;id&gt;.rails
+
+When i use routing, route engine change Request.Path ex.:
+from:
+/OfferImage/GetThumb/300.rails
+to:
+/OfferImage/GetThumb.rails
+
+And Asp.Net's OutputCache use Request.Path to make key in dictionary with cached outputs so I receive always the same output when I am requesting:
+/OfferImage/GetThumb/300.rails
+/OfferImage/GetThumb/301.rails
+/OfferImage/GetThumb/302.rails
+/OfferImage/GetThumb/303.rails
+becouse OutputCache thinking that is /OfferImage/GetThumb.rails
+</value>
+    </field>
+    <field name="created">
+      <value>1229344517000</value>
+    </field>
+    <field name="updated">
+      <value>1253857084000</value>
+    </field>
+    <field name="reporterName">
+      <value>kamil</value>
+    </field>
+    <field name="updaterName">
+      <value>kamil</value>
+    </field>
+    <field name="resolved">
+      <value>1253857080000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="rjlopes" text="Are you using VarByParams? I think something like:&#xA;&#xA;Response.Cache.VaryByParams[&quot;id&quot;] = true;&#xA;&#xA;or &#xA;&#xA;Response.Cache.VaryByParams[&quot;*&quot;] = true;&#xA;&#xA;Should work for OfferImageController.GetThumb(int id)&#xA;&#xA;" created="1238560927000" />
+    <comment author="roelofb" text="Fixed by fixing MR-ISSUE-539.&#xA;&#xA;If you call &#xA;Response.Cache.VaryByHeaders[&quot;X-Original-Url&quot;] = true;&#xA;it will work." created="1253857082000" />
+    <comment author="kamil" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;My patterroute is: /&lt;controller&gt;/&lt;action&gt;/&lt;id&gt;.rails&#xD;&#xA;&#xD;&#xA;When i use routing change Request.Path ex.:&#xD;&#xA;/OfferImage/GetThumb/300.rails&#xD;&#xA;to:&#xD;&#xA;/OfferImage/GetThumb.rails&#xD;&#xA;&#xD;&#xA;And Asp.Net OutputCache use Request.Path to make key in dictionary with cached outputs so i receive always the same output when i am requesting:&#xD;&#xA;/OfferImage/GetThumb/300.rails&#xD;&#xA;/OfferImage/GetThumb/301.rails&#xD;&#xA;/OfferImage/GetThumb/302.rails&#xD;&#xA;/OfferImage/GetThumb/303.rails&#xD;&#xA;becouse OutputCache thinking that is /OfferImage/GetThumb.rails&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;My patterroute is: /&lt;controller&gt;/&lt;action&gt;/&lt;id&gt;.rails&#xD;&#xA;&#xD;&#xA;When i use routing, route engine change Request.Path ex.:&#xD;&#xA;from:&#xD;&#xA;/OfferImage/GetThumb/300.rails&#xD;&#xA;to:&#xD;&#xA;/OfferImage/GetThumb.rails&#xD;&#xA;&#xD;&#xA;And Asp.Net's OutputCache use Request.Path to make key in dictionary with cached outputs so I receive always the same output when I am requesting:&#xD;&#xA;/OfferImage/GetThumb/300.rails&#xD;&#xA;/OfferImage/GetThumb/301.rails&#xD;&#xA;/OfferImage/GetThumb/302.rails&#xD;&#xA;/OfferImage/GetThumb/303.rails&#xD;&#xA;becouse OutputCache thinking that is /OfferImage/GetThumb.rails&#xD;&#xA;{quote}&#xD;&#xA;" created="1229482560000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Duplicate''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1253857080000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253857080000" />
+  </issue>
+</issues>

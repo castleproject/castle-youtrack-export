@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>122</value>
+    </field>
+    <field name="summary">
+      <value>Problems validating inherited properties when using generics</value>
+    </field>
+    <field name="description">
+      <value>I will try to illustrate this with an example. 
+
+If you have the following abstract base class with the parameterized type t.
+
+    [ActiveRecord("TimeSlot",
+        DiscriminatorColumn = "type",
+        DiscriminatorType = "String",
+        DiscriminatorValue = "AbstractTimeSlot"), Serializable]
+    public abstract class AbstractTimeSlot&lt;t&gt; : ValueObjectBase
+    {
+        private int myId;
+
+        protected int myHour;
+
+        [PrimaryKey(Column = "timeslot_id")]
+        public int Id
+        {
+            get { return myId; }
+            set { myId = value; }
+        }
+
+        [Property]
+        [ValidateNotEmpty]
+        public int Hour
+        {
+            get { return myHour; }
+            set { myHour = value; }
+        }
+    }
+
+And the following subclass:
+
+    [ActiveRecord(DiscriminatorValue = "TimeSlotFixedDate")]
+    public class TimeSlotFixedDate : AbstractTimeSlot&lt;TimeSlotFixedDate&gt;
+    {
+        private int myDay;
+
+        [Property]
+        [ValidateNotEmpty]
+        public int Day
+        {
+            get { return myDay; }
+            set { myDay = value; }
+        }
+    }
+
+Validation will succeed for the Day field, but when it tries to validate the Hour field in the base class the following exception is thrown:
+
+ ----&gt; NHibernate.ADOException : Could not save object
+  ----&gt; System.InvalidOperationException : Late bound operations cannot be performed on types or methods for which ContainsGenericParameters is true.
+	c:\Documents and Settings\janper\Desktop\Castle Trunk\ActiveRecord\Castle.ActiveRecord\Framework\ActiveRecordBase.cs(141,0): at Castle.ActiveRecord.ActiveRecordBase.InternalCreate(Object instance, Boolean flush)
+	c:\Documents and Settings\janper\Desktop\Castle Trunk\ActiveRecord\Castle.ActiveRecord\Framework\ActiveRecordBase.cs(98,0): at Castle.ActiveRecord.ActiveRecordBase.Create(Object instance)
+	c:\Documents and Settings\janper\Desktop\Castle Trunk\ActiveRecord\Castle.ActiveRecord\Framework\ActiveRecordBase.cs(1260,0): 
+
+The offender is the following line in AbstractValidator.Perform, that can never succeed if Property refers to a property in the base class, and instance is an instance of a subclass.
+
+return this.Perform(instance, Property.GetValue(instance, null));
+
+I've attached a patch for you to look into.</value>
+    </field>
+    <field name="created">
+      <value>1169562673000</value>
+    </field>
+    <field name="updated">
+      <value>1170590502000</value>
+    </field>
+    <field name="reporterName">
+      <value>jpersson</value>
+    </field>
+    <field name="updaterName">
+      <value>jpersson</value>
+    </field>
+    <field name="resolved">
+      <value>1282136270932</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

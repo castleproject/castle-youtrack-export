@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>96</value>
+    </field>
+    <field name="summary">
+      <value>Formula property used as Column name property instead of the formula value on Select's</value>
+    </field>
+    <field name="description">
+      <value>Hey guys, we have noticed an interesting bug. i don't have detailed logs since I've found a work around, but i can likely produce them again.
+
+Say you have something like this defined:
+
+[Property("CHANGED_AT", Formula = "SYSDATE")]
+public virtual DateTime ChangedAt {...}
+
+It works great on SQL INSERTs and UPDATEs, but when doing a FindAll type query, the generated SELECT statement has something like this. (assuming CHANGED_AT is a column in a USER table)
+
+SELECT user0.SYSDATE as user0CreatedAT FROM users user0
+
+So it appears that it is using the Formula value that is set to SYSDATE instead of CHANGED_AT.
+
+Thanks,
+John</value>
+    </field>
+    <field name="created">
+      <value>1164986756000</value>
+    </field>
+    <field name="updated">
+      <value>1167088776000</value>
+    </field>
+    <field name="reporterName">
+      <value>jaysee</value>
+    </field>
+    <field name="updaterName">
+      <value>jaysee</value>
+    </field>
+    <field name="resolved">
+      <value>1282136216198</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

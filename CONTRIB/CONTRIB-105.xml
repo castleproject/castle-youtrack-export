@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>View Components</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>105</value>
+    </field>
+    <field name="summary">
+      <value>Grid viewcomponent: fix for empty section is not rendered between header and footer</value>
+    </field>
+    <field name="description">
+      <value>When using the grid component with an empty source, the sections are rendered in the following order:
+tablestart
+header
+footer
+tableend
+empty
+
+Doesn't the empty section should go between the header and the footer? This patch changes the grid to do that, so it gets in this order:
+tablestart
+header
+empty
+footer
+tableend
+
+This does mean that the empty section must be like &lt;tr&gt;&lt;td&gt;grid has no data&lt;/td&gt;&lt;/tr&gt;
+Then again, maybe it is intended behavior to show the empty section all the way at the bottom?</value>
+    </field>
+    <field name="created">
+      <value>1203525131000</value>
+    </field>
+    <field name="updated">
+      <value>1414392134594</value>
+    </field>
+    <field name="reporterName">
+      <value>alwin</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392134585</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

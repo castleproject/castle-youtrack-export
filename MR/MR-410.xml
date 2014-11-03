@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>410</value>
+    </field>
+    <field name="summary">
+      <value>Wizard helper added to the controller.Helpers dictionary with a different key style to the other helpers</value>
+    </field>
+    <field name="description">
+      <value>At present, the wizard helper is added to the controller.Helpers dictionary automatically for WizardSteps using the key "wizardhelper". All the other helpers are added using keys like "Dict", "Form" etc, and AspView cannot correctly resolve the Wizard Helper from this dictionary as it is looking for the key "Wizard". Does anything else depend on this "wizardhelper" key? I couldn't find any other references with a "Find In Files" search. 
+
+This patch simply changes the key to "Wizard".</value>
+    </field>
+    <field name="created">
+      <value>1201599119000</value>
+    </field>
+    <field name="updated">
+      <value>1263055543000</value>
+    </field>
+    <field name="reporterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="updaterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="resolved">
+      <value>1282145531666</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055500000" />
+  </issue>
+</issues>

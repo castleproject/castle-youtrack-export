@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Ajax Support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>24</value>
+    </field>
+    <field name="summary">
+      <value>Auto Completion</value>
+    </field>
+    <field name="description">
+      <value>I haven't actually checked the code to make sure this isn't already in, so please forgive me if it is.
+
+see:
+http://api.rubyonrails.com/classes/ActionController/AutoComplete/ClassMethods.html
+http://api.rubyonrails.com/classes/ActionView/Helpers/JavaScriptHelper.html
+
+
+This feature was just requested by our users (not Castle), but our framework (not Castle) doesn't support it. It would be great for evangelizing Castle if it were already in there.</value>
+    </field>
+    <field name="created">
+      <value>1121154227000</value>
+    </field>
+    <field name="updated">
+      <value>1127055300000</value>
+    </field>
+    <field name="reporterName">
+      <value>k-dub</value>
+    </field>
+    <field name="updaterName">
+      <value>k-dub</value>
+    </field>
+    <field name="resolved">
+      <value>1282143336182</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

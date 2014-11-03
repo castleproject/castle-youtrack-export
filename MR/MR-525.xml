@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>525</value>
+    </field>
+    <field name="summary">
+      <value>Explicit port can never be set through custom parameters passed to DefaultUrlBuilder</value>
+    </field>
+    <field name="description">
+      <value>Assume we have public home page (http://mydomain/Home/Index.rails)
+which has a link to a secure registration page (https://mydomain/
+Registration/Form.rails)
+
+While the home page index view generation a link with url for the secure registration page is built using DefaultUrlBuilder.
+For this minimal set of parameters:
+        absolute : true
+        protocol : https
+        area :
+        controller : Registration
+        action : Form
+we get the following URL: https://mydomain:80/Registration/Form.rails which is invalid.
+
+Then an explicit ssl port to the parameters is passed to
+DefaultUrlBuilder:
+        absolute : true
+        protocol : https
+        port: 443
+        area :
+        controller : Registration
+        action : Form
+we get another unexpected invalid result: https://mydomain:0/Registration/Form.rails.
+
+This is the part of
+DefaultUrlBuilder.ApplyBasePathOrAbsolutePathIfNecessary method which
+generates an absolute path part
+
+    if (createAbsolutePath)
+    {
+        string domain = parameters.Domain ?? current.Domain;
+        string subdomain = parameters.Subdomain ?? current.Subdomain;
+        string protocol = parameters.Protocol ?? current.Protocol;
+        int port = (parameters.Port == 0) ? current.Port : 0;
+        bool includePort = ((protocol == "http") &amp;&amp; (port != 80)) ||
+((protocol == "https") &amp;&amp; (port != 443));
+        path = protocol + "://";
+        if (!string.IsNullOrEmpty(subdomain))
+        {
+            path = path + subdomain + "." + domain;
+        }
+        else
+        {
+            path = path + domain;
+        }
+        if (includePort)
+        {
+            path = path + ":" + port;
+        }
+        path = path + this.ComputeStandardBasePath(appVirtualDir,
+area);
+    }
+
+Isn't there a bug in retrieving port from parameters and current
+settings?
+
+        int port = (parameters.Port == 0) ? current.Port : 0;
+
+It seems that explicit port can never be set through custom parameters
+passed to DefaultUrlBuilder.</value>
+    </field>
+    <field name="created">
+      <value>1236236515000</value>
+    </field>
+    <field name="updated">
+      <value>1242045638000</value>
+    </field>
+    <field name="reporterName">
+      <value>Shurenok2</value>
+    </field>
+    <field name="updaterName">
+      <value>Shurenok2</value>
+    </field>
+    <field name="resolved">
+      <value>1242045600000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="Shurenok2" text="DefaultUrlBuilder.patch contains our fix for DefaultUrlBuilder.ApplyBasePathOrAbsolutePathIfNecessary method and corresponding test ParameterPortOverridesCurrentPort." created="1236236826000" />
+    <comment author="roelofb" text="Applied in r5672" created="1242045635000" />
+    <comment author="Shurenok2" text="* '''Attachment''' DefaultUrlBuilder.patch added.&#xD;&#xA;" created="1236236640000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1242045600000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1242045600000" />
+  </issue>
+</issues>

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>1.1.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>18</value>
+    </field>
+    <field name="summary">
+      <value>Explicit Interface Methods Fail</value>
+    </field>
+    <field name="description">
+      <value>A runtime exception is generated when invoking a proxy of a class that explicitly implements an interface.
+
+	/// &lt;summary&gt;
+	/// &lt;/summary&gt;
+	public class ServiceE:IServiceA
+	{				
+		private ServiceE()
+		{
+		}
+		/// &lt;summary&gt;
+		/// &lt;/summary&gt;
+		/// &lt;returns&gt;&lt;/returns&gt;
+		string IServiceA.MethodA1()
+		{
+			return "method A1";
+		}
+		/// &lt;summary&gt;
+		/// &lt;/summary&gt;
+		/// &lt;returns&gt;&lt;/returns&gt;
+		public string MethodA2(string msg)
+		{
+			return "method "+msg;
+		}
+	}</value>
+    </field>
+    <field name="created">
+      <value>1142340196000</value>
+    </field>
+    <field name="updated">
+      <value>1162411308000</value>
+    </field>
+    <field name="reporterName">
+      <value>mattbaldree</value>
+    </field>
+    <field name="updaterName">
+      <value>mattbaldree</value>
+    </field>
+    <field name="resolved">
+      <value>1282140556307</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>NHibernate</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>39</value>
+    </field>
+    <field name="summary">
+      <value>Unable to disable the reflection optimizer in the NHibernate facility</value>
+    </field>
+    <field name="description">
+      <value>From NHibernate 1.0.1 the reflection optimizer is turned on by default. Normally, it can be turned off in the config file with: &lt;add key="hibernate.use_reflection_optimizer" value="false" /&gt;.
+
+When this setting is set via the facility configuration, it doesn't work because it is a global setting that needs to be set before creating a Configuration instance. The NHibernate facility creates the Configuration first and then applies the setting so it is not applied. 
+
+You can set the reflection optimizer setting from code with: Environment.UseReflectionOptimizer = false;
+
+A workaround is to add an NHibernate config section to the application config file with only the setting for the reflection optimizer.</value>
+    </field>
+    <field name="created">
+      <value>1143206950000</value>
+    </field>
+    <field name="updated">
+      <value>1162411804000</value>
+    </field>
+    <field name="reporterName">
+      <value>tijn</value>
+    </field>
+    <field name="updaterName">
+      <value>tijn</value>
+    </field>
+    <field name="resolved">
+      <value>1282140988026</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

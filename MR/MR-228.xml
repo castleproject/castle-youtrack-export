@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>228</value>
+    </field>
+    <field name="summary">
+      <value>incorrect component configuration results in an 'The container seems to be unavailable in your HttpApplication subclass' exception.</value>
+    </field>
+    <field name="description">
+      <value>I just went through a very long try / error session with an IIS webserver :/ Some stupid programmer (me) had corrupted the component.config file and I couldn't figure out what was wrong with the site.
+
+this is the content of the file:
+
+   &lt;component
+        id="templateengine"
+        service="Castle.Components.Common.TemplateEngine.ITemplateEngine, Castle.Components.Common.TemplateEngine"
+        type="Castle.Components.Common.TemplateEngine.NVelocityTemplateEngine.NVelocityTemplateEngine, Castle.Components.Common.TemplateEngine.NVelocityTemplateEngine"&gt;
+      &lt;parameters&gt;
+        &lt;templateDir&gt;#{templateDirectory}&lt;/templateDir&gt;  
+      &lt;/parameters&gt;
+    &lt;/component&gt;
+
+The source of the error is that I removed the 'templateDirectory' parameter from the property file because we aren't using it anymore but  I forgot to remove the component. 
+
+On IIS the exception thrown by the XMLconfig reader is discarded, and I don't know why. The next exception in the line is 'The container seems to be unavailable in your HttpApplication subclass'', not very helpful.
+
+It took me quite long time to figure that one out and I really have no idea why IIS suppresses the exception thrown by the XmlConfig reader. Could this be a server setting or can we alter the MR initialization so these error's find there way to the surface?  
+</value>
+    </field>
+    <field name="created">
+      <value>1170962834000</value>
+    </field>
+    <field name="updated">
+      <value>1263055686000</value>
+    </field>
+    <field name="reporterName">
+      <value>ernst</value>
+    </field>
+    <field name="updaterName">
+      <value>ernst</value>
+    </field>
+    <field name="resolved">
+      <value>1282143688120</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055680000" />
+  </issue>
+</issues>

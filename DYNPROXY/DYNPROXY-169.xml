@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>169</value>
+    </field>
+    <field name="summary">
+      <value>Support IChangeProxyTarget on additional interfaces and mixins when using CreateInterfaceProxyWithTargetInterface</value>
+    </field>
+    <field name="description">
+      <value>Currently proxies generated with CreateInterfaceProxyWithTargetInterface will only expose IChangeProxyTarget capability on invocations of the primary proxy interface.  It would be nice to expose this on all interfaces including additional ones and mixins.</value>
+    </field>
+    <field name="created">
+      <value>1328879595572</value>
+    </field>
+    <field name="updated">
+      <value>1407822235386</value>
+    </field>
+    <field name="reporterName">
+      <value>cneuwirt</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1340744099440</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-882[up-to-date]</value>
+      <value>User: id = 20-923[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="I need to talk to you about this. Can you create some tests to describe the behaviour you'd expect?" created="1338174311233" />
+    <comment author="cneuwirt" text="I created (and ignored) a test to demonstrate my expectation.  It's called Invocation_should_be_IChangeInvocationTarget_for_AdditionalInterfaces_methods. " created="1338899152850" />
+    <comment author="StephenCleary" text="I'm also wanting this behavior (not the mixins part; just the additional interfaces)." created="1339767280286" />
+    <comment author="xtoff" text="so what are the actual scenarios where you'd use it?" created="1340659443573" />
+    <comment author="StephenCleary" text="I have a library I'm writing where a class can choose to &quot;forward&quot; interface implementations to its components. This is similar to mixins, only the interfaces are forwarded explicitly so there's no conflict when multiple components implement the same interface.&#xA;&#xA;I can do this today in DynamicProxy, but I have to create a separate proxy for each forwarded interface and chain them all together. This works, but is not as efficient as a single forwarding proxy." created="1340661802549" />
+    <comment author="xtoff" text="@Craig Neuwirt this already works for mixins in v3.0, doesn't it?" created="1340742385439" />
+    <comment author="cneuwirt" text="It might.  I was more interested in the additional interfaces support at the time I created the issue." created="1340742636288" />
+    <comment author="xtoff" text="Ok, just checking :)" created="1340742736471" />
+    <comment author="xtoff" text="This is fixed - I'd appreciate if you guys could take it for a spin and see if all is good. I'm planning to push a v3.1 release as soon as I can." created="1340744137241" />
+    <comment author="Popov" text="this fix broke our code.&#xA;&#xA;we call CreateInterfaceProxyWithTargetInterface providing:&#xA;&#xA; *interfaceToProxy* - some interface&#xA; *additionalInterfacesToProxy* - []&#xA; *target* - TransparentProxy to object in another AppDomain&#xA; *options* - []&#xA; *interceptors* - [someInterface]&#xA;&#xA;&#xA;inside this method some   variables is evalueated to: &#xA;{code}&#xA;interfaceToProxy.IsAssignableFrom(target.GetType())  =  false&#xA;interfaceToProxy.IsInstanceOfType(target)  = true	&#xA;RemotingServices.IsTransparentProxy(target)	true&#xA;{code}&#xA;&#xA;before this change our call goes inside if:&#xA;{code}if (target != null &amp;&amp; interfaceToProxy.IsInstanceOfType(target) == false){code}&#xA;and isRemotingProxy evaluates to true.&#xA;&#xA;&#xA;NOW it is not going into it. and try to create proxy using &#xA;{code}return Activator.CreateInstance(generatedType, arguments.ToArray());{code}&#xA;and fails with:&#xA;{code}&#xA; [System.MissingMethodException] = {&quot;Constructor on type 'Castle.Proxies.someClassProxy' not found.&quot;}&#xA;{code}&#xA;but actually i not understand how it can work, because if interface is not Assignable from target, constructor can't cast it too.&#xA;&#xA;Maybe Check for IsTransparentProxy should be prior to Assignable?&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;" created="1359036920678" />
+    <comment author="xtoff" text="@Alexander please create a failing test" created="1359064009470" />
+  </issue>
+</issues>

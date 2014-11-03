@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - NVelocity</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>172</value>
+    </field>
+    <field name="summary">
+      <value>CheckBoxList Problems ArrayList not Populated</value>
+    </field>
+    <field name="description">
+      <value>This bug now doesn't give the object reference error but it doesnt populate the arraylist for the checkbox if its checked.
+
+nothing happens.
+
+Heres the Code 
+
+Code: 
+        public void Delete([DataBind("comment")] Comment comment) 
+        { 
+            foreach (int id in comment.Items) 
+            { 
+                Comment.Find(id).Delete(); 
+            } 
+
+            PropertyBag.Add("message", ResourceManager.GetString("CommentDeleted")); 
+
+            RenderSharedView("common/status"); 
+        } 
+
+
+And heres the Html output 
+
+Code: 
+ &lt;div id="comment"&gt; 
+          &lt;form method="post" action="/comment/delete.aspx"&gt; 
+          &lt;h2&gt;&lt;input type="checkbox" id="comment_Items_0" name="comment.Items[0]" value="278" class="checkbox" /&gt; #1&lt;/h2&gt; 
+          &lt;ul class="comment"&gt; 
+            &lt;li class="comment-author"&gt;Posted by &lt;a href="/forum/member.php?userid=1"&gt;Mike343&lt;/a&gt;&lt;/li&gt; 
+            &lt;li class="comment-date"&gt;11/16/2006 4:28:38 AM&lt;/li&gt; 
+            &lt;li class="comment-edit"&gt;&lt;a href="/comment/edit.aspx?id=278"&gt;Edit&lt;/a&gt;&lt;/li&gt; 
+          &lt;/ul&gt; 
+          &lt;div class="comment-body"&gt; 
+            &lt;p&gt;This is a test comment.&lt;/p&gt;&lt;p&gt;We must test the delete function.&lt;/p&gt; 
+          &lt;/div&gt; 
+          &lt;div class="spacer"&gt;&lt;/div&gt; 
+          &lt;input type="submit" value="Delete Selected" class="button"  /&gt; 
+          &lt;/form&gt; 
+        &lt;/div&gt;</value>
+    </field>
+    <field name="created">
+      <value>1163800228000</value>
+    </field>
+    <field name="updated">
+      <value>1244675808000</value>
+    </field>
+    <field name="reporterName">
+      <value>mike343</value>
+    </field>
+    <field name="updaterName">
+      <value>mike343</value>
+    </field>
+    <field name="resolved">
+      <value>1282143590526</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675760000" />
+  </issue>
+</issues>

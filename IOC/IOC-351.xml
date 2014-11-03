@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>351</value>
+    </field>
+    <field name="summary">
+      <value>PerWebRequest LifeStyle raises error on Mono XSP</value>
+    </field>
+    <field name="description">
+      <value>PerWebRequest LifeStyle for components raises same error as if you forget to add http modules and/or infrastructure dll in .NET. It claims you have not added needed lines to web.config even when you do that.</value>
+    </field>
+    <field name="created">
+      <value>1344552191463</value>
+    </field>
+    <field name="updated">
+      <value>1371794458328</value>
+    </field>
+    <field name="reporterName">
+      <value>Kamyar.Inanloo</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1371794458321</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Is that still a problem? We don't officially support Mono at the moment, but I'm happy to accept pull requests..." created="1349646138630" />
+    <comment author="xtoff" text="Since there's been no activity here for close to a year I'm going to assume it's a non issue anymore. If it still exists please open a new ticket for that" created="1371794445383" />
+  </issue>
+</issues>

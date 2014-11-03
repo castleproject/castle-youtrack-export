@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>23</value>
+    </field>
+    <field name="summary">
+      <value>Cascade Enum</value>
+    </field>
+    <field name="description">
+      <value>ActiveWriter produces
+Cascade = CascadeEnum.All
+
+However, ActiveRecord is expecting:
+
+Cascade = ManyRelationCascadeEnum.All
+
+</value>
+    </field>
+    <field name="created">
+      <value>1174305795000</value>
+    </field>
+    <field name="updated">
+      <value>1175322420000</value>
+    </field>
+    <field name="reporterName">
+      <value>steveg</value>
+    </field>
+    <field name="updaterName">
+      <value>steveg</value>
+    </field>
+    <field name="resolved">
+      <value>1282138171745</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

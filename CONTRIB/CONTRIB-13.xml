@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>13</value>
+    </field>
+    <field name="summary">
+      <value>dump schema in form of migration code</value>
+    </field>
+    <field name="description">
+      <value>I think it should be a new generator called like:
+generator SchemaDump ConnectionString
+and hidden behind a nant target: nant schema.dump.
+
+It should generate a C# code file as a migration script, perhaps db/schema.cs. This file could be renamed and put in db/migrations to run the script.
+
+http://del.icio.us/kevwil/migrations
+http://api.rubyonrails.org/classes/ActiveRecord/Schema.html
+http://api.rubyonrails.org/classes/ActiveRecord/Migration.html
+&lt;rails_gem_path&gt;/lib/tasks/database.rake (if you have Rails installed)</value>
+    </field>
+    <field name="created">
+      <value>1160297137000</value>
+    </field>
+    <field name="updated">
+      <value>1171211972000</value>
+    </field>
+    <field name="reporterName">
+      <value>k-dub</value>
+    </field>
+    <field name="updaterName">
+      <value>k-dub</value>
+    </field>
+    <field name="resolved">
+      <value>1282138159370</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

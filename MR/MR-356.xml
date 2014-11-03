@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>356</value>
+    </field>
+    <field name="summary">
+      <value>Routing fails when routing to a controller which is in an area</value>
+    </field>
+    <field name="description">
+      <value>Routing seems to fail when you are routing to an action on a controller that exists within an area. The url produced by the routing module has the correct area/controller/action.rails fragment at the end, but it is prefixed by a fragment of the url used in the route. E.g. 
+
+/foo/bar/3
+
+for controller:
+
+[ControllerDetails(Area = "Zoo")
+public class BeepController : Controller {
+    public void Parp(int jobby) {
+    }
+}
+
+results in /foo/bar/Zoo/Beep/Parp.rails?jobby=3
+
+The patch amends the getmrpath function in the routing module to prepend a "~/" to the start of the rewritten url. This forces the rewritten url to:
+
+/Zoo/Beep/Parp.rails?jobby=3
+
+as expected.</value>
+    </field>
+    <field name="created">
+      <value>1194340029000</value>
+    </field>
+    <field name="updated">
+      <value>1244676912000</value>
+    </field>
+    <field name="reporterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="updaterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="resolved">
+      <value>1282145340229</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676900000" />
+  </issue>
+</issues>

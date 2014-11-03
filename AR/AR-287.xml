@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 3.0 Beta</value>
+    </field>
+    <field name="Affected versions">
+      <value>AR 2.1.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>287</value>
+    </field>
+    <field name="summary">
+      <value>Generic Repository using ActiveRecordLinq.AsQueryable&lt;T&gt; and OrderBy Function</value>
+    </field>
+    <field name="description">
+      <value>I have problem with some linq operators using generic repository (OrderBy). Here is the code sample illustrating the problem:
+
+
+
+public interface IPerson
+{
+    int Id { get; }
+    string LastName { get; }
+}
+
+[ActiveRecord("Persons")]
+public class Person : IPerson
+{
+    [PrimaryKey(Column = "P_Id", Generator = PrimaryKeyType.Identity)]
+    public int Id
+    {
+        get;
+        protected set;
+    }
+
+    [Property(Column = "LastName")]
+    public string LastName
+    {
+        get;
+        protected set;
+    }
+
+    [Property(Column = "FirstName")]
+    public string FirstName
+    {
+        get;
+        protected set;
+    }
+}
+
+public class GenericPersonRepository&lt;T&gt; where T : IPerson
+{
+    public T[] Retrieve()
+    {
+        T[] arr;
+        using (new SessionScope())
+        {
+            arr = ActiveRecordLinq.AsQueryable&lt;T&gt;().OrderBy(i =&gt; i.LastName).ToArray();
+        }
+        return arr;
+    }
+}
+
+public class PersonRepository
+{
+    public Person[] Retrieve()
+    {
+        Person[] arr;
+        using (new SessionScope())
+        {
+            arr = ActiveRecordLinq.AsQueryable&lt;Person&gt;().OrderBy(i =&gt; i.LastName).ToArray();
+        }
+        return arr;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        IConfigurationSource source = ConfigurationManager.GetSection("activerecord") as IConfigurationSource;
+        ActiveRecordStarter.Initialize(source, typeof(Person));
+
+        var normal = new PersonRepository();
+        var persons = normal.Retrieve();
+
+        var generic = new GenericPersonRepository&lt;Person&gt;();
+        persons = generic.Retrieve(); // This fails because of OrderBy operator
+    }
+}
+
+
+
+When I use normal PersonRepository everything is OK but when I use GenericPersonRepository I get error ActiveRecordException - Could not perform ExecuteQuery for Person. Here is my stack trace:
+
+
+
+at NHibernate.Loader.Criteria.CriteriaQueryTranslator.GetEntityName(ICriteria subcriteria, String propertyName)
+   at NHibernate.Loader.Criteria.CriteriaQueryTranslator.GetColumns(String propertyName, ICriteria subcriteria)
+   at NHibernate.Loader.Criteria.CriteriaQueryTranslator.GetColumnAliasesUsingProjection(ICriteria subcriteria, String propertyName)
+   at NHibernate.Criterion.Order.ToSqlString(ICriteria criteria, ICriteriaQuery criteriaQuery)
+   at NHibernate.Loader.Criteria.CriteriaQueryTranslator.GetOrderBy()
+   at NHibernate.Loader.Criteria.CriteriaJoinWalker..ctor(IOuterJoinLoadable persister, CriteriaQueryTranslator translator, ISessionFactoryImplementor factory, ICriteria criteria, String rootEntityName, IDictionary`2 enabledFilters)
+   at NHibernate.Loader.Criteria.CriteriaLoader..ctor(IOuterJoinLoadable persister, ISessionFactoryImplementor factory, CriteriaImpl rootCriteria, String rootEntityName, IDictionary`2 enabledFilters)
+   at NHibernate.Impl.SessionImpl.List(CriteriaImpl criteria, IList results)
+   at NHibernate.Impl.CriteriaImpl.List(IList results)
+   at NHibernate.Impl.CriteriaImpl.List()
+   at NHibernate.Linq.CriteriaResultReader`1.List()
+   at NHibernate.Linq.CriteriaResultReader`1.d__0.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at Castle.ActiveRecord.Linq.LinqQuery`1.Execute(ISession session)
+   at Castle.ActiveRecord.ActiveRecordBase.ExecuteQuery(IActiveRecordQuery query)
+
+
+
+I would really appreciate to use OrderBy operator with ActiveRecordLinq and generic repositories to perform select * from order by ... queries.</value>
+    </field>
+    <field name="created">
+      <value>1283510758041</value>
+    </field>
+    <field name="updated">
+      <value>1292001517613</value>
+    </field>
+    <field name="reporterName">
+      <value>Jakub.Chodounský</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1285469647156</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="Can you please check if it's still happening with the latest version on our git repo? We did update to latest NHibernate version, and maybe this issue was fixed. Also, a NUnit test case would be more helpful. Tks." created="1285406807828" />
+    <comment author="Jakub.Chodounský" text="Issue was fixed by downloading the latest version from github. Thank you for your concern and a great work on ActiveRecord." created="1285411514187" />
+  </issue>
+</issues>

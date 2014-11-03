@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>95</value>
+    </field>
+    <field name="summary">
+      <value>Tests failures on vista portuguese enviroment</value>
+    </field>
+    <field name="description">
+      <value>I am trying to build the project in a portuguese vista environment, but some asserts in Castle.Components.Validator.Tests.LocalizationTests are expecting english exceptions messages, so I couldn't build the project. Is an english enviroment pre-requisite to build the project or am I doing something wrong?
+ 
+I think before an assert like :
+Assert.AreEqual("Value cannot be null.\r\nParameter name: value", argumentException.Message);
+
+We could ensure the en-US culture:
+
+using (SwitchUICulture(CultureInfo.CreateSpecificCulture("en-US")))
+
+If it make sense I am sending the patch.</value>
+    </field>
+    <field name="created">
+      <value>1245949215000</value>
+    </field>
+    <field name="updated">
+      <value>1282346694171</value>
+    </field>
+    <field name="reporterName">
+      <value>ricardob</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1282346694171</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ricardob" text="* '''Attachment''' LocalizationTests.patch added.&#xD;&#xA;" created="1245950040000" />
+    <comment author="henry" text="Could not reproduce or it was fixed by ." created="1282346694171" />
+  </issue>
+</issues>

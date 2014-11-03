@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>View Components</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>100</value>
+    </field>
+    <field name="summary">
+      <value>Cannot register GridComponent and SmartGridComponent at the same time</value>
+    </field>
+    <field name="description">
+      <value>Using Castle 4170 and Contrib 404
+
+When registering GridComponent and SmartGridComponent at the same time an error is thrown by DefaultViewComponentRegistry:
+
+"ViewComponent 'GridComponent' seems to be registered already. This is due to it being registered more than once or a name clash"
+
+Since SmartGridComponent inherits from GridComponent, DefaultViewComponentRegistry.GetDetails picks up the ViewComponentDetailsAttribute from GridComponent and therefore has the two components have the same "Name" in the registry.  I could be doing something wrong here, or maybe this just hasn't been addressed yet.  If someone can identify a fix, I'd be glad to code the patch.
+</value>
+    </field>
+    <field name="created">
+      <value>1200009570000</value>
+    </field>
+    <field name="updated">
+      <value>1414392127416</value>
+    </field>
+    <field name="reporterName">
+      <value>jasonlodice</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392127409</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jamescurran" text="This is a duplicate of MR-ISSUE-391 (which has been fixed and closed)" created="1263199817000" />
+  </issue>
+</issues>

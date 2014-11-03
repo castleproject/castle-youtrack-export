@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>80</value>
+    </field>
+    <field name="summary">
+      <value>DP2 cannot proxy ServiceModel.IChannel class. (Exception from HRESULT: 0x8007000B)</value>
+    </field>
+    <field name="description">
+      <value>Therefore wcf client proxies cannot access its IContextChannel interface, and the WcfFacility implementation creates proxies whose IContextChannel interface cannot be accessed (important limitation of the facility).
+
+
+Unit test below:
+------------------------------------------------------------------------------
+namespace castle.tests.nunit.bug
+{
+    using System;
+    using System.Collections.Generic;
+
+    using System.ServiceModel;
+    using System.ServiceModel.Channels;
+
+    using Castle.Core;
+    using Castle.Core.Interceptor;
+    using Castle.Windsor;
+    using Castle.DynamicProxy;
+
+    using NUnit.Framework;
+
+    [TestFixture(Description = "DP2 cannot proxy System.ServiceModel.IContextChannel, therefore retrieved clients through WcfFacility cannot access its IContextChannel")]
+    /// &lt;summary&gt;
+    /// DP2 must be able to proxy IContextChannel
+    /// &lt;/summary&gt;     
+    /// &lt;remarks&gt;
+    /// public interface IContextChannel : IChannel, ICommunicationObject, IExtensibleObject&lt;IContextChannel&gt;
+    /// Problem example: http://groups.google.com/group/castle-project-users/browse_thread/thread/523a930eba69b76c
+    /// WcfFacility uses WcfClientActivator.Instantiate to create the proxy of the wcf client
+    /// Fails with BadImageFormatException: An attempt was made to load a program with an incorrect format. (Exception from HRESULT: 0x8007000B)
+    /// &lt;/remarks&gt;
+    public class DynamicProxy_ServiceModelChannelTests
+    {        
+        IContract _target = null;
+        ProxyGenerationOptions _opt = null;
+        ProxyGenerator _proxyGenerator = null;
+        Type _targetType = null;
+
+        [ServiceContract]
+        public interface IContract
+        {
+            [OperationContract]
+            void Operation();
+        }
+             
+        [TestFixtureSetUp]
+        public void SetUp()
+        {            
+            _targetType = typeof(IContract);
+            _target = ChannelFactory&lt;IContract&gt;.CreateChannel(new BasicHttpBinding(), new EndpointAddress("http://localhost:9010/s"));
+            
+            _opt = new ProxyGenerationOptions();
+            _proxyGenerator = new ProxyGenerator();
+        }
+
+        [Test]
+        public void ProxyClientChannel_And_ICommunicationObject()
+        {
+            assert_CreateInterfaceProxyWithTarget(typeof(ICommunicationObject));
+        }
+
+        [Test]
+        public void ProxyClientChannel_And_IExtensibleObject()
+        {
+            assert_CreateInterfaceProxyWithTarget(typeof(IExtensibleObject&lt;IContextChannel&gt;));
+        }
+
+        [Test]
+        public void ProxyClientChannel_And_IExtensibleObject_ICommunicationObject()
+        {
+            assert_CreateInterfaceProxyWithTarget(typeof(IExtensibleObject&lt;IContextChannel&gt;), typeof(ICommunicationObject));
+        }
+
+        /// &lt;summary&gt;
+        /// FAILS
+        /// &lt;/summary&gt;
+        [Test]
+        public void ProxyClientChannel_And_IContextChannel()
+        {
+
+            assert_CreateInterfaceProxyWithTarget(typeof(IContextChannel));
+        }
+
+        /// &lt;summary&gt;
+        /// FAILS
+        /// &lt;/summary&gt;
+        [Test]
+        public void ProxyClientChannel_And_IChannel()
+        {
+            assert_CreateInterfaceProxyWithTarget(typeof(IChannel));
+        }
+
+        void assert_CreateInterfaceProxyWithTarget(params Type[] interfaces)
+        {            
+            for (int i = 0; i &lt; interfaces.LongLength; i++)
+            {
+                Assert.IsInstanceOfType(interfaces[i], _target);
+            }            
+
+            object proxy = _proxyGenerator.CreateInterfaceProxyWithTarget(_targetType, interfaces , _target, _opt, new StandardInterceptor());
+
+            Assert.IsInstanceOfType(_targetType, proxy);
+            for (int i = 0; i &lt; interfaces.LongLength; i++)
+            {
+                Assert.IsInstanceOfType(interfaces[i], proxy);
+            }            
+        }        
+    }
+}
+</value>
+    </field>
+    <field name="created">
+      <value>1231412727000</value>
+    </field>
+    <field name="updated">
+      <value>1232352915000</value>
+    </field>
+    <field name="reporterName">
+      <value>ppcanodehuelva</value>
+    </field>
+    <field name="updaterName">
+      <value>ppcanodehuelva</value>
+    </field>
+    <field name="resolved">
+      <value>1232352900000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1232128920000" />
+    <comment author="cneuwirt" text="* '''Assignees''' set to ''Craig Neuwirt''.&#xD;&#xA;" created="1232128980000" />
+    <comment author="cneuwirt" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1232352900000" />
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1232352900000" />
+  </issue>
+</issues>

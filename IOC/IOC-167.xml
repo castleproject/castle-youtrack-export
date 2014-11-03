@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>167</value>
+    </field>
+    <field name="summary">
+      <value>when using open generics windsor fails to implement dp interface</value>
+    </field>
+    <field name="description">
+      <value>
+following test fails when using open generics for registration: ObservableCollection&lt;&gt; , when ObservableCollection&lt;int&gt; is used test passes
+
+[SetUp]
+public void Setup()
+{
+_windsor = new WindsorContainer(); 
+_windsor.Kernel.Register(Castle.MicroKernel.Registration.Component.For&lt;TestInterceptor&gt;().LifeStyle.Transient);
+_windsor.Register(Castle.MicroKernel.Registration.Component.For(typeof (ObservableCollection&lt;&gt;))
+.ImplementedBy(typeof(ObservableCollection&lt;&gt;))
+.Proxy.AdditionalInterfaces(typeof (ITestInterface))
+.Interceptors(new InterceptorReference(typeof (TestInterceptor))).Last
+.LifeStyle.Transient
+);
+}
+
+[Test]
+public void Test1()
+{
+var tst = _windsor.Resolve&lt;ObservableCollection&lt;int&gt;&gt;();
+var tst1 = tst as ITestInterface;
+Assert.IsNotNull(tst1);
+}</value>
+    </field>
+    <field name="created">
+      <value>1254805296000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853135</value>
+    </field>
+    <field name="reporterName">
+      <value>bszafko</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1260777360000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="bszafko" text="it seem xtoff fixed it in svn: 6069" created="1254806569000" />
+    <comment author="xtoff" text="fixed in 6069" created="1260777420000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1260777360000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1260777420000" />
+  </issue>
+</issues>

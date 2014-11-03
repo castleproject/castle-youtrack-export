@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>39</value>
+    </field>
+    <field name="summary">
+      <value>multi line string literals</value>
+    </field>
+    <field name="description">
+      <value>https://issues.apache.org/jira/browse/VELOCITY-148
+
+#set ($str = "aaaaaa
+bbbbb
+aaaaaaaaaa")
+</value>
+    </field>
+    <field name="created">
+      <value>1318489028499</value>
+    </field>
+    <field name="updated">
+      <value>1396695204944</value>
+    </field>
+    <field name="reporterName">
+      <value>Grefe</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396695204930</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+      <value>User: id = 20-800[up-to-date]</value>
+      <value>User: id = 20-151[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="Hi,&#xA;&#xA;Are you requesting support for it or telling us that exists a bug on it? Anyway, unless you or someone else provide patch or send a pull request this won't be fixed. " created="1318519222908" />
+    <comment author="jochen" text="Hi,&#xA;oh I'm sorry I edited the message in an text editor and only pasted a part of it.&#xA;I want to try to implement this feature, but need some guidance about the parser.&#xA;Is there a parser definition file for this or is the original output of javacc hand translated to&#xA;csharp. The question behind this is: Have I to change a definition file or the source code?" created="1323079599077" />
+  </issue>
+</issues>

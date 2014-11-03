@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Ajax Support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>442</value>
+    </field>
+    <field name="summary">
+      <value>PrototypeAjaxProxyGenerator does not handle extensionless URLs</value>
+    </field>
+    <field name="description">
+      <value>Castle.MonoRail.Framework.Services.AjaxProxyGenerator.PrototypeAjaxProxyGenerator will not generate correct URLs in the JS proxy if the application uses URLs without extensions. The generated prototypes will look like:
+edit: function(id, callback)
+{
+  var r=new Ajax.Request('/TestApp/Items/Edit.', {method: 'get', asynchronous: !!callback, onComplete: callback, parameters: '_=&amp;id='+id+''}); 
+if(!callback) return r.transport.responseText;
+}
+[The URL '/TestApp/Items/Edit.' contains a dot at the end that breaks the link]
+
+The supplied patch fixes the issue. </value>
+    </field>
+    <field name="created">
+      <value>1209739380000</value>
+    </field>
+    <field name="updated">
+      <value>1213323257000</value>
+    </field>
+    <field name="reporterName">
+      <value>aloker</value>
+    </field>
+    <field name="updaterName">
+      <value>aloker</value>
+    </field>
+    <field name="resolved">
+      <value>1282145673291</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

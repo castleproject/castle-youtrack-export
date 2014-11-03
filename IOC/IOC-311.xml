@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>StartableFacility</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>3.0 beta 1</value>
+      <value>2.5.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>311</value>
+    </field>
+    <field name="summary">
+      <value>OptimizeDependencyResolutionDisposable eats exceptions thrown during installation</value>
+    </field>
+    <field name="description">
+      <value>Here's my scenario (names have been changed to protect the innocent):
+
+StartableComponent is registered as Startable by the StartableComponentInstaller.
+
+StartableComponent depends on DependencyOfStartableComponent, which is registered by the DependencyInstaller
+
+For kicks, I have a third unrelated installer called ExceptionThrowingInstaller that throws a NotImplementedException when Install is called.
+
+I create my container (with the startable facility and deferred start) passing StartableComponentInstaller, ExceptionThrowingInstaller, and DependencyInstaller, in that order.
+
+I would expect to see the exception thrown by ExceptionThrowingInstaller bubble out of my call to WindsorContainer.Install.  However, what I see instead is a HandlerException originating from OptimizeDependencyResolutionDisposable.Dispose that is telling me that StartableComponent can't be created because DependencyOfStartableComponent was not registered.  So, what appears to be happening is that the exception thrown by ExceptionThrowingInstaller prevents subsequent installers (like DependencyInstaller) from running, but some using/finally logic kicks in which calls OptimizeDependencyResolutionDisposable.Dispose, which tries to resolve StartableComponent.  This fails due to the fact that DependencyOfStartableComponent was not registered, and I see this (significantly less useful) exception pop out of WindsorContainer.Install, and my original NotImplementedException (the real cause of the problem) is lost into the ether.  
+
+Below is a unit test that replicates the problem.  Is there a valid reason that I'm missing as to why you would want the container to attempt to start startable components in the face of exceptions being thrown out of an installer?  I certainly didn't expect the container to behave that way.
+
+I've confirmed that this behavior exists in 2.5.3 and 3.0b1.
+
+Thanks for your help and for this fantastic product.
+
+{code}
+
+using System;
+using Castle.Facilities.Startable;
+using Castle.MicroKernel.Handlers;
+using Castle.MicroKernel.Registration;
+using Castle.MicroKernel.SubSystems.Configuration;
+using Castle.Windsor;
+using NUnit.Framework;
+
+namespace Windsor.UnitTests
+{
+    [TestFixture]
+    public class StartableAndExceptionThrowingInstallers
+    {
+        private static bool _startableComponentStarted = false;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _startableComponentStarted = false;
+        }
+
+        [Test]
+        public void InstallShouldThrowExceptionFromFailedInstaller()
+        {
+            using (var container = new WindsorContainer())
+            {
+                container.AddFacility&lt;StartableFacility&gt;(f =&gt; f.DeferredStart());
+
+                // I would expect NotImplementedException to be thrown here
+                // because it is thrown in the install method of the ExceptionThrowingInstaller
+                // however, what appears to be happening is that after the NotImplementedException
+                // is thrown, the DependencyInstaller never runs, but the "deferred start" code
+                // in OptimizeDependencyResolutionDisposable.Dispose() kicks in anyway
+                // and tries to create the StartableComponent, which it fails to do
+                // because IDependencyOfStartableComponent is not registered
+                // The net effect is that the NotImplementedException thrown by ExceptionThrowingInstaller
+                // is "swallowed" and instead I see a Kernel HandlerException telling me that
+                // IDependencyOfStartableComponent is not registered
+
+                // actual :
+                Assert.Throws&lt;HandlerException&gt;(
+                    // expected :
+                    //Assert.Throws&lt;NotImplementedException&gt;(
+                    () =&gt;
+                    container.Install(new StartableComponentInstaller(),
+                                      new ExceptionThrowingInstaller(),
+                                      new DependencyInstaller()));
+            }
+        }
+
+        [Test]
+        public void StartableComponentShouldNotStartIfExceptionThrownByInstaller()
+        {
+            using (var container = new WindsorContainer())
+            {
+                container.AddFacility&lt;StartableFacility&gt;(f =&gt; f.DeferredStart());
+                Assert.Throws&lt;NotImplementedException&gt;(
+                    () =&gt;
+                    container.Install(new StartableComponentInstaller(),
+                                      new DependencyInstaller(),
+                                      new ExceptionThrowingInstaller()));
+
+                // In this scenario, I've registered IDependencyOfStartableComponent
+                // before the ExceptionThrowingInstaller gets a chance to gum up the works
+                // I would expect that the "deferred start" code NOT run here, 
+                // and the StartableComponent remain un-instantiated.
+                // However, Castle is creating the StartableComponent anyway
+                // and then allows the NotImplementedException to bubble out.
+                // Presumably, this is due to the "deferred start" mechanism
+                // being implemented by a using() block or something similar
+                // via OptimizeDependencyResolutionDisposable.Dispose()
+
+                // actual : 
+                Assert.IsTrue(_startableComponentStarted);
+                // expected :
+                //Assert.False(_startableThingStarted);
+            }
+        }
+
+        private class StartableComponentInstaller : IWindsorInstaller
+        {
+            public void Install(IWindsorContainer container,
+                                IConfigurationStore store)
+            {
+                container.Register(Component.For&lt;StartableComponent&gt;().Start());
+            }
+        }
+
+        private class ExceptionThrowingInstaller : IWindsorInstaller
+        {
+            public void Install(IWindsorContainer container,
+                                IConfigurationStore store)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        private class DependencyInstaller : IWindsorInstaller
+        {
+            public void Install(IWindsorContainer container,
+                                IConfigurationStore store)
+            {
+                container.Register(
+                    Component.For&lt;IDependencyOfStartableComponent&gt;().ImplementedBy&lt;DependencyOfStartableComponent&gt;());
+            }
+        }
+
+        private class StartableComponent
+        {
+            public StartableComponent(IDependencyOfStartableComponent dependency)
+            {
+                _startableComponentStarted = true;
+            }
+        }
+
+        private interface IDependencyOfStartableComponent
+        {
+        }
+
+        private class DependencyOfStartableComponent : IDependencyOfStartableComponent
+        {
+        }
+    }
+}
+
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1314289928302</value>
+    </field>
+    <field name="updated">
+      <value>1314355563677</value>
+    </field>
+    <field name="reporterName">
+      <value>slange</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1314355563677</value>
+    </field>
+    <field name="voterName">
+      <value>xtoff</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngines</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>106</value>
+    </field>
+    <field name="summary">
+      <value>Licence and improvements</value>
+    </field>
+    <field name="description">
+      <value>
+Improvements: 
+
+- Dependency tracking for includes or imports:
+When using xsl:include or xsl:import in a stylesheet, the reference is stored in the XsltTemplateStore. When a change is made to the referenced style sheet the referencing stylesheet is also marked dirty and removed from the cache in XsltTemplateStore. That way you don't have to restart the application when making changes to base stylesheets.
+
+- The xhtml doctype is being emitted when the engine is configured for Xhtml output.
+
+- All items in flash are now added and transformed to the Xsl Transformation parameter list. (Previously only Flash.FlashKey was added)
+
+- Special helper that make it possible to use reflection on a type in an Xsl Transformation. This makes is possible to  automatically emit forms based on the type (meta-data provided by attributes). 
+
+- Added Apache licence to every source file
+
+- Removed unused imports
+
+- Renamed the NativeEngine namespace from Castle.MonoRail.View.Xslt.NativeEngine to Castle.MonoRail.Framework.View.Xslt.NativeEngine
+
+TODO: (What i can currently think of):
+
+- Build files for nant/msbuild
+- Write a Xsl Template utility library to make working with the existing Castle helpers more easy and less verbose.
+- Js support
+- Performance testing / profiling 
+- Write a test-suite
+- More work on the Saxon engine support
+- More samples / docs / wiki
+- ...
+
+
+
+Remarks:
+
+What is the best place to put View Engine configuration data? Currently the engine needs two pieces of information: The Xslt Engine to use and wether or not to enable debug output. (XsltViewEngine.cs:83)
+
+
+Wild plans:
+
+After talking to Hugo Burm i think it would be very cool to extend the pipeline processing to a full-blown XProc processor. 
+
+Every view would then be a Xproc pipeline definition that enable you to target (almost) any platform. You'd get an even more radical 'layerisation' of the presentation tier.
+
+
+
+
+ 
+
+
+
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1203949430000</value>
+    </field>
+    <field name="updated">
+      <value>1203956623000</value>
+    </field>
+    <field name="reporterName">
+      <value>masterpoi</value>
+    </field>
+    <field name="updaterName">
+      <value>masterpoi</value>
+    </field>
+    <field name="resolved">
+      <value>1282140050182</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

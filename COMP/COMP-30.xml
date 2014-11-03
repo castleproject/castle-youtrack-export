@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>30</value>
+    </field>
+    <field name="summary">
+      <value>Improved handling of empty strings, client valiator script tweaks</value>
+    </field>
+    <field name="description">
+      <value>The intent here is to standardize the handling of empty strings for certain validators (empty strings should be equivalent to null values), and to ensure client-side behavior mirrors server-side behavior. See http://groups.google.com/group/castle-project-devel/t/65eb489b5fad9baa for background info.
+
+CHANGES:
+PrototypeWebValidator.cs updated to improve rendering of error messages (as discussed here: http://groups.google.com/group/castle-project-devel/t/c7baeb96941ec478)
+
+FormHelper.resx updated to ensure empty strings return true for length and min/max validators.
+
+SameAsValidator.cs and LengthValidator.cs updated to treat string.Empty values as null values. UNIT TESTS UPDATED TO REFLECT FUNCTIONAL CHANGES.</value>
+    </field>
+    <field name="created">
+      <value>1181757780000</value>
+    </field>
+    <field name="updated">
+      <value>1181852806000</value>
+    </field>
+    <field name="reporterName">
+      <value>bdemarzo</value>
+    </field>
+    <field name="updaterName">
+      <value>bdemarzo</value>
+    </field>
+    <field name="resolved">
+      <value>1282137541088</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

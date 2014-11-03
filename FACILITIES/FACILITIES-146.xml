@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Wcf</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>146</value>
+    </field>
+    <field name="summary">
+      <value>Opening channel on a client should perhaps be done asynchronousely</value>
+    </field>
+    <field name="description">
+      <value>When a client proxy is pulled from the container it is automatically {{Open()}}ed synchronously which may take a few seconds and freeze the UI on the client app.
+
+Alternatives should be checked, if doing {{BeginOpen()}} / {{EndOpen()}} is a better option (does it still have the same effect as calling it synchronousely? See the comment in the code), or perhaps disabling this eager opening on demand...</value>
+    </field>
+    <field name="created">
+      <value>1299030360312</value>
+    </field>
+    <field name="updated">
+      <value>1396694906342</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396694906328</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

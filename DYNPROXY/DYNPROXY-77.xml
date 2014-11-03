@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>77</value>
+    </field>
+    <field name="summary">
+      <value>DYNPROXY-ISSUE-58 is open again in Build 933 - 8/25/2008 12:05 PM</value>
+    </field>
+    <field name="description">
+      <value>I found the DYNPROXY-ISSUE-58 in the latest build at Build 933 - 8/25/2008 12:05 PM. The problem should be fixed but it doesn't work.</value>
+    </field>
+    <field name="created">
+      <value>1219731886000</value>
+    </field>
+    <field name="updated">
+      <value>1235859187000</value>
+    </field>
+    <field name="reporterName">
+      <value>trosinde</value>
+    </field>
+    <field name="updaterName">
+      <value>trosinde</value>
+    </field>
+    <field name="resolved">
+      <value>1235859180000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Fixed in r5570. Thanks." created="1235859188000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1235859180000" />
+  </issue>
+</issues>

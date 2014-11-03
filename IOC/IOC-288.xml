@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>288</value>
+    </field>
+    <field name="summary">
+      <value>IEnumerable&lt;Func&lt;T&gt;&gt; doesn't appear to resolve</value>
+    </field>
+    <field name="description">
+      <value>Installer:
+ container.Register(Component.For&lt;Foo&gt;());
+ container.Register(AllTypes.FromThisAssembly().BasedOn&lt;IBar&gt;().WithService.AllInterfaces());
+ container.AddFacility&lt;TypedFactoryFacility&gt;();
+
+Foo ctor:
+ public Foo(IEnumerable&lt;Func&lt;IBar&gt;&gt; ctorParamName)
+ { ...
+
+Receive the message:
+'Can't create component 'Foo' as it has dependencies to be satisfied. 
+Foo is waiting for the following dependencies: 
+
+Keys (components with specific keys)
+ - ctorParamName which was not registered.'
+
+Although, I might be missing something ;)</value>
+    </field>
+    <field name="created">
+      <value>1303366941489</value>
+    </field>
+    <field name="updated">
+      <value>1396695015230</value>
+    </field>
+    <field name="reporterName">
+      <value>shea.strickland</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396695015215</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-804[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="raztor" text="Yep, got the same problem. I wonder if it is fixed in some release of VS.&#xA;Or there is some workaround you know of :)" created="1320743824428" />
+    <comment author="xtoff" text="@AKA, no workaround as of now. Implementing this *properly* would require some deep internal changes, and considering we're on the verge of releasing Windsor 3 it will have to wait until next major version." created="1320876102842" />
+    <comment author="raztor" text="Thank you for your quick reply :))) We managed to workaround the problem. Strangely, this page is the only one I found referring to that problem. Anyway thanks again for replying so fast :)" created="1321271545851" />
+  </issue>
+</issues>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Transaction</value>
+    </field>
+    <field name="Fix versions">
+      <value>v2.2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>15</value>
+    </field>
+    <field name="summary">
+      <value>Integration with Kernel Transactions</value>
+    </field>
+    <field name="description">
+      <value>1. Decide about the changed code:
+ * FtX use custom helpers for path-based features, should all Path. and Directory. be replaced across Castle.Core with PathUtil and IDirectoryAdapter? It would add support for paths with more than 255 characters to all path-based operations and work around some limitations of the framework. However, the implementation of IDirectoryAdapter would potentially require full trust as it does p/invoke in order to get access to the transacted API. Also the interfaces for Directory and File subsystems both default back to Directory. and File. which can cause problems using 255+ long paths when not using FtX.
+2. Test the committed code with non MinWin-kernels, Windows XP mostly.</value>
+    </field>
+    <field name="created">
+      <value>1254764568000</value>
+    </field>
+    <field name="updated">
+      <value>1272932778000</value>
+    </field>
+    <field name="reporterName">
+      <value>henke</value>
+    </field>
+    <field name="updaterName">
+      <value>henke</value>
+    </field>
+    <field name="resolved">
+      <value>1272932760000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Is the limitation (of 255 chars) affecting anyone?&#xA;Be aware that P/Invoke also breaks Mono compatibility." created="1262412305000" />
+    <comment author="henke" text="Well, it's affecting horns ability to build complex projects. Yes, the P/Invoke does break mono, but that should be fixed by using the implementations of DirectoryAdapter and FileAdapter which contains conditional compiles through IoC or similar. Only a concrete usage of FileTransaction otherwise breaks anything." created="1264872335000" />
+    <comment author="henke" text="Implemented IO." created="1272932761000" />
+    <comment author="henke" text="Comment for closing? Done." created="1272932778000" />
+    <comment author="henke" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''v2.2''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1272932760000" />
+    <comment author="henke" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1272932760000" />
+  </issue>
+</issues>

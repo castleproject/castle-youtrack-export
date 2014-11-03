@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>285</value>
+    </field>
+    <field name="summary">
+      <value>Bug with an action named Add</value>
+    </field>
+    <field name="description">
+      <value>Just started getting this error on the trunk on a controller with an action (and associated view) named Add
+
+Error during compile:
+BCE0088: Boo.Lang.Compiler.CompilerError: Sorry but the 'add_' prefix is reserved by the compiler. Friends?</value>
+    </field>
+    <field name="created">
+      <value>1183073191000</value>
+    </field>
+    <field name="updated">
+      <value>1244676873000</value>
+    </field>
+    <field name="reporterName">
+      <value>chriso</value>
+    </field>
+    <field name="updaterName">
+      <value>chriso</value>
+    </field>
+    <field name="resolved">
+      <value>1282143883557</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676840000" />
+  </issue>
+</issues>

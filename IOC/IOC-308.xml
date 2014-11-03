@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>308</value>
+    </field>
+    <field name="summary">
+      <value>Castle won't resolve an implementation of WPF's ICommand</value>
+    </field>
+    <field name="description">
+      <value>It seems to have something to do with the TypeConverter attribute. I can reproduce the problem by switching Command to implement ICommand2 instead of ICommand. The test case passes or fails based on the absence or presence of the TypeConverter attribute specified with System.Windows.Input.TypeConverter. I tried a custom typeconverter and the test passed.
+
+Here's the failing test:
+namespace CastleTests
+{
+    [TestFixture]
+    public class CastleTests
+    {
+
+        [Test]
+        public void Resolve()
+        {
+            // Arrange
+            var container = new WindsorContainer();
+            container.Register(Component.For&lt;Command&gt;());
+            container.Register(Component.For&lt;ViewModel&gt;());
+
+            // Act
+            var viewModel = container.Resolve&lt;ViewModel&gt;();
+
+            // Assert
+            Assert.That(viewModel, Is.Not.Null);
+        }
+    }
+
+    public class ViewModel : ViewModelBase
+    {
+        public ViewModel(Command command)
+        {
+        }
+    }
+
+
+
+    /// &lt;summary&gt;
+    /// The presence of this attribute on the interface breaks the resolve() method.
+    /// &lt;/summary&gt;
+    [TypeConverter("System.Windows.Input.CommandConverter, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, Custom=null")]
+    public interface ICommand2
+    {
+        void Execute(object parameter);
+
+        bool CanExecute(object parameter);
+
+        event EventHandler CanExecuteChanged;
+    }
+
+    public class Command : ICommand
+    {
+        public void Execute(object parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public event EventHandler CanExecuteChanged;
+    }
+
+
+}</value>
+    </field>
+    <field name="created">
+      <value>1313096736192</value>
+    </field>
+    <field name="updated">
+      <value>1319788588066</value>
+    </field>
+    <field name="reporterName">
+      <value>Chris.McKenzie</value>
+    </field>
+    <field name="updaterName">
+      <value>Rune.Vistnes</value>
+    </field>
+    <field name="resolved">
+      <value>1313142083411</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-765[up-to-date]</value>
+      <value>User: id = 20-768[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="Rune.Vistnes" text="Have this been back-ported to 2.5.x, or do we have to wait for the 3.0 release?" created="1319788588066" updated="1319789292595" />
+  </issue>
+</issues>

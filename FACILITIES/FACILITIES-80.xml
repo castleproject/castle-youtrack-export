@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>NHibernate</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>80</value>
+    </field>
+    <field name="summary">
+      <value>Isolation Mode not applied when integrated with Transaction Services</value>
+    </field>
+    <field name="description">
+      <value>When an Isolation level other then the default is specified through ATM or Transaction services directly, an NHibernate session will not create a trasnaction with the specified IsolationMode.
+
+For example, if the default isolation mode is ReadCommitted, this will not create a ReadUncommitted transaction.
+
+      [Transaction(TransactionMode.Requires, IsolationMode.ReadUncommitted )]
+      public ISet&lt;Platform&gt; FindAllSupported() {
+         using (ISession session = this.OpenSession()) {
+           ...
+         }
+      }
+
+Within the DefaultSessionManager class, there is a protected operation called EnlistIfNecessary that enlists the NHibernate transaction with the current ITransaction.  Within that operation, on line 125 there is this comment:
+
+// TODO: propagate IsolationLevel, expose as transaction property
+
+Propogating the isolationMode to the NHibernate Transaction should be easy, we just need to convert IsolationMode of the current transaction to IsolationLevel and pass it to sesson.BeginTransaction().  I can create a patch but im not sure what "expose as transaction property" from the comment is referrring to.
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1178117089000</value>
+    </field>
+    <field name="updated">
+      <value>1178488252000</value>
+    </field>
+    <field name="reporterName">
+      <value>jnapier</value>
+    </field>
+    <field name="updaterName">
+      <value>jnapier</value>
+    </field>
+    <field name="resolved">
+      <value>1282141183213</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

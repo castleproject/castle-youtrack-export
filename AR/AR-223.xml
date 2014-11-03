@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>beta 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>223</value>
+    </field>
+    <field name="summary">
+      <value>another valid test?</value>
+    </field>
+    <field name="description">
+      <value>test with a lot of components</value>
+    </field>
+    <field name="created">
+      <value>1214684831000</value>
+    </field>
+    <field name="updated">
+      <value>1218548038000</value>
+    </field>
+    <field name="reporterName">
+      <value>lilianmc</value>
+    </field>
+    <field name="updaterName">
+      <value>lilianmc</value>
+    </field>
+    <field name="resolved">
+      <value>1218547980000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="Now that we use Donjon in production, can I close this one?" created="1218547873000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1218547980000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1218547980000" />
+  </issue>
+</issues>

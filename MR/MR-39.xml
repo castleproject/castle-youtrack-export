@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>beta 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>39</value>
+    </field>
+    <field name="summary">
+      <value>Exclude properties from being written by DataBinder</value>
+    </field>
+    <field name="description">
+      <value>Need ability to limit which properties are set on an object with the DataBind attribute.  This prevents people from setting properties by adding form elements.</value>
+    </field>
+    <field name="created">
+      <value>1127047588000</value>
+    </field>
+    <field name="updated">
+      <value>1136170329000</value>
+    </field>
+    <field name="reporterName">
+      <value>andrew</value>
+    </field>
+    <field name="updaterName">
+      <value>andrew</value>
+    </field>
+    <field name="resolved">
+      <value>1282143348823</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

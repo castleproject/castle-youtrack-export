@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container hierarchies</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>319</value>
+    </field>
+    <field name="summary">
+      <value>Concurrency problem when child container is used</value>
+    </field>
+    <field name="description">
+      <value>The system we are building utilizes the child containers feature of Windsor Castle. In fact, it is the system which Mark Seemann described in this topic:
+http://kozmic.pl/2010/06/01/castle-windsor-and-child-containers/
+
+Scenario:
+Technical-wise, we have a master container to which most of services are registered. For each web request, a child container is created:
+
+{code lang=cs}
+public class ChildContainerInstaller : WindsorInstaller
+{
+    protected override ComponentRegistration&lt;IContainer&gt; CreateContainerRegistration(IWindsorContainer container, IConfigurationStore store)
+    {
+        var xmlInterpreter = new XmlInterpreter(new ConfigResource("perWebRequestComponents"));
+
+        return Component.For&lt;IContainer&gt;().UsingFactoryMethod(k =&gt;
+            {
+                var childContainer = new WindsorContainer(container, xmlInterpreter);
+
+                return new ActivatorService(childContainer);
+            }).LifeStyle.PerWebRequest;
+    }
+}
+{code}
+
+In which the {{perWebRequestComponents}} section looks like:
+	
+	
+{code lang=xml}
+&lt;perWebRequestComponents&gt;
+    &lt;components&gt;
+        &lt;component id="ChildContainerComponent1" lifestyle="PerWebRequest" service="Company.Service, Company.Assembly" type="Company.Component, Company.Assembly"&gt;
+            &lt;parameters&gt;
+                &lt;repository&gt;${AServiceInParentContainer}&lt;/repository&gt;
+            &lt;/parameters&gt;
+        &lt;/component&gt;
+    &lt;/components&gt;
+&lt;/perWebRequestComponents&gt;
+{code}
+The most important point here is that ChildContainerComponent1 depends on a service which is registed in the master container. 
+The bug we are encountering occurs in both Windsor Castle 2.1.1, which is the version we are using, and Windsor Castle 3.0 beta 2 (trunk), which I tried out to check if it helps, but in a slightly different form.
+
+Problem:
+- When I do stress test against our websites, a concurrency bug happens in the GraphNode class: when a child container loads registration from the configuration section above,
+the AddDependent method is called for ChildContainerComponent1. The node parameter in this case is of the AServiceInParentContainer in the master container. When multiple requests are served at the same time,
+it is very easy to find that we have race condition here: node.Incoming.Add is called from multiple threads at the same time.
+
+{code lang=cs}
+[Serializable]
+public class GraphNode : MarshalByRefObject, IVertex
+{
+    private List&lt;GraphNode&gt; incoming;
+    private List&lt;GraphNode&gt; outgoing;
+
+    public GraphNode()
+    {
+    }
+
+    public void AddDependent(GraphNode node)
+    {
+        Outgoing.Add(node);
+        node.Incoming.Add(this);   // &lt;== race condition
+    }
+}
+{code}
+	Here also comes a small difference between version 2.1.1 and 3.0:
+	  - 2.1.1: The GraphNode has a RemoveDependent method and it is called when the child container is disposed. Therefore, the Incoming list is cleaned up properly (except the concurrency problem.)
+	  - 3.0: No Remove method. My test shows that the Incoming list keeps increasing (aka memory leak.) My conclusion is that 3.0 is worse in this scenario.
+	  
+	For 2.1.1, I did a quick test by adding locks around race condition code blocks (intentionally ignore performance matter here) and the problem went away:
+	
+{code lang=cs}
+public void AddDependent(GraphNode node)
+{
+    lock (node)
+    {
+        Outgoing.Add(node);
+        node.Incoming.Add(this);
+    }
+}
+
+public void RemoveDepender(GraphNode depender)
+{
+    lock (Incoming)
+    {
+        Incoming.Remove(depender);
+        depender.RemoveDependent(this);
+    }
+}
+{code}
+	Last but not least is a disposing issue:
+	   - 2.1.1: components which are resolved by child container are disposed only once: when the child container is disposed when a request ends.
+	   - 3.0: they are disposed twice: when a request ends because their lifestyle is PerWebRequest and when the child container is disposed.
+	I'm not sure which one makes sense to you but I personally prefer 2.1.1's behavior.
+        Hope this problem can be fixed in version 3.0 :-) Otherwise, we'd have to stick with a custom build of 2.1.1 forever.
+
+  Best Regards,
+  Thuan.</value>
+    </field>
+    <field name="created">
+      <value>1321292753136</value>
+    </field>
+    <field name="updated">
+      <value>1407822257278</value>
+    </field>
+    <field name="reporterName">
+      <value>Duc.Thuan.Nguy</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1321702285604</value>
+    </field>
+    <field name="voterName">
+      <value>xtoff</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Mark Seemann? ;)&#xA;&#xA;Anyway, thanks for reporting this. I'll have a look if we can fix it for 3.0" created="1321324597925" />
+  </issue>
+</issues>

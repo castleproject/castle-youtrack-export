@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>200</value>
+    </field>
+    <field name="summary">
+      <value>Enhancement - ActiveRecord XmlConfiguration and ARFacility support for isWeb="auto"</value>
+    </field>
+    <field name="description">
+      <value>Attached patch adds functionality to allow configuration of ActiveRecord (either through the ActiveRecord Facility for Windsor/Microkernel or else through regular ActiveRecord Xml Configuration.)
+
+Allows configuration to specify the isWeb attribute as "auto", allowing for a shared configuration file between web and non-web projects.
+
+Usage:
+
+&lt;facility id="arfacility" type="Castle.Facilities.ActiveRecordIntegration.ActiveRecordFacility, Castle.Facilities.ActiveRecordIntegration" isWeb="auto"&gt;
+...
+&lt;/facility&gt;
+
+&lt;activerecord isWeb="auto"&gt;
+...
+&lt;/activerecord&gt;
+
+This patch does not change the type of the underlying property for isWeb, mainly adds a check to determine if executing code is running within a normal executable process or not, and sets the flag accordingly to either true or false.
+
+The patch uses the "Assembly.GetEntryAssembly() == null" check, as web applications/sites EntryAssembly is NULL, whereas a regular executable is not NULL.
+
+This patch has been successfully tested against a MonoRail website as well as a Windows Executable.</value>
+    </field>
+    <field name="created">
+      <value>1201876038000</value>
+    </field>
+    <field name="updated">
+      <value>1263105097000</value>
+    </field>
+    <field name="reporterName">
+      <value>rickfleming</value>
+    </field>
+    <field name="updaterName">
+      <value>rickfleming</value>
+    </field>
+    <field name="resolved">
+      <value>1263105060000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="I'm not sure using Assembly.GetEntryAssembly() is the greatest idea.&#xA;Perhaps Environment.UserInteractive would be a better test.&#xA;&#xA;Would it be safe to go a step further and ditch the auto altogether, and in case when the isWeb is not explicitly specified use the test to guess correct value?&#xA;&#xA;How would that affect things like WCF services?" created="1263024526000" />
+    <comment author="xtoff" text="This solution is broken.&#xA;&#xA;Assembly.GetEntryAssembly() is null for example when running unit tests with TestDriven.NET in which case the tests will break.&#xA;&#xA;Environment.UserInteractive is true in this case, that's why I still think it's better to test that value.&#xA;&#xA;All in all, that's fragile." created="1263102783000" />
+    <comment author="mzywitza" text="This solution is too fragile and too uncommon to justify destabilizing configuration." created="1263105089000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1263029340000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Work Started'' to ''Work Started''.&#xD;&#xA;" created="1263029340000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.1 Beta 1''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1263031680000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263031740000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Closed'' to ''Reopened''.&#xD;&#xA;" created="1263102780000" />
+    <comment author="mzywitza" text="* '''Resolution''' changed from ''Applied'' to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' changed from ''AR 2.1 Beta 1'' to ''&lt;empty&gt;''.&#xD;&#xA;* '''Status''' changed from ''Reopened'' to ''Resolved''.&#xD;&#xA;" created="1263105060000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263105060000" />
+  </issue>
+</issues>

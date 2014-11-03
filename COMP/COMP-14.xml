@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>14</value>
+    </field>
+    <field name="summary">
+      <value>Add support for string templates in ITemplateEngine and NVelocityTemplateEngine</value>
+    </field>
+    <field name="description">
+      <value>I have the need to process templates that are not stored on the file
+system or in an assembly.  Most come from a database.
+
+I suggest adding 2 Process methods for dealing with string based
+templates.
+
+bool Process(IDictionary context, String templateName, TextWriter
+output, String inputTemplate);
+bool Process(IDictionary context, String templateName, TextWriter
+output, TextReader inputTemplate);
+
+I have attached a patch file that includes tests.  I am hoping that
+this support can be included.</value>
+    </field>
+    <field name="created">
+      <value>1173910641000</value>
+    </field>
+    <field name="updated">
+      <value>1174692523000</value>
+    </field>
+    <field name="reporterName">
+      <value>austin.bain</value>
+    </field>
+    <field name="updaterName">
+      <value>austin.bain</value>
+    </field>
+    <field name="resolved">
+      <value>1282137468323</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

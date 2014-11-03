@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions">
+      <value>vNext</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>33</value>
+    </field>
+    <field name="summary">
+      <value>Add lazy logging</value>
+    </field>
+    <field name="description">
+      <value>Add ability to log with lazily constructed message, that is the message won't be constructed unless the logging level is enabled.</value>
+    </field>
+    <field name="created">
+      <value>1293372034681</value>
+    </field>
+    <field name="updated">
+      <value>1407822282813</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1293372034681</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>251</value>
+    </field>
+    <field name="summary">
+      <value>Microsoft SQL Server refuses to store Double.NaN</value>
+    </field>
+    <field name="description">
+      <value>When I try to store (float) Double.NaN to a float property with MSSQL server it fails to create execute query. It works with Access (via JetDriver) and Firebird, though. 
+
+Update:
+This is the exception that is thrown:
+
+Castle.ActiveRecord.Framework.ActiveRecordException wurde nicht von Benutzercode behandelt.
+  Message="Could not perform Save for Measurand"
+  Source="Castle.ActiveRecord"
+  StackTrace:
+       at Castle.ActiveRecord.ActiveRecordBase.InternalSave(Object instance, Boolean flush)
+       at Castle.ActiveRecord.ActiveRecordBase.Save(Object instance)
+       at Castle.ActiveRecord.ActiveRecordMediator.Save(Object instance)
+       at Castle.ActiveRecord.ActiveRecordMediator`1.Save(T instance)
+       at Testo.Model.Measurements.MeasurementRepositoryDefault.Save(Measurand myMeasurand)
+       at Testo.Model.Measurements.Channel.AddMeasurand(Measurand pMeasurand)
+       at Testo.Model.ModelMeasurement.ImportCurrentLine(IList`1 currentLine, IEnumerator`1 theChannels, Measurement someMeasurement)
+  InnerException: NHibernate.Exceptions.GenericADOException
+       Message="could not insert: [Testo.Model.Measurements.Measurand][SQL: INSERT INTO Measurand (Valuee, Datee, type) VALUES (?, ?, 0); select SCOPE_IDENTITY()]"
+       Source="NHibernate"
+       StackTrace:
+            at NHibernate.Id.Insert.AbstractReturningDelegate.PerformInsert(SqlCommandInfo insertSQL, ISessionImplementor session, IBinder binder)
+            at NHibernate.Persister.Entity.AbstractEntityPersister.Insert(Object[] fields, Boolean[] notNull, SqlCommandInfo sql, Object obj, ISessionImplementor session)
+            at NHibernate.Persister.Entity.AbstractEntityPersister.Insert(Object[] fields, Object obj, ISessionImplementor session)
+            at NHibernate.Action.EntityIdentityInsertAction.Execute()
+            at NHibernate.Engine.ActionQueue.Execute(IExecutable executable)
+            at NHibernate.Event.Default.AbstractSaveEventListener.PerformSaveOrReplicate(Object entity, EntityKey key, IEntityPersister persister, Boolean useIdentityColumn, Object anything, IEventSource source, Boolean requiresImmediateIdAccess)
+            at NHibernate.Event.Default.AbstractSaveEventListener.PerformSave(Object entity, Object id, IEntityPersister persister, Boolean useIdentityColumn, Object anything, IEventSource source, Boolean requiresImmediateIdAccess)
+            at NHibernate.Event.Default.AbstractSaveEventListener.SaveWithGeneratedId(Object entity, String entityName, Object anything, IEventSource source, Boolean requiresImmediateIdAccess)
+            at NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.SaveWithGeneratedOrRequestedId(SaveOrUpdateEvent event)
+            at NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.EntityIsTransient(SaveOrUpdateEvent event)
+            at NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.PerformSaveOrUpdate(SaveOrUpdateEvent event)
+            at NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.OnSaveOrUpdate(SaveOrUpdateEvent event)
+            at NHibernate.Impl.SessionImpl.FireSaveOrUpdate(SaveOrUpdateEvent event)
+            at NHibernate.Impl.SessionImpl.SaveOrUpdate(Object obj)
+            at Castle.ActiveRecord.ActiveRecordBase.InternalSave(Object instance, Boolean flush)
+       InnerException: System.Data.OleDb.OleDbException
+            Message="Der eingehende Tabular Data Stream (TDS) für das RPC-Protokoll (Remote Procedure Call) ist nicht richtig. Parameter 3 (\"\"): Der angegebene Wert ist keine gültige Instanz des real-Datentyps. Überprüfen Sie die Quelldaten im Hinblick auf ungültige Werte. Ein Beispiel für einen ungültigen Wert sind Daten eines numerischen Typs, deren Dezimalstellen den Wert für die Genauigkeit überschreiten."
+            Source="Microsoft OLE DB Provider for SQL Server"
+            ErrorCode=-2147217900
+            StackTrace:
+                 at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)
+                 at System.Data.OleDb.OleDbDataReader.NextResult()
+                 at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+                 at System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+                 at System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader()
+                 at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+                 at NHibernate.Id.IdentityGenerator.InsertSelectDelegate.ExecuteAndExtract(IDbCommand insert, ISessionImplementor session)
+                 at NHibernate.Id.Insert.AbstractReturningDelegate.PerformInsert(SqlCommandInfo insertSQL, ISessionImplementor session, IBinder binder)
+            InnerException: 
+
+
+Is this a problem of AR, NHibernate or even of MSSQL or am I just writing crappy code? 
+
+Sorry if JIRA is the wrong place for this. I've found some additional information about Double.NaN after opening this issue.</value>
+    </field>
+    <field name="created">
+      <value>1240788586000</value>
+    </field>
+    <field name="updated">
+      <value>1244704901000</value>
+    </field>
+    <field name="reporterName">
+      <value>Flominator</value>
+    </field>
+    <field name="updaterName">
+      <value>Flominator</value>
+    </field>
+    <field name="resolved">
+      <value>1244704860000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="daveg" text="This appears to be an issue with SQL Server 2005 and 2008, but apparently worked in SQL Server 2000. I don't think AR is at fault in any way here." created="1242215677000" />
+    <comment author="mzywitza" text="Which dialects did you try?" created="1243161825000" />
+    <comment author="daveg" text="I just used the 2005 dialect to a sql express database to verify the problem then read up about sql server and found that microsoft had explicitly changed something to prevent this. See https://connect.microsoft.com/SQLServer/feedback/ViewFeedback.aspx?FeedbackID=239674" created="1244090191000" />
+    <comment author="mzywitza" text="This is a restriction of SQL Server 2005, because NaN is not sortable.&#xA;If you don't need indexing on that column, try using a sqltype of VARBINARY(8)." created="1244704901000" />
+    <comment author="Flominator" text="* '''Summary''' changed from ''Microsoft SQL Server refuses to store Float.NaN'' to ''Microsoft SQL Server refuses to store Double.NaN''.&#xD;&#xA;* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;When I try to store Float.NaN to a float property with MSSQL server it fails to create the query. It works with Access (via JetDriver) and Firebird, though.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;When I try to store (float) Double.NaN to a float property with MSSQL server it fails to create execute query. It works with Access (via JetDriver) and Firebird, though. &#xD;&#xA;&#xD;&#xA;Update:&#xD;&#xA;This is the exception that is thrown:&#xD;&#xA;&#xD;&#xA;Castle.ActiveRecord.Framework.ActiveRecordException wurde nicht von Benutzercode behandelt.&#xD;&#xA;  Message=&quot;Could not perform Save for Measurand&quot;&#xD;&#xA;  Source=&quot;Castle.ActiveRecord&quot;&#xD;&#xA;  StackTrace:&#xD;&#xA;       at Castle.ActiveRecord.ActiveRecordBase.InternalSave(Object instance, Boolean flush)&#xD;&#xA;       at Castle.ActiveRecord.ActiveRecordBase.Save(Object instance)&#xD;&#xA;       at Castle.ActiveRecord.ActiveRecordMediator.Save(Object instance)&#xD;&#xA;       at Castle.ActiveRecord.ActiveRecordMediator`1.Save(T instance)&#xD;&#xA;       at Testo.Model.Measurements.MeasurementRepositoryDefault.Save(Measurand myMeasurand)&#xD;&#xA;       at Testo.Model.Measurements.Channel.AddMeasurand(Measurand pMeasurand)&#xD;&#xA;       at Testo.Model.ModelMeasurement.ImportCurrentLine(IList`1 currentLine, IEnumerator`1 theChannels, Measurement someMeasurement)&#xD;&#xA;  InnerException: NHibernate.Exceptions.GenericADOException&#xD;&#xA;       Message=&quot;could not insert: [Testo.Model.Measurements.Measurand][SQL: INSERT INTO Measurand (Valuee, Datee, type) VALUES (?, ?, 0); select SCOPE_IDENTITY()]&quot;&#xD;&#xA;       Source=&quot;NHibernate&quot;&#xD;&#xA;       StackTrace:&#xD;&#xA;            at NHibernate.Id.Insert.AbstractReturningDelegate.PerformInsert(SqlCommandInfo insertSQL, ISessionImplementor session, IBinder binder)&#xD;&#xA;            at NHibernate.Persister.Entity.AbstractEntityPersister.Insert(Object[] fields, Boolean[] notNull, SqlCommandInfo sql, Object obj, ISessionImplementor session)&#xD;&#xA;            at NHibernate.Persister.Entity.AbstractEntityPersister.Insert(Object[] fields, Object obj, ISessionImplementor session)&#xD;&#xA;            at NHibernate.Action.EntityIdentityInsertAction.Execute()&#xD;&#xA;            at NHibernate.Engine.ActionQueue.Execute(IExecutable executable)&#xD;&#xA;            at NHibernate.Event.Default.AbstractSaveEventListener.PerformSaveOrReplicate(Object entity, EntityKey key, IEntityPersister persister, Boolean useIdentityColumn, Object anything, IEventSource source, Boolean requiresImmediateIdAccess)&#xD;&#xA;            at NHibernate.Event.Default.AbstractSaveEventListener.PerformSave(Object entity, Object id, IEntityPersister persister, Boolean useIdentityColumn, Object anything, IEventSource source, Boolean requiresImmediateIdAccess)&#xD;&#xA;            at NHibernate.Event.Default.AbstractSaveEventListener.SaveWithGeneratedId(Object entity, String entityName, Object anything, IEventSource source, Boolean requiresImmediateIdAccess)&#xD;&#xA;            at NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.SaveWithGeneratedOrRequestedId(SaveOrUpdateEvent event)&#xD;&#xA;            at NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.EntityIsTransient(SaveOrUpdateEvent event)&#xD;&#xA;            at NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.PerformSaveOrUpdate(SaveOrUpdateEvent event)&#xD;&#xA;            at NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.OnSaveOrUpdate(SaveOrUpdateEvent event)&#xD;&#xA;            at NHibernate.Impl.SessionImpl.FireSaveOrUpdate(SaveOrUpdateEvent event)&#xD;&#xA;            at NHibernate.Impl.SessionImpl.SaveOrUpdate(Object obj)&#xD;&#xA;            at Castle.ActiveRecord.ActiveRecordBase.InternalSave(Object instance, Boolean flush)&#xD;&#xA;       InnerException: System.Data.OleDb.OleDbException&#xD;&#xA;            Message=&quot;Der eingehende Tabular Data Stream (TDS) für das RPC-Protokoll (Remote Procedure Call) ist nicht richtig. Parameter 3 (\&quot;\&quot;): Der angegebene Wert ist keine gültige Instanz des real-Datentyps. Überprüfen Sie die Quelldaten im Hinblick auf ungültige Werte. Ein Beispiel für einen ungültigen Wert sind Daten eines numerischen Typs, deren Dezimalstellen den Wert für die Genauigkeit überschreiten.&quot;&#xD;&#xA;            Source=&quot;Microsoft OLE DB Provider for SQL Server&quot;&#xD;&#xA;            ErrorCode=-2147217900&#xD;&#xA;            StackTrace:&#xD;&#xA;                 at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)&#xD;&#xA;                 at System.Data.OleDb.OleDbDataReader.NextResult()&#xD;&#xA;                 at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)&#xD;&#xA;                 at System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)&#xD;&#xA;                 at System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader()&#xD;&#xA;                 at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)&#xD;&#xA;                 at NHibernate.Id.IdentityGenerator.InsertSelectDelegate.ExecuteAndExtract(IDbCommand insert, ISessionImplementor session)&#xD;&#xA;                 at NHibernate.Id.Insert.AbstractReturningDelegate.PerformInsert(SqlCommandInfo insertSQL, ISessionImplementor session, IBinder binder)&#xD;&#xA;            InnerException: &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Is this a problem of AR, NHibernate or even of MSSQL or am I just writing crappy code? &#xD;&#xA;&#xD;&#xA;Sorry if JIRA is the wrong place for this. I've found some additional information about Double.NaN after opening this issue.&#xD;&#xA;{quote}&#xD;&#xA;" created="1240806600000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1244704860000" />
+  </issue>
+</issues>

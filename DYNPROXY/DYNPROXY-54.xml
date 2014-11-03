@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0 Beta 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>54</value>
+    </field>
+    <field name="summary">
+      <value>BasePEVerifyTestCase is broken</value>
+    </field>
+    <field name="description">
+      <value>Currently BasePEVerifyTestCase tests Castle.Core.DLL instead of the generated proxy DLL. DynamicProxy 2 therefore produces unverifiable images in some cases.</value>
+    </field>
+    <field name="created">
+      <value>1176607763000</value>
+    </field>
+    <field name="updated">
+      <value>1177524612000</value>
+    </field>
+    <field name="reporterName">
+      <value>fcs</value>
+    </field>
+    <field name="updaterName">
+      <value>fcs</value>
+    </field>
+    <field name="resolved">
+      <value>1282140683635</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

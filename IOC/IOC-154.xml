@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>154</value>
+    </field>
+    <field name="summary">
+      <value>ResolveAll&lt;T&gt; resolves every type registered in the container</value>
+    </field>
+    <field name="description">
+      <value>When I call Container.ResolveAll&lt;T&gt;() every registered type is instantiated independent of if it implements T.</value>
+    </field>
+    <field name="created">
+      <value>1243409803000</value>
+    </field>
+    <field name="updated">
+      <value>1288179679415</value>
+    </field>
+    <field name="reporterName">
+      <value>o2x7</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1260779280000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Please provide a testcase.&#xA;Does that affect v2.0 as well?" created="1243409937000" />
+    <comment author="mausch" text="RC3 doesn't even have a ResolveAll method. See http://fisheye2.atlassian.com/browse/castleproject/tags/1.0.x-RC3/InversionOfControl/Castle.Windsor/WindsorContainer.cs?r=4183" created="1243692922000" />
+    <comment author="mausch" text="I've attached a testcase, this is working just fine for me in Windsor 2.0" created="1243693740000" />
+    <comment author="xtoff" text="As reported by Mauricio, this is working as expected." created="1260779306000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1260779280000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1260779280000" />
+    <comment author="mausch" text="* '''Attachment''' ioc-154.zip added.&#xD;&#xA;" created="1243693680000" />
+  </issue>
+</issues>

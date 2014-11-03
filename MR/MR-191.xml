@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>191</value>
+    </field>
+    <field name="summary">
+      <value>Add TransformFilter support to MR</value>
+    </field>
+    <field name="description">
+      <value>The attached patch allows you to do to actions like this; if works by putting attaching a filter class to the Response.Filter property.
+
+[TransformFilter(typeof(UpperCaseTransformFilter))]
+public void Index()
+{
+   RenderText("this is an uppercase string");
+}
+
+The following filters are available at the moment;
+
+MarkdownTransformFilter (see http://daringfireball.net/projects/markdown/)
+WikiTransformFilter (basic Wiki formatting; bold, italic, etc., code, pre, block, and most important: pipe tables !  :) (no links yet) 
+UpperCaseTransformFilter
+LowerCaseTransformFilter
+
+Please note that this code is still in its early state and that the transform filters haven't been really tested in a production environment.
+
+Have fun, and let me know if it breaks... or works :) For more details, please check the testcases.
+
+p.s. To avoid a dependency between the MR core and Markdown / wiki, I've put the filters in a seperate dll. Don't forget to add these dll's as a reference in your project.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1165935697000</value>
+    </field>
+    <field name="updated">
+      <value>1263055656000</value>
+    </field>
+    <field name="reporterName">
+      <value>ernst</value>
+    </field>
+    <field name="updaterName">
+      <value>ernst</value>
+    </field>
+    <field name="resolved">
+      <value>1282143628963</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055620000" />
+  </issue>
+</issues>

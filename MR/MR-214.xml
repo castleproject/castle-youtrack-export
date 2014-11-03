@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveRecord Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>214</value>
+    </field>
+    <field name="summary">
+      <value>ARDataBinding and joined subclasses with derived BelongsTo, HasMany, HasAndBelongsToMany proeprties</value>
+    </field>
+    <field name="description">
+      <value>1. ARDataBind does not bind HasMany or HasAndBelongsToMany properties in joined subclass, that are derived from the base class.
+2. Binding BelongsTo proeprty, that is derived from the base class, proeprty instance is not reinstantiated and generates an error upon Flush.
+
+Supplied patch uses all hierarchy object's AR models recursively, to check whether the property to be bound is one of BelongsTo, HasMany or HasAndBelongsToMany properties.</value>
+    </field>
+    <field name="created">
+      <value>1169104335000</value>
+    </field>
+    <field name="updated">
+      <value>1244675856000</value>
+    </field>
+    <field name="reporterName">
+      <value>desierk</value>
+    </field>
+    <field name="updaterName">
+      <value>desierk</value>
+    </field>
+    <field name="resolved">
+      <value>1282143663213</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675820000" />
+  </issue>
+</issues>

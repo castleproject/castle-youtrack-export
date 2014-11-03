@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>66</value>
+    </field>
+    <field name="summary">
+      <value>DynamicProxy does not handle protected internal constructors which leads to MissingMethodException</value>
+    </field>
+    <field name="description">
+      <value>When creating proxy objects based upon classes with protected internal constructors the GenerateConstructors method of BaseProxyGenerator does not call GenerateConstructor. This leads to a MissingMetodInvocationException in the ProxyGenerator.CreateClassProxy function.
+
+The exception was found when trying to mock our classes with RhinoMocks 3.2 which when searching for the real cause lead us to the underlying exception in the DynamicProxy2 code base.</value>
+    </field>
+    <field name="created">
+      <value>1188730566000</value>
+    </field>
+    <field name="updated">
+      <value>1190954773000</value>
+    </field>
+    <field name="reporterName">
+      <value>jakoby</value>
+    </field>
+    <field name="updaterName">
+      <value>jakoby</value>
+    </field>
+    <field name="resolved">
+      <value>1282140706807</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

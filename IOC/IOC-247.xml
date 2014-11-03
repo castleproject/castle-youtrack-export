@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>247</value>
+    </field>
+    <field name="summary">
+      <value>Make ComponentModel/IHandler expose all services for given component, instead of piggybacking them via ForwardedHandlers</value>
+    </field>
+    <field name="description">
+      <value>Currently when we register:
+{code lang=java}
+Component.For&lt;IFoo, IBar&gt;().ImplementedBy&lt;FooBar&gt;();
+{code}
+Two handlers will be created for this single component, each for each service. Also {{ComponentModel}} will only keep information of one service, not being aware of the other. Handling this split is a PITA in our own code and anyone who wants to work with components like this also has to cater for that.
+
+Instead {{ComponentModel}} should keep information about all its services and a single {{IHandler}} per component should be created</value>
+    </field>
+    <field name="created">
+      <value>1289882924490</value>
+    </field>
+    <field name="updated">
+      <value>1407822257319</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1289882924505</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

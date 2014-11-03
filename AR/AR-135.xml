@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>135</value>
+    </field>
+    <field name="summary">
+      <value>Do not allow non interface types in SemanticVerifierVisitor#GuessRelation</value>
+    </field>
+    <field name="description">
+      <value>When using a concrete type with HasMany, ActiveRecord throws the exception "Could not guess relation type for property A.B", as the property type wasn't  any of IList, ISet or IDictionary (generic or not). 
+
+It should be enforced that, when not using an interface, it is not possible to continue. Attached is a patch that does the proper checking. </value>
+    </field>
+    <field name="created">
+      <value>1172687784000</value>
+    </field>
+    <field name="updated">
+      <value>1173513771000</value>
+    </field>
+    <field name="reporterName">
+      <value>rafaelsteil</value>
+    </field>
+    <field name="updaterName">
+      <value>rafaelsteil</value>
+    </field>
+    <field name="resolved">
+      <value>1282136299385</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

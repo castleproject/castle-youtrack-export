@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle.Tools.CodeGenerator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>84</value>
+    </field>
+    <field name="summary">
+      <value>Strongly Typed Route Parameters &amp; MR-370 Support</value>
+    </field>
+    <field name="description">
+      <value>This patch includes the fixes in CONTRIB-82.
+
+It also attempts to match PatternRule parameters with Method Action parameters to get a more strongly typed Route Call.
+
+It also includes support for the new Http Method routing done in MR-370.  The Http Methods can be explicitly set in the Route attribute or they can be implied from the AccessibleThrough attribute, and they default to Get and Post.  The Route attribute takes precedence, then the AccessibleThrough, then the defaults will be used.
+</value>
+    </field>
+    <field name="created">
+      <value>1195927402000</value>
+    </field>
+    <field name="updated">
+      <value>1414392374601</value>
+    </field>
+    <field name="reporterName">
+      <value>abombss</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392374594</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

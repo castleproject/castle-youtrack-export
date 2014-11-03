@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>1.1.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>12</value>
+    </field>
+    <field name="summary">
+      <value>Problem calling intercepted method from generic class</value>
+    </field>
+    <field name="description">
+      <value>Running code as above:
+
+--------------------------------------------------
+using System;
+using Castle.DynamicProxy;
+
+namespace Test
+{
+    static class Program
+    {
+        [STAThread]
+        static void Main()
+        {
+            ProxyGenerator pg = new ProxyGenerator();
+            GenericClass&lt;int&gt; x = (GenericClass&lt;int&gt;)pg.CreateClassProxy(typeof(GenericClass&lt;int&gt;), new StandardInterceptor());
+            x.SomeMethod();
+        }
+    }
+
+    public class GenericClass&lt;T&gt; 
+    {
+        public virtual bool SomeMethod() { return false; }
+    }
+}
+--------------------------------------------------
+
+In the line:
+
+x.SomeMethod();
+
+I have an exception:  
+
+----------------------------------------------------------------------------------
+Cannot resolve method Boolean SomeMethod() because the declaring type of the method handle Test.GenericClass`1[T] is generic. Explicitly provide the declaring type to GetMethodFromHandle.
+----------------------------------------------------------------------------------
+
+Note that bug exist only in new version of VS (VS 2005 RC1), in beta2 everything was OK.
+
+
+
+
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1128663056000</value>
+    </field>
+    <field name="updated">
+      <value>1162411437000</value>
+    </field>
+    <field name="reporterName">
+      <value>wojtek</value>
+    </field>
+    <field name="updaterName">
+      <value>wojtek</value>
+    </field>
+    <field name="resolved">
+      <value>1282140549760</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

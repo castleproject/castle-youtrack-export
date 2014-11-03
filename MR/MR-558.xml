@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>558</value>
+    </field>
+    <field name="summary">
+      <value>Security ViewComponent allow content on success but not failure.</value>
+    </field>
+    <field name="description">
+      <value>The security Viewcomponent allow you to include content for a user who *is* authorized, but does not have an option to include alternate text (like "Sign in or create account HERE") for users for are NOT authorized.
+
+The attached patch provides that option.  It remains backward compatible to the old component (ie, you can provided name "authorized" and "notauthorized" sections, or one unnamed section which is assumed to be "authorized".
+
+Patch also simplifies handling of the "roles" parameter.
+
+(HIGH importance, since I've already written code which uses it when I was working off the trunk, which fails it I try using the release version)
+</value>
+    </field>
+    <field name="created">
+      <value>1266919116000</value>
+    </field>
+    <field name="updated">
+      <value>1278807347000</value>
+    </field>
+    <field name="reporterName">
+      <value>jamescurran</value>
+    </field>
+    <field name="updaterName">
+      <value>jamescurran</value>
+    </field>
+    <field name="resolved">
+      <value>1278807300000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="With some modification." created="1278807343000" />
+    <comment author="jamescurran" text="* '''Attachment''' SecurityComponent.patch added.&#xD;&#xA;" created="1266919440000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1278787140000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''2.1''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1278807300000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278807300000" />
+  </issue>
+</issues>

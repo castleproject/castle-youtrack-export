@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>377</value>
+    </field>
+    <field name="summary">
+      <value>Pattern Rule does not match requests with querystring</value>
+    </field>
+    <field name="description">
+      <value>Example:
+Search forms that uses GET.
+The submit button constructs the query with querystring, as it won;t use the UrlBuilder ...
+
+Suggested solution (in test right now) is to strip the querystring before matching.
+
+OT - JIRA managers should probably add "Routing Module Ex" </value>
+    </field>
+    <field name="created">
+      <value>1197352009000</value>
+    </field>
+    <field name="updated">
+      <value>1244676717000</value>
+    </field>
+    <field name="reporterName">
+      <value>kenegozi</value>
+    </field>
+    <field name="updaterName">
+      <value>kenegozi</value>
+    </field>
+    <field name="resolved">
+      <value>1282145442604</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676660000" />
+  </issue>
+</issues>

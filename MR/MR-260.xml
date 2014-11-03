@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>260</value>
+    </field>
+    <field name="summary">
+      <value>PropertyBag in WizardStep is null when access via key</value>
+    </field>
+    <field name="description">
+      <value>I have a wizard controller and some steps. 
+
+I used to be able to populate a propertybag in the step init method 
+
+Code: 
+[Layout("default"), 
+ Rescue("generalerror")] 
+internal class StepA : WizardStepPage 
+{ 
+   protected override void Initialize() 
+   { 
+      base.Initialize(); 
+      PropertyBag["test"] = "test";       
+   } 
+} 
+
+
+but it doesn't work anymore to get the view to see this I need to put it in the beforestep method of the controller. 
+
+Code: 
+[Layout("default"), 
+ Rescue("generalerror"), 
+ ControllerDetails(Area = "Arrival/FormB"), 
+ DynamicActionProvider(typeof (WizardActionProvider))] 
+public class WizardController : Controller, IWizardController 
+{ 
+   #region IWizardController Members 
+
+   public WizardStepPage[] GetSteps(IRailsEngineContext context) 
+   { 
+      return new WizardStepPage[] 
+         { 
+            new StepA(), 
+            new StepB() 
+         }; 
+   } 
+
+   public bool OnBeforeStep(string wizardName, string stepName, WizardStepPage step) 
+   { 
+      PropertyBag["test"] = "test"; 
+      return true; 
+   } 
+    
+   public void OnAfterStep(string wizardName, string stepName, WizardStepPage step){} 
+   public void OnWizardStart(){} 
+} 
+
+by not working I meant that the view shows for a bag like this 
+
+Code: 
+PropertyBag["test"] = "abc";   
+
+
+${test} on the web page not abc. 
+
+My guess is that the PropertyBag is null. 
+
+Other elements like #components look like they are being processed ok so it doesn't seem to be a problem with NVelocity and the other non wizard pages work just fine. 
+
+I also have methods in my steps. The Save(int chosenId) {...} picks up the chosenId on the post just fine too.
+
+I seem to be having some success using the PropertyBag like this in the renderwizardview method 
+
+Code: 
+         protected override void RenderWizardView() 
+         { 
+            PropertyBag.Add("ItemList", GetListOptions()); 
+
+            base.RenderWizardView(); 
+         } 
+
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1179876873000</value>
+    </field>
+    <field name="updated">
+      <value>1263055918000</value>
+    </field>
+    <field name="reporterName">
+      <value>peter.s.giles</value>
+    </field>
+    <field name="updaterName">
+      <value>peter.s.giles</value>
+    </field>
+    <field name="resolved">
+      <value>1282143814854</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055860000" />
+  </issue>
+</issues>

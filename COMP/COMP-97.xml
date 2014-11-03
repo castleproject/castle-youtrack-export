@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>97</value>
+    </field>
+    <field name="summary">
+      <value>New features, improvements and resolved issues</value>
+    </field>
+    <field name="description">
+      <value>Hi there,
+in last month I had to find a validation infrastructure for my new web application and I decided to use CastleProject Validator, because it was more satisfactory than others. But still I had to make some changes, which may cause compatibility issues. I think you don't want to apply all of them, therefore if I am right, I will release new validation framework based on this one.</value>
+    </field>
+    <field name="created">
+      <value>1246701281000</value>
+    </field>
+    <field name="updated">
+      <value>1285400118281</value>
+    </field>
+    <field name="reporterName">
+      <value>djanosik</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1285400118281</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="From a brief look there are some nice changes.&#xA;&#xA;I don't have time at the moment to review it and discuss the changes, however can you start a discussion on the devel mailing list as others might have some time.&#xA;&#xA;There also is a few things we can do to make the upgrade path easier for existing users." created="1246704634000" />
+    <comment author="djanosik" text="I've just uploaded new files with more issues resolved and with updated unit tests (not for new features)." created="1246960425000" />
+    <comment author="xtoff" text="Dušan,&#xA;&#xA;great work, thanks for the effort. How many of these are breaking changes. How much time and effort would you estimate is needed for a project making extensive use of the current version to upgrade if these changes are applied.&#xA;&#xA;Do you have a migration path?" created="1247112581000" />
+    <comment author="djanosik" text="Krzysztof,&#xA;&#xA;thanks for you interest. I've just uploaded a new (and the last for next two weeks) version with some changes reverted in order to improve compatibility with the current version.&#xA;&#xA;As you can see in the new changelog, there are mostly changes which can cause only issues which are easy to fix. The most breaking change is probably in the AbstractValidationAttribute.cs file. Other changes are internal or compatible.&#xA;&#xA;I don't think that the upgrade would take more than an hour or two." created="1247154221000" />
+    <comment author="djanosik" text="Updated czech and english resources and fixed wrong error message key for FileExistsValidator. If you don't want error messages to contain property names, let me know, I will update czech resources." created="1247404545000" />
+    <comment author="djanosik" text="* '''Attachment''' Castle.Components.Validator.zip added.&#xD;&#xA;" created="1246701600000" />
+    <comment author="djanosik" text="* '''Attachment''' Castle.Components.Validator.patch added.&#xD;&#xA;" created="1246701600000" />
+    <comment author="djanosik" text="* '''Attachment''' Changes.txt added.&#xD;&#xA;" created="1246702860000" />
+    <comment author="djanosik" text="* '''Attachment''' Castle.Components.Validator-Fixed.zip added.&#xD;&#xA;" created="1246959960000" />
+    <comment author="djanosik" text="* '''Attachment''' Castle.Components.Validator-Fixed.patch added.&#xD;&#xA;" created="1246959960000" />
+    <comment author="djanosik" text="* '''Attachment''' Castle.Components.Validator-Fixed2.zip added.&#xD;&#xA;" created="1247152440000" />
+    <comment author="djanosik" text="* '''Attachment''' Castle.Components.Validator-Fixed2.patch added.&#xD;&#xA;" created="1247152440000" />
+    <comment author="djanosik" text="* '''Attachment''' Changes-2.rtf added.&#xD;&#xA;" created="1247152440000" />
+    <comment author="djanosik" text="* '''Attachment''' Castle.Components.Validator-Fixed3.zip added.&#xD;&#xA;" created="1247404200000" />
+    <comment author="henry" text="Applied the patch to a branch (http://github.com/castleproject/Castle.Components.Validator/tree/COMP-97) and we're waiting for some feedback now." created="1282347097984" />
+    <comment author="henry" text="The patches contains nice refactoring, but the changes were too big and have side effects that introduces some issues, like the messages including the field Property/Field name on the messages (breaks the localization).&#xA;&#xA;It not possible (at least in an easy way) to break it and apply just core refactoring.&#xA;&#xA;Tks anyway." created="1285400118281" />
+  </issue>
+</issues>

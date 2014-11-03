@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>532</value>
+    </field>
+    <field name="summary">
+      <value>HtmlHelper.Link generates incorrect HTML</value>
+    </field>
+    <field name="description">
+      <value>The HtmlHelper.Link(string,string) method, as stated in the documentation, should work like this:
+
+$HtmlHelper.Link( "mypage.html", "This is a link to my page" ) =&gt; &lt;a href="mypage.html"&gt;This is a link to my page&lt;/a&gt;
+
+This is not working, as the method is internally calling the LinkTo(string name, string action) method, which has totally different expected parameter meanings.
+
+A patch will be provided which fixes this issue by having the Link(string,string) method internally call the Link(string,string,null) method, which provides the correct functionality.</value>
+    </field>
+    <field name="created">
+      <value>1241506652000</value>
+    </field>
+    <field name="updated">
+      <value>1242043718000</value>
+    </field>
+    <field name="reporterName">
+      <value>brian</value>
+    </field>
+    <field name="updaterName">
+      <value>brian</value>
+    </field>
+    <field name="resolved">
+      <value>1242043680000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Fixed in r5668" created="1242043714000" />
+    <comment author="brian" text="* '''Attachment''' htmlhelper-link.patch added.&#xD;&#xA;" created="1241506652001" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1242043680000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1242043680000" />
+  </issue>
+</issues>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Documentation</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>216</value>
+    </field>
+    <field name="summary">
+      <value>errors in two validator names in AR trunk docs</value>
+    </field>
+    <field name="description">
+      <value>http://www.castleproject.org/activerecord/documentation/trunk/manual/validators.html lists incorrect names for ValidateNotEmpty (should be ValidateNonEmpty) and ValidateRegExpAttribute (should be ValidateRegExp). It would also be useful to put a note on this page that those attributes are in Castle.Components.Validator namespace</value>
+    </field>
+    <field name="created">
+      <value>1209205823000</value>
+    </field>
+    <field name="updated">
+      <value>1209219864000</value>
+    </field>
+    <field name="reporterName">
+      <value>gojko</value>
+    </field>
+    <field name="updaterName">
+      <value>gojko</value>
+    </field>
+    <field name="resolved">
+      <value>1282136683854</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

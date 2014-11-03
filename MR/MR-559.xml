@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>559</value>
+    </field>
+    <field name="summary">
+      <value>JQueryHelper cannot be used without its default ctor</value>
+    </field>
+    <field name="description">
+      <value>JQueryHelper needs the default parameterless constructor to be used.
+Currently when added to the controller with 
+[Helper(typeof(JQueryHelper), "JQuery")]
+it produces an "No parameterless constructor defined for this object."
+
+I have added locally the ctor, built the project and updated my references and it works.
+
+I think this is the cause for which $JQuery.InstallScripts() doesn't render the scripts but only the text "$JQuery.InstallScripts()"</value>
+    </field>
+    <field name="created">
+      <value>1269852301000</value>
+    </field>
+    <field name="updated">
+      <value>1278731012000</value>
+    </field>
+    <field name="reporterName">
+      <value>bdaniel7</value>
+    </field>
+    <field name="updaterName">
+      <value>bdaniel7</value>
+    </field>
+    <field name="resolved">
+      <value>1278730980000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Fixed" created="1278731008000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1278730800000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.1''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1278730980000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278730980000" />
+  </issue>
+</issues>

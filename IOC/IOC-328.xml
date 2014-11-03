@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>328</value>
+    </field>
+    <field name="summary">
+      <value>Hard-to-understand comment</value>
+    </field>
+    <field name="description">
+      <value>In the ComponentRegistration class, there is a method overload for the
+Properties() method with a description for the "filter" parameter which is
+very hard to understand... :-) This is with Castle 3.0.0.4001 (using the
+NuGet package).
+
+{code}
+        //
+        // Summary:
+        //     Filters properties on the implementation that will be considered 'settable'
+        //     by the container.
+        //
+        // Parameters:
+        //   filter:
+        //     Predicate deciding whether a property is settable or not. If returns false
+        //     container will ignore the property, otherwise property will be ignored.
+        //
+        // Remarks:
+        //     Matched properties will be considered optional, that is component will resolve
+        //     successfully if they can not be satisfied.
+        public ComponentRegistration&lt;TService&gt; Properties(Predicate&lt;PropertyInfo&gt; filter); 
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1329380955641</value>
+    </field>
+    <field name="updated">
+      <value>1337415225534</value>
+    </field>
+    <field name="reporterName">
+      <value>plundberg</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1337415225534</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Which part in particular do you consider hard to understand? How would you make it clearer?" created="1337414067950" />
+  </issue>
+</issues>

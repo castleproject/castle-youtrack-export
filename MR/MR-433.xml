@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>433</value>
+    </field>
+    <field name="summary">
+      <value>JQueryValidator</value>
+    </field>
+    <field name="description">
+      <value>new IBrowserValidatorProvider implementation for the JQuery Validate plugin (v1.2.1) which can be found here :
+http://bassistance.de/jquery-plugins/jquery-plugin-validation/
+
+Be sure to read the plugin documentation for available options.
+
+I did not include the javascript files. To use this provider, you must link the jquery.validate.js file and, optionnaly the metadata plugin and/or the ajax form plugin, as stated on the plugin home page.
+
+Known limitations:
+
+ - SetValueRange for DateTime: this is not supported yet by the JQuery plugin but the author said it will be in the next version. You should use a custom rul for that the time being. I'll update the JQueryValidator when this version will be available.
+
+ - SetAsNotSameAs: not supported by the plugin, use a custom rule for that too. If this is requested, I'll include generation for a custom rule in the code so that is generated for you.
+
+Gildas</value>
+    </field>
+    <field name="created">
+      <value>1207998878000</value>
+    </field>
+    <field name="updated">
+      <value>1244676992000</value>
+    </field>
+    <field name="reporterName">
+      <value>djhi</value>
+    </field>
+    <field name="updaterName">
+      <value>djhi</value>
+    </field>
+    <field name="resolved">
+      <value>1282145630385</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="djhi" text="I just added a new version of this patch which add a very stupid thing... &#xA;The call to the jQuery plugin validate method is now made when the document is ready : &#xA;jQuery( document ).ready( function() { ... });&#xA;&#xA;It contains the previous modifications which have not been applied yet. The description copied/pasted from the google group:&#xA;&#xA;As I said on the google group, it was possible to specify that Form should be submited through ajax by using the &quot;isAjax&quot; option. However, it was not possible to configure the jQuery form plugin. So you had to not use the isAjax option and instead specify everything yourself by using the &quot;submitHandler&quot; option (supported by the jQuery validation plugin).&#xA;&#xA;This patch allows you to specify every option of the form plugin. I wanted to put them in a sub dictionary stored with a &quot;ajaxOptions&quot; key but this is not supported by the DictHelper. So instead, I prefixed all the options supported by the jQuery Form plugin with &quot;ajax&quot;.&#xA;&#xA;You can now write (aspview code here):&#xA;&#xA;&lt;%=Helpers.Form.FormTag( &quot;[URL]&quot;, Helpers.Dict.N( &quot;isAjax&quot;, true ).N( &quot;ajax-dataType&quot;, &quot;json&quot; ).N( &quot;ajax-success&quot;, &quot;updateResults&quot; ) )%&gt;&#xA;&#xA;Brail (at least if I remember the syntax correctly ;-) ):&#xA;&#xA;${ Form.FormTag( &quot;[URL]&quot;, { &quot;isAjax&quot;: true, &quot;ajax-dataType&quot;:&quot;json&quot;, &quot;ajax-success&quot;:&quot;updateResults&quot; } }&#xA;&#xA;And you're done.&#xA;&#xA;Oh, and I corrected the IsLesser validator and all related methods so that they use the IsLesserValidationType enumeration instead of the IsGreaterValidationType. I still don't like the fact we have two enumerations (three with the RangeValidationType) for the same thing but I don't want to change the other validators without comments from the Castle team. &#xA;" created="1220004449000" />
+    <comment author="djhi" text="New update because of a stupid error again... &#xA;&#xA;Corrected from : &#xA;jQuery( document ).ready( function { ... });&#xA;&#xA;To:&#xA;jQuery( document ).ready( function() { ... });" created="1220004516000" />
+    <comment author="roelofb" text="Applied 'Castle.Monorail - JQuery Validation OnDocumentReady - FormTestFix.patch' in r5301.&#xA;This patch replaces both 'Castle.Monorail - JQuery Validation OnDocumentReady.patch' and 'Castle.Monorail - JQuery Validation OnDocumentReady1.patch'" created="1220242762000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676960000" />
+  </issue>
+</issues>

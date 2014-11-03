@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveRecord Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>240</value>
+    </field>
+    <field name="summary">
+      <value>ARDataBind cannot bind with Composite Key</value>
+    </field>
+    <field name="description">
+      <value>It has been worked with Released version around Sep 2006
+see http://forum.castleproject.org/viewtopic.php?t=2428 for code or see the attach file
+
+I submit with url as below:-
+
+http://siteurl/siteRoot/MasterFiles/PartyRole/Create.rails?PartyRole.ID.PartyID=7478&amp;PartyRole.ID.PartyRoleTypeID=5&amp;</value>
+    </field>
+    <field name="created">
+      <value>1175470036000</value>
+    </field>
+    <field name="updated">
+      <value>1269565103000</value>
+    </field>
+    <field name="reporterName">
+      <value>sirichoke</value>
+    </field>
+    <field name="updaterName">
+      <value>sirichoke</value>
+    </field>
+    <field name="resolved">
+      <value>1269565020000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Can you send us a patch instead?" created="1262980204000" />
+    <comment author="jsimons" text="RC1 bug that doesn't have a patch for." created="1269565059000" />
+    <comment author="jsimons" text="Incomplete" created="1269565103000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Incomplete''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1269565020000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1269565080000" />
+  </issue>
+</issues>

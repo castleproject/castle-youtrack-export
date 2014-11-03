@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>513</value>
+    </field>
+    <field name="summary">
+      <value>No ability to set DateTime input formatting</value>
+    </field>
+    <field name="description">
+      <value>DateTime input formatting in scaffolding views seems to be hardcoded to MM/DD/YY. This is a problem for countries which use other formats, like Germany which uses DD/MM/YY. It would be great to have a way, to set them by yourself.
+
+http://fisheye2.atlassian.com/browse/castleproject/trunk/MonoRail/Castle.MonoRail.ActiveRecordSupport/Scaffold/Helpers/ARFormHelper.cs?r=4760#l430
+
+http://forum.castleproject.org/viewtopic.php?t=5059&amp;start=0&amp;postdays=0&amp;postorder=asc&amp;highlight
+
+PS: This is my first bug report, so please tell me, if I made any mistakes ...
+</value>
+    </field>
+    <field name="created">
+      <value>1231469181000</value>
+    </field>
+    <field name="updated">
+      <value>1278993100000</value>
+    </field>
+    <field name="reporterName">
+      <value>Flominator</value>
+    </field>
+    <field name="updaterName">
+      <value>Flominator</value>
+    </field>
+    <field name="resolved">
+      <value>1278993060000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="gauthier" text="I would fix lines 428-433 by checking CurrentUICulture, and check other files to.&#xA;&#xA;I'll try to do so next days" created="1231478360000" />
+    <comment author="kenegozi" text="Florian - good catch.&#xA;you are doing fine with the bug report, however it would have been even cooler if you'd be able to suppply a patch with a failing test, or even a patch with a fix ... &#xA;Gauthier has pointed out the place where the fix should come to play. We'd appreciate any help with the project, and you'll might find OSS contribution fun :)&#xA;&#xA;anywho, as far as you discovering scaffolding related bugs, I guess it has do to with the fact that most current committer (if not all) are not using the scaffolding stuff (I certainly do not), so it got somewhat neglected. If you could step in as someone actually playing with the scfldn feature, it would benefit us all &#xA;&#xA;no pressure though ;)" created="1231496810000" />
+    <comment author="jsimons" text="Override the templates instead." created="1278993096000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1278993060000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278993060000" />
+  </issue>
+</issues>

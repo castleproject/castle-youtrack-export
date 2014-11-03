@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>374</value>
+    </field>
+    <field name="summary">
+      <value>Container.Register causing NotSupportedException in ASP .NET MVC 4.</value>
+    </field>
+    <field name="description">
+      <value>I'm using Castle Windsor 3.1.0 in an ASP .NET 4 MVC application, which is giving me an exception in the Application_Start event when container.Register is called.
+
+The exception is "The invoked member is not supported in a dynamic assembly.".
+
+Here's how I'm calling Register:
+
+container.Register(Classes.FromThisAssembly().BasedOn&lt;IController&gt;().LifestyleTransient());
+
+When I build the application in Debug mode, it's fine. When I build in Release mode, the exception above occurrs. My suspicion is that some .NET 4 restrictions were introduced with how reflection is done on dynamic assemblies, which is being introduced in this situation as a Release build optimisation.</value>
+    </field>
+    <field name="created">
+      <value>1357135765732</value>
+    </field>
+    <field name="updated">
+      <value>1359946374171</value>
+    </field>
+    <field name="reporterName">
+      <value>Martin.Blore</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1359946374169</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="Martin.Blore" text="Please see http://stackoverflow.com/questions/14122994/castle-windsor-dynamic-assembly-bug/14129665#14129665 for a work around." created="1357207652343" />
+    <comment author="Martin.Blore" text="I've just created a brand new MVC4 application with Castle Windsor 3.10. I confirm the error reoccurrs when registering types through an IWindsorInstaller. The only modified code from a bare bones MVC 4 application is as follows (Global.asax.cs):&#xA;&#xA;public class ControllerInstaller : IWindsorInstaller&#xA;    {&#xA;        private IWindsorContainer container;&#xA;        private readonly BasedOnDescriptor classesToInstall;&#xA;&#xA;        public ControllerInstaller() : this(Classes.FromThisAssembly().BasedOn&lt;IController&gt;()) { }&#xA;&#xA;        public ControllerInstaller(BasedOnDescriptor classesToInstall)&#xA;        {&#xA;            this.classesToInstall = classesToInstall;&#xA;        }&#xA;&#xA;        public void Install(IWindsorContainer container, IConfigurationStore store)&#xA;        {&#xA;            this.container = container;&#xA;&#xA;            container.Register(&#xA;                this.classesToInstall&#xA;                .LifestylePerWebRequest());  // Throws exception here.&#xA;        }&#xA;    }&#xA;&#xA;    public class MvcApplication : System.Web.HttpApplication&#xA;    {&#xA;        protected void Application_Start()&#xA;        {&#xA;            var container = new WindsorContainer();&#xA;&#xA;            container.Install(FromAssembly.This());&#xA;&#xA;            AreaRegistration.RegisterAllAreas();&#xA;&#xA;            WebApiConfig.Register(GlobalConfiguration.Configuration);&#xA;            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);&#xA;            RouteConfig.RegisterRoutes(RouteTable.Routes);&#xA;            BundleConfig.RegisterBundles(BundleTable.Bundles);&#xA;        }&#xA;    }&#xA;&#xA;" created="1357221714114" />
+    <comment author="Martin.Blore" text="Further testing has shown that when the installer is changed to the following:&#xA;&#xA;public void Install(IWindsorContainer container, IConfigurationStore store)&#xA;        {&#xA;            this.container = container;&#xA;&#xA;            container.Register(Classes.FromThisAssembly().BasedOn&lt;IController&gt;().LifestylePerWebRequest());&#xA;        }&#xA;&#xA;And does not use the previous 'this.classesToInstall', then the exception is not thrown." created="1357221986834" />
+    <comment author="xtoff" text="The problem is caused by the method being inlined (which only happens for release builds)." created="1359946253454" />
+  </issue>
+</issues>

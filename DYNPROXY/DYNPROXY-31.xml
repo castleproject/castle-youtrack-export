@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0 Beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0 Alpha</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>31</value>
+    </field>
+    <field name="summary">
+      <value>Explicit interface implementation problem</value>
+    </field>
+    <field name="description">
+      <value>Doesn't handle a case of types that implement interface privately when the interface is also given to implement in the proxy. (For instance, I got an type that implements IDisposable privately, and I give the proxy that and also IDisposable again).</value>
+    </field>
+    <field name="created">
+      <value>1162665290000</value>
+    </field>
+    <field name="updated">
+      <value>1164298123000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282140570135</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

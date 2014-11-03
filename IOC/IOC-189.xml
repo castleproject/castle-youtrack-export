@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>189</value>
+    </field>
+    <field name="summary">
+      <value>Proposed change in fluent registration API for interceptors</value>
+    </field>
+    <field name="description">
+      <value>As by thread http://groups.google.com/group/castle-project-devel/browse_thread/thread/b319dcd50b192bc7, here's a patch to provide a shortcut to register interceptors directly by key, type and generic type.
+
+Tests included. One test is ignored because it depends on issue http://support.castleproject.org/projects/CORE/issues/view/CORE-ISSUE-26 to be included in the Core binary referenced by MK.
+
+The current API remains, but in the new one I removed the ability to specify order for interceptors, they are simply registered in the order in which they are supplied.
+
+I'm following the discussion on the mailing list for any questions.</value>
+    </field>
+    <field name="created">
+      <value>1263019887000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838901</value>
+    </field>
+    <field name="reporterName">
+      <value>simone_b</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1263625080000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="simone_b" text="* '''Attachment''' Interceptors.patch added.&#xD;&#xA;" created="1263019920000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1263625080000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263625080000" />
+  </issue>
+</issues>

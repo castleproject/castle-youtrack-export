@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>576</value>
+    </field>
+    <field name="summary">
+      <value>Impossible to add complex object to dictionary using DictHelper</value>
+    </field>
+    <field name="description">
+      <value>I have discovered a weird behavior with the DictHelper.CreateN().N() usage. Values passed to those methods are added to the dictionary as strings. 
+
+This causes a problem when trying to call something like the following:
+
+{code lang=java}
+Url.For(Dict.N("action", "ActionName").N("params", Dict.N("id", id)))
+{code}
+The value inserted for key 'params' is then a string (class name) and not the actual dictionary, which in turn causes UrlBuilder to fail.</value>
+    </field>
+    <field name="created">
+      <value>1298453543178</value>
+    </field>
+    <field name="updated">
+      <value>1414999460436</value>
+    </field>
+    <field name="reporterName">
+      <value>ploosqva</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999460432</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ploosqva" text="I notice there is already an issu open for this issue, but I think it should be incorporated into master branch.&#xA;&#xA;Unless there is a good reason for such behavior, which I do not yet know..." created="1298453754834" />
+    <comment author="jonorossi" text="MonoRail2 is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/MonoRail/issues" created="1414999460438" />
+  </issue>
+</issues>

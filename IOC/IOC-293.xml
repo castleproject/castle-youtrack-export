@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>293</value>
+    </field>
+    <field name="summary">
+      <value>ResolveAll on value types fails registered against value types with an internal array copy error</value>
+    </field>
+    <field name="description">
+      <value>See test below. While this example is contrived, there may be interesting value types that I would want to register -- I may not control whether they were declared as value types or reference types, but they still expose an interface that is of interest to me. For instance, they might be IConvertible&lt;T&gt; to something I'm interested in. Note you can register them against that interface, just not against themselves.
+
+[Test]
+public void Windsor253HasABugWhichWillThrowAnExceptionIfResolveAllIsCalledOnValueTypes()
+{
+    using (IWindsorContainer container = new WindsorContainer())
+    {
+        container.Kernel.Register(
+            Component.For&lt;double&gt;().Instance(Math.PI).Named("pi"),
+            Component.For&lt;double&gt;().Instance(Math.E).Named("e"));
+        container.ResolveAll&lt;double&gt;();
+    }
+}
+
+System.ArgumentException : Target array type is not compatible with the type of items in the collection.
+	at System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+	at System.Collections.Generic.Dictionary`2.ValueCollection.System.Collections.ICollection.CopyTo(Array array, Int32 index)
+	at Castle.MicroKernel.DefaultKernel.ResolveAll(Type service, IDictionary arguments)
+	at Castle.MicroKernel.DefaultKernel.ResolveAll(Type service)
+	at Castle.Windsor.WindsorContainer.ResolveAll[T]()
+	WindsorResolvableTest.cs(55,0): at Shell.EP.Bpa2.WindsorUtilities.Test.WindsorResolvableTest.Windsor253HasABugWhichWillThrowAnExceptionIfResolveAllIsCalledOnValueTypes()
+
+</value>
+    </field>
+    <field name="created">
+      <value>1305302253019</value>
+    </field>
+    <field name="updated">
+      <value>1305321362972</value>
+    </field>
+    <field name="reporterName">
+      <value>sebastiang</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1305320928191</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Actually you could consider something else a bug here - Windsor should disallow registration of value types. Value types can not be used as services in Windsor." created="1305320916191" />
+    <comment author="sebastiang" text="Register&lt;T&gt; should have a &quot;where T : class&quot;, which I can live with. But surely I should still be able to (and can) register a value type as the implementation of the interface." created="1305321128425" updated="1305321622784" />
+    <comment author="xtoff" text="@Sebastian,&#xA;&#xA;Yes, it does have where T: struct in the trunk.&#xA;&#xA;While you're right that structs can implement interfaces they are not fit to work as components in a container as by definition they don't have required semantics thus they are not supported. Feel free to jump to castle users discussion group to discuss your scenario for that." created="1305321362972" />
+  </issue>
+</issues>

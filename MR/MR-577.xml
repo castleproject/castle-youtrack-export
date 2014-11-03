@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Exception</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>577</value>
+    </field>
+    <field name="summary">
+      <value>Using UrlHelper in action called with ActionHelper casues an exception</value>
+    </field>
+    <field name="description">
+      <value>ActionHelper creates a new MonoRail request but supplies UrlInfo without AppVirtualDir set. This causes a NullPointerException in UrlBuilder#CreateUrlPartsBuilder method.
+
+Attached is a unit test showing the issue.
+
+I suppose replacing the UrlInfo constructor used by ActionHelper should be enough to resolve this. I'm not sure where to get correct paramters though</value>
+    </field>
+    <field name="created">
+      <value>1298501788787</value>
+    </field>
+    <field name="updated">
+      <value>1414999271056</value>
+    </field>
+    <field name="reporterName">
+      <value>ploosqva</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999271051</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="MonoRail2 is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/MonoRail/issues" created="1414999271057" />
+  </issue>
+</issues>

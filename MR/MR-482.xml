@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>482</value>
+    </field>
+    <field name="summary">
+      <value>Release Notes sections are all empty</value>
+    </field>
+    <field name="description">
+      <value>The main trunk documentation has a section called "Release Notes" which contains:
+
+"New Features", "Upgrading Notes", "Change Log".
+
+None of these sections are filled out.  Since they do pertain to a particular version, it should probably be decided what the next version# is going to be so these sections can start to be filled out (and would probably assume that the "last version" was RC3).</value>
+    </field>
+    <field name="created">
+      <value>1221244750000</value>
+    </field>
+    <field name="updated">
+      <value>1278881644000</value>
+    </field>
+    <field name="reporterName">
+      <value>psteele</value>
+    </field>
+    <field name="updaterName">
+      <value>psteele</value>
+    </field>
+    <field name="resolved">
+      <value>1278881640000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Release notes are shipped as part of the package" created="1278881641000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1278881640000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1278881640000" />
+  </issue>
+</issues>

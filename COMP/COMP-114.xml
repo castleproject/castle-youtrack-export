@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>114</value>
+    </field>
+    <field name="summary">
+      <value>NotSameAsValidator overrides custom error message</value>
+    </field>
+    <field name="description">
+      <value>When user supplies the ValidateNotSameValueAttribute with ErrorMessageKey and ResourceType, the validator then drops custom message in the overriden BuildErrorMessage method.
+
+Judging by source code, the same seem probably applies to SetValidator. </value>
+    </field>
+    <field name="created">
+      <value>1296210093939</value>
+    </field>
+    <field name="updated">
+      <value>1407822447877</value>
+    </field>
+    <field name="reporterName">
+      <value>ploosqva</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1296601801642</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ploosqva" text="Fixed in&#xA;&#xA;https://github.com/ploosqva/Castle.Components.Validator/commit/c49aca1c2ef4275ea653fe8a495c25eff92674bb" created="1296213740517" />
+    <comment author="henry" text="Applied. Tks." created="1296601798486" />
+  </issue>
+</issues>

@@ -1,0 +1,522 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>272</value>
+    </field>
+    <field name="summary">
+      <value>Strong Naming in Medium Trust</value>
+    </field>
+    <field name="description">
+      <value>After compiling the latest trunk as of 8/20/2009 and running under Medium Trust a SecurityException is raised. 
+
+Looks to be an issue with Dynamic Proxy under the hood (according to Krzysztof Kozmic from the Castle Google Group. 
+
+Link to Post: http://groups.google.com/group/castle-project-users/browse_thread/thread/c2592da7bc3f6498/5dabeadc96cabf9f?lnk=gst&amp;q=Medium#5dabeadc96cabf9f
+
+Full Post: 
+
+  	
+Donn Felker   	
+View profile  
+	 More options Aug 30, 2:43 pm
+From: Donn Felker &lt;donnfel...@gmail.com&gt;
+Date: Sun, 30 Aug 2009 12:43:49 -0700 (PDT)
+Local: Sun, Aug 30 2009 2:43 pm
+Subject: Medium Trust Problems
+Reply | Reply to author | Forward | Print | Individual message | Show original | Report this message | Find messages by this author
+I've downloaded the latest from the trunk this morning and built the
+source with the following command:
+
+Code:
+c:\@svnrepositories\Castle&gt;SharedLibs\build\NAnt\bin\nant quick
+release clean build -t:net-3.5 -D:assembly.allow-partially-trusted-
+callers=true
+
+This ended with this:
+Code:
+...            BUILD SUCCEEDED
+
+            Total time: 12 seconds.
+
+BUILD SUCCEEDED - 2 non-fatal error(s), 0 warning(s)
+
+Total time: 55.4 seconds.
+
+When I run my site I get this:
+Code:
+
+Server Error in '/' Application.
+Security Exception
+Description: The application attempted to perform an operation not
+allowed by the security policy.  To grant this application the
+required permission please contact your system administrator or change
+the application's trust level in the configuration file.
+
+Exception Details: System.Security.SecurityException: Request for the
+permission of type 'System.Security.Permissions.SecurityPermission,
+mscorlib, Version=2.0.0.0, Culture=neutral,
+PublicKeyToken=b77a5c561934e089' failed.
+
+Source Error:
+
+An unhandled exception was generated during the execution of the
+current web request. Information regarding the origin and location of
+the exception can be identified using the exception stack trace below.
+
+Stack Trace:
+
+[SecurityException: Request for the permission of type
+'System.Security.Permissions.SecurityPermission, mscorlib,
+Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089'
+failed.]
+   System.Reflection.StrongNameKeyPair..ctor(Byte[] keyPairArray) +28
+   Castle.DynamicProxy.ModuleScope.GetAssemblyName(Boolean
+signStrongName) +222
+   Castle.DynamicProxy.ModuleScope.CreateModule(Boolean
+signStrongName) +71
+   Castle.DynamicProxy.ModuleScope.ObtainDynamicModuleWithStrongName()
++126
+   Castle.DynamicProxy.ModuleScope.ObtainDynamicModule(Boolean
+isStrongNamed) +68
+
+Castle.DynamicProxy.Generators.Emitters.ClassEmitter.CreateTypeBuilder
+(ModuleScope modulescope, String name, Type baseType, IEnumerable`1
+interfaces, TypeAttributes flags, Boolean forceUnsigned) +103
+   Castle.DynamicProxy.Generators.Emitters.ClassEmitter..ctor
+(ModuleScope modulescope, String name, Type baseType, IEnumerable`1
+interfaces, TypeAttributes flags, Boolean forceUnsigned) +98
+   Castle.DynamicProxy.Generators.Emitters.ClassEmitter..ctor
+(ModuleScope modulescope, String name, Type baseType, IEnumerable`1
+interfaces) +53
+   Castle.DynamicProxy.Generators.BaseProxyGenerator.BuildClassEmitter
+(String typeName, Type parentType, IEnumerable`1 interfaces) +112
+
+Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateType
+(String typeName, Type proxyTargetType, Type[] interfaces) +331
+
+Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode
+(Type proxyTargetType, Type[] interfaces, ProxyGenerationOptions
+options) +545
+
+Castle.DynamicProxy.DefaultProxyBuilder.CreateInterfaceProxyTypeWithoutTarget
+(Type interfaceToProxy, Type[] additionalInterfacesToProxy,
+ProxyGenerationOptions options) +144
+
+Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyTypeWithoutTarget
+(Type interfaceToProxy, Type[] additionalInterfacesToProxy,
+ProxyGenerationOptions options) +61
+   Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget
+(Type interfaceToProxy, Type[] additionalInterfacesToProxy,
+ProxyGenerationOptions options, IInterceptor[] interceptors) +329
+   Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget
+(Type interfaceToProxy, IInterceptor interceptor) +129
+
+Castle.Facilities.ActiveRecordIntegration.SessionFactoryDelegate.Create
+(ISessionFactoryHolder sessionFactoryHolder, Type arType) +102
+
+Castle.Facilities.ActiveRecordIntegration.ActiveRecordFacility.OnRootTypeRegistered
+(Object sender, Type rootType) +510
+   Castle.ActiveRecord.Framework.SessionFactoryHolder.Register(Type
+rootType, Configuration cfg) +106
+   Castle.ActiveRecord.ActiveRecordStarter.SetUpConfiguration
+(IConfigurationSource source, Type type, ISessionFactoryHolder holder)
++372
+   Castle.ActiveRecord.ActiveRecordStarter.Initialize
+(IConfigurationSource source, Type[] types) +735
+   Castle.ActiveRecord.ActiveRecordStarter.Initialize(Assembly[]
+assemblies, IConfigurationSource source, Type[] additionalTypes) +197
+
+Castle.Facilities.ActiveRecordIntegration.ActiveRecordFacility.InitializeFramework
+(ArrayList assemblies) +841
+   Castle.Facilities.ActiveRecordIntegration.ActiveRecordFacility.Init
+() +986
+   Castle.MicroKernel.Facilities.AbstractFacility.Init(IKernel kernel,
+IConfiguration facilityConfig) +62
+   Castle.MicroKernel.DefaultKernel.AddFacility(String key, IFacility
+facility) +221
+   Burst.DiligentLabs.WebHost.Application.RegisterFacilities(IKernel
+kernel) +66
+   Burst.DiligentLabs.WebHost.Global.Application_Start(Object sender,
+EventArgs e) +177
+
+Version Information: Microsoft .NET Framework Version:2.0.50727.4918;
+ASP.NET Version:2.0.50727.4918
+
+My mapping is set up as follows:
+
+Code:
+
+&lt;facilities&gt;
+    &lt;facility
+        id="activerecord"
+
+threadinfotype="Castle.ActiveRecord.Framework.Scopes.HybridWebThreadScopeInfo,
+Castle.ActiveRecord"
+        isDebug="false"
+        isWeb="true"
+        default-lazy="true"
+        requirePermission="false"&gt;
+
+      &lt;!-- Medium Trust settings: http://nhforge.org/wikis/howtonh/run-in-medium-trust.aspx
+--&gt;
+
+      &lt;!-- Configure the namespaces for the models using Active Record
+Intergration --&gt;
+      &lt;assemblies&gt;
+        &lt;item&gt;Burst.DiligentLabs.WebHost&lt;/item&gt;
+      &lt;/assemblies&gt;
+
+      &lt;config&gt;
+        &lt;add key="connection.driver_class"
+value="NHibernate.Driver.SqlClientDriver" /&gt;
+        &lt;add key="dialect"
+value="NHibernate.Dialect.MsSql2005Dialect" /&gt;
+        &lt;add key="connection.provider"
+value="NHibernate.Connection.DriverConnectionProvider" /&gt;
+
+        &lt;!-- Development --&gt;
+        &lt;add key="connection.connection_string" value="Data Source=.
+\SQLEXPRESS;AttachDbFileName=|DataDirectory|admin.mdf;Integrated
+Security=True;User Instance=True;" /&gt;
+
+        &lt;add key="proxyfactory.factory_class"
+value="NHibernate.ByteCode.Castle.ProxyFactoryFactory,
+NHibernate.ByteCode.Castle"/&gt;
+      &lt;/config&gt;
+
+    &lt;/facility&gt;
+
+  &lt;/facilities&gt;
+
+I've tried compiling without the tests (read the How TO Build file),
+with tests, with specifying build targets, etc. I cannot get this to
+work.
+
+Does anyone see where I have the issue?
+
+I"m testing this by placing &lt;trust level="Medium" /&gt; on my local dev
+machine as my host is medium trust.
+
+Thank you for any advice.
+
+    Reply    Reply to author    Forward       
+Report spam
+Reporting spam
+Message reported
+    Rate this post:
+		
+		
+		
+You must Sign in before you can post messages.
+To post a message you must first join this group.
+Please update your nickname on the subscription settings page before posting.
+You do not have the permission required to post.
+	
+		
+Krzysztof Kozmic   	
+View profile  
+	 More options Aug 31, 8:28 am
+From: Krzysztof Kozmic &lt;krzysztof.koz...@gmail.com&gt;
+Date: Mon, 31 Aug 2009 15:28:25 +0200
+Local: Mon, Aug 31 2009 8:28 am
+Subject: Re: Medium Trust Problems
+Reply | Reply to author | Forward | Print | Individual message | Show original | Report this message | Find messages by this author
+can you verify that the assembly has the APTCA with reflector?
+
+- Hide quoted text -
+- Show quoted text -
+Donn Felker wrote:
+&gt; I've downloaded the latest from the trunk this morning and built the
+&gt; source with the following command:
+
+&gt; Code:
+&gt; c:\@svnrepositories\Castle&gt;SharedLibs\build\NAnt\bin\nant quick
+&gt; release clean build -t:net-3.5 -D:assembly.allow-partially-trusted-
+&gt; callers=true
+
+&gt; This ended with this:
+&gt; Code:
+&gt; ...            BUILD SUCCEEDED
+
+&gt;             Total time: 12 seconds.
+
+&gt; BUILD SUCCEEDED - 2 non-fatal error(s), 0 warning(s)
+
+&gt; Total time: 55.4 seconds.
+
+&gt; When I run my site I get this:
+&gt; Code:
+
+&gt; Server Error in '/' Application.
+&gt; Security Exception
+&gt; Description: The application attempted to perform an operation not
+&gt; allowed by the security policy.  To grant this application the
+&gt; required permission please contact your system administrator or change
+&gt; the application's trust level in the configuration file.
+
+&gt; Exception Details: System.Security.SecurityException: Request for the
+&gt; permission of type 'System.Security.Permissions.SecurityPermission,
+&gt; mscorlib, Version=2.0.0.0, Culture=neutral,
+&gt; PublicKeyToken=b77a5c561934e089' failed.
+
+&gt; Source Error:
+
+&gt; An unhandled exception was generated during the execution of the
+&gt; current web request. Information regarding the origin and location of
+&gt; the exception can be identified using the exception stack trace below.
+
+&gt; Stack Trace:
+
+&gt; [SecurityException: Request for the permission of type
+&gt; 'System.Security.Permissions.SecurityPermission, mscorlib,
+&gt; Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089'
+&gt; failed.]
+&gt;    System.Reflection.StrongNameKeyPair..ctor(Byte[] keyPairArray) +28
+&gt;    Castle.DynamicProxy.ModuleScope.GetAssemblyName(Boolean
+&gt; signStrongName) +222
+&gt;    Castle.DynamicProxy.ModuleScope.CreateModule(Boolean
+&gt; signStrongName) +71
+&gt;    Castle.DynamicProxy.ModuleScope.ObtainDynamicModuleWithStrongName()
+&gt; +126
+&gt;    Castle.DynamicProxy.ModuleScope.ObtainDynamicModule(Boolean
+&gt; isStrongNamed) +68
+
+&gt; Castle.DynamicProxy.Generators.Emitters.ClassEmitter.CreateTypeBuilder
+&gt; (ModuleScope modulescope, String name, Type baseType, IEnumerable`1
+&gt; interfaces, TypeAttributes flags, Boolean forceUnsigned) +103
+&gt;    Castle.DynamicProxy.Generators.Emitters.ClassEmitter..ctor
+&gt; (ModuleScope modulescope, String name, Type baseType, IEnumerable`1
+&gt; interfaces, TypeAttributes flags, Boolean forceUnsigned) +98
+&gt;    Castle.DynamicProxy.Generators.Emitters.ClassEmitter..ctor
+&gt; (ModuleScope modulescope, String name, Type baseType, IEnumerable`1
+&gt; interfaces) +53
+&gt;    Castle.DynamicProxy.Generators.BaseProxyGenerator.BuildClassEmitter
+&gt; (String typeName, Type parentType, IEnumerable`1 interfaces) +112
+
+&gt; Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateType
+&gt; (String typeName, Type proxyTargetType, Type[] interfaces) +331
+
+&gt; Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode
+&gt; (Type proxyTargetType, Type[] interfaces, ProxyGenerationOptions
+&gt; options) +545
+
+&gt; Castle.DynamicProxy.DefaultProxyBuilder.CreateInterfaceProxyTypeWithoutTarget
+&gt; (Type interfaceToProxy, Type[] additionalInterfacesToProxy,
+&gt; ProxyGenerationOptions options) +144
+
+&gt; Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyTypeWithoutTarget
+&gt; (Type interfaceToProxy, Type[] additionalInterfacesToProxy,
+&gt; ProxyGenerationOptions options) +61
+&gt;    Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget
+&gt; (Type interfaceToProxy, Type[] additionalInterfacesToProxy,
+&gt; ProxyGenerationOptions options, IInterceptor[] interceptors) +329
+&gt;    Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget
+&gt; (Type interfaceToProxy, IInterceptor interceptor) +129
+
+&gt; Castle.Facilities.ActiveRecordIntegration.SessionFactoryDelegate.Create
+&gt; (ISessionFactoryHolder sessionFactoryHolder, Type arType) +102
+
+&gt; Castle.Facilities.ActiveRecordIntegration.ActiveRecordFacility.OnRootTypeRegistered
+&gt; (Object sender, Type rootType) +510
+&gt;    Castle.ActiveRecord.Framework.SessionFactoryHolder.Register(Type
+&gt; rootType, Configuration cfg) +106
+&gt;    Castle.ActiveRecord.ActiveRecordStarter.SetUpConfiguration
+&gt; (IConfigurationSource source, Type type, ISessionFactoryHolder holder)
+&gt; +372
+&gt;    Castle.ActiveRecord.ActiveRecordStarter.Initialize
+&gt; (IConfigurationSource source, Type[] types) +735
+&gt;    Castle.ActiveRecord.ActiveRecordStarter.Initialize(Assembly[]
+&gt; assemblies, IConfigurationSource source, Type[] additionalTypes) +197
+
+&gt; Castle.Facilities.ActiveRecordIntegration.ActiveRecordFacility.InitializeFramework
+&gt; (ArrayList assemblies) +841
+&gt;    Castle.Facilities.ActiveRecordIntegration.ActiveRecordFacility.Init
+&gt; () +986
+&gt;    Castle.MicroKernel.Facilities.AbstractFacility.Init(IKernel kernel,
+&gt; IConfiguration facilityConfig) +62
+&gt;    Castle.MicroKernel.DefaultKernel.AddFacility(String key, IFacility
+&gt; facility) +221
+&gt;    Burst.DiligentLabs.WebHost.Application.RegisterFacilities(IKernel
+&gt; kernel) +66
+&gt;    Burst.DiligentLabs.WebHost.Global.Application_Start(Object sender,
+&gt; EventArgs e) +177
+
+&gt; Version Information: Microsoft .NET Framework Version:2.0.50727.4918;
+&gt; ASP.NET Version:2.0.50727.4918
+
+&gt; My mapping is set up as follows:
+
+&gt; Code:
+
+&gt; &lt;facilities&gt;
+&gt;     &lt;facility
+&gt;         id="activerecord"
+
+&gt; threadinfotype="Castle.ActiveRecord.Framework.Scopes.HybridWebThreadScopeInfo,
+&gt; Castle.ActiveRecord"
+&gt;         isDebug="false"
+&gt;         isWeb="true"
+&gt;         default-lazy="true"
+&gt;         requirePermission="false"&gt;
+
+&gt;       &lt;!-- Medium Trust settings: http://nhforge.org/wikis/howtonh/run-in-medium-trust.aspx
+&gt; --&gt;
+
+&gt;       &lt;!-- Configure the namespaces for the models using Active Record
+&gt; Intergration --&gt;
+&gt;       &lt;assemblies&gt;
+&gt;         &lt;item&gt;Burst.DiligentLabs.WebHost&lt;/item&gt;
+&gt;       &lt;/assemblies&gt;
+
+&gt;       &lt;config&gt;
+&gt;         &lt;add key="connection.driver_class"
+&gt; value="NHibernate.Driver.SqlClientDriver" /&gt;
+&gt;         &lt;add key="dialect"
+&gt; value="NHibernate.Dialect.MsSql2005Dialect" /&gt;
+&gt;         &lt;add key="connection.provider"
+&gt; value="NHibernate.Connection.DriverConnectionProvider" /&gt;
+
+&gt;         &lt;!-- Development --&gt;
+&gt;         &lt;add key="connection.connection_string" value="Data Source=.
+&gt; \SQLEXPRESS;AttachDbFileName=|DataDirectory|admin.mdf;Integrated
+&gt; Security=True;User Instance=True;" /&gt;
+
+&gt;         &lt;add key="proxyfactory.factory_class"
+&gt; value="NHibernate.ByteCode.Castle.ProxyFactoryFactory,
+&gt; NHibernate.ByteCode.Castle"/&gt;
+&gt;       &lt;/config&gt;
+
+&gt;     &lt;/facility&gt;
+
+&gt;   &lt;/facilities&gt;
+
+&gt; I've tried compiling without the tests (read the How TO Build file),
+&gt; with tests, with specifying build targets, etc. I cannot get this to
+&gt; work.
+
+&gt; Does anyone see where I have the issue?
+
+&gt; I"m testing this by placing &lt;trust level="Medium" /&gt; on my local dev
+&gt; machine as my host is medium trust.
+
+&gt; Thank you for any advice.
+
+
+    Reply    Reply to author    Forward       
+Report spam
+Reporting spam
+Message reported
+    Rate this post:
+		
+		
+		
+You must Sign in before you can post messages.
+To post a message you must first join this group.
+Please update your nickname on the subscription settings page before posting.
+You do not have the permission required to post.
+	
+		
+Krzysztof Kozmic   	
+View profile  
+OK, I've investigated it further, and it looks like there's a problem in our code. DynamicProxy which is used under the cover by ActiveRecord generates new proxy types to a in-memory assembly. This assembly can be strong named, In your case, as all your types aparently are in a strongly named assembly, DP decides that its in- memory assembly should have a strong name as well, and as it turns out, it can't do that in medium trust. There's a flag - forceUnsigned that now defaults to false. We could change that, so that it is true when we don't have the required permission. The stack trace shows that the exception is thrown in http://msdn.microsoft.com/en-us/library/004y1sw8.aspx which requires SecurityPermissionFlag.UnmanagedCode Similarily to http://blogs.msdn.com/dmitryr/archive/2007/01/23/finding-out-the-curr... we can write and use the following method to set the flag private static bool CanUseStrongName() {         try         {                 new SecurityPermission(SecurityPermissionFlag.UnmanagedCode).Demand ();                 return true;         }         catch (SecurityException)         {                 return false;         } } This should get us all set. Thoughts? Donn - please create an issue in Donjon for that. I don't have access to Visual Studio, so if someone wants to fix it - go ahead. Cheers, Krzysztof On 31 Sie, 15:28, Krzysztof Kozmic &lt;krzysztof.koz...@gmail.com&gt; wrote: - Hide quoted text -- Show quoted text -&gt; can you verify that the assembly has the APTCA with reflector? &gt; Donn Felker wrote: &gt; &gt; I've downloaded the latest from the trunk this morning and built the &gt; &gt; source with the following command: &gt; &gt; Code: &gt; &gt; c:\@svnrepositories\Castle&gt;SharedLibs\build\NAnt\bin\nant quick &gt; &gt; release clean build -t:net-3.5 -D:assembly.allow-partially-trusted- &gt; &gt; callers=true &gt; &gt; This ended with this: &gt; &gt; Code: &gt; &gt; ...            BUILD SUCCEEDED &gt; &gt;             Total time: 12 seconds. &gt; &gt; BUILD SUCCEEDED - 2 non-fatal error(s), 0 warning(s) &gt; &gt; Total time: 55.4 seconds. &gt; &gt; When I run my site I get this: &gt; &gt; Code: &gt; &gt; Server Error in '/' Application. &gt; &gt; Security Exception &gt; &gt; Description: The application attempted to perform an operation not &gt; &gt; allowed by the security policy.  To grant this application the &gt; &gt; required permission please contact your system administrator or change &gt; &gt; the application's trust level in the configuration file. &gt; &gt; Exception Details: System.Security.SecurityException: Request for the &gt; &gt; permission of type 'System.Security.Permissions.SecurityPermission, &gt; &gt; mscorlib, Version=2.0.0.0, Culture=neutral, &gt; &gt; PublicKeyToken=b77a5c561934e089' failed. &gt; &gt; Source Error: &gt; &gt; An unhandled exception was generated during the execution of the &gt; &gt; current web request. Information regarding the origin and location of &gt; &gt; the exception can be identified using the exception stack trace below. &gt; &gt; Stack Trace: &gt; &gt; [SecurityException: Request for the permission of type &gt; &gt; 'System.Security.Permissions.SecurityPermission, mscorlib, &gt; &gt; Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089' &gt; &gt; failed.] &gt; &gt;    System.Reflection.StrongNameKeyPair..ctor(Byte[] keyPairArray) +28 &gt; &gt;    Castle.DynamicProxy.ModuleScope.GetAssemblyName(Boolean &gt; &gt; signStrongName) +222 &gt; &gt;    Castle.DynamicProxy.ModuleScope.CreateModule(Boolean &gt; &gt; signStrongName) +71 &gt; &gt;    Castle.DynamicProxy.ModuleScope.ObtainDynamicModuleWithStrongName() &gt; &gt; +126 &gt; &gt;    Castle.DynamicProxy.ModuleScope.ObtainDynamicModule(Boolean &gt; &gt; isStrongNamed) +68 &gt; &gt; Castle.DynamicProxy.Generators.Emitters.ClassEmitter.CreateTypeBuilder &gt; &gt; (ModuleScope modulescope, String name, Type baseType, IEnumerable`1 &gt; &gt; interfaces, TypeAttributes flags, Boolean forceUnsigned) +103 &gt; &gt;    Castle.DynamicProxy.Generators.Emitters.ClassEmitter..ctor &gt; &gt; (ModuleScope modulescope, String name, Type baseType, IEnumerable`1 &gt; &gt; interfaces, TypeAttributes flags, Boolean forceUnsigned) +98 &gt; &gt;    Castle.DynamicProxy.Generators.Emitters.ClassEmitter..ctor &gt; &gt; (ModuleScope modulescope, String name, Type baseType, IEnumerable`1 &gt; &gt; interfaces) +53 &gt; &gt;    Castle.DynamicProxy.Generators.BaseProxyGenerator.BuildClassEmitter &gt; &gt; (String typeName, Type parentType, IEnumerable`1 interfaces) +112 &gt; &gt; Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateType &gt; &gt; (String typeName, Type proxyTargetType, Type[] interfaces) +331 &gt; &gt; Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode &gt; &gt; (Type proxyTargetType, Type[] interfaces, ProxyGenerationOptions &gt; &gt; options) +545 &gt; &gt; Castle.DynamicProxy.DefaultProxyBuilder.CreateInterfaceProxyTypeWithoutTarget &gt; &gt; (Type interfaceToProxy, Type[] additionalInterfacesToProxy, &gt; &gt; ProxyGenerationOptions options) +144 &gt; &gt; Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyTypeWithoutTarget &gt; &gt; (Type interfaceToProxy, Type[] additionalInterfacesToProxy, &gt; &gt; ProxyGenerationOptions options) +61 &gt; &gt;    Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget &gt; &gt; (Type interfaceToProxy, Type[] additionalInterfacesToProxy, &gt; &gt; ProxyGenerationOptions options, IInterceptor[] interceptors) +329 &gt; &gt;    Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithoutTarget &gt; &gt; (Type interfaceToProxy, IInterceptor interceptor) +129 &gt; &gt; Castle.Facilities.ActiveRecordIntegration.SessionFactoryDelegate.Create &gt; &gt; (ISessionFactoryHolder sessionFactoryHolder, Type arType) +102 &gt; &gt; Castle.Facilities.ActiveRecordIntegration.ActiveRecordFacility.OnRootTypeRegistered &gt; &gt; (Object sender, Type rootType) +510 &gt; &gt;    Castle.ActiveRecord.Framework.SessionFactoryHolder.Register(Type &gt; &gt; rootType, Configuration cfg) +106 &gt; &gt;    Castle.ActiveRecord.ActiveRecordStarter.SetUpConfiguration &gt; &gt; (IConfigurationSource source, Type type, ISessionFactoryHolder holder) &gt; &gt; +372 &gt; &gt;    Castle.ActiveRecord.ActiveRecordStarter.Initialize &gt; &gt; (IConfigurationSource source, Type[] types) +735 &gt; &gt;    Castle.ActiveRecord.ActiveRecordStarter.Initialize(Assembly[] &gt; &gt; assemblies, IConfigurationSource source, Type[] additionalTypes) +197 &gt; &gt; Castle.Facilities.ActiveRecordIntegration.ActiveRecordFacility.InitializeFramework &gt; &gt; (ArrayList assemblies) +841 &gt; &gt;    Castle.Facilities.ActiveRecordIntegration.ActiveRecordFacility.Init &gt; &gt; () +986 &gt; &gt;    Castle.MicroKernel.Facilities.AbstractFacility.Init(IKernel kernel, &gt; &gt; IConfiguration facilityConfig) +62 &gt; &gt;    Castle.MicroKernel.DefaultKernel.AddFacility(String key, IFacility &gt; &gt; facility) +221 &gt; &gt;    Burst.DiligentLabs.WebHost.Application.RegisterFacilities(IKernel &gt; &gt; kernel) +66 &gt; &gt;    Burst.DiligentLabs.WebHost.Global.Application_Start(Object sender, &gt; &gt; EventArgs e) +177 &gt; &gt; Version Information: Microsoft .NET Framework Version:2.0.50727.4918; &gt; &gt; ASP.NET Version:2.0.50727.4918 &gt; &gt; My mapping is set up as follows: &gt; &gt; Code: &gt; &gt; &lt;facilities&gt; &gt; &gt;     &lt;facility &gt; &gt;         id="activerecord" &gt; &gt; threadinfotype="Castle.ActiveRecord.Framework.Scopes.HybridWebThreadScopeInfo, &gt; &gt; Castle.ActiveRecord" &gt; &gt;         isDebug="false" &gt; &gt;         isWeb="true" &gt; &gt;         default-lazy="true" &gt; &gt;         requirePermission="false"&gt; &gt; &gt;       &lt;!-- Medium Trust settings:http://nhforge.org/wikis/howtonh/run-in-medium-trust.aspx &gt; &gt; --&gt; &gt; &gt;       &lt;!-- Configure the namespaces for the models using Active Record &gt; &gt; Intergration --&gt; &gt; &gt;       &lt;assemblies&gt; &gt; &gt;         &lt;item&gt;Burst.DiligentLabs.WebHost&lt;/item&gt; &gt; &gt;       &lt;/assemblies&gt; &gt; &gt;       &lt;config&gt; &gt; &gt;         &lt;add key="connection.driver_class" &gt; &gt; value="NHibernate.Driver.SqlClientDriver" /&gt; &gt; &gt;         &lt;add key="dialect" &gt; &gt; value="NHibernate.Dialect.MsSql2005Dialect" /&gt; &gt; &gt;         &lt;add key="connection.provider" &gt; &gt; value="NHibernate.Connection.DriverConnectionProvider" /&gt; &gt; &gt;         &lt;!-- Development --&gt; &gt; &gt;         &lt;add key="connection.connection_string" value="Data Source=. &gt; &gt; \SQLEXPRESS;AttachDbFileName=|DataDirectory|admin.mdf;Integrated &gt; &gt; Security=True;User Instance=True;" /&gt; &gt; &gt;         &lt;add key="proxyfactory.factory_class" &gt; &gt; value="NHibernate.ByteCode.Castle.ProxyFactoryFactory, &gt; &gt; NHibernate.ByteCode.Castle"/&gt; &gt; &gt;       &lt;/config&gt; &gt; &gt;     &lt;/facility&gt; &gt; &gt;   &lt;/facilities&gt; &gt; &gt; I've tried compiling without the tests (read the How TO Build file), &gt; &gt; with tests, with specifying build targets, etc. I cannot get this to &gt; &gt; work. &gt; &gt; Does anyone see where I have the issue? &gt; &gt; I"m testing this by placing &lt;trust level="Medium" /&gt; on my local dev &gt; &gt; machine as my host is medium trust. &gt; &gt; Thank you for any advice.
+	 More options Aug 31, 1:29 pm
+From: Krzysztof Kozmic &lt;krzysztof.koz...@gmail.com&gt;
+Date: Mon, 31 Aug 2009 11:29:53 -0700 (PDT)
+Local: Mon, Aug 31 2009 1:29 pm
+Subject: Re: Medium Trust Problems
+Reply | Reply to author | Forward | Print | Individual message | Show original | Report this message | Find messages by this author
+OK, I've investigated it further, and it looks like there's a problem
+in our code.
+DynamicProxy which is used under the cover by ActiveRecord generates
+new proxy types to a in-memory assembly.
+This assembly can be strong named, In your case, as all your types
+aparently are in a strongly named assembly, DP decides that its in-
+memory assembly should have a strong name as well, and as it turns
+out, it can't do that in medium trust.
+
+There's a flag - forceUnsigned that now defaults to false. We could
+change that, so that it is true when we don't have the required
+permission.
+
+The stack trace shows that the exception is thrown in
+http://msdn.microsoft.com/en-us/library/004y1sw8.aspx which requires
+SecurityPermissionFlag.UnmanagedCode
+
+Similarily to http://blogs.msdn.com/dmitryr/archive/2007/01/23/finding-out-the-curr...
+
+we can write and use the following method to set the flag
+
+private static bool CanUseStrongName()
+{
+        try
+        {
+                new SecurityPermission(SecurityPermissionFlag.UnmanagedCode).Demand
+();
+                return true;
+        }
+        catch (SecurityException)
+        {
+                return false;
+        }
+
+}
+
+This should get us all set.
+
+Thoughts?
+
+Donn - please create an issue in Donjon for that.
+
+I don't have access to Visual Studio, so if someone wants to fix it -
+go ahead.
+
+Cheers,
+
+Krzysztof</value>
+    </field>
+    <field name="created">
+      <value>1252667738000</value>
+    </field>
+    <field name="updated">
+      <value>1319636496317</value>
+    </field>
+    <field name="reporterName">
+      <value>donnfelker</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1254460860000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-771[up-to-date]</value>
+      <value>User: id = 20-800[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="As this is really a DynamicProxy issue, I created new entry in DP space: http://support.castleproject.org/projects/DYNPROXY/issues/view/DYNPROXY-ISSUE-114&#xA;&#xA;This can be closed (I don't have rights to do it)." created="1254442444000" />
+    <comment author="xtoff" text="Moved to http://support.castleproject.org/projects/DYNPROXY/issues/view/DYNPROXY-ISSUE-114" created="1254460869000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1254460860000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1254460860000" />
+    <comment author="beanpole" text="here is a discussion which narrows down the directory which requires permissions ...&#xA;http://orchard.codeplex.com/discussions/265805" created="1314680517145" />
+  </issue>
+</issues>

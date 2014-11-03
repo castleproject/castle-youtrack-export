@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>367</value>
+    </field>
+    <field name="summary">
+      <value>ComponentRegistered handler returns incorrect result when component registered with dynamic parameters</value>
+    </field>
+    <field name="description">
+      <value>Using Castle.Core 3.1.0.2245, and Castle.Windsor 3.1.0.2361 both from NuGet.
+
+I discovered this whilst playing with the WCF facility and have managed to reduce it down to a simple example.
+I found that my WCF services weren't being started due to apparent unresolved dependencies, when infact there were no unresolved dependencies. It appears as though dynamic parameters aren't taken into account when calculating the handler.CurrentState returned when attaching a ComponentRegistered event handler.
+
+The following example should make things clearer.
+
+    public interface IMyInterface
+    {
+        void SayHello();
+    }
+
+    public class MyInterface : IMyInterface
+    {
+        private string message;
+
+        public MyInterface(string message)
+        {
+            this.message = message;
+        }
+
+        public void SayHello()
+        {
+            Console.WriteLine(message);
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            WindsorContainer c = new WindsorContainer();
+            c.Kernel.ComponentRegistered +=
+                (key, handler) =&gt;
+                Console.WriteLine(string.Format("Model: {0} - State: {1}", key, handler.CurrentState));
+            c.Register(Component.For&lt;IMyInterface&gt;()
+                .ImplementedBy&lt;MyInterface&gt;()
+                .DynamicParameters((kernel, parameters) =&gt; parameters["message"] = "Hello"));
+            var my = c.Resolve&lt;IMyInterface&gt;();
+            my.SayHello();
+            Console.Read();
+        }
+    }
+
+The output from running this is as follows.
+
+Model: ConsoleApplication5.MyInterface - State: WaitingDependency
+Hello
+
+Clearly here the registration is showing that we are WaitingDependency. When debugging you will found that the only dependency is the message parameter and this gets catagorised as unresolved.
+
+I would expect that the handler.CurrentState would show as Valid in this case.
+</value>
+    </field>
+    <field name="created">
+      <value>1352482689443</value>
+    </field>
+    <field name="updated">
+      <value>1396695093011</value>
+    </field>
+    <field name="reporterName">
+      <value>mcgoober</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396695092997</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="This is by design. Since the parapeters are dynamic the container has no way of knowing statically which will be provided" created="1355981397348" />
+    <comment author="xtoff" text="I guess one alternative would be provide API that would dynamically provide value of a well known parameter. Slightly less flexible, but should suffice for 95% of real life cases.&#xA;&#xA;Something like;&#xA;{{.DynamicParameter(&quot;message&quot;, kernel =&gt; hello)}}&#xA;&#xA;Want to have a stab at implementing it?" created="1355981709879" />
+  </issue>
+</issues>

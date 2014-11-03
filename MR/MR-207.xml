@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>207</value>
+    </field>
+    <field name="summary">
+      <value>DateFormatHelper.FormatDate()</value>
+    </field>
+    <field name="description">
+      <value>I'm using FormatDate() with a .NET 2.0 DateTime? type. Without FormatDate(), null dates are blank as I would want. But with FormatDate(), null dates display as the minimum date instead (in my case, "0000-00-00").</value>
+    </field>
+    <field name="created">
+      <value>1168033244000</value>
+    </field>
+    <field name="updated">
+      <value>1244675841000</value>
+    </field>
+    <field name="reporterName">
+      <value>rhywun</value>
+    </field>
+    <field name="updaterName">
+      <value>rhywun</value>
+    </field>
+    <field name="resolved">
+      <value>1282143651995</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675820000" />
+  </issue>
+</issues>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Pagination</value>
+    </field>
+    <field name="Fix versions">
+      <value>Pagination 1.1.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>1.1.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>83</value>
+    </field>
+    <field name="summary">
+      <value>AbstractPage&lt;T&gt; and AbstractPage .FirstItem, .LastItem differ</value>
+    </field>
+    <field name="description">
+      <value>attached patch just makes .FirstItem and .LastItem in AbstractPage&lt;T&gt; behave the same as in AbstractPage.  ArgOOR exceptions occur when using code from trunk...</value>
+    </field>
+    <field name="created">
+      <value>1234184046000</value>
+    </field>
+    <field name="updated">
+      <value>1292001681299</value>
+    </field>
+    <field name="reporterName">
+      <value>mattyr</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1282338952968</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="eyal" text="Hi Matt,&#xA;&#xA;I encountered the same problem. How do I use this patch fix?&#xA;&#xA;thanks&#xA;&#xA;Eyal" created="1234217485000" />
+    <comment author="mattyr" text="you can apply it using diff/patch software, like the tortoisesvn client. it's so simple though, that you can just do it manually -- open the patch file and the change is pretty readable.&#xA;&#xA;cheers&#xA;" created="1234347580000" />
+    <comment author="henry" text="It was fixed in the meantime. not sure when." created="1282338952921" />
+  </issue>
+</issues>

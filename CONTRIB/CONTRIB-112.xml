@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngines</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>112</value>
+    </field>
+    <field name="summary">
+      <value>Imports using statements from web.config for AspView</value>
+    </field>
+    <field name="description">
+      <value>This one adds the imports from web.config. (Skipping System.Web imports because System.Web is not referenced by default)
+&lt;system.web&gt;
+  &lt;pages&gt;
+    &lt;namespaces&gt;
+      &lt;add namespace="MyProject.Model"/&gt;
+    &lt;/namespaces&gt;
+  &lt;/pages&gt;
+&lt;/system.web&gt;</value>
+    </field>
+    <field name="created">
+      <value>1207229515000</value>
+    </field>
+    <field name="updated">
+      <value>1407823211021</value>
+    </field>
+    <field name="reporterName">
+      <value>loraderon</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1407823211019</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

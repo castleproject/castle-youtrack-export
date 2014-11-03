@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 3</value>
+    </field>
+    <field name="Affected versions">
+      <value>beta 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>6</value>
+    </field>
+    <field name="summary">
+      <value>Support for static files(js, images, etc)</value>
+    </field>
+    <field name="description">
+      <value>Following a suggestion from someone on the list, we'll create a controller that will handle the deliver of js and sutff like that. This prevent MonoRail from obligate users to copy a set of required files, images and etc.</value>
+    </field>
+    <field name="created">
+      <value>1118991460000</value>
+    </field>
+    <field name="updated">
+      <value>1127055696000</value>
+    </field>
+    <field name="reporterName">
+      <value>henry</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1282143239932</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="josh_robb" text="Should take a careful look at the ASP.NET 2.0 WebResource.axd handling stuff.&#xA;&#xA;http://www.nikhilk.net/WebResourceAttributeAtDesignTime.aspx&#xA;http://www.nikhilk.net/WebResourceAttribute.aspx&#xA;http://www.nikhilk.net/WebResourcesDenialOfServiceAttack.aspx&#xA;&#xA;&#xA;&#xA;" created="1218366898000" />
+    <comment author="henry" text="It's support only the MonoRail required files(eg: Ajax and ValidationScripts). The Resource Support should be enough for the users files and related stuff." created="1218366898000" />
+    <comment author="hammett" text="It's not working with Windsor integration" created="1218366898000" />
+    <comment author="hammett" text="When used with Windsor:&#xA;&#xA; Could not find any resources appropriate for the specified culture (or the neutral culture) in the given assembly. Make sure &quot;Castle.MonoRail.Framework.Controllers.Validation.resources&quot; was correctly embedded or linked into assembly &quot;Castle.MonoRail.Framework&quot;. baseName: Castle.MonoRail.Framework.Controllers.Validation locationInfo: &lt;null&gt; resource file name: Castle.MonoRail.Framework.Controllers.Validation.resources assembly: Castle.MonoRail.Framework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&#xA;Description: An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code.&#xA;&#xA;Exception Details: System.Resources.MissingManifestResourceException: Could not find any resources appropriate for the specified culture (or the neutral culture) in the given assembly. Make sure &quot;Castle.MonoRail.Framework.Controllers.Validation.resources&quot; was correctly embedded or linked into assembly &quot;Castle.MonoRail.Framework&quot;. baseName: Castle.MonoRail.Framework.Controllers.Validation locationInfo: &lt;null&gt; resource file name: Castle.MonoRail.Framework.Controllers.Validation.resources assembly: Castle.MonoRail.Framework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&#xA;&#xA;Source Error:&#xA;&#xA;Line 41: 															attribute.ResourceType );&#xA;Line 42:             &#xA;Line 43: 			return new ResourceFacade( rm.GetResourceSet( attribute.Culture, true, true ) );&#xA;Line 44: 		}&#xA;Line 45: " created="1218366898000" />
+  </issue>
+</issues>

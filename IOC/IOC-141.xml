@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>141</value>
+    </field>
+    <field name="summary">
+      <value>Cannot resolve component with open generic parameter that has dependency on a closed generic service.</value>
+    </field>
+    <field name="description">
+      <value>Given the following interfaces/classes:
+
+public interface IService { }
+
+public interface IProcessor&lt;T&gt; { }
+
+public interface IAssembler&lt;T&gt; { }
+
+public class Service1 : IService
+{
+	public Service1(IProcessor&lt;object&gt; processor)
+	{
+	}
+}
+
+public class DefaultProcessor&lt;T&gt; : IProcessor&lt;T&gt;
+{
+	public DefaultProcessor(IAssembler&lt;T&gt; assembler)
+	{
+	}
+}
+
+public class ObjectAssembler : IAssembler&lt;object&gt; { }
+
+
+And this setup code:
+
+var kernel = new DefaultKernel();
+kernel.AddComponent("service1", typeof(IService), typeof(Service1));
+kernel.AddComponent("processor", typeof(IProcessor&lt;&gt;), typeof(DefaultProcessor&lt;&gt;));
+kernel.AddComponent("assembler", typeof(IAssembler&lt;object&gt;), typeof(ObjectAssembler));
+
+
+Then, this work:
+
+kernel.Resolve&lt;IProcessor&lt;object&gt;&gt;()
+
+but this does not (and it fails telling you why)
+
+kernel.Resolve&lt;IService&gt;()</value>
+    </field>
+    <field name="created">
+      <value>1230497702000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838901</value>
+    </field>
+    <field name="reporterName">
+      <value>german</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1232177280000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="german" text="* '''Type''' changed from ''Bug'' to ''Patch''.&#xD;&#xA;" created="1230501480000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''RC 4''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1232177280000" />
+  </issue>
+</issues>

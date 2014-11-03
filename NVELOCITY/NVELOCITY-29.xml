@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>1.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>29</value>
+    </field>
+    <field name="summary">
+      <value>#{} notation for directives</value>
+    </field>
+    <field name="description">
+      <value>The current version of velocity supports directives using notation like #{if} some stuff... #{else} some other stuff #{end}. Creating inline if/else/end statements can be problematic if you can't afford a whitespace after #else. Can this directive notation be added to NVelocity?</value>
+    </field>
+    <field name="created">
+      <value>1221823019000</value>
+    </field>
+    <field name="updated">
+      <value>1287754416665</value>
+    </field>
+    <field name="reporterName">
+      <value>benster</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1282592183796</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="hammett" text="Sure can. But I'd welcome a patch." created="1229886247000" />
+    <comment author="henry" text="No patch was provided. I'm setting it to won't fix." created="1282592183796" />
+  </issue>
+</issues>

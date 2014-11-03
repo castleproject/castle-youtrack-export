@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ActiveWriter</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>59</value>
+    </field>
+    <field name="summary">
+      <value>NHQG fails to execute properly when temporary path contains spaces</value>
+    </field>
+    <field name="description">
+      <value>While testing the integration of NHQG into ActiveWriter (great stuff), I had a small problem because my temporary path (used as 'out' argument for NHQG) contained some spaces. Small patch attached to fix the problem.
+</value>
+    </field>
+    <field name="created">
+      <value>1190828551000</value>
+    </field>
+    <field name="updated">
+      <value>1190866159000</value>
+    </field>
+    <field name="reporterName">
+      <value>stiiifff</value>
+    </field>
+    <field name="updaterName">
+      <value>stiiifff</value>
+    </field>
+    <field name="resolved">
+      <value>1282138212307</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

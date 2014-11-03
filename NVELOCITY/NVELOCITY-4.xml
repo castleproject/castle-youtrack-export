@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>4</value>
+    </field>
+    <field name="summary">
+      <value>Cannot disable macro caching</value>
+    </field>
+    <field name="description">
+      <value>The following are the contents of the nvelocity.properties file:
+
+input.encoding=GB2312
+output.encoding=GB2312
+file.resource.loader.cache = false
+velocimacro.library.autoreload = true
+##velocimacro.permissions.allow.inline = true
+velocimacro.library = macros.vm, scenario/box.vm, scenario/infobox.vm, scenario/partial_portfoliotable.vm, vm_global_library.vm
+
+##velocimacro.permissions.allow.inline.to.replace.global = false
+##velocimacro.permissions.allow.inline.local.scope = true
+##directive.foreach.counter.name = counter
+directive.foreach.counter.initial.value = 0
+velocimacro.messages.on = true
+##velocimacro.context.localscope = true
+##parse_directive.maxdepth = 10
+##runtime.interpolate.string.literals = false
+
+With the following properties set this way, I must still restart the web server in order to see changes that I have made to the macro. Simply reloading the page does not show macro changes.
+file.resource.loader.cache = false
+velocimacro.library.autoreload = true
+</value>
+    </field>
+    <field name="created">
+      <value>1157002246000</value>
+    </field>
+    <field name="updated">
+      <value>1253854754000</value>
+    </field>
+    <field name="reporterName">
+      <value>dbuck</value>
+    </field>
+    <field name="updaterName">
+      <value>dbuck</value>
+    </field>
+    <field name="resolved">
+      <value>1282142740510</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253854740000" />
+  </issue>
+</issues>

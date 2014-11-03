@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Scaffolding</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>92</value>
+    </field>
+    <field name="summary">
+      <value>Scaffolding exposes ValidationBase properties</value>
+    </field>
+    <field name="description">
+      <value>Scaffolding exposes validationbase properties (such as ValidationErrorMessages) when listing objects</value>
+    </field>
+    <field name="created">
+      <value>1141489194000</value>
+    </field>
+    <field name="updated">
+      <value>1407819277602</value>
+    </field>
+    <field name="reporterName">
+      <value>chadh</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1407819277599</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="We could introduce an attribute(NoScaffoldAttribute) that if the public property is decorated with it, it would not be part of the scaffolding?" created="1262978979000" />
+    <comment author="jsimons" text="* '''Version Affected''' set to ''2.0''.&#xD;&#xA;* '''Assignees''' changed from ''Ken Egozi and John Simons'' to ''John Simons''.&#xD;&#xA;" created="1278876540000" />
+  </issue>
+</issues>

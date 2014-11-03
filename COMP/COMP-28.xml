@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>28</value>
+    </field>
+    <field name="summary">
+      <value>There isn't a ctor to set error message in ValidateGroupNotEmptyAttribute and ValidateCollectionNotEmptyAttribute</value>
+    </field>
+    <field name="description">
+      <value>All the other validators have a constructor to set the errorMessage. Otherwise, there's no way to set a custom error message.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1181487992000</value>
+    </field>
+    <field name="updated">
+      <value>1181852540000</value>
+    </field>
+    <field name="reporterName">
+      <value>gokhan</value>
+    </field>
+    <field name="updaterName">
+      <value>gokhan</value>
+    </field>
+    <field name="resolved">
+      <value>1282137538932</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>209</value>
+    </field>
+    <field name="summary">
+      <value>Bug in constructor selection when resolving</value>
+    </field>
+    <field name="description">
+      <value>Here's a sample test which fails:
+
+{code lang=csharp}
+    public class CastleTests
+    {
+        [Test]
+        public void Test()
+        {
+            WindsorContainer container = new WindsorContainer();
+            container
+                .Register(Component.For&lt;DoesSomething&gt;())
+                .Register(Component.For&lt;IService1&gt;().ImplementedBy&lt;Service1&gt;())
+                .Register(Component.For&lt;IService2&gt;().ImplementedBy&lt;Service2&gt;());
+
+            DoesSomething doesSomething = container.Resolve&lt;DoesSomething&gt;();
+        }
+    }
+
+    public interface IService1
+    {
+    }
+
+    public class Service1 : IService1
+    {
+    }
+
+    public interface IService2
+    {
+    }
+
+    public class Service2 : IService2
+    {
+    }
+
+    public class DoesSomething
+    {
+        public DoesSomething(string text, IService1 service1, IService2 service2)
+        {
+        }
+
+        public DoesSomething(IService1 service1)
+        {
+        }
+    }
+{code}
+
+The problem is in the '''DefaultComponentActivator.SelectEligibleConstructor''' method, which gives both constructors the same 100 points. Whichever comes first in the source code of the class, it will be selected, regardless of whether it can actually be resolved or not.
+
+My suggestion is to give priority to resolvable constructors over ''any'' non-resolvable.
+</value>
+    </field>
+    <field name="created">
+      <value>1282719483064</value>
+    </field>
+    <field name="updated">
+      <value>1283220838932</value>
+    </field>
+    <field name="reporterName">
+      <value>breki</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282811390642</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

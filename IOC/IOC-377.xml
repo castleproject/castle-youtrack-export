@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>By design</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>377</value>
+    </field>
+    <field name="summary">
+      <value>Bug on Transient?</value>
+    </field>
+    <field name="description">
+      <value>I am testing LifeStyle of windsor, spotted something - object is not tracked?: 
+(.net 4.0, castle 3.X)
+
+here is my test classes:
+/// &lt;summary&gt;
+		/// test class with references
+		/// &lt;/summary&gt;
+		public class Holder {
+			public Disposable DisposableReference {get;set;}
+			public NonDisposable NonDisposableReference {get; set;}
+		}
+
+		/// &lt;summary&gt;
+		/// disposable test class
+		/// &lt;/summary&gt;
+		public class Disposable : IDisposable {
+			public void Dispose(){
+				GC.SuppressFinalize(this);
+			}
+		} 
+
+		/// &lt;summary&gt;
+		/// non disposable test class
+		/// &lt;/summary&gt;
+		public class NonDisposable{
+			
+		}
+
+Unit Test - A:
+[TestMethod]
+		public void DefaultContainerTracksTransientWithDisposableReference() {
+
+			WeakReference weakHolder;
+
+		    var container = new WindsorContainer();
+
+                container.Register(Component.For(typeof(Holder)).Named("holder").LifeStyle.Is(LifestyleType.Transient));
+                container.Register(Component.For(typeof(Disposable)).Named("disposable").LifeStyle.Is(LifestyleType.Transient));
+
+
+                weakHolder = new WeakReference(container.Resolve&lt;Holder&gt;());
+
+                Assert.IsNotNull(((Holder)weakHolder.Target).DisposableReference);
+                Assert.IsTrue(weakHolder.IsAlive);
+
+                GC.Collect();
+                Assert.IsTrue(weakHolder.IsAlive);
+		    container.Dispose();
+
+		}
+
+Unit Test - B:
+
+	[TestMethod]
+		public void DefaultContainerTracksTransientWithSingletonDisposableReference() {
+
+			WeakReference weakHolder;
+
+		    var container = new WindsorContainer();
+                container.Register(Component.For(typeof(Holder)).Named("holder").LifeStyle.Is(LifestyleType.Transient));
+                container.Register(Component.For(typeof(Disposable)).Named("disposable").LifeStyle.Is(LifestyleType.Singleton));
+
+
+                weakHolder = new WeakReference(container.Resolve&lt;Holder&gt;());
+
+                Assert.IsNotNull(((Holder)weakHolder.Target).DisposableReference);
+                Assert.IsTrue(weakHolder.IsAlive);
+                GC.Collect();
+                Assert.IsTrue(container.Kernel.ReleasePolicy.HasTrack(weakHolder.Target));
+                Assert.IsTrue(weakHolder.IsAlive);
+            container.Dispose();
+        }
+
+According to http://docs.castleproject.org/Windsor.Release-Policy.ashx, both Tests should pass, but it turned that Only A passed. 
+
+A bug?
+
+Cheers, Bing</value>
+    </field>
+    <field name="created">
+      <value>1360358950566</value>
+    </field>
+    <field name="updated">
+      <value>1360375432619</value>
+    </field>
+    <field name="reporterName">
+      <value>icyice</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1360375432617</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Hmm,&#xA;&#xA;I guess we should clarify this in the doco better.&#xA;The fact that Release Policy doesn't track something, doesn't mean Windsor doesn't track it in some other way. Singletons are tracked by their activator for example." created="1360375414884" />
+  </issue>
+</issues>

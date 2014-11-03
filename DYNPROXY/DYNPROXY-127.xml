@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>127</value>
+    </field>
+    <field name="summary">
+      <value>Serialization/Deserialization inconsistence</value>
+    </field>
+    <field name="description">
+      <value>Both Serialization and Deserialization of a proxy instance uses the FormatterServices.GetSerializableMembers method to get the list of the members to serialize/deserialize. This method calls Type.GetFields method internally and the order of the members is not guaranteed to be the same for every call. As a result the members serialized inside the __data array (see ClassProxyInstanceContributor.CustomizeGetObjectData) risk to be deserialized in a different order by the ProxyObjectReference.DeserializeProxyMembers.
+One possible solution is to order the members returned by FormatterServices.GetSerializableMembers method alphabetical (or using another criterion) before serializing or deserializing the data.
+</value>
+    </field>
+    <field name="created">
+      <value>1264386561000</value>
+    </field>
+    <field name="updated">
+      <value>1266582754000</value>
+    </field>
+    <field name="reporterName">
+      <value>andreiagapie</value>
+    </field>
+    <field name="updaterName">
+      <value>andreiagapie</value>
+    </field>
+    <field name="resolved">
+      <value>1266582720000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Andrei,&#xA;&#xA;you're right. this is indeed relying on an undocumented behavior that while order is undetermined we assume it will be always the same.&#xA;&#xA;Has it been a real issue for you?&#xA;&#xA;Thanks for spotting this." created="1264387857000" />
+    <comment author="andreiagapie" text="Krzysztof,&#xA;&#xA;I have discovered the issue when I serialized an object containing the proxy and I deserialized it in another process. &#xA;&#xA;The reason is explained here : http://blogs.msdn.com/haibo_luo/archive/2006/07/09/661091.aspx . &#xA;&#xA;Thanks,&#xA;Andrei&#xA;" created="1264407757000" />
+    <comment author="andreiagapie" text="Hi Krzysztof,&#xA;I've attached also a simple test program. If you run the program, you will see that the fields are returned in the F1, F2 order.But if you change the line 16 into &#xA;&#xA;typeof(Program3).GetField(&quot;F2&quot;); // Line 16&#xA;&#xA;and you run again the program, you'll get the F2, F1 order.&#xA;&#xA;Andrei&#xA;" created="1264408522000" />
+    <comment author="xtoff" text="fixed (hopefully) in r6746" created="1266582754000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1266577020000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''3.0''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1266582720000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1266582720000" />
+    <comment author="andreiagapie" text="* '''Attachment''' Program3.cs added.&#xD;&#xA;" created="1264408380000" />
+  </issue>
+</issues>

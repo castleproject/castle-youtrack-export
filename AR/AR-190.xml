@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>190</value>
+    </field>
+    <field name="summary">
+      <value>Patch to retrieve a copy of the list of registered types from ActiveRecordStarter</value>
+    </field>
+    <field name="description">
+      <value>I have attached a patch to retrieve a copy of the list of types currently registered via means for ActiveRecordStarter.
+
+This patch adds a static function to ActiveRecordStarter:
+
+public static IList&lt;Type&gt; GetRegisteredTypes()
+
+Please let me know if there are any specific reasons for not wanting to do this.
+</value>
+    </field>
+    <field name="created">
+      <value>1194965813000</value>
+    </field>
+    <field name="updated">
+      <value>1209135792000</value>
+    </field>
+    <field name="reporterName">
+      <value>rickfleming</value>
+    </field>
+    <field name="updaterName">
+      <value>rickfleming</value>
+    </field>
+    <field name="resolved">
+      <value>1282136565401</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

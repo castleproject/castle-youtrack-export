@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.0 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>166</value>
+    </field>
+    <field name="summary">
+      <value>PerWebRequestLifeStyle doesn't work from Application_Start</value>
+    </field>
+    <field name="description">
+      <value>Services with the PerWebRequestLifeStyle will not work during initialization of the ASP.NET application. The problem is that the PerWebRequestLifeStyle relies on an HttpModule which is not initialized yet during the Application_Start event or at the time the Application.Init method is invoked.
+
+The result is a very descriptive (but incorrect) error message:
+
+Looks like you forgot to register the http module
+Castle.MicroKernel.Lifestyle.PerWebRequestLifestyleModule. [..]
+
+In addition to this the PerWebRequestLifeStyle breaks down during unit testing outside ASP.NET with the same exception.
+
+I realize that this lifestyle was not intended to be used outside of requests but it would be nice if this was handled more gracefully.
+I've blogged about the workaround I'm currently using which is to fall back to TransientLifeStyle during application startup and when there is no web context.
+(see http://blog.alanta.nl/2009/07/castle-perwebrequestlifestyle-wont-work.html)
+
+I've also posted this issue on the Castle Project Users discussion group (http://groups.google.com/group/castle-project-users/browse_thread/thread/d44d96f4b548611e#).
+
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1254627601000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838916</value>
+    </field>
+    <field name="reporterName">
+      <value>marnixvv</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1273758780000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Can this be fixed the way Mauricio mentioned in the above thread? Any other ideas?" created="1260777729000" />
+    <comment author="xtoff" text="StructureMap has Hybrid PerWebRequest with fallback to PerThread lifestyle.&#xA;Would this one be better than fallback to transient? Any better ideas?" created="1262411991000" />
+    <comment author="marnixvv" text="I don't think PerThread lifestyle is appropriate here because ASP.NET requests are serviced by a thread pool. Since the threads are kept alive the instances created during application startup would not be released." created="1262509514000" />
+    <comment author="jsimons" text="Haven't tested this theory but,&#xA;Can't we test if the current HttpContext.Current has a Session and if it doesn't(should only have a session if it is running after BeginRequest step) throw the appropriate error message?" created="1262530714000" />
+    <comment author="xtoff" text="I'm not sure we want to throw rather than downgrade gracefully..." created="1262530903000" />
+    <comment author="jsimons" text="This facility supported lifecycle is during a web request, the use of this facility outside PWR should not be supported. and because of that I definitely think we should throw," created="1262531225000" />
+    <comment author="jsimons" text="Added a patch that throws different error message if Resolve is called outside ASP.Net Request life cycle." created="1262566740000" />
+    <comment author="xtoff" text="Ok, John, this is a valid argument. However from user's perspective &quot;don't do it&quot; may not be a valid answer.&#xA;&#xA;We might perhaps provide a custom lifestyle that uses per-web-request if within request and falls back to some other lifestyle otherwise?" created="1262568166000" />
+    <comment author="jsimons" text="Well, if you going to do that, what lifestyle do you fall back to? Do u make it configurable?&#xA;I guess, my argument is that this lifestyle is to be used for this purpose(PWR) and this purpose only, if used incorrectly it should throw, and in my opinion if you use it outside of a web request then you are using it incorrectly.&#xA;I think by implementing a workaround, you are changing the expected behaviour which quite possible can introduce hard to diagnose bugs.&#xA;&#xA;" created="1262569096000" />
+    <comment author="xtoff" text="I'm thinking about something like this: http://gist.github.com/268402&#xA;That's quite single purpose, but that should do it.&#xA;We'd have a Per-web-request with your patch, and a WebRequestWithScopedFallback or whatever for this case...&#xA;&#xA;Although when I think about it now, it feels like a lot of work to do a very small thing... perhaps we should just leave it up as sample and point people to it when they really need to implement this..." created="1262572535000" />
+    <comment author="jsimons" text="I agree, a sample is the right choice.&#xA;And happy that you are thinking of leaving PerWebRequestLifestyle the way it is :)&#xA;" created="1262611725000" />
+    <comment author="xtoff" text="OK, so let's leave it as is, and add entry to FAQ pointing to &quot;how to create my own lifestyle&quot; article" created="1273758797000" />
+    <comment author="jsimons" text="* '''Attachment''' PerWebRequestLifestyleManager.patch added.&#xD;&#xA;" created="1262566620000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1273758780000" />
+  </issue>
+</issues>

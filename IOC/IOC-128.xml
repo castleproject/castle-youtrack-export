@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>128</value>
+    </field>
+    <field name="summary">
+      <value>The ImplementedBy&lt;C&gt;() of ComponentRegistration is not type safe</value>
+    </field>
+    <field name="description">
+      <value>The type C should derive from S in order to achive type compatibility</value>
+    </field>
+    <field name="created">
+      <value>1214648603000</value>
+    </field>
+    <field name="updated">
+      <value>1228853091000</value>
+    </field>
+    <field name="reporterName">
+      <value>tehlike</value>
+    </field>
+    <field name="updaterName">
+      <value>tehlike</value>
+    </field>
+    <field name="resolved">
+      <value>1228853040000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="alwin" text="I made a _very_ simple patch for this." created="1227652456000" />
+    <comment author="ayenderahien" text="thanks" created="1228853092000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228853040000" />
+  </issue>
+</issues>

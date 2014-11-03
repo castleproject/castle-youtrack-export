@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>304</value>
+    </field>
+    <field name="summary">
+      <value>ARDataBind's container test, clear and creation not general enough</value>
+    </field>
+    <field name="description">
+      <value>IsContainer, ClearContainer and CreateContainer do not properly handle ICollection&lt;&gt; properties, so when binding an AR association is null if return type is ICollection&lt;&gt;. Currently only handles ISet and IList, should allow ICollection (NH doesn't currently handle the System ISet properly, but when it does, ARDataBind should also).</value>
+    </field>
+    <field name="created">
+      <value>1315075932848</value>
+    </field>
+    <field name="updated">
+      <value>1414999797448</value>
+    </field>
+    <field name="reporterName">
+      <value>rbellamy</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999797443</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="rbellamy" text="I just figured out why I was using ICollection&lt;&gt; rather than ISet&lt;&gt; or IList&lt;&gt; - with ICollection&lt;&gt; I can serialize collections without any special code. Now that I've made my model with ARDataBind, I can no longer serialize my objects just by setting [Serializable]. I realize that best practice is to have a serialization-friendly model which I map to and from for serialization, but that begs the question." created="1315791359708" />
+    <comment author="jonorossi" text="ActiveRecord is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/ActiveRecord/issues" created="1414999797449" />
+  </issue>
+</issues>

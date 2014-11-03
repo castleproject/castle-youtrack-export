@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Documentation</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>194</value>
+    </field>
+    <field name="summary">
+      <value>broken link - cannot access the documentation for latest release (RC2)</value>
+    </field>
+    <field name="description">
+      <value>On this page: http://www.castleproject.org/activerecord/documentation/index.html 
+I tried to access the documentation for the latest release (RC2).
+It is a broken link</value>
+    </field>
+    <field name="created">
+      <value>1197116799000</value>
+    </field>
+    <field name="updated">
+      <value>1218547367000</value>
+    </field>
+    <field name="reporterName">
+      <value>joep</value>
+    </field>
+    <field name="updaterName">
+      <value>joep</value>
+    </field>
+    <field name="resolved">
+      <value>1218547320000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="Removed broken link.&#xA;&#xA;I'm about preparing docs for a future release. Please use RC1 docs or ugrade to trunk (recommended)" created="1218513374000" />
+    <comment author="mzywitza" text="Fixed by removing the broken link. Please either use docs for v1rc1 or update to trunk (recommended)" created="1218547367000" />
+    <comment author="mzywitza" text="* '''Created''' set to ''19/06/2005 13:56:28''.&#xD;&#xA;* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Work Stopped'' to ''Resolved''.&#xD;&#xA;" created="1218547320000" />
+    <comment author="mzywitza" text="* '''Created''' set to ''17/06/2005 07:23:14''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1218513180000" />
+    <comment author="mzywitza" text="* '''Created''' set to ''19/06/2005 02:53:08''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Work Stopped''.&#xD;&#xA;" created="1218513420000" />
+  </issue>
+</issues>

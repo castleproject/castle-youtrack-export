@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Javascript Libraries</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>269</value>
+    </field>
+    <field name="summary">
+      <value>EventSelectors support, with convention-based support for event view files</value>
+    </field>
+    <field name="description">
+      <value>This adds support for Event Selectors (http://encytemedia.com/event-selectors/), which is based on Prototypes $$ function. apart from IMHO being better/cleaner, the patch adds:
+
+an EventSelectorsController which concatenates and outputs all the relevant EventSelectors for the Area/Controller/Action. It searches through the app/views/EventSelectors directory for:
+default.js
+Area/default.js
+Area/Controller/default.js
+Area/Controller/Action.js
+
+and builds them into one file, like so:
+********************************
+EventSelectors.Rules = [];
+
+EventSelectors.Rules.push(
+{
+    "div#hello": function(e)
+    {
+    }
+});
+
+EventSelectors.Rules.push(
+{
+    "a#NewDatabase:click": function(e)
+    {
+        Event.stop(e);
+        alert("clicked");
+    }
+});
+**************
+
+and an EventSelectorsHelper which exposes methods to output the relevant script tags to bring it into the page being viewed.</value>
+    </field>
+    <field name="created">
+      <value>1181725245000</value>
+    </field>
+    <field name="updated">
+      <value>1263047444000</value>
+    </field>
+    <field name="reporterName">
+      <value>nihm</value>
+    </field>
+    <field name="updaterName">
+      <value>nihm</value>
+    </field>
+    <field name="resolved">
+      <value>1263047400000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="This should be a contrib project" created="1263047436000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1263047400000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263047400000" />
+  </issue>
+</issues>

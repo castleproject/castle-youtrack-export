@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Transaction</value>
+    </field>
+    <field name="Fix versions">
+      <value>v2.2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>16</value>
+    </field>
+    <field name="summary">
+      <value>Upgrade to use Castle.Core 1.2</value>
+    </field>
+    <field name="description">
+      <value>Upgrade to depend on Castle.Core 1.2.</value>
+    </field>
+    <field name="created">
+      <value>1263831945000</value>
+    </field>
+    <field name="updated">
+      <value>1272932818000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsmorris</value>
+    </field>
+    <field name="updaterName">
+      <value>jsmorris</value>
+    </field>
+    <field name="resolved">
+      <value>1272932760000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsmorris" text="The upgraded binaries were copied from the monorail 2.0 release." created="1263832042000" />
+    <comment author="henke" text="Uses binaries for 1.2." created="1272932814000" />
+    <comment author="henke" text="DOne" created="1272932818000" />
+    <comment author="jsmorris" text="* '''Attachment''' UpgradeCastleCore1_2.patch added.&#xD;&#xA;" created="1263851220000" />
+    <comment author="henke" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''v2.2''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1272932760000" />
+    <comment author="henke" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1272932760000" />
+  </issue>
+</issues>

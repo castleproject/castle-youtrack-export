@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>EmailSender</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>34</value>
+    </field>
+    <field name="summary">
+      <value>Error sending mail when using Mono 2.0</value>
+    </field>
+    <field name="description">
+      <value>I upgraded to to the trunk recently and found that when I tried to send mail using the EmailSender component that I was getting an error saying that smtp Authentication failed, which I am not using.  I found that I had to set smtpClient.Credentials explicitly to null.  Otherwise Mono tries to send Authentication to the smtp server.  This patch fixed the problem.
+
+Thanks
+Bryan</value>
+    </field>
+    <field name="created">
+      <value>1183820254000</value>
+    </field>
+    <field name="updated">
+      <value>1243728535000</value>
+    </field>
+    <field name="reporterName">
+      <value>kasper22</value>
+    </field>
+    <field name="updaterName">
+      <value>kasper22</value>
+    </field>
+    <field name="resolved">
+      <value>1243728480000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="Added a new version of the same patch that works against the trunk.&#xA;Also, I'm not too sure if it is still required with latest mono, but may as well have it." created="1243727859000" />
+    <comment author="roelofb" text="Applied in r5727" created="1243728531000" />
+    <comment author="jsimons" text="* '''Attachment''' UpdatedPatchToWorkWithTrunk.patch added.&#xD;&#xA;" created="1243727760000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1243728480000" />
+    <comment author="roelofb" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1243728480000" />
+  </issue>
+</issues>

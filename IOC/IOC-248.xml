@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generics</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>248</value>
+    </field>
+    <field name="summary">
+      <value>Open generic components with multiple services, some of which are generic fail to properly instantiate in certain cases</value>
+    </field>
+    <field name="description">
+      <value>If we have a open component exposing multiple services and some of these services are open generics, we may resolve the first one registered, but resolving any other will fail, because Windsor will not be able to properly figure out how to close the open generic type. In some overloads of Resolve it actually may not be able because they give it too little (I mean none at all) information about the type.
+
+{code lang=java}
+Container.Register(
+    Component.For&lt;IRepository&gt;().Forward(typeof(IRepository&lt;&gt;))
+        .ImplementedBy(typeof(Repository&lt;&gt;))
+    );
+
+Container.Resolve&lt;Generics.IRepository&lt;A&gt;&gt;();
+{code}</value>
+    </field>
+    <field name="created">
+      <value>1289893817333</value>
+    </field>
+    <field name="updated">
+      <value>1407822257318</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1289900400568</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

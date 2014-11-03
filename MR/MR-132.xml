@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>132</value>
+    </field>
+    <field name="summary">
+      <value>Accessing ressources in BeforeAction filters</value>
+    </field>
+    <field name="description">
+      <value>Hi,
+
+    I'm currently using Filters to keep in one place some redundant checks used by my controllers.
+Since I'm developing a multilingual website, I'm also using resources files to retrieve things like error messages.
+I've noticed that if a filter is set to "BeforeAction" execution, the controller.Resources property available in the Perform method is set to null, while if I set this same filter to "AfterAction", it is correctly initialized.
+Is it a design decision ? It seems rather strange to be unable to use the Resources property in a BeforeAction filter.</value>
+    </field>
+    <field name="created">
+      <value>1154422178000</value>
+    </field>
+    <field name="updated">
+      <value>1162414036000</value>
+    </field>
+    <field name="reporterName">
+      <value>ketzal</value>
+    </field>
+    <field name="updaterName">
+      <value>ketzal</value>
+    </field>
+    <field name="resolved">
+      <value>1282143472573</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

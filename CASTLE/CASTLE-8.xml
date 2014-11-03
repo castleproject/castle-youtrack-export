@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>8</value>
+    </field>
+    <field name="summary">
+      <value>MR Project Wizards : add handles to hide view files</value>
+    </field>
+    <field name="description">
+      <value>This must be used and encouraged more widely
+
+For nvelocity view engine:
+
+       &lt;add verb="*" path="*.vm" type="System.Web.HttpForbiddenHandler"/&gt;
+
+For brail
+
+       &lt;add verb="*" path="*.boo" type="System.Web.HttpForbiddenHandler"/&gt;</value>
+    </field>
+    <field name="created">
+      <value>1152705294000</value>
+    </field>
+    <field name="updated">
+      <value>1158040468000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282137235151</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

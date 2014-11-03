@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>572</value>
+    </field>
+    <field name="summary">
+      <value>DefaultViewComponentFactory.Service fails to Inspect assemblies from ViewComponentsConfig</value>
+    </field>
+    <field name="description">
+      <value>The DefaultViewComponentFactory.Service method in the trunk branch of Monorail does not seem to Inspect assemblies configured via the &lt;monorail&gt; configuration (with Windsor integration disabled) in order to load their ViewComponents.
+
+The problem seems to be caused by this commit: https://github.com/castleproject/Castle.MonoRail/commit/753a24d577ae931d45896e3417f16dcc656cd0ba
+
+Attached is a patch with a test case which demonstrates the problem, and also a possible fix (or at least a workaround).</value>
+    </field>
+    <field name="created">
+      <value>1288874262619</value>
+    </field>
+    <field name="updated">
+      <value>1414999329428</value>
+    </field>
+    <field name="reporterName">
+      <value>John.Surcombe</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999329424</value>
+    </field>
+    <field name="voterName">
+      <value>Kieran.Senior</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-624[up-to-date]</value>
+      <value>User: id = 20-625[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="MonoRail2 is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/MonoRail/issues" created="1414999329430" />
+  </issue>
+</issues>

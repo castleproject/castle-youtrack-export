@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>.NET 2.0 Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0 Beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0 Alpha</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>41</value>
+    </field>
+    <field name="summary">
+      <value>Invalid state exception on DP2</value>
+    </field>
+    <field name="description">
+      <value>Reported on the forum http://forum.castleproject.org/viewtopic.php?p=4645
+
+Quoting
+
+Th chunky error message below has started appearing on one of my live websites. It doesn't happen instantly - if I recycle the asp.net process it runs happily for a while (an hour or so) then crashes. I updated it over the weekend to the latest trunk code as that's all working fine for me on my development system (which is all MonoRail, this live site is an unfortunate hybrid - *don't ask*). I'm going to revert back to an older revision which should fix it, but just in case I thought I'd post it here:
+
+Code:
+[ArgumentNullException: Invalid internal state.]
+   System.Reflection.Emit.TypeBuilder.InternalSetMethodIL(Int32 methodHandle, Boolean isInitLocals, Byte[] body, Byte[] LocalSig, Int32 sigLength, Int32 maxStackSize, Int32 numExceptions, __ExceptionInstance[] exceptions, Int32[] tokenFixups, Int32[] rvaFixups, Module module) +0
+   System.Reflection.Emit.TypeBuilder.CreateTypeNoLock() +1025
+   System.Reflection.Emit.TypeBuilder.CreateType() +94
+   Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType() +40
+   Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode(Type proxyTargetType, Type[] interfaces, ProxyGenerationOptions options) +2876
+   Castle.DynamicProxy.DefaultProxyBuilder.CreateInterfaceProxyTypeWithTarget(Type theInterface, Type[] interfaces, Type targetType, ProxyGenerationOptions options) +168
+   Castle.DynamicProxy.ProxyGenerator.CreateInterfaceProxyWithTarget(Type theInterface, Type[] interfaces, Object target, ProxyGenerationOptions options, IInterceptor[] interceptors) +212
+   Castle.Windsor.Proxy.DefaultProxyFactory.Create(IKernel kernel, Object target, ComponentModel model, Object[] constructorArguments) +234
+   Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, Object[] arguments, Type[] signature) +275
+
+[ComponentActivatorException: ComponentActivator: could not proxy BarkingSpiders.Barfly.Data.Domain.ArtistDao]
+   Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, Object[] arguments, Type[] signature) +365
+   Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.Instantiate(CreationContext context) +49
+   Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context) +15
+   Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context) +10
+   Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context) +10
+   Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context) +70
+   Castle.MicroKernel.Resolvers.DefaultDependencyResolver.ResolveServiceDependency(CreationContext context, ComponentModel model, DependencyModel dependency) +231
+   Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(CreationContext context, ISubDependencyResolver parentResolver, ComponentModel model, DependencyModel dependency) +365
+   Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.SetUpProperties(Object instance, CreationContext context) +209
+   Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context) +27
+   Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context) +10
+   Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context) +10
+   Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context) +70
+   Castle.MicroKernel.DefaultKernel.get_Item(Type service) +75
+   Castle.Windsor.WindsorContainer.Resolve(Type service) +10
+   Castle.Windsor.WindsorContainer.get_Item(Type service) +4
+   BarkingSpiders.Barfly.Web.HttpHandlers.PageHandler.RegisterAspxPage(IHttpHandler handler) in C:\Dev\Source\Barking Spiders\Trac\AspNetBarfly\trunk\src\Web\HttpHandlers\PageHandler.cs:40
+   BarkingSpiders.Barfly.Web.HttpHandlers.PageHandler.ProcessRequest(HttpContext context) in C:\Dev\Source\Barking Spiders\Trac\AspNetBarfly\trunk\src\Web\HttpHandlers\PageHandler.cs:81
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +154
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +64</value>
+    </field>
+    <field name="created">
+      <value>1165858596000</value>
+    </field>
+    <field name="updated">
+      <value>1167089945000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282140642213</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

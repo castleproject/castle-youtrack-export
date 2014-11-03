@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Wcf</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>161</value>
+    </field>
+    <field name="summary">
+      <value>Explicitly applied IErrorHandler is called twice for every operation</value>
+    </field>
+    <field name="description">
+      <value>when an {{IErrorHandler}} is registered with {{.Attribute("scope").Eq(WcfExtensionScope.Explicit)}} and then applied to a service, it is called twice for every failed operation.
+
+This doesn't happen when it's applied implicitly.
+
+Looks like when specified explicitly for a service, the error handler is applied twice, at two levels:
+- for service
+- for endpoint
+
+hence the duplication</value>
+    </field>
+    <field name="created">
+      <value>1349854337741</value>
+    </field>
+    <field name="updated">
+      <value>1396695037411</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1396695037394</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

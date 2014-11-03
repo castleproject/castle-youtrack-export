@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>182</value>
+    </field>
+    <field name="summary">
+      <value>Adds FormTo and LinkToWithPost methods to HtmlHelper</value>
+    </field>
+    <field name="description">
+      <value>This patch adds new variants of the existing Form and LinkTo helper methods. The first is FormTo which creates an opening Form tag in the style of the LinkTo method.The second is LinkToWithPost which creates a Link tag that posts using a hidden form element and, optionally, includes a confirmation popup alert.
+
+There are currently no tests for the new methods (as is the case for most of the methods in this class) as I'm not clear on how to satisfy the Controller dependency of HtmlHelper, a dependency which the new methods rely on. I think it would be a good idea to extract an interface from Controller to further decouple things and facilitate easier mocking of said dependency. I'm not yet confident enough to perform this refactoring however :-)
+
+Cheers,
+
+/\ndrew.</value>
+    </field>
+    <field name="created">
+      <value>1165044522000</value>
+    </field>
+    <field name="updated">
+      <value>1263055695000</value>
+    </field>
+    <field name="reporterName">
+      <value>andrew</value>
+    </field>
+    <field name="updaterName">
+      <value>andrew</value>
+    </field>
+    <field name="resolved">
+      <value>1282143617807</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055680000" />
+  </issue>
+</issues>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle.MonoRail.Rest</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>114</value>
+    </field>
+    <field name="summary">
+      <value>REST Support bug in AcceptType =&gt; won't parse Q according to regional settings</value>
+    </field>
+    <field name="description">
+      <value>Just passing CultureInfo.InvariantCulture at line 47:
+
+at.Q = parms.Length == 2 ? Convert.ToSingle(parms[1].Substring(2), CultureInfo.InvariantCulture) : 1;</value>
+    </field>
+    <field name="created">
+      <value>1207385647000</value>
+    </field>
+    <field name="updated">
+      <value>1414392077607</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414392077571</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

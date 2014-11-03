@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>3</value>
+    </field>
+    <field name="summary">
+      <value>Fix order of LogLevel enum</value>
+    </field>
+    <field name="description">
+      <value>Jeff Brown &lt;Jeff@ingenio.com&gt;, from devel-list, notes:
+
+The Castle.Core.Logging.LoggerLevel enum as currently defined has the
+following ordering of severities:
+
+Off &gt; Fatal &gt; Error &gt; Info &gt; Warn &gt; Debug
+
+Notice that Info is considered to have greater severity than Warn.  I
+think this is backwards to common usage...
+
+Any reason it should be this way?  Can we flip those two around?
+
+Also, since the enum values are order dependent, we should probably
+explicitly assign them so someone doesn't just up and alphabetize them.</value>
+    </field>
+    <field name="created">
+      <value>1158607295000</value>
+    </field>
+    <field name="updated">
+      <value>1162411191000</value>
+    </field>
+    <field name="reporterName">
+      <value>jeff@ingenio.com</value>
+    </field>
+    <field name="updaterName">
+      <value>jeff@ingenio.com</value>
+    </field>
+    <field name="resolved">
+      <value>1282140359729</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

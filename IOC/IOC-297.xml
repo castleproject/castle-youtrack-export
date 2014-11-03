@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>297</value>
+    </field>
+    <field name="summary">
+      <value>Container should throw an exception if a "primitive type" is registered as a service, since it will not be resolved</value>
+    </field>
+    <field name="description">
+      <value>According to http://docs.castleproject.org/Windsor.Windsor-Tutorial-Part-Nine-Diagnosing-missing-dependency-issues.ashx, certain "primitive types" will not be used during resolution, and cannot therefore be service types. "However in fact it is an int, - a primitive type, which can not be registered as a component hence we know it's a parameter."
+
+1) It would be good to understand just what those primitive types are
+2) The container should complain if someone attempts to do so. That is, this code should throw an exception where it doesn't now
+
+    container.Register(Component.For&lt;string&gt;().Instance("hello"));
+</value>
+    </field>
+    <field name="created">
+      <value>1305841066358</value>
+    </field>
+    <field name="updated">
+      <value>1312798897989</value>
+    </field>
+    <field name="reporterName">
+      <value>sebastiang</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1312798897942</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="It is already implemented (in a way at least). Windsor will not allow you to register value types as services or their implementation via strongly typed API." created="1311068403525" />
+  </issue>
+</issues>

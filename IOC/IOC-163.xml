@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>163</value>
+    </field>
+    <field name="summary">
+      <value>when i rebuild my project, the "ASP.NET Development Server" crash</value>
+    </field>
+    <field name="description">
+      <value>I used MicroKernel-Windsor in my project, but when i rebuild my project, the "ASP.NET Development Server" is crash. why?</value>
+    </field>
+    <field name="created">
+      <value>1248636861000</value>
+    </field>
+    <field name="updated">
+      <value>1260851036000</value>
+    </field>
+    <field name="reporterName">
+      <value>Shawer</value>
+    </field>
+    <field name="updaterName">
+      <value>Shawer</value>
+    </field>
+    <field name="resolved">
+      <value>1260850980000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Shawer, please post your issue on the Castle users mailing list, so that we have a chance to determine if this is a Castle bug. Are you able to isolate it to a simple web application project we can look at?" created="1248639918000" />
+    <comment author="xtoff" text="Did this ever get resolved?" created="1260777615000" />
+    <comment author="jonorossi" text="Not that I recall, I think we should just close this issue as invalid." created="1260850813000" />
+    <comment author="Shawer" text="Sorry, I haven't receive email notice at the last time, thanks for reply and close the issue please. It's not a issue." created="1260854264000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1260850980000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1260850980000" />
+  </issue>
+</issues>

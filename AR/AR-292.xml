@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>292</value>
+    </field>
+    <field name="summary">
+      <value>If ActiveRecord's class has name Update or (may be) other TransactSQL reserved word - generated queries are fail</value>
+    </field>
+    <field name="description">
+      <value>Example:
+
+{code lang=java}
+[ActiveRecord(Table = "Update")]
+	public class Update : ReflectedActiveRecordBase&lt;Update&gt;
+	{
+		[PrimaryKey]
+		public int UpdateID { get; set; }
+
+		[Property("ClientID")]
+		public Guid ClientID { get; set; }
+
+		[Property("ReleaseDate")]
+		public DateTime ReleaseDate { get; set; }
+
+		[Property("IsPublished")]
+		public bool IsPublished { get; set; }
+
+		[OneToOne]
+		public Version VersionFrom { get; set; }
+
+		[OneToOne]
+		public Version VersionTo { get; set; }
+	}
+{code}
+
+It generates this query:
+
+SELECT this_.UpdateID as UpdateID1_1_, this_.ClientID as ClientID1_1_, this_.ReleaseDate as ReleaseD3_1_1_, this_.IsPublished as IsPublis4_1_1_, version2_.VersionID as VersionID3_0_, version2_.AppVersion as AppVersion3_0_, version2_.DbVersion as DbVersion3_0_ FROM Update this_ left outer join Version version2_ on this_.UpdateID=version2_.VersionID
+
+
+It fails, because word Update must be [Update]</value>
+    </field>
+    <field name="created">
+      <value>1288773883213</value>
+    </field>
+    <field name="updated">
+      <value>1288979209492</value>
+    </field>
+    <field name="reporterName">
+      <value>T</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1288979188160</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="T" text="There is quick fix for this? " created="1288774512057" />
+    <comment author="dabuddhaman" text="use the Grave accent&#xA;&#xA;example: &#xA;&#xA;{code lang=java}&#xA;&#xA; [ActiveRecord(Table = &quot;`Update`&quot;)]&#xA;&#xA;{code}&#xA;" created="1288953676260" />
+    <comment author="henry" text="Next time, please, use the mailing list for support." created="1288979209492" />
+  </issue>
+</issues>

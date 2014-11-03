@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>102</value>
+    </field>
+    <field name="summary">
+      <value>Intercept non-virtual interface implementation</value>
+    </field>
+    <field name="description">
+      <value>Be able to intercept the non-virtual interface implementation method. Below is an
+example, can DP do something what MyProxy does?
+
+    public interface ICommon { void Foo(); }
+
+    public class ThirdParty : ICommon {
+        public void Foo() { Console.WriteLine("From 3rd Party."); }
+        /* other additional features */
+    }
+
+    public class MyProxy : ThirdParty, ICommon {
+        void ICommon.Foo() {
+            Console.WriteLine("From proxy.");
+            base.Foo();
+        }
+    } 
+
+For more detail see Krzysztof Kozmic's comment here: http://groups.google.com/group/RhinoMocks/browse_thread/thread/d8e75f6d0a7b4063/395aa317ef97a20b
+
+And a test case originally created by  	 	
+Tuna Toksoz:
+
+    public class ThirdParty : IComparable
+    {
+        public int CompareTo(object obj)
+        {
+            return 0;
+        }
+    }
+    public class MyInterceptor : IInterceptor
+    {
+        public void Intercept(IInvocation invocation)
+        {
+            invocation.ReturnValue = 1;
+        }
+    }
+    public class NoopInterceptor : IInterceptor
+    {
+        public void Intercept(IInvocation invocation)
+        {
+            invocation.Proceed();
+        }
+    }
+
+    [TestFixture]
+    public class NonVirutalInterfaceImplemantationTest
+    {
+
+        [Test]
+        public void CanInterceptInterface()
+        {
+            var generator = new ProxyGenerator();
+            var interceptor = new MyInterceptor();
+            var proxied = generator.CreateClassProxy&lt;ThirdParty&gt;(interceptor) as IComparable;
+            Assert.IsTrue(proxied is ThirdParty);
+            var result = proxied.CompareTo(null);
+            Assert.AreEqual(1, result);
+        }
+
+        [Test]
+        public void CanProceedToOriginalImplementation()
+        {
+            var generator = new ProxyGenerator();
+            var interceptor = new NoopInterceptor();
+
+            var proxied = generator.CreateClassProxy&lt;ThirdParty&gt;(interceptor) as IComparable;
+            Assert.IsTrue(proxied is ThirdParty);
+            var result = proxied.CompareTo(null);
+            Assert.AreEqual(0, result);
+        }
+    }
+</value>
+    </field>
+    <field name="created">
+      <value>1246612674000</value>
+    </field>
+    <field name="updated">
+      <value>1247371305000</value>
+    </field>
+    <field name="reporterName">
+      <value>kennethxu</value>
+    </field>
+    <field name="updaterName">
+      <value>kennethxu</value>
+    </field>
+    <field name="resolved">
+      <value>1247371260000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Fixed in 5860" created="1247371300000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1247232240000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Work Started'' to ''Work Stopped''.&#xD;&#xA;" created="1247234700000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Work Stopped'' to ''Resolved''.&#xD;&#xA;" created="1247371260000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1247371260000" />
+  </issue>
+</issues>

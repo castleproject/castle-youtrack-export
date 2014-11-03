@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>548</value>
+    </field>
+    <field name="summary">
+      <value>JSCombiner doesn't support extension less urls</value>
+    </field>
+    <field name="description">
+      <value>The recent committed CombineJS ViewComponent, when generates urls for the css and javascript doesn't check if it should use an extension or not.</value>
+    </field>
+    <field name="created">
+      <value>1251068110000</value>
+    </field>
+    <field name="updated">
+      <value>1252630088000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1252630080000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="on rev 5968" created="1252630080000" />
+    <comment author="jsimons" text="* '''Attachment''' JSCombiner.patch added.&#xD;&#xA;" created="1251068160000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1252630020000" />
+    <comment author="kenegozi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1252630080000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1252630080000" />
+  </issue>
+</issues>

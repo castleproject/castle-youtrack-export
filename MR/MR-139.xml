@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>139</value>
+    </field>
+    <field name="summary">
+      <value>ExceptionChainingExtension doesn´t handle unhandled exceptions</value>
+    </field>
+    <field name="description">
+      <value>I've extended the exception chaining to unhandled exceptions as well.  The ExceptionChainingExtension now marks the context when it handles an exception and always checks it it has previously processed the exception and does nothing if so.
+
+I also added an interface (IExceptionProcessor ... not sure about the naming though) that ExceptionChaingingExtension implements and provides a way to manualy trigger the chaining.  EngineContextModule now provides extension with a IServiceContainer (the module itself) when initializing so extension can register services.  And ExceptionChainigExtension registers itself as IExceptionProcessor
+
+to access IExceptionProcessor from Controller and trigger
+
+IExceptionProcessor exProcessor = 
+     (IExceptionProcessor)this.ServiceProvider.GetService(typeof(IExceptionProcessor));
+exProcessor.ProcessException(myException);
+
+I've included the patch</value>
+    </field>
+    <field name="created">
+      <value>1156611505000</value>
+    </field>
+    <field name="updated">
+      <value>1162413142000</value>
+    </field>
+    <field name="reporterName">
+      <value>freyzor</value>
+    </field>
+    <field name="updaterName">
+      <value>freyzor</value>
+    </field>
+    <field name="resolved">
+      <value>1282143482323</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

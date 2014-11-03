@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>460</value>
+    </field>
+    <field name="summary">
+      <value>AjaxAction proxy generating fails with JSONBinder</value>
+    </field>
+    <field name="description">
+      <value>PrototypeAjaxProxyGenerator throws a NullReferenceException when a AjaxAction controller method parameter is bound with JSonBinder.  From what I can see in the source, JSONBinderAttribute class no longer has a public EntryKey property, and PrototypeAjaxProxyGenerator.cs is looking explicitly for that in line 174, which causes the problem. the fix should be to resurrect the public EntryKey property in JSonBinder.
+
+
+[NullReferenceException: Object reference not set to an instance of an object.]
+   Castle.MonoRail.Framework.Services.AjaxProxyGenerator.PrototypeAjaxProxyGenerator.GetPropertyValue(Object obj, String propName) in c:\ccnet\CastleWorkDir\WorkingDirectory\MonoRail\Castle.MonoRail.Framework\Services\AjaxProxyGenerator\PrototypeAjaxProxyGenerator.cs:260
+   Castle.MonoRail.Framework.Services.AjaxProxyGenerator.PrototypeAjaxProxyGenerator.GenerateJSProxy(IEngineContext context, String proxyName, String area, String controller) in c:\ccnet\CastleWorkDir\WorkingDirectory\MonoRail\Castle.MonoRail.Framework\Services\AjaxProxyGenerator\PrototypeAjaxProxyGenerator.cs:174
+   Castle.MonoRail.Framework.Helpers.AjaxHelper.GenerateJSProxy(String proxyName, String area, String controller) in c:\ccnet\CastleWorkDir\WorkingDirectory\MonoRail\Castle.MonoRail.Framework\Helpers\AjaxHelper.cs:159
+   Castle.MonoRail.Framework.Helpers.AjaxHelper.GenerateJSProxy(String proxyName) in c:\ccnet\CastleWorkDir\WorkingDirectory\MonoRail\Castle.MonoRail.Framework\Helpers\AjaxHelper.cs:138
+</value>
+    </field>
+    <field name="created">
+      <value>1213125266000</value>
+    </field>
+    <field name="updated">
+      <value>1244676769000</value>
+    </field>
+    <field name="reporterName">
+      <value>gojko</value>
+    </field>
+    <field name="updaterName">
+      <value>gojko</value>
+    </field>
+    <field name="resolved">
+      <value>1282145735666</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676720000" />
+  </issue>
+</issues>

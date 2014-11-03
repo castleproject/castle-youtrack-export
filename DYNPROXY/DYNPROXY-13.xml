@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>13</value>
+    </field>
+    <field name="summary">
+      <value>CreateProxy(Type theInterface, IInterceptor interceptor) </value>
+    </field>
+    <field name="description">
+      <value>There are some cases I don't need to use invocation.Proceed(args) at all in the Intercept method so I don't want to provide third parameter named "target" what is obligatory now.
+
+I think I can cheat current implementation by passing as "target" something that's not null i.e. empty string.
+
+For example call:
+proxyGenerator.CreateProxy(typeof(IMyInterface), myInterceptor, "not null object :)");
+
+seems working good, but there is trace output:
+
+"Target class does not offer the method Method1Target class does not offer the method Method1Target class does not offer the method Method2Target class does not offer the method Method2"
+
+and it is not professional :)
+
+------------------------------------------------------------------------------------
+
+using System;
+using Castle.DynamicProxy;
+using System.Diagnostics;
+
+namespace Test
+{
+    static class Program
+    {
+        [STAThread]
+        static void Main()
+        {
+            ProxyGenerator pg = new ProxyGenerator();
+            IMyInterface x = (IMyInterface)pg.CreateProxy(typeof(IMyInterface), new MyInterceptor(), "");
+            x.Method1();
+            x.Method2();
+        }
+    }
+
+
+    public interface IMyInterface
+    {
+        void Method1();
+        void Method2();
+    }
+
+
+
+    public class MyInterceptor : IInterceptor
+    {
+        #region IInterceptor Members
+
+        public object Intercept(IInvocation invocation, params object[] args)
+        {
+            Trace.WriteLine(invocation.Method.Name);
+            return null;
+        }
+
+        #endregion
+    }
+}
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1129522113000</value>
+    </field>
+    <field name="updated">
+      <value>1162411401000</value>
+    </field>
+    <field name="reporterName">
+      <value>wojtek</value>
+    </field>
+    <field name="updaterName">
+      <value>wojtek</value>
+    </field>
+    <field name="resolved">
+      <value>1282140550541</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

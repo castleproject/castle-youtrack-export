@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>91</value>
+    </field>
+    <field name="summary">
+      <value>ContextBoundObject's context is not bound when object is created by MicroKernel</value>
+    </field>
+    <field name="description">
+      <value>Assume we have service A registered in MicroKernel, we are now in some Context (System.Threading.Thread.CurrentContext) other than DefaultContext. We then Container.Resolve () service A, so that MicroKernel creates object of type A (for simplicity, let A be Transient, but I am trying to create PerContext lifestyle). Constructor of the object still shows, that we are in different context. Later, when we are in DefaultContext, we call a method of the service. If Context is bound properly to the object, CurrentContext should change, but it doesn't.
+
+The problem is probably that the object is not activated properly. I see these lines in DefaultComponentActivator.cs:
+
+                                        ConstructorInfo cinfo = implType.GetConstructor(
+                                                        BindingFlags.Public|BindingFlags.Instance, null, signature, null);
+
+                                        instance = System.Runtime.Serialization.FormatterServices.GetUninitializedObject(implType);
+
+                                        cinfo.Invoke(instance, arguments);
+
+Usual new() on ContextBoundObjects assigns context with the object, what is not happening here.
+
+Also, look at this:
+
+http://msdn2.microsoft.com/en-us/library/system.runtime.serialization.formatterservices.getuninitializedobject.aspx
+
+"You cannot use the GetUninitializedObject method to create instances of types that derive from the ContextBoundObject class."
+
+Is there some way to make MicroKernel working with ContextBoundObjects?
+
+Thanks,
+
+Jan
+</value>
+    </field>
+    <field name="created">
+      <value>1186090743000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838932</value>
+    </field>
+    <field name="reporterName">
+      <value>janoravec</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142076682</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

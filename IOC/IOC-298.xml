@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>298</value>
+    </field>
+    <field name="summary">
+      <value>add a method to FromAssembly that will scan all assemblies in the application for installers</value>
+    </field>
+    <field name="description">
+      <value>Say I have a {{MyApp.exe}} that references {{MyApp.SomeStuff.dll}} and {{MyApp.AwesomeExtensions.dll}} and {{mscorlib.dll}} and {{ThirdParty.SomeControls.dll}}.
+
+The new method should scan all assemblies with the same first part of the name as the original assembly (MyApp*).</value>
+    </field>
+    <field name="created">
+      <value>1306239741718</value>
+    </field>
+    <field name="updated">
+      <value>1407822257288</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1306239741718</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

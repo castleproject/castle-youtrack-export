@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>35</value>
+    </field>
+    <field name="summary">
+      <value>default configuration is not being loaded</value>
+    </field>
+    <field name="description">
+      <value>Can't seem to access the mailing list/forum so I put this here
+
+It seems the default configuration is not being loaded at all.
+
+
+RuntimeInstance.cs line 355:
+
+// Always lay down the default properties first as
+// to provide a solid base.
+if (configuration.IsInitialized() == false)
+{
+    setDefaultProperties();
+}
+
+Calls to line 262:
+
+private void setDefaultProperties()
+{
+	try
+	{
+		// TODO: this was modified in v1.4 to use the classloader
+		configuration.Load(
+			Assembly.GetExecutingAssembly().GetManifestResourceStream(RuntimeConstants.DEFAULT_RUNTIME_PROPERTIES));
+	}
+	catch(System.Exception ex)
+	{
+		debugOutput.WriteLine(string.Format("Cannot get NVelocity Runtime default properties!\n{0}", ex.Message));
+		debugOutput.Flush();
+	}
+}
+
+The RunTimeConstants associated here:
+public const String DEFAULT_RUNTIME_PROPERTIES = "NVelocity.Runtime.Defaults.nvelocity.properties";
+public const String DEFAULT_RUNTIME_DIRECTIVES = "NVelocity.Runtime.Defaults.directive.properties";
+
+shouldn't these change to 
+"NVelocity.Runtime.Defaults.nvelocity.properties, NVelocity";
+"NVelocity.Runtime.Defaults.directive.properties, NVelocity";
+
+in order for this to work. It seems VelocityEngine when instantiated doesn't have the default laid out in nvelocity.properties and directive.properties when executing the instantiation form within another assembly.
+
+</value>
+    </field>
+    <field name="created">
+      <value>1244292567000</value>
+    </field>
+    <field name="updated">
+      <value>1254104438000</value>
+    </field>
+    <field name="reporterName">
+      <value>emazor</value>
+    </field>
+    <field name="updaterName">
+      <value>emazor</value>
+    </field>
+    <field name="resolved">
+      <value>1254104400000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Can you provide a test case." created="1244335900000" />
+    <comment author="jonorossi" text="Cannot reproduce, it works initializing from the unit test assembly.&#xA;&#xA;The code is using Assembly.GetExecutingAssembly() so it is scoped to the NVelocity assembly. If the default properties weren't being loaded then the engine wouldn't work at all." created="1254104423000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1254104400000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1254104400000" />
+  </issue>
+</issues>

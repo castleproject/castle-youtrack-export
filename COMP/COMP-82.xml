@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Binder</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>82</value>
+    </field>
+    <field name="summary">
+      <value>Default Converter Refactoring Patch</value>
+    </field>
+    <field name="description">
+      <value>This patch turns DefaultConverter into a composition of many IConverter implementations. This makes it much easier to understand and gets rid of all conditional statements in it.
+All tests pass after this application and no interface was affected so shouldn't break any existing usage.
+</value>
+    </field>
+    <field name="created">
+      <value>1233247449000</value>
+    </field>
+    <field name="updated">
+      <value>1234484375000</value>
+    </field>
+    <field name="reporterName">
+      <value>mnichols</value>
+    </field>
+    <field name="updaterName">
+      <value>mnichols</value>
+    </field>
+    <field name="resolved">
+      <value>1234484340000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="on rev. 5546.&#xA;great work Mike, thx." created="1234484376000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1234481820000" />
+    <comment author="kenegozi" text="* '''Status''' changed from ''Work Started'' to ''Work Started''.&#xD;&#xA;" created="1234484340000" />
+    <comment author="kenegozi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1234484340000" />
+  </issue>
+</issues>

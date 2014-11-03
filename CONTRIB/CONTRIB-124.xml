@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngines</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>124</value>
+    </field>
+    <field name="summary">
+      <value>AspView SubView path property for reusing common subviews</value>
+    </field>
+    <field name="description">
+      <value>This is a patch to add a path property to the SubView tag in AspView.
+I wrote this because I needed to reuse SubViews accross view folders in the project I'm working on. There were no tests written for it yet.</value>
+    </field>
+    <field name="created">
+      <value>1209192768000</value>
+    </field>
+    <field name="updated">
+      <value>1407823471720</value>
+    </field>
+    <field name="reporterName">
+      <value>robertream</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1407823469723</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

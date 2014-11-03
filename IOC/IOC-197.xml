@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>197</value>
+    </field>
+    <field name="summary">
+      <value>NotImplementedException: Injecting property of type IDictionary with component</value>
+    </field>
+    <field name="description">
+      <value>Hi.
+
+I have predefined IDictionary map and i would like to inject it into multiple other components. I get NotImplementedException (The method or operation is not implemented). You can reproduce it by resolving "MyClass". Resolution of component IDictionary works fine. Class and config is below.
+
+namespace MyNamespace
+{
+	public class MyClass
+	{
+		private IDictionary dictionaryField;
+
+		public IDictionary DictionaryProperty
+		{
+			get { return this.dictionaryField; }
+			set { this.dictionaryField = value; }
+		}
+	}
+}
+
+config
+
+&lt;components&gt;
+	&lt;!--When i try to resolve "MyClass" i get NotImplementedEception--&gt;
+	&lt;!-- The method or operation is not implemented. --&gt;
+	&lt;component lifestyle="singleton"
+		id="Id.MyClass"
+		type="MyNamespace.MyClass, Projects.MyProject"&gt;
+		&lt;parameters&gt;
+			&lt;DictionaryProperty&gt;${Id.dictionary}&lt;/DictionaryProperty&gt;
+		&lt;/parameters&gt;
+	&lt;/component&gt;
+
+	&lt;component id="Id.dictionary" lifestyle="singleton"
+						 service="System.Collections.IDictionary, mscorlib"
+						 type="System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]]"
+						 &gt;
+		&lt;parameters&gt;
+			&lt;dictionary&gt;
+				&lt;dictionary&gt;
+					&lt;entry key="string.key.1"&gt;string value 1&lt;/entry&gt;
+					&lt;entry key="string.key.2"&gt;string value 2&lt;/entry&gt;
+				&lt;/dictionary&gt;
+			&lt;/dictionary&gt;
+		&lt;/parameters&gt;
+	&lt;/component&gt;
+
+&lt;/components&gt;
+
+</value>
+    </field>
+    <field name="created">
+      <value>1269006031000</value>
+    </field>
+    <field name="updated">
+      <value>1269620386000</value>
+    </field>
+    <field name="reporterName">
+      <value>i5riza</value>
+    </field>
+    <field name="updaterName">
+      <value>i5riza</value>
+    </field>
+    <field name="resolved">
+      <value>1269620340000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Can you provide an actual failing test?" created="1269099241000" />
+    <comment author="i5riza" text="You need to replace assembly name &quot;MyAssembly&quot; to the one you are running test on." created="1269234958000" />
+    <comment author="i5riza" text="Is this what you expect? (see attached file)" created="1269236546000" />
+    <comment author="xtoff" text="Yes, that's what I expected.&#xA;&#xA;Why are you registering the dictionary as a service?&#xA;Currently Windsor does not supports using dictionaries as services.&#xA;Instead it treats them as primitives. You can achieve what you want without registering the dictionary as a service.&#xA;see this: http://www.castleproject.org/container/documentation/v21/usersguide/arrayslistsanddicts.html&#xA;&#xA;Is there a reason why this approach would not suffice for you?" created="1269511147000" />
+    <comment author="i5riza" text="Hi.&#xA;&#xA;If I understood you correctly, you are suggesting specify value of property &quot;DictionaryProperty&quot; directly in the place where &quot;MyClass&quot; is instantitated (see below for config sample). It works fine, but exactly the same dictionary set is used in multiple places of the config. Thus, I have to copy/paste the same dictionary set. Because of this I need to maintain multiple places to have values in synch. And finally, this will definitely lead to bugs when one dictionary will be updated, but update of other gets missed.&#xA;&#xA;thoughts?&#xA;&#xA;&lt;component lifestyle=&quot;singleton&quot;&#xA; id=&quot;Id.MyClass2&quot;&#xA; type=&quot;MyNamespace.MyClass, Projects.Northwind.Application&quot;&gt;&#xA;	&lt;parameters&gt;&#xA;		&lt;DictionaryProperty&gt;&#xA;			&lt;dictionary&gt;&#xA;				&lt;entry key=&quot;key.1&quot;&gt;string value 1&lt;/entry&gt;&#xA;				&lt;entry key=&quot;key.2&quot;&gt;string value 2&lt;/entry&gt;&#xA;			&lt;/dictionary&gt;&#xA;		&lt;/DictionaryProperty&gt;&#xA;	&lt;/parameters&gt;&#xA;&lt;/component&gt;&#xA;" created="1269564502000" />
+    <comment author="xtoff" text="Yes, I kindof meant that.&#xA;You can extract the dictionary into properties section (see here: http://www.castleproject.org/container/documentation/v21/manual/windsorconfigref.html)&#xA;&#xA;which you can then reference using #{myDictionary} syntax&#xA;&#xA;would that work?" created="1269591584000" />
+    <comment author="i5riza" text="Hi, Krzysztof,&#xA;&#xA;&gt; You can extract the dictionary into properties section &#xA;i guess you mean not dictionary, but every single item in the dictionary. So, in this case, i should create multiple properties for each single item in dictionary. In case the set of dictionary items updates (this is my case), i should add new property and update all consumers of the dictionary.&#xA;&#xA;Krzysztof, i do not say that using IDictionary as a component/service is the right way. But if you look at this problem from object building perspective, you may find this approach convenient. Arrays or dictionaries, used in multiple (or even one) places could be predefined outside component and injected into it. For example, i have integration to NServiceBus. Dictionary contains message2destination pairs. The dictionary changes as development continues, but configuration of IBus (or ITransport) does not change. So, it is convenient to have mentioned dictionary defined in the top of windsor config or even in separate file.&#xA;&#xA;Thoughts?&#xA;&#xA;&#xA;&#xA;" created="1269601641000" />
+    <comment author="xtoff" text="Why extract just items of the dictionary when clearly you want entire dictionary in one place. I'm pretty sure it is possible.&#xA;&#xA;I know that this is an artificial limitation as it stands now, and I do intend to try to get rid of it, but while it is not changed, I think you can pretty much achieve the desired effect by keeping the dictionary in the properties section. Or am I missing something?" created="1269602113000" />
+    <comment author="i5riza" text="You are not missing the point. But i did not expect properties support complex types until i tested it (see sample below). There is even no word about this feature in user guide. But this is exactly what i need!&#xA;&#xA;Thank you for help and for your time, Krzysztof!&#xA;&#xA;regards,&#xA;i5riza&#xA;&#xA;http://www.castleproject.org/container/documentation/v21/usersguide/properties.html&#xA;&#xA;&lt;properties&gt;&#xA;	&lt;property_dictionary&gt;&#xA;		&lt;dictionary&gt;&#xA;			&lt;entry key=&quot;&quot;string.key.1&quot;&quot;&gt;string value 1&lt;/entry&gt;&#xA;			&lt;entry key=&quot;&quot;string.key.2&quot;&quot;&gt;string value 2&lt;/entry&gt;&#xA;		&lt;/dictionary&gt;&#xA;	&lt;/property_dictionary&gt;&#xA;&lt;/properties&gt;&#xA;" created="1269608927000" />
+    <comment author="xtoff" text="we accept patches for documentation in the new wiki: http://stw.castleproject.org/Windsor.MainPage.ashx ;)&#xA;&#xA;ok, so can I close it as 'by design' for now?" created="1269612106000" />
+    <comment author="i5riza" text="Yes, you can close it :)" created="1269616108000" />
+    <comment author="i5riza" text="Yes, you can close it :)" created="1269616108000" />
+    <comment author="i5riza" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;Hi.&#xD;&#xA;&#xD;&#xA;I have predefined IDictionary map and i would like to inject it into multiple other components. I get NotImplementedException (The method or operation is not implemented). You can reproduce it by resolving &quot;MyClass&quot;. Resolution of component IDictionary works fine. Class and config is below.&#xD;&#xA;&#xD;&#xA;namespace MyNamespace&#xD;&#xA;{&#xD;&#xA;	public class MyClass&#xD;&#xA;	{&#xD;&#xA;		private IDictionary dictionaryField;&#xD;&#xA;&#xD;&#xA;		public IDictionary DictionaryProperty&#xD;&#xA;		{&#xD;&#xA;			get { return this.dictionaryField; }&#xD;&#xA;			set { this.dictionaryField = value; }&#xD;&#xA;		}&#xD;&#xA;	}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;config&#xD;&#xA;&#xD;&#xA;&lt;components&gt;&#xD;&#xA;	&lt;!--When i try to resolve &quot;MyClass&quot; i get NotImplementedEception--&gt;&#xD;&#xA;	&lt;!-- The method or operation is not implemented. --&gt;&#xD;&#xA;	&lt;component lifestyle=&quot;singleton&quot;&#xD;&#xA;		id=&quot;Id.MyClass&quot;&#xD;&#xA;		type=&quot;MyNamespace.MyClass, Projects.Northwind.Application&quot;&gt;&#xD;&#xA;		&lt;parameters&gt;&#xD;&#xA;			&lt;DictionaryProperty&gt;${Id.dictionary}&lt;/DictionaryProperty&gt;&#xD;&#xA;		&lt;/parameters&gt;&#xD;&#xA;	&lt;/component&gt;&#xD;&#xA;&#xD;&#xA;	&lt;component id=&quot;Id.dictionary&quot; lifestyle=&quot;singleton&quot;&#xD;&#xA;						 service=&quot;System.Collections.IDictionary, mscorlib&quot;&#xD;&#xA;						 type=&quot;System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]]&quot;&#xD;&#xA;						 &gt;&#xD;&#xA;		&lt;parameters&gt;&#xD;&#xA;			&lt;dictionary&gt;&#xD;&#xA;				&lt;dictionary&gt;&#xD;&#xA;					&lt;!-- add message owners here --&gt;&#xD;&#xA;					&lt;entry key=&quot;string.key.1&quot;&gt;string value 1&lt;/entry&gt;&#xD;&#xA;					&lt;entry key=&quot;string.key.2&quot;&gt;string value 2&lt;/entry&gt;&#xD;&#xA;				&lt;/dictionary&gt;&#xD;&#xA;			&lt;/dictionary&gt;&#xD;&#xA;		&lt;/parameters&gt;&#xD;&#xA;	&lt;/component&gt;&#xD;&#xA;&#xD;&#xA;&lt;/components&gt;&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;Hi.&#xD;&#xA;&#xD;&#xA;I have predefined IDictionary map and i would like to inject it into multiple other components. I get NotImplementedException (The method or operation is not implemented). You can reproduce it by resolving &quot;MyClass&quot;. Resolution of component IDictionary works fine. Class and config is below.&#xD;&#xA;&#xD;&#xA;namespace MyNamespace&#xD;&#xA;{&#xD;&#xA;	public class MyClass&#xD;&#xA;	{&#xD;&#xA;		private IDictionary dictionaryField;&#xD;&#xA;&#xD;&#xA;		public IDictionary DictionaryProperty&#xD;&#xA;		{&#xD;&#xA;			get { return this.dictionaryField; }&#xD;&#xA;			set { this.dictionaryField = value; }&#xD;&#xA;		}&#xD;&#xA;	}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;config&#xD;&#xA;&#xD;&#xA;&lt;components&gt;&#xD;&#xA;	&lt;!--When i try to resolve &quot;MyClass&quot; i get NotImplementedEception--&gt;&#xD;&#xA;	&lt;!-- The method or operation is not implemented. --&gt;&#xD;&#xA;	&lt;component lifestyle=&quot;singleton&quot;&#xD;&#xA;		id=&quot;Id.MyClass&quot;&#xD;&#xA;		type=&quot;MyNamespace.MyClass, Projects.MyProject&quot;&gt;&#xD;&#xA;		&lt;parameters&gt;&#xD;&#xA;			&lt;DictionaryProperty&gt;${Id.dictionary}&lt;/DictionaryProperty&gt;&#xD;&#xA;		&lt;/parameters&gt;&#xD;&#xA;	&lt;/component&gt;&#xD;&#xA;&#xD;&#xA;	&lt;component id=&quot;Id.dictionary&quot; lifestyle=&quot;singleton&quot;&#xD;&#xA;						 service=&quot;System.Collections.IDictionary, mscorlib&quot;&#xD;&#xA;						 type=&quot;System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]]&quot;&#xD;&#xA;						 &gt;&#xD;&#xA;		&lt;parameters&gt;&#xD;&#xA;			&lt;dictionary&gt;&#xD;&#xA;				&lt;dictionary&gt;&#xD;&#xA;					&lt;entry key=&quot;string.key.1&quot;&gt;string value 1&lt;/entry&gt;&#xD;&#xA;					&lt;entry key=&quot;string.key.2&quot;&gt;string value 2&lt;/entry&gt;&#xD;&#xA;				&lt;/dictionary&gt;&#xD;&#xA;			&lt;/dictionary&gt;&#xD;&#xA;		&lt;/parameters&gt;&#xD;&#xA;	&lt;/component&gt;&#xD;&#xA;&#xD;&#xA;&lt;/components&gt;&#xD;&#xA;{quote}&#xD;&#xA;" created="1269045120000" />
+    <comment author="i5riza" text="* '''Attachment''' WindsorTests.cs added.&#xD;&#xA;" created="1269234900000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1269507360000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''By Design''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1269620340000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1269620340000" />
+  </issue>
+</issues>

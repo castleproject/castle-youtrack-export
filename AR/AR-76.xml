@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>76</value>
+    </field>
+    <field name="summary">
+      <value>SemanticVerifierVisitor Issue With NHibernate User Types </value>
+    </field>
+    <field name="description">
+      <value>SemanticVerifierVisitor Issue With NHibernate User Types 
+
+Issue:
+1. A user type (IUserType) is created that "wraps" a nullable type in that the user type's ReturnedType property returns either a .NET 2.0 nullable type (Nullable&lt;T&gt;) or an NHibernate nullable type (INullableType).
+2. The user type is used by specifying a ColumnType value on a PropertyAttribute for a property who's type is the nullable type that the user type "wraps".
+3. When the SemanticVerifierVisitor visits the property in question, it sees that the property type is a nullable type and overwrites the PropertyAttribute's ColumnType value with a value appropriate for the nullable type, thus ignoring the user type completely.
+
+Fix:
+Ensure that the ColumnType value has not been set on a PropertyAttribute (or a FieldAttribute) before setting it to a value appropriate to the nullable type.
+
+Code (In case I messed up the attached patch file):
+
+Line 185:
+-----------------------------------------------------------------------
+if (NHibernateNullablesSupport.IsNHibernateNullableType(propertyType))
+			{
+                if (model.PropertyAtt.ColumnType == null || model.PropertyAtt.ColumnType.Length == 0)
+                {
+                    model.PropertyAtt.NotNull = false;
+                    model.PropertyAtt.ColumnType = NHibernateNullablesSupport.GetITypeTypeNameForNHibernateNullable(propertyType);
+                }
+			}
+
+#if DOTNET2
+			if (propertyType.IsGenericType &amp;&amp; propertyType.GetGenericTypeDefinition() == typeof(Nullable&lt;&gt;))
+			{
+                if (String.IsNullOrEmpty(model.PropertyAtt.ColumnType))
+                {
+                    model.PropertyAtt.NotNull = false;
+                    model.PropertyAtt.ColumnType = ObtainNullableTypeNameForCLRNullable(propertyType);
+                }
+			}
+#endif
+-----------------------------------------------------------------------
+
+Line 213:
+-----------------------------------------------------------------------
+if (NHibernateNullablesSupport.IsNHibernateNullableType(fieldType))
+			{
+                if (model.FieldAtt.ColumnType == null || model.FieldAtt.ColumnType.Length == 0)
+                {
+                    model.FieldAtt.NotNull = false;
+                    model.FieldAtt.ColumnType = NHibernateNullablesSupport.GetITypeTypeNameForNHibernateNullable(fieldType);
+                }
+			}
+
+#if DOTNET2
+			if (fieldType.IsGenericType &amp;&amp; fieldType.GetGenericTypeDefinition() == typeof(Nullable&lt;&gt;))
+			{
+                if (String.IsNullOrEmpty(model.FieldAtt.ColumnType))
+                {
+                    model.FieldAtt.NotNull = false;
+                    model.FieldAtt.ColumnType = ObtainNullableTypeNameForCLRNullable(fieldType);
+                }
+			}
+#endif
+-----------------------------------------------------------------------</value>
+    </field>
+    <field name="created">
+      <value>1157992311000</value>
+    </field>
+    <field name="updated">
+      <value>1162409654000</value>
+    </field>
+    <field name="reporterName">
+      <value>mmorton</value>
+    </field>
+    <field name="updaterName">
+      <value>mmorton</value>
+    </field>
+    <field name="resolved">
+      <value>1282136184870</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

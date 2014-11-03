@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>By design</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>335</value>
+    </field>
+    <field name="summary">
+      <value>Diagnostics inspection returns error message in a case LazyOfTComponentLoader would handle.</value>
+    </field>
+    <field name="description">
+      <value>Running this test on a properly configured IoC container fails on account of Lazy&lt;T&gt; components not being registered, while actually attempting to resolve Lazy&lt;T&gt; components works.
+
+		[TestMethod]
+		public void ContainerShould_BeProperlyConfigured()
+		{
+			IDiagnosticsHost host = (IDiagnosticsHost)_container.Kernel.GetSubSystem(SubSystemConstants.DiagnosticsKey);
+			IPotentiallyMisconfiguredComponentsDiagnostic diagnostics = host.GetDiagnostic&lt;IPotentiallyMisconfiguredComponentsDiagnostic&gt;();
+			IHandler[] handlers = diagnostics.Inspect();
+
+			string assertion = string.Empty;
+			if (handlers.Any())
+			{
+				StringBuilder message = new StringBuilder();
+				DependencyInspector inspector = new DependencyInspector(message);
+
+				foreach (IExposeDependencyInfo handler in handlers)
+				{
+					handler.ObtainDependencyDetails(inspector);
+				}
+				assertion = message.ToString();
+			}
+			Assert.IsFalse(handlers.Any(), assertion);
+		}
+
+LazyOfTComponentLoader has been registered like this:
+
+			container.Register(
+			   Component
+				   .For&lt;ILazyComponentLoader&gt;()
+				   .ImplementedBy&lt;LazyOfTComponentLoader&gt;()
+			);
+</value>
+    </field>
+    <field name="created">
+      <value>1335931031041</value>
+    </field>
+    <field name="updated">
+      <value>1337384441504</value>
+    </field>
+    <field name="reporterName">
+      <value>Nico.Bevacqua</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1337384441504</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="While I do see this as a source of confusion, I'm not sure what a proper fix might be.&#xA;&#xA;Windsor doesn't know that an LCL would register those Lazy&lt;&gt; instances until it actually happens." created="1335935497425" />
+  </issue>
+</issues>

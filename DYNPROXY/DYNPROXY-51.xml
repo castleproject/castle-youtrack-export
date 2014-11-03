@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>51</value>
+    </field>
+    <field name="summary">
+      <value>InvalidOperationException with generic marker interface</value>
+    </field>
+    <field name="description">
+      <value>When building a proxy with a generic marker interface or with a marker interface defined within in a generic type, DP 2 throws the following exception:
+
+Unhandled Exception: System.InvalidOperationException: Method may only be called on a Type for which Type.IsGenericParameter is true.
+   at System.RuntimeType.get_GenericParameterAttributes()
+   at Castle.DynamicProxy.Generators.Emitters.GenericUtil.DefineGenericArguments(Type[] genericArguments, Dictionary`2 name2GenericType, ApplyGenArgs gen) in C:\Development\personal\Castle\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\Generators\Emitters\GenericUtil.cs:line 83
+   at Castle.DynamicProxy.Generators.Emitters.GenericUtil.DefineGenericArguments(Type[] genericArguments, TypeBuilder builder, Dictionary`2 name2GenericType) in C:\Development\personal\Castle\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\Generators\Emitters\GenericUtil.cs:line 44
+   at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.CreateGenericParameters(Type[] genericArguments) in C:\Development\personal\Castle\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\Generators\Emitters\AbstractTypeEmitter.cs:line 255
+   at Castle.DynamicProxy.Generators.Emitters.ClassEmitter..ctor(ModuleScope modulescope, String name, Type baseType, Type[] interfaces, Boolean serializable) in C:\Development\personal\Castle\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\Generators\Emitters\ClassEmitter.cs:line 56
+   at Castle.DynamicProxy.Generators.BaseProxyGenerator.BuildClassEmitter(String typeName, Type parentType, Type[] interfaces) in C:\Development\personal\Castle\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\Generators\BaseProxyGenerator.cs:line 91
+   at Castle.DynamicProxy.Generators.BaseProxyGenerator.BuildClassEmitter(String typeName, Type parentType, IList interfaceList) in C:\Development\personal\Castle\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\Generators\BaseProxyGenerator.cs:line 81
+   at Castle.DynamicProxy.Generators.ClassProxyGenerator.GenerateCode(Type[] interfaces, ProxyGenerationOptions options) in C:\Development\personal\Castle\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\Generators\ClassProxyGenerator.cs:line 99
+   at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxy(Type theClass, Type[] interfaces, ProxyGenerationOptions options) in C:\Development\personal\Castle\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\DefaultProxyBuilder.cs:line 59
+   at Castle.DynamicProxy.ProxyGenerator.CreateClassProxyType(Type baseClass, Type[] interfaces, ProxyGenerationOptions options) in C:\Development\personal\Castle\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\ProxyGenerator.cs:line 416
+   at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type targetType, Type[] interfaces, ProxyGenerationOptions options, Object[] constructorArgs, IInterceptor[] interceptors) in C:\Development\personal\Castle\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\ProxyGenerator.cs:line 385
+   at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type targetType, Type[] interfaces, ProxyGenerationOptions options, IInterceptor[] interceptors) in C:\Development\personal\Castle\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\ProxyGenerator.cs:line 341
+   at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type targetType, Type[] interfaces, IInterceptor[] interceptors) in C:\Development\personal\Castle\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\ProxyGenerator.cs:line 309
+
+The following program can be used to reproduce the error:
+
+using System;
+using Castle.Core.Interceptor;
+using Castle.DynamicProxy;
+
+namespace DP2Test
+{
+  public class Program
+  {
+    public interface Marker&lt;T&gt; { }
+
+    public static void Main ()
+    {
+      ProxyGenerator gen = new ProxyGenerator();
+      Program p = (Program) gen.CreateClassProxy (typeof (Program), new Type[] { typeof (Marker&lt;int&gt;) }, new IInterceptor[0]);
+      p.Method ();
+    }
+
+    protected virtual void Method ()
+    {
+      Console.WriteLine ("Method!");
+    }
+  }
+}
+</value>
+    </field>
+    <field name="created">
+      <value>1174303415000</value>
+    </field>
+    <field name="updated">
+      <value>1175539225000</value>
+    </field>
+    <field name="reporterName">
+      <value>fcs</value>
+    </field>
+    <field name="updaterName">
+      <value>fcs</value>
+    </field>
+    <field name="resolved">
+      <value>1282140676338</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

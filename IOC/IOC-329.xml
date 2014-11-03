@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>By design</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>329</value>
+    </field>
+    <field name="summary">
+      <value>Property injection does not include public properties in internal class (Silverlight only)</value>
+    </field>
+    <field name="description">
+      <value>Hi!
+
+I've seen an interesting issue lately which affects how properties get injected. My registration looks like this (I have to use AllTypes.* rather than Component.* because Im calling a configuration method to help out with the configuration, and I couldnt get that working with the Component.* approach):
+
+{code}
+windsorContainer.Register(AllTypes
+    .From(type)
+    .Pick()
+    .LifestyleSingleton()
+    .Configure(c =&gt; c.ConfigurePropertyInjection()));
+{code}
+
+The ConfigurePropertyInjection method basically calls .Properties() with a predicate, to make certain properties be included as mandatory, and others included as optional, based on a customer attribute in our application framework.
+
+The class being registered looks like this:
+
+{code}
+internal sealed class InternalEntitiesInitializer : IAutoInitializedComponent
+{
+    /// &lt;summary&gt;
+    /// The Windsor IoC container.
+    /// &lt;/summary&gt;
+    [Inject]
+    public Castle.Windsor.IWindsorContainer WindsorContainer { get; set; }
+{code}
+
+Now, the really interesting thing This works, when running with WPF. The WindsorContainer get injected. But with Silverlight, it doesnt. I presume its because the class is internal, but the thing is that I have the InternalsVisibleTo assembly property set up so that it should work. And I mean, it finds the type (when registering it), so why on earth does it ignore its properties? :-)</value>
+    </field>
+    <field name="created">
+      <value>1329400048593</value>
+    </field>
+    <field name="updated">
+      <value>1354226252202</value>
+    </field>
+    <field name="reporterName">
+      <value>plundberg</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1354226252202</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-899[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Which version is that? v3.0? &#xA;&#xA;Also I don't understand that remark about why you're not using Component.For..." created="1341031583759" />
+    <comment author="Per.Lundberg" text="This is with version 3.0 yes. It would be really good to get this fixed, since it makes us (=my company's project) have to make certain stuff public which should be kept internal.&#xA;&#xA;What help do you want from me? Do you have VS2012 + the SL5 SDK installed, so you could run a simple test app I can make which illustrates the issue? It's really trivial to reproduce so I can definitely do this for you if you are willing to do the debugging on the Castle side of the case." created="1348687172507" />
+    <comment author="xtoff" text="a pull request?" created="1348690647756" />
+    <comment author="Per.Lundberg" text="Hehe, I can understand that would be easiest. :-) My problem is just that I'm not that acquainted with the inner workings of Castle Core etc... but as said, I can definitely give you a reproducible SL app that you can test with." created="1348690887357" />
+    <comment author="Per.Lundberg" text="I've set up a sample (VS2012) application that illustrates the issue: https://dl.dropbox.com/u/4613205/CastleSilverlightApplication.zip&#xA;In my opinion, the InternalModuleController should have its properties injected also, just like the PublicModuleController. This requires that [InternalsVisibleTo] have been set up.&#xA;&#xA;If you don't have the time/possibility to look into it - please hint me at what file in the Castle.Windsor (or Castle.Core) code that looks in classes for injectable properties. Thank You! :)&#xA;&#xA;(I'm quite sure that this is a simple fix. When you call Type.GetProperties(), you likely do not include BindingFlags.NonPublic if Silverlight. If you *do*, please let me know and I will dive into the issue a bit further.)" created="1349337137362" />
+    <comment author="Per.Lundberg" text="I've thought about this one a bit: The problem is that internal properties in a class are not normally writable in Silverlight. If they are, that's a bit more of a corner case, and is quite hard to support in a general framework like Castle Windsor. (you have to use InternalsVisibleTo, and the framework basically has to *know* that this attribute is applied on the assembly-level.)&#xA;&#xA;I don't think we have to have this support in Windsor proper, but I think I will solve it by means of a custom IContributeComponentModelConstruction implementation. This issue can therefore be closed." created="1354177856814" updated="1354177868920" />
+    <comment author="xtoff" text="ok, sounds good!" created="1354226227304" />
+  </issue>
+</issues>

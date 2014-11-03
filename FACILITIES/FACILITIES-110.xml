@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>110</value>
+    </field>
+    <field name="summary">
+      <value>WCFIntegration facility should throw a better exception when cannot resolve a service from container.</value>
+    </field>
+    <field name="description">
+      <value>When trying to connect to a service that has unresolved dependencies an EndpointNotFoundException is generated. By this exception is hard to say what the problem was.
+
+Would it be possible to throw a more container-specific exception to make easier to detect this kind of problems?
+
+The unit test to reproduce the problem:
+
+		[Test]
+		public void Should_throw_for_unresolved_service_dependency()
+		{
+			var container = new WindsorContainer()
+//				.Register(Component.For&lt;IDependency&gt;().ImplementedBy&lt;Dependency&gt;()) // Uncomment to make test to pass
+				.AddFacility&lt;WcfFacility&gt;()
+				.Register(Component
+				          	.For&lt;IMyService&gt;()
+				          	.ImplementedBy&lt;MyService&gt;()
+				          	.ActAs(new DefaultServiceModel().AddEndpoints(
+				          	       	WcfEndpoint.BoundTo(new NetTcpBinding {PortSharingEnabled = true})
+				          	       		.At("net.tcp://localhost/IMyService"))
+				          	))
+				;
+
+			var myService = ChannelFactory&lt;IMyService&gt;.CreateChannel(new NetTcpBinding {PortSharingEnabled = true},
+			                                                         new EndpointAddress("net.tcp://localhost/IMyService"));
+			myService.Operation();
+			container.Dispose();
+		}
+
+		public class MyService : IMyService
+		{
+			public MyService(IDependency dependency) { }
+
+			public void Operation() { }
+		}
+
+		[ServiceContract]
+		public interface IMyService
+		{
+			[OperationContract] void Operation();
+		}
+
+		public interface IDependency { }
+		public class Dependency : IDependency { }
+
+</value>
+    </field>
+    <field name="created">
+      <value>1228725703000</value>
+    </field>
+    <field name="updated">
+      <value>1232128940000</value>
+    </field>
+    <field name="reporterName">
+      <value>varely</value>
+    </field>
+    <field name="updaterName">
+      <value>varely</value>
+    </field>
+    <field name="resolved">
+      <value>1232128920000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="cneuwirt" text="Not sure how you could achieve this, since a ServiceHost is only created when all dependencies are available" created="1228735048000" />
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1232128860000" />
+    <comment author="cneuwirt" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1232128920000" />
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1232128920000" />
+  </issue>
+</issues>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>191</value>
+    </field>
+    <field name="summary">
+      <value>Enable Silverlight version to parse XML configuration files</value>
+    </field>
+    <field name="description">
+      <value>I made a test to see the feasibility of this feature. I took out the trunk code and modified the XmlInterpreter (and related classes) to use Linq To Xml classes to read the config files.
+
+In the end all the Castle related test pass (.net version) and a very quick and extremely simple test made in Silverlight shows it to work.
+
+So I think it can be done in the end.
+
+My blog post with the full source code is here, if you are interested:
+
+http://www.primordialcode.com/index.php/2010/01/22/castle-windsor-enabling-xml-configuration-files-silverlight/
+
+I'll keep working on it in my spare time to make it less-invasive and take it out of the core classes.</value>
+    </field>
+    <field name="created">
+      <value>1264132422000</value>
+    </field>
+    <field name="updated">
+      <value>1337415508517</value>
+    </field>
+    <field name="reporterName">
+      <value>agiorgetti</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1337415508515</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Alessandro,&#xA;&#xA;Could you provide a SVN .patch file instead of the zip?&#xA;Would be much easier to work with" created="1264132682000" />
+    <comment author="agiorgetti" text="Ofc, here it is" created="1264143977000" />
+    <comment author="xtoff" text="Alessandro,&#xA;&#xA;how is it going with this?" created="1266756895000" />
+    <comment author="agiorgetti" text="I have to admitt I didn't had time to review the job cause I joined the Dexter Blog Engine open source project and it dragged out all the spare time I had.&#xA;&#xA;Anyway I'll do some refactor work and compile an external assembly to isolate the XmlIntrepreter that works with Linq to Xml.&#xA;&#xA;Any of you had a chance to check it or try it ?&#xA;&#xA;" created="1266817577000" />
+    <comment author="agiorgetti" text="* '''Attachment''' InversionOfControl_Linq.zip added.&#xD;&#xA;" created="1264132440000" />
+    <comment author="agiorgetti" text="* '''Attachment''' InversionOfControlPatch.patch added.&#xD;&#xA;" created="1264143960000" />
+    <comment author="xtoff" text="due to silverlight being now officially dead I'm closing this as won't fix" created="1337415499097" />
+  </issue>
+</issues>

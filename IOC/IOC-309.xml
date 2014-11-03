@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>TypedFactoryFacility</value>
+    </field>
+    <field name="Fix versions">
+      <value>3.0 beta 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>309</value>
+    </field>
+    <field name="summary">
+      <value>Typed factory becomes unstable in high load environment</value>
+    </field>
+    <field name="description">
+      <value>We've encountered some subtle bug in our application related with Castle Windsor and WcfFacility. But when I was investigating the reason, I found this one. It's kinda hard to reproduce, but it happens quite often. In attach you can find solution to reproduce this problem. I've hosted WCF service in IIS.
+
+System.NullReferenceException: Object reference not set to an instance of an object. at Castle.Facilities.TypedFactory.Internal.TypedFactoryInterceptor.&lt;CollectDeadReferences&gt;b__0(WeakReference c) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\Facilities\TypedFactory\Internal\TypedFactoryInterceptor.cs:line 133 at System.Collections.Generic.List`1.RemoveAll(Predicate`1 match) at Castle.Facilities.TypedFactory.Internal.TypedFactoryInterceptor.Resolve(IInvocation invocation) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\Facilities\TypedFactory\Internal\TypedFactoryInterceptor.cs:line 176 at Castle.Facilities.TypedFactory.Internal.TypedFactoryInterceptor.Intercept(IInvocation invocation) in e:\OSS.Code\Castle.Windsor\src\Castle.Windsor\Facilities\TypedFactory\Internal\TypedFactoryInterceptor.cs:line 83 at Castle.DynamicProxy.AbstractInvocation.Proceed() at Castle.Proxies.IMyFactoryProxy.Create() at WcfService.MyService.GetSomething() in D:\WcfService\WcfService\MyService.cs:line 22 at SyncInvokeGetSomething(Object , Object[] , Object[] ) at System.ServiceModel.Dispatcher.SyncMethodInvoker.Invoke(Object instance, Object[] inputs, Object[]&amp; outputs) at System.ServiceModel.Dispatcher.DispatchOperationRuntime.InvokeBegin(MessageRpc&amp; rpc) at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage5(MessageRpc&amp; rpc) at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage31(MessageRpc&amp; rpc) at System.ServiceModel.Dispatcher.MessageRpc.Process(Boolean isOperationContextSet)</value>
+    </field>
+    <field name="created">
+      <value>1313141310395</value>
+    </field>
+    <field name="updated">
+      <value>1313142019348</value>
+    </field>
+    <field name="reporterName">
+      <value>Dmitry.Kryuchkov</value>
+    </field>
+    <field name="updaterName">
+      <value>Dmitry.Kryuchkov</value>
+    </field>
+    <field name="resolved">
+      <value>1313141453536</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="That is a known issue with the 2.5.3. The feature is reimplemented on top of new lifetime tracking model in Windsor 3." created="1313141498302" />
+    <comment author="Dmitry.Kryuchkov" text="Do you have any ideas when Windsor 3 will be released?" created="1313141751458" />
+    <comment author="xtoff" text="in 2 months. Beta 1 should be out this weekend." created="1313141870239" />
+    <comment author="Dmitry.Kryuchkov" text="That's good" created="1313142019348" />
+  </issue>
+</issues>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>1.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>38</value>
+    </field>
+    <field name="summary">
+      <value>Issue with template macro</value>
+    </field>
+    <field name="description">
+      <value>I'm trying to use a simple macro in a single template stream but I don't seem to be able to execute the macro.
+
+Here is a test that I would expect to work
+
+{code}
+[Test]
+public void MacroTest()
+{
+    var velocity = new VelocityEngine();
+    var props = new ExtendedProperties();
+    velocity.Init(props);
+    var context = new VelocityContext();
+    context.Put("foo", "ItWorks");
+    var writer = new StringWriter();
+    var template = @"#macro( callme $a )
+$a $a $a
+#end
+
+#callme( $foo )";
+    velocity.Evaluate(context, writer, null, template);
+    Assert.That(writer.ToString(), Is.Not.StringContaining("#callme( ItWorks )"));
+    Assert.That(writer.ToString(), Is.StringContaining("ItWorks ItWorks ItWorks"));
+}
+{code}
+
+Am I missing something? or is this a valid bug. I have looked around and I can't seem to find any examples that work for me.</value>
+    </field>
+    <field name="created">
+      <value>1287691091915</value>
+    </field>
+    <field name="updated">
+      <value>1287754878368</value>
+    </field>
+    <field name="reporterName">
+      <value>Rolf.Wessels</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1287754869993</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="This is a bug in there somewhere which I couldn't find with a fairly quick look.&#xA;&#xA;If you pass a non-null logTag/templateName (even an empty string) then the test passes." created="1287753972618" />
+    <comment author="jonorossi" text="Closing as won't fix as there is an easy workaround. However, if someone tracks the defect down and supplies a patch, I'll reopen and apply it." created="1287754869993" />
+  </issue>
+</issues>

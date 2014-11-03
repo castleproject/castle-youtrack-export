@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle Visual Studio Integration</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>36</value>
+    </field>
+    <field name="summary">
+      <value>Pound Sign As A Literal Causes Trouble</value>
+    </field>
+    <field name="description">
+      <value>I have a line like this:
+
+&lt;td&gt;#&lt;/td&gt;
+
+... and the end TD tag is not recognized.  
+
+I experimented putting the pound sign ("#") in various places as a literal, and it causes various types of trouble.   I think the program could modified to recognize when "#" is a prefix for and keyword and when it's literal text.</value>
+    </field>
+    <field name="created">
+      <value>1183462206000</value>
+    </field>
+    <field name="updated">
+      <value>1200213790000</value>
+    </field>
+    <field name="reporterName">
+      <value>timtas</value>
+    </field>
+    <field name="updaterName">
+      <value>timtas</value>
+    </field>
+    <field name="resolved">
+      <value>1282138191479</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

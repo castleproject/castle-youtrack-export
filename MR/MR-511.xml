@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>511</value>
+    </field>
+    <field name="summary">
+      <value>Bug in Async Controllers choke on EndProcess complaining about duplicate helpers</value>
+    </field>
+    <field name="description">
+      <value>Calling PrepareAction() is unnecessary since it is called before BeforeProcess. 
+This patch just removes that method call in EndProcess and also introduces a test case that fails without this fix.
+
+Note that these tests are overlooked when just running a default build of castle since they are marked as Explicit.
+</value>
+    </field>
+    <field name="created">
+      <value>1229650355000</value>
+    </field>
+    <field name="updated">
+      <value>1263055455000</value>
+    </field>
+    <field name="reporterName">
+      <value>mnichols</value>
+    </field>
+    <field name="updaterName">
+      <value>mnichols</value>
+    </field>
+    <field name="resolved">
+      <value>1238651220000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mnichols" text="BTW this should reference MR-ISSUE-469 from august" created="1229651072000" />
+    <comment author="roelofb" text="Fixed in r5609" created="1238651266000" />
+    <comment author="roelofb" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1238651220000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055440000" />
+  </issue>
+</issues>

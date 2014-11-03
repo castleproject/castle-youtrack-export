@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.0 Beta 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>58</value>
+    </field>
+    <field name="summary">
+      <value>DP2: Inherited interface seems not to work</value>
+    </field>
+    <field name="description">
+      <value>I came across an exception, when generating a proxy, for the following code: 
+
+[code]
+private static void TestBug()
+{
+    ProxyGenerator generator = new ProxyGenerator();
+    IFooExtended proxiedFoo = (IFooExtended)generator.CreateInterfaceProxyWithTargetInterface(typeof(IFooExtended), new ImplementedFoo(), new StandardInterceptor());
+    proxiedFoo.FooExtended();
+}
+
+public interface IFoo
+{
+    void Foo();
+}
+
+public interface IFooExtended : IFoo
+{
+    void FooExtended();
+}
+
+public class ImplementedFoo : IFooExtended
+{           
+    public void FooExtended()
+    {               
+    }
+
+    public void Foo()
+    {               
+    }
+} 
+[/code]
+
+When the statement to generate the proxy is executed, I get an exception telling me: 
+
+[exception]
+Castle.DynamicProxy.Generators.GeneratorException was unhandled
+  Message="Could not find a matching method on Test.Program+IFooExtended. Method Foo"
+  Source="Castle.DynamicProxy2"
+  StackTrace:
+       at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.FindMethodOnTargetType(MethodInfo methodOnInterface, Type proxyTargetType, Boolean checkMixins) in c:\ccnet\CastleWorkDir\WorkingDirectory\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\Generators\InterfaceProxyWithTargetGenerator.cs:line 436
+       at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetInterfaceGenerator.CreateInvocationForMethod(ClassEmitter emitter, MethodInfo method, Type proxyTargetType) in c:\ccnet\CastleWorkDir\WorkingDirectory\Tools\Castle.DynamicProxy2\Castle.DynamicProxy\Generators\InterfaceProxyWithTargetInterfaceGenerator.cs:line 30 
+[/exception]
+
+I took a look at the respective code, and apparently for creating the proxy methods, the inherited interface (= IFoo) is taken into account. But when checking if the target type (= IFooExtended) has the member, it does not take the inherited interface into account. The FindMethodOnTargetType method does only look at the IFooExtended interface itself, and does not look at the inherited IFoo interface. 
+So this looks like a bug in the FindMethodOnTargetType when working with a target interface. It needs to check the inherited interfaces as well. 
+
+Another interesting thought could be that it is actually unnecessary to perform this check, when working with a target interface. Since the proxy interface and target interface will be the same, the check does not need to be performed (can be prevented in the InterfaceProxyWithTargetInterfaceGenerator.CreateInvocationForMethod by not calling the FindMethodOnTargetType method). Maybe this is subject for an improvement? </value>
+    </field>
+    <field name="created">
+      <value>1177106238000</value>
+    </field>
+    <field name="updated">
+      <value>1198001428000</value>
+    </field>
+    <field name="reporterName">
+      <value>dimitrig</value>
+    </field>
+    <field name="updaterName">
+      <value>dimitrig</value>
+    </field>
+    <field name="resolved">
+      <value>1282140693010</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ashmind" text="Does not work for me in RC3, seems to be reverted by revision 3834." created="1218595726000" />
+    <comment author="ashmind" text="Recreated original Ayende changes as a trunk patch, attaching to the issue.&#xA;Works for my tests, but right now I have no time to setup NUnit and add/fix Castle test.&#xA;&#xA;Hope this helps." created="1218598475000" />
+  </issue>
+</issues>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>21</value>
+    </field>
+    <field name="summary">
+      <value>Updated binaries to NHibernate trunk revision 3694</value>
+    </field>
+    <field name="description">
+      <value>Apply this patch to update binaries to NHibernate trunk revision 3694.
+This patch add some method to Facilities/ActiveRecordIntegration/Castle.Facilities.ActiveRecordIntegration/SafeSessionProxy.cs and Facilities/NHibernateIntegration/Castle.Facilities.NHibernateIntegration/Internal/SessionDelegate.cs to properly implements the ISession extended interface.</value>
+    </field>
+    <field name="created">
+      <value>1229845288000</value>
+    </field>
+    <field name="updated">
+      <value>1253855109000</value>
+    </field>
+    <field name="reporterName">
+      <value>Melato</value>
+    </field>
+    <field name="updaterName">
+      <value>Melato</value>
+    </field>
+    <field name="resolved">
+      <value>1236748800000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="Melato" text="Remember to copy the assembles NHibernate.dll and Iesi.Collections.dll to the SharedLib folder." created="1229845486000" />
+    <comment author="jonorossi" text="Thanks for your patch. Since NHibernate has moved on quite a bit since your patch I didn't apply it but the castle trunk is now running on the NHibernate trunk." created="1236748807000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1236748800000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253855100000" />
+  </issue>
+</issues>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Class proxies (inheritance based)</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>166</value>
+    </field>
+    <field name="summary">
+      <value>Wrong argument order when creating class proxy</value>
+    </field>
+    <field name="description">
+      <value>I've hit a couple of bugs when trying to create dynamic proxy.
+In BuildArgumentListForClassProxy options.MixinData.Mixins is sorted by sortedMixedInterfaceTypes from MixinData class. But arguments in the constructor are not sorted in that way, so I get unhelpful error message that Castle can't find ctor with appropriate arguments. 
+Error message displays only the original class arguments, but the proxy class arguments are in the wrong order.
+I've fixed that by passing ParameterInfo[] to the BuildArgumentListForClassProxy from default constructor and sorted the mixins with
+
+    var cnt = options.MixinData.Mixins.Count();
+    for (int i = 0; i &lt; cnt; i++)
+        arguments.Add(options.MixinData.GetMixinInstance(ctorParams[i].ParameterType));
+
+After that, another bug poped up in TypeUtil.SetStaticField
+TargetInvocationException: Cannot resolve method ___ because the declaring type of the method handle ___`1[T] is generic. Explicitly provide the declaring type to GetMethodFromHandle. 
+
+The first error appeared after I tried to create a mixin with an interface which exists on class beeing proxied.</value>
+    </field>
+    <field name="created">
+      <value>1323477380607</value>
+    </field>
+    <field name="updated">
+      <value>1341015480034</value>
+    </field>
+    <field name="reporterName">
+      <value>rpavelic</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1341015480034</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Can we pair program on this one?" created="1329308931204" />
+    <comment author="rpavelic" text="I'll try to find a test case for that.&#xA;I'll get back to you when I do." created="1329374694118" />
+    <comment author="xtoff" text="Any luck with that test case?" created="1338173645938" />
+    <comment author="rpavelic" text="I'm sorry that I didn't have more time before, because now I can't seem to reproduce it from scratch. I took a different path when this was not working and didn't try to isolate it.&#xD;&#xA;&#xD;&#xA;Regards,&#xD;&#xA;Rikard" created="1338304622021" />
+    <comment author="xtoff" text="Ok, I will close the issue for now was Con't reproduce. If you can create working reproduction we'll reopen the issue." created="1341015470549" />
+  </issue>
+</issues>

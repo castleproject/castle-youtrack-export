@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Performance Problem</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>84</value>
+    </field>
+    <field name="summary">
+      <value>DictionaryAdapter - Cache assembly names</value>
+    </field>
+    <field name="description">
+      <value>As discussed in the folllowing thread : http://groups.google.com/group/castle-project-users/browse_thread/thread/32104e702777c513
+
+The default DictionaryAdapterFactory implementation calls the Assembly.GetName() method each time an adapter is requested. This method can take some time to execute uder heavy load.</value>
+    </field>
+    <field name="created">
+      <value>1235703493000</value>
+    </field>
+    <field name="updated">
+      <value>1235717441000</value>
+    </field>
+    <field name="reporterName">
+      <value>djhi</value>
+    </field>
+    <field name="updaterName">
+      <value>djhi</value>
+    </field>
+    <field name="resolved">
+      <value>1235717400000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="djhi" text="This patch make the default DictionaryAdapterFactory implementation to cache the assemblies names instead of calling the Assembly.GetName() method each time an adapter is requested." created="1235703545000" />
+    <comment author="cneuwirt" text="Applied patch" created="1235717437000" />
+    <comment author="cneuwirt" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1235717400000" />
+    <comment author="cneuwirt" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1235717400000" />
+  </issue>
+</issues>

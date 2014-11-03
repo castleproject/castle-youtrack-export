@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>52</value>
+    </field>
+    <field name="summary">
+      <value>Remote access to generic components</value>
+    </field>
+    <field name="description">
+      <value>This patch allows generics to be used remotely.
+
+see http://forum.castleproject.org/viewtopic.php?t=1873
+
+I am not convinced that it is the nicest patch so it would be nice if someone who knows more about the inner workings of the remoting facility could have a look at it.
+
+Patch also includes fix for the Castle.Facilities.Remoting.Tests-vs2005 project: 
+- added DOTNET2 compilation symbol
+- added reference to System.Configuration
+- readded reference to windsor 2005 project.
+
+Thanks Ayende for the MSDN article. Specialisation using generics and windsor is very neat.</value>
+    </field>
+    <field name="created">
+      <value>1167406557000</value>
+    </field>
+    <field name="updated">
+      <value>1283220859807</value>
+    </field>
+    <field name="reporterName">
+      <value>andyd</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282141940682</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

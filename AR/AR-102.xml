@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>.NET 2.0 Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>102</value>
+    </field>
+    <field name="summary">
+      <value>Composite keys: using KeyProperty for class types (using the nhibernate key-many-to-one element)</value>
+    </field>
+    <field name="description">
+      <value>I want better support for composite keys. Basically I want to use [KeyProperty] on classes (using the nhibernate key-many-to-one element). At the moment you can only use it on native types. See: http://hammett.castleproject.org/?p=87#comments
+</value>
+    </field>
+    <field name="created">
+      <value>1165859283000</value>
+    </field>
+    <field name="updated">
+      <value>1414999674112</value>
+    </field>
+    <field name="reporterName">
+      <value>basj</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999674108</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="ActiveRecord is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/ActiveRecord/issues" created="1414999674114" />
+  </issue>
+</issues>

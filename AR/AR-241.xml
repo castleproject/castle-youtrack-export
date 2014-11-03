@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>241</value>
+    </field>
+    <field name="summary">
+      <value>[PATCH] Double Derived Support</value>
+    </field>
+    <field name="description">
+      <value>I've been using ActiveWriter to generate a double derived pattern.  In this pattern there is an automatically generated base class that contains the active record properties.  There is also an empty partial subclass that is generated.  The user may add behavior in the subclass to override behavior from the parent.  Due to the way the classes are structured I had an issue where the HasMany relationship couldn't find an appropriate BelongsTo to get the table name.  The included patch corrects this.</value>
+    </field>
+    <field name="created">
+      <value>1233943187000</value>
+    </field>
+    <field name="updated">
+      <value>1234908150000</value>
+    </field>
+    <field name="reporterName">
+      <value>pat.earl</value>
+    </field>
+    <field name="updaterName">
+      <value>pat.earl</value>
+    </field>
+    <field name="resolved">
+      <value>1234908120000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="Applied, thanks" created="1234908150000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1234883400000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1234908120000" />
+  </issue>
+</issues>

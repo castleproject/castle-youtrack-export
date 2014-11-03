@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>111</value>
+    </field>
+    <field name="summary">
+      <value>IKernel.Resolve&lt;T&gt;(string key) added</value>
+    </field>
+    <field name="description">
+      <value>As I'm using the IKernel interface within my service classes (injected via the constructor), I noticed that two Resolve overloads were missing compared to the IWindorContainer:
+
+T Resolve&lt;T&gt;(String key);
+
+and
+
+T Resolve&lt;T&gt;(String key, IDictionary arguments);
+
+(Unit test included)
+
+It's my first patch, so please let me know if I executed the "patch-creation"-process correctly ;-)</value>
+    </field>
+    <field name="created">
+      <value>1197138926000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838854</value>
+    </field>
+    <field name="reporterName">
+      <value>tolomaus</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142247057</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - Brail</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>135</value>
+    </field>
+    <field name="summary">
+      <value>Allow PropertyBag changes (made inside a component) to be visible to the views that the component renders</value>
+    </field>
+    <field name="description">
+      <value>When using a component, PropertyBag changes made inside the component are not visible to the view that is subsequently rendered (I understand from hammett that this is intended behaviour). The following example fails:
+
+public class ContentElementComponent : ViewComponent
+{
+
+public override void Render()
+{
+PropertyBag[ "CssClass" ] = "SomeClass";
+RenderView( "View" );
+}
+
+}
+
+The "View.boo" file is:
+&lt;p class="${CssClass}" /&gt;
+ some text
+&lt;/p&gt;
+
+When executed, Brail returns the following error:
+
+[RailsException: Parameter 'CssClass' was not found!]
+
+This reduces the power of components significantly, for example:
+
+I'm creating a content manager to render page parts in "display" or "edit" mode. A component is appropriate to use since it can determine the correct rendering mode and then invoke the appropriate "display" or "edit" view. However to be really powerful and reusable the component would need to retrieve data based on it's parameters, and forward that to the view. Then you could imbed autonomous rendering (via components) into your pages, and build complex pages with reusable intelligent components rather than dumb views.
+
+If my motivation is not clear, I can try to prepare a small sample project to illustrate.
+</value>
+    </field>
+    <field name="created">
+      <value>1155179463000</value>
+    </field>
+    <field name="updated">
+      <value>1155193285000</value>
+    </field>
+    <field name="reporterName">
+      <value>jd</value>
+    </field>
+    <field name="updaterName">
+      <value>jd</value>
+    </field>
+    <field name="resolved">
+      <value>1282143476260</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

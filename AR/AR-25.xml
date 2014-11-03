@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>25</value>
+    </field>
+    <field name="summary">
+      <value>Enable cloning of ActiveRecord objects</value>
+    </field>
+    <field name="description">
+      <value>It would be very nice to support cloning of ActiveRecord objects.
+
+The cloning strategies could be specified using attributes. A first idea is:
+
+// should set "clonability" ?
+[ActiveRecord("blogs", Clonable=true)]
+public class Blog : ActiveRecordBase 
+{
+ // maybe autodetect, based on the specified generator
+ [PrimaryKey]
+ public int Id { get { ... } set { ... } }
+
+ // default strategy for simple properties: plain copy
+ [Property(Clonable=PropertyCloneStrategy.Copy)]
+ public String Name { get { ... } set { ... } }
+
+ // do not clone this property, so the default values for the new object applies
+ [Property(Clonable=PropertyCloneStrategy.Ignore)]
+ public DateTime CreationDate { get { ... } set { ... } }
+
+ // clone the property and increment the value by one
+ [Property(Clonable=PropertyCloneStrategy.Increment)]
+ public int CreationOrder { get { ... } set { ... } }
+
+ // deep clone. the other side of the relation must be clonable, too
+ [HasMany(typeof(Posts), Clonable=RelationCloneStrategy.Deep)]
+ public IList Posts { get { ... } set { ... } }
+
+ // performs a shallow copy of the objects inside the relation
+ [BelongsTo(typeof(User), Clonable=RelationCloneStrategy.Shallow)]
+ public User User { get { ... } set { ... } }
+
+ // do not clone this collection. should be the default behaviour, if unspecified
+ [HasMany(typeof(Posts), Where="published=1", Clonable=RelationCloneStrategy.Ignore)]
+ public IList PublishedPosts { get { ... } set { ... } }
+
+ public Blog Clone() {
+   // should keep as static method, just like FindAll and DeleteAll.
+   return (Blog) ActiveRecordBase.Clone(typeof(Clone), this);
+ }
+
+ // maybe add this override, as clones must be saved before their
+ // collections are cloned, and the user might want to add some 
+ // specific behaviour before the saving.
+ public virtual void BeforeCloneSaving() {
+ }
+}
+
+The cloning must not be transactional, the recommended approach is to enclose the cloning process into a transaction using a TransactionScope, but this should not be enforced.</value>
+    </field>
+    <field name="created">
+      <value>1132999624000</value>
+    </field>
+    <field name="updated">
+      <value>1162411083000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282135917885</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

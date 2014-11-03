@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>.NET 2.0 Support</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>132</value>
+    </field>
+    <field name="summary">
+      <value>MetaProperty equals implementation incorrect</value>
+    </field>
+    <field name="description">
+      <value>It is not good enough to compare just the name of a property in the Equals method of MetaProperty.cs.  There can be many property names named "Item" if there are multiple indexers on the class/interface.
+
+public string this[int idx]{get;}
+public string this[string name]{get;}
+etc.
+
+This is the fix I came up with:
+			if(!getter.Equals(other.getter))
+				return false;
+
+			if(!setter.Equals(other.setter))
+				return false;
+</value>
+    </field>
+    <field name="created">
+      <value>1269612138000</value>
+    </field>
+    <field name="updated">
+      <value>1270564919000</value>
+    </field>
+    <field name="reporterName">
+      <value>dpuser</value>
+    </field>
+    <field name="updaterName">
+      <value>dpuser</value>
+    </field>
+    <field name="resolved">
+      <value>1270564860000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="can you create a failing test?&#xA;" created="1269612274000" />
+    <comment author="username3345" text="	[TestFixture]&#xA;	public class DynProxy132&#xA;	{&#xA;		[Test]&#xA;		public void ShouldGenerateTypeWithIndexers()&#xA;		{&#xA;			Type t = new DefaultProxyBuilder().CreateInterfaceProxyTypeWithoutTarget(typeof(IHaveIndexers), null, ProxyGenerationOptions.Default);&#xA;		}&#xA;	}&#xA;&#xA;	public interface IHaveIndexers&#xA;	{&#xA;		string this[string name] { get; }&#xA;		string this[Guid id] { get; }&#xA;		string this[Type type] { get; }&#xA;	}&#xA;" created="1270462337000" />
+    <comment author="xtoff" text="thanks" created="1270462596000" />
+    <comment author="xtoff" text="The issue was actually deeper than the description implies. We were generating indexers improperly skipping their parameters. In addition their arguments were ignored when comparing, as described by the issue.&#xA;This is now fixed." created="1270564905000" />
+    <comment author="xtoff" text="fixed in http://github.com/castleproject/Castle.Core/commit/8d5763df0603a33ceb40ee33da06ca8f5bce8d66" created="1270564919000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1270564620000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1270564860000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1270564860000" />
+  </issue>
+</issues>

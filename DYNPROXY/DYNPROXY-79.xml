@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>79</value>
+    </field>
+    <field name="summary">
+      <value>DP2: Inherited interface does not seem to work</value>
+    </field>
+    <field name="description">
+      <value>Issue DYNPROXY-ISSUE-58 still exists. Use the example code in the issue. This also affects the WCF facility: It is not possible to make an WCF client proxy of a inherited interface (Service Contract).</value>
+    </field>
+    <field name="created">
+      <value>1229409392000</value>
+    </field>
+    <field name="updated">
+      <value>1235859269000</value>
+    </field>
+    <field name="reporterName">
+      <value>jonnekats</value>
+    </field>
+    <field name="updaterName">
+      <value>jonnekats</value>
+    </field>
+    <field name="resolved">
+      <value>1235859240000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Fixed in r5570. Thanks." created="1235859269000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1235859240000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1235859240000" />
+  </issue>
+</issues>

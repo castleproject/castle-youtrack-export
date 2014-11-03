@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>103</value>
+    </field>
+    <field name="summary">
+      <value>The CodeGenerator should use the UrlBuilder from the Monorail services and not the DefaultUrlBuilder</value>
+    </field>
+    <field name="description">
+      <value>In the ControllerActionReference class, the Url property instanciate a new DefaultUrlBuilder object. But it should use your custom UrlBuilder if you have set one in the configuration files.
+I modified the code so that it gets the IUrlBuilder from the EngineContext services and if this is a DefaultUrlBuilder, it still sets the ServerUtil property.
+
+Btw, how come we have to set this ServerUtil property manually ? I tried to just get the IUrlBuilder service and to use it directly but it seems it does not initialize this property which is needed for the url building code to work... Can it just initialize it from the HttpContext.Current.Server if it has not been passed in the contsructor ? If you agree, I will send a patch for this too.</value>
+    </field>
+    <field name="created">
+      <value>1201494039000</value>
+    </field>
+    <field name="updated">
+      <value>1201571292000</value>
+    </field>
+    <field name="reporterName">
+      <value>djhi</value>
+    </field>
+    <field name="updaterName">
+      <value>djhi</value>
+    </field>
+    <field name="resolved">
+      <value>1282140044854</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 3</value>
+    </field>
+    <field name="Affected versions">
+      <value>beta 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>7</value>
+    </field>
+    <field name="summary">
+      <value>Create TestCases for the I18N and DataBinding</value>
+    </field>
+    <field name="description">
+      <value>Create the TestCases for the I18N and DataBinding patch sent by CoBraLord.</value>
+    </field>
+    <field name="created">
+      <value>1118992994000</value>
+    </field>
+    <field name="updated">
+      <value>1119779020000</value>
+    </field>
+    <field name="reporterName">
+      <value>henry</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1282143240604</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

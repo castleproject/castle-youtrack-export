@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.0</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>551</value>
+    </field>
+    <field name="summary">
+      <value>Binding to settings in dictionary with support for . as property accessor</value>
+    </field>
+    <field name="description">
+      <value>A binder for IDictionary and IDictionary&lt;,&gt;, but right now it’s not selectable from the default DataBinder instance in castle which it should be, which also causes more complex field-names to fail to be bound, e.g. “myclass.Property.Dictionary[secondKey]” which it should support.</value>
+    </field>
+    <field name="created">
+      <value>1254658803000</value>
+    </field>
+    <field name="updated">
+      <value>1279211768000</value>
+    </field>
+    <field name="reporterName">
+      <value>roelofb</value>
+    </field>
+    <field name="updaterName">
+      <value>roelofb</value>
+    </field>
+    <field name="resolved">
+      <value>1279211700000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="roelofb" text="Henrik Feldt submitted this on the list, but doesn't feel like creating an issue for this like everybody else does. This is a little one-time service from me." created="1254658942000" />
+    <comment author="jsimons" text="Henrik,&#xA;&#xA;Your tests patch contains 2 empty tests:&#xA;		[Test]&#xA;		public void DictionaryFieldNonGenericType()&#xA;		{&#xA;			// TODO as required.&#xA;		}&#xA;&#xA;		[Test]&#xA;		public void DictionaryFieldKeyNonString()&#xA;		{&#xA;			// TODO if you require a converter to work on something which is a key in the dictionary.&#xA;		}&#xA;&#xA;Did you forget to include the code, or are these tests not required?&#xA;&#xA;Cheers&#xA;John" created="1261063513000" />
+    <comment author="jsimons" text="We have survived with this limitation for a long time and it was never raised as a bug.&#xA;I don't actually see the point of it.&#xA;So unless someone gives me a good use case for it, I'm closing this issue." created="1279211723000" />
+    <comment author="jsimons" text="If anyone thinks this would be a good addition, please feel free to reopen it." created="1279211768000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1261063860000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Work Started'' to ''Work Stopped''.&#xD;&#xA;" created="1262658780000" />
+    <comment author="jsimons" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Version Fixed''' set to ''2.0''.&#xD;&#xA;* '''Status''' changed from ''Work Stopped'' to ''Resolved''.&#xD;&#xA;" created="1279211700000" />
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1279211760000" />
+    <comment author="roelofb" text="* '''Attachment''' FormHelper_AddedDictionaryResolving.patch added.&#xD;&#xA;" created="1254658803001" />
+    <comment author="roelofb" text="* '''Attachment''' FormHelperTestCase_AddedDictionaryResolving.patch added.&#xD;&#xA;" created="1254658803001" />
+  </issue>
+</issues>

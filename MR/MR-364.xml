@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>364</value>
+    </field>
+    <field name="summary">
+      <value>Refactor Castle.MonoRail.Framework.IFilter Break change</value>
+    </field>
+    <field name="description">
+      <value>Build of Castle.MonoRail.ViewComponents throw exception like:
+
+Error	3	The best overloaded method match for 'Castle.MonoRail.Framework.Helpers.AbstractHelper.SetController(Castle.MonoRail.Framework.Controller)' has some invalid arguments	D:\a\_SVN\CastleContrib\viewcomponents\Castle.MonoRail.ViewComponents\CaptchaComponent.cs	310	4	Castle.MonoRail.ViewComponents
+
+This error due to the refactoring of IFilter to accept IController when Castle.MonoRail.Framework.Helpers.AbstractHelper.SetController(Castle.MonoRail.Framework.Controller) is not aware of the change.</value>
+    </field>
+    <field name="created">
+      <value>1195015483000</value>
+    </field>
+    <field name="updated">
+      <value>1244675394000</value>
+    </field>
+    <field name="reporterName">
+      <value>csokun</value>
+    </field>
+    <field name="updaterName">
+      <value>csokun</value>
+    </field>
+    <field name="resolved">
+      <value>1282145411838</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244675340000" />
+  </issue>
+</issues>

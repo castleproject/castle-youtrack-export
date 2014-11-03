@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>beta 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>69</value>
+    </field>
+    <field name="summary">
+      <value>DeliverEmail should use the MR configuration instead of ConfigurationSettings</value>
+    </field>
+    <field name="description">
+      <value>Change DeliverEmail implementation to use MR configuration instead:
+
+				if( ConfigurationSettings.AppSettings[Constants.SmtpUsername] != null &amp;&amp; ConfigurationSettings.AppSettings[Constants.SmtpUsername] != String.Empty &amp;&amp;
+					ConfigurationSettings.AppSettings[Constants.SmtpPassword] != null &amp;&amp; ConfigurationSettings.AppSettings[Constants.SmtpPassword] != String.Empty)
+				{
+					message.Fields.Add(Constants.SmtpAuthSchema, Constants.SmtpAuthEnabled);
+					message.Fields.Add(Constants.SmtpUsernameSchema, ConfigurationSettings.AppSettings[Constants.SmtpUsername]);
+					message.Fields.Add(Constants.SmtpPasswordSchema, ConfigurationSettings.AppSettings[Constants.SmtpPassword]);
+				}
+
+				if(ConfigurationSettings.AppSettings[Constants.SmtpServer] != null &amp;&amp; ConfigurationSettings.AppSettings[Constants.SmtpServer] != String.Empty)
+					SmtpMail.SmtpServer = ConfigurationSettings.AppSettings[Constants.SmtpServer];
+				else
+					SmtpMail.SmtpServer = Constants.DefaultSmtpServer;
+</value>
+    </field>
+    <field name="created">
+      <value>1132731119000</value>
+    </field>
+    <field name="updated">
+      <value>1136170004000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282143372198</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

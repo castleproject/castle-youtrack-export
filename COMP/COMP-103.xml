@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>103</value>
+    </field>
+    <field name="summary">
+      <value>Changed Scheduler to use NUnit instead of MBUnit.</value>
+    </field>
+    <field name="description">
+      <value>At the moment tests on the Scheduler component are not being run by either the nant or the build server because they are using MBUnit.
+This patch rectifies that by converting the tests to use the NUnit framework.
+
+Also, since MBUnit was only being used by the Scheduler, I removed it from the SharedLibs.</value>
+    </field>
+    <field name="created">
+      <value>1251079242000</value>
+    </field>
+    <field name="updated">
+      <value>1253323242000</value>
+    </field>
+    <field name="reporterName">
+      <value>jsimons</value>
+    </field>
+    <field name="updaterName">
+      <value>jsimons</value>
+    </field>
+    <field name="resolved">
+      <value>1253323200000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Applied in r5980. Thanks." created="1253323238000" />
+    <comment author="jsimons" text="* '''Attachment''' SchedulerWithNUnit.patch added.&#xD;&#xA;" created="1251079440000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1253323200000" />
+    <comment author="jonorossi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1253323200000" />
+  </issue>
+</issues>

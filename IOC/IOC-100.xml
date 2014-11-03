@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>100</value>
+    </field>
+    <field name="summary">
+      <value>Generic components don't honor lifestyle types set programmatically</value>
+    </field>
+    <field name="description">
+      <value>Generic components don't honor lifestyle types set programmatically.  If I use:
+      container.AddComponentWithLifestyle("comp", typeof(IRepository&lt;&gt;), typeof(RepositoryNotMarkedAsTransient&lt;&gt;), LifestyleType.Transient);
+
+but don't attach the [Castle.Core.Transient] tag to the class "RepositoryNotMarkedAsTransient" then the component is created as a singleton by the DefaultGenericHandler.
+
+I've attached the test files from Windsor with a failing test added which illustrates the problem.  I've also attached a proposed fix.  I'm not too familiar with the code, so the fix might be right off base, but it may also help you identify what does need fixing.  The fix is in Castle.MicroKernel.Handlers.DefaultGenericHandler.cs, method GetSubHandler.</value>
+    </field>
+    <field name="created">
+      <value>1193773779000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838901</value>
+    </field>
+    <field name="reporterName">
+      <value>anobleperson</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1228855500000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="already working" created="1228855558000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1228855500000" />
+  </issue>
+</issues>

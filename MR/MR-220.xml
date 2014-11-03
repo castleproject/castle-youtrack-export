@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>220</value>
+    </field>
+    <field name="summary">
+      <value>nant does not build satellite resource properly</value>
+    </field>
+    <field name="description">
+      <value>As title, I found evidence here:
+http://discuss.fogcreek.com/dotnetquestions/default.asp?cmd=show&amp;ixPost=4406
+
+For some reason the new localizationfilter I added does not fetch the right locale script, after careful inspection its the broken satellite dll created by nant. using the one build by VS works fine. 
+
+We should find a way to avoid this issue completely, that would make us getting really frustrated in the future when further localization is required- we absolutely dont want to look into VS and copy a file everytime after nant build.
+
+P.S. I saw the Castle.Components.Validator contains a pt culture resource dll too, if want to double verify the issue we could test for that one.</value>
+    </field>
+    <field name="created">
+      <value>1169565575000</value>
+    </field>
+    <field name="updated">
+      <value>1244676520000</value>
+    </field>
+    <field name="reporterName">
+      <value>goodwill</value>
+    </field>
+    <field name="updaterName">
+      <value>goodwill</value>
+    </field>
+    <field name="resolved">
+      <value>1282143674370</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676480000" />
+  </issue>
+</issues>

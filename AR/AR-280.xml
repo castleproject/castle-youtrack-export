@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 2.1.2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>280</value>
+    </field>
+    <field name="summary">
+      <value>Setting IsolationLevel on TransactionScope doesn't work</value>
+    </field>
+    <field name="description">
+      <value>TransactionScope have to override OpenSession and use :
+public override ISession OpenSession(ISessionFactory sessionFactory,
+ IInterceptor interceptor)
+ {
+         ISession session = sessionFactory.OpenSession(interceptor);
+         SetFlushMode(session);
+         if (FlushAction != FlushAction.Never)
+                 session.BeginTransaction(isolationLevel);
+         return session;
+
+ }
+
+If not, the AbstractScope.OpenSession is called, which doesn't have information about
+ isolationLevel and dont use it.
+</value>
+    </field>
+    <field name="created">
+      <value>1264390846000</value>
+    </field>
+    <field name="updated">
+      <value>1264549870000</value>
+    </field>
+    <field name="reporterName">
+      <value>bpierzchlewicz</value>
+    </field>
+    <field name="updaterName">
+      <value>bpierzchlewicz</value>
+    </field>
+    <field name="resolved">
+      <value>1264549800000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="bpierzchlewicz" text="More information at http://groups.google.com/group/castle-project-users/browse_thread/thread/242e8117c86f5107" created="1264487897000" />
+    <comment author="mzywitza" text="The check for FlushAction is unnessecary as TransactionScope always have FlushAction.Config" created="1264549648000" />
+    <comment author="mzywitza" text="Applied with changes, thanks" created="1264549854000" />
+    <comment author="bpierzchlewicz" text="* '''Attachment''' ts.patch added.&#xD;&#xA;" created="1264391040000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1264549560000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''AR 2.1.2''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1264549800000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1264549860000" />
+  </issue>
+</issues>

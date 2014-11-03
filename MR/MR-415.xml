@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewComponents</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>415</value>
+    </field>
+    <field name="summary">
+      <value>CaptureFor Component used in Components'Views looses its ContextVars</value>
+    </field>
+    <field name="description">
+      <value>Hello, 
+
+I'm trying to use the CaptureFor component inside the View of another component named HelpLabel. 
+I use the component (which generate a Label with a custom DHTML tooltip) in several places in a page and only the last CaptureFor component is rendered.
+
+The HelpLabel Component View code:
+
+&lt;label for="${ LabelFor }" class="tooltip html_tooltip${ ContentID } tooltiphelp left"&gt;${ Label }&lt;/label&gt;
+
+&lt;?brail component CaptureFor, { 'id':'ToolTipElements', 'append':'before' } : ?&gt;
+    &lt;span id="tooltip${ ContentID }" style="display:none"&gt;
+        &lt;div class="tooltip_content"&gt;${ HelpMessage }&lt;/div&gt;
+    &lt;/span&gt;
+&lt;?brail end ?&gt;
+
+In Debug step by step mode, I can see that the Context.ContextVars[id] is checked but it's always null so the last CaptureFor always override the previous one.
+
+I can't say if this is a Brail bug or a more general one. I'll try to investigate more.</value>
+    </field>
+    <field name="created">
+      <value>1203067613000</value>
+    </field>
+    <field name="updated">
+      <value>1263055874000</value>
+    </field>
+    <field name="reporterName">
+      <value>djhi</value>
+    </field>
+    <field name="updaterName">
+      <value>djhi</value>
+    </field>
+    <field name="resolved">
+      <value>1282145542260</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055860000" />
+  </issue>
+</issues>

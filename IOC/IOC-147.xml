@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>147</value>
+    </field>
+    <field name="summary">
+      <value>Supplying a dictionary as a runtime parameter when resolving a component fails</value>
+    </field>
+    <field name="description">
+      <value>This is quite surprising - I get a NotImplementException thrown when
+trying to Resolve&lt;T&gt; a component that has a dependency on a dictionary
+(either a Hasedtable or a generic Dictionary&lt;T,U&gt;), when the
+dependency is *supplied at runtime*.
+
+I found a workaround - to declare the dependency as System.Object, but
+this an ugly hack.
+
+Can someone please point out that I am wrong and indicate what the
+appropriate way of supplying a dictionary to a component at runtime.
+Here is the test that reproduces the problem (and the workaround).
+
+[Test]
+public void ShouldBeAbleToSupplyDictionaryAsARuntimeParameter()
+{
+    var container = new WindsorContainer();
+    container.Register(Component.For&lt;ClassTakingDictionary&gt;());
+
+    var someDictionary = new Hashtable();
+
+    //The call to resolve throws NotImplementedException
+    var s = container.Resolve&lt;ClassTakingDictionary&gt;(new
+{ SomeDictionary = someDictionary });
+    Assert.That(s, Is.Not.Null);
+}
+
+[Test]
+public void Workaround()
+{
+    var container = new WindsorContainer();
+    container.Register(Component.For&lt;ClassTakingDictionary&gt;());
+
+    var someDictionary = new Hashtable();
+
+    var s = container.Resolve&lt;ClassTakingDictionary&gt;(new
+{ SomeDictionaryToBeInjected = someDictionary });
+    Assert.That(s, Is.Not.Null);
+
+}
+
+public class ClassTakingDictionary
+{
+    public IDictionary SomeDictionary { get; set; }
+
+    public object SomeDictionaryToBeInjected
+    {
+        set { SomeDictionary = value as IDictionary; }
+    }
+}</value>
+    </field>
+    <field name="created">
+      <value>1235457551000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838854</value>
+    </field>
+    <field name="reporterName">
+      <value>christianacca</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1241441760000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="nzdunic" text="Hello - my issue 145 has a similar problem.&#xA;&#xA;I put in a code fix in the castle code myself.  Not sure if that is right so I just registered a bug and told them about it in issue 145.&#xA;&#xA;Maybe I'll just submit the code change myslef into the trunk and see who baulks at it." created="1235932551000" />
+    <comment author="ayenderahien" text="Dop of IoC - 145" created="1241441763000" />
+    <comment author="christianacca" text="* '''Type''' changed from ''Bug'' to ''New Feature''.&#xD;&#xA;" created="1235457551001" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1241441760000" />
+    <comment author="ayenderahien" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1241441760000" />
+  </issue>
+</issues>

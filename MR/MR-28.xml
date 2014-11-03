@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Ajax Support</value>
+    </field>
+    <field name="Fix versions">
+      <value>beta 4</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>28</value>
+    </field>
+    <field name="summary">
+      <value>Element class raises javascript exceptions</value>
+    </field>
+    <field name="description">
+      <value>When trying to create a new Ajax autocompleter, the following code is called:
+
+element.className.split(' ')
+
+But the className property eventually is set to the null value, so the method call fails.
+
+I'm sending a patch that fixes the buggy code using:
+
+(element.className || '').split(' ')</value>
+    </field>
+    <field name="created">
+      <value>1122378540000</value>
+    </field>
+    <field name="updated">
+      <value>1127055237000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282143339916</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Castle Visual Studio Integration</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>51</value>
+    </field>
+    <field name="summary">
+      <value>Coloring for #Component (and maybe other hashes) requires a space before }</value>
+    </field>
+    <field name="description">
+      <value>This trips up the coloriser:
+      #component(QuestionComponent "%{question = $Question}")
+
+I need to add a space before the } like so for it to be correctly colored:
+      #component(QuestionComponent "%{question = $Question }")
+
+
+Here's the whole view in case it's needed to reproduce the problem:
+#set ($alt = 1)
+#foreach($Question in $directoryItem.Questions)
+     #if(!$Question.Question.ParentQuestion) 
+        #set ($alt = 1 - $alt)
+     #end
+
+    &lt;div class="row$alt" style="padding:0px 5px 5px 5px;" &gt;
+      #component(QuestionComponent "%{question = $Question}")
+    &lt;/div&gt; 
+ 
+#end
+
+&lt;br style="clear:both" /&gt;
+</value>
+    </field>
+    <field name="created">
+      <value>1186088953000</value>
+    </field>
+    <field name="updated">
+      <value>1200213924000</value>
+    </field>
+    <field name="reporterName">
+      <value>tim</value>
+    </field>
+    <field name="updaterName">
+      <value>tim</value>
+    </field>
+    <field name="resolved">
+      <value>1282138202338</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

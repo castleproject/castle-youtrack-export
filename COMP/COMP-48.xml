@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>48</value>
+    </field>
+    <field name="summary">
+      <value>Can't access ctor on generated dictionaryadapter when using new aspview</value>
+    </field>
+    <field name="description">
+      <value>Recent changes to the dictionaryadapterfactory have led to the:
+
+public &lt;classname&gt;(&lt;wrapped dictionary type&gt; dict)
+
+constructor being generated with the exact type of the supplied dictionary rather than explicitly defining the param as IDictionary or NameValueCollection. Since the Properties dictionary in aspview is a slightly different type to the PropertyBag in Controller, it can't call the ctor correctly. Patch detects if it is an IDictionary or NameValueCollection and creates the constructor parameter with one of those types instead.</value>
+    </field>
+    <field name="created">
+      <value>1194423256000</value>
+    </field>
+    <field name="updated">
+      <value>1194423354000</value>
+    </field>
+    <field name="reporterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="updaterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="resolved">
+      <value>1282137580260</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

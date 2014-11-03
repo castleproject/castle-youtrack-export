@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngine - WebForms</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>2</value>
+    </field>
+    <field name="summary">
+      <value>Ajax WebControls for WebForms.</value>
+    </field>
+    <field name="description">
+      <value>Create a set of controls that delivers ajax capbalities to the aspx pages(webforms). The must be standalone, no need of controllers and etc.</value>
+    </field>
+    <field name="created">
+      <value>1117190837000</value>
+    </field>
+    <field name="updated">
+      <value>1162414585000</value>
+    </field>
+    <field name="reporterName">
+      <value>henry</value>
+    </field>
+    <field name="updaterName">
+      <value>henry</value>
+    </field>
+    <field name="resolved">
+      <value>1282143235073</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="tathamoddie" text="Lets wait for .Net 2.0 and see how well we can reuse the existing clientside postbacks infrastructure. No point rewriting from the ground up, and you want to make it as easy as possible for new developers to migrate to MonoRail." created="1218366898000" />
+  </issue>
+</issues>

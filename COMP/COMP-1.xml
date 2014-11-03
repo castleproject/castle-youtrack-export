@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Show-stopper</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Binder</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>1</value>
+    </field>
+    <field name="summary">
+      <value>Binder fails on simple MonoRail binding, when using ASP.NET authentication</value>
+    </field>
+    <field name="description">
+      <value>The stack trace should say by itself:
+
+[BindingException: Invalid key: .ASPXAUTH]
+   Castle.Components.Binder.TreeBuilder.ProcessNode(CompositeNode node, Type type, String name, Object value) +553
+   Castle.Components.Binder.TreeBuilder.PopulateTree(CompositeNode root, NameValueCollection nameValueCollection) +157
+   Castle.Components.Binder.TreeBuilder.BuildSourceNode(NameValueCollection nameValueCollection) +116
+   Castle.MonoRail.Framework.SmartDispatcherController.get_ParamsNode() +42
+   Castle.MonoRail.Framework.SmartDispatcherController.BuildMethodArguments(ParameterInfo[] parameters, IRequest request, Object[] actionArgs) +250
+
+[RailsException: Error building method arguments. Last param analyzed was hql with value '']
+   Castle.MonoRail.Framework.SmartDispatcherController.BuildMethodArguments(ParameterInfo[] parameters, IRequest request, Object[] actionArgs) +541
+   Castle.MonoRail.Framework.SmartDispatcherController.InvokeMethod(MethodInfo method, IRequest request, Object[] actionArgs) +32
+   Castle.MonoRail.Framework.Controller.InternalSend(String action, Object[] actionArgs) +702
+
+[RailsException: Unhandled Exception while rendering view]
+   Castle.MonoRail.Framework.Controller.InternalSend(String action, Object[] actionArgs) +1065
+   Castle.MonoRail.Framework.Controller.Process(IRailsEngineContext context, String areaName, String controllerName, String actionName) +294
+   Castle.MonoRail.Framework.MonoRailHttpHandler.Process(IRailsEngineContext context) +270
+   Castle.MonoRail.Framework.MonoRailHttpHandler.ProcessRequest(HttpContext context) +18
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +154
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +64
+</value>
+    </field>
+    <field name="created">
+      <value>1158924945000</value>
+    </field>
+    <field name="updated">
+      <value>1158958484000</value>
+    </field>
+    <field name="reporterName">
+      <value>fabio</value>
+    </field>
+    <field name="updaterName">
+      <value>fabio</value>
+    </field>
+    <field name="resolved">
+      <value>1282137443557</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

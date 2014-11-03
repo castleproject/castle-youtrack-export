@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Helpers</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Release Candidate 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>342</value>
+    </field>
+    <field name="summary">
+      <value>FormHelper.RadioField doesn't create unique IDs</value>
+    </field>
+    <field name="description">
+      <value>Usually in an HTML form a group of radio buttons requires identical 'name' attributes, and RadioField 'target' parameter fills in both 'id' and 'name'.
+
+The problem is then the ID isn't unique which makes it hard to use the &lt;label&gt; tag for radio button lists.</value>
+    </field>
+    <field name="created">
+      <value>1191865424000</value>
+    </field>
+    <field name="updated">
+      <value>1263055578000</value>
+    </field>
+    <field name="reporterName">
+      <value>tangman</value>
+    </field>
+    <field name="updaterName">
+      <value>tangman</value>
+    </field>
+    <field name="resolved">
+      <value>1282144039807</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jsimons" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1263055560000" />
+  </issue>
+</issues>

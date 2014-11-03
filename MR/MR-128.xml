@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Affected versions">
+      <value>Release Candidate 1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>128</value>
+    </field>
+    <field name="summary">
+      <value>Introduce the notion of conditions to WizardStepPage</value>
+    </field>
+    <field name="description">
+      <value>Quoting the post: "I'm working on a small wizard that some steps are only visible if the
+user has selected some options. So far I've handled this with
+RedirectToStep, but I start to think this is a hack. So instead I'd
+like to intruduce an overridable condtion to WizardStepPage.
+
+The goals:
+- The wizard redirect methods must be aware of the condtions to select
+the next or previous step wisely
+- The step cannot be accessed directly by the user, so the condition
+should also be checked for the direct access
+
+I'm not sure about the method name, though. On the refactored version
+of the VS.Net castle wizards I've used:
+
+public class WizardPanel : UserControl
+{
+   ...
+
+   public virtual bool WantsToShow(ExtensionContext context)
+   {
+       return true;
+   }
+}"</value>
+    </field>
+    <field name="created">
+      <value>1151922983000</value>
+    </field>
+    <field name="updated">
+      <value>1162413240000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282143466713</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>iBatis</value>
+    </field>
+    <field name="Fix versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>94</value>
+    </field>
+    <field name="summary">
+      <value>System.ArgumentOutOfRangeException in Castle.Facilities.IBatisNetIntegration.Tests.Dao.AccountDao.GetAccount(int id) after SVN change 4157</value>
+    </field>
+    <field name="description">
+      <value>When building castle with ccnet, during the tests on Castle.Facilities.IBatisNetIntegration.Tests an unhandled System.ArgumentOutOfRangeException is raised. This stops the build with status "Exception". It happened when the commit of SVN change 4157 triggered a build
+
+At line 96 of Castle.Facilities.IBatisNetIntegration.Tests.DaoTestCase.ExecuteMethodUntilSignal() the following code:
+    account = _dao.GetAccount(id);
+it calls Castle.Facilities.IBatisNetIntegration.Tests.Dao.AccountDao.GetAccount(int id). This method has only 1 line:
+    return _sqlMap.QueryForObject("GetAccount", id) as Account;
+and here an unhandled exception is raised (well, in reality it is raised inside IBatisNet.DataMapper.DLL, in the IBatisNet.DataMapper.SqlMapper.QueryForObject(string statementName, object parameterObject) + 0x86 bytes, but I haven't the source code for that on my build machine).
+The exception message is "Length cannot be less than zero" and the exception is of type System.ArgumentOutOfRangeException.
+
+After I stop the debugging of the build, in the Nant output of ccnet dashboard I can read:
+
+[exec] Unhandled Exception: System.ArgumentOutOfRangeException: Length cannot be less than zero.
+[exec] Parameter name: length
+[exec] at System.String.InternalSubStringWithChecks(Int32 startIndex, Int32 length, Boolean fAlwaysCopy)
+[exec] at IBatisNet.DataMapper.Commands.DefaultPreparedCommand.ApplyParameterMap(ISqlMapSession session, IDbCommand command, RequestScope request, IStatement statement, Object parameterObject)
+[exec] at IBatisNet.DataMapper.Commands.DefaultPreparedCommand.Create(RequestScope request, ISqlMapSession session, IStatement statement, Object parameterObject)
+[exec] at IBatisNet.DataMapper.MappedStatements.MappedStatement.ExecuteQueryForObject(ISqlMapSession session, Object parameterObject, Object resultObject)
+[exec] at IBatisNet.DataMapper.MappedStatements.MappedStatement.ExecuteQueryForObject(ISqlMapSession session, Object parameterObject)
+[exec] at IBatisNet.DataMapper.SqlMapper.QueryForObject(String statementName, Object parameterObject)
+[exec] at Castle.Facilities.IBatisNetIntegration.Tests.Dao.AccountDao.GetAccount(Int32 id) in c:\dev\castle\Facilities\IBatisNet\Castle.Facilities.IBatisNetIntegration.Tests\Dao\AccountDao.cs:line 44
+[exec] at Castle.Facilities.IBatisNetIntegration.Tests.DaoTestCase.ExecuteMethodUntilSignal() in c:\dev\castle\Facilities\IBatisNet\Castle.Facilities.IBatisNetIntegration.Tests\DaoTestCase.cs:line 112
+[exec] at System.Threading.ThreadHelper.ThreadStart_Context(Object state)
+[exec] at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+[exec] at System.Threading.ThreadHelper.ThreadStart()
+
+Build Error: NAnt.Core.BuildException
+External Program Failed: nunit-console (return code was -532459699)
+in C:\dev\Castle\common-project.xml line: 275 col: 5
+
+   at NAnt.Core.Tasks.ExternalProgramBase.ExecuteTask()
+   at NAnt.Core.Tasks.ExecTask.ExecuteTask()
+   at NAnt.Core.Task.Execute()
+   at NAnt.Core.TaskContainer.ExecuteChildTasks()
+   at NAnt.Core.Tasks.IfTask.ExecuteTask()
+   at NAnt.Core.Task.Execute()
+   at NAnt.Core.Target.Execute()
+   at NAnt.Core.Project.Execute(String targetName, Boolean forceDependencies)
+   at NAnt.Core.Project.Execute()
+   at NAnt.Core.Project.Run()
+
+Build Error: NAnt.Core.BuildException
+Nested build failed. Refer to build log for exact reason.
+
+   at NAnt.Core.Tasks.NAntTask.RunBuild(FileInfo buildFile)
+   at NAnt.Core.Tasks.NAntTask.ExecuteTask()
+   at NAnt.Core.Task.Execute()
+   at NAnt.Core.Target.Execute()
+   at NAnt.Core.Project.Execute(String targetName, Boolean forceDependencies)
+   at NAnt.Core.Project.Execute()
+   at NAnt.Core.Project.Run()
+
+Build Error: NAnt.Core.BuildException
+Nested build failed. Refer to build log for exact reason.
+
+   at NAnt.Core.Tasks.NAntTask.RunBuild(FileInfo buildFile)
+   at NAnt.Core.Tasks.NAntTask.ExecuteTask()
+   at NAnt.Core.Task.Execute()
+   at NAnt.Core.Target.Execute()
+   at NAnt.Core.Project.Execute(String targetName, Boolean forceDependencies)
+   at NAnt.Core.Project.Execute()
+   at NAnt.Core.Project.Run()
+
+Build Error: NAnt.Core.BuildException
+Nested build failed. Refer to build log for exact reason.
+
+   at NAnt.Core.Tasks.NAntTask.RunBuild(FileInfo buildFile)
+   at NAnt.Core.Tasks.NAntTask.ExecuteTask()
+   at NAnt.Core.Task.Execute()
+   at NAnt.Core.Target.Execute()
+   at NAnt.Core.Project.Execute(String targetName, Boolean forceDependencies)
+   at NAnt.Core.Project.Execute()
+   at NAnt.Core.Project.Run()
+
+Build Error: NAnt.Core.BuildException
+Nested build failed. Refer to build log for exact reason.
+
+   at NAnt.Core.Tasks.NAntTask.RunBuild(FileInfo buildFile)
+   at NAnt.Core.Tasks.NAntTask.ExecuteTask()
+   at NAnt.Core.Task.Execute()
+   at NAnt.Core.Target.Execute()
+   at NAnt.Core.Project.Execute(String targetName, Boolean forceDependencies)
+   at NAnt.Core.Project.Execute()
+   at NAnt.Core.Project.Run()
+
+</value>
+    </field>
+    <field name="created">
+      <value>1187240986000</value>
+    </field>
+    <field name="updated">
+      <value>1187242040000</value>
+    </field>
+    <field name="reporterName">
+      <value>aledeniz</value>
+    </field>
+    <field name="updaterName">
+      <value>aledeniz</value>
+    </field>
+    <field name="resolved">
+      <value>1282141219213</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

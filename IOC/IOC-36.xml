@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>36</value>
+    </field>
+    <field name="summary">
+      <value>Transient components with multliple constructors throw unresolved dependency exceptions.</value>
+    </field>
+    <field name="description">
+      <value>Hello people,
+
+One of my teammates had an interesting issue with multi-constructor components.
+
+We have the following component:
+
+ [Transient]
+ public class FooBar
+ {
+     public FooBar(DateTime dtBla)  {  ...  }
+     public FooBar(int intBla)   { ... }
+ }
+
+First we do:
+
+     options1.Add("intBla",1);
+     IoC.Resolve&lt;FooBar&gt;(options1);
+
+And all goes well, we get a nice object with the integer c'tor called. Next step, the future!
+
+     options2.Add("dtBla",DateTime.Now.AddDays(1));
+     IoC.Resolve&lt;FooBar&gt;(options2);
+
+Uh oh, IoC throws an unresolved dependency exception for the integer parameter, not good...
+
+After some debugging it turned out that the microkernel 'caches' the best candidate constructor. This is of course fine, but in the case of multi constructor objects this can lead to crashes. Attached is a patch fixes this issue.
+
+This does however bring up a new question. As you can see, FooBar is marked Transient, by default components are marked as singleton.
+
+Now is 
+
+     new FooBar(DateTime.Now);
+
+the same object / instance as 
+
+     new FooBar(1);
+
+?
+
+IMHO this should be left to the user, so configurable.
+
+What are your thoughts?
+
+Kind regards,
+
+Ernst  
+</value>
+    </field>
+    <field name="created">
+      <value>1161584580000</value>
+    </field>
+    <field name="updated">
+      <value>1283220838885</value>
+    </field>
+    <field name="reporterName">
+      <value>ernst</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282141802026</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

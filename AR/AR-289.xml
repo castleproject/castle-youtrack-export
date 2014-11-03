@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>AR 3.0 Beta</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>289</value>
+    </field>
+    <field name="summary">
+      <value>Client Profile Support</value>
+    </field>
+    <field name="description">
+      <value>This has been discussed on the mailing list and is a bit of a thorny issue.  My proposed implementation is available here:
+
+http://github.com/patearl/Castle.ActiveRecord/commit/4871f17c1e57426eec23a4a683738d5f781794b4</value>
+    </field>
+    <field name="created">
+      <value>1287367322024</value>
+    </field>
+    <field name="updated">
+      <value>1407822526751</value>
+    </field>
+    <field name="reporterName">
+      <value>patearl</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1296770885908</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="patearl" text="This new commit replaces the original:&#xA;http://github.com/patearl/Castle.ActiveRecord/commit/d5e4b07c6ab1aec3953410a36d0b81196e4746c4" created="1287805100650" />
+    <comment author="patearl" text="Okay, after learning much more about Git, I put this in its final location on this feature branch:&#xA;https://github.com/patearl/Castle.ActiveRecord/commits/client-profile" created="1289018723107" />
+    <comment author="henry" text="Hi Patrick,&#xA;&#xA;Is the build working for the client profile?" created="1289065555666" />
+    <comment author="patearl" text="Though I can't confirm that it would work on the build server, and with the note that it doesn't have conditional compilation to build a non-CP version, the solution does indeed build out of the box for me." created="1289072797853" />
+    <comment author="henry" text="This patch is incomplete. It lacks the net40cp libs and build config for the target framework, also the build for the net35 is broken." created="1289243225416" />
+  </issue>
+</issues>

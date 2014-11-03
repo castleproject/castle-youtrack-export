@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>37</value>
+    </field>
+    <field name="summary">
+      <value>Add ability to have localized ErrorMessage and FriendlyName in AbstractValidator descendents</value>
+    </field>
+    <field name="description">
+      <value>Currently there is no way to have ErrorMessage  and FriendlyName in resources. It's a serious issue in multi language project. Please add something like boolean Localized property to AbstractValidationAttribute. When its value is true  ErrorMessage  and FriendlyName values will act as resource keys.</value>
+    </field>
+    <field name="created">
+      <value>1186029270000</value>
+    </field>
+    <field name="updated">
+      <value>1407823087059</value>
+    </field>
+    <field name="reporterName">
+      <value>vladimirak</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1396694726594</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="hammett" text="Patch please." created="1229883458000" />
+  </issue>
+</issues>

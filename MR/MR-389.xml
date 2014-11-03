@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>389</value>
+    </field>
+    <field name="summary">
+      <value> Pre/PostProcessController events in BaseHttpHandler and ExtensionManager classes</value>
+    </field>
+    <field name="description">
+      <value>This adds two events to the ExtensionManager to be fired from the new BaseHttpHandler just before and just after the controller.Process(...) call.
+
+This gives access to the engine context before and after the controller lifecycle . Filters aren't broad enough to perform some actions around a controller's lifecycle.</value>
+    </field>
+    <field name="created">
+      <value>1199406629000</value>
+    </field>
+    <field name="updated">
+      <value>1244676966000</value>
+    </field>
+    <field name="reporterName">
+      <value>mnichols</value>
+    </field>
+    <field name="updaterName">
+      <value>mnichols</value>
+    </field>
+    <field name="resolved">
+      <value>1282145466416</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="kenegozi" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1244676960000" />
+  </issue>
+</issues>

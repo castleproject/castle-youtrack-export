@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>77</value>
+    </field>
+    <field name="summary">
+      <value>directive to check if component is registered</value>
+    </field>
+    <field name="description">
+      <value>&lt;?define X?&gt; is used for conditional component declaration.
+it would be useful if there'd be a way to determine if component is not already registered inside &lt;?if !COMPONENT.REGISTERED ?&gt; directive.
+
+i.e. &lt;?if !componentId ?&gt;&lt;component id="componentId" type="type"/&gt;&lt;?end?&gt;
+
+this will make configuration easier to customize for different scenarios</value>
+    </field>
+    <field name="created">
+      <value>1181049883000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853151</value>
+    </field>
+    <field name="reporterName">
+      <value>ornus</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1232117700000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="ayenderahien" text="Unless I am going to get a patch for that, I'll be closing this as won't implement soon.&#xA;The recommended solution is to use the fluent API or binsor" created="1228856034000" />
+    <comment author="ayenderahien" text="there isn't much demand for it, and most people are using the alternatives anyway" created="1232117724000" />
+    <comment author="ayenderahien" text="* '''Resolution''' set to ''Won't Fix''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1232117700000" />
+  </issue>
+</issues>

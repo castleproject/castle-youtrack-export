@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.2</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>119</value>
+    </field>
+    <field name="summary">
+      <value>CreateInterfaceProxyWithoutTarget implements interface incorrectly</value>
+    </field>
+    <field name="description">
+      <value>PropertyEmitter assumes that all properties have backing methods whose names match the name of the property. For instance, it assumes that a property called Foo has backing methods get_Foo() and set_Foo().
+
+In reality, the interface type defines the names of the backing methods in addition to the name of the property. If an interface defines the names of the backing methods to be something other than get_/set_, DynamicProxy will create a type that doesn't implement the interface correctly and System.Reflection.Emit.TypeBuilder.CreateType() throws System.TypeLoadException
+
+Note that a property that does not define its methods as get_/set_ may not conform to the CLS (10.4 Naming patterns, http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-335.pdf).</value>
+    </field>
+    <field name="created">
+      <value>1256721492000</value>
+    </field>
+    <field name="updated">
+      <value>1256780648000</value>
+    </field>
+    <field name="reporterName">
+      <value>jadavidson</value>
+    </field>
+    <field name="updaterName">
+      <value>jadavidson</value>
+    </field>
+    <field name="resolved">
+      <value>1256780640000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Can you provide a failing test for that?" created="1256725268000" />
+    <comment author="xtoff" text="As far as I know this works on the trunk. Please create a failing test." created="1256780649000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Incomplete''.&#xD;&#xA;* '''Version Fixed''' set to ''2.2''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1256780640000" />
+  </issue>
+</issues>

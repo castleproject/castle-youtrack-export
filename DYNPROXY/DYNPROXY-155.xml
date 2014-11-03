@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>155</value>
+    </field>
+    <field name="summary">
+      <value>ASP.NETMVC3 IModelInterceptorsSelector method name conflict</value>
+    </field>
+    <field name="description">
+      <value>There is a method name conflict with ASP.NETMVC3 and Dynamic proxy. It can be reproduced by calling into Kernel.ProxyFactory.AddInterceptorSelector(new MySelector()); and then trying to get anything out of the container results in the following error:
+
+
+Method 'get_InternalContext' on type 'Castle.Proxies.LocalDatabaseContextProxy' from assembly 'DynamicProxyGenAssembly2, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null' is overriding a method that is not visible from that assembly.
+
+[TypeLoadException: Method 'get_InternalContext' on type 'Castle.Proxies.LocalDatabaseContextProxy' from assembly 'DynamicProxyGenAssembly2, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null' is overriding a method that is not visible from that assembly.]
+   System.Reflection.Emit.TypeBuilder.TermCreateClass(RuntimeModule module, Int32 tk, ObjectHandleOnStack type) +0
+   System.Reflection.Emit.TypeBuilder.CreateTypeNoLock() +1825
+   System.Reflection.Emit.TypeBuilder.CreateType() +76
+   Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.CreateType(TypeBuilder type) +77
+   Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType() +87
+   Castle.DynamicProxy.Generators.ClassProxyGenerator.GenerateType(String name, Type[] interfaces, INamingScope namingScope) +979
+   Castle.DynamicProxy.Generators.&lt;&gt;c__DisplayClass1.&lt;GenerateCode&gt;b__0(String n, INamingScope s) +57
+   Castle.DynamicProxy.Generators.BaseProxyGenerator.ObtainProxyType(CacheKey cacheKey, Func`3 factory) +1056
+   Castle.DynamicProxy.Generators.ClassProxyGenerator.GenerateCode(Type[] interfaces, ProxyGenerationOptions options) +286
+   Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options) +142
+   Castle.DynamicProxy.ProxyGenerator.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options) +55
+   Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors) +291
+   Castle.Windsor.Proxy.DefaultProxyFactory.Create(IKernel kernel, Object target, ComponentModel model, CreationContext context, Object[] constructorArguments) +519
+   Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, Object[] arguments, Type[] signature) +1043</value>
+    </field>
+    <field name="created">
+      <value>1296680110345</value>
+    </field>
+    <field name="updated">
+      <value>1338174019496</value>
+    </field>
+    <field name="reporterName">
+      <value>Polerecky</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1338174019496</value>
+    </field>
+    <field name="voterName">
+      <value>Omer.Katz</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-673[up-to-date]</value>
+      <value>User: id = 20-723[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Can you provide a failing testcase, preferably one that doesn't involve Windsor or ASP.NET MVC" created="1304831379995" />
+    <comment author="xtoff" text="I'm still waiting for a test case. I'm going to close this issue now. Happy to reopen it if it's still an issue." created="1338174011899" />
+  </issue>
+</issues>

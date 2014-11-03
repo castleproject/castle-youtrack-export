@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>115</value>
+    </field>
+    <field name="summary">
+      <value>Exists always returns True for lazily-proxied classes.</value>
+    </field>
+    <field name="description">
+      <value>I posted this on the dev list but it got buried under the post Christmas deluge. :)
+
+If you use the ActiveRecordBase.Exists(pkid) method on a type which is marked lazy, you will always get a True response because session.Load returns a proxy rather than throwing an ObjectNotFoundException.
+
+Patch attached alters Exists to use session.Get rather than FindByPrimaryKey (and thus session.Load).</value>
+    </field>
+    <field name="created">
+      <value>1167395847000</value>
+    </field>
+    <field name="updated">
+      <value>1167401980000</value>
+    </field>
+    <field name="reporterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="updaterName">
+      <value>leemhenson</value>
+    </field>
+    <field name="resolved">
+      <value>1282136255948</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

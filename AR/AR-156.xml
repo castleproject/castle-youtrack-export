@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>156</value>
+    </field>
+    <field name="summary">
+      <value>Support for insert, update and delete stored procedures for any ActiveRecord class without custom XML</value>
+    </field>
+    <field name="description">
+      <value>Attached is a patch with preliminary support for SQL insert, update and delete commands.  The InsertProc attribute can be any prepared statement that your database can handle.  At the moment, there are no tests included, and I would encourage the Castle maintainers NOT to apply this to the main line until a test has been created.  Also, my patch does not add the new ActiveRecordWithProcsAttribute.cs file to the csproj project file.
+
+So, if anyone is reading this and hoping to get the patch applied, build a test case for NUnit!
+
+This patch will allow users to write custom procedures to build audit trails of database changes, while still using Criteria and HQL queries for record retrieval.
+
+I have written an ActiveRecord code generator based on NVelocity, and I will try to submit that as a contribution within the next month or so.</value>
+    </field>
+    <field name="created">
+      <value>1179410960000</value>
+    </field>
+    <field name="updated">
+      <value>1407823031960</value>
+    </field>
+    <field name="reporterName">
+      <value>roy_tate</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1285402758609</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-4[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="henry" text="There are no plans to support stored procedures on ActiveRecord. It simply doesn't fits the project goals." created="1285402758593" />
+  </issue>
+</issues>

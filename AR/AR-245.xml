@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>245</value>
+    </field>
+    <field name="summary">
+      <value>CollectionID Generator Is Incorrect (Patch)</value>
+    </field>
+    <field name="description">
+      <value>The generator name created by ActiveRecord for collection-id tags is incorrect for guid.comb, uuid.hex, and uuid.string.  The included patch (#2) should apply cleanly in the Internal/Visitors folder of the trunk.</value>
+    </field>
+    <field name="created">
+      <value>1236378767000</value>
+    </field>
+    <field name="updated">
+      <value>1236491450000</value>
+    </field>
+    <field name="reporterName">
+      <value>pat.earl</value>
+    </field>
+    <field name="updaterName">
+      <value>pat.earl</value>
+    </field>
+    <field name="resolved">
+      <value>1236491400000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="I get an error that the patch is outdated. Can you please update to trunk and recreate it?" created="1236404042000" />
+    <comment author="mzywitza" text="Applied in r5581. Thanks." created="1236491452000" />
+    <comment author="pat.earl" text="* '''Attachment''' ActiveRecordCollectionIDGenerator.patch added.&#xD;&#xA;" created="1236378780000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Open'' to ''Work Started''.&#xD;&#xA;" created="1236404040000" />
+    <comment author="pat.earl" text="* '''Attachment''' ActiveRecordCollectionIDGenerator2.patch added.&#xD;&#xA;" created="1236420120000" />
+    <comment author="pat.earl" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;The generator name created by ActiveRecord for collection-id tags is incorrect for guid.comb, uuid.hex, and uuid.string.  The included patch corrects this problem.  The patch is against an older revision so line numbers may have changed.  I did confirm that the latest SVN version of ActiveRecord still has this bug.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;The generator name created by ActiveRecord for collection-id tags is incorrect for guid.comb, uuid.hex, and uuid.string.  The included patch should apply cleanly in the Internal/Visitors folder of the trunk.&#xD;&#xA;{quote}&#xD;&#xA;" created="1236420120000" />
+    <comment author="pat.earl" text="* '''Description''' changed from:&#xD;&#xA;{quote}&#xD;&#xA;The generator name created by ActiveRecord for collection-id tags is incorrect for guid.comb, uuid.hex, and uuid.string.  The included patch should apply cleanly in the Internal/Visitors folder of the trunk.&#xD;&#xA;{quote}&#xD;&#xA;to:&#xD;&#xA;{quote}&#xD;&#xA;The generator name created by ActiveRecord for collection-id tags is incorrect for guid.comb, uuid.hex, and uuid.string.  The included patch (#2) should apply cleanly in the Internal/Visitors folder of the trunk.&#xD;&#xA;{quote}&#xD;&#xA;" created="1236420180000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Work Started'' to ''Resolved''.&#xD;&#xA;" created="1236491400000" />
+  </issue>
+</issues>

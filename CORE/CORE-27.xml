@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Logging</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>27</value>
+    </field>
+    <field name="summary">
+      <value>[Patch] Remove requirement for having two distributions split between client and extended.</value>
+    </field>
+    <field name="description">
+      <value>The following fork allows for the distribution of a single Castle.Core assembly that works on both the client profile and the extended framework.  The WebLogger class that used to refer directly to a couple web classes now utilizes fast reflection / delegates to perform the same tasks.
+
+http://github.com/patearl/Castle.Core</value>
+    </field>
+    <field name="created">
+      <value>1283446725869</value>
+    </field>
+    <field name="updated">
+      <value>1284529823853</value>
+    </field>
+    <field name="reporterName">
+      <value>patearl</value>
+    </field>
+    <field name="updaterName">
+      <value>patearl</value>
+    </field>
+    <field name="resolved">
+      <value>1284511843150</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="patearl" text="My personal hope is that this unified version can be utilized by the soon to be released NHibernate 3 for the ByteCode provider." created="1283446868135" />
+    <comment author="xtoff" text="Patrick, since clientprofile is just smoke and mirrors, I'm pretty sure that ClientProfile version of NHibernate would work without any issues with full .NET version of Castle.Core. Haven't verified that yet, but I'm 99% sure." created="1283642971869" />
+    <comment author="xtoff" text="ok, here's the blogpost I had in mind, but after re-reading it, I can see that you'd have  to do a explicit config setting https://www.re-motion.org/blogs/reflections/archive/2010/08/11/107.aspx" created="1283643626416" />
+    <comment author="patearl" text="Regardless of the runtime consequences, people trying to build with VS2010 will receive errors.  VS2008 just issues warnings, but VS2010 changed that behavior.  The workarounds available include not compiling for client profile (requiring other manual workarounds for installers and such like you mention), replacing Castle.Core with alternate distributions (this complicates build process for users who need both web and client), or building your own set of libraries from source with changes such as those in my fork.  Removing the compile time dependency on System.Web (just 6 properties / methods in total) makes things just work for the developer, regardless of whether they use the client profile or web apps." created="1283654863291" />
+    <comment author="patearl" text="At the time of this comment, there are three commits on the fork.  These consist of the the main commit and two tiny updates to it." created="1284013545917" />
+    <comment author="patearl" text="I've committed a new version that should be more &quot;future proof&quot;.  There's a comment on GitHub for the commit.  If you want me to somehow clean up those commits, let me know.  I'm not concerned about the author if you want to integrate it in some other way.  I'd also be happy to merge the commits if you like." created="1284147085917" />
+    <comment author="patearl" text="The latest commit removes the all the CLIENTPROFILE conditional compilation.   Presumably there is a build server / distribution thing to do too, but I'm unaware of where that might be." created="1284251553745" />
+    <comment author="jonorossi" text="We already have a client profile build configuration, once this work is integrated we can remove the non-CP configuration.&#xA;&#xA;http://builds.castleproject.org/project.html?projectId=project10&amp;tab=projectOverview" created="1284252045073" />
+    <comment author="patearl" text="I notice there's no 3.5 CP build on the server.  Whatever happens, would be nice to clear up that minor inconsistency." created="1284259789198" />
+    <comment author="jonorossi" text="Supporting .NET 3.5 Client Profile is pointless since it is only for 32-bit XP and Windows Update will automatically upgrade it to the full edition." created="1284259980230" />
+    <comment author="patearl" text="NHibernate targets 3.5, so they'll likely include the 3.5 version of the assembly, which currently wouldn't be compatible with 4.0 apps that target the client profile.  The 3.5 targeted assembly will run fine under .NET 4 in most cases, so it isn't too big a deal that they'd be distributing a 3.5 version for use even within 4.0 apps.   Granted, once this issue is resolved the main problem will fix itself, leaving only a minor inconsistency in the build names." created="1284270709386" />
+    <comment author="xtoff" text="Non-CP version got ditched." created="1284511863306" />
+    <comment author="patearl" text="Thanks! :)  Looking forward to the release." created="1284529823853" />
+  </issue>
+</issues>

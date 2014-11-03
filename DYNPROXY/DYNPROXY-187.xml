@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Obsolete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions">
+      <value>vNext</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>187</value>
+    </field>
+    <field name="summary">
+      <value>Serializing IInvocation causes infinite loop. Ver 3.2</value>
+    </field>
+    <field name="description">
+      <value>In Castle.Core version 3.2, serializing IInvocation causes infinite loop.
+The following test fails:
+
+        void FailingTest()
+        {
+            var proxyGen = new ProxyGenerator();
+            var proxy = proxyGen.CreateInterfaceProxyWithoutTarget&lt;ITest&gt;(new SerializingInterceptor());
+            
+            var res = proxy.ATestMethod("an arg");
+        }
+
+        public class SerializingInterceptor : IInterceptor
+        {
+            public void Intercept(IInvocation invocation)
+            {
+                var stream = new MemoryStream();
+                var formatter = new BinaryFormatter();
+                try
+                {
+                    formatter.Serialize(stream, invocation); // Dies here
+                }
+                catch (Exception e)
+                {
+                }
+                // Do something with stream...
+            }
+        }
+
+    public interface ITest
+    {
+        int ATestMethod(string str);
+    }</value>
+    </field>
+    <field name="created">
+      <value>1365359755993</value>
+    </field>
+    <field name="updated">
+      <value>1415000101017</value>
+    </field>
+    <field name="reporterName">
+      <value>Robert.Turner</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414396134704</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Hey,&#xA;&#xA;so what's the actual scenario here? Why are you trying to serialize the invocation?" created="1373670449751" />
+    <comment author="Robert.Turner" text="To evoke it at some other place, eg over network." created="1373868347221" />
+    <comment author="xtoff" text="is that for an application or for a framework?" created="1373875106746" />
+    <comment author="Robert.Turner" text="In a framework, but in the mean time I've simply packaged only the necessary bits of the IInvocation it's certainly not an urgent requirement for me now." created="1373877273187" />
+    <comment author="xtoff" text="so can you elaborate a bit more on that? It looks like our serialization code for invocations is completely broken and has to be rebuilt from scratch so having some real scenarios and good understanding of the underlying reasons behind it would certainly help implement it better" created="1373881578617" />
+    <comment author="Robert.Turner" text="General application is as part of a RPC system. Interceptor catches call, serializes arguments and sends request over wire. &#xA;While I completely relate to the itch of broken code, I can't honestly think of a situation where we'd need to serialize the IInvocation verbatim. For our RPC lib the arguments are all mangled and packed with other stuff before being sent over the wire anyway." created="1373918314942" />
+    <comment author="xtoff" text="This is very broken indeeed.&#xA;&#xA;Can you open a pull request for that and we can start figuring our the best way to fix that." created="1394861181408" />
+    <comment author="jonorossi" text="We've got an issue on GitHub for this now that another user has logged it.&#xA;https://github.com/castleproject/Core/issues/65" created="1414396086085" />
+  </issue>
+</issues>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Generator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>16</value>
+    </field>
+    <field name="summary">
+      <value>Addition of "Add to Svn" operation like in rails</value>
+    </field>
+    <field name="description">
+      <value>Add an idditional parameter where fitting, to allow the files to be added to SVN as they are created.  See attached patch for a starting place.</value>
+    </field>
+    <field name="created">
+      <value>1160634885000</value>
+    </field>
+    <field name="updated">
+      <value>1211952218000</value>
+    </field>
+    <field name="reporterName">
+      <value>tburson</value>
+    </field>
+    <field name="updaterName">
+      <value>tburson</value>
+    </field>
+    <field name="resolved">
+      <value>1282138162026</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>NHibernate</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>152</value>
+    </field>
+    <field name="summary">
+      <value>NHibernateFacility ignores isWeb setting</value>
+    </field>
+    <field name="description">
+      <value>In the trunk version of Castle.Facilities.NHibernateIntegration, the internal class NHibernateFacilityConfiguration fails to read the isWeb attribute from facilityConfig, and thus this value appears to be always false.</value>
+    </field>
+    <field name="created">
+      <value>1311791452838</value>
+    </field>
+    <field name="updated">
+      <value>1407822550687</value>
+    </field>
+    <field name="reporterName">
+      <value>ash_mishra</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1314836571583</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

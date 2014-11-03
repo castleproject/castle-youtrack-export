@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>184</value>
+    </field>
+    <field name="summary">
+      <value>FindAllByProperty fails for composite key property</value>
+    </field>
+    <field name="description">
+      <value>To reproduce, run the code:
+
+KlassifEntity.FindAllByProperty("KlassifName", "x");
+
+Observed: Exception
+
+"could not resolve property: KlassifName of: MyNsp.KlassifEntity"
+
+
+Class definition:
+
+namespace MyNsp {
+[Serializable, ActiveRecord("klassif",Schema="public",DynamicUpdate=true,DynamicInsert=true,Lazy=true,Cache=CacheEnum.NonStrictReadWrite)]
+public class KlassifEntity : ModelGenericBase&lt;KlassifEntity&gt;, INotifyPropertyChanged {
+
+		 string klassifName; 
+		 string kood; 
+		 string nimetus; 
+
+		public KlassifEntity()		{		}
+
+		[PrimaryKey(PrimaryKeyType.Identity ,"klassif", Length=1)]
+		public virtual string KlassifName
+		{
+			get { return klassifName; }
+			set {
+				klassifName = value;
+				NotifyPropertyChanged("KlassifName");
+				}
+			}
+
+		[PrimaryKey(PrimaryKeyType.Identity ,"kood", Length=14)]
+		public virtual string Kood
+		{
+			get { return kood; }
+			set {
+				kood = value;
+				NotifyPropertyChanged("Kood");
+				}
+			}
+
+		[Property(Column="nimetus", Length=25)]
+		public virtual string Nimetus
+		{
+			get { return nimetus; }
+			set {
+				nimetus = value;
+				NotifyPropertyChanged("Nimetus");
+				}
+			}
+...
+
+
+Stack trace:
+
+Castle.ActiveRecord.Framework.ActiveRecordException was unhandled
+  Message="Could not perform FindAll for KlassifEntity"
+  Source="Castle.ActiveRecord"
+  StackTrace:
+       at Castle.ActiveRecord.ActiveRecordBase.FindAll(Type targetType, Order[] orders, ICriterion[] criteria)
+       at Castle.ActiveRecord.ActiveRecordBase.FindAll(Type targetType, ICriterion[] criteria)
+       at Castle.ActiveRecord.ActiveRecordBase.FindAllByProperty(Type targetType, String property, Object value)
+       at Castle.ActiveRecord.ActiveRecordBase`1.FindAllByProperty(String property, Object value)
+...
+</value>
+    </field>
+    <field name="created">
+      <value>1192442652000</value>
+    </field>
+    <field name="updated">
+      <value>1192530756000</value>
+    </field>
+    <field name="reporterName">
+      <value>kobruleht</value>
+    </field>
+    <field name="updaterName">
+      <value>kobruleht</value>
+    </field>
+    <field name="resolved">
+      <value>1282136515995</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

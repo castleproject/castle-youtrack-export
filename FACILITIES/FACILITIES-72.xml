@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Remoting</value>
+    </field>
+    <field name="Fix versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Affected versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>72</value>
+    </field>
+    <field name="summary">
+      <value>The use of RemotingConfiguration.RegisterXXXType should be configurable</value>
+    </field>
+    <field name="description">
+      <value>In Castle.Facilities.Remoting.RemotingInspector, the ConfigureClientComponent issues a RemotingConfiguration.RegisterXXXType for every component. This behaviour should be configurable through an component attribute, as it will throw an error when 2 different components try to implement the same service.
+
+Right now, I'm working around it by specifying remoteClient="none"</value>
+    </field>
+    <field name="created">
+      <value>1167734172000</value>
+    </field>
+    <field name="updated">
+      <value>1174323940000</value>
+    </field>
+    <field name="reporterName">
+      <value>grimace</value>
+    </field>
+    <field name="updaterName">
+      <value>grimace</value>
+    </field>
+    <field name="resolved">
+      <value>1282141169166</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

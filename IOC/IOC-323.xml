@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>323</value>
+    </field>
+    <field name="summary">
+      <value>WindsorServiceProvider returns null</value>
+    </field>
+    <field name="description">
+      <value>Fix provided in commit https://github.com/castleproject/Windsor/commit/66e69a5b2ad3afa8dfcd72508b9f4ca75f40558c was accidentally reverted</value>
+    </field>
+    <field name="created">
+      <value>1324587751344</value>
+    </field>
+    <field name="updated">
+      <value>1346103019337</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1329307088872</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

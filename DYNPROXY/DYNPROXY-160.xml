@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Cosmetics</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>160</value>
+    </field>
+    <field name="summary">
+      <value>Add ability to specify root namespace for proxies</value>
+    </field>
+    <field name="description">
+      <value>Currently all proxies go into {{Castle.Proxies.*}} namespace (and its subnamespaces) and there's no way to change that.
+
+For cases where multiple proxies are present in an application (for example NHibernate, Windsor and a mocking framework) it might be beneficial to allow each of these to specify their root namespace so that NHibernate proxies might go into {{NHibernate.Proxies.*}}, mocks might go into {{RhinoMocks.Mocks.*}} etc.
+
+That will improve experience of working with proxies and make figuring out where given proxy comes from much easier</value>
+    </field>
+    <field name="created">
+      <value>1310169250067</value>
+    </field>
+    <field name="updated">
+      <value>1311079000369</value>
+    </field>
+    <field name="reporterName">
+      <value>xtoff</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1311079000369</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Actually that's quite trivial to accomplish with {{INamingScope}} in a very flexible fashion. Not sure we need anything more than that really... Perhaps other than advertising that extension point" created="1310170995020" />
+  </issue>
+</issues>

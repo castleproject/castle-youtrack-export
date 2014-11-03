@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Incomplete</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>158</value>
+    </field>
+    <field name="summary">
+      <value>Silverlight csproj files reference .NET system assemblies, and not Silverlight system assemblies</value>
+    </field>
+    <field name="description">
+      <value>Need to change the references for mscorlib, System.core, System, System.Web and System.Xml from the .NET framework to Silverlight versions.</value>
+    </field>
+    <field name="created">
+      <value>1245035923000</value>
+    </field>
+    <field name="updated">
+      <value>1261013040000</value>
+    </field>
+    <field name="reporterName">
+      <value>pdiddy</value>
+    </field>
+    <field name="updaterName">
+      <value>pdiddy</value>
+    </field>
+    <field name="resolved">
+      <value>1261012980000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="Since we're going to autogen silverlight project files this is no longer and issue, so unless someone objects, I vote for closing this as invalid. Thoughts?" created="1261011399000" />
+    <comment author="jsimons" text="Close it +1" created="1261012882000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Invalid''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1261012980000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1261013040000" />
+  </issue>
+</issues>

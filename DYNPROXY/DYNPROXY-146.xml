@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>By design</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>2.1 RTM</value>
+      <value>2.2</value>
+      <value>2.5</value>
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>146</value>
+    </field>
+    <field name="summary">
+      <value>Unable to obtain public key for StrongNamedKey - serialization</value>
+    </field>
+    <field name="description">
+      <value>Thanks to fix 134, at module level it's possible to turn off signing of module and get rid of ntfs permission problems.
+
+However, when proxy objects are de(serialized) the problem is still there (the setting is gone).
+
+Stack trace
+at System.Reflection.StrongNameKeyPair.nGetPublicKey(Boolean exported, Byte[] array, String container)
+at System.Reflection.StrongNameKeyPair.get_PublicKey()
+at System.AppDomain.InternalDefineDynamicAssembly(AssemblyName name, AssemblyBuilderAccess access, String dir, Evidence evidence, PermissionSet requiredPermissions, PermissionSet optionalPermissions, PermissionSet refusedPermissions, ref StackCrawlMark stackMark, IEnumerable`1 unsafeAssemblyAttributes)
+at System.AppDomain.DefineDynamicAssembly(AssemblyName name, AssemblyBuilderAccess access)
+at Castle.DynamicProxy.ModuleScope.CreateModule(Boolean signStrongName) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\ModuleScope.cs: line 354
+at Castle.DynamicProxy.ModuleScope.ObtainDynamicModuleWithStrongName() in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\ModuleScope.cs: line 297
+at Castle.DynamicProxy.ModuleScope.ObtainDynamicModule(Boolean isStrongNamed) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\ModuleScope.cs: line 276
+at Castle.DynamicProxy.ModuleScope.DefineType(Boolean inSignedModulePreferably, String name, TypeAttributes flags) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\ModuleScope.cs: line 533
+at Castle.DynamicProxy.Generators.Emitters.ClassEmitter.CreateTypeBuilder(ModuleScope modulescope, String name, Type baseType, IEnumerable`1 interfaces, TypeAttributes flags, Boolean forceUnsigned) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Generators\Emitters\ClassEmitter.cs: line 64
+at Castle.DynamicProxy.Generators.Emitters.ClassEmitter..ctor(ModuleScope modulescope, String name, Type baseType, IEnumerable`1 interfaces, TypeAttributes flags, Boolean forceUnsigned) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Generators\Emitters\ClassEmitter.cs: line 37
+at Castle.DynamicProxy.Generators.Emitters.ClassEmitter..ctor(ModuleScope modulescope, String name, Type baseType, IEnumerable`1 interfaces) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Generators\Emitters\ClassEmitter.cs: line 30
+at Castle.DynamicProxy.Generators.InvocationTypeGenerator.GetEmitter(ClassEmitter class, Type[] interfaces, INamingScope namingScope, MethodInfo methodInfo) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Generators\InvocationTypeGenerator.cs: line 103
+at Castle.DynamicProxy.Generators.InvocationTypeGenerator.Generate(ClassEmitter class, ProxyGenerationOptions options, INamingScope namingScope) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Generators\InvocationTypeGenerator.cs: line 53
+at Castle.DynamicProxy.Contributors.InterfaceProxyWithoutTargetContributor.GetInvocationType(MetaMethod method, ClassEmitter emitter, ProxyGenerationOptions options) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Contributors\InterfaceProxyWithoutTargetContributor.cs: line 74
+at Castle.DynamicProxy.Contributors.InterfaceProxyWithoutTargetContributor.GetMethodGenerator(MetaMethod method, ClassEmitter class, ProxyGenerationOptions options, OverrideMethodDelegate overrideMethod) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Contributors\InterfaceProxyWithoutTargetContributor.cs: line 53
+at Castle.DynamicProxy.Contributors.CompositeTypeContributor.ImplementMethod(MetaMethod method, ClassEmitter class, ProxyGenerationOptions options, OverrideMethodDelegate overrideMethod) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Contributors\CompositeTypeContributor.cs: line 140
+at Castle.DynamicProxy.Contributors.CompositeTypeContributor.ImplementProperty(ClassEmitter emitter, MetaProperty property, ProxyGenerationOptions options) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Contributors\CompositeTypeContributor.cs: line 126
+at Castle.DynamicProxy.Contributors.CompositeTypeContributor.Generate(ClassEmitter class, ProxyGenerationOptions options) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Contributors\CompositeTypeContributor.cs: line 89
+at Castle.DynamicProxy.Generators.InterfaceProxyWithoutTargetGenerator.GenerateType(String typeName, Type proxyTargetType, Type[] interfaces, INamingScope namingScope) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Generators\InterfaceProxyWithoutTargetGenerator.cs: line 72
+at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.&lt;&gt;c__DisplayClass1.&lt;GenerateCode&gt;b__0(String n, INamingScope s) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Generators\InterfaceProxyWithTargetGenerator.cs: line 52
+at Castle.DynamicProxy.Generators.BaseProxyGenerator.ObtainProxyType(CacheKey cacheKey, Func`3 factory) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Generators\BaseProxyGenerator.cs: line 382
+at Castle.DynamicProxy.Generators.InterfaceProxyWithTargetGenerator.GenerateCode(Type proxyTargetType, Type[] interfaces, ProxyGenerationOptions options) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Generators\InterfaceProxyWithTargetGenerator.cs: line 52
+at Castle.DynamicProxy.Serialization.ProxyObjectReference.RecreateInterfaceProxy(String generatorType) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Serialization\ProxyObjectReference.cs: line 157
+at Castle.DynamicProxy.Serialization.ProxyObjectReference.RecreateProxy() in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Serialization\ProxyObjectReference.cs: line 120
+at Castle.DynamicProxy.Serialization.ProxyObjectReference..ctor(SerializationInfo info, StreamingContext context) in c:\TeamCity\buildAgent\work\f0c43d96621436a8\src\Castle.Core\DynamicProxy\Serialization\ProxyObjectReference.cs: line 94
+</value>
+    </field>
+    <field name="created">
+      <value>1286886470196</value>
+    </field>
+    <field name="updated">
+      <value>1352672192397</value>
+    </field>
+    <field name="reporterName">
+      <value>roger.kratz@teleopti.com</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1352672192397</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="That's because deserialization process has no access to original {{ModuleScope}}.&#xA;&#xA;You can workaround this by calling&#xA;{code lang=java}&#xA;ProxyObjectReference.SetScope(yourScopeInstanceWithDisabledGenerationOfSignedModule);&#xA;{code}&#xA;&#xA;As a more permanent solution perhaps we should also save information about the scope when saving serialised assembly?" created="1286888429680" />
+    <comment author="roger.kratz@teleopti.com" text="I think that would be a good idea, yes.&#xD;&#xA;&#xD;&#xA;I was just about to add a patch for NH's impl of Castle proxy regarding this but noticed it wasn't really currently possibly (I think). AFAIK - there you don't have the proxyref outside NH Core which makes your workaround not really useful." created="1289229015837" />
+    <comment author="xtoff" text="I think you could do make that work at NHibernate level by modifying the Castle bytecode provider&#xA;" created="1289257333837" />
+    <comment author="roger.kratz@teleopti.com" text="AFAIK - the bytecode provider doesn't have any ref to the proxies.&#xD;&#xA;&#xD;&#xA;Never mind. There are alternatives using NH. However - I think it would be good if this could be handled ((de)serialization) inside DP if possible.&#xD;&#xA;&#xD;&#xA;Thanks for a great product!&#xD;&#xA;/Roger" created="1289812939708" />
+  </issue>
+</issues>

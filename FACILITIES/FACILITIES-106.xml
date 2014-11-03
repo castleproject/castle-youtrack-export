@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>NHibernate</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>106</value>
+    </field>
+    <field name="summary">
+      <value>XmlConfigurationBuilder for NHibernate's own configuration file</value>
+    </field>
+    <field name="description">
+      <value>This is one of the features that I'd like to see in NH Facility.
+I'd like to be able to configure NH from its own config file so that if there is something that is not supported yet in the facility but NH have it, one can use the hibernate's own xml file.
+
+A patch will come shortly.</value>
+    </field>
+    <field name="created">
+      <value>1225761450000</value>
+    </field>
+    <field name="updated">
+      <value>1231910687000</value>
+    </field>
+    <field name="reporterName">
+      <value>tehlike</value>
+    </field>
+    <field name="updaterName">
+      <value>tehlike</value>
+    </field>
+    <field name="resolved">
+      <value>1231910640000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="tehlike" text="Implemented in rev 5403" created="1231910673000" />
+    <comment author="tehlike" text="Implemented in rev5403" created="1231910687000" />
+    <comment author="tehlike" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1231910640000" />
+    <comment author="tehlike" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1231910640000" />
+  </issue>
+</issues>

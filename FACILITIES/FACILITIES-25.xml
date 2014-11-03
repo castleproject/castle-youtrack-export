@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Beta3</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>25</value>
+    </field>
+    <field name="summary">
+      <value>NH Facility and ATM problem</value>
+    </field>
+    <field name="description">
+      <value>Quoting http://forum.castleproject.org/posts/list/0/132.page
+
+Its been a while, so I thought I'd throw my hat into the ring: I am also suffering a similar problem, and perhaps I can give more examples.
+
+Heres how it goes. I have a service which is transactional.
+
+Code:
+
+[Transactional]
+ public class CreateBlogService : ICreateBlogService
+ {
+ 	// constructor
+ 	
+ 	[Transaction(TransactionMode.RequiresNew)]
+ 	public Blog Create(string blogName)
+ 	{
+ 		if (blogRepository.IsBlogNameFree(blogName))
+ 		{
+ 			BlogStatus status = blogRepository.FindStatus("Created");
+ 			Blog blog = new Blog(blogName, status);
+ 			blogRepository.PersistBlog(blog);
+ 			
+ 			SystemAction action = new SystemAction("Blog created.");
+ 			actionRepository.PersistAction(action);
+ 			
+ 			return blog;
+ 		}
+ 		else return null;
+ 	}
+ }
+ 
+
+
+
+And I have two repositories, which are pretty straight forward things:
+
+Code:
+
+[Transactional]
+ public class BlogRepository : IBlogRepository
+ {
+ 	// constructor
+ 
+ 	[Transaction(TransactionMode.Requires)]
+ 	public void PersistBlog(Blog blogToCreate)
+ 	{
+ 		using (ISession session = sessionManager.OpenSession())
+ 		{
+ 			session.Save(blogToCreate);
+ 		}
+ 	}
+ }
+
+
+
+With ActionRepository looking pretty much the same.
+
+If an exception is thrown just after the call to PersistBlog within CreateBlogService, the new blog entry is rolled back from the database.
+
+Also, if an exception is thrown within the call to PersistAction, before the using statement, the blog entry is also rolled back.
+
+However, if an exception is thrown within the call to PersistAction, within the using(ISession...) statement, the blog entry in the database is NOT rolled back.
+
+Furthermore, if the exception is thrown after the SystemAction has been persisted, either inside or outside the using statement, then the SystemAction is rolled back - although the Blog still remains.
+
+So it seems the rollback only affects the last used DAO/Repository.
+
+I'm using Revision #1157 - with its new NHibernate facility. Is this a bug, or am I doing something wrong here?
+
+Cheers,
+Sean.</value>
+    </field>
+    <field name="created">
+      <value>1130419110000</value>
+    </field>
+    <field name="updated">
+      <value>1162412000000</value>
+    </field>
+    <field name="reporterName">
+      <value>hammett</value>
+    </field>
+    <field name="updaterName">
+      <value>hammett</value>
+    </field>
+    <field name="resolved">
+      <value>1282140973870</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

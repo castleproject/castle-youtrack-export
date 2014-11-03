@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Critical</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Can't Reproduce</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>45</value>
+    </field>
+    <field name="summary">
+      <value>donjon needs some work</value>
+    </field>
+    <field name="description">
+      <value>it crashed within 1 minute of use</value>
+    </field>
+    <field name="created">
+      <value>1216285659000</value>
+    </field>
+    <field name="updated">
+      <value>1230256362000</value>
+    </field>
+    <field name="reporterName">
+      <value>paddy.clark</value>
+    </field>
+    <field name="updaterName">
+      <value>paddy.clark</value>
+    </field>
+    <field name="resolved">
+      <value>1230256320000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="Donjon is working at the moment. If you experience this problem again please log it at http://support.castle-donjon.com/" created="1230256362000" />
+    <comment author="jonorossi" text="* '''Resolution''' set to ''Cannot Reproduce''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1230256320000" />
+  </issue>
+</issues>

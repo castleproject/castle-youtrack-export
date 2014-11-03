@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.0 RTM</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>152</value>
+    </field>
+    <field name="summary">
+      <value>Exception message in AbstractProxyFactory</value>
+    </field>
+    <field name="description">
+      <value>The AbstractProxyFactory incorrectly reports that the interceptor is not an IMethodInterceptor, actually it checks if it's an IInterceptor.</value>
+    </field>
+    <field name="created">
+      <value>1242935189000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853104</value>
+    </field>
+    <field name="reporterName">
+      <value>mausch</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1260779160000</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mausch" text="Applied in r5915" created="1249507658000" />
+    <comment author="xtoff" text="Fixed by Mauricio Scheffer&#xA;" created="1260779179000" />
+    <comment author="xtoff" text="Fixed in r5915&#xA;" created="1260779190000" />
+    <comment author="xtoff" text="* '''Resolution''' set to ''Fixed''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1260779160000" />
+    <comment author="xtoff" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1260779160000" />
+    <comment author="mausch" text="* '''Attachment''' proxyfactory_exception_message.patch added.&#xD;&#xA;" created="1242935189001" />
+  </issue>
+</issues>

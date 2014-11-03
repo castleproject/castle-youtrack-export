@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions">
+      <value>RC 4</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>65</value>
+    </field>
+    <field name="summary">
+      <value>DictionaryConverter should use the alternate overload of the PerformConversion method in order to support dictionaries that contain custom types</value>
+    </field>
+    <field name="description">
+      <value>The DictionaryConverter has the following code snipplet :
+
+				Type convertValueTo = defaultValueType;
+
+				if (itemConfig.Attributes["valueType"] != null)
+				{
+					convertValueTo = (Type) Context.Composition.PerformConversion( itemConfig.Attributes["valueType"], typeof(Type) );
+				}
+				object value = Context.Composition.PerformConversion(itemConfig.Value, convertValueTo);
+
+This will cause the TypeNameConverter to be invoked, and uses the 
+
+                                object PerformConversion( String value, Type targetType );
+
+overload to do the conversion. Instead the other overload :
+
+                                object PerformConversion( IConfiguration configuration, Type targetType );
+
+should be used as the would allow custom types in the Dictionary
+
+
+
+</value>
+    </field>
+    <field name="created">
+      <value>1171261349000</value>
+    </field>
+    <field name="updated">
+      <value>1283220853151</value>
+    </field>
+    <field name="reporterName">
+      <value>torkil</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1282142003479</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

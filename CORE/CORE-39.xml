@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Core internals</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>39</value>
+    </field>
+    <field name="summary">
+      <value>ComponentModel does not inherit from an interface or an abstract base class</value>
+    </field>
+    <field name="description">
+      <value>Currently it is impossible to mock a ComponenetModel using Moq and other libraries due to the fact that it does not inherit from an interface or an abstract base class.
+Extracting an interface should be easy and will allow more testability when extending Windsor or other Castle components that use the ComponentModel.
+It will also allow to use TDD methodologies when extending Windsor through facilities and ComponentModel construction contributors.</value>
+    </field>
+    <field name="created">
+      <value>1305445788316</value>
+    </field>
+    <field name="updated">
+      <value>1312804334255</value>
+    </field>
+    <field name="reporterName">
+      <value>Omer.Katz</value>
+    </field>
+    <field name="updaterName">
+      <value>xtoff</value>
+    </field>
+    <field name="resolved">
+      <value>1312804334255</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+      <value>User: id = 20-723[up-to-date]</value>
+      <value>User: id = 20-724[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="why would you want to mock it?" created="1305451105847" />
+    <comment author="Omer.Katz" text="Here's an example of a Test that needs to mock a ComponentModel:&#xA;{code lang=Java}&#xA;&#xA;        [Test]&#xA;        [Category(&quot;HasInterceptors() Tests&quot;)]&#xA;        public void VerifyThat_WhenHasInterceptorIsCalledWithAComponentModelThatHasTheLogAttribute_TheReturnValueIsTrue()&#xA;        {&#xA;            Type type = Mock.Of&lt;Type&gt;(t =&gt; t.GetCustomAttributes(typeof(LogAttribute), false) == new[] { new LogAttribute() });&#xA;            ComponentModel model = new ComponentModel(&quot;mockedType&quot;, type, type);&#xA;&#xA;            LoggingModelInterceptorsSelector selector = new LoggingModelInterceptorsSelector();&#xA;&#xA;            var result = selector.HasInterceptors(model);&#xA;&#xA;            Assert.That(result, Is.True);&#xA;        }&#xA;{code}&#xA;&#xA;I really don't want to depend on the ComponentModel being implemented correctly. I just need it to be used by the ModelInterceptorsSelector." created="1305451412909" />
+    <comment author="xtoff" text="I see your point.&#xA;&#xA;&#xA;&gt; I really don't want to depend on the ComponentModel being implemented correctly.&#xA;&#xA;However I think the downsides outweigh benefits here. I don't want to get into a discussion on mocking, but briefly - you mock external *behaviour*. The {{ComponentModel}} class has no behaviour of its own - it's merely a bag of properties.&#xA;As such I think trying to mock it is unnecessary and abstracting the class would provide no value and only add complexity.&#xA;&#xA;In other words - I think the test you have is perfectly fine. If anything I would remove usage of mocks from it altogether and just create a dummy type like this and use it:&#xA;{code lang=java}&#xA;[Log]&#xA;public class DummyWithLogAttribute { }&#xA;{code}&#xA;&#xA;cheers,&#xA;Krzysztof" created="1305452465191" />
+    <comment author="Omer.Katz" text="And what if you'll add some behavior later on? What kind of downsides does extracting an interface from the ComponentModel? &#xA;What about verifying expectations, like that model.Implementation was called or something similar. In my opinion, mocking the Type and providing the attribute is by far easier then creating a dummy type and it does adhere to AAA better. It's a matter of style though." created="1305452675909" updated="1305452968925" />
+    <comment author="ploeh" text="I agree with Krzysztof. Mocks/Stubs are excellent for replacing behavior, but not particularly well-suited for replacing data. I've successfully TDD'ed against ComponentModel using it as the data container that it is. No issues there.&#xA;&#xA;However, if Krzysztof or other Castle maintainers were to add behavior to the class I would find it most appropriate to let a Role Interface define that behavior." created="1305454804706" />
+    <comment author="Omer.Katz" text="I still don't see the downside of extracting an interface but heck, if it should be done the way I did it. Why not than?" created="1305456881097" />
+    <comment author="ploeh" text="As a rule of thumb I consider properties on interfaces as a design smell. The short reason is that they violate the Law of Demeter and then, by corollary, the Hollywood Principle. This again hurts testability." created="1305457899003" />
+    <comment author="Omer.Katz" text="I see the violation of the Law Of Demeter but I don't see how it hurts testability. If it's on the interface it can be mocked." created="1305458426113" />
+    <comment author="ploeh" text="[By definition|http://xunitpatterns.com/Mock%20Object.html] Mocks verify ''behavior'', but properties have no behavior. Trying to Mock them only makes you write more code than you have to. The more test code you have, the more you have to maintain.&#xA;&#xA;What's even worse is that if a property exposes another complex type and a client accesses data there through multiple 'dot' jumps, you'd have to set up Test Doubles for this whole property navigation nightmare. Test maintenance hell waits in the wings." created="1305460324613" />
+    <comment author="Omer.Katz" text="So what you're claiming that even verifying access to get/set isn't worth it?" created="1305460494675" />
+    <comment author="ploeh" text="Why would you? Under normal assumptions about good API design, a if you write to a public property, you should be able to read the same value back. Thus, if you want to know whether or not a property was written you can just inspect the value after the fact." created="1305460815394" />
+    <comment author="Omer.Katz" text="What if the property is only gettable. That's viable if the model is a ViewModel." created="1305462462441" />
+    <comment author="ploeh" text="Same as above. It's not the setter which is problematic (it's a void method/Command) but the getter." created="1305462813050" />
+    <comment author="Omer.Katz" text="But what if I want to mock faulted values to determine if my component deals with those? I still see it's a valid use case." created="1305464233706" />
+    <comment author="ploeh" text="Create the data structure with the faulty data and pass it into the test." created="1305464791394" />
+    <comment author="Omer.Katz" text="and if I can't do that it's bad design? That kinda defies encapsulation." created="1305464927050" />
+    <comment author="ploeh" text="If you can't pass invalid data to the structure because it protects its invariants (as it should) you don't have to test whether your own consumer can deal with bad data ''from'' the data structure, because you know that this will never happen. Encapsulation just saved you a bunch of work." created="1305465415159" />
+    <comment author="Omer.Katz" text="Point taken. We can take this to twitter you know :) @the_drow :)" created="1305465546097" />
+    <comment author="ploeh" text="Continued on Twitter: https://twitter.com/#!/ploeh/status/69755537713147904" created="1305466043003" />
+  </issue>
+</issues>

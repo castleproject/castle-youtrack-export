@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Won't fix</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>No subsystem</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>578</value>
+    </field>
+    <field name="summary">
+      <value>RescueControllers isn't released, which creates a memory leak with Windsor</value>
+    </field>
+    <field name="description">
+      <value>When an exception is thrown from a controller action, that controller will create the RescueController but never release it from the factory (IControllerfactory.Release()) like the BaseHttpHandler does. 
+
+I'm guessing that is standard procedure when working with a factory? I'm guessing it's not a big issue for most people, but when I stress tested our application with some faulty urls (that expected some missing views) w3wp.exe started to use up around 7-8 GB before I finally stopped the stresstest because our rescue kept a lot of references to other objects as well.
+
+I only added a line at the end of this method (in Controller.cs, I can't create a patch right now because I don't have a working git checkout, nor any git tools):
+
+{code}
+		private void CreateAndProcessRescueController(RescueDescriptor desc, Exception actionException)
+		{
+			IController rescueController = engineContext.Services.ControllerFactory.CreateController(desc.RescueController);
+
+			ControllerMetaDescriptor rescueControllerMeta =
+				engineContext.Services.ControllerDescriptorProvider.BuildDescriptor(rescueController);
+
+			ControllerDescriptor rescueControllerDesc = rescueControllerMeta.ControllerDescriptor;
+
+			IControllerContext rescueControllerContext = engineContext.Services.ControllerContextFactory.Create(
+				rescueControllerDesc.Area, rescueControllerDesc.Name, desc.RescueMethod.Name,
+				rescueControllerMeta);
+
+			rescueControllerContext.CustomActionParameters["exception"] = actionException;
+			rescueControllerContext.CustomActionParameters["controller"] = this;
+			rescueControllerContext.CustomActionParameters["controllerContext"] = ControllerContext;
+
+			rescueController.Process(engineContext, rescueControllerContext);
+
+			// Patch for releasing the rescuecontroller
+			// By Jimmy Shimizu
+			engineContext.Services.ControllerFactory.Release(rescueController);
+		}
+{code}
+
+I checked the source of RC1 and didn't find a fix for it there either. And since 2.1 breaks all dependencies from 2.0 I think it would be nice with a 2.0.1 release for those that can't just upgrade to 2.1.
+
+Cheers, Jimmy</value>
+    </field>
+    <field name="created">
+      <value>1319561112960</value>
+    </field>
+    <field name="updated">
+      <value>1414999477008</value>
+    </field>
+    <field name="reporterName">
+      <value>jishi</value>
+    </field>
+    <field name="updaterName">
+      <value>jonorossi</value>
+    </field>
+    <field name="resolved">
+      <value>1414999477004</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-800[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="jonorossi" text="MonoRail2 is not actively maintained, closing this issue as won't fix because of its age. Feel free to relog a new issue on GitHub:&#xA;https://github.com/castleproject/MonoRail/issues" created="1414999477010" />
+  </issue>
+</issues>

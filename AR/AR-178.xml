@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>RC 2</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>178</value>
+    </field>
+    <field name="summary">
+      <value>SessionScopeWebModule fails with HybridWebThreadScopeInfo</value>
+    </field>
+    <field name="description">
+      <value>If we configure Active Record to use the HybridWebThreadScopeInfo just like
+
+&lt;activerecord
+         isWeb="true"
+         threadinfotype="Castle.ActiveRecord.Framework.Scopes.HybridWebThreadScopeInfo, Castle.ActiveRecord" &gt; 
+...
+
+and also register the SessionScopeWebModule i httpmodules section of web.config, it will fail because of hard-coded expectation for WebThreadScopeInfo.
+
+This patch introduces IWebThreadScopeInfo interface that is inherited from IThreadScopeInfo with no additional members. SessionScopeWebModule expects current thread scope info to implement this interface.</value>
+    </field>
+    <field name="created">
+      <value>1188292138000</value>
+    </field>
+    <field name="updated">
+      <value>1188342342000</value>
+    </field>
+    <field name="reporterName">
+      <value>somaka</value>
+    </field>
+    <field name="updaterName">
+      <value>somaka</value>
+    </field>
+    <field name="resolved">
+      <value>1282136505870</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

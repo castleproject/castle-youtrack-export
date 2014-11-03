@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Minor</value>
+    </field>
+    <field name="Type">
+      <value>Feature</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>ViewEngines</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>94</value>
+    </field>
+    <field name="summary">
+      <value>AspView: viewcomponent parameter names being compared without case sensitivity</value>
+    </field>
+    <field name="description">
+      <value>The viewcomponent parameter dictionary passed to viewcomponent instance use default equality comparer.
+
+I propose to use case insensitive comparison as most of the AspView view engine allready work without case sensitivity (as plain asp.net with server controls).
+
+example:
+
+&lt;component:diggstylepagination page="&lt;%=paginationcontext%&gt;"&gt;&lt;/component:diggstylepagination&gt;
+
+raise an error saying 'Page' is required parameter
+
+The attached patch solve this issue by passing an implementation of IEqualityComparer&lt;string&gt; that perform according comparison (the implementation is embeded because I didn't find such one in the .net framework).
+
+Also, what is the preferred way for asserting that in the new testfixtures? (I would do the according testcase)
+
+If the patch is rejected, would an option on the aspview configuration section be accepted?
+
+Thanks
+
+EDITED: fixing typos</value>
+    </field>
+    <field name="created">
+      <value>1199023703000</value>
+    </field>
+    <field name="updated">
+      <value>1204643802000</value>
+    </field>
+    <field name="reporterName">
+      <value>gauthier</value>
+    </field>
+    <field name="updaterName">
+      <value>gauthier</value>
+    </field>
+    <field name="resolved">
+      <value>1282140025838</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

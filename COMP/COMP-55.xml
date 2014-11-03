@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Validator</value>
+    </field>
+    <field name="Fix versions" />
+    <field name="Affected versions">
+      <value>Future</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>55</value>
+    </field>
+    <field name="summary">
+      <value>Modified validation messages in latvian language</value>
+    </field>
+    <field name="description">
+      <value>Latvian language validation messages are modified so that they can be used as hints for input elements. Until now, some messages were appropriate only for error reporting and not for description of valid input.</value>
+    </field>
+    <field name="created">
+      <value>1203076630000</value>
+    </field>
+    <field name="updated">
+      <value>1203124895000</value>
+    </field>
+    <field name="reporterName">
+      <value>andris</value>
+    </field>
+    <field name="updaterName">
+      <value>andris</value>
+    </field>
+    <field name="resolved">
+      <value>1282137612104</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+  </issue>
+</issues>

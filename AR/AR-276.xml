@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Major</value>
+    </field>
+    <field name="Type">
+      <value>Task</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Framework</value>
+    </field>
+    <field name="Fix versions">
+      <value>Future</value>
+    </field>
+    <field name="Affected versions" />
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>276</value>
+    </field>
+    <field name="summary">
+      <value>Fixed a case of HasMany inference relating to mapped types</value>
+    </field>
+    <field name="description">
+      <value>The code that searches for the belongs to was not checking the case where the belongs to mapped type matched the containing model type.</value>
+    </field>
+    <field name="created">
+      <value>1257435637000</value>
+    </field>
+    <field name="updated">
+      <value>1260073914000</value>
+    </field>
+    <field name="reporterName">
+      <value>patearl</value>
+    </field>
+    <field name="updaterName">
+      <value>patearl</value>
+    </field>
+    <field name="resolved">
+      <value>1260073860000</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="mzywitza" text="Applied in r6396, thanks" created="1260073911000" />
+    <comment author="mzywitza" text="* '''Resolution''' set to ''Applied''.&#xD;&#xA;* '''Version Fixed''' set to ''Future''.&#xD;&#xA;* '''Status''' changed from ''Open'' to ''Resolved''.&#xD;&#xA;" created="1260073860000" />
+    <comment author="mzywitza" text="* '''Status''' changed from ''Resolved'' to ''Closed''.&#xD;&#xA;" created="1260073860000" />
+    <comment author="patearl" text="* '''Attachment''' hasmanyvisitor.patch added.&#xD;&#xA;" created="1257435660000" />
+  </issue>
+</issues>

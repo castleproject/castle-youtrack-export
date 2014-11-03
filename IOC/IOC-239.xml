@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<issues>
+  <issue>
+    <field name="Priority">
+      <value>Normal</value>
+    </field>
+    <field name="Type">
+      <value>Bug</value>
+    </field>
+    <field name="State">
+      <value>Fixed</value>
+    </field>
+    <field name="Assignee" />
+    <field name="Subsystem">
+      <value>Container internals</value>
+    </field>
+    <field name="Fix versions">
+      <value>2.5.2</value>
+    </field>
+    <field name="Affected versions">
+      <value>2.5.1</value>
+    </field>
+    <field name="Fixed in build" />
+    <field name="numberInProject">
+      <value>239</value>
+    </field>
+    <field name="summary">
+      <value>ArrayResolver attempts to instantiate an unresolvable array dependency</value>
+    </field>
+    <field name="description">
+      <value>When using the ArrayResolver, if I register multiple implementations of an interface and a class that depends on an array of said interfaces, I expect the array resolver to inject all the interface implementations that can be successfully resolved. If a registered implementation of that interface cannot be resolved, it will not be injected into the dependent class (obviously), and the container will not throw an exception.
+
+Starting with Windsor 2.5.1, the ArrayResolver will throw an exception in this situation, but only if the class it is trying to instantiate has multiple constructors.
+
+I am not sure if this change in behavior was intentional or not. I do not see anything in the 2.5.1 breaking changes document that would lead me to believe that this was intentional.
+
+Cross-posted with unit test here:
+http://stackoverflow.com/questions/4016638/castle-windsor-arrayresolver-attempts-to-instantiate-an-unresolvable-array-depend
+</value>
+    </field>
+    <field name="created">
+      <value>1288023656618</value>
+    </field>
+    <field name="updated">
+      <value>1288120262947</value>
+    </field>
+    <field name="reporterName">
+      <value>slange</value>
+    </field>
+    <field name="updaterName">
+      <value>slange</value>
+    </field>
+    <field name="resolved">
+      <value>1288090751712</value>
+    </field>
+    <field name="watcherName">
+      <value>User: id = 20-18[up-to-date]</value>
+    </field>
+    <field name="permittedGroup">
+      <value>All Users</value>
+    </field>
+    <comment author="xtoff" text="This is a change introduced to fix some other issues. The exception should not have been thrown and propagated to your code." created="1288042652118" />
+    <comment author="xtoff" text="I only had a quick look now, but the problem is not with resolver. For some reason Windsor flags the unresolvable component as perfectly fine." created="1288043742197" />
+    <comment author="slange" text="I noticed that you fixed this in build 2147, so I downloaded it and tested it out.  I can confirm that this issue is resolved in that version.  Looking forward to 2.5.2!" created="1288120262947" />
+  </issue>
+</issues>
