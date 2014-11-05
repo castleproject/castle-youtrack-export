@@ -11,4 +11,5 @@ enhancements and accept contributions. Old data was not imported into GitHub Iss
 To view or log a new issue go to the issues page of the related project:
 * https://github.com/castleproject
 
-To view the old issues look in the directory for that project within this repository.
+To view the old issues look in the directory for that project within this repository, or use the GitHub repository search:
+* https://github.com/castleproject/castle-youtrack-export/search
